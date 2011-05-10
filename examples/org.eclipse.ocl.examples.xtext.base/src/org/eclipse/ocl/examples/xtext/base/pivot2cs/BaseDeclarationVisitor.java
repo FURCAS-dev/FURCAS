@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseDeclarationVisitor.java,v 1.7 2011/03/01 08:47:48 ewillink Exp $
+ * $Id: BaseDeclarationVisitor.java,v 1.8 2011/05/05 17:53:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -21,7 +21,6 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
-import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -37,7 +36,6 @@ import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
@@ -52,7 +50,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
@@ -87,12 +84,13 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 				}
 			}));
 		context.refreshList(csElement.getOwnedOperation(), context.visitDeclarations(OperationCS.class, object.getOwnedOperations(), null));
+		final Type classType = context.getTypeManager().getPivotType("Class");
 		final Class classifierType = context.getTypeManager().getClassifierType();
 		context.refreshList(csElement.getOwnedSuperType(), context.visitReferences(TypedRefCS.class, object.getSuperClasses(),
 			new Pivot2CS.Predicate<Type>()
 			{
 				public boolean filter(Type element) {
-					return element != classifierType;
+					return (element != classType) && (element != classifierType);
 				}
 			}));
 		context.refreshQualifiers(csElement.getQualifier(), "abstract", object.isAbstract());
@@ -149,12 +147,6 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 			csElement.eUnset(BaseCSTPackage.Literals.ENUMERATION_LITERAL_CS__VALUE);
 		}
 		return csElement;
-	}
-
-	@Override
-	public ElementCS visitExpressionInOcl(ExpressionInOcl object) {
-		// TODO Auto-generated method stub
-		return super.visitExpressionInOcl(object);
 	}
 
 	@Override
@@ -215,14 +207,13 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 			Property opposite = object.getOpposite();
 			if (opposite != null) {
 				if (!opposite.isImplicit()) {
-					ReferenceCSRef referenceRef = BaseCSTFactory.eINSTANCE.createReferenceCSRef();
-					referenceRef.setRef(opposite);
-					csElement.setOpposite(referenceRef);
+					csElement.setOpposite(opposite);
 				}
 				else {
 					// FIXME
 				}
 			}
+			context.refreshList(csElement.getKeys(), object.getKeys());
 			return csElement;
 		}
 	}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractSequenceValue.java,v 1.3 2011/05/02 09:42:04 ewillink Exp $
+ * $Id: AbstractSequenceValue.java,v 1.4 2011/05/07 16:41:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -24,6 +24,7 @@ import java.util.List;
 
 import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
+import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.NullValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
@@ -56,7 +57,7 @@ public abstract class AbstractSequenceValue<L extends List<Value>>
 
     public SequenceValue append(Value object) throws InvalidValueException {
 		if (object.isInvalid()) {
-			throw new InvalidValueException("append invalid");
+        	valueFactory.throwInvalidValueException(EvaluatorMessages.InvalidSource, "append");
 		}
     	List<Value> result = new ArrayList<Value>(elements);
         result.add(object);
@@ -66,9 +67,7 @@ public abstract class AbstractSequenceValue<L extends List<Value>>
     public Value at(int index) throws InvalidValueException {
         index = index - 1;        
         if (index < 0 || elements.size() <= index) {
-			throw new InvalidValueException(
-				"index: " + (index + 1) + ", size: " //$NON-NLS-1$ //$NON-NLS-2$
-					+ size());
+        	valueFactory.throwInvalidValueException(EvaluatorMessages.IndexOutOfRange, index + 1, size());
 		}        
         return elements.get(index);
     }
@@ -115,7 +114,7 @@ public abstract class AbstractSequenceValue<L extends List<Value>>
 
     public Value first() throws InvalidValueException {
         if (elements.size() <= 0) {
-			throw new InvalidValueException("'first' of empty Sequence");
+        	valueFactory.throwInvalidValueException(EvaluatorMessages.EmptyCollection, "Sequence", "first");
         }
         return elements.get(0);
     }
@@ -136,7 +135,7 @@ public abstract class AbstractSequenceValue<L extends List<Value>>
 	   
 	public SequenceValue including(Value value) throws InvalidValueException {
 		if (value.isInvalid()) {
-			throw new InvalidValueException("including invalid");
+			valueFactory.throwInvalidValueException(EvaluatorMessages.InvalidSource, "including");
 		}
 		List<Value> result = new ArrayList<Value>(elements);
 		result.add(value);
@@ -145,23 +144,19 @@ public abstract class AbstractSequenceValue<L extends List<Value>>
 
     public IntegerValue indexOf(Value object) throws InvalidValueException {
         int index = elements.indexOf(object);
-        if (index >= 0) {
-        	return valueFactory.integerValueOf(index+1);
+        if (index < 0) {
+			valueFactory.throwInvalidValueException(EvaluatorMessages.MissingValue, "indexOf");
         }
-        else {
-        	throw new InvalidValueException("missing object");
-        }
+    	return valueFactory.integerValueOf(index+1);
     }
 
     public SequenceValue insertAt(int index, Value object) throws InvalidValueException {
 		if (object.isInvalid()) {
-			throw new InvalidValueException("insertAt invalid");
+			valueFactory.throwInvalidValueException(EvaluatorMessages.InvalidSource, "insertAt");
 		}
         index = index - 1;        
         if (index < 0 || index > elements.size()) {
-			throw new IndexOutOfBoundsException(
-				"index: " + (index + 1) + ", size: " //$NON-NLS-1$ //$NON-NLS-2$
-					+ size());
+        	valueFactory.throwInvalidValueException(EvaluatorMessages.IndexOutOfRange, index + 1, size());
         }        
 		List<Value> result = new ArrayList<Value>(elements);
 		result.add(index, object);
@@ -171,14 +166,14 @@ public abstract class AbstractSequenceValue<L extends List<Value>>
     public Value last() throws InvalidValueException {
         int size = elements.size();
 		if (size <= 0) {
-			throw new InvalidValueException("'last' of empty Sequence");
+        	valueFactory.throwInvalidValueException(EvaluatorMessages.EmptyCollection, "Sequence", "last");
         }
         return elements.get(size-1);
     }
     
     public SequenceValue prepend(Value object) throws InvalidValueException {
 		if (object.isInvalid()) {
-			throw new InvalidValueException("prepend invalid");
+			valueFactory.throwInvalidValueException(EvaluatorMessages.InvalidSource, "prepend");
 		}
     	List<Value> result = new ArrayList<Value>();
         result.add(object);

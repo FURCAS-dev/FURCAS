@@ -22,15 +22,17 @@ import org.eclipse.ocl.examples.impactanalyzer.util.OperationCallExpKeyedSet;
 
 /**
  * Objects of classes implementing this interface are constructed by
- * {@link TracebackStepCache#createStep(org.eclipse.ocl.ecore.OCLExpression, org.eclipse.emf.ecore.EClass, de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper, java.util.Stack, OCLFactory)}
- * . For each (sub-)expression visited in the OCL AST, such a step is created. The constructors try to perform as much
- * pre-computation as possible so that when executing the step with its
- * {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackCache, Notification)} method, as little effort as possible needs to
- * be spent.
+ * {@link TracebackStepCache#createStep(OCLExpression, org.eclipse.emf.ecore.EClass, org.eclipse.ocl.examples.impactanalyzer.impl.OperationBodyToCallMapper, java.util.Stack, OCLFactory)}.
+ * For each (sub-)expression visited in the OCL AST, such a step is created.
+ * The constructors try to perform as much pre-computation as possible so that
+ * when executing the step with its
+ * {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackCache, Notification)}
+ * method, as little effort as possible needs to be spent.
  * <p>
  * 
- * When being executed, the step computes a conservative superset of the objects that, when used as the context for the overall
- * {@link OCLExpression}, lead to the expression for which this {@link TracebackStep} was created evaluating to
+ * When being executed, the step computes a conservative superset of the objects
+ * that, when used as the context for the overall {@link OCLExpression}, lead to
+ * the expression for which this {@link TracebackStep} was created evaluating to
  * <code>source</code>.
  * 
  * @author Martin Hanysz

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePreOrderVisitor.java,v 1.10 2011/04/25 09:50:02 ewillink Exp $
+ * $Id: BasePreOrderVisitor.java,v 1.11 2011/05/05 17:53:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -20,6 +20,8 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.ocl.examples.pivot.AnyType;
+import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
@@ -54,7 +56,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
@@ -99,7 +100,18 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		@Override
 		public BasicContinuation<?> execute() {
 			org.eclipse.ocl.examples.pivot.Class pivotElement = PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Class.class, csElement);
-			context.refreshList(org.eclipse.ocl.examples.pivot.Class.class, pivotElement.getSuperClasses(), csElement.getOwnedSuperType());
+			List<Class> superClasses = pivotElement.getSuperClasses();
+			context.refreshList(org.eclipse.ocl.examples.pivot.Class.class, superClasses, csElement.getOwnedSuperType());
+			if (superClasses.isEmpty()) {
+				org.eclipse.ocl.examples.pivot.Class classifierType = context.getTypeManager().getClassifierType();
+				if (classifierType != null) {
+					superClasses.add(classifierType);
+				}		// FIXME Why aren't these synonymous
+				org.eclipse.ocl.examples.pivot.Class classType = (org.eclipse.ocl.examples.pivot.Class)context.getTypeManager().getPivotType("Class");
+				if (classType != null) {
+					superClasses.add(classType);
+				}
+			}
 			return null;
 		}
 	}
@@ -517,11 +529,10 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		pivotElement.setIsInterface(qualifiers.contains("interface"));
 		pivotElement.setIsStatic(qualifiers.contains("static"));
 		refreshProperties(csClass, pivotElement);
-//		refreshOperations(csClass, pivotElement);
 		Continuations continuations = new Continuations();
 		continuations.add(refreshClassifier(csClass, pivotElement));
 		continuations.add(new ClassContentContinuation(context, pivotElement, csClass));
-		if (csClass.getOwnedSuperType().size() > 0) {
+		if (!(pivotElement instanceof AnyType)) {
 			continuations.add(new ClassSupersContinuation(context, pivotElement, csClass));
 		}
 		return continuations.getContinuation();
@@ -596,11 +607,6 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 	@Override
 	public Continuation<?> visitPrimitiveTypeRefCS(PrimitiveTypeRefCS csPrimitiveTypeRef) {
 		return new PrimitiveTypeRefContinuation(context, csPrimitiveTypeRef);
-	}
-
-	@Override
-	public Continuation<?> visitReferenceCSRef(ReferenceCSRef object) {
-		return null;
 	}
 
 	@Override

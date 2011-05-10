@@ -12,11 +12,10 @@
  *
  * </copyright>
  *
- * $Id: BasePostOrderVisitor.java,v 1.7 2011/04/27 06:20:05 ewillink Exp $
+ * $Id: BasePostOrderVisitor.java,v 1.8 2011/05/05 17:53:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -40,13 +39,11 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
@@ -115,14 +112,7 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 		context.handleVisitNamedElement(csAnnotation, pivotElement);
 		context.refreshPivotList(Detail.class, pivotElement.getOwnedDetails(), csAnnotation.getOwnedDetail());
 		context.refreshPivotList(Element.class, pivotElement.getOwnedContents(), csAnnotation.getOwnedContent());
-		List<ModelElementCSRef> csReferences = csAnnotation.getReference();
-		if (csReferences.size() > 0) {		// FIXME this seems highly suspect, why a CS rather than pivot ref
-			List<ModelElementCS> csElements = new ArrayList<ModelElementCS>(csReferences.size());
-			for (ModelElementCSRef csReference : csReferences) {
-				csElements.add(csReference.getRef());
-			}
-			context.refreshPivotList(Element.class, pivotElement.getReferences(), csElements);
-		}
+		context.refreshList(pivotElement.getReferences(), csAnnotation.getReference());
 		return null;
 	}
 
@@ -215,19 +205,14 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 	@Override
 	public Continuation<?> visitReferenceCS(ReferenceCS csReference) {
 		Property pivotElement = PivotUtil.getPivot(Property.class, csReference);
-		ReferenceCSRef pivotOppositeRef = csReference.getOpposite();
-		Property pivotOpposite = pivotOppositeRef != null ? pivotOppositeRef.getRef() : null;
+		Property pivotOpposite = csReference.getOpposite();
 		pivotElement.setOpposite(pivotOpposite);
+		context.refreshList(pivotElement.getKeys(), csReference.getKeys());
 		BasicContinuation<?> continuation = visitTypedElementCS(csReference);
 		assert continuation == null;
 		if (pivotOpposite == null) {
 			context.getTypeManager().installPropertyDeclaration(pivotElement);
 		}
-		return null;
-	}
-
-	@Override
-	public Continuation<?> visitReferenceCSRef(ReferenceCSRef object) {
 		return null;
 	}
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassifierOclContentsOperation.java,v 1.1 2011/03/12 13:20:05 ewillink Exp $
+ * $Id: ClassifierOclContentsOperation.java,v 1.2 2011/05/07 16:41:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.classifier;
 
@@ -24,6 +24,7 @@ import org.eclipse.ocl.examples.library.AbstractOperation;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.ObjectValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -40,13 +41,13 @@ public class ClassifierOclContentsOperation extends AbstractOperation
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) throws InvalidValueException {
 		TypeManager typeManager = evaluationVisitor.getTypeManager();
+		ValueFactory valueFactory = typeManager.getValueFactory();
 		ObjectValue objectVal = sourceVal.asObjectValue();
 		Object object = objectVal.getObject();
 		if (!(object instanceof EObject)) {
-			return evaluationVisitor.throwInvalidEvaluation("EObject rather than '" + object.getClass().getName() + "' required'");
+			return valueFactory.throwInvalidValueException(EvaluatorMessages.EObjectRequired, object.getClass().getName());
 		}
     	Set<Value> collection = new HashSet<Value>();
-		ValueFactory valueFactory = typeManager.getValueFactory();
 		for (Object eContent : ((EObject)object).eContents()) {
 			collection.add(valueFactory.valueOf(eContent));
     	}
