@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: LoadExpressionAction.java,v 1.1 2011/03/11 20:23:43 ewillink Exp $
+ * $Id: LoadExpressionAction.java,v 1.2 2011/05/07 16:41:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.console.actions;
 
@@ -21,7 +21,7 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ocl.examples.xtext.console.OCLConsolePage;
 import org.eclipse.ocl.examples.xtext.console.OCLResource;
-import org.eclipse.ocl.examples.xtext.console.messages.OCLInterpreterMessages;
+import org.eclipse.ocl.examples.xtext.console.messages.ConsoleMessages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
@@ -41,11 +41,11 @@ public class LoadExpressionAction extends Action
 	 */
 	public LoadExpressionAction(OCLConsolePage consolePage) {
 		super(
-			OCLInterpreterMessages.console_loadAction_label,
+			ConsoleMessages.LoadAction_Label,
 			PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(
 				ISharedImages.IMG_OBJ_FILE));
 		this.consolePage = consolePage;
-		tip = OCLInterpreterMessages.console_loadAction_tip;
+		tip = ConsoleMessages.LoadAction_Tip;
 	}
 	
 	@Override
@@ -59,7 +59,7 @@ public class LoadExpressionAction extends Action
 		
 		FileDialog dlg = new FileDialog(shell, SWT.OPEN);
 		dlg.setFilterExtensions(new String[] {"*.xmi"}); //$NON-NLS-1$
-		dlg.setText(OCLInterpreterMessages.console_loadDlg_title);
+		dlg.setText(ConsoleMessages.LoadAction_Title);
 		
 		String file = dlg.open();
 		if (file != null) {
@@ -71,13 +71,13 @@ public class LoadExpressionAction extends Action
 				} else {
 					MessageDialog.openWarning(
 						shell,
-						OCLInterpreterMessages.console_loadWarn_title,
-						OCLInterpreterMessages.console_loadWarn_noExpr);
+						ConsoleMessages.LoadActionWarning_Title,
+						ConsoleMessages.LoadActionWarning_NoExpression);
 				}
 			} catch (Exception e) {
 				MessageDialog.openError(
 					shell,
-					OCLInterpreterMessages.console_loadError_title,
+					ConsoleMessages.LoadActionError_Title,
 					e.getLocalizedMessage());
 			}
 		}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTValidator.java,v 1.7 2011/04/25 09:50:02 ewillink Exp $
+ * $Id: BaseCSTValidator.java,v 1.8 2011/05/05 17:53:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.util;
 
@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCSRef;
@@ -46,7 +45,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.IteratorKind;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
@@ -57,7 +55,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
@@ -161,8 +158,6 @@ public class BaseCSTValidator extends EObjectValidator
 				return validateAnnotationElementCS((AnnotationElementCS)value, diagnostics, context);
 			case BaseCSTPackage.ATTRIBUTE_CS:
 				return validateAttributeCS((AttributeCS)value, diagnostics, context);
-			case BaseCSTPackage.ATTRIBUTE_CS_REF:
-				return validateAttributeCSRef((AttributeCSRef)value, diagnostics, context);
 			case BaseCSTPackage.CLASS_CS:
 				return validateClassCS((ClassCS)value, diagnostics, context);
 			case BaseCSTPackage.CLASS_CS_REF:
@@ -195,8 +190,6 @@ public class BaseCSTValidator extends EObjectValidator
 				return validateLibraryCS((LibraryCS)value, diagnostics, context);
 			case BaseCSTPackage.MODEL_ELEMENT_CS:
 				return validateModelElementCS((ModelElementCS)value, diagnostics, context);
-			case BaseCSTPackage.MODEL_ELEMENT_CS_REF:
-				return validateModelElementCSRef((ModelElementCSRef)value, diagnostics, context);
 			case BaseCSTPackage.MONIKERED_ELEMENT_CS:
 				return validateMonikeredElementCS((MonikeredElementCS)value, diagnostics, context);
 			case BaseCSTPackage.NAMED_ELEMENT_CS:
@@ -217,8 +210,6 @@ public class BaseCSTValidator extends EObjectValidator
 				return validatePrimitiveTypeRefCS((PrimitiveTypeRefCS)value, diagnostics, context);
 			case BaseCSTPackage.REFERENCE_CS:
 				return validateReferenceCS((ReferenceCS)value, diagnostics, context);
-			case BaseCSTPackage.REFERENCE_CS_REF:
-				return validateReferenceCSRef((ReferenceCSRef)value, diagnostics, context);
 			case BaseCSTPackage.ROOT_CS:
 				return validateRootCS((RootCS)value, diagnostics, context);
 			case BaseCSTPackage.ROOT_PACKAGE_CS:
@@ -292,16 +283,6 @@ public class BaseCSTValidator extends EObjectValidator
 	public boolean validateAttributeCS(AttributeCS attributeCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(attributeCS, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateAttributeCSRef(AttributeCSRef attributeCSRef, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(attributeCSRef, diagnostics, context);
 	}
 
 	/**
@@ -469,16 +450,6 @@ public class BaseCSTValidator extends EObjectValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateModelElementCSRef(ModelElementCSRef modelElementCSRef, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(modelElementCSRef, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateMonikeredElementCS(MonikeredElementCS monikeredElementCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(monikeredElementCS, diagnostics, context);
@@ -572,16 +543,6 @@ public class BaseCSTValidator extends EObjectValidator
 	public boolean validateReferenceCS(ReferenceCS referenceCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(referenceCS, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateReferenceCSRef(ReferenceCSRef referenceCSRef, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(referenceCSRef, diagnostics, context);
 	}
 
 	/**

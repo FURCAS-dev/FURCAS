@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.13 2011/05/02 15:38:54 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.14 2011/05/07 16:41:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -153,10 +153,15 @@ public class PivotUtil
 		List<Resource.Diagnostic> errors = resource.getErrors();
 		if (errors.size() > 0) {
 			StringBuffer s = new StringBuffer();
-			s.append(message);
+			String prefix = "";
+			if (message != null) {
+				s.append(message);
+				prefix = "\n";
+			}
 			for (Resource.Diagnostic conversionError : errors) {
-				s.append("\n");
+				s.append(prefix);
 				s.append(conversionError.getMessage());
+				prefix = "\n";
 			}
 			throw new SemanticException(s.toString());
 		}
