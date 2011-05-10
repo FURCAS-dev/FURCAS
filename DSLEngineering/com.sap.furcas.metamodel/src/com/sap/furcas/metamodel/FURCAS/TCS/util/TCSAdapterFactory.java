@@ -6,6 +6,7 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.util;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.*;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;

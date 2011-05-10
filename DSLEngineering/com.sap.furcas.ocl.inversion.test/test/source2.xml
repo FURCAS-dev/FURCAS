@@ -1,0 +1,1098 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore">
+  <ecore:EPackage xmi:id="_eBOBIEs8EeCVUsYc3QWFGQ" name="oclstdlib" nsURI="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore" nsPrefix="oclstdlib">
+    <eClassifiers xsi:type="ocl.ecore:AnyType" xmi:id="_eBOoMEs8EeCVUsYc3QWFGQ" name="OclAny"/>
+    <eClassifiers xsi:type="ecore:EClass" xmi:id="_eBPPQEs8EeCVUsYc3QWFGQ" name="OclAny_Class">
+      <eAnnotations xmi:id="_eBa1cEs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL" references="_eBOoMEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eB-2IEs8EeCVUsYc3QWFGQ" name="=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eB_dMEs8EeCVUsYc3QWFGQ" name="object" eType="_eBOoMEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCAEQEs8EeCVUsYc3QWFGQ" name="&lt;>" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCAEQUs8EeCVUsYc3QWFGQ" name="object" eType="_eBOoMEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCAEQ0s8EeCVUsYc3QWFGQ" name="oclAsType" eType="_eEf-p0s8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCAEREs8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCAERUs8EeCVUsYc3QWFGQ" name="oclIsKindOf" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCArUEs8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCArUUs8EeCVUsYc3QWFGQ" name="oclIsTypeOf" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCArUks8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCArU0s8EeCVUsYc3QWFGQ" name="oclIsUndefined" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCArVEs8EeCVUsYc3QWFGQ" name="oclIsInvalid" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCArVUs8EeCVUsYc3QWFGQ" name="oclIsNew" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCBSYEs8EeCVUsYc3QWFGQ" name="oclIsInState" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCBSYUs8EeCVUsYc3QWFGQ" name="statespec" eType="_eCudAUs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCBSYks8EeCVUsYc3QWFGQ" name="&lt;" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCBSY0s8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCBSZEs8EeCVUsYc3QWFGQ" name=">" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCB5cEs8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCB5cUs8EeCVUsYc3QWFGQ" name="&lt;=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCB5cks8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCB5c0s8EeCVUsYc3QWFGQ" name=">=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCB5dEs8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:VoidType" xmi:id="_eCDHkEs8EeCVUsYc3QWFGQ"/>
+    <eClassifiers xsi:type="ecore:EClass" xmi:id="_eCDHkUs8EeCVUsYc3QWFGQ" name="OclVoid_Class">
+      <eAnnotations xmi:id="_eCDHkks8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL" references="_eCDHkEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCDHk0s8EeCVUsYc3QWFGQ" name="=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCDHlEs8EeCVUsYc3QWFGQ" name="object" eType="_eBOoMEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCDuoEs8EeCVUsYc3QWFGQ" name="&lt;>" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCDuoUs8EeCVUsYc3QWFGQ" name="object" eType="_eBOoMEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCDuo0s8EeCVUsYc3QWFGQ" name="oclAsType" eType="_eEf-p0s8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCDupEs8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCDupUs8EeCVUsYc3QWFGQ" name="oclIsKindOf" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCDupks8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCEVsEs8EeCVUsYc3QWFGQ" name="oclIsTypeOf" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCEVsUs8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCEVsks8EeCVUsYc3QWFGQ" name="oclIsUndefined" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCEVs0s8EeCVUsYc3QWFGQ" name="oclIsInvalid" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCEVtEs8EeCVUsYc3QWFGQ" name="oclIsNew" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCE8wEs8EeCVUsYc3QWFGQ" name="oclIsInState" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCE8wUs8EeCVUsYc3QWFGQ" name="statespec" eType="_eCudAUs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCE8wks8EeCVUsYc3QWFGQ" name="&lt;" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCE8w0s8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCE8xEs8EeCVUsYc3QWFGQ" name=">" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCFj0Es8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCFj0Us8EeCVUsYc3QWFGQ" name="&lt;=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCFj0ks8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCFj00s8EeCVUsYc3QWFGQ" name=">=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCFj1Es8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:InvalidType" xmi:id="_eCGK4Es8EeCVUsYc3QWFGQ"/>
+    <eClassifiers xsi:type="ecore:EClass" xmi:id="_eCGx8Es8EeCVUsYc3QWFGQ" name="OclInvalid_Class">
+      <eAnnotations xmi:id="_eCGx8Us8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL" references="_eCGK4Es8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCGx8ks8EeCVUsYc3QWFGQ" name="=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCGx80s8EeCVUsYc3QWFGQ" name="object" eType="_eBOoMEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCGx9Us8EeCVUsYc3QWFGQ" name="&lt;>" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCHZAEs8EeCVUsYc3QWFGQ" name="object" eType="_eBOoMEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCHZAks8EeCVUsYc3QWFGQ" name="oclAsType" eType="_eEf-p0s8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCHZA0s8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCHZBEs8EeCVUsYc3QWFGQ" name="oclIsKindOf" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCHZBUs8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCIAEEs8EeCVUsYc3QWFGQ" name="oclIsTypeOf" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCIAEUs8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCIAEks8EeCVUsYc3QWFGQ" name="oclIsUndefined" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCIAE0s8EeCVUsYc3QWFGQ" name="oclIsInvalid" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCIAFEs8EeCVUsYc3QWFGQ" name="oclIsNew" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCInIEs8EeCVUsYc3QWFGQ" name="oclIsInState" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCInIUs8EeCVUsYc3QWFGQ" name="statespec" eType="_eCudAUs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCInIks8EeCVUsYc3QWFGQ" name="&lt;" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCInI0s8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCInJEs8EeCVUsYc3QWFGQ" name=">" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCJOMEs8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCJOMUs8EeCVUsYc3QWFGQ" name="&lt;=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCJOMks8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCJOM0s8EeCVUsYc3QWFGQ" name=">=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCJONEs8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:PrimitiveType" xmi:id="_eCKcUEs8EeCVUsYc3QWFGQ" name="Boolean" instanceClassName="java.lang.Boolean"/>
+    <eClassifiers xsi:type="ecore:EClass" xmi:id="_eCKcUUs8EeCVUsYc3QWFGQ" name="Boolean_Class">
+      <eAnnotations xmi:id="_eCKcUks8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL" references="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCKcU0s8EeCVUsYc3QWFGQ" name="=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCKcVUs8EeCVUsYc3QWFGQ" name="object" eType="_eBOoMEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCKcV0s8EeCVUsYc3QWFGQ" name="&lt;>" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCLDYUs8EeCVUsYc3QWFGQ" name="object" eType="_eBOoMEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCLDY0s8EeCVUsYc3QWFGQ" name="oclAsType" eType="_eEf-p0s8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCLDZEs8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCLDZUs8EeCVUsYc3QWFGQ" name="oclIsKindOf" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCLDZ0s8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCLqcEs8EeCVUsYc3QWFGQ" name="oclIsTypeOf" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCLqcks8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCLqc0s8EeCVUsYc3QWFGQ" name="oclIsUndefined" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCLqdUs8EeCVUsYc3QWFGQ" name="oclIsInvalid" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCLqd0s8EeCVUsYc3QWFGQ" name="oclIsNew" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCMRgEs8EeCVUsYc3QWFGQ" name="oclIsInState" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCMRgks8EeCVUsYc3QWFGQ" name="statespec" eType="_eCudAUs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCMRg0s8EeCVUsYc3QWFGQ" name="not" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCMRhUs8EeCVUsYc3QWFGQ" name="and" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCMRh0s8EeCVUsYc3QWFGQ" name="b" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCM4kEs8EeCVUsYc3QWFGQ" name="or" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCM4kks8EeCVUsYc3QWFGQ" name="b" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCM4lEs8EeCVUsYc3QWFGQ" name="implies" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCM4lks8EeCVUsYc3QWFGQ" name="b" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCM4mEs8EeCVUsYc3QWFGQ" name="xor" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCNfoEs8EeCVUsYc3QWFGQ" name="b" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:PrimitiveType" xmi:id="_eCNfoks8EeCVUsYc3QWFGQ" name="Integer" instanceClassName="java.lang.Integer"/>
+    <eClassifiers xsi:type="ecore:EClass" xmi:id="_eCNfo0s8EeCVUsYc3QWFGQ" name="Integer_Class">
+      <eAnnotations xmi:id="_eCNfpEs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL" references="_eCNfoks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCNfpUs8EeCVUsYc3QWFGQ" name="=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCNfp0s8EeCVUsYc3QWFGQ" name="object" eType="_eBOoMEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCOGsEs8EeCVUsYc3QWFGQ" name="&lt;>" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCOGsks8EeCVUsYc3QWFGQ" name="object" eType="_eBOoMEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCOGtEs8EeCVUsYc3QWFGQ" name="oclAsType" eType="_eEf-p0s8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCOGtUs8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCOGtks8EeCVUsYc3QWFGQ" name="oclIsKindOf" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCOtwEs8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCOtwUs8EeCVUsYc3QWFGQ" name="oclIsTypeOf" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCPU0Es8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCPU0Us8EeCVUsYc3QWFGQ" name="oclIsUndefined" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCPU00s8EeCVUsYc3QWFGQ" name="oclIsInvalid" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCPU1Us8EeCVUsYc3QWFGQ" name="oclIsNew" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCPU10s8EeCVUsYc3QWFGQ" name="oclIsInState" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCP74Es8EeCVUsYc3QWFGQ" name="statespec" eType="_eCudAUs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCP74Us8EeCVUsYc3QWFGQ" name="&lt;" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCP740s8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCP75Es8EeCVUsYc3QWFGQ" name=">" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCP75ks8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCQi8Es8EeCVUsYc3QWFGQ" name="&lt;=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCQi8ks8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCQi80s8EeCVUsYc3QWFGQ" name=">=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCQi9Us8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCQi9ks8EeCVUsYc3QWFGQ" name="+" eType="_eCbiEks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCRKAEs8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCRKAUs8EeCVUsYc3QWFGQ" name="-" eType="_eCbiEks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCRKAks8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCRKA0s8EeCVUsYc3QWFGQ" name="-" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCRKBEs8EeCVUsYc3QWFGQ" name="*" eType="_eCbiEks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCRxEEs8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCRxEUs8EeCVUsYc3QWFGQ" name="/" eType="_eCbiEks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCRxEks8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCRxE0s8EeCVUsYc3QWFGQ" name="min" eType="_eCbiEks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCRxFEs8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCSYIEs8EeCVUsYc3QWFGQ" name="max" eType="_eCbiEks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCSYIUs8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCSYIks8EeCVUsYc3QWFGQ" name="abs" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCSYI0s8EeCVUsYc3QWFGQ" name="floor" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCSYJUs8EeCVUsYc3QWFGQ" name="round" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCS_MEs8EeCVUsYc3QWFGQ" name="&lt;" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCS_Mks8EeCVUsYc3QWFGQ" name="i" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCS_NEs8EeCVUsYc3QWFGQ" name=">" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCS_Nks8EeCVUsYc3QWFGQ" name="i" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCS_OEs8EeCVUsYc3QWFGQ" name="&lt;=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCS_Oks8EeCVUsYc3QWFGQ" name="i" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCTmQUs8EeCVUsYc3QWFGQ" name=">=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCTmQ0s8EeCVUsYc3QWFGQ" name="i" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCTmRUs8EeCVUsYc3QWFGQ" name="div" eType="_eCNfoks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCTmR0s8EeCVUsYc3QWFGQ" name="i" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCTmSUs8EeCVUsYc3QWFGQ" name="mod" eType="_eCNfoks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCUNUEs8EeCVUsYc3QWFGQ" name="i" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:PrimitiveType" xmi:id="_eCUNUks8EeCVUsYc3QWFGQ" name="UnlimitedNatural"/>
+    <eClassifiers xsi:type="ecore:EClass" xmi:id="_eCUNU0s8EeCVUsYc3QWFGQ" name="UnlimitedNatural_Class">
+      <eAnnotations xmi:id="_eCUNVEs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL" references="_eCUNUks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCUNVUs8EeCVUsYc3QWFGQ" name="=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCU0YEs8EeCVUsYc3QWFGQ" name="object" eType="_eBOoMEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCU0Yks8EeCVUsYc3QWFGQ" name="&lt;>" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCU0ZEs8EeCVUsYc3QWFGQ" name="object" eType="_eBOoMEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCU0Zks8EeCVUsYc3QWFGQ" name="oclAsType" eType="_eEf-p0s8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCU0Z0s8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCVbcEs8EeCVUsYc3QWFGQ" name="oclIsKindOf" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCVbcks8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCVbc0s8EeCVUsYc3QWFGQ" name="oclIsTypeOf" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCVbdUs8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCVbdks8EeCVUsYc3QWFGQ" name="oclIsUndefined" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCVbeEs8EeCVUsYc3QWFGQ" name="oclIsInvalid" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCWCgUs8EeCVUsYc3QWFGQ" name="oclIsNew" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCWCg0s8EeCVUsYc3QWFGQ" name="oclIsInState" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCWChUs8EeCVUsYc3QWFGQ" name="statespec" eType="_eCudAUs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCWChks8EeCVUsYc3QWFGQ" name="&lt;" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCWpkEs8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCWpkUs8EeCVUsYc3QWFGQ" name=">" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCWpk0s8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCWplEs8EeCVUsYc3QWFGQ" name="&lt;=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCWplks8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCXQoEs8EeCVUsYc3QWFGQ" name=">=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCXQoks8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCXQo0s8EeCVUsYc3QWFGQ" name="+" eType="_eCbiEks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCXQpEs8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCXQpUs8EeCVUsYc3QWFGQ" name="-" eType="_eCbiEks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCX3sEs8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCX3sUs8EeCVUsYc3QWFGQ" name="-" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCX3sks8EeCVUsYc3QWFGQ" name="*" eType="_eCbiEks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCX3s0s8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCX3tEs8EeCVUsYc3QWFGQ" name="/" eType="_eCbiEks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCZF0Es8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCZF0Us8EeCVUsYc3QWFGQ" name="min" eType="_eCbiEks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCZF0ks8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCZF00s8EeCVUsYc3QWFGQ" name="max" eType="_eCbiEks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCZs4Es8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCZs4Us8EeCVUsYc3QWFGQ" name="abs" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCZs4ks8EeCVUsYc3QWFGQ" name="floor" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCZs5Es8EeCVUsYc3QWFGQ" name="round" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCZs5ks8EeCVUsYc3QWFGQ" name="&lt;" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCaT8Us8EeCVUsYc3QWFGQ" name="n" eType="_eCUNUks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCaT80s8EeCVUsYc3QWFGQ" name=">" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCaT9Us8EeCVUsYc3QWFGQ" name="n" eType="_eCUNUks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCaT90s8EeCVUsYc3QWFGQ" name="&lt;=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCaT-Us8EeCVUsYc3QWFGQ" name="n" eType="_eCUNUks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCa7AEs8EeCVUsYc3QWFGQ" name=">=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCa7Aks8EeCVUsYc3QWFGQ" name="n" eType="_eCUNUks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCa7BEs8EeCVUsYc3QWFGQ" name="div" eType="_eCNfoks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCa7Bks8EeCVUsYc3QWFGQ" name="n" eType="_eCUNUks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCa7CEs8EeCVUsYc3QWFGQ" name="mod" eType="_eCNfoks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCbiEEs8EeCVUsYc3QWFGQ" name="n" eType="_eCUNUks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:PrimitiveType" xmi:id="_eCbiEks8EeCVUsYc3QWFGQ" name="Real" instanceClassName="java.lang.Double"/>
+    <eClassifiers xsi:type="ecore:EClass" xmi:id="_eCbiE0s8EeCVUsYc3QWFGQ" name="Real_Class">
+      <eAnnotations xmi:id="_eCbiFEs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL" references="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCbiFUs8EeCVUsYc3QWFGQ" name="=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCcJIEs8EeCVUsYc3QWFGQ" name="object" eType="_eBOoMEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCcJIks8EeCVUsYc3QWFGQ" name="&lt;>" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCcJJEs8EeCVUsYc3QWFGQ" name="object" eType="_eBOoMEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCcJJks8EeCVUsYc3QWFGQ" name="oclAsType" eType="_eEf-p0s8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCcJJ0s8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCcwMEs8EeCVUsYc3QWFGQ" name="oclIsKindOf" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCcwMks8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCcwM0s8EeCVUsYc3QWFGQ" name="oclIsTypeOf" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCcwNUs8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCcwNks8EeCVUsYc3QWFGQ" name="oclIsUndefined" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCdXQEs8EeCVUsYc3QWFGQ" name="oclIsInvalid" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCdXQks8EeCVUsYc3QWFGQ" name="oclIsNew" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCdXREs8EeCVUsYc3QWFGQ" name="oclIsInState" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCfMcEs8EeCVUsYc3QWFGQ" name="statespec" eType="_eCudAUs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCfMcUs8EeCVUsYc3QWFGQ" name="&lt;" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCfzgUs8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCfzg0s8EeCVUsYc3QWFGQ" name=">" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCfzhUs8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCfzh0s8EeCVUsYc3QWFGQ" name="&lt;=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCfziUs8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCgakEs8EeCVUsYc3QWFGQ" name=">=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCgakks8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCgalEs8EeCVUsYc3QWFGQ" name="+" eType="_eCbiEks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCgalks8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCgamEs8EeCVUsYc3QWFGQ" name="-" eType="_eCbiEks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eChBoEs8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eChBoks8EeCVUsYc3QWFGQ" name="-" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eChBpEs8EeCVUsYc3QWFGQ" name="*" eType="_eCbiEks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eChBpks8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eChBqEs8EeCVUsYc3QWFGQ" name="/" eType="_eCbiEks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eChosEs8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eChosks8EeCVUsYc3QWFGQ" name="min" eType="_eCbiEks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCiPwEs8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCiPwks8EeCVUsYc3QWFGQ" name="max" eType="_eCbiEks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCiPxEs8EeCVUsYc3QWFGQ" name="r" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCiPxks8EeCVUsYc3QWFGQ" name="abs" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCiPyEs8EeCVUsYc3QWFGQ" name="floor" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCi20Es8EeCVUsYc3QWFGQ" name="round" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:PrimitiveType" xmi:id="_eCi20ks8EeCVUsYc3QWFGQ" name="String" instanceClassName="java.lang.String"/>
+    <eClassifiers xsi:type="ecore:EClass" xmi:id="_eCi200s8EeCVUsYc3QWFGQ" name="String_Class">
+      <eAnnotations xmi:id="_eCi21Es8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL" references="_eCi20ks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCi21Us8EeCVUsYc3QWFGQ" name="=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCjd4Es8EeCVUsYc3QWFGQ" name="object" eType="_eBOoMEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCjd4ks8EeCVUsYc3QWFGQ" name="&lt;>" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCjd5Es8EeCVUsYc3QWFGQ" name="object" eType="_eBOoMEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCjd5ks8EeCVUsYc3QWFGQ" name="oclAsType" eType="_eEf-p0s8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCjd50s8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCkE8Es8EeCVUsYc3QWFGQ" name="oclIsKindOf" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCkE8ks8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCkE80s8EeCVUsYc3QWFGQ" name="oclIsTypeOf" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCkE9Us8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCkE9ks8EeCVUsYc3QWFGQ" name="oclIsUndefined" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCksAEs8EeCVUsYc3QWFGQ" name="oclIsInvalid" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCksAks8EeCVUsYc3QWFGQ" name="oclIsNew" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCksBEs8EeCVUsYc3QWFGQ" name="oclIsInState" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCksBks8EeCVUsYc3QWFGQ" name="statespec" eType="_eCudAUs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCksB0s8EeCVUsYc3QWFGQ" name="&lt;" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eClTEEs8EeCVUsYc3QWFGQ" name="s" eType="_eCi20ks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eClTEks8EeCVUsYc3QWFGQ" name=">" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eClTFEs8EeCVUsYc3QWFGQ" name="s" eType="_eCi20ks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eClTFks8EeCVUsYc3QWFGQ" name="&lt;=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eClTGEs8EeCVUsYc3QWFGQ" name="s" eType="_eCi20ks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCl6IEs8EeCVUsYc3QWFGQ" name=">=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCl6Iks8EeCVUsYc3QWFGQ" name="s" eType="_eCi20ks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCl6JEs8EeCVUsYc3QWFGQ" name="size" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCl6Jks8EeCVUsYc3QWFGQ" name="concat" eType="_eCi20ks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCl6KEs8EeCVUsYc3QWFGQ" name="s" eType="_eCi20ks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCl6Kks8EeCVUsYc3QWFGQ" name="substring" eType="_eCi20ks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCmhMUs8EeCVUsYc3QWFGQ" name="lower" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+        <eParameters xmi:id="_eCmhM0s8EeCVUsYc3QWFGQ" name="upper" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCmhNUs8EeCVUsYc3QWFGQ" name="toInteger" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCmhN0s8EeCVUsYc3QWFGQ" name="toReal" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCmhOUs8EeCVUsYc3QWFGQ" name="toLower" eType="_eCi20ks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCnIQUs8EeCVUsYc3QWFGQ" name="toUpper" eType="_eCi20ks8EeCVUsYc3QWFGQ"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:TypeType" xmi:id="_eCnvUEs8EeCVUsYc3QWFGQ" name="OclType"/>
+    <eClassifiers xsi:type="ecore:EClass" xmi:id="_eCoWYEs8EeCVUsYc3QWFGQ" name="OclType_Class">
+      <eAnnotations xmi:id="_eCoWYUs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL" references="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCoWYks8EeCVUsYc3QWFGQ" name="=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCoWZEs8EeCVUsYc3QWFGQ" name="object" eType="_eBOoMEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCoWZks8EeCVUsYc3QWFGQ" name="&lt;>" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCo9cEs8EeCVUsYc3QWFGQ" name="object" eType="_eBOoMEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCo9cks8EeCVUsYc3QWFGQ" name="oclAsType" eType="_eEf-p0s8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCo9c0s8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCo9dUs8EeCVUsYc3QWFGQ" name="oclIsKindOf" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCo9d0s8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCpkgEs8EeCVUsYc3QWFGQ" name="oclIsTypeOf" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCpkgks8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCpkhEs8EeCVUsYc3QWFGQ" name="oclIsUndefined" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCpkhks8EeCVUsYc3QWFGQ" name="oclIsInvalid" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCpkiEs8EeCVUsYc3QWFGQ" name="oclIsNew" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCqLkEs8EeCVUsYc3QWFGQ" name="oclIsInState" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCqLkks8EeCVUsYc3QWFGQ" name="statespec" eType="_eCudAUs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCqLk0s8EeCVUsYc3QWFGQ" name="allInstances" eType="_eC74YEs8EeCVUsYc3QWFGQ"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:MessageType" xmi:id="_eCrZsEs8EeCVUsYc3QWFGQ">
+      <eOperations xmi:id="_eCrZsUs8EeCVUsYc3QWFGQ" name="=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCrZs0s8EeCVUsYc3QWFGQ" name="object" eType="_eBOoMEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCsAwEs8EeCVUsYc3QWFGQ" name="&lt;>" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCsAwks8EeCVUsYc3QWFGQ" name="object" eType="_eBOoMEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCsAxEs8EeCVUsYc3QWFGQ" name="oclAsType" eType="_eEf-p0s8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCsAxUs8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCsAx0s8EeCVUsYc3QWFGQ" name="oclIsKindOf" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCsn0Es8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCsn0ks8EeCVUsYc3QWFGQ" name="oclIsTypeOf" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCsn1Es8EeCVUsYc3QWFGQ" name="typespec" eType="_eCnvUEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCsn1ks8EeCVUsYc3QWFGQ" name="oclIsUndefined" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCsn2Es8EeCVUsYc3QWFGQ" name="oclIsInvalid" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCtO4Es8EeCVUsYc3QWFGQ" name="oclIsNew" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCtO4ks8EeCVUsYc3QWFGQ" name="oclIsInState" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eCtO5Es8EeCVUsYc3QWFGQ" name="statespec" eType="_eCudAUs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eCtO5Us8EeCVUsYc3QWFGQ" name="hasReturned" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCtO50s8EeCVUsYc3QWFGQ" name="result" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCt18Es8EeCVUsYc3QWFGQ" name="isSignalSent" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eCt18ks8EeCVUsYc3QWFGQ" name="isOperationCall" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:ElementType" xmi:id="_eCudAEs8EeCVUsYc3QWFGQ" name="OclElement"/>
+    <eClassifiers xsi:type="ocl.ecore:ElementType" xmi:id="_eCudAUs8EeCVUsYc3QWFGQ" name="State"/>
+    <eClassifiers xsi:type="ocl.ecore:ElementType" xmi:id="_eCudAks8EeCVUsYc3QWFGQ" name="OclExpression"/>
+    <eClassifiers xsi:type="ocl.ecore:CollectionType" xmi:id="_eC2Y0Es8EeCVUsYc3QWFGQ" name="Collection(T)" elementType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+    <eClassifiers xsi:type="ecore:EClass" xmi:id="_eC2Y0Us8EeCVUsYc3QWFGQ" name="Collection(T)_Class">
+      <eAnnotations xmi:id="_eC2Y0ks8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL" references="_eC2Y0Es8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eC2Y00s8EeCVUsYc3QWFGQ" name="count" eType="_eCNfoks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eC2_4Es8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eC2_4Us8EeCVUsYc3QWFGQ" name="excludes" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eC2_40s8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eC2_5Es8EeCVUsYc3QWFGQ" name="excludesAll" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eC2_5ks8EeCVUsYc3QWFGQ" name="c2" eType="_eC2Y0Es8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eC3m8Es8EeCVUsYc3QWFGQ" name="includes" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eC3m8ks8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eC3m80s8EeCVUsYc3QWFGQ" name="includesAll" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eC3m9Us8EeCVUsYc3QWFGQ" name="c2" eType="_eC2Y0Es8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eC3m90s8EeCVUsYc3QWFGQ" name="isEmpty" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eC3m-Us8EeCVUsYc3QWFGQ" name="notEmpty" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eC4OAUs8EeCVUsYc3QWFGQ" name="product" eType="_eEjB9Us8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eC4OAks8EeCVUsYc3QWFGQ" name="c2" eType="_eEjB9ks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eC4OA0s8EeCVUsYc3QWFGQ" name="sum" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eC4OBUs8EeCVUsYc3QWFGQ" name="size" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eC4OB0s8EeCVUsYc3QWFGQ" name="exists" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eC41EEs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eC41EUs8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eC41Eks8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eC41FEs8EeCVUsYc3QWFGQ" name="forAll" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eC41Fks8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eC41F0s8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eC5cIEs8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eC5cIks8EeCVUsYc3QWFGQ" name="isUnique" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eC5cJEs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eC5cJUs8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eC5cJks8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eC5cKEs8EeCVUsYc3QWFGQ" name="one" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eC6DMEs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eC6DMUs8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eC6DMks8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eC6DNEs8EeCVUsYc3QWFGQ" name="any" eType="_eEf-p0s8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eC6DNUs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eC6DNks8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eC6qQEs8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eC6qQks8EeCVUsYc3QWFGQ" name="collect" eType="_eEjB9ks8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eC6qQ0s8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eC6qREs8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eC6qRUs8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eC6qR0s8EeCVUsYc3QWFGQ" name="closure" eType="_eEjpAEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eC7RUEs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eC7RUUs8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eC7RUks8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SetType" xmi:id="_eC74YEs8EeCVUsYc3QWFGQ" name="Set(T)" instanceClassName="java.util.Set" elementType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+    <eClassifiers xsi:type="ecore:EClass" xmi:id="_eC74YUs8EeCVUsYc3QWFGQ" name="Set(T)_Class">
+      <eAnnotations xmi:id="_eC8fcEs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL" references="_eC74YEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eC8fcUs8EeCVUsYc3QWFGQ" name="count" eType="_eCNfoks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eC8fc0s8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eC8fdEs8EeCVUsYc3QWFGQ" name="excludes" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eC8fdks8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eC9GgEs8EeCVUsYc3QWFGQ" name="excludesAll" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eC9Ggks8EeCVUsYc3QWFGQ" name="c2" eType="_eC2Y0Es8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eC9GhEs8EeCVUsYc3QWFGQ" name="includes" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eC9Ghks8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eC9Gh0s8EeCVUsYc3QWFGQ" name="includesAll" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eC9tkEs8EeCVUsYc3QWFGQ" name="c2" eType="_eC2Y0Es8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eC9tkks8EeCVUsYc3QWFGQ" name="isEmpty" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eC9tlEs8EeCVUsYc3QWFGQ" name="notEmpty" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eC9tlks8EeCVUsYc3QWFGQ" name="product" eType="_eEjB9Us8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eC9tl0s8EeCVUsYc3QWFGQ" name="c2" eType="_eEjB9ks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eC-UoEs8EeCVUsYc3QWFGQ" name="sum" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eC-Uoks8EeCVUsYc3QWFGQ" name="size" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eC-UpEs8EeCVUsYc3QWFGQ" name="=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eC-Upks8EeCVUsYc3QWFGQ" name="set" eType="_eC74YEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eC-UqEs8EeCVUsYc3QWFGQ" name="&lt;>" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eC-7sEs8EeCVUsYc3QWFGQ" name="set" eType="_eC74YEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eC-7sks8EeCVUsYc3QWFGQ" name="union" eType="_eEGWAEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eC-7s0s8EeCVUsYc3QWFGQ" name="bag" eType="_eEGWAEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eC-7tEs8EeCVUsYc3QWFGQ" name="union" eType="_eC74YEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eC-7tks8EeCVUsYc3QWFGQ" name="set" eType="_eC74YEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eC_iwEs8EeCVUsYc3QWFGQ" name="-" eType="_eC74YEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eC_iwks8EeCVUsYc3QWFGQ" name="set" eType="_eC74YEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eC_ixEs8EeCVUsYc3QWFGQ" name="intersection" eType="_eC74YEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eC_ixks8EeCVUsYc3QWFGQ" name="bag" eType="_eEGWAEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eC_ix0s8EeCVUsYc3QWFGQ" name="intersection" eType="_eC74YEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eDAJ0Es8EeCVUsYc3QWFGQ" name="set" eType="_eC74YEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eDAJ0ks8EeCVUsYc3QWFGQ" name="including" eType="_eC74YEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eDAJ1Es8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eDAJ1Us8EeCVUsYc3QWFGQ" name="excluding" eType="_eC74YEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eDAJ10s8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eDAw4Es8EeCVUsYc3QWFGQ" name="symmetricDifference" eType="_eC74YEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eDAw4ks8EeCVUsYc3QWFGQ" name="s" eType="_eC74YEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eDAw5Es8EeCVUsYc3QWFGQ" name="flatten" eType="_eEjpAEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eDAw5Us8EeCVUsYc3QWFGQ" name="asBag" eType="_eEGWAEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eDAw5ks8EeCVUsYc3QWFGQ" name="asSet" eType="_eC74YEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eDBX8Es8EeCVUsYc3QWFGQ" name="asSequence" eType="_eEPf8Es8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eDBX8Us8EeCVUsYc3QWFGQ" name="asOrderedSet" eType="_eDM-IEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eDBX8ks8EeCVUsYc3QWFGQ" name="exists" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eDBX9Es8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eDBX9Us8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eDBX9ks8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eDB_AEs8EeCVUsYc3QWFGQ" name="forAll" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eDB_Aks8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eDB_A0s8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eDB_BEs8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eDB_Bks8EeCVUsYc3QWFGQ" name="isUnique" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eDB_CEs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eDCmEEs8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eDCmEUs8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eDCmE0s8EeCVUsYc3QWFGQ" name="one" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eDCmFUs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eDCmFks8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eDCmF0s8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eDDNIUs8EeCVUsYc3QWFGQ" name="any" eType="_eEf-p0s8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eDDNIks8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eDDNI0s8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eDDNJEs8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eDDNJks8EeCVUsYc3QWFGQ" name="collect" eType="_eEjB9ks8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eDDNJ0s8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eDD0MEs8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eDD0MUs8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eDD0M0s8EeCVUsYc3QWFGQ" name="closure" eType="_eEjpAEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eDD0NEs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eDD0NUs8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eDKh4Es8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eDKh4ks8EeCVUsYc3QWFGQ" name="select" eType="_eC74YEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eDLI8Us8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eDLI8ks8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eDLI80s8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eDLI9Us8EeCVUsYc3QWFGQ" name="reject" eType="_eC74YEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eDLI90s8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eDLI-Es8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eDLwAEs8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eDLwAks8EeCVUsYc3QWFGQ" name="sortedBy" eType="_eDM-IEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eDLwA0s8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eDLwBEs8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eDLwBUs8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eDLwB0s8EeCVUsYc3QWFGQ" name="collectNested" eType="_eEjpAUs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eDMXEEs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eDMXEUs8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eDMXEks8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" xmi:id="_eDM-IEs8EeCVUsYc3QWFGQ" name="OrderedSet(T)" instanceClassName="java.util.LinkedHashSet" elementType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+    <eClassifiers xsi:type="ecore:EClass" xmi:id="_eDNlMEs8EeCVUsYc3QWFGQ" name="OrderedSet(T)_Class">
+      <eAnnotations xmi:id="_eDNlMUs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL" references="_eDM-IEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eDNlMks8EeCVUsYc3QWFGQ" name="count" eType="_eCNfoks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eDNlNEs8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eDNlNUs8EeCVUsYc3QWFGQ" name="excludes" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eDOMQEs8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eD6v0Es8EeCVUsYc3QWFGQ" name="excludesAll" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eD6v0ks8EeCVUsYc3QWFGQ" name="c2" eType="_eC2Y0Es8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eD6v1Es8EeCVUsYc3QWFGQ" name="includes" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eD6v1ks8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eD7W4Es8EeCVUsYc3QWFGQ" name="includesAll" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eD7W4ks8EeCVUsYc3QWFGQ" name="c2" eType="_eC2Y0Es8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eD7W5Es8EeCVUsYc3QWFGQ" name="isEmpty" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eD7W5ks8EeCVUsYc3QWFGQ" name="notEmpty" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eD7W6Es8EeCVUsYc3QWFGQ" name="product" eType="_eEjB9Us8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eD798Es8EeCVUsYc3QWFGQ" name="c2" eType="_eEjB9ks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eD798Us8EeCVUsYc3QWFGQ" name="sum" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eD7980s8EeCVUsYc3QWFGQ" name="size" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eD799Us8EeCVUsYc3QWFGQ" name="=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eD7990s8EeCVUsYc3QWFGQ" name="set" eType="_eC74YEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eD8lAEs8EeCVUsYc3QWFGQ" name="&lt;>" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eD8lAks8EeCVUsYc3QWFGQ" name="set" eType="_eC74YEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eD8lBEs8EeCVUsYc3QWFGQ" name="union" eType="_eEGWAEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eD8lBUs8EeCVUsYc3QWFGQ" name="bag" eType="_eEGWAEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eD8lBks8EeCVUsYc3QWFGQ" name="union" eType="_eC74YEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eD9MEEs8EeCVUsYc3QWFGQ" name="set" eType="_eC74YEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eD9MEks8EeCVUsYc3QWFGQ" name="-" eType="_eC74YEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eD9MFEs8EeCVUsYc3QWFGQ" name="set" eType="_eC74YEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eD9MFks8EeCVUsYc3QWFGQ" name="intersection" eType="_eC74YEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eD9MGEs8EeCVUsYc3QWFGQ" name="bag" eType="_eEGWAEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eD9MGUs8EeCVUsYc3QWFGQ" name="intersection" eType="_eC74YEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eD9zIEs8EeCVUsYc3QWFGQ" name="set" eType="_eC74YEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eD9zIks8EeCVUsYc3QWFGQ" name="including" eType="_eC74YEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eD9zJEs8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eD9zJUs8EeCVUsYc3QWFGQ" name="excluding" eType="_eC74YEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eD9zJ0s8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eD-aMEs8EeCVUsYc3QWFGQ" name="symmetricDifference" eType="_eC74YEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eD-aMks8EeCVUsYc3QWFGQ" name="s" eType="_eC74YEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eD-aNEs8EeCVUsYc3QWFGQ" name="flatten" eType="_eEjpAEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eD-aNUs8EeCVUsYc3QWFGQ" name="asBag" eType="_eEGWAEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eD-aNks8EeCVUsYc3QWFGQ" name="asSet" eType="_eC74YEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eD_BQEs8EeCVUsYc3QWFGQ" name="asSequence" eType="_eEPf8Es8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eD_BQUs8EeCVUsYc3QWFGQ" name="asOrderedSet" eType="_eDM-IEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eD_BQ0s8EeCVUsYc3QWFGQ" name="=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eD_BRUs8EeCVUsYc3QWFGQ" name="s" eType="_eDM-IEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eD_BR0s8EeCVUsYc3QWFGQ" name="&lt;>" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eD_BSUs8EeCVUsYc3QWFGQ" name="s" eType="_eDM-IEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eD_oUEs8EeCVUsYc3QWFGQ" name="append" eType="_eDM-IEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eD_oUks8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eD_oU0s8EeCVUsYc3QWFGQ" name="at" eType="_eEf-p0s8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eD_oVEs8EeCVUsYc3QWFGQ" name="index" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eD_oVks8EeCVUsYc3QWFGQ" name="indexOf" eType="_eCNfoks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEAPYEs8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEAPYUs8EeCVUsYc3QWFGQ" name="insertAt" eType="_eDM-IEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEAPY0s8EeCVUsYc3QWFGQ" name="index" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+        <eParameters xmi:id="_eEAPZUs8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEAPZks8EeCVUsYc3QWFGQ" name="prepend" eType="_eDM-IEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEA2cEs8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEA2cUs8EeCVUsYc3QWFGQ" name="subOrderedSet" eType="_eDM-IEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEA2c0s8EeCVUsYc3QWFGQ" name="lower" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+        <eParameters xmi:id="_eEA2dUs8EeCVUsYc3QWFGQ" name="upper" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEA2d0s8EeCVUsYc3QWFGQ" name="first" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eEA2eEs8EeCVUsYc3QWFGQ" name="last" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eEBdgEs8EeCVUsYc3QWFGQ" name="exists" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eEBdgks8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eEBdg0s8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eEBdhEs8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEBdhks8EeCVUsYc3QWFGQ" name="forAll" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eEBdiEs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eECEkEs8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eECEkUs8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eECEk0s8EeCVUsYc3QWFGQ" name="isUnique" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eECElUs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eECElks8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eECEl0s8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eECEmUs8EeCVUsYc3QWFGQ" name="one" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eECroUs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eECroks8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eECro0s8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eECrpUs8EeCVUsYc3QWFGQ" name="any" eType="_eEf-p0s8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eECrpks8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eECrp0s8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eECrqEs8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEDSsUs8EeCVUsYc3QWFGQ" name="collect" eType="_eEjB9ks8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eEDSsks8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eEDSs0s8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eEDStEs8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEDStks8EeCVUsYc3QWFGQ" name="closure" eType="_eEjpAEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eEDSt0s8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eEDSuEs8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eED5wEs8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eED5wks8EeCVUsYc3QWFGQ" name="select" eType="_eC74YEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eED5xEs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eED5xUs8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eED5xks8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eED5yEs8EeCVUsYc3QWFGQ" name="reject" eType="_eC74YEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eED5yks8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eEEg0Es8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eEEg0Us8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEEg00s8EeCVUsYc3QWFGQ" name="sortedBy" eType="_eDM-IEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eEEg1Us8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eEEg1ks8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eEEg10s8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEEg2Us8EeCVUsYc3QWFGQ" name="collectNested" eType="_eEjpAUs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eEFH4Es8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eEFH4Us8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eEFH4ks8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:BagType" xmi:id="_eEGWAEs8EeCVUsYc3QWFGQ" name="Bag(T)" instanceClassName="org.eclipse.ocl.util.Bag" elementType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+    <eClassifiers xsi:type="ecore:EClass" xmi:id="_eEGWAUs8EeCVUsYc3QWFGQ" name="Bag(T)_Class">
+      <eAnnotations xmi:id="_eEGWAks8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL" references="_eEGWAEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eEGWA0s8EeCVUsYc3QWFGQ" name="count" eType="_eCNfoks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEG9EEs8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEG9EUs8EeCVUsYc3QWFGQ" name="excludes" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEG9E0s8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEG9FEs8EeCVUsYc3QWFGQ" name="excludesAll" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEG9Fks8EeCVUsYc3QWFGQ" name="c2" eType="_eC2Y0Es8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEHkIEs8EeCVUsYc3QWFGQ" name="includes" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEHkIks8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEHkI0s8EeCVUsYc3QWFGQ" name="includesAll" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEHkJUs8EeCVUsYc3QWFGQ" name="c2" eType="_eC2Y0Es8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEHkJ0s8EeCVUsYc3QWFGQ" name="isEmpty" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eEHkKUs8EeCVUsYc3QWFGQ" name="notEmpty" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eEILMEs8EeCVUsYc3QWFGQ" name="product" eType="_eEjB9Us8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEILMUs8EeCVUsYc3QWFGQ" name="c2" eType="_eEjB9ks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEILMks8EeCVUsYc3QWFGQ" name="sum" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eEILNEs8EeCVUsYc3QWFGQ" name="size" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eEILNks8EeCVUsYc3QWFGQ" name="=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEILOEs8EeCVUsYc3QWFGQ" name="bag" eType="_eEGWAEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEIyQUs8EeCVUsYc3QWFGQ" name="&lt;>" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEIyQ0s8EeCVUsYc3QWFGQ" name="bag" eType="_eEGWAEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEIyRUs8EeCVUsYc3QWFGQ" name="union" eType="_eEGWAEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEIyR0s8EeCVUsYc3QWFGQ" name="bag" eType="_eEGWAEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEIySUs8EeCVUsYc3QWFGQ" name="union" eType="_eEGWAEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEJZUEs8EeCVUsYc3QWFGQ" name="set" eType="_eC74YEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEJZUks8EeCVUsYc3QWFGQ" name="intersection" eType="_eEGWAEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEJZVEs8EeCVUsYc3QWFGQ" name="bag" eType="_eEGWAEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEJZVks8EeCVUsYc3QWFGQ" name="intersection" eType="_eEGWAEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEJZWEs8EeCVUsYc3QWFGQ" name="set" eType="_eC74YEs8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEJZWks8EeCVUsYc3QWFGQ" name="including" eType="_eEGWAEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEKAYEs8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEKAYUs8EeCVUsYc3QWFGQ" name="excluding" eType="_eEGWAEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEKAY0s8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEKAZEs8EeCVUsYc3QWFGQ" name="flatten" eType="_eEjpAUs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eEKAZUs8EeCVUsYc3QWFGQ" name="asBag" eType="_eEGWAEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eEKncEs8EeCVUsYc3QWFGQ" name="asSet" eType="_eC74YEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eEKncks8EeCVUsYc3QWFGQ" name="asSequence" eType="_eEPf8Es8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eEKnc0s8EeCVUsYc3QWFGQ" name="asOrderedSet" eType="_eDM-IEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eEKndUs8EeCVUsYc3QWFGQ" name="exists" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eEKnd0s8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eEKneEs8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eELOgEs8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eELOgks8EeCVUsYc3QWFGQ" name="forAll" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eELOhEs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eELOhUs8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eELOhks8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eELOiEs8EeCVUsYc3QWFGQ" name="isUnique" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eELOiks8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eEL1kEs8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eEL1kUs8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEL1k0s8EeCVUsYc3QWFGQ" name="one" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eEL1lUs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eEL1lks8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eEL1l0s8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEMcoEs8EeCVUsYc3QWFGQ" name="any" eType="_eEf-p0s8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eEMcoUs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eEMcoks8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eEMco0s8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEMcpUs8EeCVUsYc3QWFGQ" name="collect" eType="_eEjB9ks8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eEMcpks8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eEMcp0s8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eEMcqEs8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eENDsEs8EeCVUsYc3QWFGQ" name="closure" eType="_eEjpAEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eENDsUs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eENDsks8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eENDs0s8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eENDtUs8EeCVUsYc3QWFGQ" name="select" eType="_eEGWAEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eENDt0s8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eENDuEs8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eENqwEs8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eENqwks8EeCVUsYc3QWFGQ" name="reject" eType="_eEGWAEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eENqxEs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eENqxUs8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eENqxks8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEOR0Es8EeCVUsYc3QWFGQ" name="sortedBy" eType="_eEPf8Es8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eEOR0Us8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eEOR0ks8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eEOR00s8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEOR1Us8EeCVUsYc3QWFGQ" name="collectNested" eType="_eEjpAUs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eEOR1ks8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eEOR10s8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eEOR2Es8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" xmi:id="_eEPf8Es8EeCVUsYc3QWFGQ" name="Sequence(T)" instanceClassName="java.util.List" elementType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+    <eClassifiers xsi:type="ecore:EClass" xmi:id="_eEPf8Us8EeCVUsYc3QWFGQ" name="Sequence(T)_Class">
+      <eAnnotations xmi:id="_eEPf8ks8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL" references="_eEPf8Es8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eEPf80s8EeCVUsYc3QWFGQ" name="count" eType="_eCNfoks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEQHAEs8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEQHAUs8EeCVUsYc3QWFGQ" name="excludes" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEQHA0s8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEQHBEs8EeCVUsYc3QWFGQ" name="excludesAll" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEQHBks8EeCVUsYc3QWFGQ" name="c2" eType="_eC2Y0Es8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEQHCEs8EeCVUsYc3QWFGQ" name="includes" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEQuEEs8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEQuEUs8EeCVUsYc3QWFGQ" name="includesAll" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEQuE0s8EeCVUsYc3QWFGQ" name="c2" eType="_eC2Y0Es8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEQuFUs8EeCVUsYc3QWFGQ" name="isEmpty" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eEQuF0s8EeCVUsYc3QWFGQ" name="notEmpty" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eERVIEs8EeCVUsYc3QWFGQ" name="product" eType="_eEjB9Us8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eERVIUs8EeCVUsYc3QWFGQ" name="c2" eType="_eEjB9ks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eERVIks8EeCVUsYc3QWFGQ" name="sum" eType="_eCbiEks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eERVJEs8EeCVUsYc3QWFGQ" name="size" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eERVJks8EeCVUsYc3QWFGQ" name="=" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eER8MEs8EeCVUsYc3QWFGQ" name="s" eType="_eEPf8Es8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eER8Mks8EeCVUsYc3QWFGQ" name="&lt;>" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eER8NEs8EeCVUsYc3QWFGQ" name="s" eType="_eEPf8Es8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eER8Nks8EeCVUsYc3QWFGQ" name="union" eType="_eEPf8Es8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eER8OEs8EeCVUsYc3QWFGQ" name="s" eType="_eEPf8Es8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eER8Oks8EeCVUsYc3QWFGQ" name="append" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEZQ8Us8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEZ4AEs8EeCVUsYc3QWFGQ" name="prepend" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEZ4Aks8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEZ4A0s8EeCVUsYc3QWFGQ" name="insertAt" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEZ4BUs8EeCVUsYc3QWFGQ" name="index" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+        <eParameters xmi:id="_eEZ4B0s8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEZ4CEs8EeCVUsYc3QWFGQ" name="subSequence" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEafEEs8EeCVUsYc3QWFGQ" name="lower" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+        <eParameters xmi:id="_eEafEks8EeCVUsYc3QWFGQ" name="upper" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEafFEs8EeCVUsYc3QWFGQ" name="at" eType="_eEf-p0s8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEafFUs8EeCVUsYc3QWFGQ" name="index" eType="_eCNfoks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEafF0s8EeCVUsYc3QWFGQ" name="indexOf" eType="_eCNfoks8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEbGIEs8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEbGIUs8EeCVUsYc3QWFGQ" name="including" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEbGI0s8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEbGJEs8EeCVUsYc3QWFGQ" name="excluding" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eParameters xmi:id="_eEbGJks8EeCVUsYc3QWFGQ" name="object" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEbtMEs8EeCVUsYc3QWFGQ" name="first" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eEbtMUs8EeCVUsYc3QWFGQ" name="last" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eEbtMks8EeCVUsYc3QWFGQ" name="flatten" eType="_eEjpAks8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eEbtM0s8EeCVUsYc3QWFGQ" name="asBag" eType="_eEGWAEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eEbtNUs8EeCVUsYc3QWFGQ" name="asSet" eType="_eC74YEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eEcUQEs8EeCVUsYc3QWFGQ" name="asSequence" eType="_eCKcUEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eEcUQks8EeCVUsYc3QWFGQ" name="asOrderedSet" eType="_eDM-IEs8EeCVUsYc3QWFGQ"/>
+      <eOperations xmi:id="_eEcUREs8EeCVUsYc3QWFGQ" name="exists" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eEcURks8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eEcUR0s8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eEcUSEs8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEcUSks8EeCVUsYc3QWFGQ" name="forAll" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eEc7UUs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eEc7Uks8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eEc7U0s8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEc7VUs8EeCVUsYc3QWFGQ" name="isUnique" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eEc7V0s8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eEc7WEs8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eEc7WUs8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEdiYUs8EeCVUsYc3QWFGQ" name="one" eType="_eCKcUEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eEdiY0s8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eEdiZEs8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eEdiZUs8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEdiZ0s8EeCVUsYc3QWFGQ" name="any" eType="_eEf-p0s8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eEdiaEs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eEeJcEs8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eEeJcUs8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEeJc0s8EeCVUsYc3QWFGQ" name="collect" eType="_eEjB9ks8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eEeJdEs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eEeJdUs8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eEeJdks8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEewgEs8EeCVUsYc3QWFGQ" name="closure" eType="_eEjpAEs8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eEewgUs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eEewgks8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eEewg0s8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEewhUs8EeCVUsYc3QWFGQ" name="select" eType="_eEPf8Es8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eEewh0s8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eEewiEs8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eEfXkEs8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEfXkks8EeCVUsYc3QWFGQ" name="reject" eType="_eEPf8Es8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eEfXlEs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eEfXlUs8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eEfXlks8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEfXmEs8EeCVUsYc3QWFGQ" name="sortedBy" eType="_eEPf8Es8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eEfXmks8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eEfXm0s8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eEf-oEs8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+      <eOperations xmi:id="_eEf-oks8EeCVUsYc3QWFGQ" name="collectNested" eType="_eEjpAks8EeCVUsYc3QWFGQ">
+        <eAnnotations xmi:id="_eEf-o0s8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <details xmi:id="_eEf-pEs8EeCVUsYc3QWFGQ" key="keywords" value="iterator"/>
+        </eAnnotations>
+        <eParameters xmi:id="_eEf-pUs8EeCVUsYc3QWFGQ" name="expr" eType="_eCudAks8EeCVUsYc3QWFGQ"/>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:AnyType" xmi:id="_eEf-p0s8EeCVUsYc3QWFGQ" name="T"/>
+    <eClassifiers xsi:type="ecore:EClass" xmi:id="_eEf-qEs8EeCVUsYc3QWFGQ" name="T_Class">
+      <eAnnotations xmi:id="_eEglsEs8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL" references="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:AnyType" xmi:id="_eEglsUs8EeCVUsYc3QWFGQ" name="T2"/>
+    <eClassifiers xsi:type="ecore:EClass" xmi:id="_eEglsks8EeCVUsYc3QWFGQ" name="T2_Class">
+      <eAnnotations xmi:id="_eEgls0s8EeCVUsYc3QWFGQ" source="http://www.eclipse.org/ocl/1.1.0/OCL" references="_eEglsUs8EeCVUsYc3QWFGQ"/>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ecore:EPackage xmi:id="_eEgltEs8EeCVUsYc3QWFGQ" name="tuples">
+    <eClassifiers xsi:type="ocl.ecore:TupleType" xmi:id="_eEia4Es8EeCVUsYc3QWFGQ" name="Tuple(first : T, second : T2)" instanceClassName="org.eclipse.ocl.util.Tuple">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" xmi:id="_eEjB8Es8EeCVUsYc3QWFGQ" name="first" eType="_eEf-p0s8EeCVUsYc3QWFGQ"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" xmi:id="_eEjB8ks8EeCVUsYc3QWFGQ" name="second" eType="_eEglsUs8EeCVUsYc3QWFGQ"/>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ecore:EPackage xmi:id="_eEjB9Es8EeCVUsYc3QWFGQ" name="collections">
+    <eClassifiers xsi:type="ocl.ecore:SetType" xmi:id="_eEjB9Us8EeCVUsYc3QWFGQ" name="Set(Tuple(first : T, second : T2))" instanceClassName="java.util.Set" elementType="_eEia4Es8EeCVUsYc3QWFGQ"/>
+    <eClassifiers xsi:type="ocl.ecore:CollectionType" xmi:id="_eEjB9ks8EeCVUsYc3QWFGQ" name="Collection(T2)" elementType="_eEglsUs8EeCVUsYc3QWFGQ"/>
+    <eClassifiers xsi:type="ocl.ecore:SetType" xmi:id="_eEjpAEs8EeCVUsYc3QWFGQ" name="Set(T2)" instanceClassName="java.util.Set" elementType="_eEglsUs8EeCVUsYc3QWFGQ"/>
+    <eClassifiers xsi:type="ocl.ecore:BagType" xmi:id="_eEjpAUs8EeCVUsYc3QWFGQ" name="Bag(T2)" instanceClassName="org.eclipse.ocl.util.Bag" elementType="_eEglsUs8EeCVUsYc3QWFGQ"/>
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" xmi:id="_eEjpAks8EeCVUsYc3QWFGQ" name="Sequence(T2)" instanceClassName="java.util.List" elementType="_eEglsUs8EeCVUsYc3QWFGQ"/>
+  </ecore:EPackage>
+</xmi:XMI>

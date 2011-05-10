@@ -477,13 +477,22 @@ public interface CompanyPackage extends EPackage {
 	int TRANSPORT__NAME = 0;
 
 	/**
+	 * The feature id for the '<em><b>Distance</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSPORT__DISTANCE = 1;
+
+	/**
 	 * The number of structural features of the '<em>Transport</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSPORT_FEATURE_COUNT = 1;
+	int TRANSPORT_FEATURE_COUNT = 2;
 
 
 	/**
@@ -767,6 +776,17 @@ public interface CompanyPackage extends EPackage {
 	EAttribute getTransport_Name();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.query2.test.mm.Company.Transport#getDistance <em>Distance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Distance</em>'.
+	 * @see org.eclipse.emf.query2.test.mm.Company.Transport#getDistance()
+	 * @see #getTransport()
+	 * @generated
+	 */
+	EAttribute getTransport_Distance();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1007,6 +1027,14 @@ public interface CompanyPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TRANSPORT__NAME = eINSTANCE.getTransport_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Distance</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRANSPORT__DISTANCE = eINSTANCE.getTransport_Distance();
 
 	}
 

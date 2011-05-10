@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigationOperatorCSScopeAdapter.java,v 1.11 2011/04/25 19:39:51 ewillink Exp $
+ * $Id: NavigationOperatorCSScopeAdapter.java,v 1.12 2011/05/02 09:31:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -44,7 +44,13 @@ public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<Navigati
 			OclExpression source = PivotUtil.getPivot(OclExpression.class, target.getSource());
 			if (source != null) {
 				Type type = source.getType();
-				if (target.getName().equals(PivotConstants.COLLECTION_NAVIGATION_OPERATOR)) {
+				if (!target.getName().equals(PivotConstants.COLLECTION_NAVIGATION_OPERATOR)) {
+					environmentView.addElementsOfScope(type, scopeView);			// object.object-operation, collection.collection-as-object-operation		
+					if (type instanceof CollectionType) {
+						environmentView.addElementsOfScope(((CollectionType)type).getElementType(), scopeView); // collection->collect(object-operation)
+					}
+				}
+				else if (scopeView.getContainmentFeature() != PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT){
 					if (type instanceof CollectionType) {		// collection->collection-operation
 						environmentView.addElementsOfScope(type, scopeView);
 					}
@@ -54,13 +60,16 @@ public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<Navigati
 					}
 				}
 				else {
-					environmentView.addElementsOfScope(type, scopeView);			// object.object-operation, collection.collection-as-object-operation		
-					if (type instanceof CollectionType) {
-						environmentView.addElementsOfScope(((CollectionType)type).getElementType(), scopeView); // collection->collect(object-operation)
+					if (type instanceof CollectionType) {		// collection->iteration-operation(iterator-feature)
+						environmentView.addElementsOfScope(((CollectionType)type).getElementType(), scopeView);
 					}
+					else {										// object.oclAsSet()->iteration-operation(iterator-feature)
+						environmentView.addElementsOfScope(type, scopeView);
+					}
+					
 				}
 				if (scopeView.getContainmentFeature() != PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT) {
-					return null;						
+					return null;				// No further outer scope lookup				
 				}
 			}
 			return scopeView.getOuterScope();

@@ -10,13 +10,15 @@
  ******************************************************************************/
 package com.sap.furcas.runtime.parser.testbase;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
+import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
+import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ModelParsingResult;
 import com.sap.furcas.runtime.parser.ParserFacade;
@@ -27,20 +29,20 @@ import com.sap.furcas.runtime.parser.impl.DefaultTextAwareModelAdapter;
  */
 public class EMFParsingHelper extends AbstractParsingHelper<ModelParsingResult> {
     
-    private final EPackage rootPackage;
     private final Set<URI> referenceScope;
     private final ResourceSet resourceSet;
     
     public EMFParsingHelper(ParserFacade parserFacade, GeneratedParserTestConfiguration testConfig, String packageURI) {
         super(parserFacade);
-        rootPackage = EPackage.Registry.INSTANCE.getEPackage(packageURI);
         resourceSet = testConfig.getSourceConfiguration().getResourceSet();
         referenceScope = testConfig.getSourceConfiguration().getReferenceScope();
     }
 
     @Override
     protected IModelAdapter createModelAdapter() {
-        return new DefaultTextAwareModelAdapter(new EMFModelAdapter(rootPackage, resourceSet, referenceScope));
+        return new DefaultTextAwareModelAdapter(new EMFModelAdapter(resourceSet,
+                EcoreHelper.createTransientParsingResource(resourceSet, FURCASPackage.eINSTANCE),
+                referenceScope, new HashSet<URI>()));
     }
 
     @Override

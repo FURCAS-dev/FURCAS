@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2009, 2010 Borland Software Corporation and others.
+ * Copyright (c) 2009, 2010, 2011 Borland Software Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,6 +8,7 @@
  * Contributors:
  *     Radek Dvorak - initial API and implementation
  *     Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Bug 333032
+ *     Axel Uhl (SAP AG) - Bug 342644
  *******************************************************************************/
 package org.eclipse.ocl.ecore.tests;
 
@@ -157,17 +158,17 @@ public class EvaluationHaltedTest
 	public void testHaltedQuery() {
 		assertNull(OCLUtil.getEvaluationProblems(query));
 
-		assertListResult(query.evaluate(), Collections.emptyList());
+		assertListResult(query.evaluate(HALT_KIND_NONE), Collections.singletonList(HALT_KIND_NONE));
 		assertNull(OCLUtil.getEvaluationProblems(query));
 
 		envFactory.haltOnContextLessExecution = true;
-		assertInvalid(query.evaluate());
+		assertInvalid(query.evaluate(HALT_KIND_NONE));
 		assertNotNull(OCLUtil.getEvaluationProblems(query));
 		assertNotNull(OCLUtil.getEvaluationProblems(query).getMessage().equals(
 			"Halt"));
 		envFactory.haltOnContextLessExecution = false;
 		// check we clear the problems on next evaluate
-		query.evaluate();
+		query.evaluate(HALT_KIND_NONE);
 		assertNull(OCLUtil.getEvaluationProblems(query));
 	}
 

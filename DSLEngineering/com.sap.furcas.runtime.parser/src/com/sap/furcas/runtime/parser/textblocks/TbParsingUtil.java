@@ -37,7 +37,7 @@ public class TbParsingUtil {
 	Stack<TextBlock> contextStack = new Stack<TextBlock>();
 	while (parentBlock != null) {
 	    if (parentBlock.getType() != null) {
-		Template template = parentBlock.getType().getParseRule();
+		Template template = parentBlock.getType();
 		if ((template instanceof ContextTemplate && ((ContextTemplate) template).isIsContext())) {
 		    contextStack.push(parentBlock);
 		}
@@ -47,7 +47,7 @@ public class TbParsingUtil {
 	while (!contextStack.isEmpty()) {
 	    TextBlock t = contextStack.pop();
 	    ContextTags tags = null;
-	    Template template = t.getType().getParseRule();
+	    Template template = t.getType();
 	    if (template instanceof ContextTemplate) {
 		tags = ((ContextTemplate) template).getContextTags();
 	    }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractSequenceValue.java,v 1.2 2011/02/21 08:37:52 ewillink Exp $
+ * $Id: AbstractSequenceValue.java,v 1.3 2011/05/02 09:42:04 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -113,9 +113,9 @@ public abstract class AbstractSequenceValue<L extends List<Value>>
 		}
 	}
 
-    public Value first() {
+    public Value first() throws InvalidValueException {
         if (elements.size() <= 0) {
-            return null;
+			throw new InvalidValueException("'first' of empty Sequence");
         }
         return elements.get(0);
     }
@@ -168,10 +168,10 @@ public abstract class AbstractSequenceValue<L extends List<Value>>
 		return valueFactory.createSequenceValue(result);
     }
     
-    public Value last() {
+    public Value last() throws InvalidValueException {
         int size = elements.size();
 		if (size <= 0) {
-            return null;
+			throw new InvalidValueException("'last' of empty Sequence");
         }
         return elements.get(size-1);
     }

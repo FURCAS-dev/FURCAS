@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigatingExpCSScopeAdapter.java,v 1.9 2011/04/25 19:39:51 ewillink Exp $
+ * $Id: NavigatingExpCSScopeAdapter.java,v 1.10 2011/05/02 09:31:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -104,26 +104,33 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 					environmentView.addNamedElement(((IterateExp)pivot).getResult());
 				}
 			}
-		}
-		ExpCS explicitSource = null;
-		ScopeAdapter scopeAdapter = null;	// Note that parent is null during PreOrder namespace resolution
-		if (target.eContainer() instanceof InfixExpCS) {
-			OperatorCS csOperator = target.getParent();
-			if (csOperator != null) {
-				ExpCS csSource = csOperator.getSource();
-				if (csSource != target) {
-					scopeAdapter = getScopeCSAdapter(csOperator);
-					explicitSource = csSource;
-				}
+			EnvironmentView.Filter filter = ContextCSScopeAdapter.NoImplicitProperties.INSTANCE;
+			try {
+				environmentView.addFilter(filter);
+				BaseScopeView baseScopeView = new BaseScopeView(typeManager, getParent(), target, PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT, null);
+				environmentView.computeLookups(baseScopeView);
+				return null;
+			}
+			finally {
+				environmentView.removeFilter(filter);
 			}
 		}
-		if (scopeAdapter == null) {
-			scopeAdapter = getParent();
-		}
-		if (fromArgument instanceof NavigatingArgCS) {
-			return new BaseScopeView(typeManager, scopeAdapter, target, PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT, null);
-		}
 		else {
+			ExpCS explicitSource = null;
+			ScopeAdapter scopeAdapter = null;	// Note that parent is null during PreOrder namespace resolution
+			if (target.eContainer() instanceof InfixExpCS) {
+				OperatorCS csOperator = target.getParent();
+				if (csOperator != null) {
+					ExpCS csSource = csOperator.getSource();
+					if (csSource != target) {
+						scopeAdapter = getScopeCSAdapter(csOperator);
+						explicitSource = csSource;
+					}
+				}
+			}
+			if (scopeAdapter == null) {
+				scopeAdapter = getParent();
+			}
 			Type type = null;
 			if (explicitSource != null) {
 				OclExpression source = PivotUtil.getPivot(OclExpression.class, explicitSource);

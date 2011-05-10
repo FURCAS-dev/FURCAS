@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2PivotReferenceSwitch.java,v 1.7 2011/04/27 06:19:59 ewillink Exp $
+ * $Id: Ecore2PivotReferenceSwitch.java,v 1.8 2011/05/02 09:31:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -135,7 +135,7 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 		if (oppositeProperty != null) {
 			pivotElement.setOpposite(oppositeProperty);
 		}
-		else {
+		else if (eObject.eContainer() instanceof EClass) {		// Skip annotation references
 			converter.getTypeManager().installPropertyDeclaration(pivotElement);
 		}
 		return pivotElement;

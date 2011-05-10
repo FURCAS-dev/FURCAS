@@ -270,7 +270,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                         .getContextObjects(affectedContextObject);
                 for (EObject foreachBaseExpressionContext : foreachBaseExpressionContexts) {
                     Collection<EObject> textBlocks = getOppositeEndFinder().navigateOppositePropertyWithBackwardScope(
-                            TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(),
+                            TextblocksPackage.eINSTANCE.getTextBlock_CorrespondingModelElements(),
                             foreachBaseExpressionContext);
                     TextBlock textBlock = (TextBlock) textBlocks.iterator().next();
                     if (foreachWasExecutedFor(textBlock)) {
@@ -358,7 +358,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
             // from the following ForEachExecution elements select the sub-sequence for which all elements
             // refer to the foreachPredicatePropertyInit
             Collection<EObject> textBlocks = getOppositeEndFinder().navigateOppositePropertyWithBackwardScope(
-                    TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(), elementToUpdate);
+                    TextblocksPackage.eINSTANCE.getTextBlock_CorrespondingModelElements(), elementToUpdate);
             TextBlock textBlock = (TextBlock) textBlocks.iterator().next();
             if (foreachWasExecutedFor(textBlock)) {
                 Iterator<ForEachExecution> foreachExecutionsIterator = textBlock.getForEachExecutions().iterator();
@@ -448,7 +448,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
      * <code>textBlock</code>.
      */
     private boolean foreachWasExecutedFor(TextBlock textBlock) {
-        return TcsUtil.wasExecuted((ContextTemplate) textBlock.getType().getParseRule(),
+        return TcsUtil.wasExecuted((ContextTemplate) textBlock.getType(),
                 textBlock.getParentAltChoices(), getSequenceElement());
     }
 

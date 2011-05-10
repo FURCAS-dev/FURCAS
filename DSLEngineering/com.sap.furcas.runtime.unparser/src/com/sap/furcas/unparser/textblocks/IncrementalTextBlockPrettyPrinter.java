@@ -231,7 +231,7 @@ public class IncrementalTextBlockPrettyPrinter {
 
 	PrettyPrintContext context = new PrettyPrintContext();
 	for (TextBlock parent = textblock.getParent(); parent != null; parent = parent.getParent()) {
-	    Template t = parent.getType().getParseRule();
+	    Template t = parent.getType();
 	    if (t instanceof ClassTemplate) {
 		ClassTemplate tp = (ClassTemplate) t;
 		context.getClassTemplates().add(0, tp);

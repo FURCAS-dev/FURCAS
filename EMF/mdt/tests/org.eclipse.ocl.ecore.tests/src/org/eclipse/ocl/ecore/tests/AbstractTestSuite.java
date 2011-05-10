@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2010 IBM Corporation and others.
+ * Copyright (c) 2005, 2010, 2011 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,10 +11,11 @@
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bugs 243079, 244948, 244886, 245619
  *   E.D.Willink - Bugs 191689, 254919, 298634
+ *   Axel Uhl (SAP AG) - Bug 342644
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.28 2010/12/15 17:34:07 ewillink Exp $
+ * $Id: AbstractTestSuite.java,v 1.29 2011/05/01 10:56:37 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -111,6 +112,7 @@ public abstract class AbstractTestSuite
 	 * @param result the suite
 	 */
 	public static void suite(CheckedTestSuite result) {
+		result.addTest(AbstractEvaluationTest.suite());
 		result.createTestSuite(BasicOCLTest.class, "Basic Tests");
 		result.createTestSuite(KeywordsTest.class, "OCL Keyword Tests");
 		result.createTestSuite(ComparisonTest.class, "Comparison/Ordering Tests");
@@ -147,6 +149,9 @@ public abstract class AbstractTestSuite
 		result.createTestSuite(EvaluationHaltedTest.class, "Ecore Halted Evaluation Tests");
 		result.createTestSuite(DelegatesTest.class, "Delegate Tests");
 		result.createTestSuite(OppositePropertyCallExpTest.class, "Opposite Property Call Expression Tests");
+		result.createTestSuite(ExpressionsValidatorTest.class, "Expression Validation Tests");
+		result.createTestSuite(SerializationTest.class, "Serialization Tests");
+		result.createTestSuite(EvaluationHaltedTest.class, "EvaluationHalted Tests");
 	}
 	
 	/**

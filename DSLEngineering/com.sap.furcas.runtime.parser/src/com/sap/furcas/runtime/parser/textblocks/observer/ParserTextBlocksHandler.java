@@ -30,6 +30,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
@@ -565,12 +566,8 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 
                 } else {
                     AbstractToken referenceToken = navigateToToken(contextBlock, referenceLocation);
-                    if (referenceToken == null) {
-                        // reference location doesn't correspond to a token. Add to
-                        // block
-                        contextBlock.getReferencedElements().add((EObject) modelElement);
-                    } else {
-                        referenceToken.getReferencedElements().add((EObject) modelElement);
+                    if (referenceToken != null && referenceToken instanceof LexedToken) {
+                        ((LexedToken) referenceToken).getReferencedElements().add((EObject) modelElement);
                     }
                 }
             }
@@ -651,7 +648,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
     private TextBlock getTextBlockForElementAt(EObject element, ANTLR3LocationToken referenceToken) {
         TextBlock tb = null;
         Collection<EObject> nodes = oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
-                TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(), element);
+                TextblocksPackage.eINSTANCE.getTextBlock_CorrespondingModelElements(), element);
         if (nodes != null) {
             for (EObject eObject : nodes) {
                 DocumentNode node = (DocumentNode) eObject;

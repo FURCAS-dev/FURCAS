@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc. and others.
+ * Copyright (c) 2005, 2009, 2011 IBM Corporation, Zeligsoft Inc. and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bugs 243526, 248869, 259740, 259818
+ *   Axel Uhl (SAP AG) - Bug 342644
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.18 2009/12/18 06:36:36 ewillink Exp $
+ * $Id: RegressionTest.java,v 1.19 2011/05/01 10:56:37 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -62,6 +63,8 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.VariableExp;
+import org.eclipse.ocl.util.Bag;
+import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.util.Tuple;
 import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.utilities.UMLReflection;
@@ -842,6 +845,32 @@ public class RegressionTest
 		assertEquals(expected, result);
 	}
 	
+	public void test_bagIterationWithNullOccurrences() {
+		Bag<Object> bag = CollectionUtil.createNewBag();
+		bag.add(3);
+		bag.add(null);
+		bag.add(4);
+		bag.add(null);
+		bag.add("test");
+		assertEquals(2, bag.count(null));
+		Iterator<Object> i = bag.iterator();
+		int nullCount = 0;
+		while (i.hasNext()) {
+			if (i.next() == null) {
+				nullCount++;
+			}
+		}
+		assertEquals(2, nullCount);
+		Bag<Object> bagWithSingleNull = CollectionUtil.createNewBag();
+		bagWithSingleNull.add(null);
+		assertEquals(1, bagWithSingleNull.count(null));
+		assertTrue(bagWithSingleNull.iterator().hasNext());
+		assertNull(bagWithSingleNull.iterator().next());
+		i = bagWithSingleNull.iterator();
+		i.next();
+		assertFalse(i.hasNext());
+	}
+	
 	/**
 	 * Regression test to check that <code>allInstances()</code> works as
 	 * expected on primitive types.
@@ -956,6 +985,17 @@ public class RegressionTest
 			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 		assertNotNull("Parse should have failed", err);
+	}
+	
+	public void test_ifWithNullConditionMustBeInvalid_342644() {
+		EObject apple = fruitFactory.create(this.apple);
+		Object result = evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: let b:Boolean=null in (if b then 1 else 2 endif).oclIsInvalid()" +
+			" endpackage"), apple);
+	
+		// oclIsInvalid() on an invalid variable value results in TRUE
+		assertEquals(Boolean.TRUE, result);
 	}
 	
 	/**
@@ -1219,6 +1259,37 @@ public class RegressionTest
 		
 		// feature calls on null result in invalid
 		assertInvalid(result);
+	}
+	
+	public void test_oclInvalidInIterateAccumulator_342644() {
+		EObject apple = fruitFactory.create(this.apple);
+		Object result = evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: self->iterate(i; acc:Integer='123a'.toInteger() | if acc.oclIsInvalid() then 0 else acc+1 endif)" +
+			" endpackage"), apple);
+	
+		// oclIsInvalid() on an invalid variable value results in TRUE
+		assertEquals(0, result);
+	}
+	
+	public void test_oclIsInvalidOnInvalidLetVariable_342644() {
+		Object result = evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: let a:Integer = '123a'.toInteger() in a.oclIsInvalid() " +
+			" endpackage"));
+	
+		// oclIsInvalid() on an invalid variable value results in TRUE
+		assertEquals(Boolean.TRUE, result);
+	}
+	
+	public void test_oclIsInvalidOnInvalidOperationResult_342561() {
+		Object result = evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: '123a'.toInteger().oclIsInvalid() " +
+			" endpackage"));
+	
+		// oclIsInvalid() on an invalid OperationCallExp results in TRUE
+		assertEquals(Boolean.TRUE, result);
 	}
 	
 	/**

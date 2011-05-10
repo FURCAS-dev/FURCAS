@@ -19,9 +19,6 @@ import org.eclipse.emf.query.index.internal.maps.SerializationStrategy.Channel;
  * A hash table that accepts only one element per key. I.e. a hash set. Keys are
  * compared as usual by identity.
  * 
- * @author Martin Strenge - Initial API and implementation
- * @author Bernd Kolb - Initial API and implementation
- * 
  * @param <E>
  */
 public class SingleMap<K, E extends MapEntry> extends AbstractKeylessMapBase<K, E> {

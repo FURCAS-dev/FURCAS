@@ -7,6 +7,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.query2.syntax.ui.SyntaxUIImageRegistry;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
@@ -23,13 +24,17 @@ public class QueryProposalProvider extends AbstractQueryProposalProvider {
 		Collection<Object> registeredEPackages = EPackage.Registry.INSTANCE.values();
 		for (Object ePackage : registeredEPackages) {
 			if (ePackage instanceof EPackage) {
-				String nsURI = ((EPackage) ePackage).getNsURI();
-				String proposal = '"' + nsURI + '"';
-				ICompletionProposal completionProposal = createCompletionProposal(proposal, nsURI, null, context);
-				acceptor.accept(completionProposal);
+				createCompletionProposalForPackage(context, acceptor, ePackage);
 			}
 		}
 
+	}
+
+	public void createCompletionProposalForPackage(ContentAssistContext context, ICompletionProposalAcceptor acceptor, Object ePackage) {
+		String nsURI = ((EPackage) ePackage).getNsURI();
+		String proposal = '"' + nsURI + '"';
+		ICompletionProposal completionProposal = createCompletionProposal(proposal, nsURI, SyntaxUIImageRegistry.getImage(SyntaxUIImageRegistry.EPACKAGE_ICON), context);
+		acceptor.accept(completionProposal);
 	}
 
 }

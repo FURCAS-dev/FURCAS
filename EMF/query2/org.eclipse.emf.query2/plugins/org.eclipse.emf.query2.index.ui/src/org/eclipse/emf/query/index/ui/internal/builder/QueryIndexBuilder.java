@@ -145,7 +145,8 @@ public class QueryIndexBuilder extends IncrementalProjectBuilder {
 					emfResource = rs.getResource(URI.createPlatformResourceURI(fullPath, true), true);
 					// System.out.println("preCommitAction"+emfResource.getURI());
 
-					final ResourceIndexer indexer = new ResourceIndexer();
+					final ResourceIndexer resourceIndexer = new ResourceIndexer();
+					ResourceIndexer indexer = resourceIndexer.getInstance();
 					try {
 						indexer.resourceChanged(updater, emfResource);
 						// System.out.println("preCommitAction"+emfResource+" IResource"+

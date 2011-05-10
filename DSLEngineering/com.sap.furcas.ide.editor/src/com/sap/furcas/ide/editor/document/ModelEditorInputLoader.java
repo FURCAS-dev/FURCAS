@@ -114,7 +114,7 @@ public class ModelEditorInputLoader {
 
     private TextBlock findRootBlockForRootObject(EObject rootObject, ClassTemplate rootTemplate) throws PartInitException {
         Collection<EObject> nodes = oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
-                TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(), rootObject);
+                TextblocksPackage.eINSTANCE.getTextBlock_CorrespondingModelElements(), rootObject);
 
         if (nodes == null) {
             return null;

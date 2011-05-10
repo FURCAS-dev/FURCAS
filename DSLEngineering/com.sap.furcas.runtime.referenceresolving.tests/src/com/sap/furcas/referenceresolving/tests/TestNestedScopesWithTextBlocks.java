@@ -287,7 +287,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
     }
 
     private LexedToken findCurrentReferenceTokenReferencing(EObject aDefinition, OppositeEndFinder oppositeEndFinder) {
-        for (EObject o : oppositeEndFinder.navigateOppositePropertyWithBackwardScope(TextblocksPackage.eINSTANCE.getDocumentNode_ReferencedElements(), aDefinition)) {
+        for (EObject o : oppositeEndFinder.navigateOppositePropertyWithBackwardScope(TextblocksPackage.eINSTANCE.getLexedToken_ReferencedElements(), aDefinition)) {
             if (EcoreUtil.getRootContainer(o) == rootTextBlock) {
                 return (LexedToken) o;
             }
@@ -366,7 +366,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
             OppositeEndFinder oppositeEndFinder = DefaultOppositeEndFinder.getInstance();
             LexedToken lexedToken = (LexedToken) oppositeEndFinder
                     .navigateOppositePropertyWithBackwardScope(
-                            TextblocksPackage.eINSTANCE.getDocumentNode_ReferencedElements(), element).iterator()
+                            TextblocksPackage.eINSTANCE.getLexedToken_ReferencedElements(), element).iterator()
                     .next();
             LexedToken lexedTokenInWorkingCopy = TbVersionUtil.getOtherVersion(lexedToken, Version.PREVIOUS);
             lexedTokenInWorkingCopy.setValue(newValue);

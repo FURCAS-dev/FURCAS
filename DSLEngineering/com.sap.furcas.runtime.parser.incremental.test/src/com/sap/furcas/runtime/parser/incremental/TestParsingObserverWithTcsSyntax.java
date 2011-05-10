@@ -10,6 +10,7 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.antlr.runtime.Lexer;
@@ -70,8 +71,8 @@ public class TestParsingObserverWithTcsSyntax {
         
         AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory = new TCSParserFactory();
         resourceSet.getResource(parserFactory.getSyntaxUri(), true);
-        IModelAdapter modelAdapter = new TextBlocksAwareModelAdapter(new EMFModelAdapter(
-            parserFactory.getMetamodelPackage(resourceSet), resourceSet, referenceScope));
+        IModelAdapter modelAdapter = new TextBlocksAwareModelAdapter(new EMFModelAdapter(resourceSet,
+                transientParsingResource, referenceScope, new HashSet<URI>()));
 
         incrementalParserFacade = new IncrementalParserFacade(parserFactory, modelAdapter, editingDomain, referenceScope,
             oppositeEndFinder, new MockPartitionAssignmentHandler(transientParsingResource));

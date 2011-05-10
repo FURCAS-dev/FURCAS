@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.junit.Test;
 
 import com.sap.furcas.emf.stubs.EcoreAnyStub;
@@ -202,7 +203,6 @@ public class TestAbstractEcoreMetaModelLookup {
 
     @Test
     public void testInstanceOfSame() throws MetaModelLookupException {
-
         // override getClassifier to return different stuff for sub and supertype
         TestableAbstractEcoreMetaModelLookup lookup = new TestableAbstractEcoreMetaModelLookup();
 
@@ -292,11 +292,7 @@ public class TestAbstractEcoreMetaModelLookup {
 
     private class TestableAbstractEcoreMetaModelLookup extends AbstractEcoreMetaModelLookup {
 
-        public TestableAbstractEcoreMetaModelLookup() {
-			super(DefaultOppositeEndFinder.getInstance());
-		}
-
-		public EList<EClassifier> qualifiedClassifiers = new BasicEList<EClassifier>();
+	public EList<EClassifier> qualifiedClassifiers = new BasicEList<EClassifier>();
         public EClassifier classifier;
 
         @Override
@@ -334,7 +330,11 @@ public class TestAbstractEcoreMetaModelLookup {
         @Override
         public EObject getOclReturnType(EObject parsingContext, String oclQuery) throws MetaModelLookupException {
             return new EcoreAnyStub();
-            
+        }
+
+        @Override
+        protected OppositeEndFinder getOppositeEndFinder() {
+            return DefaultOppositeEndFinder.getInstance();
         }
 
     }

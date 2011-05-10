@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution;
@@ -47,6 +46,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextBlockImpl#getCachedString <em>Cached String</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextBlockImpl#isComplete <em>Complete</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextBlockImpl#getAdditionalTemplates <em>Additional Templates</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextBlockImpl#getCorrespondingModelElements <em>Corresponding Model Elements</em>}</li>
  * </ul>
  * </p>
  *
@@ -61,7 +61,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
      * @generated
      * @ordered
      */
-        protected TextBlockDefinition type;
+        protected Template type;
 
         /**
      * The cached value of the '{@link #getSubNodes() <em>Sub Nodes</em>}' containment reference list.
@@ -154,6 +154,16 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
     protected EList<Template> additionalTemplates;
 
                                 /**
+     * The cached value of the '{@link #getCorrespondingModelElements() <em>Corresponding Model Elements</em>}' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getCorrespondingModelElements()
+     * @generated
+     * @ordered
+     */
+    protected EList<EObject> correspondingModelElements;
+
+                                /**
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
@@ -177,10 +187,11 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
          * <!-- end-user-doc -->
      * @generated
      */
-        public TextBlockDefinition getType() {
+        @Override
+        public Template getType() {
         if (type != null && type.eIsProxy()) {
             InternalEObject oldType = (InternalEObject)type;
-            type = (TextBlockDefinition)eResolveProxy(oldType);
+            type = (Template)eResolveProxy(oldType);
             if (type != oldType) {
                 if (eNotificationRequired())
                     eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblocksPackage.TEXT_BLOCK__TYPE, oldType, type));
@@ -194,17 +205,18 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
          * <!-- end-user-doc -->
      * @generated
      */
-        public TextBlockDefinition basicGetType() {
+        public Template basicGetType() {
         return type;
     }
 
         /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setType(TextBlockDefinition newType) {
-        TextBlockDefinition oldType = type;
+    @Override
+    public void setType(Template newType) {
+        Template oldType = type;
         type = newType;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.TEXT_BLOCK__TYPE, oldType, type));
@@ -215,6 +227,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EList<DocumentNode> getSubNodes() {
         if (subNodes == null) {
             subNodes = new EObjectContainmentWithInverseEList.Resolving<DocumentNode>(DocumentNode.class, this, TextblocksPackage.TEXT_BLOCK__SUB_NODES, TextblocksPackage.DOCUMENT_NODE__PARENT);
@@ -227,6 +240,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EList<Integer> getParentAltChoices() {
         if (parentAltChoices == null) {
             parentAltChoices = new EDataTypeUniqueEList<Integer>(Integer.class, this, TextblocksPackage.TEXT_BLOCK__PARENT_ALT_CHOICES);
@@ -239,6 +253,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EList<EObject> getElementsInContext() {
         if (elementsInContext == null) {
             elementsInContext = new EObjectResolvingEList<EObject>(EObject.class, this, TextblocksPackage.TEXT_BLOCK__ELEMENTS_IN_CONTEXT);
@@ -251,6 +266,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EList<ForEachExecution> getForEachExecutions() {
         if (forEachExecutions == null) {
             forEachExecutions = new EObjectContainmentEList.Resolving<ForEachExecution>(ForEachExecution.class, this, TextblocksPackage.TEXT_BLOCK__FOR_EACH_EXECUTIONS);
@@ -263,6 +279,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public String getCachedString() {
         return cachedString;
     }
@@ -272,6 +289,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public void setCachedString(String newCachedString) {
         String oldCachedString = cachedString;
         cachedString = newCachedString;
@@ -284,7 +302,8 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public boolean isComplete() {
+	@Override
+    public boolean isComplete() {
         return complete;
     }
 
@@ -293,7 +312,8 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void setComplete(boolean newComplete) {
+	@Override
+    public void setComplete(boolean newComplete) {
         boolean oldComplete = complete;
         complete = newComplete;
         if (eNotificationRequired())
@@ -305,6 +325,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         @SuppressWarnings("unchecked")
         public EList<TextBlock> getSubBlocks() {
         try {
@@ -320,6 +341,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         @SuppressWarnings("unchecked")
         public EList<AbstractToken> getTokens() {
         try {
@@ -335,11 +357,25 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EList<Template> getAdditionalTemplates() {
         if (additionalTemplates == null) {
             additionalTemplates = new EObjectResolvingEList<Template>(Template.class, this, TextblocksPackage.TEXT_BLOCK__ADDITIONAL_TEMPLATES);
         }
         return additionalTemplates;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public EList<EObject> getCorrespondingModelElements() {
+        if (correspondingModelElements == null) {
+            correspondingModelElements = new EObjectResolvingEList<EObject>(EObject.class, this, TextblocksPackage.TEXT_BLOCK__CORRESPONDING_MODEL_ELEMENTS);
+        }
+        return correspondingModelElements;
     }
 
         /**
@@ -418,6 +454,8 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
                 return isComplete();
             case TextblocksPackage.TEXT_BLOCK__ADDITIONAL_TEMPLATES:
                 return getAdditionalTemplates();
+            case TextblocksPackage.TEXT_BLOCK__CORRESPONDING_MODEL_ELEMENTS:
+                return getCorrespondingModelElements();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -432,7 +470,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
         public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TextblocksPackage.TEXT_BLOCK__TYPE:
-                setType((TextBlockDefinition)newValue);
+                setType((Template)newValue);
                 return;
             case TextblocksPackage.TEXT_BLOCK__SUB_NODES:
                 getSubNodes().clear();
@@ -460,6 +498,10 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
                 getAdditionalTemplates().clear();
                 getAdditionalTemplates().addAll((Collection<? extends Template>)newValue);
                 return;
+            case TextblocksPackage.TEXT_BLOCK__CORRESPONDING_MODEL_ELEMENTS:
+                getCorrespondingModelElements().clear();
+                getCorrespondingModelElements().addAll((Collection<? extends EObject>)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -473,7 +515,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
         public void eUnset(int featureID) {
         switch (featureID) {
             case TextblocksPackage.TEXT_BLOCK__TYPE:
-                setType((TextBlockDefinition)null);
+                setType((Template)null);
                 return;
             case TextblocksPackage.TEXT_BLOCK__SUB_NODES:
                 getSubNodes().clear();
@@ -495,6 +537,9 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
                 return;
             case TextblocksPackage.TEXT_BLOCK__ADDITIONAL_TEMPLATES:
                 getAdditionalTemplates().clear();
+                return;
+            case TextblocksPackage.TEXT_BLOCK__CORRESPONDING_MODEL_ELEMENTS:
+                getCorrespondingModelElements().clear();
                 return;
         }
         super.eUnset(featureID);
@@ -524,6 +569,8 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
                 return complete != COMPLETE_EDEFAULT;
             case TextblocksPackage.TEXT_BLOCK__ADDITIONAL_TEMPLATES:
                 return additionalTemplates != null && !additionalTemplates.isEmpty();
+            case TextblocksPackage.TEXT_BLOCK__CORRESPONDING_MODEL_ELEMENTS:
+                return correspondingModelElements != null && !correspondingModelElements.isEmpty();
         }
         return super.eIsSet(featureID);
     }

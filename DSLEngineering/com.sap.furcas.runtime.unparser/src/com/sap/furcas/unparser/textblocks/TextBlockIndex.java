@@ -111,7 +111,7 @@ public class TextBlockIndex {
     }
 
     private void storePerModelElement(TextBlock textBlock) {
-	Template template = textBlock.getType().getParseRule();
+	Template template = textBlock.getType();
 	for (EObject correspondingModelElement : textBlock.getCorrespondingModelElements()) {
 // FIXME
 //	    if (!correspondingModelElement.is___Alive()) {
@@ -124,7 +124,7 @@ public class TextBlockIndex {
     }
 
     private void storePerTemplateAndModelElement(TextBlock textBlock) {
-	Template template = textBlock.getType().getParseRule();
+	Template template = textBlock.getType();
 	for (EObject correspondingModelElement : textBlock.getCorrespondingModelElements()) {
 // FIXME
 //	    if (!correspondingModelElement.is___Alive()) {

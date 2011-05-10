@@ -13,9 +13,11 @@
  */
 package org.eclipse.emf.query2.internal.shared;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -24,8 +26,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.xml.datatype.XMLGregorianCalendar;
+
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.xml.type.internal.XMLCalendar;
 import org.eclipse.emf.query2.internal.fql.SpiFacilityQueryLanguage;
 import org.eclipse.emf.query2.internal.fql.SpiFqlComparisonOperation;
 import org.eclipse.emf.query2.internal.fql.SpiFqlFromTypeCategory;
@@ -185,7 +190,7 @@ final public class AuxServices {
 		}
 
 		// sanity check
-		if (!obj1.getClass().equals(obj2.getClass())) {
+		if (!comparible(obj1, obj2)){
 			throw new BugException(BugMessages.UNEXPECTED_DIFFERENT_VALUE_TYPES, obj1.getClass().getName(), obj2.getClass().getName());
 		}
 
@@ -194,6 +199,7 @@ final public class AuxServices {
 		 */
 
 		// strings or booleans
+		
 		if (obj1 instanceof String || obj1 instanceof Boolean) {
 			if (operation == SpiFqlComparisonOperation.EQUAL) {
 				return obj1.equals(obj2);
@@ -202,6 +208,21 @@ final public class AuxServices {
 			} else {
 				throw new BugException(BugMessages.UNEXPECTED_COMPARATOR_STRING_BOOL, operation);
 			}
+		}
+		/*
+		 *  Need to take verify TZ into taken into account
+		 */
+		if ( obj1 instanceof Date ){
+			obj1 = (Long)((Date)obj1).getTime();
+		}else if ( obj1 instanceof XMLGregorianCalendar){
+			obj1 =(Long)((XMLGregorianCalendar)obj1).toGregorianCalendar().getTimeInMillis();
+			
+		}
+		if ( obj2 instanceof Date ){
+			obj2 = (Long)((Date)obj2).getTime();
+		}else if ( obj2 instanceof XMLGregorianCalendar){
+			obj2 =(Long)((XMLGregorianCalendar)obj2).toGregorianCalendar().getTimeInMillis();
+			
 		}
 
 		// numerals
@@ -250,7 +271,40 @@ final public class AuxServices {
 			throw new BugException(BugMessages.UNKNOWN_OPERATOR, operation);
 		}
 	}
-
+	/*
+	 * Determine is the two values can be compared 
+	 */
+	private static boolean comparible(Object obj1, Object obj2) {
+		if ( obj1.getClass().equals(obj2.getClass())) return true;
+		SpiFqlPrimitiveType a = getPrimitiveType(obj1),b=(getPrimitiveType(obj2));
+		return a!=null && b!=null && a.equals(b);
+	}
+	/*
+	 * Logic Copied from org.eclipse.emf.query2.internal.moinql.preprocessor.TypeCheckerImpl.AttributeResolution ( Duplicated Yuck .. )
+	 */
+	private static SpiFqlPrimitiveType getPrimitiveType(Object obj){
+		Class instanceClass = obj.getClass();
+		SpiFqlPrimitiveType attrType=null;
+		if (instanceClass == boolean.class || instanceClass == Boolean.class) { //$NON-NLS-1$
+			attrType = SpiFqlPrimitiveType.BOOLEAN;
+		} else if ( instanceClass == int.class || instanceClass == Integer.class ) { //$NON-NLS-1$
+			attrType = SpiFqlPrimitiveType.INTEGER;
+		} else if(instanceClass== Long.class){
+			attrType = SpiFqlPrimitiveType.LONG;
+		}
+		else if ( instanceClass == long.class || instanceClass == Integer.class || instanceClass == BigInteger.class || instanceClass == Long.class) { //$NON-NLS-1$
+			attrType = SpiFqlPrimitiveType.LONG;
+		} else if ( instanceClass == float.class || instanceClass == Float.class) { //$NON-NLS-1$
+			attrType = SpiFqlPrimitiveType.FLOAT;
+		} else if ( instanceClass == double.class || instanceClass == Double.class) { //$NON-NLS-1$
+			attrType = SpiFqlPrimitiveType.DOUBLE;
+		} else if ( instanceClass == Date.class || instanceClass==XMLCalendar.class ||instanceClass==XMLGregorianCalendar.class) { //$NON-NLS-1$
+			attrType = SpiFqlPrimitiveType.DATE;	
+		}else if ( instanceClass == String.class) { //$NON-NLS-1$
+			attrType = SpiFqlPrimitiveType.STRING;
+		}
+		return attrType;
+	}
 	/*
 	 * -------- PUBLIC TRANSFORMATION SERVICES --------
 	 */
@@ -1869,7 +1923,7 @@ final public class AuxServices {
 	private WhereClause deepCopyWhereClause(AtomicEntry atomicEntry, WhereClause whereClause) {
 
 		WhereClause whereClauseResult = null;
-
+		
 		if (whereClause == null) {
 			// do nothing and stop
 		} else if (whereClause instanceof NaryWhereClause) {

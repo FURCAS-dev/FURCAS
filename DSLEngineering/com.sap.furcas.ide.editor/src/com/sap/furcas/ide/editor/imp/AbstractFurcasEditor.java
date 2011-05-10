@@ -17,6 +17,7 @@ import org.antlr.runtime.Lexer;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
@@ -49,7 +50,6 @@ import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.provider.TCSItemProviderAdapterFactory;
 import com.sap.furcas.metamodel.FURCAS.provider.FURCASItemProviderAdapterFactory;
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.provider.TextblockdefinitionItemProviderAdapterFactory;
 import com.sap.furcas.metamodel.FURCAS.textblocks.provider.TextblocksItemProviderAdapterFactory;
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
@@ -189,7 +189,6 @@ public class AbstractFurcasEditor extends UniversalEditor {
         adapterFactory.addAdapterFactory(new FURCASItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new TCSItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new TextblocksItemProviderAdapterFactory());
-        adapterFactory.addAdapterFactory(new TextblockdefinitionItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new TypesItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new UtilitiesItemProviderAdapterFactory());
@@ -252,8 +251,10 @@ public class AbstractFurcasEditor extends UniversalEditor {
     
     private static ParserCollection createParserCollection(EditingDomain editingDomain, Set<URI> referenceScope, AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory, PartitionAssignmentHandler partitionHandler) {
         ResourceSet resourceSet = editingDomain.getResourceSet();
+        Resource transientResource = EcoreHelper.createTransientParsingResource(resourceSet, parserFactory.getMetamodelPackage(resourceSet));
         
-        EMFModelAdapter modelAdapter = new EMFModelAdapter(parserFactory.getMetamodelPackage(resourceSet), resourceSet, referenceScope);
+        EMFModelAdapter modelAdapter = new EMFModelAdapter(resourceSet, transientResource, Collections.singleton(
+                parserFactory.getMetamodelUri(resourceSet)), referenceScope);
 
         TextBlockReuseStrategyImpl reuseStrategy = new TextBlockReuseStrategyImpl(parserFactory.createLexer(/*input*/null), modelAdapter);
         ANTLRIncrementalLexerAdapter lexer = new ANTLRIncrementalLexerAdapter(new ANTLRLexerAdapter(parserFactory.createLexer(/*input*/null), reuseStrategy),

@@ -21,13 +21,11 @@ public class FurcasTreeModelBuilder extends TreeModelBuilderBase {
         }
         TextBlock node = (TextBlock) astNode;
         for (TextBlock childNode : node.getSubBlocks()) {
-            Boolean empty = childNode.getReferencedElements().isEmpty() && 
-                            childNode.getCorrespondingModelElements().isEmpty();
-            if (!empty) {
+            if (!childNode.getCorrespondingModelElements().isEmpty()) {
                 pushSubItem(childNode);
             }
             visitTree(childNode);
-            if (!empty) {
+            if (!childNode.getCorrespondingModelElements().isEmpty()) {
                 popSubItem();
             }
         }

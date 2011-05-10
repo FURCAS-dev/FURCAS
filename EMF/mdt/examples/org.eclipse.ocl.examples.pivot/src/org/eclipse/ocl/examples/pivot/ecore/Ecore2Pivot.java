@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2Pivot.java,v 1.8 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: Ecore2Pivot.java,v 1.10 2011/05/02 15:38:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -91,6 +91,21 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 		if (adapter != null) {
 			return adapter;
 		}
+/*//		Map<String, URI> platformResourceMap = EcorePlugin.getPlatformResourceMap();
+		System.out.println("EPackage.Registry");
+		for (String key : EPackage.Registry.INSTANCE.keySet()) {
+			System.out.println(key + " -> " + EPackage.Registry.INSTANCE.get(key));
+		}
+		Map<String, URI> platformResourceMap = EcorePlugin.getPlatformResourceMap();
+		System.out.println("PlatformResourceMap");
+		for (String key : platformResourceMap.keySet()) {
+			System.out.println(key + " -> " + platformResourceMap.get(key));
+		}
+		Map<URI, URI> platformURIMap = EcorePlugin.computePlatformURIMap();
+		System.out.println("PlatformURIMap");
+		for (URI key : platformURIMap.keySet()) {
+			System.out.println(key + " -> " + platformURIMap.get(key));
+		} */
 		adapter = new Ecore2Pivot(resource, typeManager);
 		eAdapters.add(adapter);
 		return adapter;
@@ -478,7 +493,10 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 		EClassifier eClassifier = eGenericType.getEClassifier();
 		List<ETypeParameter> eTypeParameters = eClassifier.getETypeParameters();
 		assert eTypeParameters.size() == eTypeArguments.size();
-		Type unspecializedPivotType = getPivotType(eClassifier);		
+		Type unspecializedPivotType = getPivotType(eClassifier);
+		if (unspecializedPivotType == null) {
+			return null;
+		}
 		String moniker = Ecore2Moniker.toString(eGenericType);
 		Type specializedPivotElement = typeManager.findOrphanClass(unspecializedPivotType.getClass(), moniker);
 		if (specializedPivotElement != null) {
@@ -509,6 +527,7 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 			}
 			templateBinding.getParameterSubstitutions().add(templateParameterSubstitution);
 		}
+		specializedPivotElement.setUnspecializedElement(unspecializedPivotType);
 		//
 		//	Cache the pivot specialization
 		//
