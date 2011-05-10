@@ -29,6 +29,7 @@
     <module>org.eclipse.emf.common.ui</module>
     <module>org.eclipse.emf.ecore.change.edit</module>
     <module>org.eclipse.emf.ecore.change</module>
+    <module>org.eclipse.emf.examples.library</module>
   </modules>
 
 </project>
