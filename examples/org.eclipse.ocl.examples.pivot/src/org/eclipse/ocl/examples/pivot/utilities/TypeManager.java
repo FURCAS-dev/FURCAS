@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeManager.java,v 1.20 2011/05/02 15:38:53 ewillink Exp $
+ * $Id: TypeManager.java,v 1.21 2011/05/05 17:53:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -1131,7 +1131,7 @@ public class TypeManager extends TypeCaches implements Adapter
 
 	public <T extends Type> T getLibraryType(T libraryType, List<? extends ParameterableElement> templateArguments, boolean resolveSuperClasses) {
 		assert libraryType == PivotUtil.getUnspecializedTemplateableElement(libraryType);
-		if ((libraryType == getClassifierType()) && (templateArguments.size() == 1) && (templateArguments.get(0) == libraryType)) {
+		if ((libraryType == getClassifierType()) && (templateArguments != null) && (templateArguments.size() == 1) && (templateArguments.get(0) == libraryType)) {
 			return libraryType;
 		}
 		TemplateSignature templateSignature = libraryType.getOwnedTemplateSignature();

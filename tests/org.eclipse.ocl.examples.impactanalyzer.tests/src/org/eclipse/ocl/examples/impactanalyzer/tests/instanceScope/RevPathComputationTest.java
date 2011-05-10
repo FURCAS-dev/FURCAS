@@ -943,7 +943,6 @@ public class RevPathComputationTest extends BaseDepartmentTestWithOCL {
         noti = NotificationHelper.createReferenceAddNotification(this.dep1, this.departmentEmployeeOfTheMonth, this.e1);
         instances = computeAffectedInstances(this.getLimitEmployeesOfTheMonthAST(), noti);
         compareInstances(instances, new EObject[] {/*this.div*/});
-
     }
     
     @Test

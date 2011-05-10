@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValueFactoryImpl.java,v 1.8 2011/04/25 19:39:54 ewillink Exp $
+ * $Id: ValueFactoryImpl.java,v 1.9 2011/05/07 16:41:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 import org.eclipse.ocl.examples.pivot.values.Bag;
@@ -370,7 +371,7 @@ public class ValueFactoryImpl implements ValueFactory
 			}
 		}
 		catch (NumberFormatException e) {
-			throw new InvalidValueException("Not an Integer", e);
+			return throwInvalidValueException(e, EvaluatorMessages.InvalidInteger, aValue);
 		}
 	}
 
@@ -395,7 +396,7 @@ public class ValueFactoryImpl implements ValueFactory
 			return new RealValueImpl(this, new BigDecimal(aValue.trim()));
 		}
 		catch (NumberFormatException e) {
-			throw new InvalidValueException("Not a Real", e);
+			return throwInvalidValueException(e, EvaluatorMessages.InvalidReal, aValue);
 		}
 	}
 	
@@ -403,9 +404,16 @@ public class ValueFactoryImpl implements ValueFactory
 		return new StringValueImpl(this, value);
 	}
 
-	public void throwInvalidValue(String reason) throws InvalidValueException {
-		throw new InvalidValueException(reason);
+	public InvalidValue throwInvalidValueException(String message, Object... bindings) throws InvalidValueException {
+		String boundMessage = NLS.bind(message, bindings);
+		throw new InvalidValueException(boundMessage);
 	}
+
+	public InvalidValue throwInvalidValueException(Throwable e, String message, Object... bindings) throws InvalidValueException {
+		String boundMessage = NLS.bind(message, bindings);
+		throw new InvalidValueException(boundMessage, e);
+	}
+	
 	@Override
 	public String toString() {
 		return "ValueFactory : " + name;

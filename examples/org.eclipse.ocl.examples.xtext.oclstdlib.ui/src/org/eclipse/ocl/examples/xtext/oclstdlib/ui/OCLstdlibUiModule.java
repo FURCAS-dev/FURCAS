@@ -8,6 +8,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.ui.autoedit.BaseAutoEditStrat
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseEObjectTextHover;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseTerminalsTokenTypeToPartitionMapper;
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.NaturelessEditorCallback;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.BaseAntlrTokenToAttributeIdMapper;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLHighlightingConfiguration;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLSemanticHighlightingCalculator;
@@ -63,6 +64,11 @@ public class OCLstdlibUiModule extends AbstractOCLstdlibUiModule
 
 	public Class<? extends ITokenTypeToPartitionTypeMapper> bindITokenTypeToPartitionTypeMapper() {
 		return BaseTerminalsTokenTypeToPartitionMapper.class;
+	}
+
+	@Override
+	public Class<? extends org.eclipse.xtext.ui.editor.IXtextEditorCallback> bindIXtextEditorCallback() {
+		return NaturelessEditorCallback.class;
 	}
 
 	public Class<? extends XtextDocument> bindXtextDocument() {

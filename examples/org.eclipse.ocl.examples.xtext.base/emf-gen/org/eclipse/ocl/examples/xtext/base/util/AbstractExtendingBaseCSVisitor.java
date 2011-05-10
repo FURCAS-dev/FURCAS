@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractExtendingBaseCSVisitor.java,v 1.9 2011/04/25 09:50:02 ewillink Exp $
+ * $Id: AbstractExtendingBaseCSVisitor.java,v 1.10 2011/05/05 17:53:02 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.base.util;
 
@@ -55,10 +55,6 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 
 	public R visitAttributeCS(org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS object) {
 		return visitStructuralFeatureCS(object);
-	}
-
-	public R visitAttributeCSRef(org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCSRef object) {
-		return visitElementCS(object);
 	}
 
 	public R visitClassCS(org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS object) {
@@ -121,10 +117,6 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 		return visitElementCS(object);
 	}
 
-	public R visitModelElementCSRef(org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef object) {
-		return visitElementCS(object);
-	}
-
 	public R visitMonikeredElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS object) {
 		return visitModelElementCS(object);
 	}
@@ -155,10 +147,6 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 
 	public R visitReferenceCS(org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS object) {
 		return visitStructuralFeatureCS(object);
-	}
-
-	public R visitReferenceCSRef(org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef object) {
-		return visitElementCS(object);
 	}
 
 	public R visitRootPackageCS(org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS object) {

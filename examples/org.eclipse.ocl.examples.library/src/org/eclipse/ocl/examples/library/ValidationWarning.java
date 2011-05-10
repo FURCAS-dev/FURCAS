@@ -12,16 +12,17 @@
  *
  * </copyright>
  *
- * $Id: ValidationWarning.java,v 1.2 2011/01/24 19:56:31 ewillink Exp $
+ * $Id: ValidationWarning.java,v 1.3 2011/05/07 16:41:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
 
 import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.osgi.util.NLS;
 
 public class ValidationWarning extends BasicDiagnostic
 {
 	public ValidationWarning(String messageTemplate, Object... bindings) {
-		super("Validation", WARNING, NLS.bind(messageTemplate, bindings), null);
+		super(OCLMessages.Validation, WARNING, NLS.bind(messageTemplate, bindings), null);
 	}
 }

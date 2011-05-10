@@ -17009,18 +17009,18 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
         }
     }
     static final String DFA68_eotS =
-        "\25\uffff";
+        "\54\uffff";
     static final String DFA68_eofS =
-        "\1\23\24\uffff";
+        "\1\23\53\uffff";
     static final String DFA68_minS =
-        "\1\17\22\0\2\uffff";
+        "\1\17\22\0\31\uffff";
     static final String DFA68_maxS =
-        "\1\127\22\0\2\uffff";
+        "\1\127\22\0\31\uffff";
     static final String DFA68_acceptS =
-        "\23\uffff\1\2\1\1";
+        "\23\uffff\1\2\27\uffff\1\1";
     static final String DFA68_specialS =
-        "\1\uffff\1\17\1\16\1\1\1\15\1\7\1\14\1\6\1\4\1\11\1\21\1\2\1\5"+
-        "\1\20\1\13\1\3\1\12\1\0\1\10\2\uffff}>";
+        "\1\uffff\1\0\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1"+
+        "\14\1\15\1\16\1\17\1\20\1\21\31\uffff}>";
     static final String[] DFA68_transitionS = {
             "\1\21\1\22\4\23\1\uffff\4\23\12\uffff\1\23\1\uffff\1\23\1\uffff"+
             "\2\23\1\11\2\23\2\uffff\1\17\2\uffff\1\3\1\4\1\uffff\1\1\1\2"+
@@ -17044,6 +17044,29 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "",
             ""
     };
@@ -17085,28 +17108,43 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA68_17 = input.LA(1);
+                        int LA68_1 = input.LA(1);
 
                          
-                        int index68_17 = input.index();
+                        int index68_1 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred115_InternalCompleteOCL()) ) {s = 20;}
+                        if ( (synpred115_InternalCompleteOCL()) ) {s = 43;}
 
                         else if ( (true) ) {s = 19;}
 
                          
-                        input.seek(index68_17);
+                        input.seek(index68_1);
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
+                        int LA68_2 = input.LA(1);
+
+                         
+                        int index68_2 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred115_InternalCompleteOCL()) ) {s = 43;}
+
+                        else if ( (true) ) {s = 19;}
+
+                         
+                        input.seek(index68_2);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
                         int LA68_3 = input.LA(1);
 
                          
                         int index68_3 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred115_InternalCompleteOCL()) ) {s = 20;}
+                        if ( (synpred115_InternalCompleteOCL()) ) {s = 43;}
 
                         else if ( (true) ) {s = 19;}
 
@@ -17114,64 +17152,49 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                         input.seek(index68_3);
                         if ( s>=0 ) return s;
                         break;
-                    case 2 : 
-                        int LA68_11 = input.LA(1);
-
-                         
-                        int index68_11 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred115_InternalCompleteOCL()) ) {s = 20;}
-
-                        else if ( (true) ) {s = 19;}
-
-                         
-                        input.seek(index68_11);
-                        if ( s>=0 ) return s;
-                        break;
                     case 3 : 
-                        int LA68_15 = input.LA(1);
+                        int LA68_4 = input.LA(1);
 
                          
-                        int index68_15 = input.index();
+                        int index68_4 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred115_InternalCompleteOCL()) ) {s = 20;}
+                        if ( (synpred115_InternalCompleteOCL()) ) {s = 43;}
 
                         else if ( (true) ) {s = 19;}
 
                          
-                        input.seek(index68_15);
+                        input.seek(index68_4);
                         if ( s>=0 ) return s;
                         break;
                     case 4 : 
-                        int LA68_8 = input.LA(1);
+                        int LA68_5 = input.LA(1);
 
                          
-                        int index68_8 = input.index();
+                        int index68_5 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred115_InternalCompleteOCL()) ) {s = 20;}
+                        if ( (synpred115_InternalCompleteOCL()) ) {s = 43;}
 
                         else if ( (true) ) {s = 19;}
 
                          
-                        input.seek(index68_8);
+                        input.seek(index68_5);
                         if ( s>=0 ) return s;
                         break;
                     case 5 : 
-                        int LA68_12 = input.LA(1);
+                        int LA68_6 = input.LA(1);
 
                          
-                        int index68_12 = input.index();
+                        int index68_6 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred115_InternalCompleteOCL()) ) {s = 20;}
+                        if ( (synpred115_InternalCompleteOCL()) ) {s = 43;}
 
                         else if ( (true) ) {s = 19;}
 
                          
-                        input.seek(index68_12);
+                        input.seek(index68_6);
                         if ( s>=0 ) return s;
                         break;
                     case 6 : 
@@ -17181,7 +17204,7 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                         int index68_7 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred115_InternalCompleteOCL()) ) {s = 20;}
+                        if ( (synpred115_InternalCompleteOCL()) ) {s = 43;}
 
                         else if ( (true) ) {s = 19;}
 
@@ -17190,43 +17213,28 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                         if ( s>=0 ) return s;
                         break;
                     case 7 : 
-                        int LA68_5 = input.LA(1);
+                        int LA68_8 = input.LA(1);
 
                          
-                        int index68_5 = input.index();
+                        int index68_8 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred115_InternalCompleteOCL()) ) {s = 20;}
+                        if ( (synpred115_InternalCompleteOCL()) ) {s = 43;}
 
                         else if ( (true) ) {s = 19;}
 
                          
-                        input.seek(index68_5);
+                        input.seek(index68_8);
                         if ( s>=0 ) return s;
                         break;
                     case 8 : 
-                        int LA68_18 = input.LA(1);
-
-                         
-                        int index68_18 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred115_InternalCompleteOCL()) ) {s = 20;}
-
-                        else if ( (true) ) {s = 19;}
-
-                         
-                        input.seek(index68_18);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 9 : 
                         int LA68_9 = input.LA(1);
 
                          
                         int index68_9 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred115_InternalCompleteOCL()) ) {s = 20;}
+                        if ( (synpred115_InternalCompleteOCL()) ) {s = 43;}
 
                         else if ( (true) ) {s = 19;}
 
@@ -17234,104 +17242,59 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                         input.seek(index68_9);
                         if ( s>=0 ) return s;
                         break;
-                    case 10 : 
-                        int LA68_16 = input.LA(1);
+                    case 9 : 
+                        int LA68_10 = input.LA(1);
 
                          
-                        int index68_16 = input.index();
+                        int index68_10 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred115_InternalCompleteOCL()) ) {s = 20;}
+                        if ( (synpred115_InternalCompleteOCL()) ) {s = 43;}
 
                         else if ( (true) ) {s = 19;}
 
                          
-                        input.seek(index68_16);
+                        input.seek(index68_10);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 10 : 
+                        int LA68_11 = input.LA(1);
+
+                         
+                        int index68_11 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred115_InternalCompleteOCL()) ) {s = 43;}
+
+                        else if ( (true) ) {s = 19;}
+
+                         
+                        input.seek(index68_11);
                         if ( s>=0 ) return s;
                         break;
                     case 11 : 
-                        int LA68_14 = input.LA(1);
+                        int LA68_12 = input.LA(1);
 
                          
-                        int index68_14 = input.index();
+                        int index68_12 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred115_InternalCompleteOCL()) ) {s = 20;}
+                        if ( (synpred115_InternalCompleteOCL()) ) {s = 43;}
 
                         else if ( (true) ) {s = 19;}
 
                          
-                        input.seek(index68_14);
+                        input.seek(index68_12);
                         if ( s>=0 ) return s;
                         break;
                     case 12 : 
-                        int LA68_6 = input.LA(1);
-
-                         
-                        int index68_6 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred115_InternalCompleteOCL()) ) {s = 20;}
-
-                        else if ( (true) ) {s = 19;}
-
-                         
-                        input.seek(index68_6);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 13 : 
-                        int LA68_4 = input.LA(1);
-
-                         
-                        int index68_4 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred115_InternalCompleteOCL()) ) {s = 20;}
-
-                        else if ( (true) ) {s = 19;}
-
-                         
-                        input.seek(index68_4);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 14 : 
-                        int LA68_2 = input.LA(1);
-
-                         
-                        int index68_2 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred115_InternalCompleteOCL()) ) {s = 20;}
-
-                        else if ( (true) ) {s = 19;}
-
-                         
-                        input.seek(index68_2);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 15 : 
-                        int LA68_1 = input.LA(1);
-
-                         
-                        int index68_1 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred115_InternalCompleteOCL()) ) {s = 20;}
-
-                        else if ( (true) ) {s = 19;}
-
-                         
-                        input.seek(index68_1);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 16 : 
                         int LA68_13 = input.LA(1);
 
                          
                         int index68_13 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred115_InternalCompleteOCL()) ) {s = 20;}
+                        if ( (synpred115_InternalCompleteOCL()) ) {s = 43;}
 
                         else if ( (true) ) {s = 19;}
 
@@ -17339,19 +17302,79 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                         input.seek(index68_13);
                         if ( s>=0 ) return s;
                         break;
-                    case 17 : 
-                        int LA68_10 = input.LA(1);
+                    case 13 : 
+                        int LA68_14 = input.LA(1);
 
                          
-                        int index68_10 = input.index();
+                        int index68_14 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred115_InternalCompleteOCL()) ) {s = 20;}
+                        if ( (synpred115_InternalCompleteOCL()) ) {s = 43;}
 
                         else if ( (true) ) {s = 19;}
 
                          
-                        input.seek(index68_10);
+                        input.seek(index68_14);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 14 : 
+                        int LA68_15 = input.LA(1);
+
+                         
+                        int index68_15 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred115_InternalCompleteOCL()) ) {s = 43;}
+
+                        else if ( (true) ) {s = 19;}
+
+                         
+                        input.seek(index68_15);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 15 : 
+                        int LA68_16 = input.LA(1);
+
+                         
+                        int index68_16 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred115_InternalCompleteOCL()) ) {s = 43;}
+
+                        else if ( (true) ) {s = 19;}
+
+                         
+                        input.seek(index68_16);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 16 : 
+                        int LA68_17 = input.LA(1);
+
+                         
+                        int index68_17 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred115_InternalCompleteOCL()) ) {s = 43;}
+
+                        else if ( (true) ) {s = 19;}
+
+                         
+                        input.seek(index68_17);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 17 : 
+                        int LA68_18 = input.LA(1);
+
+                         
+                        int index68_18 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred115_InternalCompleteOCL()) ) {s = 43;}
+
+                        else if ( (true) ) {s = 19;}
+
+                         
+                        input.seek(index68_18);
                         if ( s>=0 ) return s;
                         break;
             }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractCollectionValue.java,v 1.6 2011/04/25 09:49:14 ewillink Exp $
+ * $Id: AbstractCollectionValue.java,v 1.7 2011/05/07 16:41:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -24,6 +24,7 @@ import java.util.Set;
 
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.TupleType;
+import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.values.BagValue;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
@@ -187,20 +188,17 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
         	else {
         		result = binaryOperation.evaluate(valueFactory, result, element);
         		if (result == null) {
-        			throw new InvalidValueException("max/min evaluation failure", this);
+                	valueFactory.throwInvalidValueException(EvaluatorMessages.MissingResult, "max/min");
         		}
-        		if (result.isUndefined()) {
-        			throw new InvalidValueException("max/min evaluation failure", this);
-//        			return result.toInvalidValue();
+        		else if (result.isUndefined()) {
+                	valueFactory.throwInvalidValueException(EvaluatorMessages.UndefinedResult, "max/min");
         		}
         	}
         }
 		if (result == null) {
-			throw new InvalidValueException("max/min or empty collection", this);
+        	valueFactory.throwInvalidValueException(EvaluatorMessages.EmptyCollection, getKind(), "max/min");
 		}
-		else {
-			return result;
-		}
+		return result;
     }
 
     public Set<TupleValue> product(CollectionValue c, TupleType tupleType) {   	

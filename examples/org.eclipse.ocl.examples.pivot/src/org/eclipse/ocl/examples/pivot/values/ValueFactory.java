@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValueFactory.java,v 1.5 2011/04/25 09:49:15 ewillink Exp $
+ * $Id: ValueFactory.java,v 1.6 2011/05/07 16:41:16 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
@@ -102,6 +102,8 @@ public interface ValueFactory
 	public RealValue realValueOf(String aValue) throws InvalidValueException;
 	
 	public StringValue stringValueOf(String value) ;
+	
+	public InvalidValue throwInvalidValueException(String message, Object... bindings) throws InvalidValueException;
 
 	public Value valueOf(Object object);
 	public Value valueOf(Object eValue, ETypedElement eFeature);

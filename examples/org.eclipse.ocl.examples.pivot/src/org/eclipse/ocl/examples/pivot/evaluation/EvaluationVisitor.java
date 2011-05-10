@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitor.java,v 1.5 2011/02/21 08:37:53 ewillink Exp $
+ * $Id: EvaluationVisitor.java,v 1.6 2011/05/07 16:41:08 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -85,5 +85,5 @@ public interface EvaluationVisitor extends Visitor<Value, Object> {
 
 	NullValue throwInvalidEvaluation(String message) throws InvalidEvaluationException;
 
-	NullValue throwInvalidEvaluation(String message, Throwable e, OclExpression expression, Object value) throws InvalidEvaluationException;
+	NullValue throwInvalidEvaluation(Throwable e, OclExpression expression, Object value, String message, Object... bindings) throws InvalidEvaluationException;
 }

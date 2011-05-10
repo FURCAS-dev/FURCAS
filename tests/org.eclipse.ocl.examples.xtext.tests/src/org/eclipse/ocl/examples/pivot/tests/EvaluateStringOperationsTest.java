@@ -12,10 +12,13 @@
  *
  * </copyright>
  *
- * $Id: EvaluateStringOperationsTest.java,v 1.2 2011/05/02 09:31:37 ewillink Exp $
+ * $Id: EvaluateStringOperationsTest.java,v 1.3 2011/05/07 16:41:27 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
+
+import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
+import org.eclipse.osgi.util.NLS;
 
 
 /**
@@ -303,7 +306,7 @@ public class EvaluateStringOperationsTest extends PivotTestSuite
 	public void testStringToInteger() {
 		assertQueryEquals(null, Integer.valueOf(4), "'4'.toInteger()");
 		assertQueryEquals(null, Integer.valueOf(-4), "'-4'.toInteger()");
-		assertQueryInvalid(null, "'4.0'.toInteger()", "Not an Integer", NumberFormatException.class);
+		assertQueryInvalid(null, "'4.0'.toInteger()", NLS.bind(EvaluatorMessages.InvalidInteger, "4.0"), NumberFormatException.class);
 
 		assertQueryInvalid(null, "'2.4.0'.toInteger()");
 		assertQueryInvalid(null, "'a'.toInteger()");
@@ -332,8 +335,8 @@ public class EvaluateStringOperationsTest extends PivotTestSuite
 		assertQueryEquals(null, -4.0, "'-4'.toReal()", 0.0);
 		assertQueryEquals(null, 4.0, "'4.0'.toReal()", 0.0);
 
-		assertQueryInvalid(null, "'2.4.0'.toReal()", "Not a Real", NumberFormatException.class);
-		assertQueryInvalid(null, "'a'.toReal()", "Not a Real", NumberFormatException.class);
+		assertQueryInvalid(null, "'2.4.0'.toReal()", NLS.bind(EvaluatorMessages.InvalidReal, "2.4.0"), NumberFormatException.class);
+		assertQueryInvalid(null, "'a'.toReal()", NLS.bind(EvaluatorMessages.InvalidReal, "a"), NumberFormatException.class);
 		// invalid
 		assertQueryInvalid(null, "let s : String = invalid in s.toReal()");
 		// null
