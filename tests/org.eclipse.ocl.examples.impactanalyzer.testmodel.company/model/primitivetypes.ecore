@@ -4,9 +4,9 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="primitivetypes"
     nsURI="http:///primitivetypes.ecore" nsPrefix="primitivetypes">
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-    <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
-    <details key="settingDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
-    <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
   </eAnnotations>
   <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
     <details key="documentation" value="The PrimitiveTypes Package contains MOF's standard collection of technology-neutral primitive data types. &#xD;&#xA;These types are available for use in all MOF metamodels and are also used by the MOF Model. &#xD;&#xA;Note: Technology mappings shall recognize standard PrimitiveType instance based on their qualified names. &#xD;&#xA;Multiple primitiveType instances with the samename shall be deemed to mean the same thing."/>

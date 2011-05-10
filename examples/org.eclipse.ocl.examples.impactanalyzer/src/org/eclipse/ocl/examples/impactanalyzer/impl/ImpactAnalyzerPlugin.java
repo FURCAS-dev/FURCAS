@@ -63,7 +63,7 @@ public class ImpactAnalyzerPlugin extends EclipsePlugin {
     }
 
     public static String getPluginId() {
-        return (getPlugin() != null) ? getPlugin().getBundle().getSymbolicName() : "de.hpi.sam.bp2009.solution.impactAnalyzer"; // last known bundle ID //$NON-NLS-1$
+        return (getPlugin() != null) ? getPlugin().getBundle().getSymbolicName() : "org.eclipse.ocl.examples.impactanalyzer"; // last known bundle ID //$NON-NLS-1$
     }
 
     public static void log(int severity, int code, String message, Throwable throwable) {
