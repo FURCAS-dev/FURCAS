@@ -13,26 +13,41 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>eclipse-test-plugin</packaging>
 
-	<build>
+	<build>		
 		<plugins>
-			<plugin>
-				<groupId>org.sonatype.tycho</groupId>
-				<artifactId>maven-osgi-test-plugin</artifactId>
-				<configuration>
-					<argLine>-Xmx1024m -XX:+UseParallelGC -Dtarget.location=${target.location} -Declipse.location=${eclipse.location}</argLine>
-                    <useUIHarness>true</useUIHarness>
-                    <useUIThread>false</useUIThread>
-                    <product>org.eclipse.sdk.ide</product>
-                    <application>org.eclipse.ui.ide.workbench</application>
-                    <dependencies>
-                        <dependency>
-                            <type>p2-installable-unit</type>
-                            <artifactId>org.eclipse.sdk.ide</artifactId>
-                            <version>0.0.0</version>
-                        </dependency>
-                    </dependencies>
-				</configuration>
-			</plugin>
-		</plugins>
+      <plugin>
+        <groupId>org.sonatype.tycho</groupId>
+        <artifactId>tycho-maven-plugin</artifactId>
+        <version>${tycho-version}</version>
+        <extensions>true</extensions>
+      </plugin>
+      <plugin>
+        <groupId>org.sonatype.tycho</groupId>
+        <artifactId>target-platform-configuration</artifactId>
+        <version>${tycho-version}</version>
+        <configuration>
+          <resolver>p2</resolver>
+        </configuration>
+      </plugin> 
+      <plugin>
+        <groupId>org.sonatype.tycho</groupId>
+        <artifactId>maven-osgi-test-plugin</artifactId>
+        <version>${tycho-version}</version>
+        <configuration>
+          <argLine>-Xmx1024m -XX:+UseParallelGC -Dtarget.location=${target.location} -Declipse.location=${eclipse.location}
+          <useUIHarness>true</useUIHarness>
+          <useUIThread>false</useUIThread>
+          <product>org.eclipse.sdk.ide</product>
+          <application>org.eclipse.ui.ide.workbench</application>
+          <dependencies>
+            <dependency>
+              <type>p2-installable-unit</type>
+              <artifactId>org.eclipse.sdk.ide</artifactId>
+              <version>0.0.0</version>
+            </dependency>
+           </dependencies>
+        </configuration>
+      </plugin>
+    </plugins>
 	</build>
 </project>
