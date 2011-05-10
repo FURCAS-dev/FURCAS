@@ -10,6 +10,7 @@
  ******************************************************************************/
 package com.sap.furcas.runtime.parser.testbase;
 
+import static com.sap.furcas.test.util.CompilationHelper.getSourceRoot;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -19,15 +20,20 @@ import java.io.File;
 import java.io.PrintStream;
 
 import org.antlr.runtime.Lexer;
+import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.parsergenerator.TCSParserGenerator;
 import com.sap.furcas.parsergenerator.TCSParserGeneratorFactory;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.common.exceptions.ParserGeneratorInvocationException;
+import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.referenceresolving.SyntaxRegistryFacade;
+import com.sap.furcas.runtime.tcs.RuleNameFinder;
 import com.sun.tools.javac.Main;
 
 /**
@@ -91,12 +97,14 @@ public class ParserGenerator {
                     testConfig.getRelativePathToGeneratedLexerClass(),
                     testConfig.getRelativePathToGeneratedParserClass(),
                     "-cp",
-                    "../org.antlr/bin" + File.pathSeparator + "../com.sap.furcas.runtime.parser/bin"
-                            + File.pathSeparator + "../com.sap.furcas.runtime.common/bin" + File.pathSeparator
-                            + "../com.sap.furcas.parsergenerator.emf/bin" + File.pathSeparator
-                            + "../com.sap.furcas.runtime.referenceresolving/bin" + File.pathSeparator
-                            + "../com.sap.emf.bundlelistener/bin" + File.pathSeparator
-                            + "../com.sap.furcas.runtime.tcs/bin"});
+                    getSourceRoot(Lexer.class)
+                    + File.pathSeparator + getSourceRoot(ObservableInjectingParser.class)
+                    + File.pathSeparator + getSourceRoot(IModelElementProxy.class)
+                    + File.pathSeparator + getSourceRoot(SyntaxRegistryFacade.class)
+                    + File.pathSeparator + getSourceRoot(ResourceSet.class)
+                    + File.pathSeparator + getSourceRoot(Notifier.class)
+                    + File.pathSeparator + getSourceRoot(RuleNameFinder.class)});
+            
             if (success != 0) {
                 fail("Parser compilation failed with code '" + success + "'. Messages: \n" + errByteStream.toString());
             }

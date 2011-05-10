@@ -12,6 +12,8 @@ package com.sap.furcas.modeladaptation.emf.lookup;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -53,5 +55,13 @@ public class FileResourceHelper {
                 EPackage.Registry.INSTANCE.put(uri, new_package);
             }
         }
+    }
+    
+    public static Set<URI> getResourceSetAsScope(ResourceSet resourceSet) {
+        Set<URI> referenceScope = new HashSet<URI>();
+        for (Resource resource : resourceSet.getResources()) {
+            referenceScope.add(resource.getURI());
+        }
+        return referenceScope;
     }
 }

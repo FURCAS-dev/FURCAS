@@ -47,8 +47,7 @@ public class TestContainmentTree extends GeneratedParserBasedTest {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS) {
             @Override
             public GrammarGenerationSourceConfiguration getSourceConfiguration() {
-                return new GrammarGenerationSourceConfiguration(ResourceTestHelper.createResourceSet(),
-                        ref);
+                return new GrammarGenerationSourceConfiguration(ResourceTestHelper.createResourceSet(), ref);
             }
         };
         syntaxBean = parseSyntax(testConfig);

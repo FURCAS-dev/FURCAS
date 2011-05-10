@@ -4,9 +4,7 @@
 package com.sap.furcas.runtime.tcs;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Operator;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
@@ -21,10 +19,7 @@ import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
  */
 public class MetaModelElementResolutionHelper<Type extends Object> {
 
-    private IMetaModelLookup<Type> metaLookup;
-
-    private Map<List<String>, ResolvedNameAndReferenceBean<Type>> resolutionCache = new HashMap<List<String>, ResolvedNameAndReferenceBean<Type>>();
-
+    private final IMetaModelLookup<Type> metaLookup;
     
     /**
      * @param metaLookup
@@ -39,7 +34,6 @@ public class MetaModelElementResolutionHelper<Type extends Object> {
     
     @SuppressWarnings("unchecked")
     public ResolvedNameAndReferenceBean<Type> resolve(QualifiedNamedElement template) throws NameResolutionFailedException {
-        // TODO: maybe cache to improve performance
         if (template != null) {
             ResolvedNameAndReferenceBean<Type> result;
             try {
@@ -76,19 +70,10 @@ public class MetaModelElementResolutionHelper<Type extends Object> {
     }
     
     public ResolvedNameAndReferenceBean<Type> resolve(List<String> names) throws MetaModelLookupException {
-    	// TODO if a primitive type such as String is looked up, the null result is re-entered into the cache, causing repeated lookups; try to avoid!
-        ResolvedNameAndReferenceBean<Type> cachedBean = resolutionCache.get(names);
-        if (cachedBean != null) {
-            return cachedBean;
-        }
-        
         if (names == null ) {
             throw new IllegalArgumentException("null not allowed");
         }
-        
-        ResolvedNameAndReferenceBean<Type> resolvedName = metaLookup.resolveReference(names);
-        resolutionCache.put(names, resolvedName);
-        return resolvedName;
+        return metaLookup.resolveReference(names);
     }
 
     public IMetaModelLookup<Type> getMetaLookup() {

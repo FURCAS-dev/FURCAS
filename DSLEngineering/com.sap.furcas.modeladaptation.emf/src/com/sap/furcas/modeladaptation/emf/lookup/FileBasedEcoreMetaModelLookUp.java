@@ -2,6 +2,8 @@ package com.sap.furcas.modeladaptation.emf.lookup;
 
 import java.io.File;
 
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 
@@ -14,7 +16,11 @@ import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 public class FileBasedEcoreMetaModelLookUp extends QueryBasedEcoreMetaModelLookUp {
 
     public FileBasedEcoreMetaModelLookUp(File... fileArr) throws MetaModelLookupException {
-        super(FileResourceHelper.loadResourceSet(fileArr));
+        this(FileResourceHelper.loadResourceSet(fileArr));
+    }
+    
+    public FileBasedEcoreMetaModelLookUp(ResourceSet resourceSet) {
+        super(resourceSet, FileResourceHelper.getResourceSetAsScope(resourceSet));
     }
     
 }

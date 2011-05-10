@@ -101,6 +101,7 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         }
     }
     
+    @Override
     public Collection<IProject> getInitialProjects() {
         return initialProjects;
     }
@@ -109,6 +110,7 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
      * Returns a cloned list of the in-memory resources seen by this scope provider. Being a clone,
      * it is possible though pointless to modify the collection returned.
      */
+    @Override
     public Collection<Resource> getInMemoryResources() {
         Collection<Resource> result = new BasicEList<Resource>();
         if (inMemoryResourceList == null) {
@@ -144,15 +146,18 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         }
     }
 
+    @Override
     public Collection<IProject> getForwardScopeAsProjects() {
         return scopeAsProjects(/*forward*/ true);
     }
 
+    @Override
     public Collection<Resource> getForwardScopeAsResources() {
         Collection<Resource> result = scopeAsResources(getForwardScopeAsProjects());
         return result;
     }
 
+    @Override
     public Collection<URI> getForwardScopeAsURIs() {
         return scopeAsUris(getForwardScopeAsProjects());
     }
@@ -161,16 +166,19 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         return scopeAsEObjects(getForwardScopeAsResources());
     }
 
+    @Override
     public Collection<IProject> getBackwardScopeAsProjects() {
         return scopeAsProjects(/*forward*/ false);
 
     }
 
+    @Override
     public Collection<Resource> getBackwardScopeAsResources() {
         Collection<Resource> result = scopeAsResources(getBackwardScopeAsProjects());
         return result;
     }
 
+    @Override
     public Collection<URI> getBackwardScopeAsURIs() {
         return scopeAsUris(getBackwardScopeAsProjects());
     }
@@ -247,8 +255,9 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
     private Set<Resource> getAllResourcesFromDirectory(IFolder modelDirectory) throws CoreException {
         final Set<Resource> resources = new HashSet<Resource>();
         for (IResource f : modelDirectory.members()) {
-            if(!(f instanceof IFile))
+            if(!(f instanceof IFile)) {
                 continue;
+            }
             final Set<String> extensions = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().keySet();
             String fileExtension = f.getFileExtension();
             //only files with extension 'xmi', 'xml' or one of the registered ones include a resource
@@ -285,7 +294,8 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
                     }
                 }
                 if (project==null) {
-                    System.err.println("Scope Provider could not resolve project for resource " + uri +", because resource not in the workspace.");
+                    // Scope Provider could not resolve project for resource, because resource not in the workspace.
+                    // This commonly happens for metamodels and resources which are in-memory only.
                 }
             }
         }else {
@@ -348,8 +358,8 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
 
 		for (IProject project : getInitialProjects()) {
 			try {
-				result = recursiveGetReferenceProjectsForProjects(project,
-						result, pool, forward);
+				result.addAll(recursiveGetReferenceProjectsForProjects(project,
+						result, pool, forward));
 			} catch (CoreException e) {
 				e.printStackTrace();
 			}
@@ -414,12 +424,13 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
     private Collection<EObject> scopeAsEObjects(Collection<Resource> resources) {
         Collection<EObject> result = new HashSet<EObject>();
         for (Resource resource : resources) {
-            if (!resource.isLoaded())
+            if (!resource.isLoaded()) {
                 try {
                     resource.load(null);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }
             result.addAll(iteratorToCollection(resource.getAllContents()));
         }
         return result;
@@ -444,20 +455,24 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         /*
          * referencing in both directions is reflexive
          */
-        if (!referencedProjects.contains(project) && pool.contains(project))
+        if (!referencedProjects.contains(project) && pool.contains(project)) {
             referencedProjects.add(project);
+        }
 
         IProject[] refProjects = null;
-        if (forward)
+        if (forward) {
             refProjects = project.getReferencedProjects();
-        else
+        } else {
             refProjects = project.getReferencingProjects();
+        }
 
         for (IProject referenced : refProjects) {
-            if (referencedProjects.contains(referenced))
+            if (referencedProjects.contains(referenced)) {
                 continue;
-            if (!pool.contains(referenced))
+            }
+            if (!pool.contains(referenced)) {
                 continue;
+            }
             referencedProjects.add(referenced);
             recursiveGetReferenceProjectsForProjects(referenced, referencedProjects, pool, forward);
         }
@@ -468,8 +483,9 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         Collection<EObject> treeAsList = new BasicEList<EObject>();
         while (treeIterator.hasNext()) {
             Object next = treeIterator.next();
-            if (next instanceof EObject)
+            if (next instanceof EObject) {
                 treeAsList.add((EObject) next);
+            }
         }
         return treeAsList;
     }

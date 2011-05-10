@@ -1,7 +1,11 @@
 package com.sap.furcas.ide.editor.document;
 
+import java.util.Collections;
+import java.util.HashSet;
+
 import org.antlr.runtime.Lexer;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -21,7 +25,9 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
+import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.parser.textblocks.TextBlocksAwareModelAdapter;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 import com.sap.ide.cts.parser.incremental.DefaultPartitionAssignmentHandlerImpl;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
@@ -111,8 +117,11 @@ public class CtsDocument extends AbstractDocument {
 
 	ResourceSet rs = editingDomain.getResourceSet();
 	EPackage metamodelPackage = parserFactory.getMetamodelPackage(rs);
-	TextBlocksModelStore textBlocksModelStore = new TextBlocksModelStore(editingDomain, rootBlock, new EMFModelAdapter(metamodelPackage,
-		rs, null));
+        Resource transientResource = EcoreHelper.createTransientParsingResource(rs, metamodelPackage);
+        TextBlocksAwareModelAdapter ma = new TextBlocksAwareModelAdapter(new EMFModelAdapter(rs,
+                transientResource, Collections.singleton(parserFactory.getMetamodelUri(rs)), new HashSet<URI>()));
+        
+	TextBlocksModelStore textBlocksModelStore = new TextBlocksModelStore(editingDomain, rootBlock, ma);
 	setTextStore(textBlocksModelStore);
 	setLineTracker(new DefaultLineTracker());
 
