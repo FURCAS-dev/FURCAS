@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="OclHideenOppositesTest"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="OclHiddenOppositesTest"
     nsURI="http:///org/eclipse/emf/ocl/engine/tests/OclHiddenOppositesTest.ecore"
     nsPrefix="oclhiddenoppositestest">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+    <details key="hiddenOpposites" value="true"/>
+  </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Sup1">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sup2" eType="#//Sub">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
@@ -12,6 +20,11 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Sup2">
+    <eOperations name="getUnrelated" eType="#//Unrelated">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="body" value="self.hidden->any(true)"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sup1" eType="#//Sub"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Sub" eSuperTypes="#//Sup1 #//Sup2"/>
