@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PrimitivetypesPackageImpl.java,v 1.2 2011/03/09 14:45:50 auhl Exp $
+ * $Id: PrimitivetypesPackageImpl.java,v 1.3 2011/05/10 14:19:00 auhl Exp $
  */
 package primitivetypes.impl;
 
@@ -274,9 +274,9 @@ public class PrimitivetypesPackageImpl extends EPackageImpl implements Primitive
 		  (this, 
 		   source, 
 		   new String[] {
-			 "invocationDelegates", "http://de.hpi.sam.bp2009.OCL",
-			 "settingDelegates", "http://de.hpi.sam.bp2009.OCL",
-			 "validationDelegates", "http://de.hpi.sam.bp2009.OCL"
+			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL",
+			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL",
+			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL"
 		   });	
 	}
 
