@@ -3,7 +3,26 @@
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.formatting;
 
-import org.eclipse.xtext.formatting.impl.AbstractDeclarativeFormatter;
+import org.eclipse.ocl.examples.xtext.essentialocl.formatting.AbstractEssentialOCLFormatter;
+import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess;
+import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.AnnotationCSElements;
+import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.ClassCSElements;
+import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.DocumentationCSElements;
+import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.InvCSElements;
+import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LambdaTypeCSElements;
+import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibIterationCSElements;
+import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibOperationCSElements;
+import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibPropertyCSElements;
+import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibTupleCSElements;
+import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.LibraryElements;
+import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.PackageCSElements;
+import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.ParameterCSElements;
+import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.PostCSElements;
+import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.PreCSElements;
+import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.PrecedenceCSElements;
+import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.TemplateBindingCSElements;
+import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.TemplateSignatureCSElements;
+import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess.TypedTypeRefCSElements;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
 
 /**
@@ -14,12 +33,168 @@ import org.eclipse.xtext.formatting.impl.FormattingConfig;
  * 
  * Also see {@link org.eclipse.xtext.xtext.XtextFormattingTokenSerializer} as an example
  */
-public class OCLstdlibFormatter extends AbstractDeclarativeFormatter {
+public class OCLstdlibFormatter extends AbstractEssentialOCLFormatter {
+	
 	
 	@Override
 	protected void configureFormatting(FormattingConfig c) {
-//		org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess f = (org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibGrammarAccess) getGrammarAccess();
 
-		//...
+	    c.setAutoLinewrap(132);
+
+	    OCLstdlibGrammarAccess f = getGrammarAccess();
+	    
+		configureCollectionLiteralExpCS(c, f.getCollectionLiteralExpCSAccess());
+		configureCollectionTypeCS(c, f.getCollectionTypeCSAccess());
+		configureIfExpCS(c, f.getIfExpCSAccess());
+		configureIndexExpCS(c, f.getIndexExpCSAccess());
+		configureLetExpCS(c, f.getLetExpCSAccess());
+	    configureNameExpCS(c, f.getNameExpCSAccess());
+	    configureNavigatingCommaArgCS(c, f.getNavigatingCommaArgCSAccess());
+	    configureNavigatingExpCS(c, f.getNavigatingExpCSAccess());
+	    configureNavigatingSemiArgCS(c, f.getNavigatingSemiArgCSAccess());
+	    configureNavigationOperatorCS(c, f.getNavigationOperatorCSAccess());
+	    configureNestedExpCS(c, f.getNestedExpCSAccess());
+	    configureTupleLiteralExpCS(c, f.getTupleLiteralExpCSAccess());
+	    configureTupleTypeCS(c, f.getTupleTypeCSAccess());
+	    configureTypeNameExpCS(c, f.getTypeNameExpCSAccess());
+	    
+	    c.setLinewrap(2).between(f.getClassCSRule(), f.getClassCSRule());
+
+	    {
+			AnnotationCSElements a = f.getAnnotationCSAccess();
+			c.setNoSpace().around(a.getLeftParenthesisKeyword_2_0());
+			c.setNoSpace().before(a.getCommaKeyword_2_2_0());
+			c.setNoSpace().before(a.getRightParenthesisKeyword_2_3());
+			setBraces(c, a.getLeftCurlyBracketKeyword_3_0_0(), a.getRightCurlyBracketKeyword_3_0_2());
+		    c.setIndentation(a.getLeftCurlyBracketKeyword_3_0_0(), a.getRightCurlyBracketKeyword_3_0_2());
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_3_1());
+	    }
+	    {
+			ClassCSElements a = f.getClassCSAccess();
+			c.setNoSpace().before(a.getCommaKeyword_4_2_0());
+			setBraces(c, a.getLeftCurlyBracketKeyword_5(), a.getRightCurlyBracketKeyword_7());
+		    c.setIndentation(a.getLeftCurlyBracketKeyword_5(), a.getRightCurlyBracketKeyword_7());
+	    }
+	    {
+			DocumentationCSElements a = f.getDocumentationCSAccess();
+			c.setNoSpace().around(a.getLeftParenthesisKeyword_3_0());
+			c.setNoSpace().before(a.getCommaKeyword_3_2_0());
+			c.setNoSpace().before(a.getRightParenthesisKeyword_3_3());
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_4());
+	    }
+	    {
+			InvCSElements a = f.getInvCSAccess();
+			c.setNoSpace().before(a.getColonKeyword_2());
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_4());
+	    }
+	    {
+			LibIterationCSElements a = f.getLibIterationCSAccess();
+			c.setNoSpace().around(a.getLeftParenthesisKeyword_3());
+			c.setNoSpace().before(a.getCommaKeyword_5_0());
+			c.setNoSpace().before(a.getSemicolonKeyword_6_0());
+			c.setNoSpace().before(a.getCommaKeyword_6_2_0());
+			c.setNoSpace().before(a.getCommaKeyword_7_2_0());
+			c.setNoSpace().before(a.getRightParenthesisKeyword_8());
+			setBraces(c, a.getLeftCurlyBracketKeyword_12_0_0(), a.getRightCurlyBracketKeyword_12_0_2());
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_12_1());
+		    c.setIndentation(a.getEqualsSignGreaterThanSignKeyword_11_0(), a.getSemicolonKeyword_12_1());
+	    }
+	    {
+			LambdaTypeCSElements a = f.getLambdaTypeCSAccess();
+			c.setNoSpace().around(a.getLeftParenthesisKeyword_3());
+			c.setNoSpace().before(a.getCommaKeyword_4_1_0());
+			c.setNoSpace().before(a.getRightParenthesisKeyword_5());
+	    }
+	    {
+			LibraryElements a = f.getLibraryAccess();
+			setBraces(c, a.getLeftCurlyBracketKeyword_4(), a.getRightCurlyBracketKeyword_6());
+		    c.setIndentation(a.getLeftCurlyBracketKeyword_4(), a.getRightCurlyBracketKeyword_6());
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_5_1_2());
+	    }
+	    {
+			LibOperationCSElements a = f.getLibOperationCSAccess();
+			c.setNoSpace().around(a.getLeftParenthesisKeyword_4());
+			c.setNoSpace().before(a.getCommaKeyword_5_1_0());
+			c.setNoSpace().before(a.getRightParenthesisKeyword_6());
+			setBraces(c, a.getLeftCurlyBracketKeyword_11_0_0(), a.getRightCurlyBracketKeyword_11_0_2());
+		    c.setIndentation(a.getLeftCurlyBracketKeyword_11_0_0(), a.getRightCurlyBracketKeyword_11_0_2());
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_11_1());
+		    c.setIndentation(a.getEqualsSignGreaterThanSignKeyword_10_0(), a.getSemicolonKeyword_11_1());
+	    }
+	    {
+			PackageCSElements a = f.getPackageCSAccess();
+			setBraces(c, a.getLeftCurlyBracketKeyword_3(), a.getRightCurlyBracketKeyword_5());
+		    c.setIndentation(a.getLeftCurlyBracketKeyword_3(), a.getRightCurlyBracketKeyword_5());
+	    }
+	    {
+			ParameterCSElements a = f.getParameterCSAccess();
+			c.setNoSpace().around(a.getLeftSquareBracketKeyword_3_0());
+			c.setNoSpace().around(a.getFullStopFullStopKeyword_3_1_0_1_0());
+			c.setNoSpace().around(a.getMultiplicityAsteriskKeyword_3_1_1_0_0());
+			c.setNoSpace().around(a.getMultiplicityPlusSignKeyword_3_1_1_0_1());
+			c.setNoSpace().around(a.getMultiplicityQuestionMarkKeyword_3_1_1_0_2());
+			c.setNoSpace().before(a.getRightSquareBracketKeyword_3_2());
+	    }
+	    {
+			PreCSElements a = f.getPreCSAccess();
+			c.setNoSpace().before(a.getColonKeyword_2());
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_4());
+	    }
+	    {
+			PrecedenceCSElements a = f.getPrecedenceCSAccess();
+			c.setNoSpace().around(a.getColonKeyword_1());
+	    }
+	    {
+			PostCSElements a = f.getPostCSAccess();
+			c.setNoSpace().before(a.getColonKeyword_2());
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_4());
+	    }
+	    {
+			LibPropertyCSElements a = f.getLibPropertyCSAccess();
+			setBraces(c, a.getLeftCurlyBracketKeyword_6_0_0(), a.getRightCurlyBracketKeyword_6_0_2());
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_6_1());
+		    c.setIndentation(a.getLeftCurlyBracketKeyword_6_0_0(), a.getRightCurlyBracketKeyword_6_0_2());
+		    c.setIndentation(a.getEqualsSignGreaterThanSignKeyword_5_0(), a.getSemicolonKeyword_6_1());
+	    }
+	    {
+			TemplateBindingCSElements a = f.getTemplateBindingCSAccess();
+			c.setNoSpace().around(a.getLessThanSignKeyword_0());	
+			c.setNoSpace().before(a.getCommaKeyword_2_0());
+			c.setNoSpace().before(a.getGreaterThanSignKeyword_3());	
+		    c.setIndentation(a.getLessThanSignKeyword_0(), a.getGreaterThanSignKeyword_3());
+	    }
+	    {
+			TemplateSignatureCSElements a = f.getTemplateSignatureCSAccess();
+			c.setNoSpace().around(a.getLessThanSignKeyword_0());	
+			c.setNoSpace().before(a.getCommaKeyword_2_0());
+			c.setNoSpace().before(a.getGreaterThanSignKeyword_3());	
+		    c.setIndentation(a.getLessThanSignKeyword_0(), a.getGreaterThanSignKeyword_3());
+	    }
+	    {
+			LibTupleCSElements a = f.getLibTupleCSAccess();
+			c.setNoSpace().around(a.getLessThanSignKeyword_1());	
+			c.setNoSpace().before(a.getCommaKeyword_2_1_0());
+			c.setNoSpace().before(a.getGreaterThanSignKeyword_3());	
+		    c.setIndentation(a.getLessThanSignKeyword_1(), a.getGreaterThanSignKeyword_3());
+	    }
+	    {
+			TypedTypeRefCSElements a = f.getTypedTypeRefCSAccess();
+			c.setNoSpace().around(a.getColonColonKeyword_0_1());
+	    }
+	    {	// comments
+	    	c.setNoLinewrap().before(f.getSL_COMMENTRule());
+	    	c.setLinewrap().after(f.getSL_COMMENTRule());
+		    c.setLinewrap(2).before(f.getML_COMMENTRule());
+		    c.setLinewrap().after(f.getML_COMMENTRule());
+		    c.setLinewrap(2).before(f.getDOCUMENTATIONRule());
+		    c.setLinewrap().after(f.getDOCUMENTATIONRule());
+		    c.setLinewrap(2).before(f.getML_SINGLE_QUOTED_STRINGRule());
+		    c.setLinewrap().after(f.getML_SINGLE_QUOTED_STRINGRule());
+	    }
+	}
+
+	@Override
+	public OCLstdlibGrammarAccess getGrammarAccess() {
+		return (OCLstdlibGrammarAccess) super.getGrammarAccess();
 	}
 }

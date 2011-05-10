@@ -410,129 +410,136 @@ ruleUnrestrictedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRu
     }
 
     |
+	kw='key' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getKeyKeyword_19()); 
+    }
+
+    |
 	kw='library' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getLibraryKeyword_19()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getLibraryKeyword_20()); 
     }
 
     |
 	kw='module' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getModuleKeyword_20()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getModuleKeyword_21()); 
     }
 
     |
 	kw='operation' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getOperationKeyword_21()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getOperationKeyword_22()); 
     }
 
     |
 	kw='ordered' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getOrderedKeyword_22()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getOrderedKeyword_23()); 
     }
 
     |
 	kw='package' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getPackageKeyword_23()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getPackageKeyword_24()); 
     }
 
     |
 	kw='postcondition' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getPostconditionKeyword_24()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getPostconditionKeyword_25()); 
     }
 
     |
 	kw='precondition' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getPreconditionKeyword_25()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getPreconditionKeyword_26()); 
     }
 
     |
 	kw='property' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getPropertyKeyword_26()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getPropertyKeyword_27()); 
     }
 
     |
 	kw='readonly' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getReadonlyKeyword_27()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getReadonlyKeyword_28()); 
     }
 
     |
 	kw='resolve' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getResolveKeyword_28()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getResolveKeyword_29()); 
     }
 
     |
 	kw='serializable' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getSerializableKeyword_29()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getSerializableKeyword_30()); 
     }
 
     |
 	kw='static' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getStaticKeyword_30()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getStaticKeyword_31()); 
     }
 
     |
 	kw='super' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getSuperKeyword_31()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getSuperKeyword_32()); 
     }
 
     |
 	kw='throws' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getThrowsKeyword_32()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getThrowsKeyword_33()); 
     }
 
     |
 	kw='transient' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getTransientKeyword_33()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getTransientKeyword_34()); 
     }
 
     |
 	kw='unique' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getUniqueKeyword_34()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getUniqueKeyword_35()); 
     }
 
     |
 	kw='unsettable' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getUnsettableKeyword_35()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getUnsettableKeyword_36()); 
     }
 
     |
 	kw='volatile' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getVolatileKeyword_36()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getVolatileKeyword_37()); 
     }
 )
     ;
@@ -1158,17 +1165,17 @@ ruleAnnotationCS returns [EObject current=null]
     |(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAnnotationCSAccess().getReferenceModelElementCSRefParserRuleCall_3_0_1_2_0()); 
-	    }
-		lv_reference_10_0=ruleModelElementCSRef		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getAnnotationCSRule());
+		  /* */ 
+		}
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getAnnotationCSRule());
 	        }
-       		add(
-       			$current, 
-       			"reference",
-        		lv_reference_10_0, 
-        		"ModelElementCSRef");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getAnnotationCSAccess().getReferenceMonikeredElementCrossReference_3_0_1_2_0()); 
+	    }
+		ruleUnrestrictedName		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2948,45 +2955,6 @@ ruleModelElementCS returns [EObject current=null]
 
 
 
-// Entry rule entryRuleModelElementCSRef
-entryRuleModelElementCSRef returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getModelElementCSRefRule()); }
-	 iv_ruleModelElementCSRef=ruleModelElementCSRef 
-	 { $current=$iv_ruleModelElementCSRef.current; } 
-	 EOF 
-;
-
-// Rule ModelElementCSRef
-ruleModelElementCSRef returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(
-(
-		{ 
-		  /* */ 
-		}
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getModelElementCSRefRule());
-	        }
-        }
-		{ 
-	        newCompositeNode(grammarAccess.getModelElementCSRefAccess().getRefModelElementCSCrossReference_0()); 
-	    }
-		ruleUnrestrictedName		{ 
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)
-;
-
-
-
-
-
 // Entry rule entryRuleOperationCS
 entryRuleOperationCS returns [EObject current=null] 
 	:
@@ -3996,17 +3964,17 @@ ruleReferenceCS returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getReferenceCSAccess().getOppositeReferenceCSRefParserRuleCall_3_1_0()); 
-	    }
-		lv_opposite_5_0=ruleReferenceCSRef		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getReferenceCSRule());
+		  /* */ 
+		}
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getReferenceCSRule());
 	        }
-       		set(
-       			$current, 
-       			"opposite",
-        		lv_opposite_5_0, 
-        		"ReferenceCSRef");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getReferenceCSAccess().getOppositePropertyCrossReference_3_1_0()); 
+	    }
+		ruleUnrestrictedName		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4468,72 +4436,10 @@ ruleReferenceCS returns [EObject current=null]
 
 )
 )
-    |(
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getReferenceCSAccess().getOwnedConstraintInitialConstraintCSParserRuleCall_7_0_1_1_0_0()); 
-	    }
-		lv_ownedConstraint_39_1=ruleInitialConstraintCS		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getReferenceCSRule());
-	        }
-       		add(
-       			$current, 
-       			"ownedConstraint",
-        		lv_ownedConstraint_39_1, 
-        		"InitialConstraintCS");
-	        afterParserOrEnumRuleCall();
-	    }
-
-    |		{ 
-	        newCompositeNode(grammarAccess.getReferenceCSAccess().getOwnedConstraintDerivedConstraintCSParserRuleCall_7_0_1_1_0_1()); 
-	    }
-		lv_ownedConstraint_39_2=ruleDerivedConstraintCS		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getReferenceCSRule());
-	        }
-       		add(
-       			$current, 
-       			"ownedConstraint",
-        		lv_ownedConstraint_39_2, 
-        		"DerivedConstraintCS");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-
-)
-))*	otherlv_40='}' 
+    |(	otherlv_39='key' 
     {
-    	newLeafNode(otherlv_40, grammarAccess.getReferenceCSAccess().getRightCurlyBracketKeyword_7_0_2());
+    	newLeafNode(otherlv_39, grammarAccess.getReferenceCSAccess().getKeyKeyword_7_0_1_1_0());
     }
-)
-    |	otherlv_41=';' 
-    {
-    	newLeafNode(otherlv_41, grammarAccess.getReferenceCSAccess().getSemicolonKeyword_7_1());
-    }
-))
-;
-
-
-
-
-
-// Entry rule entryRuleReferenceCSRef
-entryRuleReferenceCSRef returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getReferenceCSRefRule()); }
-	 iv_ruleReferenceCSRef=ruleReferenceCSRef 
-	 { $current=$iv_ruleReferenceCSRef.current; } 
-	 EOF 
-;
-
-// Rule ReferenceCSRef
-ruleReferenceCSRef returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
 (
 (
 		{ 
@@ -4541,18 +4447,90 @@ ruleReferenceCSRef returns [EObject current=null]
 		}
 		{
 			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getReferenceCSRefRule());
+	            $current = createModelElement(grammarAccess.getReferenceCSRule());
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getReferenceCSRefAccess().getRefPropertyCrossReference_0()); 
+	        newCompositeNode(grammarAccess.getReferenceCSAccess().getKeysPropertyCrossReference_7_0_1_1_1_0()); 
 	    }
 		ruleUnrestrictedName		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
+)(	otherlv_41=',' 
+    {
+    	newLeafNode(otherlv_41, grammarAccess.getReferenceCSAccess().getCommaKeyword_7_0_1_1_2_0());
+    }
+(
+(
+		{ 
+		  /* */ 
+		}
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getReferenceCSRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getReferenceCSAccess().getKeysPropertyCrossReference_7_0_1_1_2_1_0()); 
+	    }
+		ruleUnrestrictedName		{ 
+	        afterParserOrEnumRuleCall();
+	    }
+
 )
+))*	otherlv_43=';' 
+    {
+    	newLeafNode(otherlv_43, grammarAccess.getReferenceCSAccess().getSemicolonKeyword_7_0_1_1_3());
+    }
+)
+    |(
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getReferenceCSAccess().getOwnedConstraintInitialConstraintCSParserRuleCall_7_0_1_2_0_0()); 
+	    }
+		lv_ownedConstraint_44_1=ruleInitialConstraintCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getReferenceCSRule());
+	        }
+       		add(
+       			$current, 
+       			"ownedConstraint",
+        		lv_ownedConstraint_44_1, 
+        		"InitialConstraintCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+    |		{ 
+	        newCompositeNode(grammarAccess.getReferenceCSAccess().getOwnedConstraintDerivedConstraintCSParserRuleCall_7_0_1_2_0_1()); 
+	    }
+		lv_ownedConstraint_44_2=ruleDerivedConstraintCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getReferenceCSRule());
+	        }
+       		add(
+       			$current, 
+       			"ownedConstraint",
+        		lv_ownedConstraint_44_2, 
+        		"DerivedConstraintCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+
+)
+))*	otherlv_45='}' 
+    {
+    	newLeafNode(otherlv_45, grammarAccess.getReferenceCSAccess().getRightCurlyBracketKeyword_7_0_2());
+    }
+)
+    |	otherlv_46=';' 
+    {
+    	newLeafNode(otherlv_46, grammarAccess.getReferenceCSAccess().getSemicolonKeyword_7_1());
+    }
+))
 ;
 
 
@@ -8845,7 +8823,7 @@ ruleSelfExpCS returns [EObject current=null]
 
 
 
-RULE_UNQUOTED_STRING : '\u00C2\u00A3$%^\u00C2\u00A3$%^';
+RULE_UNQUOTED_STRING : '\u00A3$%^\u00A3$%^';
 
 RULE_DOUBLE_QUOTED_STRING : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(('\\'|'"')))* '"';
 

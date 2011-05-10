@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.29 2011/05/01 10:56:37 auhl Exp $
+ * $Id: AbstractTestSuite.java,v 1.30 2011/05/09 16:43:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -152,6 +152,7 @@ public abstract class AbstractTestSuite
 		result.createTestSuite(ExpressionsValidatorTest.class, "Expression Validation Tests");
 		result.createTestSuite(SerializationTest.class, "Serialization Tests");
 		result.createTestSuite(EvaluationHaltedTest.class, "EvaluationHalted Tests");
+		result.createTestSuite(DocumentationExamples.class, "Documentation Examples");
 	}
 	
 	/**

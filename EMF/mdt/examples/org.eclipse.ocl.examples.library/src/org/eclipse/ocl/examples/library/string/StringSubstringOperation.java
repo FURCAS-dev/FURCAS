@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: StringSubstringOperation.java,v 1.3 2011/02/21 08:37:46 ewillink Exp $
+ * $Id: StringSubstringOperation.java,v 1.4 2011/05/07 16:41:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.string;
 
 import org.eclipse.ocl.examples.library.AbstractTernaryOperation;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
+import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -41,7 +42,7 @@ public class StringSubstringOperation extends AbstractTernaryOperation
 			return valueFactory.stringValueOf(sourceString.substring(lower-1, upper));
 		}
 		else {
-			throw new InvalidValueException("Out of range index");
+			return valueFactory.throwInvalidValueException(EvaluatorMessages.IndexesOutOfRange, lower, upper, size);
 		}
 	}
 }

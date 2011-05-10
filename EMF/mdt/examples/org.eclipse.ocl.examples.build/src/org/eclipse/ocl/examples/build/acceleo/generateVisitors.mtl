@@ -1,7 +1,7 @@
 [comment encoding = UTF-8 /]
 [module generateVisitors('http://www.eclipse.org/emf/2002/Ecore')/]
 
-[query firstSuperClass(eClass : EClass, nullClass : EClass) : EClass =
+[query public firstSuperClass(eClass : EClass, nullClass : EClass) : EClass =
 if eClass.eSuperTypes->isEmpty()
 then nullClass
 else let eSuperClass : EClass = eClass.eSuperTypes->at(1)
