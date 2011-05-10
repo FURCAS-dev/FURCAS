@@ -160,10 +160,29 @@ details key <em class="CodeName">Property.oppositeRoleName</em>. The details val
 contains the name by which the "hidden" opposite can be referred to in OCL
 expressions.</p>
 
+<p>If OCL delegates are to be used, the standard EPackage annotations with
+<em class="CodeName">invocationDelegate</em>, <em class="CodeName">settingDelegate</em>
+and <em class="CodeName">validationDelegate</em> details for the 
+<em class="CodeName">http://www.eclipse.org/emf/2002/Ecore</em> source must be augmented
+as shown by a further <em class="CodeName">hiddenOpposites</em> detail for the
+<em class="CodeName">http://www.eclipse.org/emf/2002/Ecore/OCL</em> source.
+</p>
+<img src="abstractSyntax_hiddenOpposites.png" alt="Idden Opposites Annotations" />
+<p>
+This additional annotation causes the <em class="CodeName">EnvironmentFactory</em>
+functionality for the EPackage to be provided by an instance of the
+<em class="CodeName">EcoreEnvironmentFactoryWithHiddenOpposites</em> class
+which uses the 
+<em class="CodeName">DefaultOppositeEndFinder</em> class will be used for finding
+and navigating the hidden opposites. More substantial customisation is possible by specifying
+an <em class="CodeName">environmentFactoryClass</em> detail with the fully qualified
+name of a derived <em class="CodeName">EcoreEnvironmentFactory</em> that
+provides a constructor taking an <em class="CodeName">EPackage.Registry</em> argument.
+Note, that the class specified must be visible by your Ecore model's bundle.
 <hr/>
 
 <p>
-<a href="http://www.eclipse.org/legal/epl-v10.html">Copyright (c) 2000, 2007 IBM Corporation and others. All Rights Reserved.</a>
+<a href="http://www.eclipse.org/legal/epl-v10.html">Copyright (c) 2000, 2011 IBM Corporation and others. All Rights Reserved.</a>
 </p>
 </body>
 </html>
