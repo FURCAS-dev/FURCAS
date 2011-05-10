@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2Pivot.java,v 1.10 2011/04/20 19:02:27 ewillink Exp $
+ * $Id: CS2Pivot.java,v 1.11 2011/05/06 09:04:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -312,6 +312,7 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 		CS2PivotConversion conversion = new CS2PivotConversion(this, getCSResources());
 		conversion.update();
 //		System.out.println("---------------------------------------------------------------------------");
-		conversion.garbageCollect();
+		Collection<? extends Resource> pivotResources = cs2pivotResourceMap.values();
+		conversion.garbageCollect(pivotResources);
 	}
 }

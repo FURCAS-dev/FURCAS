@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Util
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.ocl.examples.impactanalyzer.util
 Bundle-Version: 3.1.0.qualifier
-Bundle-Vendor: SAP
+Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.ocl.examples.impactanalyzer.util

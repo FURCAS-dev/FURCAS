@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: AbstractValue.java,v 1.4 2011/03/12 13:21:46 ewillink Exp $
+ * $Id: AbstractValue.java,v 1.5 2011/05/07 16:41:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
+import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.values.BagValue;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
@@ -44,23 +45,25 @@ public abstract class AbstractValue implements Value
 	}
 
 	public BagValue asBagValue() throws InvalidValueException {
-		throw new InvalidValueException("Bag Value Required", this);
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Bag");
 	}
 
 	public boolean asBoolean() throws InvalidValueException {
-		throw new InvalidValueException("Boolean Value Required", this);
+		valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Boolean");
+		return false;
 	}
 
 	public BooleanValue asBooleanValue() throws InvalidValueException {
-		throw new InvalidValueException("Boolean Value Required", this);
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Boolean");
 	}
 
 	public CollectionValue asCollectionValue() throws InvalidValueException {
-		throw new InvalidValueException("Collection Value Required", this);
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Collection");
 	}
 
 	public Double asDouble() throws InvalidValueException {
-		throw new InvalidValueException("Double Value Required", this);
+		valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Double");
+		return null;
 	}
 
 	public Element asElement() {
@@ -68,55 +71,57 @@ public abstract class AbstractValue implements Value
 	}
 
 	public ElementValue<?> asElementValue() throws InvalidValueException {
-		throw new InvalidValueException("Element Value Required", this);
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Element");
 	}
 
 	public Integer asInteger() throws InvalidValueException {
-		throw new InvalidValueException("Integer Value Required", this);
+		valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Integer");
+		return null;
 	}
 
 	public IntegerValue asIntegerValue() throws InvalidValueException {
-		throw new InvalidValueException("Integer Value Required", this);
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Integer");
 	}
 
 	public ObjectValue asObjectValue() throws InvalidValueException {
-		throw new InvalidValueException("Object Value Required", this);
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Object");
 	}
 
 	public OrderedCollectionValue asOrderedCollectionValue() throws InvalidValueException {
-		throw new InvalidValueException("Ordered Collection Value Required", this);
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Ordered Collection");
 	}
 
 	public OrderedSetValue asOrderedSetValue() throws InvalidValueException {
-		throw new InvalidValueException("OrderedSet Value Required", this);
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "OrderedSet");
 	}
 
 	public RealValue asRealValue() throws InvalidValueException {
-		throw new InvalidValueException("Real Value Required", this);
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Real");
 	}
 
 	public SequenceValue asSequenceValue() throws InvalidValueException {
-		throw new InvalidValueException("Sequence Value Required", this);
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Sequence");
 	}
 
 	public SetValue asSetValue() throws InvalidValueException {
-		throw new InvalidValueException("Set Value Required", this);
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Set");
 	}
 
 	public String asString() throws InvalidValueException {
-		throw new InvalidValueException("String Value Required", this);
+		valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "String");
+		return null;
 	}
 
 	public StringValue asStringValue() throws InvalidValueException {
-		throw new InvalidValueException("String Value Required", this);
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "String");
 	}
 
 	public TypeValue asTypeValue() throws InvalidValueException {
-		throw new InvalidValueException("Type Value Required", this);
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Type");
 	}
 
 	public UniqueCollectionValue asUniqueCollectionValue() throws InvalidValueException {
-		throw new InvalidValueException("Unique Collection Value Required", this);
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "Unique Collection");
 	}
 	
 	public ValueFactory getValueFactory() {
@@ -168,11 +173,11 @@ public abstract class AbstractValue implements Value
 	}
 
 	public IntegerValue toIntegerValue() throws InvalidValueException {
-		throw new InvalidValueException("Integer Value Required", this);
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.ConvertibleValueRequired, "Integer");
 	}
 
 	public RealValue toRealValue() throws InvalidValueException {
-		throw new InvalidValueException("Real Value Required", this);
+		return valueFactory.throwInvalidValueException(EvaluatorMessages.ConvertibleValueRequired, "Real");
 	}
 
 	public void toString(StringBuffer s, int sizeLimit) {

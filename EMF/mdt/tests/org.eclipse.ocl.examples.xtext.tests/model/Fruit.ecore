@@ -15,7 +15,7 @@
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="#//Color"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        changeable="false" volatile="true" transient="true" derived="true"/>
+        volatile="true" transient="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="relatedFruits" ordered="false"
         upperBound="-1" eType="#//Fruit" changeable="false" volatile="true" transient="true"
         derived="true"/>
@@ -56,17 +56,21 @@
       <eParameters name="fruits" unique="false" upperBound="-1" eType="#//Fruit"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="orderedSet" upperBound="-1"
-        eType="#//Fruit" containment="true"/>
+        eType="#//Fruit"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="set" ordered="false" upperBound="-1"
-        eType="#//Fruit" containment="true"/>
+        eType="#//Fruit"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="bag" ordered="false" unique="false"
-        upperBound="-1" eType="#//Fruit" containment="true"/>
+        upperBound="-1" eType="#//Fruit"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sequence" unique="false"
-        upperBound="-1" eType="#//Fruit" containment="true"/>
+        upperBound="-1" eType="#//Fruit"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Tree">
     <eStructuralFeatures xsi:type="ecore:EReference" name="fruits" upperBound="-1"
         eType="#//Fruit" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eSubpackages name="apple">
+    <eClassifiers xsi:type="ecore:EClass" name="EatingApple" eSuperTypes="#//Apple"/>
+    <eClassifiers xsi:type="ecore:EClass" name="CookingApple" eSuperTypes="#//Apple"/>
+  </eSubpackages>
 </ecore:EPackage>

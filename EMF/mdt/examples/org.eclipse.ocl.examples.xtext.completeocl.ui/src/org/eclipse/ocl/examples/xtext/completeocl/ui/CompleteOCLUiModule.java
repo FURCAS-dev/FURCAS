@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLUiModule.java,v 1.5 2011/03/03 20:05:35 ewillink Exp $
+ * $Id: CompleteOCLUiModule.java,v 1.6 2011/05/05 20:34:56 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.ui;
 
@@ -21,6 +21,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.ui.autoedit.BaseAutoEditStrat
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseEObjectTextHover;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseTerminalsTokenTypeToPartitionMapper;
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.NaturelessEditorCallback;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.BaseAntlrTokenToAttributeIdMapper;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLHighlightingConfiguration;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLSemanticHighlightingCalculator;
@@ -70,6 +71,11 @@ public class CompleteOCLUiModule extends AbstractCompleteOCLUiModule
 
 	public Class<? extends ITokenTypeToPartitionTypeMapper> bindITokenTypeToPartitionTypeMapper() {
 		return BaseTerminalsTokenTypeToPartitionMapper.class;
+	}
+
+	@Override
+	public Class<? extends org.eclipse.xtext.ui.editor.IXtextEditorCallback> bindIXtextEditorCallback() {
+		return NaturelessEditorCallback.class;
 	}
 
 	public Class<? extends XtextDocument> bindXtextDocument() {

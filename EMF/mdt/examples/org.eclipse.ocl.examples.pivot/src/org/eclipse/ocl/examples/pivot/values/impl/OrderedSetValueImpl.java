@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OrderedSetValueImpl.java,v 1.5 2011/05/02 09:42:04 ewillink Exp $
+ * $Id: OrderedSetValueImpl.java,v 1.6 2011/05/07 16:41:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -26,6 +26,7 @@ import java.util.List;
 import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
@@ -87,7 +88,7 @@ public class OrderedSetValueImpl
 
     public OrderedSetValue append(Value object) throws InvalidValueException {
 		if (object.isInvalid()) {
-			throw new InvalidValueException("append invalid");
+			valueFactory.throwInvalidValueException(EvaluatorMessages.InvalidSource, "append");
 		}
     	OrderedSet<Value> result = new OrderedSetImpl<Value>(elements);
         result.remove(object);  // appended object must be last
@@ -113,9 +114,7 @@ public class OrderedSetValueImpl
     public Value at(int index) throws InvalidValueException {
         index = index - 1;        
         if (index < 0 || index >= elements.size()) {
-			throw new InvalidValueException(
-				"index: " + (index + 1) + ", size: " //$NON-NLS-1$ //$NON-NLS-2$
-					+ size());
+			valueFactory.throwInvalidValueException(EvaluatorMessages.IndexOutOfRange, index + 1, size());
 		}        
         int curr = 0;
         for (Iterator<Value> it = iterator(); it.hasNext();) {
@@ -152,7 +151,7 @@ public class OrderedSetValueImpl
 
     public Value first() throws InvalidValueException {
         if ((elements == null) || (elements.size() <= 0)) {
-			throw new InvalidValueException("'first' of empty OrderedSet");
+        	valueFactory.throwInvalidValueException(EvaluatorMessages.EmptyCollection, "OrderedSet", "first");
         }
         return elements.iterator().next();
     }
@@ -177,7 +176,7 @@ public class OrderedSetValueImpl
 
 	public OrderedSetValue including(Value value) throws InvalidValueException {
 		if (value.isInvalid()) {
-			throw new InvalidValueException("including invalid");
+			valueFactory.throwInvalidValueException(EvaluatorMessages.InvalidSource, "including");
 		}
 		OrderedSet<Value> result = new OrderedSetImpl<Value>(elements);
 		result.add(value);
@@ -193,20 +192,19 @@ public class OrderedSetValueImpl
             }
             index++;
         }        
-        throw new InvalidValueException("missing element");
+		valueFactory.throwInvalidValueException(EvaluatorMessages.MissingValue, "indexOf");
+		return null;
     }
 
     public OrderedSetValue insertAt(int index, Value object) throws InvalidValueException {
 		if (object.isInvalid()) {
-			throw new InvalidValueException("insertAt invalid");
+			valueFactory.throwInvalidValueException(EvaluatorMessages.InvalidSource, "insertAt");
 		}
         index = index - 1;
         boolean isContained = elements.contains(object);
         int effectiveSize = elements.size() - (isContained ? 1 : 0);
         if ((index < 0) || (effectiveSize < index)) {
-			throw new IndexOutOfBoundsException(
-				"index: " + (index + 1) + ", size: " //$NON-NLS-1$ //$NON-NLS-2$
-					+ size());
+        	valueFactory.throwInvalidValueException(EvaluatorMessages.IndexOutOfRange, index + 1, size());
         }
         
         OrderedSet<Value> result = new OrderedSetImpl<Value>();
@@ -231,7 +229,7 @@ public class OrderedSetValueImpl
 
     public Value last() throws InvalidValueException {
         if ((elements == null) || (elements.size() <= 0)) {
-			throw new InvalidValueException("'last' of empty OrderedSet");
+        	valueFactory.throwInvalidValueException(EvaluatorMessages.EmptyCollection, "OrderedSet", "last");
         }
         Value result = null;
         for (Value next : elements) {
@@ -248,7 +246,7 @@ public class OrderedSetValueImpl
 
     public OrderedSetValue prepend(Value object) throws InvalidValueException {
 		if (object.isInvalid()) {
-			throw new InvalidValueException("prepend invalid");
+			valueFactory.throwInvalidValueException(EvaluatorMessages.InvalidSource, "prepend");
 		}
     	OrderedSet<Value> result = new OrderedSetImpl<Value>();
         result.add(object);

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCS2MonikerVisitor.java,v 1.9 2011/03/14 10:19:42 ewillink Exp $
+ * $Id: CompleteOCLCS2MonikerVisitor.java,v 1.10 2011/05/05 17:53:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.utilities;
 
@@ -121,22 +121,27 @@ public class CompleteOCLCS2MonikerVisitor
 
 	@Override
 	public Boolean visitContextSpecificationCS(ContextSpecificationCS object) {
-		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
-		if (object.eContainer() instanceof InvCS) {
-			InvCS csInv = (InvCS)object.eContainer();
-			if (object == csInv.getMessageSpecification()) {
-//				context.append("message");		// FIXME This and ContextSpecificationCS are a fudge 
-//				context.append(MONIKER_OPERATOR_SEPARATOR);
-//				context.append(MONIKER_SCOPE_SEPARATOR);
-			}
-		}
-		else if (object.eContainer() instanceof DefCS) {
-			context.append(UMLReflection.BODY);		// FIXME This and ContextSpecificationCS are a fudge 
+		if (object.eContainer() instanceof DefCS) {
+			context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
+			context.append(UMLReflection.BODY);		// Emulate the CS-less Constraint in the pivot Feature-Constraint-ExpressionInOcl hierarchy 
 			context.append(MONIKER_OPERATOR_SEPARATOR);
 			context.append(MONIKER_SCOPE_SEPARATOR);
+			context.append(PivotPackage.Literals.CONSTRAINT__SPECIFICATION.getName());
+			return true;
 		}
-		context.append(PivotPackage.Literals.CONSTRAINT__SPECIFICATION.getName());
-		return true;
+		else {
+			context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
+			if (object.eContainer() instanceof InvCS) {
+				InvCS csInv = (InvCS)object.eContainer();
+				if (object == csInv.getMessageSpecification()) {
+	//				context.append("message");		// FIXME This and ContextSpecificationCS are a fudge 
+	//				context.append(MONIKER_OPERATOR_SEPARATOR);
+	//				context.append(MONIKER_SCOPE_SEPARATOR);
+				}
+			}
+			context.append(PivotPackage.Literals.CONSTRAINT__SPECIFICATION.getName());
+			return true;
+		}
 	}
 
 	@Override

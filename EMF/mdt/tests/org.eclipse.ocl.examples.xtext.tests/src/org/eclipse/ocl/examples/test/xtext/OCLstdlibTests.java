@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibTests.java,v 1.5 2011/04/25 09:49:25 ewillink Exp $
+ * $Id: OCLstdlibTests.java,v 1.6 2011/05/05 17:56:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -280,9 +280,11 @@ public class OCLstdlibTests extends XtextTestCase
 			"    }\n"+
 			"    type Classifier<T> : ClassifierType conformsTo OclAny {}\n"+
 			"    type Boolean : PrimitiveType conformsTo OclAny {}\n"+
+			"    type Enumeration conformsTo OclAny {}\n"+
 			"    type Integer : PrimitiveType conformsTo Real {}\n"+
-			"    type Real : PrimitiveType conformsTo OclAny {}\n"+
 			"    type OclInvalid : InvalidType {}\n"+
+			"    type Real : PrimitiveType conformsTo OclAny {}\n"+
+			"    type String : PrimitiveType conformsTo OclAny {}\n"+
 			"    type UnlimitedNatural : PrimitiveType conformsTo Integer {}\n"+
 			"}\n";		
 		doLoadFromString("string.oclstdlib", testFile);
