@@ -5,9 +5,12 @@ package com.sap.furcas.modeladaptation.emf.adaptation;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
+
+import org.eclipse.emf.common.util.URI;
 
 /**
- * util class for formatting Exception messages
+ * Util class for formatting Exception messages
  */
 public class MessageUtil {
     
@@ -24,6 +27,17 @@ public class MessageUtil {
             }
         }
         return builder.toString();
-        
+    }
+
+    public static String asMetaModelNames(Set<URI> metaModelURIs) {
+        StringBuilder builder = new StringBuilder();
+        for (Iterator<URI> iterator = metaModelURIs.iterator(); iterator.hasNext();) {
+            URI uri = iterator.next();
+            builder.append(uri.toString());
+            if (iterator.hasNext()) {
+               builder.append(", ");
+            }
+        }
+        return builder.toString();
     }
 }

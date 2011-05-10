@@ -32,6 +32,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
+import com.sap.furcas.modeladaptation.emf.lookup.FileResourceHelper;
 import com.sap.furcas.modeladaptation.emf.lookup.QueryBasedEcoreMetaModelLookUp;
 import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
@@ -766,8 +767,9 @@ public class IncrementalParser extends IncrementalRecognizer {
     private MetaModelElementResolutionHelper<EObject> getResolutionHelper() {
         if (resolutionHelper == null) {
             resolutionHelper = new MetaModelElementResolutionHelper<EObject>(
-                    new QueryBasedEcoreMetaModelLookUp(getEditingDomain()
-                            .getResourceSet()));
+                    new QueryBasedEcoreMetaModelLookUp(getEditingDomain().getResourceSet(),
+                            // FIXME: That is to much. Only metamodels are sufficient.
+                            FileResourceHelper.getResourceSetAsScope(getEditingDomain().getResourceSet())));
         }
         return resolutionHelper;
     }

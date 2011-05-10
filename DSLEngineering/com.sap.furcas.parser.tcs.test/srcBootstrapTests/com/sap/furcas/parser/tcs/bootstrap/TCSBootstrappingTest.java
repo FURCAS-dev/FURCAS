@@ -2,9 +2,7 @@ package com.sap.furcas.parser.tcs.bootstrap;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.Set;
 
-import org.eclipse.emf.common.util.URI;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -12,8 +10,8 @@ import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
 import com.sap.furcas.parser.tcs.TCSSyntaxDefinition;
 import com.sap.furcas.parser.tcs.scenario.ClassLookupImpl;
-import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
+import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.impl.DefaultTextAwareModelAdapter;
@@ -46,20 +44,19 @@ public class TCSBootstrappingTest extends GeneratedParserBasedTest {
 
     @BeforeClass
     public static void setupParser() throws Exception {
-        final Set<URI> ref = ResourceTestHelper.createFURCASReferenceScope();
-        ref.addAll(ResourceTestHelper.createEcoreReferenceScope());
-        GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS) {
-            @Override
-            public GrammarGenerationSourceConfiguration getSourceConfiguration() {
-                return new GrammarGenerationSourceConfiguration(ResourceTestHelper.createResourceSet(), 
-                        ref);
-            }
-        };
+        GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
+        testConfig.getSourceConfiguration().getReferenceScope().addAll(ResourceTestHelper.createFURCASReferenceScope());
+        testConfig.getSourceConfiguration().getReferenceScope().addAll(ResourceTestHelper.createEcoreReferenceScope());
+        
         TCSSyntaxContainerBean syntaxBeanyntaxBean = parseSyntax(testConfig);
         ParserFacade facade = generateParserForLanguage(syntaxBeanyntaxBean, testConfig, new ClassLookupImpl());
+
         parsingHelper = new StubParsingHelper(facade);
-        modelAdapter = new DefaultTextAwareModelAdapter(new EMFModelAdapter(FURCASPackage.eINSTANCE, testConfig
-                .getSourceConfiguration().getResourceSet(), testConfig.getSourceConfiguration().getReferenceScope()));
+        modelAdapter = new DefaultTextAwareModelAdapter(new EMFModelAdapter(
+                testConfig.getSourceConfiguration().getResourceSet(), 
+                EcoreHelper.createTransientParsingResource( testConfig.getSourceConfiguration().getResourceSet(), FURCASPackage.eINSTANCE),
+                testConfig.getSourceConfiguration().getReferenceScope(),
+                testConfig.getSourceConfiguration().getReferenceScope()));
     }
 
     @Test
