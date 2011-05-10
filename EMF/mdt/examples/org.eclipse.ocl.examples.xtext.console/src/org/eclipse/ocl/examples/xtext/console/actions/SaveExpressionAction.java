@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: SaveExpressionAction.java,v 1.1 2011/03/11 20:23:43 ewillink Exp $
+ * $Id: SaveExpressionAction.java,v 1.2 2011/05/07 16:41:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.console.actions;
 
@@ -31,7 +31,7 @@ import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.console.OCLConsolePage;
 import org.eclipse.ocl.examples.xtext.console.XtextConsolePlugin;
-import org.eclipse.ocl.examples.xtext.console.messages.OCLInterpreterMessages;
+import org.eclipse.ocl.examples.xtext.console.messages.ConsoleMessages;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
@@ -58,14 +58,14 @@ public class SaveExpressionAction extends Action
 	 */
 	public SaveExpressionAction(OCLConsolePage consolePage) {
 		super(
-			OCLInterpreterMessages.console_saveAction_label,
+			ConsoleMessages.SaveAction_Label,
 			ImageDescriptor.createFromURL(
 				FileLocator.find(
 						XtextConsolePlugin.getInstance().getBundle(),
 						new Path("$nl$/icons/elcl16/save.gif"), //$NON-NLS-1$
 						null)));
 		this.consolePage = consolePage;
-		tip = OCLInterpreterMessages.console_saveAction_tip;
+		tip = ConsoleMessages.SaveAction_Tip;
 	}
 	
 	@Override
@@ -80,7 +80,7 @@ public class SaveExpressionAction extends Action
 		if (consolePage.getLastOCLExpression() != null) {
 			FileDialog dlg = new FileDialog(shell, SWT.SAVE);
 			dlg.setFilterExtensions(new String[] {"*.xmi"}); //$NON-NLS-1$
-			dlg.setText(OCLInterpreterMessages.console_saveDlg_title);
+			dlg.setText(ConsoleMessages.SaveAction_Title);
 			
 			final String file = dlg.open();
 			if (file != null) {
@@ -101,15 +101,15 @@ public class SaveExpressionAction extends Action
 				} catch (Exception e) {
 					MessageDialog.openError(
 						shell,
-						OCLInterpreterMessages.console_saveError_title,
+						ConsoleMessages.SaveActionError_Title,
 						e.getLocalizedMessage());
 				}
 			}
 		} else {
 			MessageDialog.openWarning(
 				shell,
-				OCLInterpreterMessages.console_saveWarn_title,
-				OCLInterpreterMessages.console_saveWarn_noExpr);
+				ConsoleMessages.SaveActionWarning_Title,
+				ConsoleMessages.SaveActionWarning_NoExpression);
 		}
 	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTSwitch.java,v 1.8 2011/04/25 09:50:02 ewillink Exp $
+ * $Id: BaseCSTSwitch.java,v 1.9 2011/05/05 17:53:02 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.util;
@@ -25,7 +25,6 @@ import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCSRef;
@@ -43,7 +42,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
@@ -54,7 +52,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
@@ -178,15 +175,6 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = caseElementCS(attributeCS);
 				if (result == null) result = casePivotable(attributeCS);
 				if (result == null) result = caseVisitableCS(attributeCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BaseCSTPackage.ATTRIBUTE_CS_REF:
-			{
-				AttributeCSRef attributeCSRef = (AttributeCSRef)theEObject;
-				T result = caseAttributeCSRef(attributeCSRef);
-				if (result == null) result = caseElementCS(attributeCSRef);
-				if (result == null) result = caseVisitableCS(attributeCSRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -427,15 +415,6 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BaseCSTPackage.MODEL_ELEMENT_CS_REF:
-			{
-				ModelElementCSRef modelElementCSRef = (ModelElementCSRef)theEObject;
-				T result = caseModelElementCSRef(modelElementCSRef);
-				if (result == null) result = caseElementCS(modelElementCSRef);
-				if (result == null) result = caseVisitableCS(modelElementCSRef);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case BaseCSTPackage.MONIKERED_ELEMENT_CS:
 			{
 				MonikeredElementCS monikeredElementCS = (MonikeredElementCS)theEObject;
@@ -573,15 +552,6 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = caseElementCS(referenceCS);
 				if (result == null) result = casePivotable(referenceCS);
 				if (result == null) result = caseVisitableCS(referenceCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BaseCSTPackage.REFERENCE_CS_REF:
-			{
-				ReferenceCSRef referenceCSRef = (ReferenceCSRef)theEObject;
-				T result = caseReferenceCSRef(referenceCSRef);
-				if (result == null) result = caseElementCS(referenceCSRef);
-				if (result == null) result = caseVisitableCS(referenceCSRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -882,21 +852,6 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attribute CS Ref</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attribute CS Ref</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAttributeCSRef(AttributeCSRef object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Class CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1143,21 +1098,6 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model Element CS Ref</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model Element CS Ref</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseModelElementCSRef(ModelElementCSRef object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Monikered Element CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1306,21 +1246,6 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseReferenceCS(ReferenceCS object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Reference CS Ref</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Reference CS Ref</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseReferenceCSRef(ReferenceCSRef object) {
 		return null;
 	}
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2MonikerVisitor.java,v 1.10 2011/04/25 09:49:15 ewillink Exp $
+ * $Id: Pivot2MonikerVisitor.java,v 1.12 2011/05/07 16:41:22 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 

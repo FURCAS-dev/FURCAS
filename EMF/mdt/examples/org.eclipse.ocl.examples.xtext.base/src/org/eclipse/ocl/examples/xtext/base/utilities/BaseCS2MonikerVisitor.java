@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCS2MonikerVisitor.java,v 1.7 2011/03/01 08:47:45 ewillink Exp $
+ * $Id: BaseCS2MonikerVisitor.java,v 1.8 2011/05/05 17:53:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -32,7 +32,6 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
@@ -42,14 +41,12 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationLiteralCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
@@ -123,12 +120,6 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Boolea
 	public Boolean visitAttributeCS(AttributeCS object) {
 		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
 		context.appendNameCS(object);
-		return true;
-	}
-
-	@Override
-	public Boolean visitAttributeCSRef(AttributeCSRef object) {
-		context.appendElementCS(object.getRef());
 		return true;
 	}
 
@@ -209,12 +200,6 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Boolea
 	}
 
 	@Override
-	public Boolean visitModelElementCSRef(ModelElementCSRef object) {
-		context.appendElementCS(object.getRef());
-		return true;
-	}
-
-	@Override
 	public Boolean visitNamedElementCS(NamedElementCS object) {
 		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
 		context.appendNameCS(object);
@@ -255,12 +240,6 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Boolea
 	public Boolean visitReferenceCS(ReferenceCS object) {
 		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
 		context.appendNameCS(object);
-		return true;
-	}
-
-	@Override
-	public Boolean visitReferenceCSRef(ReferenceCSRef object) {
-		context.appendElement(object.getRef());
 		return true;
 	}
 
@@ -382,11 +361,13 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Boolea
 		TemplateSignature ownedTemplateSignature = type.getOwnedTemplateSignature();
 		context.appendElement(type);
 		context.append(BINDINGS_PREFIX);
-		List<TemplateParameter> templateParameters = ownedTemplateSignature.getParameters();
-		if (index < templateParameters.size()) {
-			TemplateParameter templateParameter = templateParameters.get(index);
-			context.appendName(templateParameter.getParameteredElement());
-			context.append(MONIKER_SCOPE_SEPARATOR);
+		if (ownedTemplateSignature != null) {
+			List<TemplateParameter> templateParameters = ownedTemplateSignature.getParameters();
+			if (index < templateParameters.size()) {
+				TemplateParameter templateParameter = templateParameters.get(index);
+				context.appendName(templateParameter.getParameteredElement());
+				context.append(MONIKER_SCOPE_SEPARATOR);
+			}
 		}
 		context.append(WILDCARD_INDICATOR + index);
 		return true;

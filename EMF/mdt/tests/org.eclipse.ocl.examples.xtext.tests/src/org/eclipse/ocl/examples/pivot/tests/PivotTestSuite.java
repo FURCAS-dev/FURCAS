@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: PivotTestSuite.java,v 1.6 2011/04/25 19:40:00 ewillink Exp $
+ * $Id: PivotTestSuite.java,v 1.7 2011/05/06 09:05:14 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -1041,7 +1041,11 @@ public abstract class PivotTestSuite
 		ExpressionInOcl query = aHelper.createQuery(expression);
 //        @SuppressWarnings("unused")
 //		String s = query.toString();
-        return ocl.evaluate(context, query);
+        try {
+        	return ocl.evaluate(context, query);
+        } finally {
+			typeManager.getPivotResourceSet().getResources().remove(query.eResource());
+		}
     }
 	
 	protected Object evaluate(ExpressionInOcl expr) {

@@ -58624,22 +58624,24 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
     protected DFA119 dfa119 = new DFA119(this);
     protected DFA121 dfa121 = new DFA121(this);
     static final String DFA7_eotS =
-        "\33\uffff";
+        "\63\uffff";
     static final String DFA7_eofS =
-        "\33\uffff";
+        "\63\uffff";
     static final String DFA7_minS =
-        "\1\6\1\uffff\24\0\5\uffff";
+        "\1\6\2\uffff\24\0\34\uffff";
     static final String DFA7_maxS =
-        "\1\113\1\uffff\24\0\5\uffff";
+        "\1\113\2\uffff\24\0\34\uffff";
     static final String DFA7_acceptS =
-        "\1\uffff\1\1\24\uffff\1\2\1\3\1\5\1\6\1\4";
+        "\1\uffff\1\1\27\uffff\1\2\1\3\12\uffff\1\5\7\uffff\1\6\4\uffff"+
+        "\1\4";
     static final String DFA7_specialS =
-        "\2\uffff\1\23\1\22\1\20\1\17\1\12\1\4\1\3\1\21\1\1\1\14\1\2\1\6"+
-        "\1\10\1\5\1\7\1\15\1\11\1\16\1\0\1\13\5\uffff}>";
+        "\3\uffff\1\0\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1"+
+        "\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23\34\uffff}>";
     static final String[] DFA7_transitionS = {
-            "\1\26\1\uffff\2\1\5\uffff\1\11\2\uffff\1\2\1\3\1\4\1\5\1\6"+
-            "\1\7\1\10\1\12\1\13\1\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23"+
-            "\1\24\1\25\3\uffff\2\1\1\uffff\13\27\11\uffff\10\30\5\31",
+            "\1\31\1\uffff\2\1\5\uffff\1\12\2\uffff\1\3\1\4\1\5\1\6\1\7"+
+            "\1\10\1\11\1\13\1\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24"+
+            "\1\25\1\26\3\uffff\2\1\1\uffff\13\32\11\uffff\10\45\5\55",
+            "",
             "",
             "\1\uffff",
             "\1\uffff",
@@ -58661,6 +58663,29 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "",
             "",
             "",
@@ -58705,63 +58730,63 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA7_20 = input.LA(1);
+                        int LA7_3 = input.LA(1);
 
                          
-                        int index7_20 = input.index();
+                        int index7_3 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
 
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 26;}
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 50;}
 
                          
-                        input.seek(index7_20);
+                        input.seek(index7_3);
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA7_10 = input.LA(1);
+                        int LA7_4 = input.LA(1);
 
                          
-                        int index7_10 = input.index();
+                        int index7_4 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
 
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 26;}
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 50;}
 
                          
-                        input.seek(index7_10);
+                        input.seek(index7_4);
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA7_12 = input.LA(1);
+                        int LA7_5 = input.LA(1);
 
                          
-                        int index7_12 = input.index();
+                        int index7_5 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
 
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 26;}
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 50;}
 
                          
-                        input.seek(index7_12);
+                        input.seek(index7_5);
                         if ( s>=0 ) return s;
                         break;
                     case 3 : 
-                        int LA7_8 = input.LA(1);
+                        int LA7_6 = input.LA(1);
 
                          
-                        int index7_8 = input.index();
+                        int index7_6 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
 
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 26;}
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 50;}
 
                          
-                        input.seek(index7_8);
+                        input.seek(index7_6);
                         if ( s>=0 ) return s;
                         break;
                     case 4 : 
@@ -58773,193 +58798,28 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         s = -1;
                         if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
 
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 26;}
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 50;}
 
                          
                         input.seek(index7_7);
                         if ( s>=0 ) return s;
                         break;
                     case 5 : 
-                        int LA7_15 = input.LA(1);
+                        int LA7_8 = input.LA(1);
 
                          
-                        int index7_15 = input.index();
+                        int index7_8 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
 
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 26;}
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 50;}
 
                          
-                        input.seek(index7_15);
+                        input.seek(index7_8);
                         if ( s>=0 ) return s;
                         break;
                     case 6 : 
-                        int LA7_13 = input.LA(1);
-
-                         
-                        int index7_13 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
-
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 26;}
-
-                         
-                        input.seek(index7_13);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 7 : 
-                        int LA7_16 = input.LA(1);
-
-                         
-                        int index7_16 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
-
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 26;}
-
-                         
-                        input.seek(index7_16);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 8 : 
-                        int LA7_14 = input.LA(1);
-
-                         
-                        int index7_14 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
-
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 26;}
-
-                         
-                        input.seek(index7_14);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 9 : 
-                        int LA7_18 = input.LA(1);
-
-                         
-                        int index7_18 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
-
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 26;}
-
-                         
-                        input.seek(index7_18);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 10 : 
-                        int LA7_6 = input.LA(1);
-
-                         
-                        int index7_6 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
-
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 26;}
-
-                         
-                        input.seek(index7_6);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 11 : 
-                        int LA7_21 = input.LA(1);
-
-                         
-                        int index7_21 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
-
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 26;}
-
-                         
-                        input.seek(index7_21);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 12 : 
-                        int LA7_11 = input.LA(1);
-
-                         
-                        int index7_11 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
-
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 26;}
-
-                         
-                        input.seek(index7_11);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 13 : 
-                        int LA7_17 = input.LA(1);
-
-                         
-                        int index7_17 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
-
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 26;}
-
-                         
-                        input.seek(index7_17);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 14 : 
-                        int LA7_19 = input.LA(1);
-
-                         
-                        int index7_19 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
-
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 26;}
-
-                         
-                        input.seek(index7_19);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 15 : 
-                        int LA7_5 = input.LA(1);
-
-                         
-                        int index7_5 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
-
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 26;}
-
-                         
-                        input.seek(index7_5);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 16 : 
-                        int LA7_4 = input.LA(1);
-
-                         
-                        int index7_4 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
-
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 26;}
-
-                         
-                        input.seek(index7_4);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 17 : 
                         int LA7_9 = input.LA(1);
 
                          
@@ -58968,40 +58828,205 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
                         s = -1;
                         if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
 
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 26;}
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 50;}
 
                          
                         input.seek(index7_9);
                         if ( s>=0 ) return s;
                         break;
-                    case 18 : 
-                        int LA7_3 = input.LA(1);
+                    case 7 : 
+                        int LA7_10 = input.LA(1);
 
                          
-                        int index7_3 = input.index();
+                        int index7_10 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
 
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 26;}
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 50;}
 
                          
-                        input.seek(index7_3);
+                        input.seek(index7_10);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 8 : 
+                        int LA7_11 = input.LA(1);
+
+                         
+                        int index7_11 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
+
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 50;}
+
+                         
+                        input.seek(index7_11);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 9 : 
+                        int LA7_12 = input.LA(1);
+
+                         
+                        int index7_12 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
+
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 50;}
+
+                         
+                        input.seek(index7_12);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 10 : 
+                        int LA7_13 = input.LA(1);
+
+                         
+                        int index7_13 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
+
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 50;}
+
+                         
+                        input.seek(index7_13);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 11 : 
+                        int LA7_14 = input.LA(1);
+
+                         
+                        int index7_14 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
+
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 50;}
+
+                         
+                        input.seek(index7_14);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 12 : 
+                        int LA7_15 = input.LA(1);
+
+                         
+                        int index7_15 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
+
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 50;}
+
+                         
+                        input.seek(index7_15);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 13 : 
+                        int LA7_16 = input.LA(1);
+
+                         
+                        int index7_16 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
+
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 50;}
+
+                         
+                        input.seek(index7_16);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 14 : 
+                        int LA7_17 = input.LA(1);
+
+                         
+                        int index7_17 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
+
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 50;}
+
+                         
+                        input.seek(index7_17);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 15 : 
+                        int LA7_18 = input.LA(1);
+
+                         
+                        int index7_18 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
+
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 50;}
+
+                         
+                        input.seek(index7_18);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 16 : 
+                        int LA7_19 = input.LA(1);
+
+                         
+                        int index7_19 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
+
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 50;}
+
+                         
+                        input.seek(index7_19);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 17 : 
+                        int LA7_20 = input.LA(1);
+
+                         
+                        int index7_20 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
+
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 50;}
+
+                         
+                        input.seek(index7_20);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 18 : 
+                        int LA7_21 = input.LA(1);
+
+                         
+                        int index7_21 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
+
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 50;}
+
+                         
+                        input.seek(index7_21);
                         if ( s>=0 ) return s;
                         break;
                     case 19 : 
-                        int LA7_2 = input.LA(1);
+                        int LA7_22 = input.LA(1);
 
                          
-                        int index7_2 = input.index();
+                        int index7_22 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred28_InternalOCLstdlib()) ) {s = 1;}
 
-                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 26;}
+                        else if ( (synpred31_InternalOCLstdlib()) ) {s = 50;}
 
                          
-                        input.seek(index7_2);
+                        input.seek(index7_22);
                         if ( s>=0 ) return s;
                         break;
             }

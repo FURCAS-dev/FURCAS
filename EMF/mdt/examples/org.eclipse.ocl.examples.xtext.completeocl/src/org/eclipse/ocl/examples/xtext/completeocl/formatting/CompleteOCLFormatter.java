@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLFormatter.java,v 1.7 2011/03/11 20:23:52 ewillink Exp $
+ * $Id: CompleteOCLFormatter.java,v 1.8 2011/05/07 16:39:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.formatting;
 
@@ -52,16 +52,17 @@ public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter {
 		configureCollectionLiteralExpCS(c, f.getCollectionLiteralExpCSAccess());
 		configureCollectionTypeCS(c, f.getCollectionTypeCSAccess());
 		configureIfExpCS(c, f.getIfExpCSAccess());
+		configureIndexExpCS(c, f.getIndexExpCSAccess());
 		configureLetExpCS(c, f.getLetExpCSAccess());
-//	    configureNavigationExpCS(c, f.getNavigationExpCSAccess());
+	    configureNameExpCS(c, f.getNameExpCSAccess());
+	    configureNavigatingCommaArgCS(c, f.getNavigatingCommaArgCSAccess());
 	    configureNavigatingExpCS(c, f.getNavigatingExpCSAccess());
-//		configurePathNameExpCS(c, f.getPathNameExpCSAccess());
-//		configurePreExpCS(c, f.getPreExpCSAccess());
-//	    configureRoundBracketExpCS(c, f.getRoundBracketExpCSAccess());
-//	    configureSquareBracketExpCS(c, f.getSquareBracketExpCSAccess());
-//		configureSubNavigationExpCS(c, f.getSubNavigationExpCSAccess());
+	    configureNavigatingSemiArgCS(c, f.getNavigatingSemiArgCSAccess());
+	    configureNavigationOperatorCS(c, f.getNavigationOperatorCSAccess());
+	    configureNestedExpCS(c, f.getNestedExpCSAccess());
 	    configureTupleLiteralExpCS(c, f.getTupleLiteralExpCSAccess());
 	    configureTupleTypeCS(c, f.getTupleTypeCSAccess());
+	    configureTypeNameExpCS(c, f.getTypeNameExpCSAccess());
 
 	    {
 			BodyCSElements a = f.getBodyCSAccess();
