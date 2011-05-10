@@ -2,16 +2,21 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CompanySwitch.java,v 1.2 2011/03/09 14:45:50 auhl Exp $
+ * $Id: CompanySwitch.java,v 1.3 2011/05/10 14:19:00 auhl Exp $
  */
 package company.util;
 
-import company.*;
-
-import java.util.List;
-
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.util.Switch;
+
+import company.Company;
+import company.CompanyPackage;
+import company.Department;
+import company.Division;
+import company.Employee;
+import company.Freelance;
+import company.Student;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +31,7 @@ import org.eclipse.emf.ecore.EObject;
  * @see company.CompanyPackage
  * @generated
  */
-public class CompanySwitch<T> {
+public class CompanySwitch<T> extends Switch<T> {
     /**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -48,44 +53,27 @@ public class CompanySwitch<T> {
 	}
 
     /**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
+	 * <!-- end-user-doc -->
+	 * @parameter ePackage the package in question.
+	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
-    public T doSwitch(EObject theEObject) {
-		return doSwitch(theEObject.eClass(), theEObject);
+	@Override
+	protected boolean isSwitchFor(EPackage ePackage) {
+		return ePackage == modelPackage;
 	}
 
-    /**
+				/**
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-    protected T doSwitch(EClass theEClass, EObject theEObject) {
-		if (theEClass.eContainer() == modelPackage) {
-			return doSwitch(theEClass.getClassifierID(), theEObject);
-		}
-		else {
-			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return
-				eSuperTypes.isEmpty() ?
-					defaultCase(theEObject) :
-					doSwitch(eSuperTypes.get(0), theEObject);
-		}
-	}
-
-    /**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
-	 * @generated
-	 */
-    protected T doSwitch(int classifierID, EObject theEObject) {
+    @Override
+				protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
 			case CompanyPackage.EMPLOYEE: {
 				Employee employee = (Employee)theEObject;
@@ -230,7 +218,8 @@ public class CompanySwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
-    public T defaultCase(EObject object) {
+    @Override
+				public T defaultCase(EObject object) {
 		return null;
 	}
 

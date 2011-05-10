@@ -118,7 +118,7 @@ public class NotificationResourceLoader {
         ResourceWithSize instanceResource = null;
         try {
             instanceResource = new XMIResourceWithSize(
-                    URI.createURI("http://de.hpi.sam.bp2009.solution.impactAnalyzer.benchmarks/test.xmi"));
+                    URI.createURI("http://org.eclipse.ocl.examples.impactanalyzer.benchmarks/test.xmi"));
             resultRS.getResources().add(instanceResource);
             instanceResource.load(fileStream, null);
         } catch (IOException e1) {
