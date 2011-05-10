@@ -16,12 +16,20 @@
  */
 package org.eclipse.ocl.ecore.delegate;
 
+import java.lang.reflect.Constructor;
+
+import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.common.util.WrappedException;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.ecore.OppositePropertyCallExp;
+import org.eclipse.ocl.ecore.opposites.EcoreEnvironmentFactoryWithHiddenOpposites;
 
 /**
  * An implementation of a delegate domain for an OCL enhanced package. The domain
@@ -52,6 +60,16 @@ public class OCLDelegateDomain implements DelegateDomain
 	 * <br>
 	 * a <tt><i>constraintName</i></tt> key to provide an OCL expression value that specifies <tt>inv <i>constraintName</i>:</tt> for the classifier.
 	 * <p>
+	 * For an EPackage, the EAnnotation details may include
+	 * <br>
+	 * an {@link #KEY_FOR_ENVIRONMENT_FACTORY_CLASS environmentFactoryClass} key whose value is the fully qualified
+	 * class name for the {@link EnvironmentFactory}. If no key is specified either the {@link EcoreEnvironmentFactory}
+	 * or {@link EcoreEnvironmentFactoryWithHiddenOpposites} class are used.
+	 * <br>
+	 * a {@link #OCL_DELEGATES_USE_HIDDEN_OPPOSITES_KEY hiddenOpposites} key that may have a <tt>true</tt> value to
+	 * use the {@link EcoreEnvironmentFactoryWithHiddenOpposites} class rather than the {@link EcoreEnvironmentFactory}
+	 * when no {@link #KEY_FOR_ENVIRONMENT_FACTORY_CLASS environmentFactoryClass} key is specified.
+	 * <p>
 	 * Note that the delegate OCL functionality must be enabled by an EPackage Ecore annotation specifying this URI
 	 * as the value of <tt>invocationDelegates</tt>, <tt>settingDelegates</tt> and <tt>validationDelegates</tt> details
 	 * keys.
@@ -63,6 +81,26 @@ public class OCLDelegateDomain implements DelegateDomain
 	 */
 	public static final String OCL_DELEGATE_URI = org.eclipse.emf.ecore.EcorePackage.eNS_URI + "/OCL"; //$NON-NLS-1$
 
+	 /**
+	 * If the EPackage annotation with source {@link #OCL_DELEGATE_URI} has a detail using this key,
+	 * the value is the fully qualified name of the class to be used as the {@link EnvironmentFactory}
+	 * for parsing and evaluation for OCL constrinats defined in the EPackage. The class must have a
+	 * a constructor that takes a single {@link EPackage.Registry} argument.
+	 * 
+	 * @since 3.1
+	 */
+	public static final String KEY_FOR_ENVIRONMENT_FACTORY_CLASS = "environmentFactoryClass"; //$NON-NLS-1$
+	
+	/**
+	 * If the EPackage annotation with source {@link #OCL_DELEGATE_URI} has a detail using this key with a
+	 * value of "true", the {@link EcoreEnvironmentFactoryWithHiddenOpposites} is used instead of
+	 * the default {@link EcoreEnvironmentFactory}, making the OCL environment used by the delegates
+	 * support "hidden opposites" and the {@link OppositePropertyCallExp}.
+	 * 
+	 * @since 3.1
+	 */
+	public static final String OCL_DELEGATES_USE_HIDDEN_OPPOSITES_KEY = "hiddenOpposites"; //$NON-NLS-1$
+	
 	protected final String uri;
 	protected final EPackage ePackage;
 	protected final OCL ocl;
@@ -82,16 +120,43 @@ public class OCLDelegateDomain implements DelegateDomain
 		this.uri = delegateURI;
 		this.ePackage = ePackage;
 		Resource res = ePackage.eResource();
-		ResourceSet resourceSet = res.getResourceSet();
-		EcoreEnvironmentFactory envFactory;
-		if (res != null && resourceSet != null) {
-			// it's a dynamic package. Use the local package registry
-			EPackage.Registry packageRegistry = resourceSet.getPackageRegistry();
+		EPackage.Registry packageRegistry = null;
+		if (res != null) {
+			ResourceSet resourceSet = res.getResourceSet();
+			if (resourceSet != null) {
+				// it's a dynamic package. Use the local package registry
+				packageRegistry = resourceSet.getPackageRegistry();
+			}
+		}
+		if (packageRegistry == null) {			// Deprecated compatibility
+			packageRegistry = EPackage.Registry.INSTANCE;
+		}
+		EcoreEnvironmentFactory envFactory = null;
+		EAnnotation eAnnotation = ePackage.getEAnnotation(OCL_DELEGATE_URI);
+		if (eAnnotation != null) {
+			EMap<String, String> details = eAnnotation.getDetails();
+			String clsName = details.get(KEY_FOR_ENVIRONMENT_FACTORY_CLASS);
+			if (clsName != null) {
+				ClassLoader classLoader = ePackage.getClass().getClassLoader();
+				try {
+					Class<?> cls = classLoader.loadClass(clsName);
+					Constructor<?> con = cls.getConstructor(EPackage.Registry.class);
+					envFactory = (EcoreEnvironmentFactory) con.newInstance(packageRegistry);
+				} catch (Exception e) {
+					throw new WrappedException(
+						"Error instantiating " + KEY_FOR_ENVIRONMENT_FACTORY_CLASS + " " + clsName + //$NON-NLS-1$ //$NON-NLS-2$
+							": " + e.getMessage(), e); //$NON-NLS-1$
+				}
+			} else {
+				String value = details.get(OCL_DELEGATES_USE_HIDDEN_OPPOSITES_KEY);
+				if (value != null && Boolean.valueOf(value)) {
+					envFactory = new EcoreEnvironmentFactoryWithHiddenOpposites(
+						packageRegistry);
+				}
+			}
+		}
+		if (envFactory == null) {
 			envFactory = new EcoreEnvironmentFactory(packageRegistry);
-			DelegateResourceAdapter.getAdapter(res);
-		} else {
-			// the shared instance uses the static package registry
-			envFactory = EcoreEnvironmentFactory.INSTANCE;
 		}
 		this.ocl = OCL.newInstance(envFactory);
 	}
