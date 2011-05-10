@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DefaultOppositeEndFinder.java,v 1.4 2011/03/17 16:16:51 auhl Exp $
+ * $Id: DefaultOppositeEndFinder.java,v 1.5 2011/05/10 21:18:33 auhl Exp $
  */
 package org.eclipse.ocl.ecore.opposites;
 
@@ -129,7 +129,7 @@ public class DefaultOppositeEndFinder
 		return result;
 	}
 	
-	protected DefaultOppositeEndFinder(Registry registry) {
+	public DefaultOppositeEndFinder(Registry registry) {
 		this.registry = registry;
 		this.packages = new HashSet<EPackage>();
 		this.oppositeCache = new HashMap<EClass, Map<String,Set<EReference>>>();
