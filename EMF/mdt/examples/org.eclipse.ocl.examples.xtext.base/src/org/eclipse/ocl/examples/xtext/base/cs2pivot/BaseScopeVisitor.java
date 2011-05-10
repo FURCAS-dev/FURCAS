@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseScopeVisitor.java,v 1.5 2011/03/01 08:47:46 ewillink Exp $
+ * $Id: BaseScopeVisitor.java,v 1.6 2011/05/05 17:53:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -29,7 +29,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
@@ -123,11 +122,6 @@ public class BaseScopeVisitor extends AbstractExtendingBaseCSVisitor<ScopeCSAdap
 	@Override
 	public ScopeCSAdapter visitReferenceCS(ReferenceCS eObject) {
 		return new ReferenceCSScopeAdapter(context, eObject);
-	}
-
-	@Override
-	public ScopeCSAdapter visitReferenceCSRef(ReferenceCSRef eObject) {
-		return new EmptyCSScopeAdapter(context, eObject);
 	}
 
 	@Override

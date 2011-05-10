@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SelectIteration.java,v 1.4 2011/02/21 08:37:47 ewillink Exp $
+ * $Id: SelectIteration.java,v 1.5 2011/05/07 16:41:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -21,6 +21,7 @@ import org.eclipse.ocl.examples.library.IterationManager;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -51,7 +52,7 @@ public class SelectIteration extends AbstractIteration<CollectionValue.Accumulat
 		CollectionValue.Accumulator accumulatorValue = iterationManager.getAccumulatorValue();
 		Value bodyVal = iterationManager.getBodyValue();		
 		if (bodyVal.isUndefined()) {
-			return iterationManager.throwInvalidEvaluation("null body"); 	// Null body is invalid
+			return iterationManager.throwInvalidEvaluation(EvaluatorMessages.UndefinedBody, "select"); 	// Null body is invalid //$NON-NLS-1$
 		}
 		// should be exactly one iterator
 		else if (bodyVal.isTrue()) {

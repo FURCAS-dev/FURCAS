@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclAnyToStringOperation.java,v 1.3 2011/02/21 08:37:47 ewillink Exp $
+ * $Id: OclAnyToStringOperation.java,v 1.4 2011/05/07 16:41:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
@@ -31,7 +31,7 @@ public class OclAnyToStringOperation extends AbstractOperation
 	public static final OclAnyToStringOperation INSTANCE = new OclAnyToStringOperation();
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
-		String string = sourceVal == null?  "invalid" : sourceVal.oclToString();
+		String string = sourceVal == null?  Value.INVALID_NAME : sourceVal.oclToString();
 		return evaluationVisitor.getValueFactory().stringValueOf(string);
 	}
 }

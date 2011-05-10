@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExplicitNavigationProperty.java,v 1.1 2011/04/27 06:19:59 ewillink Exp $
+ * $Id: ExplicitNavigationProperty.java,v 1.2 2011/05/07 16:41:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.library;
 
@@ -27,6 +27,7 @@ import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -69,7 +70,7 @@ public class ExplicitNavigationProperty extends AbstractCallableImplementation
 			}
 		}
 		else {
-			return evaluationVisitor.throwInvalidEvaluation("non-object", null, callExp, sourceValue);
+			return evaluationVisitor.throwInvalidEvaluation(null, callExp, sourceValue, EvaluatorMessages.MissingSourceValue);
 		}
 	}
 }

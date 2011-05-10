@@ -13,13 +13,13 @@
  *
  * </copyright>
  *
- * $Id: CloseAction.java,v 1.1 2011/03/11 20:23:43 ewillink Exp $
+ * $Id: CloseAction.java,v 1.2 2011/05/07 16:41:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.console.actions;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.ocl.examples.xtext.console.OCLConsole;
-import org.eclipse.ocl.examples.xtext.console.messages.OCLInterpreterMessages;
+import org.eclipse.ocl.examples.xtext.console.messages.ConsoleMessages;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 
@@ -34,11 +34,11 @@ public class CloseAction extends Action {
 	 */
 	public CloseAction() {
 		super(
-			OCLInterpreterMessages.console_closeAction_label,
+			ConsoleMessages.CloseAction_Label,
 			PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(
 				ISharedImages.IMG_TOOL_DELETE));
 		
-		tip = OCLInterpreterMessages.console_closeAction_tip;
+		tip = ConsoleMessages.CloseAction_Tip;
 	}
 	
 	@Override
