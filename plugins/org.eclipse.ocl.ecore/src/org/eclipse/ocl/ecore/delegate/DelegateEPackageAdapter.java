@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DelegateEPackageAdapter.java,v 1.2 2010/04/08 06:27:21 ewillink Exp $
+ * $Id: DelegateEPackageAdapter.java,v 1.3 2011/05/07 05:46:49 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.delegate;
 
@@ -31,14 +31,25 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
- * DelegateEClassifierAdapter extends an EClassifier to cache its DelegateDomain
+ * DelegateEPackageAdapter extends an EPackage to cache its DelegateDomain
  * that supervises installation of OCL annotations from an OCL document.
  * 
  * @since 3.0
  */
 public class DelegateEPackageAdapter extends AdapterImpl {
+	/**
+	 *	Return the DelegateEPackageAdapter for ePackage, if there is one, or null if none.
+	 *
+	 * @since 3.1
+	 */
+	public static DelegateEPackageAdapter findAdapter(EPackage ePackage) {
+		return (DelegateEPackageAdapter) EcoreUtil.getAdapter(ePackage.eAdapters(), DelegateEPackageAdapter.class);
+	}
 
-
+	/**
+	 *	Return the DelegateEPackageAdapter for ePackage, creating
+	 *	one if necessary.
+	 */
 	public static DelegateEPackageAdapter getAdapter(EPackage ePackage) {
 		DelegateEPackageAdapter adapter = (DelegateEPackageAdapter) EcoreUtil.getAdapter(ePackage.eAdapters(), DelegateEPackageAdapter.class);
 		if (adapter == null) {
@@ -49,19 +60,15 @@ public class DelegateEPackageAdapter extends AdapterImpl {
 	}
 
 	/**
-	 * The map from delegateURI to known DelegateDomain. A mapping may be
-	 * defined by the delegate_domain extension point or by an entry in the
-	 * global EPackage.Internal.DelegateDomain.Factory.Registry.Instance or by
-	 * an entry in the local
-	 * EPackage.Internal.DelegateDomain.Factory.Registry.class ResourceSetImpl
-	 * registry.
+	 * The map from delegateURI to known DelegateDomain. Mappings are established
+	 * lazily by {@link #getDelegateDomain}.
 	 */
 	protected Map<String, DelegateDomain> delegateDomainMap = null;
 
 	/**
-	 * The map from behaviour name to corresponding DelegateDomain. This is
+	 * The map from behavior name to corresponding DelegateDomain. This is
 	 * defined by an http://www.eclipse.org/emf/2002/Ecore EPackage annotation
-	 * with the behaviour name as a key and the delegateURIs as a comma
+	 * with the behavior name as a key and the delegateURIs as a comma
 	 * separated list.
 	 */
 	protected Map<String, List<DelegateDomain>> delegatedBehaviorMap = null;

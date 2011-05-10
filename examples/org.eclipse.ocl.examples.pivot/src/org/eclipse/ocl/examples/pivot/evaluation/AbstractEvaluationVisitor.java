@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.7 2011/03/01 08:47:20 ewillink Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.8 2011/05/07 16:41:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.evaluation;
 
@@ -179,8 +179,8 @@ public abstract class AbstractEvaluationVisitor
 	}
 
 
-	public NullValue throwInvalidEvaluation(String message, Throwable e, OclExpression expression, Object value) {
-		return evaluationEnvironment.throwInvalidEvaluation(message, e, expression, value);
+	public NullValue throwInvalidEvaluation(Throwable e, OclExpression expression, Object value, String message, Object... bindings) {
+		return evaluationEnvironment.throwInvalidEvaluation(e, expression, value, message, bindings);
 	}
 	
 	@Override

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluateNameVisibilityTest.java,v 1.6 2011/05/02 09:31:37 ewillink Exp $
+ * $Id: EvaluateNameVisibilityTest.java,v 1.7 2011/05/06 09:05:14 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -113,5 +113,43 @@ public class EvaluateNameVisibilityTest extends PivotFruitTestSuite
 		//
 		assertQueryInvalid(redApple, "self.oclAsType(Tree)");
 //		assertQueryEquals(aTree, valueFactory.createOrderedSetOf(redApple), "self.oclAsType(Tree).fruits");
+	}
+	
+	/**
+	 * Tests the nested name accesses
+	 */
+	public void test_nested_names() throws InvocationTargetException {
+		initFruitPackage();
+		//
+		//	Simple model: appleTree contains redApple
+		//
+		EObject redApple = fruitEFactory.create(apple);
+		redApple.eSet(fruit_color, color_red);
+		redApple.eSet(fruit_name, "RedApple");
+		EObject appleTree = fruitEFactory.create(tree);
+		appleTree.eSet(tree_name, "AppleTree");
+		@SuppressWarnings("unchecked")
+		List<Object> treeFruits = (List<Object>) appleTree.eGet(tree_fruits);
+		treeFruits.add(redApple);
+//		
+		assertQueryEquals(redApple, redApple, "self.oclAsType(Apple)");
+		assertQueryEquals(redApple, redApple, "self.oclAsType(fruit::Apple)");
+		assertQueryEquals(redApple, valueFactory.createSetOf(redApple), "self->oclAsType(Set<Fruit>)");
+		assertQueryEquals(redApple, valueFactory.createSetOf(redApple), "self->oclAsType(Set<fruit::Apple>)");
+		assertSemanticErrorQuery("self->oclAsType(Set<fruit::apple::BadApple>)", OCLMessages.Unresolved_ERROR_, "Type", "BadApple");
+		assertSemanticErrorQuery("self->oclAsType(Set<fruit::apple::BadApple>)", OCLMessages.Unresolved_ERROR_, "Type", "BadApple");
+		assertSemanticErrorQuery("self->oclAsType(Set<fruit::badapple::BadApple>)", OCLMessages.Unresolved_ERROR_, "Namespace", "badapple");
+		assertSemanticErrorQuery("self->oclAsType(Set<badfruit::badapple::BadApple>)", OCLMessages.Unresolved_ERROR_, "Namespace", "badfruit");
+		assertQueryInvalid(redApple, "self->oclAsType(Set<fruit::apple::EatingApple>)");
+		assertQueryInvalid(redApple, "self->oclAsType(Set<fruit::Tree>)");		
+		//
+		assertQueryEquals(redApple, valueFactory.createSetOf(appleTree), "Tree.allInstances()");
+		assertQueryEquals(redApple, valueFactory.createSetOf(appleTree), "fruit::Tree.allInstances()");
+		assertQueryEquals(null, valueFactory.getEmptySetValue(), "fruit::Tree.allInstances()");
+//
+		typeManager.addGlobalNamespace("zz", fruitPackage);
+		assertQueryEquals(redApple, valueFactory.createSetOf(appleTree), "zz::Tree.allInstances()");
+//
+//BUG 344931		assertQueryEquals(redApple, valueFactory.createSetOf(appleTree), "Fruit.allInstances()->oclAsType(Set<Apple>)");		
 	}
 }

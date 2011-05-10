@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.18 2011/05/02 15:39:01 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.19 2011/05/06 06:35:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -504,12 +504,14 @@ public class EssentialOCLLeft2RightVisitor
 	 * Resolve any implicit source and any associated implicit oclAsSet().
 	 */
 	protected OclExpression resolveNavigationSource(NamedExpCS csNameExp, Feature feature) {
+		boolean isCollectionNavigation = false;
 		OperatorCS csOperator = csNameExp.getParent();
 		OclExpression source = null;
 		if (csOperator instanceof NavigationOperatorCS) {
 			ExpCS csSource = csOperator.getSource();
 			if (csSource != csNameExp) {
 				source = PivotUtil.getPivot(OclExpression.class, csSource);
+				isCollectionNavigation = csOperator.getName().equals(PivotConstants.COLLECTION_NAVIGATION_OPERATOR);
 			}
 		}
 		if (source == null) {
@@ -525,8 +527,7 @@ public class EssentialOCLLeft2RightVisitor
 			source = sourceAccess;
 		}
 		Type actualSourceType = source.getType();
-		Type requiredSourceType = PivotUtil.getFeaturingClass(feature);
-		if ((requiredSourceType instanceof CollectionType) && !(actualSourceType instanceof CollectionType)) {
+		if (isCollectionNavigation && !(actualSourceType instanceof CollectionType)) {
 			OperationCallExp expression = context.refreshMonikeredElement(OperationCallExp.class, PivotPackage.Literals.OPERATION_CALL_EXP, csOperator);
 			expression.setImplicit(true);
 			expression.setSource(source);

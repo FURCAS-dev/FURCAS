@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.17 2011/05/02 15:38:44 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.19 2011/05/06 09:04:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -530,9 +530,8 @@ public class CS2PivotConversion extends AbstractConversion
 		return documentationStrings;
 	} */
 
-	public void garbageCollect() {
+	public void garbageCollect(Collection<? extends Resource> pivotResources) {
 		Resource libraryResource = typeManager.getLibraryResource();
-		Collection<? extends Resource> pivotResources = converter.getPivotResources();
 		Collection<Notifier> allPivotResources = new ArrayList<Notifier>(pivotResources);
 		allPivotResources.add(typeManager.getOrphanPackage());
 		Map<EObject, Collection<EStructuralFeature.Setting>> pivotCrossUsages = computeCrossUsages(allPivotResources);		
@@ -1106,6 +1105,7 @@ public class CS2PivotConversion extends AbstractConversion
 		if (pivotElement == null) {
 			logger.trace("Creating " + pivotEClass.getName() + " : " + moniker); //$NON-NLS-1$ //$NON-NLS-2$
 			pivotElement = (MonikeredElement) PivotFactory.eINSTANCE.create(pivotEClass);
+			pivotElement.setMoniker(moniker);
 			putPivotElement(moniker, pivotElement);
 		}
 		else if (!pivotClass.isAssignableFrom(pivotElement.getClass())) {
@@ -1243,8 +1243,14 @@ public class CS2PivotConversion extends AbstractConversion
 		pivotElement.setIsUnique(getQualifier(qualifiers, "unique", "!unique", true));
 		String multiplicity = csTypedElement.getMultiplicity();
 		if (multiplicity == null) {
-			pivotElement.setLower(BigInteger.valueOf(csTypedElement.getLower()));
-			pivotElement.setUpper(BigInteger.valueOf(csTypedElement.getUpper()));
+			if (csTypedElement.getOwnedType() == null) {		// This is arbitrary; it makes Ecore default serializations work
+				pivotElement.setLower(BigInteger.valueOf(0));
+				pivotElement.setUpper(BigInteger.valueOf(1));
+			}
+			else {
+				pivotElement.setLower(BigInteger.valueOf(csTypedElement.getLower()));
+				pivotElement.setUpper(BigInteger.valueOf(csTypedElement.getUpper()));
+			}
 		}
 		else if ("*".equals(multiplicity)) {
 			pivotElement.setLower(BigInteger.valueOf(0));

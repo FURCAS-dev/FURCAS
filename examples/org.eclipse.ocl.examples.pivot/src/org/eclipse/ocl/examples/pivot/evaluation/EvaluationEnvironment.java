@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationEnvironment.java,v 1.5 2011/02/21 08:37:53 ewillink Exp $
+ * $Id: EvaluationEnvironment.java,v 1.6 2011/05/07 16:41:08 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -250,5 +250,5 @@ public interface EvaluationEnvironment {
 
 	NullValue throwInvalidEvaluation(String message, OclExpression expression, Object context) throws InvalidEvaluationException;
 
-	NullValue throwInvalidEvaluation(String message, Throwable e,OclExpression expression, Object context) throws InvalidEvaluationException;
+	NullValue throwInvalidEvaluation(Throwable e, OclExpression expression, Object context, String message, Object... bindings) throws InvalidEvaluationException;
 }

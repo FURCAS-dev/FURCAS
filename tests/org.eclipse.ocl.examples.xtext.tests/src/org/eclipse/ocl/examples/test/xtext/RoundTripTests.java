@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RoundTripTests.java,v 1.8 2011/04/20 19:02:32 ewillink Exp $
+ * $Id: RoundTripTests.java,v 1.9 2011/05/05 17:56:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -195,6 +195,10 @@ public class RoundTripTests extends XtextTestCase
 
 	public void testImportsRoundTrip() throws IOException, InterruptedException {
 		doRoundTripFromEcore("Imports");
+	}
+
+	public void testKeysRoundTrip() throws IOException, InterruptedException {
+		doRoundTripFromEcore("Keys");
 	}
 
 	public void testOCLinEcoreCSTRoundTrip() throws IOException, InterruptedException {
