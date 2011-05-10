@@ -84,7 +84,7 @@
    </extension>
    
     <extension point="com.sap.furcas.runtime.referenceresolving.furcas_syntax">
-       <furcas_syntax provider_class="bibtex.dsl.editor.Activator">
+       <furcas_syntax provider_class="com.sap.furcas.example.bibtex.dsl.editor.Activator">
        	 <metamodel nsURI="http://www.sap.com/furcas/examples/bibtex" />
        </furcas_syntax>
  	</extension> 
