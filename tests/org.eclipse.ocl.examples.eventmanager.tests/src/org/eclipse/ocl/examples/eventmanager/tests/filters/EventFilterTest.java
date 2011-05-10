@@ -23,11 +23,14 @@ import org.junit.Test;
  * <p>
  * The following operations are tested:
  * <ul>
- * <li>{@link org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
+ * <li>{@link AbstractEventFilter#matchesFor(Notification)
  * <em>Matches For</em>}</li>
- * <li>
- * {@link org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter#buildNotificationIdentifiers(de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier)
- * <em>Build Notification Identifiers</em>}</li>
+ * <li>{@link AbstractEventFilter#setNegated(boolean)
+ * <em>negation</em>}</li>
+ * <li>{@link AbstractEventFilter#equals(Object)
+ * <em>equals</em>}</li>
+ * <li>{@link AbstractEventFilter#hashCode()
+ * <em>hashCode</em>}</li>
  * </ul>
  * </p>
  * 
