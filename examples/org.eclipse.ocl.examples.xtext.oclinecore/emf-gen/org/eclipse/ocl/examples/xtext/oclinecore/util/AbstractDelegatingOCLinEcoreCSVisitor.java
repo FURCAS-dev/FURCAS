@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractDelegatingOCLinEcoreCSVisitor.java,v 1.9 2011/03/11 20:23:41 ewillink Exp $
+ * $Id: AbstractDelegatingOCLinEcoreCSVisitor.java,v 1.10 2011/05/05 17:53:16 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.oclinecore.util;
 

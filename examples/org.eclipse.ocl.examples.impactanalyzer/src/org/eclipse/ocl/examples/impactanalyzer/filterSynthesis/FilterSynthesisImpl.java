@@ -118,12 +118,12 @@ implements OperationBodyToCallMapper {
     public EPackage handlePropertyCallExp(org.eclipse.ocl.expressions.PropertyCallExp<EClassifier, EStructuralFeature> propCallExp, EPackage sourceResult, List<EPackage> qualifierResults) {
         EClass cls = (EClass) propCallExp.getSource().getType();
         EStructuralFeature property = propCallExp.getReferredProperty();
-        if (cls instanceof TupleType){
+        if (cls instanceof TupleType) {
             // ignore TupleTypes, because the tuple parts were already handled
             // no filters to add to the result
             return result;
         }
-        if (property.isDerived()){
+        if (property.isDerived()) {
             OCLExpression body = SettingBehavior.INSTANCE.getFeatureBody(ocl, property);
             Set<PropertyCallExp> callsForProperty = derivedProperties.get(body);
             if (callsForProperty == null) {
@@ -135,9 +135,9 @@ implements OperationBodyToCallMapper {
             callsForProperty.add((PropertyCallExp) propCallExp);
         }
         
-        if (property instanceof EAttribute){
+        if (property instanceof EAttribute) {
             filters.add(EventManagerFactory.eINSTANCE.createFilterForEAttribute( cls, (EAttribute) property));
-            EAttribute refAttr = (EAttribute)property;
+            EAttribute refAttr = (EAttribute) property;
             Set<PropertyCallExp> set = attributeCallExpressions.get(refAttr);
             if (set==null) {
                 set = new HashSet<PropertyCallExp>();
@@ -145,7 +145,7 @@ implements OperationBodyToCallMapper {
             }
             set.add((PropertyCallExp) propCallExp);
             
-        } else if (propCallExp.getReferredProperty() instanceof EReference){
+        } else if (propCallExp.getReferredProperty() instanceof EReference) {
             filters.add(EventManagerFactory.eINSTANCE.createFilterForEReference(cls, (EReference) property));
             EReference refRef = (EReference) property;
             Set<NavigationCallExp> set = associationEndCallExpressions.get(refRef);
@@ -165,9 +165,9 @@ implements OperationBodyToCallMapper {
         if (opCallExp.getReferredOperation().getName().equals(PredefinedType.ALL_INSTANCES_NAME) ) {
             EClass cls = null;
             org.eclipse.ocl.expressions.OCLExpression<EClassifier> source = opCallExp.getSource();
-            if (source instanceof TypeExpImpl){
+            if (source instanceof TypeExpImpl) {
                 cls = (EClass) ((TypeExpImpl)source).getReferredType();
-            }else {
+            } else {
                 cls = (EClass) source.getType();
             }
             filters.add(createFilterForElementInsertionOrDeletion(cls));
@@ -278,9 +278,9 @@ implements OperationBodyToCallMapper {
      * @param call The {@link OperationCallExp} to look for
      * @return the {@link OCLExpression} that defines the body of the called operation
      */
-    public OCLExpression getBodyForCall(OperationCallExp call){
+    public OCLExpression getBodyForCall(OperationCallExp call) {
         for (Entry<OCLExpression, Set<OperationCallExp>> entry : visitedOperationBodies.entrySet()){
-            if (entry.getValue().contains(call)){
+            if (entry.getValue().contains(call)) {
                 return entry.getKey();
             }
         }
@@ -365,16 +365,16 @@ implements OperationBodyToCallMapper {
 
     public EPackage handleOppositePropertyCallExp(OppositePropertyCallExp callExp,
             EPackage sourceResult) {
-        if (callExp.getReferredOppositeProperty() instanceof EReference){
+        if (callExp.getReferredOppositeProperty() instanceof EReference) {
             EClass cls = (EClass) callExp.getReferredOppositeProperty().eContainer();
-            filters.add(EventManagerFactory.eINSTANCE.createFilterForEReference(cls, (EReference) callExp.getReferredOppositeProperty( )));
+            filters.add(EventManagerFactory.eINSTANCE.createFilterForEReference(cls, (EReference) callExp.getReferredOppositeProperty()));
             EReference refRef = (EReference)callExp.getReferredOppositeProperty();
             Set<NavigationCallExp> set = associationEndCallExpressions.get(refRef);
-            if (set == null){
+            if (set == null) {
                 set = new HashSet<NavigationCallExp>();
                 associationEndCallExpressions.put(refRef, set);
             }
-            set.add((OppositePropertyCallExp)callExp);
+            set.add((OppositePropertyCallExp) callExp);
         } else {
             System.err.println("Unhandled EStructuralFeature as referredOppositeProperty in FilterSynthesis.");
         }

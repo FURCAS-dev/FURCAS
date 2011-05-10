@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UnimplementedOperation.java,v 1.1 2011/04/27 06:19:59 ewillink Exp $
+ * $Id: UnimplementedOperation.java,v 1.2 2011/05/07 16:41:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.library;
 
@@ -33,6 +33,6 @@ public class UnimplementedOperation extends AbstractCallableImplementation
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceValue, CallExp callExp) {
 		OperationCallExp operationCall = (OperationCallExp) callExp;
 		Operation operation = operationCall.getReferredOperation();
-		return evaluationVisitor.throwInvalidEvaluation("No implementation for '" + operation + "'", null, callExp, null);
+		return evaluationVisitor.throwInvalidEvaluation(null, callExp, null, "No implementation for '" + operation + "'");
 	}
 }

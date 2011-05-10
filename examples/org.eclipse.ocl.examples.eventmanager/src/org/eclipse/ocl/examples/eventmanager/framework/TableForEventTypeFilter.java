@@ -19,7 +19,7 @@ import org.eclipse.ocl.examples.eventmanager.filters.EventTypeFilter;
 
 
 /**
- * The EventTypeFilterTable manages all Registrations containing {@link de.hpi.sam.bp2009.solution.eventManager.filters.sap.tc.moin.repository.events.filter.EventTypeFilter}.
+ * The EventTypeFilterTable manages all Registrations containing {@link EventTypeFilter}.
  * 
  * @see org.eclipse.ocl.examples.eventmanager.framework.TableForEventFilter.tc.moin.repository.events.framework.EventFilterTable
  * @author Daniel Vocke (D044825)

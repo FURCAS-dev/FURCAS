@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SetValueImpl.java,v 1.4 2011/02/21 08:37:52 ewillink Exp $
+ * $Id: SetValueImpl.java,v 1.5 2011/05/07 16:41:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -28,6 +28,7 @@ import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
@@ -187,7 +188,7 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
 
 	public SetValue including(Value value) throws InvalidValueException {
 		if (value.isInvalid()) {
-			throw new InvalidValueException("including invalid");
+			valueFactory.throwInvalidValueException(EvaluatorMessages.InvalidSource, "including");
 		}
 		Set<Value> result = new HashSet<Value>(elements);
 		result.add(value);

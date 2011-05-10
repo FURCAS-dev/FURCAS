@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NumericOclAsTypeOperation.java,v 1.5 2011/04/25 09:48:57 ewillink Exp $
+ * $Id: NumericOclAsTypeOperation.java,v 1.6 2011/05/07 16:41:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.numeric;
 
@@ -21,6 +21,7 @@ import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.RealValue;
@@ -41,14 +42,14 @@ public class NumericOclAsTypeOperation extends OclAnyOclAsTypeOperation
 		TypeManager typeManager = evaluationVisitor.getTypeManager();
 		Type sourceType = sourceVal.getType(typeManager, operationCall.getSource().getType());
 		if (sourceType == null) {
-			return evaluationVisitor.throwInvalidEvaluation("Missing source type", null, operationCall, sourceType);
+			return evaluationVisitor.throwInvalidEvaluation(null, operationCall, sourceType, EvaluatorMessages.MissingSourceType);
 		}
 		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
 		TypeValue typeVal = argVal.asTypeValue();
 		Type argType = typeVal.getInstanceType();
 		if (typeManager.conformsTo(sourceType, argType, null)) {
 			if (sourceVal.isUnlimited() && ((argType == typeManager.getIntegerType()) || (argType == typeManager.getRealType()))) {
-				return evaluationVisitor.throwInvalidEvaluation("unlimited does not conform", null, operationCall, sourceVal);
+				return evaluationVisitor.throwInvalidEvaluation(null, operationCall, sourceVal, EvaluatorMessages.NonFiniteIntegerValue);
 			}
 			else if ((sourceVal instanceof IntegerValue) && (argType == typeManager.getRealType())) {
 				return ((IntegerValue)sourceVal).toRealValue();
@@ -62,7 +63,7 @@ public class NumericOclAsTypeOperation extends OclAnyOclAsTypeOperation
 			if (realValue != null) {
 				if (argType == typeManager.getUnlimitedNaturalType()) {
 					if (realValue.signum() < 0) {
-						return evaluationVisitor.throwInvalidEvaluation("not positive", null, operationCall, sourceVal);
+						return evaluationVisitor.throwInvalidEvaluation(null, operationCall, sourceVal, EvaluatorMessages.NonPositiveUnlimitedNaturalValue);
 					}
 					return realValue.toIntegerValue();
 				}
@@ -70,19 +71,19 @@ public class NumericOclAsTypeOperation extends OclAnyOclAsTypeOperation
 					return realValue.toIntegerValue();
 				}
 				else {
-					return evaluationVisitor.throwInvalidEvaluation("incompatible argument type", null, operationCall, argType);
+					return evaluationVisitor.throwInvalidEvaluation(null, operationCall, argType, EvaluatorMessages.IncompatibleArgumentType, argType);
 				}
 			}
 			IntegerValue integerValue = sourceVal.asIntegerValue();
 			if (integerValue != null) {
 				if (argType == typeManager.getUnlimitedNaturalType()) {
 					if (integerValue.signum() < 0) {
-						return evaluationVisitor.throwInvalidEvaluation("not positive", null, operationCall, sourceVal);
+						return evaluationVisitor.throwInvalidEvaluation(null, operationCall, sourceVal, EvaluatorMessages.NonPositiveUnlimitedNaturalValue);
 					}
 					return integerValue;
 				}
 			}
-			return evaluationVisitor.throwInvalidEvaluation("unknown source type", null, operationCall, sourceVal);
+			return evaluationVisitor.throwInvalidEvaluation(null, operationCall, sourceVal, EvaluatorMessages.UnknownSourceType);
 		}
 	}
 }
