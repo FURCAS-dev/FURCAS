@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -22,7 +23,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
-import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
@@ -63,8 +63,8 @@ public class TestLexerParserInteraction extends FixtureProvidingTextBlockTest {
         AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory = new TCSParserFactory();
         resourceSet.getResource(parserFactory.getSyntaxUri(), true);
 
-        IModelAdapter modelAdapter = new TextBlocksAwareModelAdapter(new EMFModelAdapter(FURCASPackage.eINSTANCE, resourceSet,
-                referenceScope));
+        IModelAdapter modelAdapter = new TextBlocksAwareModelAdapter(new EMFModelAdapter(resourceSet, transientParsingResource,
+                referenceScope, new HashSet<URI>()));
         IncrementalParserFacade ipf = new IncrementalParserFacade(parserFactory, modelAdapter, editingDomain, referenceScope,
                 oppositeEndFinder, new MockPartitionAssignmentHandler(transientParsingResource));
 

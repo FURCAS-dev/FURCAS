@@ -67,16 +67,17 @@ public class EcoreModelElementFinder {
     private static final String MQL_ALIAS_INSTANCE = "instance";
     
 
-    public EcoreModelElementFinder(ResourceSet resourceSet, Set<URI> explicitReferenceScope, IMetaModelLookup<EObject> metamodelLookup) {
+    public EcoreModelElementFinder(ResourceSet resourceSet, Set<URI> referenceScope, IMetaModelLookup<EObject> metamodelLookup) {
         this.resourceSet = resourceSet;
         this.metamodelLookup = metamodelLookup;
-        this.referenceScope = explicitReferenceScope;
+        this.referenceScope = referenceScope;
 
         queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
     }
 
     /**
-     * Returns all known instances of the given type. If nothing is found, an empty collection is returned.
+     * Returns all known instances within the explicitly given referenceScope.
+     * If nothing is found, an empty collection is returned.
      */
     public Collection<EObject> findEObjectsOfType(List<String> targetType) throws ModelAdapterException {
         URI qName = EcoreUtil.getURI(findMetaClassOfType(targetType));
@@ -84,7 +85,9 @@ public class EcoreModelElementFinder {
         SelectEntry se = new SelectAlias(MQL_ALIAS_INSTANCE);
         FromEntry fe = new FromType(MQL_ALIAS_INSTANCE, qName, /*withoutSubtypes*/ false);
         Query mq = new Query(new SelectEntry[] { se }, new FromEntry[] { fe });
-        ResultSet resultSet = executeQuery(mq);
+        
+        QueryContext scopeProvider = EcoreHelper.getRestrictedQueryContext(resourceSet, referenceScope);
+        ResultSet resultSet = queryProcessor.execute(mq, scopeProvider);
 
         Collection<EObject> resultObjects = new ArrayList<EObject>();
         for (URI uri : resultSet.getUris(MQL_ALIAS_INSTANCE)) {
@@ -96,7 +99,10 @@ public class EcoreModelElementFinder {
     /**
      *  Returns the model element uniquely identified by the combination of type, property name and
      *  corresponding property value. Will return null if nothing is found. If more than one element is found, this
-     *  method will throw a ModelAdapterException.
+     *  method will throw a ModelAdapterException.<p>
+     *  
+     *  This is used for lookups within a context. The search only covers the explicitly given referenceScope
+     *  (which includes the transient resource and thus the parsing context).
      */
     public EObject findEObjectOfTypeWithProperty(List<String> targetType, String targetKeyName, Object targetKeyValue) throws ModelAdapterException {
         URI qName = EcoreUtil.getURI(findMetaClassOfType(targetType));
@@ -109,9 +115,6 @@ public class EcoreModelElementFinder {
 
         ResultSet resultSet = null;
         try {
-            //FIXME check which query context we should use here, normally only a local context should be
-            //used, as lookups should only be done in a local context rather than OCL queries
-            //which may use a more global context.
             QueryContext scopeProvider = EcoreHelper.getRestrictedQueryContext(resourceSet, referenceScope);
             resultSet = queryProcessor.execute(mq, scopeProvider); // ,
         } catch (IllegalArgumentException e) {
@@ -133,7 +136,10 @@ public class EcoreModelElementFinder {
     
     /**
      * Returns all instances of the given type, which have the attribute/references values
-     * as specified by the given maps.
+     * as specified by the given maps.<p>
+     * 
+     * It is searched within the referenceScope and within all resources in
+     * the resourceSet.
      */
     public Collection<Object> findEObjectsOfTypeWithProperties(List<String> typeName,
             Map<String, EObject> partitionableReferenceValuedAttributesMap,
@@ -196,8 +202,8 @@ public class EcoreModelElementFinder {
             }
 
         }
-
-        ResultSet resultSet = executeQuery(queryBuilder.toString());
+        QueryContext scopeProvider = EcoreHelper.getQueryContext(resourceSet, referenceScope);
+        ResultSet resultSet = queryProcessor.execute(queryBuilder.toString(), scopeProvider);
         
         List<Object> result = new ArrayList<Object>(resultSet.getSize());
         for (URI uri : resultSet.getUris("instance")) {
@@ -223,16 +229,6 @@ public class EcoreModelElementFinder {
         } catch (MetaModelLookupException e) {
            throw new ModelAdapterException("Failed to resolve the EClassifier for " + qualifiedTypeName, e);
         }
-    }
-    
-    private ResultSet executeQuery(String query) {
-        QueryContext scopeProvider = EcoreHelper.getQueryContext(resourceSet, referenceScope);
-        return queryProcessor.execute(query, scopeProvider);
-    }
-    
-    private ResultSet executeQuery(Query query) {
-        QueryContext scopeProvider = EcoreHelper.getQueryContext(resourceSet, referenceScope);
-        return queryProcessor.execute(query, scopeProvider);
     }
 
 }

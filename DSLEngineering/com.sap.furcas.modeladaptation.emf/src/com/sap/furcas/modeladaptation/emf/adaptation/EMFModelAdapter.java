@@ -19,7 +19,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.runtime.common.exceptions.DeferredActionResolvingException;
@@ -52,18 +52,19 @@ public class EMFModelAdapter implements IBareModelAdapter {
     /**
      * Creates a new ModelAdapter which creates EMF model elements.
      * 
-     * @param rootPackage Metamodel root package. The root package must contain all the classes that
-     *          this adapter shall be used with. The adapter cannot create elements which are not part
-     *          of the rootPackage. If two metamodels shall be used/combined, it is required to define a
-     *          root package that contains those two.
-     * @param resourceSet the transient resource for element creation will be created in this resource set
-     * @param referenceScope List of (additional) resources that shall be looked at when references are
-     *          resolved. The referenceScope by default already includes the URI of the root element
+     * @param resourceSet A resourceSet to work on
+     * @param transientResource A resource that is meant to be in-memory only. It must be contained
+     *          in the given resource set. All elements created by this adapter are added to this resource..
+     *          It is the responsponsability of the caller to cleanup the resource and the contained elements afterwards.
+     * @param metaModelURIs A list URIs of all metamodels this modeladapter is supposed to work on.
+     * @param additionalQueryScope A list of additional URIs that shall be looked at when references are
+     *          resolved or when existing model elements are queres. The queryScope by default already includes the
+     *          URI of the root element
      *          and the visible URIs of the give resource set. In most cases the scope can therefore remain
      *          empty.
      */
-    public EMFModelAdapter(EPackage rootPackage, ResourceSet resourceSet, Set<URI> referenceScope) {
-        delegate = new EMFModelAdapterDelegate(rootPackage, resourceSet, referenceScope);
+    public EMFModelAdapter(ResourceSet resourceSet, Resource transientResource, Set<URI> metaModelURIs, Set<URI> additionalQueryScope) {
+        delegate = new EMFModelAdapterDelegate(resourceSet, transientResource, metaModelURIs, additionalQueryScope);
     }
 
     @Override
@@ -82,7 +83,8 @@ public class EMFModelAdapter implements IBareModelAdapter {
         try {
             return (delegate.createEnumLiteral(enumName, name)).getInstance();
         } catch (RuntimeException re) {
-            throw new RuntimeException("Exception while creating Enum Literal of type " + name, re);
+            throw new RuntimeException("Exception while creating Enum Literal named '" + name + "' of type "
+                    + MessageUtil.asModelName(enumName), re);
         }
     }
 
@@ -255,6 +257,12 @@ public class EMFModelAdapter implements IBareModelAdapter {
         }
     }
     
+    /**
+     * This lookup only includes all elements within the transient resource and all elements
+     * within the explicitly given, additional lookup scope.
+     * 
+     * @see IBareModelAdapter#getElementsOfType(List)
+     */
     @Override
     public Collection<Object> getElementsOfType(List<String> list) throws ModelAdapterException {
         assertIsValidTypeName(list);

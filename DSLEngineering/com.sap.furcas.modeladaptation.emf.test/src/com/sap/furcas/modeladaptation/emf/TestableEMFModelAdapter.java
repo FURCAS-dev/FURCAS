@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
@@ -20,8 +20,8 @@ import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
  */
 public class TestableEMFModelAdapter extends EMFModelAdapter {
 
-    public TestableEMFModelAdapter(EPackage root, ResourceSet ResourceSet, Set<URI> referenceScope) {
-        super(root, ResourceSet, referenceScope);
+    public TestableEMFModelAdapter(ResourceSet resourceSet, Resource transientResource, Set<URI> metaModelURIs, Set<URI> additionalQueryScope) {
+        super(resourceSet, transientResource, metaModelURIs, additionalQueryScope);
     }
 
     public Object createElement(String string) throws ModelAdapterException {

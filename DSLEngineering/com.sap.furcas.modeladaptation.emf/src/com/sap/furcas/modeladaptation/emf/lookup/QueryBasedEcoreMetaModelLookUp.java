@@ -2,7 +2,6 @@ package com.sap.furcas.modeladaptation.emf.lookup;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -14,7 +13,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query.index.IndexFactory;
@@ -23,10 +21,10 @@ import org.eclipse.emf.query2.QueryProcessor;
 import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.modeladaptation.emf.adaptation.MessageUtil;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
@@ -43,36 +41,25 @@ import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider
 public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup {
 
     private final ResourceSet resourceSet;
-    private final Set<URI> referenceScope;
+    private final Set<URI> metaModelURIs;
     
     private final QueryProcessor queryProcessor;
+    private final OppositeEndFinder oppositeEndFinder;
     private final TCSSpecificOCLEvaluator oclEvaluator;
     private final Map<List<String>, EClassifier> typeCache = new WeakHashMap<List<String>, EClassifier>();
 
-    public QueryBasedEcoreMetaModelLookUp(ResourceSet resourceSet, Set<URI> referenceScope) {
-    	super(DefaultOppositeEndFinder.getInstance()); // FIXME inject OppositeEndFinder
+    public QueryBasedEcoreMetaModelLookUp(ResourceSet resourceSet, Set<URI> metaModelURIs) {
         this.resourceSet = resourceSet;
-        this.referenceScope = referenceScope;
+        this.metaModelURIs = metaModelURIs;
         
         queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
         
-        QueryContextProvider queryContext = EcoreHelper.createProjectDependencyQueryContextProvider(resourceSet, referenceScope);
-        OppositeEndFinder oppositeEndFinder = new Query2OppositeEndFinder(queryContext);
+        // TODO: we just need to look at the metamodels. No need to look elsewhere.
+        QueryContextProvider queryContext = EcoreHelper.createProjectDependencyQueryContextProvider(resourceSet, metaModelURIs);
+        oppositeEndFinder = new Query2OppositeEndFinder(queryContext);
         oclEvaluator = new TCSSpecificOCLEvaluator(oppositeEndFinder);
     }
     
-    public QueryBasedEcoreMetaModelLookUp(ResourceSet resourceSet) {
-        this(resourceSet, getResourceSetAsScope(resourceSet));
-    }
-    
-    private static Set<URI> getResourceSetAsScope(ResourceSet resourceSet) {
-        Set<URI> referenceScope = new HashSet<URI>();
-        for (Resource resource : resourceSet.getResources()) {
-            referenceScope.add(resource.getURI());
-        }
-        return referenceScope;
-    }
-
     @Override
     protected EClassifier findClassifiersByQualifiedName(List<String> qualifiedNameOfType) throws MetaModelLookupException {
         if (qualifiedNameOfType == null || qualifiedNameOfType.size() == 0) {
@@ -90,14 +77,14 @@ public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup
             }
     
             if (classifiers == null || classifiers.size() == 0) {
-                result = null;
+                return null;
             } else if (classifiers.size() == 1) {
                 result = classifiers.get(0);
                 typeCache.put(qualifiedNameOfType, result);
             } else {
-                throw new MetaModelLookupException("Ambiguous classifier name: " + qualifiedNameOfType +
-                		". Either try to use full qualified names, or do not reference several metamodels with" +
-                		"the same metaclasses.");
+                throw new MetaModelLookupException("Ambiguous classifier name " + MessageUtil.asModelName(qualifiedNameOfType)
+                        + ". There are more than one class of that name within the metamodels " + MessageUtil.asMetaModelNames(metaModelURIs)
+                        + ". Please use sufficiently qualified names.");
             }
         }
         return result;
@@ -166,7 +153,7 @@ public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup
     
     private ResultSet executeQuery(String query) {
         try {
-            QueryContext scopeProvider = EcoreHelper.getQueryContext(resourceSet, referenceScope);
+            QueryContext scopeProvider = EcoreHelper.getQueryContext(resourceSet, metaModelURIs);
             ResultSet resultSet = queryProcessor.execute(query, scopeProvider);
             return resultSet;
         } catch (RuntimeException rte) {
@@ -201,6 +188,11 @@ public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup
         } catch (ParserException e) {
             throw new MetaModelLookupException("Unable to determine return type of expression " + oclQuery + ": " + e.getMessage(), e);
         }
+    }
+
+    @Override
+    protected OppositeEndFinder getOppositeEndFinder() {
+        return oppositeEndFinder;
     }
 
 }

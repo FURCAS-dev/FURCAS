@@ -1,7 +1,13 @@
 package com.sap.furcas.ide.editor;
 
+import java.util.Collections;
+import java.util.HashSet;
+
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IStatusLineManager;
@@ -20,6 +26,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
 import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
+import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 
 public class AbstractGrammarBasedContentOutlinePage extends ContentOutlinePage {
@@ -112,12 +119,12 @@ public class AbstractGrammarBasedContentOutlinePage extends ContentOutlinePage {
 		// createControl has been called.
 		if (contentOutlineViewer != null) {
 		    	if(contentOutlineViewer.getLabelProvider() == null || contentOutlineViewer.getLabelProvider() instanceof LabelProvider) {
-		    	EPackage metamodelPackage = abstractGrammarBasedEditor.getParserFactory().getMetamodelPackage(
-				abstractGrammarBasedEditor.getEditingDomain().getResourceSet());
-			IModelElementInvestigator adapter = 
-				new EMFModelAdapter(
-					metamodelPackage,
-					abstractGrammarBasedEditor.getEditingDomain().getResourceSet(), null);
+		    	    ResourceSet resourceSet = abstractGrammarBasedEditor.getEditingDomain().getResourceSet();
+		    	EPackage metamodelPackage = abstractGrammarBasedEditor.getParserFactory().getMetamodelPackage(resourceSet);
+		        
+		    	Resource transientResource = EcoreHelper.createTransientParsingResource(resourceSet, metamodelPackage);
+			IModelElementInvestigator adapter = new EMFModelAdapter(resourceSet, transientResource,
+			        Collections.singleton(abstractGrammarBasedEditor.getParserFactory().getMetamodelUri(resourceSet)), new HashSet<URI>());
 			contentOutlineViewer.setLabelProvider(new TextBlocksLabelProvider(adapter));
 		    	}
 			updateTreeView();

@@ -43,6 +43,9 @@ public class ResourceTestHelper {
             e.printStackTrace();
             Assert.fail("Unable to create transient resource");
         }
-        return resourceSet.createResource(URI.createFileURI(tempFile.getAbsolutePath())); 
+        Resource resource = resourceSet.createResource(URI.createFileURI(tempFile.getAbsolutePath()));
+        // This is a documented hack to consider an empty resource being loaded. See {@link Resource#isLoaded()}
+        resource.getContents().clear();
+        return resource;
     }
 }
