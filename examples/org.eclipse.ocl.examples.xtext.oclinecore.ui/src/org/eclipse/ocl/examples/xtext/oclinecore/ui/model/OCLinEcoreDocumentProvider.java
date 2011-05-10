@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocumentProvider.java,v 1.11 2011/04/13 17:06:06 ewillink Exp $
+ * $Id: OCLinEcoreDocumentProvider.java,v 1.12 2011/05/06 10:41:16 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 
@@ -96,18 +96,15 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 		if ((element instanceof IFileEditorInput) && (document instanceof OCLinEcoreDocument) && !PERSIST_AS_OCLINECORE.equals(saveAs)) {
 			StringWriter xmlWriter = new StringWriter();
 			try {
-//				URI uri = EditUIUtil.getURI((IFileEditorInput)element);
+				URI uri = EditUIUtil.getURI((IFileEditorInput)element);
 				if (PERSIST_AS_ECORE.equals(saveAs)) {
-//					ResourceSet resourceSet = getResourceSet();
-					((OCLinEcoreDocument) document).saveAsEcore(xmlWriter);
+					((OCLinEcoreDocument) document).saveAsEcore(xmlWriter, uri);
 				}
 				else if (PERSIST_AS_PIVOT.equals(saveAs)) {
-//					ResourceSet resourceSet = getResourceSet();
 					((OCLinEcoreDocument) document).saveAsPivot(xmlWriter);
 				}
 				else if (PERSIST_AS_UML.equals(saveAs)) {
-//					ResourceSet resourceSet = getResourceSet();
-					((OCLinEcoreDocument) document).saveAsUML(xmlWriter);
+					((OCLinEcoreDocument) document).saveAsUML(xmlWriter, uri);
 				}
 				else {
 					log.warn("Unknown saveAs '" + saveAs + "'");

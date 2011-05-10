@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationManager.java,v 1.4 2011/02/21 08:37:47 ewillink Exp $
+ * $Id: IterationManager.java,v 1.5 2011/05/07 16:41:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
 
@@ -33,6 +33,7 @@ import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.NullValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.osgi.util.NLS;
 
 public class IterationManager<ACC extends Value>
 {
@@ -212,8 +213,9 @@ public class IterationManager<ACC extends Value>
 		return body.eContainer().toString();
 	}
 
-	public NullValue throwInvalidEvaluation(String string) throws InvalidEvaluationException {
-		return getEvaluationEnvironment().throwInvalidEvaluation(string);
+	public NullValue throwInvalidEvaluation(String message, Object... bindings) throws InvalidEvaluationException {
+		String boundMessage = NLS.bind(message, bindings);
+		throw new InvalidEvaluationException(getEvaluationEnvironment(), boundMessage, null, null, null);
 	}
 
 	public NullValue throwInvalidEvaluation(InvalidValueException e) {

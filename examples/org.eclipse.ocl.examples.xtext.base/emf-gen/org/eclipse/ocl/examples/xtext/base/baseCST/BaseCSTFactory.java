@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTFactory.java,v 1.8 2011/04/25 09:50:02 ewillink Exp $
+ * $Id: BaseCSTFactory.java,v 1.9 2011/05/05 17:53:02 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -53,15 +53,6 @@ public interface BaseCSTFactory extends EFactory {
 	 * @generated
 	 */
 	AttributeCS createAttributeCS();
-
-	/**
-	 * Returns a new object of class '<em>Attribute CS Ref</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Attribute CS Ref</em>'.
-	 * @generated
-	 */
-	AttributeCSRef createAttributeCSRef();
 
 	/**
 	 * Returns a new object of class '<em>Class CS</em>'.
@@ -172,15 +163,6 @@ public interface BaseCSTFactory extends EFactory {
 	LibraryCS createLibraryCS();
 
 	/**
-	 * Returns a new object of class '<em>Model Element CS Ref</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Model Element CS Ref</em>'.
-	 * @generated
-	 */
-	ModelElementCSRef createModelElementCSRef();
-
-	/**
 	 * Returns a new object of class '<em>Namespace Ref CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -233,15 +215,6 @@ public interface BaseCSTFactory extends EFactory {
 	 * @generated
 	 */
 	ReferenceCS createReferenceCS();
-
-	/**
-	 * Returns a new object of class '<em>Reference CS Ref</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Reference CS Ref</em>'.
-	 * @generated
-	 */
-	ReferenceCSRef createReferenceCSRef();
 
 	/**
 	 * Returns a new object of class '<em>Root Package CS</em>'.

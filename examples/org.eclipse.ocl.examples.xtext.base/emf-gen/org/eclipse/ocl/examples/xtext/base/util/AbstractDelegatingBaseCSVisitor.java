@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractDelegatingBaseCSVisitor.java,v 1.9 2011/04/25 09:50:02 ewillink Exp $
+ * $Id: AbstractDelegatingBaseCSVisitor.java,v 1.10 2011/05/05 17:53:02 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.base.util;
 
@@ -71,10 +71,6 @@ public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisi
 
 	public R visitAttributeCS(org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS object) {
 		return delegate.visitAttributeCS(object);
-	}
-
-	public R visitAttributeCSRef(org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCSRef object) {
-		return delegate.visitAttributeCSRef(object);
 	}
 
 	public R visitClassCS(org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS object) {
@@ -137,10 +133,6 @@ public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisi
 		return delegate.visitModelElementCS(object);
 	}
 
-	public R visitModelElementCSRef(org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef object) {
-		return delegate.visitModelElementCSRef(object);
-	}
-
 	public R visitMonikeredElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS object) {
 		return delegate.visitMonikeredElementCS(object);
 	}
@@ -171,10 +163,6 @@ public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisi
 
 	public R visitReferenceCS(org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS object) {
 		return delegate.visitReferenceCS(object);
-	}
-
-	public R visitReferenceCSRef(org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef object) {
-		return delegate.visitReferenceCSRef(object);
 	}
 
 	public R visitRootPackageCS(org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS object) {

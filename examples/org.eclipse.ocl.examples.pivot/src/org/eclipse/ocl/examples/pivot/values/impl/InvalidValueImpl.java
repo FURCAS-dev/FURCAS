@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: InvalidValueImpl.java,v 1.5 2011/02/21 08:37:52 ewillink Exp $
+ * $Id: InvalidValueImpl.java,v 1.6 2011/05/07 16:41:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.InvalidValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -30,7 +31,8 @@ public class InvalidValueImpl extends AbstractUndefinedCollectionValue implement
 	}
 
 	public Value asValidValue() throws InvalidValueException {
-		throw new InvalidValueException("Valid Value Required", this);
+		valueFactory.throwInvalidValueException(EvaluatorMessages.TypedValueRequired, "valid");
+		return null;
 	}
 
 	@Override
@@ -54,6 +56,6 @@ public class InvalidValueImpl extends AbstractUndefinedCollectionValue implement
 
 	@Override
 	public String toString() {
-		return "invalid";
+		return Value.INVALID_NAME;
 	}
 }

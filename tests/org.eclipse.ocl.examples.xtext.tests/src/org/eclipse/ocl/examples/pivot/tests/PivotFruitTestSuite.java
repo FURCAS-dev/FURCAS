@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotFruitTestSuite.java,v 1.1 2011/04/25 19:40:00 ewillink Exp $
+ * $Id: PivotFruitTestSuite.java,v 1.2 2011/05/06 09:05:14 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -54,6 +54,7 @@ public abstract class PivotFruitTestSuite extends PivotTestSuite
 	protected EOperation fruit_newFruit;
 	protected EOperation fruit_setColor;
 	protected EAttribute fruit_color;
+	protected EAttribute fruit_name;
 //    protected EReference fruit_friends;
 	
 	protected EClass apple;
@@ -70,6 +71,7 @@ public abstract class PivotFruitTestSuite extends PivotTestSuite
     protected EReference tree_fruits;
 //	protected Property tree_apples;
 //    protected Property tree_height;
+	protected EAttribute tree_name;
 	
 	protected EEnum color;
 	protected EEnumLiteral color_black;
@@ -134,6 +136,7 @@ public abstract class PivotFruitTestSuite extends PivotTestSuite
 		fruit_newFruit = getEOperation(fruit, "newFruit", null, null);
 		fruit_setColor = getEOperation(fruit, "setColor", null, null);
         fruit_color = getEAttribute(fruit, "color", null);
+        fruit_name = getEAttribute(fruit, "name", null);
 //        fruit_friends = getEReference(fruit, "friends", null);
 		
 		apple = (EClass) getEClassifier(fruitEPackage, "Apple");
@@ -150,6 +153,7 @@ public abstract class PivotFruitTestSuite extends PivotTestSuite
 		tree_fruits = getEReference(tree, "fruits", null);
 //		tree_apples = getOwnedAttribute(tree, "apples", null);
 //		tree_height = getOwnedAttribute(tree, "height", null);
+        tree_name = getEAttribute(tree, "name", null);
        
 		color = (EEnum) getEClassifier(fruitEPackage, "Color");
 		color_black = getELiteral(color, "black");
