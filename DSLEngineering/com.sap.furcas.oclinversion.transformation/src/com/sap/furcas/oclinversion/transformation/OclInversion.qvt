@@ -1,0 +1,96 @@
+transformation OclInversion (sourceOcl : oclequation, stdLib : ecore, targetOcl : oclequation) {
+
+    /**
+    * < Expr >:=< Exp1 > .concat(<? - Exp >) <==> 
+    * < Expr > .substring(1, < Exp1 > .size()) :=<? - Exp >
+    */
+     top relation Concat2Rule {
+        checkonly domain stdLib  string_class : EClass {};
+
+        checkonly domain sourceOcl source: oclequation::OclEquation {
+            left = leftSource : ecore::OCLExpression {},
+            right = rightSource : ecore::OperationCallExp {
+                referredOperation = getOp(string_class, 'concat'),
+                source = rightSource_opCallSrc:ecore::OCLExpression{},
+                argument = rightTarget: oclinversion::QMarkLiteralExp {}
+            }
+        };
+        enforce domain targetOcl target: oclequation::OclEquation {
+            left = leftTarget: ecore::OperationCallExp {
+                source = leftSource, 
+                referredOperation = getOp(string_class, 'substring'),
+                argument = from : ecore::IntegerLiteralExp {
+                    integerSymbol = 1 
+                },
+                argument = to : ecore::OperationCallExp {
+                    referredOperation = getOp(string_class, 'size'),
+                    source = rightSource_opCallSrc
+                }
+            },
+            right = rightTarget: oclinversion::QMarkLiteralExp {}
+        };
+         when {
+            StringClass(string_class);
+        }
+    }
+    
+    top relation StringClass {
+        checkonly domain stdLib  string_class : EClass {
+                name = 'String_Class'
+        };
+    }
+    top relation IntegerClass {
+        checkonly domain stdLib  integer_class : EClass {
+                name = 'Integer_Class'
+        };
+    }
+    /**
+    * < Expr >:=<? - Exp > .concat(< Exp1 >) <==> 
+    * < Expr > .substring(< Expr > .size() - < Exp1 > .size(), < Expr > .size()) := <? - Exp >
+    */
+    top relation Concat1Rule {
+        /*checkonly domain stdLib stdlibPackage : ecore::EPackage {
+            name = 'oclstdlib', */
+        checkonly domain stdLib  string_class : EClass {};
+        checkonly domain stdLib  integer_class : EClass {};
+        
+        checkonly domain sourceOcl source: oclequation::OclEquation {
+            left = leftSource : ecore::OCLExpression {},
+            right = rightSource : ecore::OperationCallExp {
+                referredOperation = getOp(string_class, 'concat'),
+                source = rightTarget: oclinversion::QMarkLiteralExp {},
+                argument = rightSource_opCallArg:ecore::OCLExpression{}
+            }
+        };
+        enforce domain targetOcl target: oclequation::OclEquation {
+            left = leftTarget: ecore::OperationCallExp {
+                source = leftSource, 
+                referredOperation = getOp(string_class, 'substring'),
+                argument = from : ecore::OperationCallExp {
+                    referredOperation = getOp(integer_class, '-'),
+                    source = fromMinus1 : ecore::OperationCallExp {
+                        referredOperation = getOp(string_class, 'size'),
+                        source = leftSource
+                    },
+                    argument = fromMinus2 : ecore::OperationCallExp {
+                        referredOperation = getOp(string_class, 'size'),
+                        source = rightSource_opCallArg
+                    }
+                },
+                argument = to : ecore::OperationCallExp {
+                    referredOperation = getOp(string_class, 'size'),
+                    source = rightSource_opCallArg
+                }
+            },
+            right = rightTarget: oclinversion::QMarkLiteralExp {}
+        };
+        when {
+            StringClass(string_class);
+            IntegerClass(integer_class);
+        }
+    }
+    
+    query getOp(c : EClass, opName : EString) :ecore::EObject {
+        c.eOperations->any(o | o.name = opName).oclAsType(EObject)
+    } 
+}

@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.modeladaptation.emf.adaptation.MessageUtil;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
@@ -44,21 +43,15 @@ import com.sap.furcas.runtime.common.util.EcoreHelper;
  */
 public abstract class AbstractEcoreMetaModelLookup implements IMetaModelLookup<EObject> {
 
-	private final OppositeEndFinder oppositeEndFinder;
-        private final Map<List<String>, ResolvedNameAndReferenceBean<EObject>> metaLookupCache = new WeakHashMap<List<String>, ResolvedNameAndReferenceBean<EObject>>();
+    private final Map<List<String>, ResolvedNameAndReferenceBean<EObject>> metaLookupCache = new WeakHashMap<List<String>, ResolvedNameAndReferenceBean<EObject>>();
 
-	/**
-	 * Constructor requiring {@link OppositeEndFinder} that is used to lookup opposite ends
-	 * that can also be referenced from within {@link Template Templates}.
-	 * 
-	 * @param oppositeEndFinder The {@link OppositeEndFinder} used to find opposite ends within
-	 * the target metamodel.
-	 */
-    public AbstractEcoreMetaModelLookup(OppositeEndFinder oppositeEndFinder) {
-		this.oppositeEndFinder = oppositeEndFinder;
-	}
-
-	/**
+    /**
+     * Returns an {@link OppositeEndFinder} that can be used to used to find
+     * opposite ends within the target metamodel.
+     */
+    protected abstract OppositeEndFinder getOppositeEndFinder();
+        
+    /**
      * Look up the type by its name
      */
     protected final EClassifier findClassifier(ResolvedNameAndReferenceBean<EObject> reference) throws MetaModelLookupException {
@@ -100,28 +93,6 @@ public abstract class AbstractEcoreMetaModelLookup implements IMetaModelLookup<E
             if (feat != null) {
                 if(feat.getEGenericType() != null) {
                     resultType = getEType(reference.getReference(), feat);
-//                    //this is the default
-//                    resultType = feat.getEType();
-//                    //it is a generic type so find the corresponding type of the parameter
-//                    EGenericType targetGT = null;
-//                    for (EGenericType egt : ((EClass)reference.getReference()).getEGenericSuperTypes()) {
-//                        if(egt.getEClassifier().equals(feat.getEContainingClass())) {
-//                            targetGT = egt;
-//                        }
-//                    }
-//                    if(targetGT != null) { 
-//                        EList<ETypeParameter> eTypeParameters = targetGT.getEClassifier().getETypeParameters();
-//                        EGenericType referringGenericType = feat.getEGenericType();
-//                        while(resultType == null && referringGenericType != null) {
-//                            for (int index = 0; index < eTypeParameters.size(); index++) {
-//                                ETypeParameter typeArg = eTypeParameters.get(index);
-//                                if(typeArg.equals(referringGenericType.getETypeParameter())) {
-//                                    resultType = targetGT.getETypeArguments().get(index).getEClassifier();
-//                                }
-//                            }
-//                        }
-//                    }
-                        
                 } else {
                     EClassifier eType = feat.getEType();
                     if (eType != null && eType.eIsProxy()) {
@@ -173,10 +144,9 @@ public abstract class AbstractEcoreMetaModelLookup implements IMetaModelLookup<E
             return targetGenericType.getERawType();
     }
 
-    private EStructuralFeature getHiddenOpposite(
-			ResolvedNameAndReferenceBean<EObject> reference, String featureName) throws MetaModelLookupException {
+    private EStructuralFeature getHiddenOpposite(ResolvedNameAndReferenceBean<EObject> reference, String featureName) throws MetaModelLookupException {
     	List<EReference> ends = new ArrayList<EReference>();
-    	oppositeEndFinder.findOppositeEnds((EClassifier) reference.getReference(), featureName, ends);
+    	getOppositeEndFinder().findOppositeEnds((EClassifier) reference.getReference(), featureName, ends);
     	if(ends.size() > 1) {
     		throw new MetaModelLookupException("More than one oppositeEnd found for: " + reference.getNames() + ":" + featureName);
     	} else if(ends.size() == 0) {
@@ -276,7 +246,7 @@ public abstract class AbstractEcoreMetaModelLookup implements IMetaModelLookup<E
 
     @Override
     public ResolvedNameAndReferenceBean<EObject> resolveReference(List<String> names) throws MetaModelLookupException {
-        ResolvedNameAndReferenceBean<EObject> result = metaLookupCache .get(names);
+        ResolvedNameAndReferenceBean<EObject> result = metaLookupCache.get(names);
         if(result == null) {
             result = createBean(findClassifiersByQualifiedName(names));
             metaLookupCache.put(names, result);

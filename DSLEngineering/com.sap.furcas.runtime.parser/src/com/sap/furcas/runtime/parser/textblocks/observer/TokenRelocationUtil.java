@@ -412,14 +412,7 @@ public class TokenRelocationUtil {
         int firstSubNodeAbsoluteOffset = getAbsoluteOffset(firstSubNode);
         int lastSubNodeAbsoluteOffset = getAbsoluteOffset(lastSubNode);
         int newlength = lastSubNodeAbsoluteOffset + lastSubNode.getLength() - firstSubNodeAbsoluteOffset;
-        textBlock.setLength(newlength);
-
-
-        
-        textBlock.setStartRow(firstSubNode.getStartRow());
-        textBlock.setStartColumn(firstSubNode.getStartColumn());
-        textBlock.setEndRow(lastSubNode.getEndRow());
-        textBlock.setEndColumn(lastSubNode.getEndColumn());        
+        textBlock.setLength(newlength);    
     }
 
     /**
@@ -482,12 +475,7 @@ public class TokenRelocationUtil {
         if(newlength < 0) {
         	throw new IllegalArgumentException("Tried to set negative length "+ newlength +" for TextBlock.");
         }
-        textBlock.setLength(newlength);
-
-        textBlock.setStartRow(firstSubNode.getStartRow());
-        textBlock.setStartColumn(firstSubNode.getStartColumn());
-        textBlock.setEndRow(lastSubNode.getEndRow());
-        textBlock.setEndColumn(lastSubNode.getEndColumn());        
+        textBlock.setLength(newlength);       
     }
 
 	public static void makeOffsetAbsolute(DocumentNode node) {

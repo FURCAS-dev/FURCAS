@@ -226,33 +226,35 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 					if (ref.getLookIn() != null) {
 						// a lookIn means that the result was added to the
 						// parent textblock.
-						boolean propertyIsAssocEnd = false;
-							EStructuralFeature feature = modelElement.eClass().getEStructuralFeature(ref.getPropertyName());
-							for (EObject actualValue : refToken
-									.getParent()
-									.getReferencedElements()) {
-								try {
-									if (feature.getEType().isInstance(actualValue)) {
-										batchParser.getInjector().unset(
-												modelElement,
-												ref.getPropertyName(),
-												actualValue);
-									}
-								} catch (Exception ex) {
-									// TODO find out which corresponding
-									// element was the correct one
-									// instead of trying this here
-								}
-							}
-						if (propertyIsAssocEnd) {
+					    //TODO this should now be handled by the token updater
+//						boolean propertyIsAssocEnd = false;
+//							EStructuralFeature feature = modelElement.eClass().getEStructuralFeature(ref.getPropertyName());
+//							for (EObject actualValue : refToken
+//									.getParent()
+//									.getReferencedElements()) {
+//								try {
+//									if (feature.getEType().isInstance(actualValue)) {
+//										batchParser.getInjector().unset(
+//												modelElement,
+//												ref.getPropertyName(),
+//												actualValue);
+//									}
+//								} catch (Exception ex) {
+//									// TODO find out which corresponding
+//									// element was the correct one
+//									// instead of trying this here
+//								}
+//							}
+//						if (propertyIsAssocEnd) {
 						//TODO check for hiddenOpposite?
 						// try to find the association end and check there
 						// if the correspondingmodelelement
 						// is the correct one.
-						}
+//						}
 					} else {
-						if (refToken.getReferencedElements().size() > 0) {
-							for (EObject value : refToken
+						if (refToken instanceof LexedToken && 
+						        ((LexedToken) refToken).getReferencedElements().size() > 0) {
+							for (EObject value : ((LexedToken) refToken)
 									.getReferencedElements()) {
 							    try {
 								batchParser.getInjector().unset(modelElement,

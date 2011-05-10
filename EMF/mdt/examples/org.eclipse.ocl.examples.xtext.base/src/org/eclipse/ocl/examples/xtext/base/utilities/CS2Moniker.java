@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2Moniker.java,v 1.6 2011/03/01 08:47:45 ewillink Exp $
+ * $Id: CS2Moniker.java,v 1.7 2011/05/02 09:31:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -40,6 +40,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateableElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
@@ -170,7 +171,10 @@ public class CS2Moniker
 		}
 		for (ParameterCS csParameter : csParameters) {
 			append(prefix);
-			appendElementCS(csParameter.getOwnedType());
+			TypedRefCS ownedType = csParameter.getOwnedType();
+			if (ownedType != null) {
+				appendElementCS(ownedType);
+			}
 			prefix = PARAMETER_SEPARATOR;
 		}
 		append(PARAMETER_SUFFIX);

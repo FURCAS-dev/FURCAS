@@ -48,7 +48,8 @@ public class GrammarGenerationTest {
 
         TCSSyntaxContainerBean syntaxBean = SyntaxParser.parse(sourceConfiguration, tcs, new FailOnErrorErrorHandler());
         ModelBasedTCSGrammarGenerator modelBasedGenerator = new ModelBasedTCSGrammarGenerator(out,
-                new QueryBasedEcoreMetaModelLookUp(resourceSet), "generated", syntaxBean);
+                new QueryBasedEcoreMetaModelLookUp(resourceSet, FileResourceHelper.getResourceSetAsScope(resourceSet)),
+                "generated", syntaxBean);
 
         modelBasedGenerator.generateGrammar(resourceSet, referenceScope, null);
         out.flush();
@@ -80,7 +81,8 @@ public class GrammarGenerationTest {
 
         TCSSyntaxContainerBean syntaxBean = SyntaxParser.parse(sourceConfiguration, tcs, new FailOnErrorErrorHandler());
         ModelBasedTCSGrammarGenerator modelBasedGenerator = new ModelBasedTCSGrammarGenerator(out,
-                new QueryBasedEcoreMetaModelLookUp(resourceSet), "generated", syntaxBean);
+                new QueryBasedEcoreMetaModelLookUp(resourceSet, FileResourceHelper.getResourceSetAsScope(resourceSet)),
+                "generated", syntaxBean);
 
         modelBasedGenerator.generateGrammar(resourceSet, referenceScope, null);
         out.flush();

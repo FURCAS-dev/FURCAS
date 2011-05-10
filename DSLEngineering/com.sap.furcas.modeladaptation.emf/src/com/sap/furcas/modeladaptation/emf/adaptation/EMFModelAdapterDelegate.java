@@ -10,7 +10,6 @@
  ******************************************************************************/
 package com.sap.furcas.modeladaptation.emf.adaptation;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -62,8 +61,8 @@ public class EMFModelAdapterDelegate {
     private final Collection<StructureTypeMockObject> structureTypeMocks = new ArrayList<StructureTypeMockObject>();
     private final Map<Object, Object> mock2ModelElementMap = new HashMap<Object, Object>();
 
-    private final EPackage rootPackage;
     private final Resource transientResource;
+    private final Set<URI> metaModelURIs;
     
     private final EcoreModelElementFinder modelLookup;
     private final QueryBasedEcoreMetaModelLookUp metamodelLookup;
@@ -72,58 +71,39 @@ public class EMFModelAdapterDelegate {
     private final Query2OppositeEndFinder oppositeEndFinder;
 
     /**
-     * @param rootPackage metamodel root package used for metamodel lookups
-     * @param resourceSet
-     *            the {@link EcoreHelper#createTransientParsingResource(ResourceSet, EPackage) transient resource} will be created in this
-     *            resource set. New elements, in turn, end up in that resource and therefore in this
-     *            <code>resourceSet</code>.
-     * @param referenceScope
+     * @see {@link EMFModelAdapter} for any API documentation.
      */
-    public EMFModelAdapterDelegate(EPackage rootPackage, ResourceSet resourceSet, Set<URI> referenceScope) {
-        this.rootPackage = rootPackage;
-
-        // The metamodel lookup needs to know about our metamodel.  To be able to search for metaclasses within
-        // our metamodel, it furthermore needs to know their metamodel. In our case this is ecore.
-        // FIXME: it does not make much sense to pass the explicitly given referenceScope to the metamodeLookup class
-        // This is hack is required atm, because we have testcases that use several distinct
-        // ecore files without a unifying super-package.
-        Set<URI> localReferenceScope = referenceScope != null ? referenceScope : new HashSet<URI>();
-        Set<URI> referenceScopeIncludingMetamodels = new HashSet<URI>(localReferenceScope);
-        referenceScopeIncludingMetamodels.add(URI.createURI(rootPackage.getNsURI()));
-        referenceScopeIncludingMetamodels.add(URI.createURI(rootPackage.eClass().getEPackage().getNsURI()));
-        metamodelLookup = new QueryBasedEcoreMetaModelLookUp(resourceSet, referenceScopeIncludingMetamodels);
+    public EMFModelAdapterDelegate(ResourceSet resourceSet, Resource transientResource, Set<URI> metaModelURIs, Set<URI> additionalQueryScope) {
+        if (transientResource.getResourceSet() != resourceSet) {
+            throw new IllegalArgumentException("Transient resource must be, as all other dirty resources, contained within the given resourceSet");
+        }
+        this.transientResource = transientResource;
+        this.metaModelURIs = metaModelURIs;
+        this.metamodelLookup = new QueryBasedEcoreMetaModelLookUp(resourceSet, metaModelURIs);
+        
+        Set<URI> explicitQueryScope = new HashSet<URI>();
+        explicitQueryScope.add(transientResource.getURI());
+        explicitQueryScope.addAll(additionalQueryScope);
         
         // The model lookup needs to know about the element created by this delegate
-        transientResource = EcoreHelper.createTransientParsingResource(resourceSet, rootPackage);
-        Set<URI> referenceScopeIncludingCreatedElements = new HashSet<URI>(localReferenceScope);
-        referenceScopeIncludingCreatedElements.add(transientResource.getURI());
-        modelLookup = new EcoreModelElementFinder(resourceSet, referenceScopeIncludingCreatedElements, metamodelLookup);
+        // This is only a partial scope as it does neither include or resources in the resourceSet,
+        // nor all resources within the workspace
+        modelLookup = new EcoreModelElementFinder(resourceSet, explicitQueryScope, metamodelLookup);
         
-        QueryContextProvider queryContext = EcoreHelper.createProjectDependencyQueryContextProvider(resourceSet, localReferenceScope);
+        // Build a scope encompassing all resources in the resource set,
+        // the additional queryScope, and all other resources visible via 
+        // Eclipse bundle dependencies. This scope is used for OCL queries.
+        QueryContextProvider queryContext = EcoreHelper.createProjectDependencyQueryContextProvider(resourceSet, explicitQueryScope);
         this.oppositeEndFinder = new Query2OppositeEndFinder(queryContext);
         this.oclEvaluator = new TCSSpecificOCLEvaluator(oppositeEndFinder);
     }
-
+    
     private void assignToTransientResource(EObject eObject) {
         transientResource.getContents().add(eObject);
     }
     
-    // FIXME need to find a place when and where to call this. Until then we might
-    // suffer from memory leaks. 
-    private void clearTransientParsingResource() {
-        try {
-            transientResource.delete(/*options*/ null);
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to clear the transient parsing resource", e);
-        }
-    }
-
     public Object createElement(List<String> qualifiedTypeName) throws ModelAdapterException {
-        EModelElement modelElement = EcoreHelper.findClassifierByName(qualifiedTypeName, rootPackage);
-        if (modelElement == null) {
-            throw new ModelAdapterException("No modelElement found for qualifiedName "
-                    + MessageUtil.asModelName(qualifiedTypeName) + " in package " + rootPackage);
-        }
+        EModelElement modelElement = findClassifierByName(qualifiedTypeName);
         if (modelElement instanceof EClass) {
             EClass metaClass = (EClass) modelElement;
             if (metaClass.isAbstract()) {
@@ -145,7 +125,7 @@ public class EMFModelAdapterDelegate {
     }
     
     public EEnumLiteral createEnumLiteral(List<String> qualifiedEnumTypeName, String enumLiteralName) throws ModelAdapterException {
-        EModelElement modelElement = EcoreHelper.findClassifierByName(qualifiedEnumTypeName, rootPackage);
+        EModelElement modelElement = findClassifierByName(qualifiedEnumTypeName);
         if (modelElement instanceof EEnum) {
             EEnumLiteral enumLiteral = ((EEnum) modelElement).getEEnumLiteral(enumLiteralName);;
             if (enumLiteral == null) {
@@ -153,9 +133,24 @@ public class EMFModelAdapterDelegate {
             }
             return enumLiteral;
         } else {
-            throw new ModelAdapterException(MessageUtil.asModelName(qualifiedEnumTypeName) + " is not an EnumerationType in Metamodel");
+            throw new ModelAdapterException("Unsupported model element type. Cannot instantiate EModelElement "
+                    + MessageUtil.asModelName(qualifiedEnumTypeName));
         }
     }
+       
+    private EClassifier findClassifierByName(List<String> qualifiedTypeName) throws ModelAdapterException {
+        try {
+            ResolvedNameAndReferenceBean<EObject> result = metamodelLookup.resolveReference(qualifiedTypeName);
+            if (result != null) {
+                return (EClassifier) result.getReference();
+            } else {
+                throw new ModelAdapterException("Could not find an EClassifier named " + MessageUtil.asModelName(qualifiedTypeName)
+                        + " within the metamodels  " + MessageUtil.asMetaModelNames(metaModelURIs) + " .");
+            }
+        } catch (MetaModelLookupException e) {
+           throw new ModelAdapterException("Failed to find EClassifier named " + MessageUtil.asModelName(qualifiedTypeName), e);
+        }
+    }    
 
     public Object get(EObject modelElement, String propertyName) throws ModelAdapterException {
         try {

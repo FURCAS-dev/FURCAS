@@ -26,13 +26,13 @@ import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
+import com.sap.furcas.modeladaptation.emf.lookup.FileResourceHelper;
 import com.sap.furcas.modeladaptation.emf.lookup.QueryBasedEcoreMetaModelLookUp;
 import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
@@ -405,10 +405,10 @@ public class IncrementalParser extends IncrementalRecognizer {
             return commonAncestor;
         } else {
             if (commonAncestor.getType() != null
-                    && commonAncestor.getType().getParseRule() != null &&
+                    && commonAncestor.getType() != null &&
                     // TODO check how a call to an operator template rule may be
                     // done!
-                    !(commonAncestor.getType().getParseRule() instanceof OperatorTemplate)) {
+                    !(commonAncestor.getType() instanceof OperatorTemplate)) {
                 if (commonAncestor.getParent().getTokens().size() == 0) {
                     // parent has no own tokens so we need to start at this one
                     return findStartableBlock(commonAncestor.getParent());
@@ -721,7 +721,7 @@ public class IncrementalParser extends IncrementalRecognizer {
         TbParsingUtil.constructContext(root.getParent(), batchParser);
 
         String ruleName = null;
-        if (root.getType() == null || root.getType().getParseRule() == null) {
+        if (root.getType() == null || root.getType() == null) {
             // ensure that the given block was the root block, otherwise
             // parsing won't work
             if (root.getParent() != null) {
@@ -742,7 +742,7 @@ public class IncrementalParser extends IncrementalRecognizer {
     }
 
     private String getStartRule(TextBlock root) throws SyntaxElementException {
-        ClassTemplate template = (ClassTemplate) root.getType().getParseRule();
+        ClassTemplate template = (ClassTemplate) root.getType();
         return getNamingHelper().getConcreteRuleNameForTemplate(template,
                 getSyntaxLookup());
     }
@@ -767,8 +767,9 @@ public class IncrementalParser extends IncrementalRecognizer {
     private MetaModelElementResolutionHelper<EObject> getResolutionHelper() {
         if (resolutionHelper == null) {
             resolutionHelper = new MetaModelElementResolutionHelper<EObject>(
-                    new QueryBasedEcoreMetaModelLookUp(getEditingDomain()
-                            .getResourceSet()));
+                    new QueryBasedEcoreMetaModelLookUp(getEditingDomain().getResourceSet(),
+                            // FIXME: That is to much. Only metamodels are sufficient.
+                            FileResourceHelper.getResourceSetAsScope(getEditingDomain().getResourceSet())));
         }
         return resolutionHelper;
     }

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2010 IBM Corporation and others.
+ * Copyright (c) 2005, 2010, 2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,10 +12,11 @@
  *   C.Damus - 291365
  *   E.D.Willink - 322159
  *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Bug 333032
+ *   Axel Uhl (SAP AG) - Bug 342644
  *
  * </copyright>
  *
- * $Id: EcoreEvaluationEnvironment.java,v 1.14 2011/01/25 10:43:34 auhl Exp $
+ * $Id: EcoreEvaluationEnvironment.java,v 1.17 2011/05/01 20:31:24 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -244,6 +245,12 @@ public class EcoreEvaluationEnvironment
 			EObject etarget = (EObject) target;
 
 			if (etarget.eClass().getEAllStructuralFeatures().contains(property)) {
+				if (property.getEType() instanceof VoidType) {
+					// then the only instance is null; using eGet would
+					// cause a ClassCastException because VoidTypeImpl
+					// is neither an EClass nor an EDataType.
+					return null;
+				}
 				return coerceValue(property, etarget.eGet(property), true);
 			}
 		}
@@ -399,7 +406,18 @@ public class EcoreEvaluationEnvironment
 				tuple.eSet(property, CollectionUtil.createNewCollection(
 					collType.getKind(), (Collection<?>) value));
 			} else {
-				tuple.eSet(property, value);
+				// do numeric coercion if necessary:
+				if (value instanceof Number && property.getEType().getInstanceClass() != null &&
+						!(value instanceof Double) &&
+						Double.class.isAssignableFrom(property.getEType().getInstanceClass())) {
+					value = ((Number) value).doubleValue();
+				}
+				if (value != null || !(property.getEType() instanceof VoidType)) {
+					// don't try to set null on a VoidType property; it's already null; trying to
+					// set it will cause an exception in the EMF setting delegate infrastructure
+					// because VoidType is neither an EClass nor an EDataType.
+					tuple.eSet(property, value);
+				}
 			}
 		}
 
@@ -431,6 +449,8 @@ public class EcoreEvaluationEnvironment
 		// are not related types in java but are in OCL
 		if ((object.getClass() == Integer.class)
 			&& (classifier.getInstanceClass() == Double.class)) {
+			return Boolean.TRUE;
+		} else if (classifier instanceof AnyType) {
 			return Boolean.TRUE;
 		}
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentView.java,v 1.15 2011/04/25 19:39:48 ewillink Exp $
+ * $Id: EnvironmentView.java,v 1.16 2011/05/02 09:31:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -59,7 +59,7 @@ import org.eclipse.xtext.resource.IEObjectDescription;
  */
 public class EnvironmentView
 {
-	private static final Logger logger = Logger.getLogger(TypeManager.class);
+	private static final Logger logger = Logger.getLogger(EnvironmentView.class);
 
 	public static interface Filter
 	{

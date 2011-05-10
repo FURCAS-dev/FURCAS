@@ -11,6 +11,7 @@ import org.eclipse.ui.ISharedImages;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
 import com.sap.furcas.runtime.textblocks.shortprettyprint.ShortPrettyPrinter;
@@ -79,32 +80,34 @@ public class TextBlocksLabelProvider implements ILabelProvider {
 
     private void appendCorrespondingAndReferencedElements(StringBuffer sb,
             DocumentNode tb) {
-        if (!tb.getCorrespondingModelElements().isEmpty()){
+        if (tb instanceof TextBlock && !((TextBlock) tb).getCorrespondingModelElements().isEmpty()){
             sb.append(" Corresponding elements: ");
-        }
-        for (EObject correspsondingME : tb.getCorrespondingModelElements()) {
-            sb.append(correspsondingME.eClass().eGet(
-                            EcorePackage.eINSTANCE.getENamedElement_Name()));
-                        EStructuralFeature eStructuralFeature = correspsondingME
-                                .eClass().getEStructuralFeature("name");
-                        if (eStructuralFeature != null) {
-                            Object value = correspsondingME.eGet(eStructuralFeature);
-                            sb.append(" Name:").append(value);
-                        }
-        }
-        if (!tb.getReferencedElements().isEmpty()) {
-            sb.append(" Referenced elements: ");
-        }
-        for (EObject referencedME : tb.getReferencedElements()) {
-                        sb.append(referencedME.eClass().eGet(
+            for (EObject correspsondingME : ((TextBlock) tb).getCorrespondingModelElements()) {
+                sb.append(correspsondingME.eClass().eGet(
                                 EcorePackage.eINSTANCE.getENamedElement_Name()));
-                        EStructuralFeature eStructuralFeature = referencedME
-                                .eClass().getEStructuralFeature("name");
-                        if (eStructuralFeature != null) {
-                            Object value = referencedME.eGet(eStructuralFeature);
-                            sb.append(" Name:").append(value);
-                        }
+                            EStructuralFeature eStructuralFeature = correspsondingME
+                                    .eClass().getEStructuralFeature("name");
+                            if (eStructuralFeature != null) {
+                                Object value = correspsondingME.eGet(eStructuralFeature);
+                                sb.append(" Name:").append(value);
+                            }
+            }
         }
+        
+        if (tb instanceof LexedToken && ! ((LexedToken) tb).getReferencedElements().isEmpty()) {
+            sb.append(" Referenced elements: ");
+            for (EObject referencedME : ((LexedToken) tb).getReferencedElements()) {
+                sb.append(referencedME.eClass().eGet(
+                        EcorePackage.eINSTANCE.getENamedElement_Name()));
+                EStructuralFeature eStructuralFeature = referencedME
+                        .eClass().getEStructuralFeature("name");
+                if (eStructuralFeature != null) {
+                    Object value = referencedME.eGet(eStructuralFeature);
+                    sb.append(" Name:").append(value);
+                }
+            }
+        }
+        
     }
 
 	private void appendId(StringBuffer sb, EObject correspsondingME) {

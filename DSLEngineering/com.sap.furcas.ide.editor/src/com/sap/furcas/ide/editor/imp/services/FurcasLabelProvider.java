@@ -12,8 +12,8 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.ocl.types.provider.TypesItemProviderAdapterFactory;
 import org.eclipse.swt.graphics.Image;
 
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.provider.TextblockdefinitionItemProviderAdapterFactory;
-import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 
 
 /**
@@ -40,18 +40,20 @@ public class FurcasLabelProvider implements ILabelProvider {
         composite.addAdapterFactory(new TypesItemProviderAdapterFactory());
         composite.addAdapterFactory(new org.eclipse.ocl.ecore.provider.EcoreItemProviderAdapterFactory());
         composite.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
-        composite.addAdapterFactory(new TextblockdefinitionItemProviderAdapterFactory());
         return composite;
     }
     
     private Object unwrap(Object object) {
-        if (object instanceof DocumentNode) {
-            DocumentNode node = (DocumentNode) object;
-            if (!node.getCorrespondingModelElements().isEmpty()) {
-                return node.getCorrespondingModelElements().iterator().next();
+        if (object instanceof TextBlock) {
+            TextBlock block = (TextBlock) object;
+            if (!block.getCorrespondingModelElements().isEmpty()) {
+                return block.getCorrespondingModelElements().iterator().next();
             }
-            if (!node.getReferencedElements().isEmpty()) {
-                return node.getReferencedElements().iterator().next();
+            return object;
+        } else if (object instanceof LexedToken) {
+            LexedToken token = (LexedToken) object;
+            if (!token.getReferencedElements().isEmpty()) {
+                return token.getReferencedElements().iterator().next();
             }
             return object;
         } else if (object instanceof ModelTreeNode) {

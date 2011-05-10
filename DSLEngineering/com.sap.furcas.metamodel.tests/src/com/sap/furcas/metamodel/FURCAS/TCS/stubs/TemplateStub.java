@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EClassifier;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
 
 /**
  *
@@ -19,9 +18,8 @@ public class TemplateStub extends LocatedElementStub implements Template {
 
     public EList<String> names;
     public String disambiguateV3;
-	public String semDisambiguate;    
+    public String semDisambiguate;    
     public EClass metaReference;
-	public TextBlockDefinition textBlockDefinition;
     
     public TemplateStub() {
         
@@ -123,7 +121,7 @@ public class TemplateStub extends LocatedElementStub implements Template {
 //    	return null;
 //    }
     
-    @Override
+        @Override
 	public String getSemDisambiguate() {
 		return semDisambiguate;
 	}
@@ -134,18 +132,8 @@ public class TemplateStub extends LocatedElementStub implements Template {
 	}
 
 	@Override
-	public TextBlockDefinition getTextBlockDefinition() {
-		return textBlockDefinition;
+	public EClass eClass() {
+	    return TCSPackage.eINSTANCE.getTemplate();
 	}
-
-	@Override
-	public void setTextBlockDefinition(TextBlockDefinition value) {
-		textBlockDefinition = value;
-	}
-
-	    @Override
-	    public EClass eClass() {
-	        return TCSPackage.eINSTANCE.getTemplate();
-	    }
 
 }

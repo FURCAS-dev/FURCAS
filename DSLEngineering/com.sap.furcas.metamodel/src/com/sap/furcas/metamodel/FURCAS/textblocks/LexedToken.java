@@ -6,6 +6,9 @@
  */
 package com.sap.furcas.metamodel.FURCAS.textblocks;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -16,6 +19,7 @@ package com.sap.furcas.metamodel.FURCAS.textblocks;
  * The following features are supported:
  * <ul>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken#isOperator <em>Operator</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken#getReferencedElements <em>Referenced Elements</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,5 +53,21 @@ public interface LexedToken extends AbstractToken {
      * @generated
      */
         void setOperator(boolean value);
+
+        /**
+     * Returns the value of the '<em><b>Referenced Elements</b></em>' reference list.
+     * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Referenced Elements</em>' reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Referenced Elements</em>' reference list.
+     * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getLexedToken_ReferencedElements()
+     * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='referencingDocumentNode'"
+     * @generated
+     */
+    EList<EObject> getReferencedElements();
 
 } // LexedToken

@@ -7,10 +7,11 @@ import org.eclipse.emf.query.index.query.descriptors.EObjectDescriptor;
 import org.eclipse.emf.query.index.query.descriptors.EReferenceDescriptor;
 import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
 import org.eclipse.emf.query.index.ui.internal.properties.EObjectDescriptorProperties;
-import org.eclipse.emf.query.index.ui.internal.properties.ResourceTypeIndexProperties;
 import org.eclipse.emf.query.index.ui.internal.properties.IndexTypeURIProperties;
+import org.eclipse.emf.query.index.ui.internal.properties.IndexViewProperty;
 import org.eclipse.emf.query.index.ui.internal.properties.ReferenceDescriptorProperties;
 import org.eclipse.emf.query.index.ui.internal.properties.ResourceIndexProperties;
+import org.eclipse.emf.query.index.ui.internal.properties.ResourceTypeIndexProperties;
 import org.eclipse.emf.query.index.ui.internal.view.tree.nodes.IndexTypeURI;
 import org.eclipse.emf.query.index.ui.internal.view.tree.nodes.PropertyCategory;
 import org.eclipse.emf.query.index.ui.internal.view.tree.nodes.ResourceType;
@@ -45,23 +46,29 @@ public class IndexViewTableContentProvider implements ITreeContentProvider {
 			if (((PropertyCategory) parentElement).getParent() instanceof ResourceDescriptor) {
 				ResourceDescriptor resDesc = (ResourceDescriptor) ((PropertyCategory) parentElement).getParent();
 				ResourceIndexProperties properties = new ResourceIndexProperties(resDesc);
-				return properties.getProperties().entrySet().toArray();
+				return properties.getProperties().toArray();
 			} else if (((PropertyCategory) parentElement).getParent() instanceof EObjectDescriptor) {
 				EObjectDescriptor objDesc = (EObjectDescriptor) ((PropertyCategory) parentElement).getParent();
 				EObjectDescriptorProperties properties = new EObjectDescriptorProperties(objDesc);
-				return properties.getProperties().entrySet().toArray();
+				return properties.getProperties().toArray();
 			} else if (((PropertyCategory) parentElement).getParent() instanceof EReferenceDescriptor) {
 				EReferenceDescriptor refDesc = (EReferenceDescriptor) ((PropertyCategory) parentElement).getParent();
 				ReferenceDescriptorProperties properties = new ReferenceDescriptorProperties(refDesc);
-				return properties.getProperties().entrySet().toArray();
+				return properties.getProperties().toArray();
 			} else if (((PropertyCategory) parentElement).getParent() instanceof ResourceType) {
 				ResourceType resType = (ResourceType) ((PropertyCategory) parentElement).getParent();
 				ResourceTypeIndexProperties properties = new ResourceTypeIndexProperties(resType);
-				return properties.getProperties().entrySet().toArray();
+				return properties.getProperties().toArray();
 			} else if (((PropertyCategory) parentElement).getParent() instanceof IndexTypeURI) {
 				IndexTypeURI indexType = (IndexTypeURI) ((PropertyCategory) parentElement).getParent();
 				IndexTypeURIProperties properties = new IndexTypeURIProperties(indexType);
-				return properties.getProperties().entrySet().toArray();
+				return properties.getProperties().toArray();
+			}else if(((PropertyCategory) parentElement).getParent() instanceof IndexViewProperty){
+				IndexViewProperty property = (IndexViewProperty) ((PropertyCategory) parentElement).getParent();
+				List<IndexViewProperty> properties = new ArrayList<IndexViewProperty>();
+				properties.add(property);
+				return properties.toArray();
+				
 			}
 
 		}

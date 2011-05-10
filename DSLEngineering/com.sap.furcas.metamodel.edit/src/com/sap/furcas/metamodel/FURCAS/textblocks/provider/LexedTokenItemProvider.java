@@ -63,6 +63,7 @@ public class LexedTokenItemProvider
             super.getPropertyDescriptors(object);
 
             addOperatorPropertyDescriptor(object);
+            addReferencedElementsPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -85,6 +86,28 @@ public class LexedTokenItemProvider
                  false,
                  false,
                  ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+        /**
+     * This adds a property descriptor for the Referenced Elements feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addReferencedElementsPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_LexedToken_referencedElements_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_LexedToken_referencedElements_feature", "_UI_LexedToken_type"),
+                 TextblocksPackage.Literals.LEXED_TOKEN__REFERENCED_ELEMENTS,
+                 true,
+                 false,
+                 true,
+                 null,
                  null,
                  null));
     }

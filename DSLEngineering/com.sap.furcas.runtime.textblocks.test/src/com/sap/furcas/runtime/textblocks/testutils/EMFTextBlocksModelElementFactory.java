@@ -34,7 +34,6 @@ public class EMFTextBlocksModelElementFactory implements TextBlocksModelElementF
         LexedToken contentToken = createLexedToken();
         contentToken.setValue(content);
         contentToken.setLength(content.length());
-        contentToken.setEndColumn(content.length());
         contentToken.setType(0);
         contentToken.setVersion(Version.REFERENCE);
         return contentToken;

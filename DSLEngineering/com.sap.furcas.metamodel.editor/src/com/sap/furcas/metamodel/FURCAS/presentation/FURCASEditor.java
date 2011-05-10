@@ -9,7 +9,6 @@ package com.sap.furcas.metamodel.FURCAS.presentation;
 
 import java.io.IOException;
 import java.io.InputStream;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -28,22 +27,56 @@ import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.ResourcesPlugin;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-
+import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.emf.common.command.CommandStackListener;
+import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.ui.MarkerHelper;
+import org.eclipse.emf.common.ui.ViewerPane;
+import org.eclipse.emf.common.ui.editor.ProblemEditorPart;
+import org.eclipse.emf.common.ui.viewer.IViewerProvider;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EContentAdapter;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
+import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
+import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
+import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
+import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
+import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
+import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
+import org.eclipse.emf.edit.ui.util.EditUIUtil;
+import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
-
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
-
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -57,28 +90,23 @@ import org.eclipse.jface.viewers.TableLayout;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
-
+import org.eclipse.ocl.expressions.provider.ExpressionsItemProviderAdapterFactory;
+import org.eclipse.ocl.types.provider.TypesItemProviderAdapterFactory;
+import org.eclipse.ocl.utilities.provider.UtilitiesItemProviderAdapterFactory;
 import org.eclipse.swt.SWT;
-
 import org.eclipse.swt.custom.CTabFolder;
-
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
-
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
-
 import org.eclipse.swt.graphics.Point;
-
 import org.eclipse.swt.layout.FillLayout;
-
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
-
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -86,94 +114,21 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
-
+import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
-
 import org.eclipse.ui.ide.IGotoMarker;
-
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.MultiPageEditorPart;
-
 import org.eclipse.ui.views.contentoutline.ContentOutline;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
-
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.PropertySheetPage;
 
-import org.eclipse.emf.common.command.BasicCommandStack;
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CommandStack;
-import org.eclipse.emf.common.command.CommandStackListener;
-
-import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.ui.MarkerHelper;
-import org.eclipse.emf.common.ui.ViewerPane;
-
-import org.eclipse.emf.common.ui.editor.ProblemEditorPart;
-
-import org.eclipse.emf.common.ui.viewer.IViewerProvider;
-
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.URI;
-
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EValidator;
-
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-
-import org.eclipse.emf.ecore.util.EContentAdapter;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-
-import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
-
-import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
-
-import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
-
-import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
-
-import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
-import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
-import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
-
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
-
-import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
-import org.eclipse.emf.edit.ui.util.EditUIUtil;
-
-import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
-
-import com.sap.furcas.metamodel.FURCAS.provider.FURCASItemProviderAdapterFactory;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.provider.TCSItemProviderAdapterFactory;
-
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.provider.TextblockdefinitionItemProviderAdapterFactory;
-
+import com.sap.furcas.metamodel.FURCAS.provider.FURCASItemProviderAdapterFactory;
 import com.sap.furcas.metamodel.FURCAS.textblocks.provider.TextblocksItemProviderAdapterFactory;
-
-import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
-
-import org.eclipse.ocl.expressions.provider.ExpressionsItemProviderAdapterFactory;
-
-import org.eclipse.ocl.types.provider.TypesItemProviderAdapterFactory;
-
-import org.eclipse.ocl.utilities.provider.UtilitiesItemProviderAdapterFactory;
-
-import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 
 /**
@@ -341,6 +296,7 @@ public class FURCASEditor
      */
         protected IPartListener partListener =
                 new IPartListener() {
+            @Override
             public void partActivated(IWorkbenchPart p) {
                 if (p instanceof ContentOutline) {
                     if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
@@ -359,15 +315,19 @@ public class FURCASEditor
                     handleActivate();
                 }
             }
+            @Override
             public void partBroughtToTop(IWorkbenchPart p) {
                 // Ignore.
             }
+            @Override
             public void partClosed(IWorkbenchPart p) {
                 // Ignore.
             }
+            @Override
             public void partDeactivated(IWorkbenchPart p) {
                 // Ignore.
             }
+            @Override
             public void partOpened(IWorkbenchPart p) {
                 // Ignore.
             }
@@ -440,7 +400,8 @@ public class FURCASEditor
                             if (updateProblemIndication) {
                                 getSite().getShell().getDisplay().asyncExec
                                     (new Runnable() {
-                                         public void run() {
+                                         @Override
+                                        public void run() {
                                              updateProblemIndication();
                                          }
                                      });
@@ -473,6 +434,7 @@ public class FURCASEditor
      */
         protected IResourceChangeListener resourceChangeListener =
                 new IResourceChangeListener() {
+            @Override
             public void resourceChanged(IResourceChangeEvent event) {
                 IResourceDelta delta = event.getDelta();
                 try {
@@ -481,6 +443,7 @@ public class FURCASEditor
                         protected Collection<Resource> changedResources = new ArrayList<Resource>();
                         protected Collection<Resource> removedResources = new ArrayList<Resource>();
 
+                        @Override
                         public boolean visit(IResourceDelta delta) {
                             if (delta.getResource().getType() == IResource.FILE) {
                                 if (delta.getKind() == IResourceDelta.REMOVED ||
@@ -515,7 +478,8 @@ public class FURCASEditor
                     if (!visitor.getRemovedResources().isEmpty()) {
                         getSite().getShell().getDisplay().asyncExec
                             (new Runnable() {
-                                 public void run() {
+                                 @Override
+                                public void run() {
                                      removedResources.addAll(visitor.getRemovedResources());
                                      if (!isDirty()) {
                                          getSite().getPage().closeEditor(FURCASEditor.this, false);
@@ -527,7 +491,8 @@ public class FURCASEditor
                     if (!visitor.getChangedResources().isEmpty()) {
                         getSite().getShell().getDisplay().asyncExec
                             (new Runnable() {
-                                 public void run() {
+                                 @Override
+                                public void run() {
                                      changedResources.addAll(visitor.getChangedResources());
                                      if (getSite().getPage().getActiveEditor() == FURCASEditor.this) {
                                          handleActivate();
@@ -711,7 +676,6 @@ public class FURCASEditor
         adapterFactory.addAdapterFactory(new FURCASItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new TCSItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new TextblocksItemProviderAdapterFactory());
-        adapterFactory.addAdapterFactory(new TextblockdefinitionItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new TypesItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new UtilitiesItemProviderAdapterFactory());
@@ -727,10 +691,12 @@ public class FURCASEditor
         //
         commandStack.addCommandStackListener
             (new CommandStackListener() {
-                 public void commandStackChanged(final EventObject event) {
+                 @Override
+                public void commandStackChanged(final EventObject event) {
                      getContainer().getDisplay().asyncExec
                          (new Runnable() {
-                              public void run() {
+                              @Override
+                            public void run() {
                                   firePropertyChange(IEditorPart.PROP_DIRTY);
 
                                   // Try to select the affected objects.
@@ -776,6 +742,7 @@ public class FURCASEditor
         if (theSelection != null && !theSelection.isEmpty()) {
             Runnable runnable =
                 new Runnable() {
+                    @Override
                     public void run() {
                         // Try to select the items in the current content viewer of the editor.
                         //
@@ -796,6 +763,7 @@ public class FURCASEditor
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EditingDomain getEditingDomain() {
         return editingDomain;
     }
@@ -892,6 +860,7 @@ public class FURCASEditor
                     new ISelectionChangedListener() {
                         // This just notifies those things that are affected by the section.
                         //
+                        @Override
                         public void selectionChanged(SelectionChangedEvent selectionChangedEvent) {
                             setSelection(selectionChangedEvent.getSelection());
                         }
@@ -926,6 +895,7 @@ public class FURCASEditor
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public Viewer getViewer() {
         return currentViewer;
     }
@@ -1229,7 +1199,8 @@ public class FURCASEditor
 
             getSite().getShell().getDisplay().asyncExec
                 (new Runnable() {
-                     public void run() {
+                     @Override
+                    public void run() {
                          setActivePage(0);
                      }
                  });
@@ -1253,7 +1224,8 @@ public class FURCASEditor
 
         getSite().getShell().getDisplay().asyncExec
             (new Runnable() {
-                 public void run() {
+                 @Override
+                public void run() {
                      updateProblemIndication();
                  }
              });
@@ -1388,7 +1360,8 @@ public class FURCASEditor
                 (new ISelectionChangedListener() {
                      // This ensures that we handle selections correctly.
                      //
-                     public void selectionChanged(SelectionChangedEvent event) {
+                     @Override
+                    public void selectionChanged(SelectionChangedEvent event) {
                          handleContentOutlineSelection(event.getSelection());
                      }
                  });
@@ -1610,6 +1583,7 @@ public class FURCASEditor
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public void gotoMarker(IMarker marker) {
         try {
             if (marker.getType().equals(EValidator.MARKER)) {
@@ -1665,6 +1639,7 @@ public class FURCASEditor
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public void addSelectionChangedListener(ISelectionChangedListener listener) {
         selectionChangedListeners.add(listener);
     }
@@ -1675,6 +1650,7 @@ public class FURCASEditor
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public void removeSelectionChangedListener(ISelectionChangedListener listener) {
         selectionChangedListeners.remove(listener);
     }
@@ -1685,6 +1661,7 @@ public class FURCASEditor
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public ISelection getSelection() {
         return editorSelection;
     }
@@ -1696,6 +1673,7 @@ public class FURCASEditor
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public void setSelection(ISelection selection) {
         editorSelection = selection;
 
@@ -1765,6 +1743,7 @@ public class FURCASEditor
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public void menuAboutToShow(IMenuManager menuManager) {
         ((IMenuListener)getEditorSite().getActionBarContributor()).menuAboutToShow(menuManager);
     }

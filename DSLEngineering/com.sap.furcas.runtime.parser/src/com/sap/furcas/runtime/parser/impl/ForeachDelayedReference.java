@@ -60,6 +60,7 @@ public class ForeachDelayedReference extends DelayedReference {
      *             the model handler exception
      * @throws ModelElementCreationException
      */
+    @Override
     public boolean setDelayedReference(DelayedReference reference, IModelAdapter modelAdapter, ContextManager contextManager,
             ObservableInjectingParser parser) throws ModelAdapterException, ModelElementCreationException {
         Object contextElement = reference.getContextElement();

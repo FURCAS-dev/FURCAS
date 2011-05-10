@@ -16,8 +16,6 @@ import com.sap.furcas.metamodel.FURCAS.FURCASFactory;
 import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl;
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionPackage;
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.impl.TextblockdefinitionPackageImpl;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextblocksPackageImpl;
 
@@ -86,19 +84,16 @@ public class FURCASPackageImpl extends EPackageImpl implements FURCASPackage {
         // Obtain or create and register interdependencies
         TCSPackageImpl theTCSPackage = (TCSPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TCSPackage.eNS_URI) instanceof TCSPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TCSPackage.eNS_URI) : TCSPackage.eINSTANCE);
         TextblocksPackageImpl theTextblocksPackage = (TextblocksPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TextblocksPackage.eNS_URI) instanceof TextblocksPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TextblocksPackage.eNS_URI) : TextblocksPackage.eINSTANCE);
-        TextblockdefinitionPackageImpl theTextblockdefinitionPackage = (TextblockdefinitionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TextblockdefinitionPackage.eNS_URI) instanceof TextblockdefinitionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TextblockdefinitionPackage.eNS_URI) : TextblockdefinitionPackage.eINSTANCE);
 
         // Create package meta-data objects
         theFURCASPackage.createPackageContents();
         theTCSPackage.createPackageContents();
         theTextblocksPackage.createPackageContents();
-        theTextblockdefinitionPackage.createPackageContents();
 
         // Initialize created meta-data
         theFURCASPackage.initializePackageContents();
         theTCSPackage.initializePackageContents();
         theTextblocksPackage.initializePackageContents();
-        theTextblockdefinitionPackage.initializePackageContents();
 
         // Mark meta-data to indicate it can't be changed
         theFURCASPackage.freeze();
@@ -114,6 +109,7 @@ public class FURCASPackageImpl extends EPackageImpl implements FURCASPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getEmptyDummyClassToWorkaroundGeneratorBug() {
         return emptyDummyClassToWorkaroundGeneratorBugEClass;
     }
@@ -123,6 +119,7 @@ public class FURCASPackageImpl extends EPackageImpl implements FURCASPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public FURCASFactory getFURCASFactory() {
         return (FURCASFactory)getEFactoryInstance();
     }
@@ -175,12 +172,10 @@ public class FURCASPackageImpl extends EPackageImpl implements FURCASPackage {
         // Obtain other dependent packages
         TCSPackage theTCSPackage = (TCSPackage)EPackage.Registry.INSTANCE.getEPackage(TCSPackage.eNS_URI);
         TextblocksPackage theTextblocksPackage = (TextblocksPackage)EPackage.Registry.INSTANCE.getEPackage(TextblocksPackage.eNS_URI);
-        TextblockdefinitionPackage theTextblockdefinitionPackage = (TextblockdefinitionPackage)EPackage.Registry.INSTANCE.getEPackage(TextblockdefinitionPackage.eNS_URI);
 
         // Add subpackages
         getESubpackages().add(theTCSPackage);
         getESubpackages().add(theTextblocksPackage);
-        getESubpackages().add(theTextblockdefinitionPackage);
 
         // Create type parameters
 

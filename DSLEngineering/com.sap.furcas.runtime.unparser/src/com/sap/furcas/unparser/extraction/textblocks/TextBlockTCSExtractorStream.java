@@ -27,7 +27,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
@@ -100,10 +99,6 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
 	b.setChildrenChanged(false);
 	b.setVersion(Version.REFERENCE);
 	b.setRelexingNeeded(false);
-	b.setStartRow(0);
-	b.setStartColumn(0);
-	b.setEndRow(0);
-	b.setEndColumn(0);
 	b.setOffset(0);
 	b.setLength(0);
 	b.setOffsetRelative(true);
@@ -118,10 +113,6 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
 	t.setChildrenChanged(false);
 	t.setVersion(Version.REFERENCE);
 	t.setRelexingNeeded(false);
-	t.setStartRow(0);
-	t.setStartColumn(0);
-	t.setEndRow(0);
-	t.setEndColumn(0);
 	t.setOffset(0);
 	t.setLength(0);
 	t.setOffsetRelative(true);
@@ -140,10 +131,6 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
 	t.setChildrenChanged(false);
 	t.setVersion(Version.REFERENCE);
 	t.setRelexingNeeded(false);
-	t.setStartRow(0);
-	t.setStartColumn(0);
-	t.setEndRow(0);
-	t.setEndColumn(0);
 	t.setOffset(0);
 	t.setLength(0);
 	t.setOffsetRelative(true);
@@ -203,8 +190,7 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
     
     protected void setType(TextBlock block, Template template) {
 	if (template != null) {
-	    TextBlockDefinition tbDef = template.getTextBlockDefinition();
-	    block.setType(tbDef);
+	    block.setType(template);
 	}
     }
     
@@ -390,7 +376,6 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
 
 		currentBlock.setParent(null);
 		parent.getCorrespondingModelElements().addAll(currentBlock.getCorrespondingModelElements());
-		parent.getReferencedElements().addAll(currentBlock.getReferencedElements());
                 EcoreUtil.delete(currentBlock);
 	    }
 
@@ -431,11 +416,7 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
 	    setType(rootBlock, template);
 	    rootBlock.setOffsetRelative(false);
             if (correspondingModelElement != null) {
-                if (template instanceof ContextTemplate && ((ContextTemplate) template).isIsReferenceOnly()) {
-                    rootBlock.getReferencedElements().add(correspondingModelElement);
-                } else {
-                    rootBlock.getCorrespondingModelElements().add(correspondingModelElement);
-                }
+                rootBlock.getCorrespondingModelElements().add(correspondingModelElement);
             }
 	    rootBlock.setSequenceElement(se);
 	    currentBlock = rootBlock;
@@ -462,11 +443,7 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
 	    b.setOffset(currentOffset);
 
 	    if (correspondingModelElement != null) {
-		if (template instanceof ContextTemplate && ((ContextTemplate) template).isIsReferenceOnly()) {
-		    b.getReferencedElements().add(correspondingModelElement);
-		} else {
-		    b.getCorrespondingModelElements().add(correspondingModelElement);
-		}
+	        b.getCorrespondingModelElements().add(correspondingModelElement);
 	    }
 	    b.setSequenceElement(se);
 	    setType(b, template);

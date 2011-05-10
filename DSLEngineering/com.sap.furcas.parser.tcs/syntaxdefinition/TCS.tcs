@@ -75,13 +75,6 @@ syntax TCS {
                 ]]
                 
         ;
-           
-
-        -- @begin TextBlockDefintion
-        template textblockdefinition::TextBlockDefinition
-                :
-                ;
-        -- @end TextBlockDefintion      
 
         -- the root element of any syntax definition
         template TCS::ConcreteSyntax main context
@@ -126,8 +119,6 @@ syntax TCS {
                                         "," "serializer" "=" serializer{as = stringSymbol}
                                 ) 
                         ] {startNL = false} ";"]
-                        --this is an oppositeEnd for TextBlockDefinition:parseRule
-                        textBlockDefinition{forcedUpper=1}
                 ;
 
         template TCS::EnumerationTemplate context addToContext
@@ -139,8 +130,6 @@ syntax TCS {
                                 :
                                         ";"
                         )
-                        --this is an oppositeEnd for TextBlockDefinition:parseRule
-                        textBlockDefinition{forcedUpper=1}
                 ;
 
         template TCS::EnumLiteralMapping
@@ -167,8 +156,6 @@ syntax TCS {
                                 (isNonPrimary ? "nonPrimary")
                           )
                         (isDefined(templateSequence) ? [ ":" [ templateSequence ] {startNL = false} ";" ] : ";")
-                        --this is an oppositeEnd for TextBlockDefinition:parseRule
-                        textBlockDefinition{forcedUpper=1}
                 ;
 
         template TCS::OperatorTemplate context addToContext
@@ -185,8 +172,6 @@ syntax TCS {
                                 (isContext ? "context" (isDefined(contextTags) ? contextTags))
                         )
                         (isDefined(templateSequence) ? [ ":" [ templateSequence ] {startNL = false} ";" ] : ";")
-                        --this is an oppositeEnd for TextBlockDefinition:parseRule
-                        textBlockDefinition{forcedUpper=1}
                 ;
 
         template TCS::FunctionTemplate context addToContext

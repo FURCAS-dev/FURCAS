@@ -124,7 +124,7 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
                 throw new PartInitException("Main template " + MessageHelper.getTemplateName(rootTemplate) + " does not fit the given TextBlocks model.");
             }
         } else if (!TbUtil.isTextBlockOfType(rootTemplate, rootBlock)) {
-            throw new PartInitException("Main template " + MessageHelper.getTemplateName(rootTemplate) + " does not fit the given TextBlocks model which uses " + MessageHelper.getTemplateName(rootBlock.getType().getParseRule()));
+            throw new PartInitException("Main template " + MessageHelper.getTemplateName(rootTemplate) + " does not fit the given TextBlocks model which uses " + MessageHelper.getTemplateName(rootBlock.getType()));
         }
         TbRecoverUtil.checkAndMigrateTokenIds(rootBlock, parserCollection.parser, parserCollection.lexer, parserCollection.shortPrettyPrinter);
         try {

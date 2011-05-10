@@ -337,8 +337,8 @@ public class TbUtil {
      */
     public static EObject getCreatedElement(TextBlock parentBlock) {
 	for (EObject ro : parentBlock.getCorrespondingModelElements()) {
-	    if (parentBlock.getType() != null && parentBlock.getType().getParseRule() != null) {
-		if (ro.eClass().equals(parentBlock.getType().getParseRule().getMetaReference())) {
+	    if (parentBlock.getType() != null && parentBlock.getType() != null) {
+		if (ro.eClass().equals(parentBlock.getType().getMetaReference())) {
 		    return ro;
 		}
 	    }
@@ -377,8 +377,8 @@ public class TbUtil {
 	public static boolean isTextBlockOfType(ClassTemplate rootTemplate,
     	    TextBlock block) {
         	return block.getType() != null
-    			&& block.getType().getParseRule() != null
-    			&& block.getType().getParseRule().equals(rootTemplate);
+    			&& block.getType() != null
+    			&& block.getType().equals(rootTemplate);
         }
 
 	public static boolean isEmpty(TextBlock oldVersion) {

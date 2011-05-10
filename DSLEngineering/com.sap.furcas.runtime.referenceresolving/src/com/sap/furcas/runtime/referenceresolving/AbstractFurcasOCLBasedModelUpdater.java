@@ -286,12 +286,12 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
         Set<TextBlock> textBlocks = new HashSet<TextBlock>();
         Collection<EObject> textBlockDocumentingCreationOfContextElement = getOppositeEndFinder()
                 .navigateOppositePropertyWithBackwardScope(
-                        TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(), element);
+                        TextblocksPackage.eINSTANCE.getTextBlock_CorrespondingModelElements(), element);
         if (textBlockDocumentingCreationOfContextElement != null) {
             for (EObject eo : textBlockDocumentingCreationOfContextElement) {
                 if (eo instanceof TextBlock) {
                     TextBlock textBlock = (TextBlock) eo;
-                    Template template = textBlock.getType().getParseRule();
+                    Template template = textBlock.getType();
                     if (!context
                             || (template instanceof ContextTemplate
                                     && ((ContextTemplate) template).getContextTags() != null && ((ContextTemplate) template)
@@ -305,7 +305,7 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
                             // actually immediately created by the template holding the sequence element with
                             // the OCL expression
                             if (!tb.getCorrespondingModelElements().isEmpty()
-                                    && TcsUtil.wasExecuted((ContextTemplate) tb.getType().getParseRule(),
+                                    && TcsUtil.wasExecuted((ContextTemplate) tb.getType(),
                                             tb.getParentAltChoices(), getSequenceElement())) {
                                 textBlocks.add(tb);
                             }
@@ -318,7 +318,7 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
     }
 
     protected Set<TextBlock> getSubordinateTextBlocksLeadingTo(TextBlock textBlock, Template templateHoldingSequenceElement) {
-        if (textBlock.getType().getParseRule() == templateHoldingSequenceElement) {
+        if (textBlock.getType() == templateHoldingSequenceElement) {
             return Collections.singleton(textBlock);
         } else {
             Set<TextBlock> result = new HashSet<TextBlock>();

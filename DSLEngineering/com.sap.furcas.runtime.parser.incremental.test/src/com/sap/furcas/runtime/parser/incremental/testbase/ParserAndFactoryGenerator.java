@@ -10,20 +10,22 @@
  ******************************************************************************/
 package com.sap.furcas.runtime.parser.incremental.testbase;
 
+import static com.sap.furcas.test.util.CompilationHelper.getSourceRoot;
 import static org.junit.Assert.fail;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.PrintStream;
-import java.net.URLDecoder;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.antlr.runtime.Lexer;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
@@ -34,6 +36,7 @@ import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.common.exceptions.ParserGeneratorInvocationException;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
+import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.antlr3.ITokenFactory;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
@@ -164,21 +167,6 @@ public class ParserAndFactoryGenerator extends ParserGenerator {
             restoreOldSystemErr(systemErrOld);
         }
     }
-    
-    private static String getSourceRoot(Class<?> c) {
-        try {
-            String classContainerPath = URLDecoder.decode(c
-                    .getProtectionDomain().getCodeSource().getLocation()
-                    .getPath(), "UTF-8");
-            if (!classContainerPath.endsWith(".jar")) {
-                classContainerPath += "bin/";
-            }
-
-            return new File(classContainerPath).getCanonicalPath();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     public IncrementalParserFacade loadIncrementalParserFacade(ClassLookup classLookup, EditingDomain editingDomain,
             OppositeEndFinder oppositeEndFinder, PartitionAssignmentHandler partitionAssignmentHandler) throws ParserGeneratorInvocationException, InstantiationException,
@@ -189,9 +177,12 @@ public class ParserAndFactoryGenerator extends ParserGenerator {
 
         ResourceSet resourceSet = testConfig.getSourceConfiguration().getResourceSet();
         Set<URI> referenceScope = testConfig.getSourceConfiguration().getReferenceScope();
-        
+
+        EPackage metamodelPackage = parserFactory.getMetamodelPackage(resourceSet);
+        Resource transientResource = EcoreHelper.createTransientParsingResource(resourceSet, metamodelPackage);
+       
         IModelAdapter modelAdapter = new TextBlocksAwareModelAdapter(new EMFModelAdapter(
-            parserFactory.getMetamodelPackage(resourceSet),resourceSet, referenceScope));
+            resourceSet, transientResource, referenceScope, new HashSet<URI>()));
 
         return new IncrementalParserFacade(parserFactory, modelAdapter, editingDomain, referenceScope, oppositeEndFinder, partitionAssignmentHandler);
     }

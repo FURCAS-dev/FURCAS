@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.12 2011/04/25 09:49:15 ewillink Exp $
+ * $Id: ToStringVisitor.java,v 1.13 2011/05/02 09:31:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.utilities;
@@ -348,7 +348,11 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 		}
 		else {
 			Package pkg = cls.getPackage();
-			if ((pkg.eContainer() != null) || !PivotConstants.OCL_NAME.equals(pkg.getName())) {
+			if (pkg == null) {
+				append("null::");
+				appendName(cls);
+			}
+			else if ((pkg.eContainer() != null) || !PivotConstants.OCL_NAME.equals(pkg.getName())) {
 				appendQualifiedName(pkg, "::", cls);
 			}
 			else {

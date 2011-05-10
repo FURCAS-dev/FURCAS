@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: OCL Inversion Test
+Bundle-SymbolicName: com.sap.furcas.ocl.inversion.test
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: SAP
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: QVTTest,
+ org.junit;bundle-version="3.8.2",
+ org.eclipse.ocl.ecore,
+ QVTTestAdapter,
+ OCLTestAdapter,
+ QVTEMFTestAdapter,
+ OCLEMFTestAdapter,
+ com.sap.furcas.oclinversion.metamodel

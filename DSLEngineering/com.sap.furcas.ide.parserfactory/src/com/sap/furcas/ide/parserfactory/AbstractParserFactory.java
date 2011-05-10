@@ -15,10 +15,12 @@ import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenStream;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
 import com.sap.furcas.runtime.common.interfaces.IRuleName;
+import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.InjectionOptionsBean;
 import com.sap.furcas.runtime.parser.antlr3.ITokenFactory;
@@ -34,7 +36,6 @@ import com.sap.ide.cts.parser.incremental.antlr.ANTLRParserFactory;
 
 public abstract class AbstractParserFactory<P extends ObservableInjectingParser, L extends Lexer>
 	extends ANTLRParserFactory<P, L> {
-	private final IRuleName ruleNameFinder = new RuleNameFinder();
 
     @Override
 	public abstract EPackage getMetamodelPackage(ResourceSet connection);
@@ -55,10 +56,10 @@ public abstract class AbstractParserFactory<P extends ObservableInjectingParser,
 	}
 
     @Override
-	public P createParser(TokenStream input, ResourceSet connection,
-		Collection<URI> additionalPRIScope, Collection<URI> additionalCRIScope) {
+	public P createParser(TokenStream input, ResourceSet resourceSet, Collection<URI> additionalPRIScope, Collection<URI> additionalCRIScope) {
+        
 		Collection<URI> priScope = new HashSet<URI>();
-		Collection<URI> parserScope = getParserLookupScope(connection);
+		Collection<URI> parserScope = getParserLookupScope(resourceSet);
 		for (URI pri : parserScope) {
 			priScope.add(pri);
 		}
@@ -74,18 +75,19 @@ public abstract class AbstractParserFactory<P extends ObservableInjectingParser,
 			if (input instanceof CommonTokenStream) {
 				int[] hiddenChannelTokens = getHiddenChannelTokens();
 				for (int hiddenChannelToken : hiddenChannelTokens) {
-					((CommonTokenStream) input).setTokenTypeChannel(
-						hiddenChannelToken, Token.HIDDEN_CHANNEL);
+					((CommonTokenStream) input).setTokenTypeChannel(hiddenChannelToken, Token.HIDDEN_CHANNEL);
 				}
 			}
 
-			EPackage metamodelPackage = getMetamodelPackage(connection);
+			EPackage metamodelPackage = getMetamodelPackage(resourceSet);
 			Set<URI> scope = new HashSet<URI>(priScope);
 			if(additionalCRIScope != null) {
 				scope.addAll(additionalCRIScope);
 			}
-			TextBlocksAwareModelAdapter ma = new TextBlocksAwareModelAdapter(
-				new EMFModelAdapter(metamodelPackage, connection, scope));
+			
+		        Resource transientResource = EcoreHelper.createTransientParsingResource(resourceSet, metamodelPackage);
+			TextBlocksAwareModelAdapter ma = new TextBlocksAwareModelAdapter(new EMFModelAdapter(resourceSet,
+			        transientResource, Collections.singleton(getMetamodelUri(resourceSet)), scope));
 			ModelInjector mi = new ModelInjector(parser.getTokenNames());
 			InjectionOptionsBean injectionOptionsBean = new InjectionOptionsBean();
 			injectionOptionsBean.setLocationsPropertyNameInModel(false, null);
@@ -93,12 +95,13 @@ public abstract class AbstractParserFactory<P extends ObservableInjectingParser,
 			mi.setModelAdapter(ma);
 			parser.setLanguageId(getLanguageId());
 			parser.setInjector(mi);
+			
 			if (input instanceof ITextBlocksTokenStream) {
 				ma.setTextBlocksStream((ITextBlocksTokenStream) input);
 				parser.setObserver(new ParserTextBlocksHandler(
-					(ITextBlocksTokenStream) input, connection,
-					getMetamodelUri(connection), TcsUtil.getSyntaxPartitions(
-						connection, getLanguageId()), priScope,
+					(ITextBlocksTokenStream) input, resourceSet,
+					getMetamodelUri(resourceSet), TcsUtil.getSyntaxPartitions(
+						resourceSet, getLanguageId()), priScope,
 					additionalCRIScope));
 			}
 			return parser;
@@ -174,7 +177,7 @@ public abstract class AbstractParserFactory<P extends ObservableInjectingParser,
 	
 	@Override
 	public IRuleName getRuleNameFinder() {
-	    return ruleNameFinder;
+	    return new RuleNameFinder();
 	}
 
 }

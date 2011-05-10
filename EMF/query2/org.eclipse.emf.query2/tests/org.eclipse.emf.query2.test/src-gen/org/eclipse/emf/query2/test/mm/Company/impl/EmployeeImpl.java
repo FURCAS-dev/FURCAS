@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.emf.query2.test.mm.Company.impl;
 
+import java.math.BigInteger;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 

@@ -41,18 +41,10 @@ public class TestTokenRelocationUtilRelocateUsingSubNodes extends TextBlockTest 
         first.setParent(root);
         first.setOffset(42);
         first.setLength(13);
-        first.setStartRow(3);
-        first.setStartColumn(7);
-        first.setEndRow(4);
-        first.setEndColumn(17);
         first.setOffsetRelative(false);
         
         last.setParent(root);
         last.setOffset(100);
-        last.setStartRow(8);
-        last.setStartColumn(11);
-        last.setEndRow(9);
-        last.setEndColumn(13);
         last.setLength(23);
         last.setOffsetRelative(false);
         
@@ -60,27 +52,15 @@ public class TestTokenRelocationUtilRelocateUsingSubNodes extends TextBlockTest 
         
         assertEquals(42, root.getOffset());
         assertEquals(123-42, root.getLength());
-        assertEquals(3, root.getStartRow());
-        assertEquals(7, root.getStartColumn()); 
-        assertEquals(9, root.getEndRow());
-        assertEquals(13, root.getEndColumn()); 
         assertEquals(false, root.isOffsetRelative());        
         
      // should not change
         assertEquals(42, first.getOffset());
         assertEquals(13, first.getLength()); 
-        assertEquals(3, first.getStartRow());
-        assertEquals(7, first.getStartColumn()); 
-        assertEquals(4, first.getEndRow());
-        assertEquals(17, first.getEndColumn()); 
         assertEquals(false, first.isOffsetRelative());
         
         assertEquals(100, last.getOffset());
         assertEquals(23, last.getLength()); 
-        assertEquals(8, last.getStartRow());
-        assertEquals(11, last.getStartColumn()); 
-        assertEquals(9, last.getEndRow());
-        assertEquals(13, last.getEndColumn()); 
         assertEquals(false, last.isOffsetRelative());
      }
     
@@ -95,10 +75,6 @@ public class TestTokenRelocationUtilRelocateUsingSubNodes extends TextBlockTest 
         first.setParent(root);
         first.setOffset(42);
         first.setLength(13);
-        first.setStartRow(3);
-        first.setStartColumn(7);
-        first.setEndRow(4);
-        first.setEndColumn(17);
         first.setOffsetRelative(false);
 
         
@@ -106,19 +82,11 @@ public class TestTokenRelocationUtilRelocateUsingSubNodes extends TextBlockTest 
         
         assertEquals(42, root.getOffset());
         assertEquals(13, root.getLength());
-        assertEquals(3, root.getStartRow());
-        assertEquals(7, root.getStartColumn()); 
-        assertEquals(4, root.getEndRow());
-        assertEquals(17, root.getEndColumn()); 
         assertEquals(false, root.isOffsetRelative());        
         
      // should not change
         assertEquals(42, first.getOffset());
-        assertEquals(13, first.getLength()); 
-        assertEquals(3, first.getStartRow());
-        assertEquals(7, first.getStartColumn()); 
-        assertEquals(4, first.getEndRow());
-        assertEquals(17, first.getEndColumn()); 
+        assertEquals(13, first.getLength());  
         assertEquals(false, first.isOffsetRelative());
         
 
