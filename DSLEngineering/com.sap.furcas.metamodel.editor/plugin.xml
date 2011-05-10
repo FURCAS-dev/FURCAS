@@ -88,30 +88,4 @@
       </editor>
    </extension>
 
-   <extension point="org.eclipse.ui.newWizards">
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
-      <wizard
-            id="com.sap.furcas.metamodel.FURCAS.textblockdefinition.presentation.TextblockdefinitionModelWizardID"
-            name="%_UI_TextblockdefinitionModelWizard_label"
-            class="com.sap.furcas.metamodel.FURCAS.textblockdefinition.presentation.TextblockdefinitionModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
-            icon="icons/full/obj16/TextblockdefinitionModelFile.gif">
-         <description>%_UI_TextblockdefinitionModelWizard_description</description>
-         <selection class="org.eclipse.core.resources.IResource"/>
-      </wizard>
-   </extension>
-
-   <extension point="org.eclipse.ui.editors">
-      <editor
-            id="com.sap.furcas.metamodel.FURCAS.textblockdefinition.presentation.TextblockdefinitionEditorID"
-            name="%_UI_TextblockdefinitionEditor_label"
-            icon="icons/full/obj16/TextblockdefinitionModelFile.gif"
-            extensions="textblockdefinition"
-            class="com.sap.furcas.metamodel.FURCAS.textblockdefinition.presentation.TextblockdefinitionEditor"
-            contributorClass="com.sap.furcas.metamodel.FURCAS.textblockdefinition.presentation.TextblockdefinitionActionBarContributor">
-      </editor>
-   </extension>
-
 </plugin>

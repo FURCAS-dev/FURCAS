@@ -19,8 +19,13 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -31,6 +36,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.ReferenceSettingException;
+import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.test.testutils.ResourceTestHelper;
 
 public class TestEMFModelAdapter {
@@ -39,7 +45,14 @@ public class TestEMFModelAdapter {
         
     @Before
     public void setup() {
-        adapter = new TestableEMFModelAdapter(FURCASPackage.eINSTANCE, ResourceTestHelper.createResourceSet(), ResourceTestHelper.createFURCASReferenceScope());
+        ResourceSet resourceSet = ResourceTestHelper.createResourceSet();
+        Resource transientResource = EcoreHelper.createTransientParsingResource(resourceSet, FURCASPackage.eINSTANCE);
+        
+        adapter = new TestableEMFModelAdapter(
+                resourceSet,
+                transientResource,
+                Collections.singleton(URI.createURI(FURCASPackage.eINSTANCE.getNsURI())),
+                new HashSet<URI>());
     }
         
     @Test

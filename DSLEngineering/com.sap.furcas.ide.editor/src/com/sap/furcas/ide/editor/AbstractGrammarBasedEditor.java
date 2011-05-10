@@ -28,6 +28,7 @@ import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -1400,9 +1401,12 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
                 getEditingDomain(), getParserFactory(), getLexer(), getParser(),
                 reuseStrategy, getAdditionalLookupURIS(), oppositeEndFinder,
                 partitionHandler);
-        shortPrettyPrinter = new ShortPrettyPrinter(new EMFModelAdapter(
-                parserFactory.getMetamodelPackage(getEditingDomain().getResourceSet()),
-                getEditingDomain().getResourceSet(), getAdditionalLookupURIS()));
+        
+        EPackage metamodelPackage = parserFactory.getMetamodelPackage(resourceSet);
+        Resource transientResource = EcoreHelper.createTransientParsingResource(resourceSet, metamodelPackage);
+        shortPrettyPrinter = new ShortPrettyPrinter(new EMFModelAdapter(getEditingDomain().getResourceSet(),
+                transientResource, Collections.singleton(parserFactory.getMetamodelUri(resourceSet)), getAdditionalLookupURIS()));
+        
     }
 
     /**

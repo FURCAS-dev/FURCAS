@@ -35,8 +35,6 @@ public class TemplateNamingHelper<Type extends Object> {
         this.resolutionHelper = resolutionHelper;
     }
     
-    
-    
     /**
      * return rulename modified to allow for mode
      * @param qNamedElement
@@ -243,8 +241,6 @@ public class TemplateNamingHelper<Type extends Object> {
         return returnName;
     }
 
-
-
     public String getRuleNameForTemplate(Template template) throws SyntaxElementException {
 	if(template instanceof ClassTemplate) {
 	    if(((ClassTemplate)template).getMode() != null){
@@ -253,8 +249,6 @@ public class TemplateNamingHelper<Type extends Object> {
 	}
 	return getRuleName(template);	
     }
-
-
 
     /**
      * Gives the name of the grammar rule resulting from the given template.
