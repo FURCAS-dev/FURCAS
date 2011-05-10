@@ -29,7 +29,7 @@ public class RealWorldReplayNotificationProducer implements NotificationProducer
 
     /**
      * Produces a list of notifications out of a trace and model fixture. Therefore this fixtures
-     * must always be added to the fixtures folder in de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications
+     * must always be added to the fixtures folder in org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications
      *
      * @param modelFilename
      * @param traceFilename
