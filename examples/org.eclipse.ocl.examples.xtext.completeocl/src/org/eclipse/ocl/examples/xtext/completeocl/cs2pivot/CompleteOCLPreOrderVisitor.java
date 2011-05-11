@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLPreOrderVisitor.java,v 1.9 2011/05/02 09:31:22 ewillink Exp $
+ * $Id: CompleteOCLPreOrderVisitor.java,v 1.10 2011/05/11 19:30:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
@@ -74,7 +74,14 @@ public class CompleteOCLPreOrderVisitor
 
 		@Override
 		public BasicContinuation<?> execute() {
-			Type type = ((ClassifierContextDeclCS) csElement.getContextDecl()).getClassifier();
+			ClassifierContextDeclCS csClassifierContextDecl = (ClassifierContextDeclCS) csElement.getContextDecl();
+			if (csClassifierContextDecl == null) {
+				return null;
+			}
+			Type type = csClassifierContextDecl.getClassifier();
+			if ((type == null) || type.eIsProxy()) {
+				return null;
+			}
 //			org.eclipse.ocl.examples.pivot.Class classifier = (org.eclipse.ocl.examples.pivot.Class)type;
 			org.eclipse.ocl.examples.pivot.Class classifier = getContextClassifier(type, csElement);
 			Operation pivotOperation = null;
