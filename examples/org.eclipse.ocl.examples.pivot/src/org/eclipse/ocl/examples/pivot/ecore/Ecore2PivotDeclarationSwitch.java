@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2PivotDeclarationSwitch.java,v 1.11 2011/05/02 15:38:53 ewillink Exp $
+ * $Id: Ecore2PivotDeclarationSwitch.java,v 1.12 2011/05/11 19:38:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -46,6 +46,7 @@ import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreSwitch;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.EMOFExtendedMetaData;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -120,7 +121,25 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		pivotElement.setIsAbstract(eObject.isAbstract());			
 		pivotElement.setIsInterface(eObject.isInterface());			
 		doSwitchAll(eObject.getEGenericSuperTypes());
-		doSwitchAll(pivotElement.getOwnedOperations(), eObject.getEOperations());
+		List<Operation> pivotOperations = pivotElement.getOwnedOperations();
+		List<Constraint> pivotConstraints = pivotElement.getOwnedRules();
+		for (EOperation eOperation : eObject.getEOperations()) {
+			if (EcoreUtil.isInvariant(eOperation)) {
+				Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
+				constraint.setStereotype(UMLReflection.INVARIANT);
+				constraint.setName(eOperation.getName());
+				String value = EcoreUtil.getAnnotation(eOperation, "http://www.eclipse.org/emf/2002/GenModel", "documentation");
+				OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOcl
+				specification.getBodies().add(value);
+				specification.getLanguages().add(PivotConstants.OCL_LANGUAGE);
+				constraint.setSpecification(specification);
+				pivotConstraints.add(constraint);
+			}
+			else {
+				Object pivotObject = doSwitch(eOperation);
+				pivotOperations.add((Operation) pivotObject);
+			}
+		}
 		doSwitchAll(pivotElement.getOwnedAttributes(), eObject.getEStructuralFeatures());
 		converter.queueReference(eObject);				// For superclasses
 		return pivotElement;
