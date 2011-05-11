@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocumentProvider.java,v 1.12 2011/05/06 10:41:16 ewillink Exp $
+ * $Id: OCLinEcoreDocumentProvider.java,v 1.13 2011/05/11 19:27:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 
@@ -217,7 +217,9 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 				URI oclinecoreURI = xmiResource.getURI().appendFileExtension("oclinecore");
 				Resource csResource = resourceSet.createResource(oclinecoreURI, OCLinEcoreCSTPackage.eCONTENT_TYPE);
 				Map<Resource, Resource> cs2PivotResourceMap = new HashMap<Resource, Resource>();
-				cs2PivotResourceMap.put(csResource, pivotResource);
+				if (pivotResource != null) {
+					cs2PivotResourceMap.put(csResource, pivotResource);
+				}
 				Pivot2CS pivot2cs = new OCLinEcorePivot2CS(cs2PivotResourceMap, typeManager);
 				pivot2cs.update();
 //				csResource.save(null);
