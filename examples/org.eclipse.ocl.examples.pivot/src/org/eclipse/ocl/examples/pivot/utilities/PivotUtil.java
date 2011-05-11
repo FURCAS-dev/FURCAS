@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.14 2011/05/07 16:41:24 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.15 2011/05/11 19:45:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -809,7 +809,13 @@ public class PivotUtil
 		return (T) templateableElement.getUnspecializedElement(); */
 	}
 
-	public static <T> void refreshList(List<? super T> elements, List<? extends T> newElements) {
+	public static <T extends EObject> void refreshList(List<? super T> elements, List<? extends T> newElements) {
+		for (int k = newElements.size(); k-- > 0; ) {
+			T newElement = newElements.get(k);
+			if (newElement.eIsProxy()) {
+				elements.remove(k);			// Lose oldContent before adding possible 'duplicates'
+			}
+		}
 		for (int k = elements.size(); k-- > 0; ) {
 			Object oldElement = elements.get(k);
 			if (!newElements.contains(oldElement)) {
@@ -848,7 +854,7 @@ public class PivotUtil
 		assert newElements.size() == elements.size();
 	}
 
-	public static <T> void refreshSet(List<? super T> oldElements, Collection<? extends T> newElements) {
+	public static <T extends EObject> void refreshSet(List<? super T> oldElements, Collection<? extends T> newElements) {
 		for (int i = oldElements.size(); i-- > 0;) {	// Remove any oldElements not in newElements
 			Object oldElement = oldElements.get(i);
 			if (!newElements.contains(oldElement)) {
@@ -856,7 +862,7 @@ public class PivotUtil
 			}
 		}
 		for (T newElement : newElements) {				// Add any newElements not in oldElements
-			if (!oldElements.contains(newElement)) {
+			if (!newElement.eIsProxy() && !oldElements.contains(newElement)) {
 				oldElements.add(newElement);
 			}
 		}
