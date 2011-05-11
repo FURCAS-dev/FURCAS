@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibPostOrderVisitor.java,v 1.5 2011/03/01 08:46:57 ewillink Exp $
+ * $Id: OCLstdlibPostOrderVisitor.java,v 1.6 2011/05/11 19:28:04 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot;
 
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
@@ -52,7 +53,11 @@ public class OCLstdlibPostOrderVisitor
 	@Override
 	public Continuation<?> visitLibOperationCS(LibOperationCS csOperation) {
 		Operation pivotElement = PivotUtil.getPivot(Operation.class, csOperation);
-		pivotElement.setPrecedence(csOperation.getPrecedence());
+		Precedence precedence = csOperation.getPrecedence();
+		if ((precedence != null) && precedence.eIsProxy()) {
+			precedence = null;
+		}
+		pivotElement.setPrecedence(precedence);
 		pivotElement.setIsStatic(csOperation.isStatic());
 		JvmType implementation = csOperation.getImplementation();
 		if (implementation != null) {
