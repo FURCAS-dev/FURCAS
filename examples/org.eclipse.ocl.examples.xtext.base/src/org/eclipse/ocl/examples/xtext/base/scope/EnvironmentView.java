@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentView.java,v 1.16 2011/05/02 09:31:26 ewillink Exp $
+ * $Id: EnvironmentView.java,v 1.17 2011/05/11 19:50:12 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -34,6 +34,7 @@ import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
+import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
@@ -262,6 +263,9 @@ public class EnvironmentView
 				EObject aTarget = aScopeAdapter.getTarget();
 				aScope = aScopeAdapter.computeLookup(this, aScope);
 			}
+		}
+		catch (IllegalLibraryException e) {		// WIP
+			throw e;
 		}
 		catch (Exception e) {
 			logger.warn("Lookup of '" + name + "' failed", e);
