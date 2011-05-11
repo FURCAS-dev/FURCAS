@@ -12,10 +12,12 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSResource.java,v 1.3 2011/01/24 22:28:40 ewillink Exp $
+ * $Id: OCLinEcoreCSResource.java,v 1.4 2011/05/11 19:27:16 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.utilities;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.resource.Resource;
@@ -31,5 +33,12 @@ public class OCLinEcoreCSResource extends EssentialOCLCSResource
 			Map<? extends Resource, ? extends Resource> cs2pivotResourceMap,
 			TypeManager typeManager) {
 		return new OCLinEcoreCS2Pivot(cs2pivotResourceMap, typeManager);
+	}
+
+	@Override
+	public void doSave(OutputStream outputStream, Map<?, ?> options) throws IOException {
+		if (getContents().size() > 0) {
+			super.doSave(outputStream, options);	// Avoid NPE or ISE from XtextResource
+		}
 	}
 }
