@@ -12,18 +12,21 @@
  *
  * </copyright>
  *
- * $Id: BaseCS2Pivot.java,v 1.2 2011/01/24 21:00:31 ewillink Exp $
+ * $Id: BaseCS2Pivot.java,v 1.3 2011/05/11 19:47:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * BaseCST2Pivot provides an extensible conversion from CS models to the pivot model.
@@ -74,6 +77,7 @@ public class BaseCS2Pivot extends CS2Pivot
 	{
 		private Factory() {
 			CS2Pivot.addFactory(this);
+			addUnresolvedProxyMessageProvider(new TypedTypeRefCSTypeUnresolvedProxyMessageProvider());			
 		}
 
 		public BaseLeft2RightVisitor createLeft2RightVisitor(CS2PivotConversion converter) {
@@ -94,6 +98,18 @@ public class BaseCS2Pivot extends CS2Pivot
 
 		public EPackage getEPackage() {
 			return BaseCSTPackage.eINSTANCE;
+		}
+	}
+	
+	private static final class TypedTypeRefCSTypeUnresolvedProxyMessageProvider extends UnresolvedProxyMessageProvider
+	{		
+		private TypedTypeRefCSTypeUnresolvedProxyMessageProvider() {
+			super(BaseCSTPackage.Literals.TYPED_TYPE_REF_CS__TYPE);
+		}
+		
+		@Override
+		public String getMessage(EObject context, String linkText) {
+			return NLS.bind(OCLMessages.UnresolvedType_ERROR_, linkText);
 		}
 	}
 
