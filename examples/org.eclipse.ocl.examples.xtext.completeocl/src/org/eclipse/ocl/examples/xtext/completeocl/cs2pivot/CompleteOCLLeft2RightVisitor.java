@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLLeft2RightVisitor.java,v 1.7 2011/05/05 17:53:09 ewillink Exp $
+ * $Id: CompleteOCLLeft2RightVisitor.java,v 1.8 2011/05/11 19:30:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
@@ -73,6 +73,9 @@ public class CompleteOCLLeft2RightVisitor
 			if (contextDecl instanceof ClassifierContextDeclCS) {
 				ClassifierContextDeclCS csClassifierContextDecl = (ClassifierContextDeclCS)contextDecl;
 				Type contextType = csClassifierContextDecl.getClassifier();
+				if (contextType.eIsProxy()) {
+					contextType = null;
+				}
 				context.setType(contextVariable, contextType);
 				String selfName = csClassifierContextDecl.getSelfName();
 				if (selfName != null) {
@@ -82,27 +85,41 @@ public class CompleteOCLLeft2RightVisitor
 			else if (contextDecl instanceof PropertyContextDeclCS) {
 				PropertyContextDeclCS csPropertyContextDecl = (PropertyContextDeclCS)contextDecl;
 				Property contextProperty = csPropertyContextDecl.getProperty();
-				context.setType(contextVariable, contextProperty.getClass_());
+				if ((contextProperty != null) && !contextProperty.eIsProxy()) {
+					context.setType(contextVariable, contextProperty.getClass_());
+				}
 			}
 			else if (contextDecl instanceof OperationContextDeclCS) {
 				OperationContextDeclCS csOperationContextDecl = (OperationContextDeclCS)contextDecl;
 				Operation contextOperation = csOperationContextDecl.getOperation();
-				context.setType(contextVariable, contextOperation.getClass_());
 		        pivotSpecification.getParameterVariables().clear();
-		        for (Parameter parameter : contextOperation.getOwnedParameters()) {
-			        Variable param = PivotFactory.eINSTANCE.createVariable();
-			        param.setName(parameter.getName());
-			        param.setType(parameter.getType());
-			        param.setRepresentedParameter(parameter);
-			        pivotSpecification.getParameterVariables().add(param);
-		        }
+				if ((contextOperation != null) && !contextOperation.eIsProxy()) {
+					context.setType(contextVariable, contextOperation.getClass_());
+			        for (Parameter parameter : contextOperation.getOwnedParameters()) {
+						if ((parameter != null) && !parameter.eIsProxy()) {
+					        Variable param = PivotFactory.eINSTANCE.createVariable();
+					        param.setName(parameter.getName());
+					        Type type = parameter.getType();
+							if ((type != null) && !type.eIsProxy()) {
+								param.setType(type);
+							}
+					        param.setRepresentedParameter(parameter);
+					        pivotSpecification.getParameterVariables().add(param);
+						}
+			        }
+				}
 		        if (csConstraint instanceof PostCS) {
 					Variable resultVariable = pivotSpecification.getResultVariable();
 					if (resultVariable == null) {
 						resultVariable = PivotFactory.eINSTANCE.createVariable();
 					}
 					resultVariable.setName(Environment.RESULT_VARIABLE_NAME);
-					resultVariable.setType(contextOperation.getType());
+					if ((contextOperation != null) && !contextOperation.eIsProxy()) {
+						Type type = contextOperation.getType();
+						if ((type != null) && !type.eIsProxy()) {
+							resultVariable.setType(type);
+						}
+					}
 					pivotSpecification.setResultVariable(resultVariable);
 		        }
 			}

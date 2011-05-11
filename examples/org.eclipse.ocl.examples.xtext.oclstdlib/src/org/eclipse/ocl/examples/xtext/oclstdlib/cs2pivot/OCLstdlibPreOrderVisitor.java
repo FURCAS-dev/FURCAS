@@ -12,9 +12,11 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibPreOrderVisitor.java,v 1.8 2011/04/25 09:50:11 ewillink Exp $
+ * $Id: OCLstdlibPreOrderVisitor.java,v 1.9 2011/05/11 19:28:04 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot;
+
+import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
@@ -26,6 +28,8 @@ import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
+import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
@@ -55,7 +59,16 @@ public class OCLstdlibPreOrderVisitor
 		@Override
 		public BasicContinuation<?> execute() {
 			ClassifierType type = PivotUtil.getPivot(ClassifierType.class, csElement);
-			type.setInstanceType((Type) type.getOwnedTemplateSignature().getParameters().get(0).getParameteredElement());
+			TemplateSignature ownedTemplateSignature = type.getOwnedTemplateSignature();
+			if (ownedTemplateSignature != null) {
+				List<TemplateParameter> parameters = ownedTemplateSignature.getParameters();
+				if (parameters.size() > 0) {
+					TemplateParameter templateParameter = parameters.get(0);
+					if (templateParameter != null) {
+						type.setInstanceType((Type) templateParameter.getParameteredElement());
+					}
+				}
+			}
 			return null;
 		}
 	}

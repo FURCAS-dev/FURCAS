@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLDocumentScopeAdapter.java,v 1.8 2011/02/08 17:53:05 ewillink Exp $
+ * $Id: CompleteOCLDocumentScopeAdapter.java,v 1.9 2011/05/11 19:29:34 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
@@ -34,18 +34,18 @@ public class CompleteOCLDocumentScopeAdapter extends StandardDocumentScopeAdapte
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 //		if (environmentView.accepts(PivotPackage.Literals.NAMESPACE)) {
 			for (ImportCS anImport : getTarget().getOwnedImport()) {
-				if (anImport.getName() == null) {
-					Namespace namespace = anImport.getNamespace();
-					if (namespace instanceof org.eclipse.ocl.examples.pivot.Package) {
+				Namespace namespace = anImport.getNamespace();
+				if ((namespace != null) && !namespace.eIsProxy()) {
+					String importName = anImport.getName();
+					if (importName != null) {
+						environmentView.addElement(importName, namespace);
+					} else if (namespace instanceof org.eclipse.ocl.examples.pivot.Package) {
 						for (org.eclipse.ocl.examples.pivot.Package rootPackage : ((org.eclipse.ocl.examples.pivot.Package)namespace).getNestedPackages()) {
-							environmentView.addNamedElement(rootPackage);		// FIXME Rationmalize root of pivot model
+							environmentView.addNamedElement(rootPackage);		// FIXME Rationalize root of pivot model
 							environmentView.addNamedElements(rootPackage.getNestedPackages());
 							environmentView.addNamedElements(rootPackage.getOwnedTypes());
 						}
 					}
-				}
-				else {
-					environmentView.addElement(anImport.getName(), anImport.getNamespace());
 				}
 			}
 //		}
