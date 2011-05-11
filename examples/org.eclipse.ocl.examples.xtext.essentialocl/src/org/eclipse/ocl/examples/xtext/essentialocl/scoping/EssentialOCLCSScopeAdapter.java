@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSScopeAdapter.java,v 1.3 2011/02/08 17:44:57 ewillink Exp $
+ * $Id: EssentialOCLCSScopeAdapter.java,v 1.4 2011/05/11 19:26:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -56,7 +56,8 @@ public abstract class EssentialOCLCSScopeAdapter<CS extends MonikeredElementCS, 
 		}
 		else if (csElement instanceof TypeNameExpCS) {
 			TypeNameExpCS typeNameExpCS = (TypeNameExpCS)csElement;
-			return typeNameExpCS.getElement();
+			Type element = typeNameExpCS.getElement();
+			return (element != null) && !element.eIsProxy() ? element : null;
 		}
 //		else if (csElement instanceof NameExpCS) {
 //			return getLibraryType(((NameExpCS)csElement).getNamedElement());
