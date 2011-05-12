@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2EcoreDeclarationVisitor.java,v 1.7 2011/04/27 06:19:59 ewillink Exp $
+ * $Id: Pivot2EcoreDeclarationVisitor.java,v 1.8 2011/05/12 06:07:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
@@ -48,6 +49,7 @@ import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -59,8 +61,10 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 public class Pivot2EcoreDeclarationVisitor
 	extends AbstractExtendingVisitor<EObject, Pivot2Ecore>
@@ -82,7 +86,9 @@ public class Pivot2EcoreDeclarationVisitor
 		}
 //		visitAll(eClassifier.getETypeParameters(), pivotType.getTypeParameters());
 		for (Constraint pivotConstraint : pivotType.getOwnedRules()) {
-			safeVisit(pivotConstraint);		// Results are inserted directly
+			if (!pivotConstraint.isCallable()) {
+				safeVisit(pivotConstraint);		// Results are inserted directly
+			}
 		}
 		Pivot2Ecore.installDelegates(context.getTypeManager(), eClassifier, pivotType);
 	}
@@ -169,6 +175,35 @@ public class Pivot2EcoreDeclarationVisitor
 		context.defer(pivotClass);		// Defer superclass resolution
 		safeVisitAll(eClass.getEOperations(), pivotClass.getOwnedOperations());
 		safeVisitAll(eClass.getEStructuralFeatures(), pivotClass.getOwnedAttributes());
+		for (Constraint pivotConstraint : pivotClass.getOwnedRules()) {
+			if (pivotConstraint.isCallable()) {
+				EOperation eOperation = EcoreFactory.eINSTANCE.createEOperation();
+				eOperation.setName(pivotConstraint.getName());
+				eOperation.setEType(EcorePackage.Literals.EBOOLEAN);
+				EParameter firstParameter = EcoreFactory.eINSTANCE.createEParameter();
+				firstParameter.setName("diagnostics");
+				firstParameter.setEType(EcorePackage.Literals.EDIAGNOSTIC_CHAIN);
+				eOperation.getEParameters().add(firstParameter);
+				EParameter secondParameter = EcoreFactory.eINSTANCE.createEParameter();
+				secondParameter.setName("context");
+				EGenericType eGenericType = EcoreFactory.eINSTANCE.createEGenericType();
+				eGenericType.setEClassifier(EcorePackage.Literals.EMAP);
+				EGenericType firstTypeArgument = EcoreFactory.eINSTANCE.createEGenericType();
+				firstTypeArgument.setEClassifier(EcorePackage.Literals.EJAVA_OBJECT);
+				eGenericType.getETypeArguments().add(firstTypeArgument);
+				EGenericType secondTypeArgument = EcoreFactory.eINSTANCE.createEGenericType();
+				secondTypeArgument.setEClassifier(EcorePackage.Literals.EJAVA_OBJECT);
+				eGenericType.getETypeArguments().add(secondTypeArgument);
+				secondParameter.setEGenericType(eGenericType);
+				eOperation.getEParameters().add(secondParameter);
+				EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+				eAnnotation.setSource(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+				eAnnotation.getDetails().put("body", PivotUtil.getBody((OpaqueExpression) pivotConstraint.getSpecification()));
+				eOperation.getEAnnotations().add(eAnnotation);
+				eClass.getEOperations().add(eOperation);
+				context.putCreated(pivotConstraint, eOperation);
+			}
+		}
 		return eClass;
 	}
 
