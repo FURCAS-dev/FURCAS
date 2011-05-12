@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLinkingService.java,v 1.6 2011/04/20 19:02:15 ewillink Exp $
+ * $Id: EssentialOCLLinkingService.java,v 1.7 2011/05/12 08:48:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -23,6 +23,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
@@ -135,6 +136,9 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 				BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " failed");
 			}
 			eObjectDescription = scope.getSingleElement(qualifiedName);	// FIXME conditionalise this retry for debug
+			return Collections.emptyList();
+		}
+		catch (IllegalLibraryException e) {
 			return Collections.emptyList();
 		}
 		finally {
