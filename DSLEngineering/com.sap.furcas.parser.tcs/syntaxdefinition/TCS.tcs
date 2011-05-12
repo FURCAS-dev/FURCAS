@@ -231,11 +231,13 @@ syntax TCS {
                 ;
 
         template TCS::Alternative
-                :       "[[" [ sequences{separator = "|"} ]  "]]" (isMulti ? "*")
+                :       "[[" [ sequences{mode=nestedSequence, separator = "|"} ]  "]]" (isMulti ? "*")
                         {{ parentTemplate = lookIn("OCL:#context") }}
                 ;
-                
-        template TCS::SequenceInAlternative
+        
+        -- SequenceInAlternative inherits from Sequence. Using a moded template prevents that a we have to 
+        -- backtrack to decide whether to instantiate a normal sequence or this subclass.
+        template TCS::SequenceInAlternative #nestedSequence
                 :       (isDefined(disambiguate) ? "disambiguate" "(" disambiguate{as = stringSymbol} ")") 
                         [ elements ]
                 ;
