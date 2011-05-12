@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.19 2011/05/06 09:04:47 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.20 2011/05/12 08:52:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -36,8 +36,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
@@ -104,6 +104,7 @@ import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot.Factory;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
 import org.eclipse.xtext.linking.impl.XtextLinkingDiagnostic;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.ILeafNode;
@@ -228,9 +229,17 @@ public class CS2PivotConversion extends AbstractConversion
 	 * minimize invalidity.
 	 */
 	private HashSet<TypedElement> underspecifiedTypedElements = null;
+
+	/**
+	 * The handler for any generated diagnostics. If null (which is deprecated) diagnostics are inserted
+	 * directly into the resource errors list.
+	 */
+	@SuppressWarnings("unused")
+	private final IDiagnosticConsumer diagnosticsConsumer;
 	
-	public CS2PivotConversion(CS2Pivot converter, Collection<? extends Resource> csResources) {
+	public CS2PivotConversion(CS2Pivot converter, IDiagnosticConsumer diagnosticsConsumer, Collection<? extends Resource> csResources) {
 		this.converter = converter;
+		this.diagnosticsConsumer = diagnosticsConsumer;
 		this.typeManager = converter.getTypeManager();
 		this.csResources = csResources;
 		List<Resource> mappedResources = new ArrayList<Resource>();
@@ -270,7 +279,7 @@ public class CS2PivotConversion extends AbstractConversion
 		String boundMessage = NLS.bind(message, bindings);
 		INode node = NodeModelUtils.getNode(csElement);
 		Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, boundMessage);
-		csElement.eResource().getErrors().add(resourceDiagnostic);
+		csElement.eResource().getErrors().add(resourceDiagnostic);	// WIP
 		XtextLinkingDiagnostic diagnostic = new XtextLinkingDiagnostic(NodeModelUtils.getNode(csElement), boundMessage, "xyzzy");		// FIXME
 		csElement.eResource().getErrors().add(diagnostic);
 		InvalidType invalidType = typeManager.getOclInvalidType();
@@ -1699,7 +1708,7 @@ public class CS2PivotConversion extends AbstractConversion
 		TemplateableElement unspecializedPivotElement = csElement.getType();
 		String moniker = csElement.getMoniker();
 		logger.trace("Specializing " + moniker); //$NON-NLS-1$
-		if (unspecializedPivotElement == null) {
+		if ((unspecializedPivotElement == null) || unspecializedPivotElement.eIsProxy()) {
 			logger.error("Nothing to specialize as " + moniker); //$NON-NLS-1$
 			return null;
 		}
