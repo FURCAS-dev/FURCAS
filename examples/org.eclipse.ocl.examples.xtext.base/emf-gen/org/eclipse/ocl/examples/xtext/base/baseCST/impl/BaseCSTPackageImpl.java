@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTPackageImpl.java,v 1.15 2011/05/05 17:53:02 ewillink Exp $
+ * $Id: BaseCSTPackageImpl.java,v 1.16 2011/05/12 08:46:40 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -51,7 +51,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
@@ -239,13 +238,6 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 * @generated
 	 */
 	private EClass namespaceCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass namespaceRefCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1014,36 +1006,6 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getNamespaceRefCS()
-	{
-		return namespaceRefCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getNamespaceRefCS_Ref()
-	{
-		return (EReference)namespaceRefCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getNamespaceRefCS_OwnedTemplateBinding()
-	{
-		return (EReference)namespaceRefCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getOperationCS() {
 		return operationCSEClass;
 	}
@@ -1730,10 +1692,6 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 
 		namespaceCSEClass = createEClass(NAMESPACE_CS);
 
-		namespaceRefCSEClass = createEClass(NAMESPACE_REF_CS);
-		createEReference(namespaceRefCSEClass, NAMESPACE_REF_CS__REF);
-		createEReference(namespaceRefCSEClass, NAMESPACE_REF_CS__OWNED_TEMPLATE_BINDING);
-
 		operationCSEClass = createEClass(OPERATION_CS);
 		createEReference(operationCSEClass, OPERATION_CS__OWNING_CLASS);
 		createEReference(operationCSEClass, OPERATION_CS__OWNED_PARAMETER);
@@ -1888,7 +1846,6 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		namedElementCSEClass.getESuperTypes().add(this.getMonikeredElementCS());
 		namedElementCSEClass.getESuperTypes().add(thePivotPackage.getNameable());
 		namespaceCSEClass.getESuperTypes().add(this.getNamedElementCS());
-		namespaceRefCSEClass.getESuperTypes().add(this.getElementCS());
 		operationCSEClass.getESuperTypes().add(this.getFeatureCS());
 		operationCSEClass.getESuperTypes().add(this.getTemplateableElementCS());
 		packageCSEClass.getESuperTypes().add(this.getNamespaceCS());
@@ -1999,10 +1956,6 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		initEAttribute(getNamedElementCS_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedElementCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(namespaceCSEClass, NamespaceCS.class, "NamespaceCS", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(namespaceRefCSEClass, NamespaceRefCS.class, "NamespaceRefCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getNamespaceRefCS_Ref(), thePivotPackage.getNamespace(), null, "ref", null, 0, 1, NamespaceRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getNamespaceRefCS_OwnedTemplateBinding(), this.getTemplateBindingCS(), null, "ownedTemplateBinding", null, 0, 1, NamespaceRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(operationCSEClass, OperationCS.class, "OperationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getOperationCS_OwningClass(), this.getClassCS(), this.getClassCS_OwnedOperation(), "owningClass", null, 0, 1, OperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

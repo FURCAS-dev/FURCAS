@@ -115,11 +115,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamespaceCS" abstract="true" interface="true"
       eSuperTypes="#//NamedElementCS"/>
-  <eClassifiers xsi:type="ecore:EClass" name="NamespaceRefCS" eSuperTypes="#//ElementCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Namespace"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTemplateBinding" eType="#//TemplateBindingCS"
-        containment="true"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OperationCS" eSuperTypes="#//FeatureCS #//TemplateableElementCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" eType="#//ClassCS"
         eOpposite="#//ClassCS/ownedOperation"/>

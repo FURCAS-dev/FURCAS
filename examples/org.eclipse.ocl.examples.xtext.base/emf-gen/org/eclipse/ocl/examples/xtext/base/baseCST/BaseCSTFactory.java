@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTFactory.java,v 1.9 2011/05/05 17:53:02 ewillink Exp $
+ * $Id: BaseCSTFactory.java,v 1.10 2011/05/12 08:46:40 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -161,15 +161,6 @@ public interface BaseCSTFactory extends EFactory {
 	 * @generated
 	 */
 	LibraryCS createLibraryCS();
-
-	/**
-	 * Returns a new object of class '<em>Namespace Ref CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Namespace Ref CS</em>'.
-	 * @generated
-	 */
-	NamespaceRefCS createNamespaceRefCS();
 
 	/**
 	 * Returns a new object of class '<em>Operation CS</em>'.
