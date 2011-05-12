@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotResourceAdapter.java,v 1.9 2011/04/20 19:02:26 ewillink Exp $
+ * $Id: CS2PivotResourceAdapter.java,v 1.10 2011/05/12 08:52:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -31,6 +31,7 @@ import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
+import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
 
 /**
  * A CS2PivotResourceAdapter enhances the Resource for a Concrete Syntax model
@@ -121,9 +122,14 @@ public class CS2PivotResourceAdapter extends TypeManagerResourceAdapter
 		return super.isAdapterForType(type) || (type == CS2PivotResourceAdapter.class);
 	}	
 	
+	@Deprecated
 	public void refreshPivotMappings() throws Exception {
+		refreshPivotMappings(null);
+	}
+	
+	public void refreshPivotMappings(IDiagnosticConsumer diagnosticsConsumer) throws Exception {
 		try {
-			converter.update();
+			converter.update(diagnosticsConsumer);
 		}
 		catch (Exception e) {
 			dispose();
