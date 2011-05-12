@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ConstraintImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
+ * $Id: ConstraintImpl.java,v 1.3 2011/05/12 06:07:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -51,6 +51,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#getSpecification <em>Specification</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#getContext <em>Context</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#getStereotype <em>Stereotype</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.ConstraintImpl#isCallable <em>Is Callable</em>}</li>
  * </ul>
  * </p>
  *
@@ -109,6 +110,26 @@ public class ConstraintImpl
 	 * @ordered
 	 */
 	protected String stereotype = STEREOTYPE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isCallable() <em>Is Callable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCallable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_CALLABLE_EDEFAULT = false;
+
+	/**
+	 * The flag representing the value of the '{@link #isCallable() <em>Is Callable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCallable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int IS_CALLABLE_EFLAG = 1 << 9;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -291,6 +312,29 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isCallable()
+	{
+		return (eFlags & IS_CALLABLE_EFLAG) != 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsCallable(boolean newIsCallable)
+	{
+		boolean oldIsCallable = (eFlags & IS_CALLABLE_EFLAG) != 0;
+		if (newIsCallable) eFlags |= IS_CALLABLE_EFLAG; else eFlags &= ~IS_CALLABLE_EFLAG;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.CONSTRAINT__IS_CALLABLE, oldIsCallable, newIsCallable));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateNotApplyToSelf(DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return ConstraintOperations.validateNotApplyToSelf(this, diagnostics, context);
@@ -359,6 +403,8 @@ public class ConstraintImpl
 				return basicGetContext();
 			case PivotPackage.CONSTRAINT__STEREOTYPE:
 				return getStereotype();
+			case PivotPackage.CONSTRAINT__IS_CALLABLE:
+				return isCallable();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -407,6 +453,9 @@ public class ConstraintImpl
 			case PivotPackage.CONSTRAINT__STEREOTYPE:
 				setStereotype((String)newValue);
 				return;
+			case PivotPackage.CONSTRAINT__IS_CALLABLE:
+				setIsCallable((Boolean)newValue);
+				return;
 		}
 		eDynamicSet(featureID, newValue);
 	}
@@ -450,6 +499,9 @@ public class ConstraintImpl
 			case PivotPackage.CONSTRAINT__STEREOTYPE:
 				setStereotype(STEREOTYPE_EDEFAULT);
 				return;
+			case PivotPackage.CONSTRAINT__IS_CALLABLE:
+				setIsCallable(IS_CALLABLE_EDEFAULT);
+				return;
 		}
 		eDynamicUnset(featureID);
 	}
@@ -483,6 +535,8 @@ public class ConstraintImpl
 				return context != null;
 			case PivotPackage.CONSTRAINT__STEREOTYPE:
 				return STEREOTYPE_EDEFAULT == null ? stereotype != null : !STEREOTYPE_EDEFAULT.equals(stereotype);
+			case PivotPackage.CONSTRAINT__IS_CALLABLE:
+				return ((eFlags & IS_CALLABLE_EFLAG) != 0) != IS_CALLABLE_EDEFAULT;
 		}
 		return eDynamicIsSet(featureID);
 	}

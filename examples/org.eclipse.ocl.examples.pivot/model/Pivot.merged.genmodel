@@ -143,6 +143,9 @@
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="pivot.ecore#//Constraint/stereotype"/>
       </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="pivot.ecore#//Constraint/isCallable"/>
+      </genFeatures>
       <genOperations xsi:type="genmodel:GenOperation">
         <ecoreOperation href="pivot.ecore#//Constraint/not_apply_to_self"/>
         <genParameters xsi:type="genmodel:GenParameter">
