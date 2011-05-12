@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:pivot="http://www.eclipse.org/ocl/3.1.0/Pivot">
+  <pivot:Package xmi:id="Bug323741.ecore" name="Bug323741.ecore">
+    <nestedPackage xmi:id="my" name="my" nsPrefix="my" nsURI="http://my/1.0">
+      <ownedType xsi:type="pivot:Class" xmi:id="my!Model" name="Model" superClass="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.2 http://www.eclipse.org/ocl/3.1.0/Pivot#//@ownedType.10">
+        <ownedAttribute xmi:id="my!Model!bs" name="bs" type="#my!BType" lower="0"
+            upper="-1" isComposite="true" opposite="#my!BType!Model"/>
+      </ownedType>
+      <ownedType xsi:type="pivot:Class" xmi:id="my!Entity" name="Entity" superClass="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.2 http://www.eclipse.org/ocl/3.1.0/Pivot#//@ownedType.10">
+        <ownedAttribute xmi:id="my!Entity!name" name="name" type="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.19"
+            lower="0"/>
+      </ownedType>
+      <ownedType xsi:type="pivot:Class" xmi:id="my!AType" name="AType" superClass="#my!Entity">
+        <ownedAttribute xmi:id="my!AType!referencedAttr" name="referencedAttr" type="#my!BType"
+            lower="0" isReadOnly="true" isDerived="true" isTransient="true" isVolatile="true">
+          <ownedRule xmi:id="my!AType!referencedAttr!derivation~" stereotype="derivation">
+            <specification xsi:type="pivot:ExpressionInOcl" xmi:id="my!AType!referencedAttr!derivation~!specification">
+              <bodyExpression xsi:type="pivot:OperationCallExp" xmi:id="my!AType!referencedAttr!derivation~!specification!bodyExpression~first"
+                  type="#my!BType" referredOperation="#ocl!OrderedCollection{T}!first[my!BType]()">
+                <source xsi:type="pivot:OperationCallExp" xmi:id="my!AType!referencedAttr!derivation~!specification!bodyExpression~first!source~asSequence"
+                    type="http://www.eclipse.org/ocl/3.1.0/orphanage#//@ownedType.13"
+                    referredOperation="#ocl!Collection{T}!asSequence[my!BType]()">
+                  <source xsi:type="pivot:IteratorExp" xmi:id="my!AType!referencedAttr!derivation~!specification!bodyExpression~first!source~asSequence!source~select"
+                      type="http://www.eclipse.org/ocl/3.1.0/orphanage#//@ownedType.5"
+                      referredIteration="#ocl!Set{T}!select[my!BType](my!BType|Lambda~my!BType()Boolean)">
+                    <source xsi:type="pivot:OperationCallExp" xmi:id="my!AType!referencedAttr!derivation~!specification!bodyExpression~first!source~asSequence!source~select!source~allInstances"
+                        type="http://www.eclipse.org/ocl/3.1.0/orphanage#//@ownedType.5"
+                        referredOperation="#ocl!Classifier{T}!allInstances[my!BType,my!BType]()">
+                      <source xsi:type="pivot:TypeExp" xmi:id="my!AType!referencedAttr!derivation~!specification!bodyExpression~first!source~asSequence!source~select!source~allInstances!source~BType"
+                          type="#ocl!Classifier[my!BType]" referredType="#my!BType"/>
+                    </source>
+                    <body xsi:type="pivot:OperationCallExp" xmi:id="my!AType!referencedAttr!derivation~!specification!bodyExpression~first!source~asSequence!source~select!argument~includes"
+                        type="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.1"
+                        referredOperation="#ocl!Collection{T}!includes[my!AType](ocl!OclAny)">
+                      <source xsi:type="pivot:PropertyCallExp" xmi:id="my!AType!referencedAttr!derivation~!specification!bodyExpression~first!source~asSequence!source~select!argument~includes!source~references"
+                          type="#ocl!Set[my!AType]" referredProperty="#my!BType!references">
+                        <source xsi:type="pivot:VariableExp" xmi:id="my!AType!referencedAttr!derivation~!specification!bodyExpression~first!source~asSequence!source~select!argument~includes!source~references!source~1_"
+                            type="#my!BType" referredVariable="#my!AType!referencedAttr!derivation~!specification!bodyExpression~first!source~asSequence!source~select!iterator~1_"
+                            implicit="true"/>
+                      </source>
+                      <argument xsi:type="pivot:VariableExp" xmi:id="my!AType!referencedAttr!derivation~!specification!bodyExpression~first!source~asSequence!source~select!argument~includes!argument~self"
+                          type="#my!AType" referredVariable="#my!AType!referencedAttr!derivation~!specification!contextVariable~self"/>
+                    </body>
+                    <iterator xmi:id="my!AType!referencedAttr!derivation~!specification!bodyExpression~first!source~asSequence!source~select!iterator~1_"
+                        name="1_" type="#my!BType" representedParameter="http://www.eclipse.org/ocl/3.1.0/orphanage#//@ownedType.1/@ownedOperation.2/@ownedIterator.0"
+                        implicit="true"/>
+                  </source>
+                </source>
+              </bodyExpression>
+              <contextVariable xmi:id="my!AType!referencedAttr!derivation~!specification!contextVariable~self"
+                  name="self" type="#my!AType"/>
+            </specification>
+          </ownedRule>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="my!AType!BType" name="BType" type="#my!BType" lower="0"
+            opposite="#my!BType!references" implicit="true"/>
+        <ownedOperation xmi:id="my!AType!referenced()" name="referenced" type="#my!BType"
+            lower="0">
+          <ownedRule xmi:id="my!AType!referenced()!body~" stereotype="body">
+            <specification xsi:type="pivot:ExpressionInOcl" xmi:id="my!AType!referenced()!body~!specification">
+              <bodyExpression xsi:type="pivot:OperationCallExp" xmi:id="my!AType!referenced()!body~!specification!bodyExpression~first"
+                  type="#my!BType" referredOperation="#ocl!OrderedCollection{T}!first[my!BType]()">
+                <source xsi:type="pivot:OperationCallExp" xmi:id="my!AType!referenced()!body~!specification!bodyExpression~first!source~asSequence"
+                    type="http://www.eclipse.org/ocl/3.1.0/orphanage#//@ownedType.13"
+                    referredOperation="#ocl!Collection{T}!asSequence[my!BType]()">
+                  <source xsi:type="pivot:IteratorExp" xmi:id="my!AType!referenced()!body~!specification!bodyExpression~first!source~asSequence!source~select"
+                      type="http://www.eclipse.org/ocl/3.1.0/orphanage#//@ownedType.5"
+                      referredIteration="#ocl!Set{T}!select[my!BType](my!BType|Lambda~my!BType()Boolean)">
+                    <source xsi:type="pivot:OperationCallExp" xmi:id="my!AType!referenced()!body~!specification!bodyExpression~first!source~asSequence!source~select!source~allInstances"
+                        type="http://www.eclipse.org/ocl/3.1.0/orphanage#//@ownedType.5"
+                        referredOperation="#ocl!Classifier{T}!allInstances[my!BType,my!BType]()">
+                      <source xsi:type="pivot:TypeExp" xmi:id="my!AType!referenced()!body~!specification!bodyExpression~first!source~asSequence!source~select!source~allInstances!source~BType"
+                          type="#ocl!Classifier[my!BType]" referredType="#my!BType"/>
+                    </source>
+                    <body xsi:type="pivot:OperationCallExp" xmi:id="my!AType!referenced()!body~!specification!bodyExpression~first!source~asSequence!source~select!argument~includes"
+                        type="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.1"
+                        referredOperation="#ocl!Collection{T}!includes[my!AType](ocl!OclAny)">
+                      <source xsi:type="pivot:PropertyCallExp" xmi:id="my!AType!referenced()!body~!specification!bodyExpression~first!source~asSequence!source~select!argument~includes!source~references"
+                          type="#ocl!Set[my!AType]" referredProperty="#my!BType!references">
+                        <source xsi:type="pivot:VariableExp" xmi:id="my!AType!referenced()!body~!specification!bodyExpression~first!source~asSequence!source~select!argument~includes!source~references!source~1_"
+                            type="#my!BType" referredVariable="#my!AType!referenced()!body~!specification!bodyExpression~first!source~asSequence!source~select!iterator~1_"
+                            implicit="true"/>
+                      </source>
+                      <argument xsi:type="pivot:VariableExp" xmi:id="my!AType!referenced()!body~!specification!bodyExpression~first!source~asSequence!source~select!argument~includes!argument~self"
+                          type="#my!AType" referredVariable="#my!AType!referenced()!body~!specification!contextVariable~self"/>
+                    </body>
+                    <iterator xmi:id="my!AType!referenced()!body~!specification!bodyExpression~first!source~asSequence!source~select!iterator~1_"
+                        name="1_" type="#my!BType" representedParameter="http://www.eclipse.org/ocl/3.1.0/orphanage#//@ownedType.1/@ownedOperation.2/@ownedIterator.0"
+                        implicit="true"/>
+                  </source>
+                </source>
+              </bodyExpression>
+              <contextVariable xmi:id="my!AType!referenced()!body~!specification!contextVariable~self"
+                  name="self" type="#my!AType"/>
+            </specification>
+          </ownedRule>
+        </ownedOperation>
+      </ownedType>
+      <ownedType xsi:type="pivot:Class" xmi:id="my!BType" name="BType" superClass="#my!Entity">
+        <ownedAttribute xmi:id="my!BType!references" name="references" type="#my!AType"
+            lower="0" upper="-1" isComposite="true" opposite="#my!AType!BType"/>
+        <ownedAttribute xmi:id="my!BType!Model" name="Model" type="#my!Model" lower="0"
+            opposite="#my!Model!bs" implicit="true"/>
+      </ownedType>
+    </nestedPackage>
+  </pivot:Package>
+  <pivot:Package xmi:id="$orphanage" name="$orphanage">
+    <ownedType xsi:type="pivot:Class" xmi:id="$orphanage!$orphanage" name="$orphanage">
+      <ownedOperation xmi:id="ocl!OrderedCollection{T}!first[my!BType]()" name="first"
+          type="#my!BType" implementationClass="org.eclipse.ocl.examples.library.collection.OrderedCollectionFirstOperation">
+        <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.14/@ownedTemplateSignature">
+          <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.14/@ownedTemplateSignature/@ownedParameter.0"
+              actual="#my!BType"/>
+        </templateBinding>
+      </ownedOperation>
+      <ownedOperation xmi:id="ocl!Collection{T}!asSequence[my!BType]()" name="asSequence"
+          type="#ocl!Sequence[my!BType]" implementationClass="org.eclipse.ocl.examples.library.collection.CollectionAsSequenceOperation">
+        <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.3/@ownedTemplateSignature">
+          <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.3/@ownedTemplateSignature/@ownedParameter.0"
+              actual="#my!BType"/>
+        </templateBinding>
+      </ownedOperation>
+      <ownedOperation xsi:type="pivot:Iteration" xmi:id="ocl!Set{T}!select[my!BType](my!BType|Lambda~my!BType()Boolean)"
+          name="select" type="#ocl!Set[my!BType]" implementationClass="org.eclipse.ocl.examples.library.iterator.SelectIteration">
+        <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.18/@ownedTemplateSignature">
+          <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.18/@ownedTemplateSignature/@ownedParameter.0"
+              actual="#my!BType"/>
+        </templateBinding>
+        <ownedParameter xmi:id="ocl!Set{T}!select[my!BType](my!BType|Lambda~my!BType()Boolean)!body"
+            name="body" type="#Lambda~my!BType()Boolean"/>
+        <ownedIterator xmi:id="ocl!Set{T}!select[my!BType](my!BType|Lambda~my!BType()Boolean)!i"
+            name="i" type="#my!BType"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="ocl!Classifier{T}!allInstances[my!BType,my!BType]()"
+          name="allInstances" isStatic="true" type="#ocl!Set[my!BType]" implementationClass="org.eclipse.ocl.examples.library.classifier.ClassifierAllInstancesOperation">
+        <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.2/@ownedTemplateSignature">
+          <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.2/@ownedTemplateSignature/@ownedParameter.0"
+              actual="#my!BType"/>
+        </templateBinding>
+        <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.2/@ownedOperation.0/@ownedTemplateSignature">
+          <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.2/@ownedOperation.0/@ownedTemplateSignature/@ownedParameter.0"
+              actual="#my!BType"/>
+        </templateBinding>
+      </ownedOperation>
+      <ownedOperation xmi:id="ocl!Collection{T}!includes[my!AType](ocl!OclAny)" name="includes"
+          type="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.1" implementationClass="org.eclipse.ocl.examples.library.collection.CollectionIncludesOperation">
+        <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.3/@ownedTemplateSignature">
+          <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.3/@ownedTemplateSignature/@ownedParameter.0"
+              actual="#my!AType"/>
+        </templateBinding>
+        <ownedParameter xmi:id="ocl!Collection{T}!includes[my!AType](ocl!OclAny)!object"
+            name="object" type="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.8"/>
+      </ownedOperation>
+    </ownedType>
+    <ownedType xsi:type="pivot:LambdaType" xmi:id="Lambda~my!BType()Boolean" name="Lambda"
+        contextType="#my!BType" resultType="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.1">
+      <templateBinding>
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.18/@ownedTemplateSignature/@ownedParameter.0"
+            actual="#my!BType"/>
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.6/@ownedTemplateSignature/@ownedParameter.0"
+            actual="#my!BType"/>
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.3/@ownedTemplateSignature/@ownedParameter.0"
+            actual="#my!BType"/>
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.21/@ownedTemplateSignature/@ownedParameter.0"
+            actual="#my!BType"/>
+      </templateBinding>
+    </ownedType>
+    <ownedType xsi:type="pivot:ClassifierType" xmi:id="ocl!Classifier[my!BType]" name="Classifier"
+        superClass="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.2 http://www.eclipse.org/ocl/3.1.0/Pivot#//@ownedType.10"
+        instanceType="#my!BType">
+      <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.2/@ownedTemplateSignature">
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.2/@ownedTemplateSignature/@ownedParameter.0"
+            actual="#my!BType"/>
+      </templateBinding>
+    </ownedType>
+    <ownedType xsi:type="pivot:CollectionType" xmi:id="ocl!Collection[my!AType]" name="Collection"
+        superClass="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.8"
+        elementType="#my!AType">
+      <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.3/@ownedTemplateSignature">
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.3/@ownedTemplateSignature/@ownedParameter.0"
+            actual="#my!AType"/>
+      </templateBinding>
+    </ownedType>
+    <ownedType xsi:type="pivot:CollectionType" xmi:id="ocl!Collection[my!BType]" name="Collection"
+        superClass="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.8"
+        elementType="#my!BType">
+      <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.3/@ownedTemplateSignature">
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.3/@ownedTemplateSignature/@ownedParameter.0"
+            actual="#my!BType"/>
+      </templateBinding>
+    </ownedType>
+    <ownedType xsi:type="pivot:CollectionType" xmi:id="ocl!NonOrderedCollection[my!AType]"
+        name="NonOrderedCollection" superClass="#ocl!Collection[my!AType]" elementType="#my!AType">
+      <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.6/@ownedTemplateSignature">
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.6/@ownedTemplateSignature/@ownedParameter.0"
+            actual="#my!AType"/>
+      </templateBinding>
+    </ownedType>
+    <ownedType xsi:type="pivot:CollectionType" xmi:id="ocl!NonOrderedCollection[my!BType]"
+        name="NonOrderedCollection" superClass="#ocl!Collection[my!BType]" elementType="#my!BType">
+      <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.6/@ownedTemplateSignature">
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.6/@ownedTemplateSignature/@ownedParameter.0"
+            actual="#my!BType"/>
+      </templateBinding>
+    </ownedType>
+    <ownedType xsi:type="pivot:CollectionType" xmi:id="ocl!NonUniqueCollection[my!BType]"
+        name="NonUniqueCollection" superClass="#ocl!Collection[my!BType]" elementType="#my!BType">
+      <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.7/@ownedTemplateSignature">
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.7/@ownedTemplateSignature/@ownedParameter.0"
+            actual="#my!BType"/>
+      </templateBinding>
+    </ownedType>
+    <ownedType xsi:type="pivot:CollectionType" xmi:id="ocl!OrderedCollection[my!BType]"
+        name="OrderedCollection" superClass="#ocl!Collection[my!BType]" elementType="#my!BType">
+      <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.14/@ownedTemplateSignature">
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.14/@ownedTemplateSignature/@ownedParameter.0"
+            actual="#my!BType"/>
+      </templateBinding>
+    </ownedType>
+    <ownedType xsi:type="pivot:SequenceType" xmi:id="ocl!Sequence[my!BType]" name="Sequence"
+        superClass="#ocl!OrderedCollection[my!BType] #ocl!NonUniqueCollection[my!BType]"
+        elementType="#my!BType">
+      <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.17/@ownedTemplateSignature">
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.17/@ownedTemplateSignature/@ownedParameter.0"
+            actual="#my!BType"/>
+      </templateBinding>
+    </ownedType>
+    <ownedType xsi:type="pivot:SetType" xmi:id="ocl!Set[my!AType]" name="Set" superClass="#ocl!UniqueCollection[my!AType] #ocl!NonOrderedCollection[my!AType]"
+        elementType="#my!AType">
+      <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.18/@ownedTemplateSignature">
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.18/@ownedTemplateSignature/@ownedParameter.0"
+            actual="#my!AType"/>
+      </templateBinding>
+    </ownedType>
+    <ownedType xsi:type="pivot:SetType" xmi:id="ocl!Set[my!BType]" name="Set" superClass="#ocl!UniqueCollection[my!BType] #ocl!NonOrderedCollection[my!BType]"
+        elementType="#my!BType">
+      <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.18/@ownedTemplateSignature">
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.18/@ownedTemplateSignature/@ownedParameter.0"
+            actual="#my!BType"/>
+      </templateBinding>
+    </ownedType>
+    <ownedType xsi:type="pivot:CollectionType" xmi:id="ocl!UniqueCollection[my!AType]"
+        name="UniqueCollection" superClass="#ocl!Collection[my!AType]" elementType="#my!AType">
+      <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.21/@ownedTemplateSignature">
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.21/@ownedTemplateSignature/@ownedParameter.0"
+            actual="#my!AType"/>
+      </templateBinding>
+    </ownedType>
+    <ownedType xsi:type="pivot:CollectionType" xmi:id="ocl!UniqueCollection[my!BType]"
+        name="UniqueCollection" superClass="#ocl!Collection[my!BType]" elementType="#my!BType">
+      <templateBinding signature="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.21/@ownedTemplateSignature">
+        <parameterSubstitution formal="http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib#//@ownedType.21/@ownedTemplateSignature/@ownedParameter.0"
+            actual="#my!BType"/>
+      </templateBinding>
+    </ownedType>
+  </pivot:Package>
+</xmi:XMI>
