@@ -103,11 +103,7 @@ public class TestObservation {
         assertEquals(0, testObserver.ruleContextStack.size());
         assertEquals(0, testObserver.sequenceContextStack.size());
         assertEquals(1113, testObserver.elementsResolved.size());
-<<<<<<< HEAD
         assertEquals(254, testObserver.outOfContextResolved.size());
-=======
-        assertEquals(253, testObserver.outOfContextResolved.size());
->>>>>>> b3373aae1653b240d000633c2b91c08e2ef6cfc1
         assertEquals(0, testObserver.sequenceElementsEnteredNotLeft);
         assertEquals(0, testObserver.injectorActionsEnteredNotleft);
     }
