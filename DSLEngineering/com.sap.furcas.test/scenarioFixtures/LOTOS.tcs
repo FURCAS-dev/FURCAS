@@ -298,7 +298,7 @@ syntax LOTOS {
 		}
 	}
 	
-	token COMMENT : multiLine(start = "(*", end = "*)");
+	omitted token COMMENT : multiLine(start = "(*", end = "*)");
 
 	lexer = "
 %options testLiterals = false;
@@ -309,13 +309,13 @@ NL
 		|	'\\r'
 		|	'\\n'
 		)
-	{newline();}
+	{newline();$channel=HIDDEN;}
 	;
 
 WS
 	:	(	' '
 		|	'\\t'
-		)
+		){$channel=HIDDEN;}
 	;
 
 %protected

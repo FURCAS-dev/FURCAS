@@ -96,11 +96,6 @@ public class ParserAndFactoryGenerator extends ParserGenerator {
 
             out.println("       private static final String CLASS_LANGUAGE_ID = \"" + testConfig.getLanguageName() + "\"; ");
 
-            out.println("       @Override");
-            out.println("    public String[] getHiddenChannelTokenNames() {");
-            out.println("       return new String[] { \"WS\", \"NL\", \"COMMENT\" };");
-            out.println("    }");
-
             out.println("       @Override ");
             out.println("       public Class<" + testConfig.getLexerName()
                     + "> getLexerClass() { ");

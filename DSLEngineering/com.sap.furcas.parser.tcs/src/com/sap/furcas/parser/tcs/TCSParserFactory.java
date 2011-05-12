@@ -43,11 +43,6 @@ public class TCSParserFactory extends AbstractParserFactory<TCSParser, TCSLexer>
     }
 
     @Override
-    public String[] getHiddenChannelTokenNames() {
-        return new String[] { "WS", "NL", "COMMENT" };
-    }
-        
-    @Override
     public URI getSyntaxUri() {
         return URI.createPlatformPluginURI("/com.sap.furcas.parser.tcs/mappings/TCS.tcs", /* encode */ false);
     }

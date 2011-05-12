@@ -110,7 +110,7 @@ syntax SQLDDL {
 		larrow		= "<-";
 	}
 
-	token COMMENT	: endOfLine(start = "--");
+	omitted token COMMENT	: endOfLine(start = "--");
 	
 	lexer = "
 %options testLiterals = false;
@@ -120,13 +120,13 @@ NL
 		|	'\\r'
 		|	'\\n'
 		)
-	{newline();}
+	{newline();$channel=HIDDEN;}
 	;
 
 WS
 	:	(	' '
 		|	'\\t'
-		)
+		){$channel=HIDDEN;}
 	;
 
 %protected

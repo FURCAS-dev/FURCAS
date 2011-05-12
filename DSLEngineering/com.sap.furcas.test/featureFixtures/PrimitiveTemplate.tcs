@@ -31,7 +31,7 @@ syntax PrimitiveTemplate {
 	;
 
 	
-	token COMMENT	: endOfLine(start = "--");
+	omitted token COMMENT	: endOfLine(start = "--");
 	
 	
         lexer = "

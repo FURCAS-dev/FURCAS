@@ -103,7 +103,7 @@ operators {
 -- Specifies the lexical entities.
 -- Only needs modification when default lexer is not satisfactory.
 -- Generally modified along with Primitive templates.
-	token COMMENT	: endOfLine(start = "--");
+	omitted token COMMENT	: endOfLine(start = "--");
 
 
 }

@@ -8,7 +8,7 @@ syntax NestedPackageLookUpByURI {
         : "nestedTest"
         ;
 
-  token COMMENT   : endOfLine(start = "--");
+  omitted token COMMENT   : endOfLine(start = "--");
 
 }
   
