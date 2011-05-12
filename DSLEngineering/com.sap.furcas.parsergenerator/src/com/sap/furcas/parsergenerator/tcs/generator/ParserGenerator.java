@@ -63,11 +63,7 @@ public class ParserGenerator {
 	// args[0] = "-Xwatchconversion";
 	// args[1] = "-Xdfaverbose";
 
-	// argList.add("-lib");
-	// argList.add(grammarfile.getParent().getRawLocation().toOSString());
-	// // does not work, ANTLR does not look in lib for grammar
-
-	argList.add(grammarfile.getAbsolutePath());
+	argList.add(grammarfile.getPath());
 	argList.add("-report");
 
 	String[] args = argList.toArray(new String[argList.size()]);
