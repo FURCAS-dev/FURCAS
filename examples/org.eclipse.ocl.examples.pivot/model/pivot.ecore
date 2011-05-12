@@ -215,6 +215,8 @@
         eType="#//NamedElement"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stereotype" ordered="false"
         eType="#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isCallable" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//Class">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

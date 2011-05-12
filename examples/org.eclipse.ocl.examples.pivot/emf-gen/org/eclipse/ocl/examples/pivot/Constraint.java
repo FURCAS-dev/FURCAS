@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Constraint.java,v 1.2 2011/01/24 20:49:36 ewillink Exp $
+ * $Id: Constraint.java,v 1.3 2011/05/12 06:07:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#getSpecification <em>Specification</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#getContext <em>Context</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#getStereotype <em>Stereotype</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Constraint#isCallable <em>Is Callable</em>}</li>
  * </ul>
  * </p>
  *
@@ -150,6 +151,33 @@ public interface Constraint
 	 * @generated
 	 */
 	void setStereotype(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Callable</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Callable</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Callable</em>' attribute.
+	 * @see #setIsCallable(boolean)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getConstraint_IsCallable()
+	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isCallable();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Constraint#isCallable <em>Is Callable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Callable</em>' attribute.
+	 * @see #isCallable()
+	 * @generated
+	 */
+	void setIsCallable(boolean value);
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2PivotDeclarationSwitch.java,v 1.12 2011/05/11 19:38:41 ewillink Exp $
+ * $Id: Ecore2PivotDeclarationSwitch.java,v 1.13 2011/05/12 06:07:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -128,12 +128,24 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 				Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
 				constraint.setStereotype(UMLReflection.INVARIANT);
 				constraint.setName(eOperation.getName());
-				String value = EcoreUtil.getAnnotation(eOperation, "http://www.eclipse.org/emf/2002/GenModel", "documentation");
+				constraint.setIsCallable(true);
+				String value = null;
+				EAnnotation eAnnotation;
+				if ((eAnnotation = eOperation.getEAnnotation("http://www.eclipse.org/emf/2002/GenModel")) != null) {
+					value = eAnnotation.getDetails().get("documentation");
+				}
+				else if ((eAnnotation = eOperation.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT)) != null) {
+					value = eAnnotation.getDetails().get("body");
+				}
+				else if ((eAnnotation = eOperation.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_LPG)) != null) {
+					value = eAnnotation.getDetails().get("body");
+				}
 				OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOcl
 				specification.getBodies().add(value);
 				specification.getLanguages().add(PivotConstants.OCL_LANGUAGE);
 				constraint.setSpecification(specification);
 				pivotConstraints.add(constraint);
+				setOriginalMapping(constraint, eOperation);
 			}
 			else {
 				Object pivotObject = doSwitch(eOperation);

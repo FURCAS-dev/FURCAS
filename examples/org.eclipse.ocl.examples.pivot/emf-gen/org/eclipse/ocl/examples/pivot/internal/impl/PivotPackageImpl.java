@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotPackageImpl.java,v 1.12 2011/05/02 15:38:53 ewillink Exp $
+ * $Id: PivotPackageImpl.java,v 1.13 2011/05/12 06:07:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -3274,6 +3274,16 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getConstraint_IsCallable()
+	{
+		return (EAttribute)constraintEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getConstraint__ValidateNotApplyToSelf__DiagnosticChain_Map() {
 		return constraintEClass.getEOperations().get(0);
 	}
@@ -3667,6 +3677,7 @@ public class PivotPackageImpl
 		createEReference(constraintEClass, CONSTRAINT__SPECIFICATION);
 		createEReference(constraintEClass, CONSTRAINT__CONTEXT);
 		createEAttribute(constraintEClass, CONSTRAINT__STEREOTYPE);
+		createEAttribute(constraintEClass, CONSTRAINT__IS_CALLABLE);
 		createEOperation(constraintEClass, CONSTRAINT___VALIDATE_NOT_APPLY_TO_SELF__DIAGNOSTICCHAIN_MAP);
 		createEOperation(constraintEClass, CONSTRAINT___VALIDATE_VALUE_SPECIFICATION_BOOLEAN__DIAGNOSTICCHAIN_MAP);
 
@@ -4191,6 +4202,7 @@ public class PivotPackageImpl
 		initEReference(getConstraint_Specification(), this.getValueSpecification(), null, "specification", null, 1, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getConstraint_Context(), this.getNamedElement(), null, "context", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getConstraint_Stereotype(), this.getString(), "stereotype", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getConstraint_IsCallable(), this.getBoolean(), "isCallable", "false", 1, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
 		EOperation op = initEOperation(getConstraint__ValidateNotApplyToSelf__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateNotApplyToSelf", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
