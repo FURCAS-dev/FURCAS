@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentView.java,v 1.17 2011/05/11 19:50:12 ewillink Exp $
+ * $Id: EnvironmentView.java,v 1.18 2011/05/12 08:48:14 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -264,7 +264,7 @@ public class EnvironmentView
 				aScope = aScopeAdapter.computeLookup(this, aScope);
 			}
 		}
-		catch (IllegalLibraryException e) {		// WIP
+		catch (IllegalLibraryException e) {
 			throw e;
 		}
 		catch (Exception e) {
