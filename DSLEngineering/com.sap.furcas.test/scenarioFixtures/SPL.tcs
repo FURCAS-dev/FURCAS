@@ -609,7 +609,7 @@ syntax SPL {
 					
 					
 				);
-	token COMMENT	:	endOfLine(start = "//") | multiLine(start = "/*", end = "*/");
+	omitted token COMMENT	:	endOfLine(start = "//") | multiLine(start = "/*", end = "*/");
 	token URI	:	multiLine(start = "\'", end = "\'");
 	token HEADERID	:	word(
 					start = "#",
@@ -631,7 +631,7 @@ NL
 WS
 	:	(	' '
 		|	'\\t'
-		)
+		){$channel=HIDDEN;}
 	;
 
 %protected

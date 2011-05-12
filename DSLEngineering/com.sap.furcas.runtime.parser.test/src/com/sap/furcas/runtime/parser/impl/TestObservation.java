@@ -37,7 +37,7 @@ public class TestObservation {
         facade.parseProductionRule(in, modelHandler, null, null, testObserver);
 
         assertEquals(0, testObserver.errorsInRule.size());
-        assertEquals(111, testObserver.tokensConsumed.size());
+        assertEquals(112, testObserver.tokensConsumed.size());
         assertEquals(0, testObserver.errorTokensConsumed.size());
         assertEquals(0, testObserver.ruleContextStack.size());
         assertEquals(0, testObserver.sequenceContextStack.size());
@@ -60,7 +60,7 @@ public class TestObservation {
         facade.parseProductionRule(in, modelHandler, null, null, testObserver);
 
         assertEquals(0, testObserver.errorsInRule.size());
-        assertEquals(1511, testObserver.tokensConsumed.size());
+        assertEquals(1516, testObserver.tokensConsumed.size());
         assertEquals(0, testObserver.errorTokensConsumed.size());
         assertEquals(0, testObserver.ruleContextStack.size());
         assertEquals(0, testObserver.sequenceContextStack.size());
@@ -98,7 +98,7 @@ public class TestObservation {
         facade.parseProductionRule(in, modelHandler, null, null, delegationObserver);
 
         assertEquals(0, testObserver.errorsInRule.size());
-        assertEquals(1511, testObserver.tokensConsumed.size());
+        assertEquals(1516, testObserver.tokensConsumed.size());
         assertEquals(0, testObserver.errorTokensConsumed.size());
         assertEquals(0, testObserver.ruleContextStack.size());
         assertEquals(0, testObserver.sequenceContextStack.size());
@@ -144,7 +144,7 @@ public class TestObservation {
         facade.parseProductionRule(in, modelHandler, null, null, testObserver);
 
         assertEquals(0, testObserver.errorsInRule.size());
-        assertEquals(1731, testObserver.tokensConsumed.size());
+        assertEquals(1732, testObserver.tokensConsumed.size());
         assertEquals(0, testObserver.errorTokensConsumed.size());
         assertEquals(0, testObserver.ruleContextStack.size());
         assertEquals(0, testObserver.sequenceContextStack.size());

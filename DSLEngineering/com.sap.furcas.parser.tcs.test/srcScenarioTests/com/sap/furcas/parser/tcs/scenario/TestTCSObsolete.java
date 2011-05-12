@@ -129,7 +129,7 @@ public class TestTCSObsolete extends GeneratedParserBasedTest {
         assertEquals(69, stubModelHandler.getElementsOfType("TCS::ClassTemplate").size());
         assertEquals(5, stubModelHandler.getElementsOfType("TCS::PrimitiveTemplate").size());
         assertEquals(1, stubModelHandler.getElementsOfType("TCS::ConcreteSyntax").size());
-        assertEquals(169, stubModelHandler.getElementsOfType("TCS::Sequence").size());
+        assertEquals(171, stubModelHandler.getElementsOfType("TCS::Sequence").size());
     }
 
     @Test

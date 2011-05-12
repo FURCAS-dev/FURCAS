@@ -9,9 +9,7 @@ import java.util.Set;
 
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CharStream;
-import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.Lexer;
-import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenStream;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
@@ -39,16 +37,6 @@ public abstract class AbstractParserFactory<P extends ObservableInjectingParser,
 
     @Override
 	public abstract EPackage getMetamodelPackage(ResourceSet connection);
-
-	/**
-	 * Return the names of the constants that define the tokens in the parser class (see
-	 * {@link #getParserClass()}) that are to be considered part of the so-called
-	 * "hidden channel." Typical examples are comment token types such as "WS", "NL", "COMMENT",
-	 * or "MULTI_LINE_COMMENT"
-	 * 
-	 * FIXME: Isn't that already specified in the TCS? Why do we have to do this by hand? 
-	 */
-	public abstract String[] getHiddenChannelTokenNames();
 	
 	@Override
 	public P createParser(TokenStream input, ResourceSet connection) {
@@ -72,12 +60,6 @@ public abstract class AbstractParserFactory<P extends ObservableInjectingParser,
 		try {
 			Constructor<P> c = parserClass.getConstructor(TokenStream.class);
 			P parser = c.newInstance(input);
-			if (input instanceof CommonTokenStream) {
-				int[] hiddenChannelTokens = getHiddenChannelTokens();
-				for (int hiddenChannelToken : hiddenChannelTokens) {
-					((CommonTokenStream) input).setTokenTypeChannel(hiddenChannelToken, Token.HIDDEN_CHANNEL);
-				}
-			}
 
 			EPackage metamodelPackage = getMetamodelPackage(resourceSet);
 			Set<URI> scope = new HashSet<URI>(priScope);
@@ -148,22 +130,6 @@ public abstract class AbstractParserFactory<P extends ObservableInjectingParser,
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-	}
-
-	public int[] getHiddenChannelTokens() {
-		int[] result = new int[getHiddenChannelTokenNames().length];
-		int i = 0;
-		for (String tokenName : getHiddenChannelTokenNames()) {
-			Field tokenConstant;
-			try {
-				tokenConstant = getParserClass().getDeclaredField(tokenName);
-				int token = tokenConstant.getInt(null);
-				result[i++] = token;
-			} catch (Exception e) {
-				throw new RuntimeException(e);
-			}
-		}
-		return result;
 	}
 
 	@Override

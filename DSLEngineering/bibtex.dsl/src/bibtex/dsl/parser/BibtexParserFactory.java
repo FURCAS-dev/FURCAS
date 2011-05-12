@@ -36,11 +36,6 @@ public class BibtexParserFactory extends
     }
 
     @Override
-    public String[] getHiddenChannelTokenNames() {
-        return new String[] { "WS", "NL", "COMMENT" };
-    }
-
-    @Override
     public URI getSyntaxUri() {
         return URI.createPlatformPluginURI("/bibtex.dsl/mappings/Bibtex.tcs",
                 true);

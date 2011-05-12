@@ -17,7 +17,7 @@ syntax Problem {
 		semi		= ";";
 	}
 
-	token COMMENT	: endOfLine(start = "--");
+	omitted token COMMENT	: endOfLine(start = "--");
 
 	
 }

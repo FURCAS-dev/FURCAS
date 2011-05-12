@@ -12,6 +12,7 @@ import org.antlr.runtime.TokenSource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
@@ -269,7 +270,9 @@ public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements
 	protected ANTLR3LocationToken createToken(AbstractToken abstractToken) {
 		ANTLR3LocationToken tok = new ANTLR3LocationTokenImpl(abstractToken
 				.getType(), getSynchronizedValue(abstractToken));
-
+		if (abstractToken instanceof OmittedToken) {
+		    tok.setChannel(Token.HIDDEN_CHANNEL);
+		}
 		int absoluteOffset = TbUtil.getAbsoluteOffset(abstractToken);
 		tok.setStartIndex(absoluteOffset);
 		tok.setStopIndex(absoluteOffset + abstractToken.getLength());

@@ -33,12 +33,6 @@ public class $CapLangName$ParserFactory extends AbstractParserFactory<$CapLangNa
     public EPackage getMetamodelPackage(ResourceSet connection) { 
         return EPackage.Registry.INSTANCE.getEPackage("$URI$"); 
     } 
-
-
-	@Override
-	public String[] getHiddenChannelTokenNames() {
-        return new String[] { "WS", "NL", "COMMENT" };
-	}
 	
 	@Override 
         public URI getSyntaxUri() { 

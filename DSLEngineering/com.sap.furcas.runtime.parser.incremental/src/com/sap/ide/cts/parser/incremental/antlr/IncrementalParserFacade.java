@@ -47,11 +47,7 @@ public class IncrementalParserFacade {
 	private final ObservableInjectingParser domainParser;
 	private final IncrementalParser incrementalParser;
 	private final ModelInjector injector;
-	private int TT_NL;
-	private int TT_WS;
-	private int TT_COMMENT;
 	private final ParserTextBlocksHandler observer;
-	private int TT_MULTI_COMMENT;
 
 	public IncrementalParserFacade(
 			ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory,
@@ -98,31 +94,14 @@ public class IncrementalParserFacade {
 						.println("Warning, lexer has no ModelInjector field ei, lexer errors will only be reported to System.err");
 			}
 
-			TT_NL = ((Integer) domainParser.getClass().getField("NL").get(null))
-					.intValue();
-
-			TT_WS = ((Integer) domainParser.getClass().getField("WS").get(null))
-					.intValue();
-			TT_COMMENT = ((Integer) domainParser.getClass().getField("COMMENT")
-					.get(null)).intValue();
-			// TT_MULTI_COMMENT = ((Integer) domainParser.getClass().getField(
-			// "MULTI_LINE_COMMENT").get(null)).intValue();
 		} catch (IllegalArgumentException e) {
 			throw new RuntimeException(e);
 		} catch (SecurityException e) {
 			throw new RuntimeException(e);
 		} catch (IllegalAccessException e) {
 			throw new RuntimeException(e);
-		} catch (NoSuchFieldException e) {
-			throw new RuntimeException(e);
 		}
 
-		tbTokenStream.setTokenTypeChannel(TT_NL, 99);
-
-		// tbTokenStream.discardTokenType(TT_WS);
-		tbTokenStream.setTokenTypeChannel(TT_WS, 99);
-		tbTokenStream.setTokenTypeChannel(TT_COMMENT, 99);
-		tbTokenStream.setTokenTypeChannel(TT_MULTI_COMMENT, 99);
 	}
 
 	/**
