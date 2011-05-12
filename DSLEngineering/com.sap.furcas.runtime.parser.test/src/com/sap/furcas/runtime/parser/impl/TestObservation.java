@@ -64,8 +64,8 @@ public class TestObservation {
         assertEquals(0, testObserver.errorTokensConsumed.size());
         assertEquals(0, testObserver.ruleContextStack.size());
         assertEquals(0, testObserver.sequenceContextStack.size());
-        assertEquals(1109, testObserver.elementsResolved.size());
-        assertEquals(253, testObserver.outOfContextResolved.size());
+        assertEquals(1113, testObserver.elementsResolved.size());
+        assertEquals(254, testObserver.outOfContextResolved.size());
         assertEquals(0, testObserver.sequenceElementsEnteredNotLeft);
         assertEquals(0, testObserver.injectorActionsEnteredNotleft);
     }
@@ -102,8 +102,8 @@ public class TestObservation {
         assertEquals(0, testObserver.errorTokensConsumed.size());
         assertEquals(0, testObserver.ruleContextStack.size());
         assertEquals(0, testObserver.sequenceContextStack.size());
-        assertEquals(1109, testObserver.elementsResolved.size());
-        assertEquals(253, testObserver.outOfContextResolved.size());
+        assertEquals(1113, testObserver.elementsResolved.size());
+        assertEquals(254, testObserver.outOfContextResolved.size());
         assertEquals(0, testObserver.sequenceElementsEnteredNotLeft);
         assertEquals(0, testObserver.injectorActionsEnteredNotleft);
     }
