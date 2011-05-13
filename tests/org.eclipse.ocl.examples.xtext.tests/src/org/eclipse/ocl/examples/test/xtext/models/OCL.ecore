@@ -127,7 +127,7 @@
       </eOperations>
       <eOperations name="operation_parameters" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="referredOperation->size()=1 implies&#xA;Set{1..self.ownedAttribute->size()}->forAll(i | self.ownedAttribute.at(i).cmpSlots(&#xA;referredOperation.ownedParameter.asProperty()->at(i))"/>
+          <details key="documentation" value="referredOperation->size()=1 implies&#xD;&#xA;Set{1..self.ownedAttribute->size()}->forAll(i | self.ownedAttribute.at(i).cmpSlots(&#xD;&#xA;referredOperation.ownedParameter.asProperty()->at(i)))"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -146,7 +146,7 @@
       </eOperations>
       <eOperations name="signal_attributes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="referredSignal->size() = 1 implies&#xA;Set{1..self.ownedAttribute->size()}->forAll(i | self.ownedAttribute.asOrderedSet().at(i).cmpSlots(&#xA;referredSignal.ownedAttribute.asOrderedSet()->at(i))"/>
+          <details key="documentation" value="referredSignal->size() = 1 implies&#xD;&#xA;Set{1..self.ownedAttribute->size()}->forAll(i | self.ownedAttribute.asOrderedSet().at(i).cmpSlots(&#xD;&#xA;referredSignal.ownedAttribute.asOrderedSet()->at(i)))"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1437,7 +1437,7 @@
       <eTypeParameters name="PM"/>
       <eOperations name="let_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="type = in.type"/>
+          <details key="documentation" value="type = _'in'.type"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1475,7 +1475,7 @@
       <eTypeParameters name="SSA"/>
       <eOperations name="operation_arguments" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="calledOperation->notEmpty() implies&#xA;argument->forall (a | a.type.conformsTo&#xA;(self.calledOperation.operation.ownedParameter->&#xA;select( kind = ParameterDirectionKind::in )&#xA;->at (argument->indexOf (a)).type))"/>
+          <details key="documentation" value="calledOperation->notEmpty() implies&#xD;&#xA;argument->forall (a | a.type.conformsTo&#xD;&#xA;(self.calledOperation.operation.ownedParameter->&#xD;&#xA;select( kind = ParameterDirectionKind::_'in' )&#xD;&#xA;->at (argument->indexOf (a)).type))"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
