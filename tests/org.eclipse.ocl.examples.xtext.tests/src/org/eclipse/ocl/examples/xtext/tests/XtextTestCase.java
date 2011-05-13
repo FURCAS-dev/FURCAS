@@ -642,7 +642,7 @@ public class XtextTestCase extends TestCase
 				for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
 					EObject eObject = tit.next();
 					for (Adapter adapter : eObject.eAdapters()) {
-//WIP						assert !(adapter instanceof TypeManagedAdapter);
+						assert !(adapter instanceof TypeManagedAdapter);//WIP
 					}
 				}
 			}		
