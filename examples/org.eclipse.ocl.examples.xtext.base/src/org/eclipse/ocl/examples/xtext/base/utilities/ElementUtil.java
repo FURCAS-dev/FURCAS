@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementUtil.java,v 1.6 2011/04/20 19:02:26 ewillink Exp $
+ * $Id: ElementUtil.java,v 1.7 2011/05/13 19:19:11 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -186,24 +186,5 @@ public class ElementUtil
 			}
 		}
 		return false;
-	}
-	
-	public static boolean isValidIdentifier(String value) {
-		int iMax = value.length();
-		for (int i = 0; i < iMax; i++) {
-			char c = value.charAt(i);
-			if (('A' <= c) && (c <= 'Z')) {					
-			}
-			else if (('a' <= c) && (c <= 'z')) {					
-			}
-			else if (c == '_') {					
-			}
-			else if (('0' <= c) && (c <= '9') && (i > 0)) {					
-			}
-			else {
-				return false;
-			}
-		}
-		return true;
 	}
 }
