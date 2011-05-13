@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AllXtextTests.java,v 1.8 2011/03/14 17:01:30 ewillink Exp $
+ * $Id: AllXtextTests.java,v 1.9 2011/05/13 19:19:42 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.xtext;
@@ -25,6 +25,7 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import junit.textui.TestRunner;
 
+import org.eclipse.ocl.examples.pivot.tests.DelegatesTest;
 import org.eclipse.ocl.examples.pivot.tests.EvaluateBooleanOperationsTest;
 import org.eclipse.ocl.examples.pivot.tests.EvaluateClassifierOperationsTest;
 import org.eclipse.ocl.examples.pivot.tests.EvaluateCollectionOperationsTest;
@@ -65,9 +66,10 @@ public class AllXtextTests
 		result.addTestSuite(EvaluateOclAnyOperationsTest.class);
 		result.addTestSuite(EvaluateStringOperationsTest.class);
 		result.addTestSuite(IteratorsTest.class);
+		result.addTestSuite(DelegatesTest.class);
 		result.addTestSuite(LoadTests.class);
 		result.addTestSuite(PrettyPrinterTest.class);
-//		result.addTestSuite(SerializeTests.class);
+		result.addTestSuite(SerializeTests.class);
 		result.addTestSuite(RoundTripTests.class);
 		result.addTestSuite(EditTests.class);
 		return result;
