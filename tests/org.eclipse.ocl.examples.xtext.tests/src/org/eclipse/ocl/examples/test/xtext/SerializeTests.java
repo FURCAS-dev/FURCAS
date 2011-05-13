@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializeTests.java,v 1.15 2011/05/12 06:23:50 ewillink Exp $
+ * $Id: SerializeTests.java,v 1.16 2011/05/13 19:16:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -25,6 +25,7 @@ import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.xtext.resource.XtextResource;
@@ -35,6 +36,9 @@ import org.eclipse.xtext.resource.XtextResource;
 public class SerializeTests extends XtextTestCase
 {
 	public XtextResource doSerialize(String stem) throws Exception {
+		return doSerialize(stem, stem);
+	}
+	public XtextResource doSerialize(String stem, String referenceStem) throws Exception {
 		//
 		//	Load as Ecore
 		//
@@ -45,35 +49,49 @@ public class SerializeTests extends XtextTestCase
 		//	Ecore to Pivot
 		//		
 		TypeManager typeManager = new TypeManager();
-		Resource pivotResource = getPivotFromEcore(typeManager, ecoreResource);
-		//
-		//	Pivot to CS
-		//		
-		String outputName = stem + ".serialized.oclinecore";
-		URI outputURI = getProjectFileURI(outputName);
-		XtextResource xtextResource = savePivotAsCS(typeManager, pivotResource, outputURI);
-		resourceSet.getResources().clear();
-		BaseCSResource xtextResource2 = (BaseCSResource) resourceSet.getResource(outputURI, true);
-		assertNoResourceErrors("Reload failed", xtextResource2);
-		assertNoUnresolvedProxies("unresolved reload proxies", xtextResource2);
-		//
-		//	CS to Pivot
-		//	
-		String pivotName2 = stem + "2.ecore.pivot";
-		URI pivotURI2 = getProjectFileURI(pivotName2);
-		Resource pivotResource2 = savePivotFromCS(typeManager, xtextResource2, pivotURI2);
-		//
-		//	Pivot to Ecore
-		//		
-		String inputName2 = stem + "2.ecore";
-		URI ecoreURI2 = getProjectFileURI(inputName2);
-		Resource ecoreResource2 = savePivotAsEcore(typeManager, pivotResource2, ecoreURI2, true);
-		//
-		//
-		//
-//		assertSameModel(pivotResource, pivotResource2);
-		assertSameModel(ecoreResource, ecoreResource2);		
-		return xtextResource;
+		XtextResource xtextResource = null;
+		try {
+			Resource pivotResource = getPivotFromEcore(typeManager, ecoreResource);
+			//
+			//	Pivot to CS
+			//		
+			String outputName = stem + ".serialized.oclinecore";
+			URI outputURI = getProjectFileURI(outputName);
+			xtextResource = savePivotAsCS(typeManager, pivotResource, outputURI);
+			resourceSet.getResources().clear();
+			BaseCSResource xtextResource2 = (BaseCSResource) resourceSet.getResource(outputURI, true);
+			assertNoResourceErrors("Reload failed", xtextResource2);
+			assertNoUnresolvedProxies("unresolved reload proxies", xtextResource2);
+			//
+			//	CS to Pivot
+			//	
+			String pivotName2 = stem + "2.ecore.pivot";
+			URI pivotURI2 = getProjectFileURI(pivotName2);
+			Resource pivotResource2 = savePivotFromCS(typeManager, xtextResource2, pivotURI2);
+			//
+			//	Pivot to Ecore
+			//		
+			String inputName2 = stem + "2.ecore";
+			URI ecoreURI2 = getProjectFileURI(inputName2);
+			Resource ecoreResource2 = savePivotAsEcore(typeManager, pivotResource2, ecoreURI2, true);
+			//
+			//
+			//
+	//		assertSameModel(pivotResource, pivotResource2);
+			String referenceName = referenceStem + ".ecore";
+			URI referenceURI = getProjectFileURI(referenceName);
+			Resource referenceResource = loadEcore(referenceURI);
+			assertSameModel(referenceResource, ecoreResource2);		
+			return xtextResource;
+		}
+		finally {
+			unloadCS(resourceSet);
+			if (xtextResource instanceof BaseCSResource) {
+				CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter((BaseCSResource)xtextResource, null);
+				adapter.dispose();
+			}
+			unloadPivot(typeManager);
+		}
 	}
 	
 	public XtextResource doSerializeUML(String stem) throws Exception {
@@ -159,12 +177,7 @@ public class SerializeTests extends XtextTestCase
 //		DocumentScopeAdapter.WORK.setState(true);
 //		CS2PivotConversion.CONTINUATION.setState(true);
 //		Abstract2Moniker.TRACE_MONIKERS.setState(true);
-		doSerialize("Company");
-	}
-
-// FIXME fails due to Bug 286558
-	public void testEcoreSerialize() throws Exception {
-		doSerialize("Ecore");
+		doSerialize("Company", "Company.reference");
 	}
 
 	public void testImportsSerialize() throws Exception {
@@ -176,18 +189,6 @@ public class SerializeTests extends XtextTestCase
 
 	public void testKeysSerialize() throws Exception {
 		doSerialize("Keys");
-	}
-
-	//	public void testMarkupSerialize() throws Exception {
-//		doSerialize("Markup");
-//	}
-
-//	public void test_model_uml_Serialize() throws Exception {
-//		doSerializeUML("model");
-//	}
-
-	public void test_Fruit_uml_Serialize() throws Exception {
-		doSerializeUML("Fruit");
 	}
 
 	public void testNamesSerialize() throws Exception {
@@ -202,16 +203,8 @@ public class SerializeTests extends XtextTestCase
 		doSerialize("OCLstdlib");
 	}
 
-	public void testOCLSerialize() throws Exception {
-		doSerialize("OCL");
-	}
-
 	public void testOCLCSTSerialize() throws Exception {
 		doSerialize("OCLCST");
-	}
-
-	public void testOCLEcoreSerialize() throws Exception {
-		doSerialize("OCLEcore");
 	}
 
 	public void testQVTSerialize() throws Exception {
@@ -224,13 +217,5 @@ public class SerializeTests extends XtextTestCase
 
 	public void testXMLNamespaceSerialize() throws Exception {
 		doSerialize("XMLNamespace");
-	}	
-
-	public void testXMLTypeSerialize() throws Exception {
-		doSerialize("XMLType");
-	}
-
-	public void testOCLTestSerialize() throws Exception {
-		doSerialize("OCLTest");
 	}	
 }
