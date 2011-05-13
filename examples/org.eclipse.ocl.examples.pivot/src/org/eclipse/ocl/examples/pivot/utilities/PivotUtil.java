@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.15 2011/05/11 19:45:35 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.16 2011/05/13 18:41:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -807,6 +807,25 @@ public class PivotUtil
 //		assert templateableElement.getUnspecializedElement() == unspecializedTemplateableElement;
 //		return unspecializedTemplateableElement;
 		return (T) templateableElement.getUnspecializedElement(); */
+	}
+	
+	public static boolean isValidIdentifier(String value) {
+		int iMax = value.length();
+		for (int i = 0; i < iMax; i++) {
+			char c = value.charAt(i);
+			if (('A' <= c) && (c <= 'Z')) {					
+			}
+			else if (('a' <= c) && (c <= 'z')) {					
+			}
+			else if (c == '_') {					
+			}
+			else if (('0' <= c) && (c <= '9') && (i > 0)) {					
+			}
+			else {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public static <T extends EObject> void refreshList(List<? super T> elements, List<? extends T> newElements) {
