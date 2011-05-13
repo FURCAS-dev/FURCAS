@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TestPrettyPrinter.java,v 1.4 2011/04/20 19:02:32 ewillink Exp $
+ * $Id: TestPrettyPrinter.java,v 1.5 2011/05/13 19:16:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -34,7 +34,7 @@ public class TestPrettyPrinter extends XtextTestCase
 		URI libraryURI = getProjectFileURI("OCL-2.3.oclstdlib");
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(libraryURI, true);
 		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
-		adapter.refreshPivotMappings();
+		adapter.refreshPivotMappings(null);
 		Resource pivotResource = adapter.getPivotResource(xtextResource);
 		for (TreeIterator<EObject> tit = pivotResource.getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
@@ -49,7 +49,7 @@ public class TestPrettyPrinter extends XtextTestCase
 		URI libraryURI = getProjectFileURI("OCL-2.3.oclstdlib");
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(libraryURI, true);
 		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
-		adapter.refreshPivotMappings();
+		adapter.refreshPivotMappings(null);
 		Resource pivotResource = adapter.getPivotResource(xtextResource);
 		for (TreeIterator<EObject> tit = pivotResource.getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
