@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2EcoreDeclarationVisitor.java,v 1.8 2011/05/12 06:07:29 ewillink Exp $
+ * $Id: Pivot2EcoreDeclarationVisitor.java,v 1.9 2011/05/13 18:43:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -202,6 +202,7 @@ public class Pivot2EcoreDeclarationVisitor
 				eOperation.getEAnnotations().add(eAnnotation);
 				eClass.getEOperations().add(eOperation);
 				context.putCreated(pivotConstraint, eOperation);
+				Pivot2Ecore.installDelegate(eOperation, pivotConstraint);
 			}
 		}
 		return eClass;

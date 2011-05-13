@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2Ecore.java,v 1.4 2011/05/12 06:07:29 ewillink Exp $
+ * $Id: Pivot2Ecore.java,v 1.5 2011/05/13 18:43:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -99,13 +100,18 @@ public class Pivot2Ecore extends AbstractConversion
 		String stereotype = pivotConstraint.getStereotype();
 		String name = pivotConstraint.getName();
 		if (UMLReflection.INVARIANT.equals(stereotype)) {
-			oclAnnotation.getDetails().put(name, exprString);
-			String messageString = PivotUtil.getMessage((OpaqueExpression) specification);
-			if ((messageString == null) && (specification instanceof ExpressionInOcl)) {
-				messageString = PrettyPrintExprVisitor.prettyPrint(((ExpressionInOcl)specification).getMessageExpression(), PrettyPrintExprVisitor.getNamespace(specification));
+			if (eModelElement instanceof EOperation) {
+				oclAnnotation.getDetails().put("body", exprString);
 			}
-			if ((messageString != null) && (messageString.length() > 0)) {
-				oclAnnotation.getDetails().put(name + "$message", messageString);
+			else {
+				oclAnnotation.getDetails().put(name, exprString);
+				String messageString = PivotUtil.getMessage((OpaqueExpression) specification);
+				if ((messageString == null) && (specification instanceof ExpressionInOcl)) {
+					messageString = PrettyPrintExprVisitor.prettyPrint(((ExpressionInOcl)specification).getMessageExpression(), PrettyPrintExprVisitor.getNamespace(specification));
+				}
+				if ((messageString != null) && (messageString.length() > 0)) {
+					oclAnnotation.getDetails().put(name + "$message", messageString);
+				}
 			}
 		}
 		else if (UMLReflection.DERIVATION.equals(stereotype)) {
