@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCodeGenerator.java,v 1.5 2011/04/20 19:02:35 ewillink Exp $
+ * $Id: OCLstdlibCodeGenerator.java,v 1.6 2011/05/13 19:50:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.build.utilities;
 
@@ -89,7 +89,7 @@ public class OCLstdlibCodeGenerator extends AbstractWorkflowComponent
 				return;
 			}
 			CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
-			adapter.refreshPivotMappings();
+			adapter.refreshPivotMappings(null);
 			Resource pivotResource = adapter.getPivotResource(xtextResource);
 			List<Object> arguments = new ArrayList<Object>();
 			arguments.add(javaPackageName);
