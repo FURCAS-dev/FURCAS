@@ -8,7 +8,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.ui.autoedit.BaseAutoEditStrat
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseEObjectTextHover;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseTerminalsTokenTypeToPartitionMapper;
-import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.NaturelessEditorCallback;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.BaseAntlrTokenToAttributeIdMapper;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLHighlightingConfiguration;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLSemanticHighlightingCalculator;
@@ -22,6 +21,7 @@ import org.eclipse.xtext.ui.editor.model.XtextDocument;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
+import org.eclipse.xtext.ui.editor.validation.ValidatingEditorCallback;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -68,7 +68,7 @@ public class OCLstdlibUiModule extends AbstractOCLstdlibUiModule
 
 	@Override
 	public Class<? extends org.eclipse.xtext.ui.editor.IXtextEditorCallback> bindIXtextEditorCallback() {
-		return NaturelessEditorCallback.class;
+		return ValidatingEditorCallback.class;
 	}
 
 	public Class<? extends XtextDocument> bindXtextDocument() {
