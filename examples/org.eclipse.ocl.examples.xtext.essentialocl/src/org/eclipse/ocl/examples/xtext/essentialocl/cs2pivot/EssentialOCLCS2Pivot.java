@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2Pivot.java,v 1.8 2011/05/02 09:31:32 ewillink Exp $
+ * $Id: EssentialOCLCS2Pivot.java,v 1.9 2011/05/13 18:48:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -145,9 +145,23 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 				messageTemplate = "Unknown unresolved context";
 			}
 			String typeText = PivotConstants.UNKNOWN_TYPE_TEXT;
-			OperatorCS csOperator = navigationArgument != null ? navigationArgument.getParent() : null;
-			if ((csOperator != null) && (csOperator.getSource() != navigationArgument)) {
-				OclExpression source = PivotUtil.getPivot(OclExpression.class, csOperator.getSource());
+			ExpCS csSource = navigationArgument;
+			while (csSource != null) {
+				OperatorCS csOperator = csSource.getParent();
+				if ((csOperator != null) && (csOperator.getSource() != csSource)) {
+					csSource = csOperator.getSource();
+					break;
+				}
+				EObject eContainer = csSource.eContainer();
+				if (eContainer instanceof NavigatingArgCS) {
+					csSource = ((NavigatingArgCS)eContainer).getNavigatingExp();
+				}
+				else {
+					break;
+				}
+			}
+			if ((csSource != null) && (csSource != navigationArgument)) {
+				OclExpression source = PivotUtil.getPivot(OclExpression.class, csSource);
 				if (source != null) {
 					Type sourceType = source.getType();
 					if (sourceType instanceof ClassifierType) {
