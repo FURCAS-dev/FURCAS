@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreUiModule.java,v 1.9 2011/05/05 20:34:57 ewillink Exp $
+ * $Id: OCLinEcoreUiModule.java,v 1.10 2011/05/13 11:46:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui;
 
@@ -20,7 +20,6 @@ import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.BaseLocationInFileProvider;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseEObjectTextHover;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseTerminalsTokenTypeToPartitionMapper;
-import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.NaturelessEditorCallback;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.BaseAntlrTokenToAttributeIdMapper;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLHighlightingConfiguration;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLSemanticHighlightingCalculator;
@@ -37,6 +36,7 @@ import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
+import org.eclipse.xtext.ui.editor.validation.ValidatingEditorCallback;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -102,6 +102,6 @@ public class OCLinEcoreUiModule extends org.eclipse.ocl.examples.xtext.oclinecor
 
 	@Override
 	public Class<? extends org.eclipse.xtext.ui.editor.IXtextEditorCallback> bindIXtextEditorCallback() {
-		return NaturelessEditorCallback.class;
+		return ValidatingEditorCallback.class;
 	}
 }
