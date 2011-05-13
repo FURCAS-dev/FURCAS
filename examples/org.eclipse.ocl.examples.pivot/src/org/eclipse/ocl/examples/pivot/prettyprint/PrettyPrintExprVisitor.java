@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrettyPrintExprVisitor.java,v 1.6 2011/03/17 20:24:44 ewillink Exp $
+ * $Id: PrettyPrintExprVisitor.java,v 1.7 2011/05/13 18:41:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.prettyprint;
 
@@ -52,6 +52,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -157,7 +158,7 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 
 	@Override
 	public Object visitCollectionLiteralExp(CollectionLiteralExp object) {
-		delegate.appendName(object.getType());
+		delegate.appendName(object.getType(), PrettyPrintTypeVisitor.reservedNames);
 		delegate.append("{");
 		String prefix = ""; //$NON-NLS-1$
 		for (CollectionLiteralPart part : object.getParts()) {
@@ -332,14 +333,14 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 				delegate.append("(");
 			}
 			if (arguments.size() == 0) {			// Prefix
-				delegate.appendName(referredOperation);
+				delegate.appendName(referredOperation, null);
 				delegate.append(" ");
 				precedenceVisit(source, precedence);
 			}
 			else {			// Infix
 				precedenceVisit(source, precedence);
 				delegate.append(" ");
-				delegate.appendName(referredOperation);
+				delegate.appendName(referredOperation, null);
 				delegate.append(" ");
 				precedenceVisit(arguments.get(0), precedence);
 			}
@@ -440,7 +441,13 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 
 	@Override
 	public Object visitVariableExp(VariableExp object) {
-		delegate.appendName(object.getReferredVariable());
+		VariableDeclaration referredVariable = object.getReferredVariable();
+		if ((referredVariable != null) && "self".equals(referredVariable.getName())) {
+			delegate.appendName(referredVariable, null);
+		}
+		else {
+			delegate.appendName(referredVariable);
+		}
 		return null;
 	}
 }
