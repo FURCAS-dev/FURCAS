@@ -312,234 +312,241 @@ ruleUnrestrictedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRu
     }
 
     |
+	kw='callable' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getCallableKeyword_5()); 
+    }
+
+    |
 	kw='class' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getClassKeyword_5()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getClassKeyword_6()); 
     }
 
     |
 	kw='composes' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getComposesKeyword_6()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getComposesKeyword_7()); 
     }
 
     |
 	kw='datatype' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getDatatypeKeyword_7()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getDatatypeKeyword_8()); 
     }
 
     |
 	kw='definition' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getDefinitionKeyword_8()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getDefinitionKeyword_9()); 
     }
 
     |
 	kw='derivation' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getDerivationKeyword_9()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getDerivationKeyword_10()); 
     }
 
     |
 	kw='derived' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getDerivedKeyword_10()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getDerivedKeyword_11()); 
     }
 
     |
 	kw='documentation' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getDocumentationKeyword_11()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getDocumentationKeyword_12()); 
     }
 
     |
 	kw='enum' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getEnumKeyword_12()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getEnumKeyword_13()); 
     }
 
     |
 	kw='extends' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getExtendsKeyword_13()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getExtendsKeyword_14()); 
     }
 
     |
 	kw='id' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getIdKeyword_14()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getIdKeyword_15()); 
     }
 
     |
 	kw='import' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getImportKeyword_15()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getImportKeyword_16()); 
     }
 
     |
 	kw='initial' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getInitialKeyword_16()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getInitialKeyword_17()); 
     }
 
     |
 	kw='interface' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getInterfaceKeyword_17()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getInterfaceKeyword_18()); 
     }
 
     |
 	kw='invariant' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getInvariantKeyword_18()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getInvariantKeyword_19()); 
     }
 
     |
 	kw='key' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getKeyKeyword_19()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getKeyKeyword_20()); 
     }
 
     |
 	kw='library' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getLibraryKeyword_20()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getLibraryKeyword_21()); 
     }
 
     |
 	kw='module' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getModuleKeyword_21()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getModuleKeyword_22()); 
     }
 
     |
 	kw='operation' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getOperationKeyword_22()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getOperationKeyword_23()); 
     }
 
     |
 	kw='ordered' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getOrderedKeyword_23()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getOrderedKeyword_24()); 
     }
 
     |
 	kw='package' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getPackageKeyword_24()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getPackageKeyword_25()); 
     }
 
     |
 	kw='postcondition' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getPostconditionKeyword_25()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getPostconditionKeyword_26()); 
     }
 
     |
 	kw='precondition' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getPreconditionKeyword_26()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getPreconditionKeyword_27()); 
     }
 
     |
 	kw='property' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getPropertyKeyword_27()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getPropertyKeyword_28()); 
     }
 
     |
 	kw='readonly' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getReadonlyKeyword_28()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getReadonlyKeyword_29()); 
     }
 
     |
 	kw='resolve' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getResolveKeyword_29()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getResolveKeyword_30()); 
     }
 
     |
 	kw='serializable' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getSerializableKeyword_30()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getSerializableKeyword_31()); 
     }
 
     |
 	kw='static' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getStaticKeyword_31()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getStaticKeyword_32()); 
     }
 
     |
 	kw='super' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getSuperKeyword_32()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getSuperKeyword_33()); 
     }
 
     |
 	kw='throws' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getThrowsKeyword_33()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getThrowsKeyword_34()); 
     }
 
     |
 	kw='transient' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getTransientKeyword_34()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getTransientKeyword_35()); 
     }
 
     |
 	kw='unique' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getUniqueKeyword_35()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getUniqueKeyword_36()); 
     }
 
     |
 	kw='unsettable' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getUnsettableKeyword_36()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getUnsettableKeyword_37()); 
     }
 
     |
 	kw='volatile' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getVolatileKeyword_37()); 
+        newLeafNode(kw, grammarAccess.getUnrestrictedNameAccess().getVolatileKeyword_38()); 
     }
 )
     ;
@@ -617,7 +624,7 @@ ruleBodyConstraintCS returns [EObject current=null]
 	    }
 
 )
-)	otherlv_4=';' 
+)?	otherlv_4=';' 
     {
     	newLeafNode(otherlv_4, grammarAccess.getBodyConstraintCSAccess().getSemicolonKeyword_4());
     }
@@ -679,7 +686,7 @@ ruleDerivedConstraintCS returns [EObject current=null]
 	    }
 
 )
-)	otherlv_3=';' 
+)?	otherlv_3=';' 
     {
     	newLeafNode(otherlv_3, grammarAccess.getDerivedConstraintCSAccess().getSemicolonKeyword_3());
     }
@@ -741,7 +748,7 @@ ruleInitialConstraintCS returns [EObject current=null]
 	    }
 
 )
-)	otherlv_3=';' 
+)?	otherlv_3=';' 
     {
     	newLeafNode(otherlv_3, grammarAccess.getInitialConstraintCSAccess().getSemicolonKeyword_3());
     }
@@ -768,88 +775,103 @@ ruleInvariantConstraintCS returns [EObject current=null]
     @after { leaveRule(); }:
 ((
 (
-		lv_stereotype_0_0=	'invariant' 
+		lv_callable_0_0=	'callable' 
     {
-        newLeafNode(lv_stereotype_0_0, grammarAccess.getInvariantConstraintCSAccess().getStereotypeInvariantKeyword_0_0());
+        newLeafNode(lv_callable_0_0, grammarAccess.getInvariantConstraintCSAccess().getCallableCallableKeyword_0_0());
     }
  
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getInvariantConstraintCSRule());
 	        }
-       		setWithLastConsumed($current, "stereotype", lv_stereotype_0_0, "invariant");
+       		setWithLastConsumed($current, "callable", true, "callable");
+	    }
+
+)
+)?(
+(
+		lv_stereotype_1_0=	'invariant' 
+    {
+        newLeafNode(lv_stereotype_1_0, grammarAccess.getInvariantConstraintCSAccess().getStereotypeInvariantKeyword_1_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getInvariantConstraintCSRule());
+	        }
+       		setWithLastConsumed($current, "stereotype", lv_stereotype_1_0, "invariant");
 	    }
 
 )
 )((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getInvariantConstraintCSAccess().getNameUnrestrictedNameParserRuleCall_1_0_0()); 
+	        newCompositeNode(grammarAccess.getInvariantConstraintCSAccess().getNameUnrestrictedNameParserRuleCall_2_0_0()); 
 	    }
-		lv_name_1_0=ruleUnrestrictedName		{
+		lv_name_2_0=ruleUnrestrictedName		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getInvariantConstraintCSRule());
 	        }
        		set(
        			$current, 
        			"name",
-        		lv_name_1_0, 
+        		lv_name_2_0, 
         		"UnrestrictedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)(	otherlv_2='(' 
+)(	otherlv_3='(' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getInvariantConstraintCSAccess().getLeftParenthesisKeyword_1_1_0());
+    	newLeafNode(otherlv_3, grammarAccess.getInvariantConstraintCSAccess().getLeftParenthesisKeyword_2_1_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getInvariantConstraintCSAccess().getMessageSpecificationSpecificationCSParserRuleCall_1_1_1_0()); 
+	        newCompositeNode(grammarAccess.getInvariantConstraintCSAccess().getMessageSpecificationSpecificationCSParserRuleCall_2_1_1_0()); 
 	    }
-		lv_messageSpecification_3_0=ruleSpecificationCS		{
+		lv_messageSpecification_4_0=ruleSpecificationCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getInvariantConstraintCSRule());
 	        }
        		set(
        			$current, 
        			"messageSpecification",
-        		lv_messageSpecification_3_0, 
+        		lv_messageSpecification_4_0, 
         		"SpecificationCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_4=')' 
+)?	otherlv_5=')' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getInvariantConstraintCSAccess().getRightParenthesisKeyword_1_1_2());
+    	newLeafNode(otherlv_5, grammarAccess.getInvariantConstraintCSAccess().getRightParenthesisKeyword_2_1_2());
     }
-)?)?	otherlv_5=':' 
+)?)?	otherlv_6=':' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getInvariantConstraintCSAccess().getColonKeyword_2());
+    	newLeafNode(otherlv_6, grammarAccess.getInvariantConstraintCSAccess().getColonKeyword_3());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getInvariantConstraintCSAccess().getSpecificationSpecificationCSParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getInvariantConstraintCSAccess().getSpecificationSpecificationCSParserRuleCall_4_0()); 
 	    }
-		lv_specification_6_0=ruleSpecificationCS		{
+		lv_specification_7_0=ruleSpecificationCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getInvariantConstraintCSRule());
 	        }
        		set(
        			$current, 
        			"specification",
-        		lv_specification_6_0, 
+        		lv_specification_7_0, 
         		"SpecificationCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_7=';' 
+)?	otherlv_8=';' 
     {
-    	newLeafNode(otherlv_7, grammarAccess.getInvariantConstraintCSAccess().getSemicolonKeyword_4());
+    	newLeafNode(otherlv_8, grammarAccess.getInvariantConstraintCSAccess().getSemicolonKeyword_5());
     }
 )
 ;
@@ -927,7 +949,7 @@ rulePostconditionConstraintCS returns [EObject current=null]
 	    }
 
 )
-)	otherlv_4=';' 
+)?	otherlv_4=';' 
     {
     	newLeafNode(otherlv_4, grammarAccess.getPostconditionConstraintCSAccess().getSemicolonKeyword_4());
     }
@@ -1007,7 +1029,7 @@ rulePreconditionConstraintCS returns [EObject current=null]
 	    }
 
 )
-)	otherlv_4=';' 
+)?	otherlv_4=';' 
     {
     	newLeafNode(otherlv_4, grammarAccess.getPreconditionConstraintCSAccess().getSemicolonKeyword_4());
     }
@@ -4552,27 +4574,18 @@ ruleSpecificationCS returns [EObject current=null]
     }
     @after { leaveRule(); }:
 ((
-	{ 
-	  /* */ 
-	}
-    {
-        $current = forceCreateModelElement(
-            grammarAccess.getSpecificationCSAccess().getOCLinEcoreSpecificationCSAction_0(),
-            $current);
-    }
-)((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getSpecificationCSAccess().getOwnedExpressionExpCSParserRuleCall_1_0_0()); 
+	        newCompositeNode(grammarAccess.getSpecificationCSAccess().getOwnedExpressionExpCSParserRuleCall_0_0()); 
 	    }
-		lv_ownedExpression_1_0=ruleExpCS		{
+		lv_ownedExpression_0_0=ruleExpCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getSpecificationCSRule());
 	        }
        		set(
        			$current, 
        			"ownedExpression",
-        		lv_ownedExpression_1_0, 
+        		lv_ownedExpression_0_0, 
         		"ExpCS");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -4581,9 +4594,9 @@ ruleSpecificationCS returns [EObject current=null]
 )
     |(
 (
-		lv_exprString_2_0=RULE_UNQUOTED_STRING
+		lv_exprString_1_0=RULE_UNQUOTED_STRING
 		{
-			newLeafNode(lv_exprString_2_0, grammarAccess.getSpecificationCSAccess().getExprStringUNQUOTED_STRINGTerminalRuleCall_1_1_0()); 
+			newLeafNode(lv_exprString_1_0, grammarAccess.getSpecificationCSAccess().getExprStringUNQUOTED_STRINGTerminalRuleCall_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -4592,12 +4605,12 @@ ruleSpecificationCS returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"exprString",
-        		lv_exprString_2_0, 
+        		lv_exprString_1_0, 
         		"UNQUOTED_STRING");
 	    }
 
 )
-))?)
+))
 ;
 
 
