@@ -146,18 +146,18 @@ SNAME
 NAME
 	:	(
 			SNAME
-		|	'\"'!
+		|	'\"'
 			(	ESC
 			|	'\\n' {newline();}
 			|	~('\\\\'|'\\\"'|'\\n')
 			)*
-			'\"'!
+			'\"'
 		)
 	;
 
 %protected
 ESC
-	:	'\\\\'!
+	:	'\\\\'
 		(	'n' 
 		|	'r' 
 		|	't' 
@@ -185,12 +185,12 @@ ESC
 	;
 
 STRING
-	:	'\\''!
+	:	'\\''
 		(	ESC
 		|	'\\n' {newline();}
 		|	~('\\\\'|'\\''|'\\n')
 		)*
-		'\\''!
+		'\\''
 			{setText(unescapeString(getText(), 1));}
 	;
 

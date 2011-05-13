@@ -176,12 +176,12 @@ NAME
 %v2	if($getText.equals(\"true\")) $setType(BOOLEAN);
 %v2	if($getText.equals(\"false\")) $setType(BOOLEAN);
 %v2	}
-		|	'\"'!
+		|	'\"'
 			(	ESC
 			|	'\\n' {newline();}
 			|	~('\\\\'|'\\\"'|'\\n')
 			)*
-			'\"'!
+			'\"'
 		)
 	;
 
@@ -194,7 +194,7 @@ INT
 
 %protected
 ESC
-	:	'\\\\'!
+	:	'\\\\'
 		(	'n' 
 		|	'r' 
 		|	't' 
@@ -231,12 +231,12 @@ ESC
 	;
 
 STRING
-	:	'\\''!
+	:	'\\''
 		(	ESC
 		|	'\\n' {newline();}
 		|	~('\\\\'|'\\''|'\\n')
 		)*
-		'\\''!
+		'\\''
 	;
 
 	";
