@@ -258,14 +258,14 @@
                 </reference>
             </visibleWhen>
 	    </command>
-	    <command commandId="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.SaveAsUMLCommand"
+	    <!--command commandId="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.SaveAsUMLCommand"
 	      label="%MF_SaveAsUML">
             <visibleWhen checkEnabled="false">
                 <reference
                     definitionId="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.Editor.opened">
                 </reference>
             </visibleWhen>
-	    </command>
+	    </command-->
 	  </menuContribution>
 	  <menuContribution locationURI="popup:#TextEditorContext?after=group.rest">
 	    <command commandId="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.CreateDynamicInstanceCommand"
