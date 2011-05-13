@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * org.eclipse.emf.ecore.impl.DynamicEObjectImpl@a96fe4 (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1f0f176 (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))
+ * $Id: OCLinEcoreCSVisitor.java,v 1.12 2011/05/13 19:10:24 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.oclinecore.util;
 
