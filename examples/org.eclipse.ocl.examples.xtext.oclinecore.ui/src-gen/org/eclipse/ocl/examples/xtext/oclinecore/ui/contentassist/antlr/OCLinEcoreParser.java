@@ -81,7 +81,7 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getReferenceCSAccess().getAlternatives_7(), "rule__ReferenceCS__Alternatives_7");
 					put(grammarAccess.getReferenceCSAccess().getAlternatives_7_0_1(), "rule__ReferenceCS__Alternatives_7_0_1");
 					put(grammarAccess.getReferenceCSAccess().getOwnedConstraintAlternatives_7_0_1_2_0(), "rule__ReferenceCS__OwnedConstraintAlternatives_7_0_1_2_0");
-					put(grammarAccess.getSpecificationCSAccess().getAlternatives_1(), "rule__SpecificationCS__Alternatives_1");
+					put(grammarAccess.getSpecificationCSAccess().getAlternatives(), "rule__SpecificationCS__Alternatives");
 					put(grammarAccess.getStructuralFeatureCSAccess().getAlternatives(), "rule__StructuralFeatureCS__Alternatives");
 					put(grammarAccess.getTypeIdentifierAccess().getAlternatives(), "rule__TypeIdentifier__Alternatives");
 					put(grammarAccess.getTypeParameterCSAccess().getAlternatives_1(), "rule__TypeParameterCS__Alternatives_1");
@@ -117,8 +117,8 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDerivedConstraintCSAccess().getGroup(), "rule__DerivedConstraintCS__Group__0");
 					put(grammarAccess.getInitialConstraintCSAccess().getGroup(), "rule__InitialConstraintCS__Group__0");
 					put(grammarAccess.getInvariantConstraintCSAccess().getGroup(), "rule__InvariantConstraintCS__Group__0");
-					put(grammarAccess.getInvariantConstraintCSAccess().getGroup_1(), "rule__InvariantConstraintCS__Group_1__0");
-					put(grammarAccess.getInvariantConstraintCSAccess().getGroup_1_1(), "rule__InvariantConstraintCS__Group_1_1__0");
+					put(grammarAccess.getInvariantConstraintCSAccess().getGroup_2(), "rule__InvariantConstraintCS__Group_2__0");
+					put(grammarAccess.getInvariantConstraintCSAccess().getGroup_2_1(), "rule__InvariantConstraintCS__Group_2_1__0");
 					put(grammarAccess.getPostconditionConstraintCSAccess().getGroup(), "rule__PostconditionConstraintCS__Group__0");
 					put(grammarAccess.getPreconditionConstraintCSAccess().getGroup(), "rule__PreconditionConstraintCS__Group__0");
 					put(grammarAccess.getAnnotationCSAccess().getGroup(), "rule__AnnotationCS__Group__0");
@@ -194,7 +194,6 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getReferenceCSAccess().getGroup_7_0(), "rule__ReferenceCS__Group_7_0__0");
 					put(grammarAccess.getReferenceCSAccess().getGroup_7_0_1_1(), "rule__ReferenceCS__Group_7_0_1_1__0");
 					put(grammarAccess.getReferenceCSAccess().getGroup_7_0_1_1_2(), "rule__ReferenceCS__Group_7_0_1_1_2__0");
-					put(grammarAccess.getSpecificationCSAccess().getGroup(), "rule__SpecificationCS__Group__0");
 					put(grammarAccess.getTemplateBindingCSAccess().getGroup(), "rule__TemplateBindingCS__Group__0");
 					put(grammarAccess.getTemplateBindingCSAccess().getGroup_2(), "rule__TemplateBindingCS__Group_2__0");
 					put(grammarAccess.getTemplateSignatureCSAccess().getGroup(), "rule__TemplateSignatureCS__Group__0");
@@ -284,10 +283,11 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDerivedConstraintCSAccess().getSpecificationAssignment_2(), "rule__DerivedConstraintCS__SpecificationAssignment_2");
 					put(grammarAccess.getInitialConstraintCSAccess().getStereotypeAssignment_0(), "rule__InitialConstraintCS__StereotypeAssignment_0");
 					put(grammarAccess.getInitialConstraintCSAccess().getSpecificationAssignment_2(), "rule__InitialConstraintCS__SpecificationAssignment_2");
-					put(grammarAccess.getInvariantConstraintCSAccess().getStereotypeAssignment_0(), "rule__InvariantConstraintCS__StereotypeAssignment_0");
-					put(grammarAccess.getInvariantConstraintCSAccess().getNameAssignment_1_0(), "rule__InvariantConstraintCS__NameAssignment_1_0");
-					put(grammarAccess.getInvariantConstraintCSAccess().getMessageSpecificationAssignment_1_1_1(), "rule__InvariantConstraintCS__MessageSpecificationAssignment_1_1_1");
-					put(grammarAccess.getInvariantConstraintCSAccess().getSpecificationAssignment_3(), "rule__InvariantConstraintCS__SpecificationAssignment_3");
+					put(grammarAccess.getInvariantConstraintCSAccess().getCallableAssignment_0(), "rule__InvariantConstraintCS__CallableAssignment_0");
+					put(grammarAccess.getInvariantConstraintCSAccess().getStereotypeAssignment_1(), "rule__InvariantConstraintCS__StereotypeAssignment_1");
+					put(grammarAccess.getInvariantConstraintCSAccess().getNameAssignment_2_0(), "rule__InvariantConstraintCS__NameAssignment_2_0");
+					put(grammarAccess.getInvariantConstraintCSAccess().getMessageSpecificationAssignment_2_1_1(), "rule__InvariantConstraintCS__MessageSpecificationAssignment_2_1_1");
+					put(grammarAccess.getInvariantConstraintCSAccess().getSpecificationAssignment_4(), "rule__InvariantConstraintCS__SpecificationAssignment_4");
 					put(grammarAccess.getPostconditionConstraintCSAccess().getStereotypeAssignment_0(), "rule__PostconditionConstraintCS__StereotypeAssignment_0");
 					put(grammarAccess.getPostconditionConstraintCSAccess().getNameAssignment_1(), "rule__PostconditionConstraintCS__NameAssignment_1");
 					put(grammarAccess.getPostconditionConstraintCSAccess().getSpecificationAssignment_3(), "rule__PostconditionConstraintCS__SpecificationAssignment_3");
@@ -432,8 +432,8 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getReferenceCSAccess().getKeysAssignment_7_0_1_1_1(), "rule__ReferenceCS__KeysAssignment_7_0_1_1_1");
 					put(grammarAccess.getReferenceCSAccess().getKeysAssignment_7_0_1_1_2_1(), "rule__ReferenceCS__KeysAssignment_7_0_1_1_2_1");
 					put(grammarAccess.getReferenceCSAccess().getOwnedConstraintAssignment_7_0_1_2(), "rule__ReferenceCS__OwnedConstraintAssignment_7_0_1_2");
-					put(grammarAccess.getSpecificationCSAccess().getOwnedExpressionAssignment_1_0(), "rule__SpecificationCS__OwnedExpressionAssignment_1_0");
-					put(grammarAccess.getSpecificationCSAccess().getExprStringAssignment_1_1(), "rule__SpecificationCS__ExprStringAssignment_1_1");
+					put(grammarAccess.getSpecificationCSAccess().getOwnedExpressionAssignment_0(), "rule__SpecificationCS__OwnedExpressionAssignment_0");
+					put(grammarAccess.getSpecificationCSAccess().getExprStringAssignment_1(), "rule__SpecificationCS__ExprStringAssignment_1");
 					put(grammarAccess.getTemplateBindingCSAccess().getOwnedParameterSubstitutionAssignment_1(), "rule__TemplateBindingCS__OwnedParameterSubstitutionAssignment_1");
 					put(grammarAccess.getTemplateBindingCSAccess().getOwnedParameterSubstitutionAssignment_2_1(), "rule__TemplateBindingCS__OwnedParameterSubstitutionAssignment_2_1");
 					put(grammarAccess.getTemplateParameterSubstitutionCSAccess().getOwnedActualParameterAssignment(), "rule__TemplateParameterSubstitutionCS__OwnedActualParameterAssignment");
