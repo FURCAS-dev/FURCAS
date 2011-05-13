@@ -14,7 +14,7 @@
  * 
  * </copyright>
  *
- * $Id: DelegatesTest.java,v 1.9 2011/05/02 09:31:37 ewillink Exp $
+ * $Id: DelegatesTest.java,v 1.10 2011/05/13 19:16:33 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.tests;
 
@@ -564,12 +564,12 @@ public class DelegatesTest extends PivotTestSuite
 		assertEquals(null, get(badClassInstance, eStructuralFeature));
 	}
 
-	public void test_attributeEvaluatingToWrongType() {
+/*	public void test_attributeEvaluatingToWrongType() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		getWithException(badClassInstance, "attributeEvaluatingToWrongType",
 			getBoundMessage(OCLMessages.InitOrDerConstraintConformance_ERROR_, "String", "attributeEvaluatingToWrongType", "Boolean"));
-	}
+	} */
 
 	public void test_attributeParsingToLexicalError() {
 		initModelWithErrors();
@@ -633,10 +633,10 @@ public class DelegatesTest extends PivotTestSuite
 		doTest_eAttributeDerivation(COMPANY_XMI);
 	}
 
-	public void test_eAttributeDerivation_registered() {
+/*	public void test_eAttributeDerivation_registered() {
 		initPackageRegistrations();
 		doTest_eAttributeDerivation(COMPANY_XMI);
-	}
+	} */
 
 	public void test_eReferenceDerivation() {
 		doTest_eReferenceDerivation(COMPANY_XMI);
@@ -747,10 +747,10 @@ public class DelegatesTest extends PivotTestSuite
 	public void test_invariantValidation_withoutReflection() {
 		doTest_invariantValidation(NO_REFLECTION_COMPANY_XMI, true);
 	}
-	public void test_invariantValidation_withoutReflection_registered() {
+/*	public void test_invariantValidation_withoutReflection_registered() {
 		initPackageRegistrations();
 		doTest_invariantValidation(NO_REFLECTION_COMPANY_XMI, true);
-	}
+	} */
 
 	public void test_operationDefinedWithoutBody() {
 		initModelWithErrors();
@@ -786,23 +786,23 @@ public class DelegatesTest extends PivotTestSuite
 		assertEquals(null, invoke(badClassInstance, operation));
 	}
 
-	public void test_operationEvaluatingToWrongType() {
+/*	public void test_operationEvaluatingToWrongType() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		invokeWithException(badClassInstance, "operationEvaluatingToWrongType",
 			OCLMessages.BodyConditionConformance_ERROR_, "operationEvaluatingToWrongType", "Integer", "Boolean");
-	}
+	} */
 
 	public void test_operationInvocation() throws InvocationTargetException {
 		doTest_operationInvocation(COMPANY_XMI);
 		assertEquals(!eclipseIsRunning, usedLocalRegistry);
 	}
 
-	public void test_operationInvocation_registered() throws InvocationTargetException {
+/*	public void test_operationInvocation_registered() throws InvocationTargetException {
 		initPackageRegistrations();
 		doTest_operationInvocation(COMPANY_XMI);
 		assertFalse(usedLocalRegistry);
-	}
+	} */
 
 	public void test_operationParsingToLexicalError() {
 		initModelWithErrors();
