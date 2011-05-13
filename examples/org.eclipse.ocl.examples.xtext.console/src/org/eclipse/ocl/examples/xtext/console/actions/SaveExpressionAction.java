@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: SaveExpressionAction.java,v 1.2 2011/05/07 16:41:05 ewillink Exp $
+ * $Id: SaveExpressionAction.java,v 1.3 2011/05/13 19:19:13 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.console.actions;
 
@@ -90,7 +90,7 @@ public class SaveExpressionAction extends Action
 					{
 						public Object exec(XtextResource resource) throws Exception {
 							CS2PivotResourceAdapter csAdapter = CS2PivotResourceAdapter.getAdapter((BaseCSResource)resource, null);
-							csAdapter.refreshPivotMappings();
+							csAdapter.refreshPivotMappings(null);
 							Resource pivotResource = csAdapter.getPivotResource(resource);
 							pivotResource.setURI(URI.createFileURI(file));
 							pivotResource.save(saveOptions);
