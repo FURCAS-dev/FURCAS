@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: OCLDelegateDomain.java,v 1.5 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: OCLDelegateDomain.java,v 1.6 2011/05/13 18:43:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -73,7 +73,6 @@ public class OCLDelegateDomain implements DelegateDomain
 	protected final EPackage ePackage;
 	protected final OCL ocl;
 	protected final TypeManager typeManager;
-	private Ecore2Pivot ecore2Pivot = null;
 	// FIXME Introduce a lightweight function (? a lambda function) to avoid the need for a CompleteEnvironment for queries
 //	private Map<CompletePackage, org.eclipse.ocl.examples.pivot.Package> queryPackages = null;
 //	private Map<CompleteType, org.eclipse.ocl.examples.pivot.Class> queryTypes = null;
@@ -139,9 +138,7 @@ public class OCLDelegateDomain implements DelegateDomain
 	}
 	
 	public <T extends Element> T getPivot(Class<T> requiredClass, EObject eObject) {
-		if (ecore2Pivot == null) {
-			ecore2Pivot = Ecore2Pivot.getAdapter(eObject.eResource(), typeManager);
-		}
+		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(eObject.eResource(), typeManager);
 		return ecore2Pivot.getCreated(requiredClass, eObject);
 	}
 
