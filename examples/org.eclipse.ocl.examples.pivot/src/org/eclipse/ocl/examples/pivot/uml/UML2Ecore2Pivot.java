@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UML2Ecore2Pivot.java,v 1.2 2011/05/11 19:43:14 ewillink Exp $
+ * $Id: UML2Ecore2Pivot.java,v 1.3 2011/05/14 06:55:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.uml;
 
@@ -167,6 +167,11 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 			ecoreObject = eObject;
 		}
 		return super.getCreated(requiredClass, ecoreObject);
+	}
+
+	public <T extends Element> T getPivotOfUML(Class<T> requiredClass, EObject eObject) {
+		EObject ecoreObject = (EObject) uml2EcoreConverter.doSwitch(eObject);
+		return getPivotOfEcore(requiredClass, ecoreObject);
 	}
 
 	@Override

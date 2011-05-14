@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2Pivot.java,v 1.10 2011/05/02 15:38:53 ewillink Exp $
+ * $Id: Ecore2Pivot.java,v 1.11 2011/05/14 06:55:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -244,19 +244,7 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 	}
 
 	public <T extends Element> T getCreated(Class<T> requiredClass, EObject eObject) {
-		if (pivotRoot == null) {
-			getPivotRoot();
-		}
-		Element element = createMap.get(eObject);
-		if (element == null) {
-			return null;
-		}
-		if (!requiredClass.isAssignableFrom(element.getClass())) {
-			throw new ClassCastException(element.getClass().getName() + " is not assignable to " + requiredClass.getName());
-		}
-		@SuppressWarnings("unchecked")
-		T castElement = (T) element;
-		return castElement;
+		return getPivotOfEcore(requiredClass, eObject);
 	}
 
 	public Map<EClassifier, Type> getEcore2PivotMap() {
@@ -265,6 +253,10 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 			initializeEcore2PivotMap();
 		}
 		return ecore2PivotMap;
+	}
+
+	public Resource getEcoreResource() {
+		return ecoreResource;
 	}
 
 /*	public MonikeredElement getMoniker(String moniker) {
@@ -280,6 +272,22 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 		}
 		return moniker2PivotMap;
 	} */
+
+	public <T extends Element> T getPivotOfEcore(Class<T> requiredClass, EObject eObject) {
+		if (pivotRoot == null) {
+			getPivotRoot();
+		}
+		Element element = createMap.get(eObject);
+		if (element == null) {
+			return null;
+		}
+		if (!requiredClass.isAssignableFrom(element.getClass())) {
+			throw new ClassCastException(element.getClass().getName() + " is not assignable to " + requiredClass.getName());
+		}
+		@SuppressWarnings("unchecked")
+		T castElement = (T) element;
+		return castElement;
+	}
 	
 	public Type getPivotType(EObject eObject) {
 		Element pivotElement = createMap.get(eObject);

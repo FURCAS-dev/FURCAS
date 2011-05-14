@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDeclarationVisitor.java,v 1.6 2011/05/13 19:07:05 ewillink Exp $
+ * $Id: OCLinEcoreDeclarationVisitor.java,v 1.7 2011/05/14 06:55:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.pivot2cs;
 
@@ -64,8 +64,11 @@ public class OCLinEcoreDeclarationVisitor extends EssentialOCLDeclarationVisitor
 
 	@Override
 	public ElementCS visitOpaqueExpression(OpaqueExpression object) {
-		OCLinEcoreSpecificationCS csElement = context.refreshMonikeredElement(OCLinEcoreSpecificationCS.class, OCLinEcoreCSTPackage.Literals.OC_LIN_ECORE_SPECIFICATION_CS, object);
 		String body = PivotUtil.getBody(object);
+		if (body == null) {
+			return null;
+		}
+		OCLinEcoreSpecificationCS csElement = context.refreshMonikeredElement(OCLinEcoreSpecificationCS.class, OCLinEcoreCSTPackage.Literals.OC_LIN_ECORE_SPECIFICATION_CS, object);
 		csElement.setExprString(body);
 		return csElement;
 	}	
