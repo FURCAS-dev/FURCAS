@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLScopeVisitor.java,v 1.3 2011/03/01 08:46:48 ewillink Exp $
+ * $Id: EssentialOCLScopeVisitor.java,v 1.4 2011/05/14 11:18:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -41,15 +41,14 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.ContextCSScopeAdapter;
-import org.eclipse.ocl.examples.xtext.essentialocl.scoping.ExpSpecificationCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.ExpCSScopeAdapter;
+import org.eclipse.ocl.examples.xtext.essentialocl.scoping.ExpSpecificationCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.LetExpCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.NameExpCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.NavigatingExpCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.NavigationOperatorCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.TupleLiteralExpCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.TypeNameExpCSScopeAdapter;
-import org.eclipse.ocl.examples.xtext.essentialocl.scoping.VariableCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractExtendingDelegatingEssentialOCLCSVisitor;
 
 public class EssentialOCLScopeVisitor
@@ -151,6 +150,6 @@ public class EssentialOCLScopeVisitor
 
 	@Override
 	public ScopeCSAdapter visitVariableCS(VariableCS eObject) {
-		return new VariableCSScopeAdapter(context, eObject);
+		return new EmptyCSScopeAdapter(context, eObject);
 	}
 }
