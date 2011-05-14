@@ -119,6 +119,7 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getInvariantConstraintCSAccess().getGroup(), "rule__InvariantConstraintCS__Group__0");
 					put(grammarAccess.getInvariantConstraintCSAccess().getGroup_2(), "rule__InvariantConstraintCS__Group_2__0");
 					put(grammarAccess.getInvariantConstraintCSAccess().getGroup_2_1(), "rule__InvariantConstraintCS__Group_2_1__0");
+					put(grammarAccess.getInvariantConstraintCSAccess().getGroup_3(), "rule__InvariantConstraintCS__Group_3__0");
 					put(grammarAccess.getPostconditionConstraintCSAccess().getGroup(), "rule__PostconditionConstraintCS__Group__0");
 					put(grammarAccess.getPreconditionConstraintCSAccess().getGroup(), "rule__PreconditionConstraintCS__Group__0");
 					put(grammarAccess.getAnnotationCSAccess().getGroup(), "rule__AnnotationCS__Group__0");
@@ -287,7 +288,7 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getInvariantConstraintCSAccess().getStereotypeAssignment_1(), "rule__InvariantConstraintCS__StereotypeAssignment_1");
 					put(grammarAccess.getInvariantConstraintCSAccess().getNameAssignment_2_0(), "rule__InvariantConstraintCS__NameAssignment_2_0");
 					put(grammarAccess.getInvariantConstraintCSAccess().getMessageSpecificationAssignment_2_1_1(), "rule__InvariantConstraintCS__MessageSpecificationAssignment_2_1_1");
-					put(grammarAccess.getInvariantConstraintCSAccess().getSpecificationAssignment_4(), "rule__InvariantConstraintCS__SpecificationAssignment_4");
+					put(grammarAccess.getInvariantConstraintCSAccess().getSpecificationAssignment_3_1(), "rule__InvariantConstraintCS__SpecificationAssignment_3_1");
 					put(grammarAccess.getPostconditionConstraintCSAccess().getStereotypeAssignment_0(), "rule__PostconditionConstraintCS__StereotypeAssignment_0");
 					put(grammarAccess.getPostconditionConstraintCSAccess().getNameAssignment_1(), "rule__PostconditionConstraintCS__NameAssignment_1");
 					put(grammarAccess.getPostconditionConstraintCSAccess().getSpecificationAssignment_3(), "rule__PostconditionConstraintCS__SpecificationAssignment_3");

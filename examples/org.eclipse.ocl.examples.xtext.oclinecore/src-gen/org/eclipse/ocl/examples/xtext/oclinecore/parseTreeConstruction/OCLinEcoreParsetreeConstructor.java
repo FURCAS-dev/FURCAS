@@ -915,13 +915,13 @@ protected class InitialConstraintCS_SemicolonKeyword_3 extends KeywordToken  {
 /************ begin Rule InvariantConstraintCS ****************
  *
  * InvariantConstraintCS returns OCLinEcoreConstraintCS:
- * 	callable?="callable"? stereotype="invariant" (name=UnrestrictedName ("(" messageSpecification=SpecificationCS? ")")?)?
- * 	":" specification=SpecificationCS? ";";
+ * 	callable?="callable"? stereotype="invariant" (name=UnrestrictedName ("(" messageSpecification=SpecificationCS ")")?)?
+ * 	(":" specification=SpecificationCS?)? ";";
  *
  **/
 
-// callable?="callable"? stereotype="invariant" (name=UnrestrictedName ("(" messageSpecification=SpecificationCS? ")")?)?
-// ":" specification=SpecificationCS? ";"
+// callable?="callable"? stereotype="invariant" (name=UnrestrictedName ("(" messageSpecification=SpecificationCS ")")?)?
+// (":" specification=SpecificationCS?)? ";"
 protected class InvariantConstraintCS_Group extends GroupToken {
 	
 	public InvariantConstraintCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -936,7 +936,7 @@ protected class InvariantConstraintCS_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new InvariantConstraintCS_SemicolonKeyword_5(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new InvariantConstraintCS_SemicolonKeyword_4(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -1017,7 +1017,7 @@ protected class InvariantConstraintCS_StereotypeAssignment_1 extends AssignmentT
 
 }
 
-// (name=UnrestrictedName ("(" messageSpecification=SpecificationCS? ")")?)?
+// (name=UnrestrictedName ("(" messageSpecification=SpecificationCS ")")?)?
 protected class InvariantConstraintCS_Group_2 extends GroupToken {
 	
 	public InvariantConstraintCS_Group_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1074,7 +1074,7 @@ protected class InvariantConstraintCS_NameAssignment_2_0 extends AssignmentToken
 
 }
 
-// ("(" messageSpecification=SpecificationCS? ")")?
+// ("(" messageSpecification=SpecificationCS ")")?
 protected class InvariantConstraintCS_Group_2_1 extends GroupToken {
 	
 	public InvariantConstraintCS_Group_2_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1118,7 +1118,7 @@ protected class InvariantConstraintCS_LeftParenthesisKeyword_2_1_0 extends Keywo
 
 }
 
-// messageSpecification=SpecificationCS?
+// messageSpecification=SpecificationCS
 protected class InvariantConstraintCS_MessageSpecificationAssignment_2_1_1 extends AssignmentToken  {
 	
 	public InvariantConstraintCS_MessageSpecificationAssignment_2_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1188,16 +1188,38 @@ protected class InvariantConstraintCS_RightParenthesisKeyword_2_1_2 extends Keyw
 
 
 
-// ":"
-protected class InvariantConstraintCS_ColonKeyword_3 extends KeywordToken  {
+// (":" specification=SpecificationCS?)?
+protected class InvariantConstraintCS_Group_3 extends GroupToken {
 	
-	public InvariantConstraintCS_ColonKeyword_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public InvariantConstraintCS_Group_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getInvariantConstraintCSAccess().getGroup_3();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new InvariantConstraintCS_SpecificationAssignment_3_1(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// ":"
+protected class InvariantConstraintCS_ColonKeyword_3_0 extends KeywordToken  {
+	
+	public InvariantConstraintCS_ColonKeyword_3_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getInvariantConstraintCSAccess().getColonKeyword_3();
+		return grammarAccess.getInvariantConstraintCSAccess().getColonKeyword_3_0();
 	}
 
     @Override
@@ -1212,15 +1234,15 @@ protected class InvariantConstraintCS_ColonKeyword_3 extends KeywordToken  {
 }
 
 // specification=SpecificationCS?
-protected class InvariantConstraintCS_SpecificationAssignment_4 extends AssignmentToken  {
+protected class InvariantConstraintCS_SpecificationAssignment_3_1 extends AssignmentToken  {
 	
-	public InvariantConstraintCS_SpecificationAssignment_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public InvariantConstraintCS_SpecificationAssignment_3_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getInvariantConstraintCSAccess().getSpecificationAssignment_4();
+		return grammarAccess.getInvariantConstraintCSAccess().getSpecificationAssignment_3_1();
 	}
 
     @Override
@@ -1239,7 +1261,7 @@ protected class InvariantConstraintCS_SpecificationAssignment_4 extends Assignme
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getSpecificationCSRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getInvariantConstraintCSAccess().getSpecificationSpecificationCSParserRuleCall_4_0(); 
+				element = grammarAccess.getInvariantConstraintCSAccess().getSpecificationSpecificationCSParserRuleCall_3_1_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -1251,29 +1273,31 @@ protected class InvariantConstraintCS_SpecificationAssignment_4 extends Assignme
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new InvariantConstraintCS_ColonKeyword_3(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new InvariantConstraintCS_ColonKeyword_3_0(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
 
+
 // ";"
-protected class InvariantConstraintCS_SemicolonKeyword_5 extends KeywordToken  {
+protected class InvariantConstraintCS_SemicolonKeyword_4 extends KeywordToken  {
 	
-	public InvariantConstraintCS_SemicolonKeyword_5(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public InvariantConstraintCS_SemicolonKeyword_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getInvariantConstraintCSAccess().getSemicolonKeyword_5();
+		return grammarAccess.getInvariantConstraintCSAccess().getSemicolonKeyword_4();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new InvariantConstraintCS_SpecificationAssignment_4(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new InvariantConstraintCS_ColonKeyword_3(lastRuleCallOrigin, this, 1, inst);
+			case 0: return new InvariantConstraintCS_Group_3(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new InvariantConstraintCS_Group_2(lastRuleCallOrigin, this, 1, inst);
+			case 2: return new InvariantConstraintCS_StereotypeAssignment_1(lastRuleCallOrigin, this, 2, inst);
 			default: return null;
 		}	
 	}

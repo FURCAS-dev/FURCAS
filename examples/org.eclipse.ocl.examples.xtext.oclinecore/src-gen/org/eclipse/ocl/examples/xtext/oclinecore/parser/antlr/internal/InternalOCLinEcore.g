@@ -843,18 +843,18 @@ ruleInvariantConstraintCS returns [EObject current=null]
 	    }
 
 )
-)?	otherlv_5=')' 
+)	otherlv_5=')' 
     {
     	newLeafNode(otherlv_5, grammarAccess.getInvariantConstraintCSAccess().getRightParenthesisKeyword_2_1_2());
     }
-)?)?	otherlv_6=':' 
+)?)?(	otherlv_6=':' 
     {
-    	newLeafNode(otherlv_6, grammarAccess.getInvariantConstraintCSAccess().getColonKeyword_3());
+    	newLeafNode(otherlv_6, grammarAccess.getInvariantConstraintCSAccess().getColonKeyword_3_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getInvariantConstraintCSAccess().getSpecificationSpecificationCSParserRuleCall_4_0()); 
+	        newCompositeNode(grammarAccess.getInvariantConstraintCSAccess().getSpecificationSpecificationCSParserRuleCall_3_1_0()); 
 	    }
 		lv_specification_7_0=ruleSpecificationCS		{
 	        if ($current==null) {
@@ -869,9 +869,9 @@ ruleInvariantConstraintCS returns [EObject current=null]
 	    }
 
 )
-)?	otherlv_8=';' 
+)?)?	otherlv_8=';' 
     {
-    	newLeafNode(otherlv_8, grammarAccess.getInvariantConstraintCSAccess().getSemicolonKeyword_5());
+    	newLeafNode(otherlv_8, grammarAccess.getInvariantConstraintCSAccess().getSemicolonKeyword_4());
     }
 )
 ;
@@ -8836,7 +8836,7 @@ ruleSelfExpCS returns [EObject current=null]
 
 
 
-RULE_UNQUOTED_STRING : '\u00A3$%^\u00A3$%^';
+RULE_UNQUOTED_STRING : '\u00C2\u00A3$%^\u00C2\u00A3$%^';
 
 RULE_DOUBLE_QUOTED_STRING : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(('\\'|'"')))* '"';
 
