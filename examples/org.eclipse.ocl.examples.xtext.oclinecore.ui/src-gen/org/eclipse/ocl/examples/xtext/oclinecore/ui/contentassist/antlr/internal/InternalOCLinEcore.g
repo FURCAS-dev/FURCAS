@@ -5985,11 +5985,9 @@ rule__InvariantConstraintCS__Group__3__Impl
     }
 :
 (
-{ before(grammarAccess.getInvariantConstraintCSAccess().getColonKeyword_3()); }
-
-	':' 
-
-{ after(grammarAccess.getInvariantConstraintCSAccess().getColonKeyword_3()); }
+{ before(grammarAccess.getInvariantConstraintCSAccess().getGroup_3()); }
+(rule__InvariantConstraintCS__Group_3__0)?
+{ after(grammarAccess.getInvariantConstraintCSAccess().getGroup_3()); }
 )
 
 ;
@@ -6004,7 +6002,6 @@ rule__InvariantConstraintCS__Group__4
     }
 :
 	rule__InvariantConstraintCS__Group__4__Impl
-	rule__InvariantConstraintCS__Group__5
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -6016,47 +6013,17 @@ rule__InvariantConstraintCS__Group__4__Impl
     }
 :
 (
-{ before(grammarAccess.getInvariantConstraintCSAccess().getSpecificationAssignment_4()); }
-(rule__InvariantConstraintCS__SpecificationAssignment_4)?
-{ after(grammarAccess.getInvariantConstraintCSAccess().getSpecificationAssignment_4()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-rule__InvariantConstraintCS__Group__5
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-	rule__InvariantConstraintCS__Group__5__Impl
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__InvariantConstraintCS__Group__5__Impl
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getInvariantConstraintCSAccess().getSemicolonKeyword_5()); }
+{ before(grammarAccess.getInvariantConstraintCSAccess().getSemicolonKeyword_4()); }
 
 	';' 
 
-{ after(grammarAccess.getInvariantConstraintCSAccess().getSemicolonKeyword_5()); }
+{ after(grammarAccess.getInvariantConstraintCSAccess().getSemicolonKeyword_4()); }
 )
 
 ;
 finally {
 	restoreStackSize(stackSize);
 }
-
-
 
 
 
@@ -6180,7 +6147,7 @@ rule__InvariantConstraintCS__Group_2_1__1__Impl
 :
 (
 { before(grammarAccess.getInvariantConstraintCSAccess().getMessageSpecificationAssignment_2_1_1()); }
-(rule__InvariantConstraintCS__MessageSpecificationAssignment_2_1_1)?
+(rule__InvariantConstraintCS__MessageSpecificationAssignment_2_1_1)
 { after(grammarAccess.getInvariantConstraintCSAccess().getMessageSpecificationAssignment_2_1_1()); }
 )
 
@@ -6220,6 +6187,69 @@ finally {
 }
 
 
+
+
+
+
+
+
+rule__InvariantConstraintCS__Group_3__0
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__InvariantConstraintCS__Group_3__0__Impl
+	rule__InvariantConstraintCS__Group_3__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__InvariantConstraintCS__Group_3__0__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getInvariantConstraintCSAccess().getColonKeyword_3_0()); }
+
+	':' 
+
+{ after(grammarAccess.getInvariantConstraintCSAccess().getColonKeyword_3_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__InvariantConstraintCS__Group_3__1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__InvariantConstraintCS__Group_3__1__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__InvariantConstraintCS__Group_3__1__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getInvariantConstraintCSAccess().getSpecificationAssignment_3_1()); }
+(rule__InvariantConstraintCS__SpecificationAssignment_3_1)?
+{ after(grammarAccess.getInvariantConstraintCSAccess().getSpecificationAssignment_3_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
 
 
 
@@ -20636,14 +20666,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__InvariantConstraintCS__SpecificationAssignment_4
+rule__InvariantConstraintCS__SpecificationAssignment_3_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getInvariantConstraintCSAccess().getSpecificationSpecificationCSParserRuleCall_4_0()); }
-	ruleSpecificationCS{ after(grammarAccess.getInvariantConstraintCSAccess().getSpecificationSpecificationCSParserRuleCall_4_0()); }
+{ before(grammarAccess.getInvariantConstraintCSAccess().getSpecificationSpecificationCSParserRuleCall_3_1_0()); }
+	ruleSpecificationCS{ after(grammarAccess.getInvariantConstraintCSAccess().getSpecificationSpecificationCSParserRuleCall_3_1_0()); }
 )
 
 ;
@@ -24778,7 +24808,7 @@ finally {
 }
 
 
-RULE_UNQUOTED_STRING : '\u00A3$%^\u00A3$%^';
+RULE_UNQUOTED_STRING : '\u00C2\u00A3$%^\u00C2\u00A3$%^';
 
 RULE_DOUBLE_QUOTED_STRING : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(('\\'|'"')))* '"';
 
