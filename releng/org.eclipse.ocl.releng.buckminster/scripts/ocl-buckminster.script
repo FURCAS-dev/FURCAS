@@ -1,7 +1,5 @@
 setpref complianceLevel=1.5
 
-wget http://download.eclipse.org/releases/helios/compositeContent.jar
-
 # We import a target definition which will be our API Base Line
 importtargetdefinition "file://${checkout.location}/org.eclipse.mdt/org.eclipse.ocl/releng/org.eclipse.ocl.releng.buckminster/APIBaseLine.target"
 addbaseline -A "Eclipse OCL API Base Line"
