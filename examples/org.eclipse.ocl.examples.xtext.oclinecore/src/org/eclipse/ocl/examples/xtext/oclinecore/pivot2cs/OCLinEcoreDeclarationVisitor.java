@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDeclarationVisitor.java,v 1.7 2011/05/14 06:55:42 ewillink Exp $
+ * $Id: OCLinEcoreDeclarationVisitor.java,v 1.8 2011/05/14 10:38:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.pivot2cs;
 
@@ -46,7 +46,7 @@ public class OCLinEcoreDeclarationVisitor extends EssentialOCLDeclarationVisitor
 		if (specification instanceof OpaqueExpression) {		// FIXME ExpressionInOcl too??
 			OpaqueExpression opaqueExpression = (OpaqueExpression)specification;
 			String message = PivotUtil.getMessage(opaqueExpression);
-			if (message != null) {
+			if ((message != null) && (message.length() > 0)) {
 				OCLinEcoreSpecificationCS csMessageElement = context.refreshMonikeredElement(OCLinEcoreSpecificationCS.class, OCLinEcoreCSTPackage.Literals.OC_LIN_ECORE_SPECIFICATION_CS, opaqueExpression);
 				csMessageElement.setExprString(message);
 				csElement.setMessageSpecification(csMessageElement);

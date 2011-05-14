@@ -422,18 +422,19 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cMessageSpecificationAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
 		private final RuleCall cMessageSpecificationSpecificationCSParserRuleCall_2_1_1_0 = (RuleCall)cMessageSpecificationAssignment_2_1_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_2_1_2 = (Keyword)cGroup_2_1.eContents().get(2);
-		private final Keyword cColonKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cSpecificationAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cSpecificationSpecificationCSParserRuleCall_4_0 = (RuleCall)cSpecificationAssignment_4.eContents().get(0);
-		private final Keyword cSemicolonKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cColonKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cSpecificationAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cSpecificationSpecificationCSParserRuleCall_3_1_0 = (RuleCall)cSpecificationAssignment_3_1.eContents().get(0);
+		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//InvariantConstraintCS returns OCLinEcoreConstraintCS:
-		//	callable?="callable"? stereotype="invariant" (name=UnrestrictedName ("(" messageSpecification=SpecificationCS? ")")?)?
-		//	":" specification=SpecificationCS? ";";
+		//	callable?="callable"? stereotype="invariant" (name=UnrestrictedName ("(" messageSpecification=SpecificationCS ")")?)?
+		//	(":" specification=SpecificationCS?)? ";";
 		public ParserRule getRule() { return rule; }
 
-		//callable?="callable"? stereotype="invariant" (name=UnrestrictedName ("(" messageSpecification=SpecificationCS? ")")?)?
-		//":" specification=SpecificationCS? ";"
+		//callable?="callable"? stereotype="invariant" (name=UnrestrictedName ("(" messageSpecification=SpecificationCS ")")?)?
+		//(":" specification=SpecificationCS?)? ";"
 		public Group getGroup() { return cGroup; }
 
 		//callable?="callable"?
@@ -448,7 +449,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//"invariant"
 		public Keyword getStereotypeInvariantKeyword_1_0() { return cStereotypeInvariantKeyword_1_0; }
 
-		//(name=UnrestrictedName ("(" messageSpecification=SpecificationCS? ")")?)?
+		//(name=UnrestrictedName ("(" messageSpecification=SpecificationCS ")")?)?
 		public Group getGroup_2() { return cGroup_2; }
 
 		//name=UnrestrictedName
@@ -457,13 +458,13 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//UnrestrictedName
 		public RuleCall getNameUnrestrictedNameParserRuleCall_2_0_0() { return cNameUnrestrictedNameParserRuleCall_2_0_0; }
 
-		//("(" messageSpecification=SpecificationCS? ")")?
+		//("(" messageSpecification=SpecificationCS ")")?
 		public Group getGroup_2_1() { return cGroup_2_1; }
 
 		//"("
 		public Keyword getLeftParenthesisKeyword_2_1_0() { return cLeftParenthesisKeyword_2_1_0; }
 
-		//messageSpecification=SpecificationCS?
+		//messageSpecification=SpecificationCS
 		public Assignment getMessageSpecificationAssignment_2_1_1() { return cMessageSpecificationAssignment_2_1_1; }
 
 		//SpecificationCS
@@ -472,17 +473,20 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//")"
 		public Keyword getRightParenthesisKeyword_2_1_2() { return cRightParenthesisKeyword_2_1_2; }
 
+		//(":" specification=SpecificationCS?)?
+		public Group getGroup_3() { return cGroup_3; }
+
 		//":"
-		public Keyword getColonKeyword_3() { return cColonKeyword_3; }
+		public Keyword getColonKeyword_3_0() { return cColonKeyword_3_0; }
 
 		//specification=SpecificationCS?
-		public Assignment getSpecificationAssignment_4() { return cSpecificationAssignment_4; }
+		public Assignment getSpecificationAssignment_3_1() { return cSpecificationAssignment_3_1; }
 
 		//SpecificationCS
-		public RuleCall getSpecificationSpecificationCSParserRuleCall_4_0() { return cSpecificationSpecificationCSParserRuleCall_4_0; }
+		public RuleCall getSpecificationSpecificationCSParserRuleCall_3_1_0() { return cSpecificationSpecificationCSParserRuleCall_3_1_0; }
 
 		//";"
-		public Keyword getSemicolonKeyword_5() { return cSemicolonKeyword_5; }
+		public Keyword getSemicolonKeyword_4() { return cSemicolonKeyword_4; }
 	}
 
 	public class PostconditionConstraintCSElements extends AbstractParserRuleElementFinder {
@@ -3487,8 +3491,8 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//InvariantConstraintCS returns OCLinEcoreConstraintCS:
-	//	callable?="callable"? stereotype="invariant" (name=UnrestrictedName ("(" messageSpecification=SpecificationCS? ")")?)?
-	//	":" specification=SpecificationCS? ";";
+	//	callable?="callable"? stereotype="invariant" (name=UnrestrictedName ("(" messageSpecification=SpecificationCS ")")?)?
+	//	(":" specification=SpecificationCS?)? ";";
 	public InvariantConstraintCSElements getInvariantConstraintCSAccess() {
 		return (pInvariantConstraintCS != null) ? pInvariantConstraintCS : (pInvariantConstraintCS = new InvariantConstraintCSElements());
 	}

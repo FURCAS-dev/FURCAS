@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreFormatter.java,v 1.11 2011/05/13 19:07:04 ewillink Exp $
+ * $Id: OCLinEcoreFormatter.java,v 1.12 2011/05/14 10:38:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.formatting;
 
@@ -110,6 +110,7 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 	    	BodyConstraintCSElements a = f.getBodyConstraintCSAccess();
 	    	c.setNoSpace().before(a.getColonKeyword_2());
 			setNoSpaceLineWrap(c, a.getSemicolonKeyword_4());
+		    c.setIndentation(a.getColonKeyword_2(), a.getSemicolonKeyword_4());
 	    }
 	    {
 			ClassCSElements a = f.getClassCSAccess();
@@ -128,6 +129,7 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 	    	DerivedConstraintCSElements a = f.getDerivedConstraintCSAccess();
 			c.setNoSpace().before(a.getColonKeyword_1());
 			setNoSpaceLineWrap(c, a.getSemicolonKeyword_3());
+		    c.setIndentation(a.getColonKeyword_1(), a.getSemicolonKeyword_3());
 	    }
 	    {
 	    	DocumentationCSElements a = f.getDocumentationCSAccess();
@@ -155,13 +157,16 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 	    	InitialConstraintCSElements a = f.getInitialConstraintCSAccess();
 			c.setNoSpace().before(a.getColonKeyword_1());
 			setNoSpaceLineWrap(c, a.getSemicolonKeyword_3());
+		    c.setIndentation(a.getColonKeyword_1(), a.getSemicolonKeyword_3());
 	    }
 	    {
 			InvariantConstraintCSElements a = f.getInvariantConstraintCSAccess();
 			c.setNoSpace().around(a.getLeftParenthesisKeyword_2_1_0());
 			c.setNoSpace().around(a.getRightParenthesisKeyword_2_1_2());
-			c.setNoSpace().before(a.getColonKeyword_3());
-			setNoSpaceLineWrap(c, a.getSemicolonKeyword_5());
+			c.setNoSpace().before(a.getColonKeyword_3_0());
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_4());
+		    c.setIndentation(a.getLeftParenthesisKeyword_2_1_0(), a.getRightParenthesisKeyword_2_1_2());
+		    c.setIndentation(a.getColonKeyword_3_0(), a.getSemicolonKeyword_4());
 	    }
 	    {
 			OperationCSElements a = f.getOperationCSAccess();
@@ -194,11 +199,13 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 	    	PostconditionConstraintCSElements a = f.getPostconditionConstraintCSAccess();
 			c.setNoSpace().before(a.getColonKeyword_2());
 			setNoSpaceLineWrap(c, a.getSemicolonKeyword_4());
+		    c.setIndentation(a.getColonKeyword_2(), a.getSemicolonKeyword_4());
 	    }
 	    {
 	    	PreconditionConstraintCSElements a = f.getPreconditionConstraintCSAccess();
 			c.setNoSpace().before(a.getColonKeyword_2());
 			setNoSpaceLineWrap(c, a.getSemicolonKeyword_4());
+		    c.setIndentation(a.getColonKeyword_2(), a.getSemicolonKeyword_4());
 	    }
 	    {
 			ReferenceCSElements a = f.getReferenceCSAccess();
