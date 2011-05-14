@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MoreSerializeTests.java,v 1.1 2011/05/13 19:16:33 ewillink Exp $
+ * $Id: MoreSerializeTests.java,v 1.2 2011/05/14 06:58:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -21,7 +21,7 @@ package org.eclipse.ocl.examples.test.xtext;
  */
 public class MoreSerializeTests extends SerializeTests
 {	
-// FIXME fails due to Bug 286558
+	// Fails due to bad specialisation templates
 	public void testEcoreSerialize() throws Exception {
 		doSerialize("Ecore");
 	}
@@ -34,22 +34,28 @@ public class MoreSerializeTests extends SerializeTests
 //		doSerializeUML("model");
 //	}
 
+	// Fails ? because lowerBounds do not propagate from UML2Ecore ?
+	// Fails because no support for redefines
 	public void test_Fruit_uml_Serialize() throws Exception {
 		doSerializeUML("Fruit");
 	}
 
+	// Fails ?? due to missing specialized features
 	public void testOCLSerialize() throws Exception {
 		doSerialize("OCL");
 	}
 
+	// Fails due to conflicting ecore package
 	public void testOCLEcoreSerialize() throws Exception {
 		doSerialize("OCLEcore");
 	}
 
+	// Fails because no support for -2 multiplicity
 	public void testXMLTypeSerialize() throws Exception {
 		doSerialize("XMLType");
 	}
 
+	// Fails due to FIXME in BaseDeclarationVisitor.visitProperty; no CS syntax for implicit opposite
 	public void testOCLTestSerialize() throws Exception {
 		doSerialize("OCLTest");
 	}	
