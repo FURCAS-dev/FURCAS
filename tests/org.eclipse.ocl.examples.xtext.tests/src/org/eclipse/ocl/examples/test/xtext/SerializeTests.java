@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializeTests.java,v 1.16 2011/05/13 19:16:33 ewillink Exp $
+ * $Id: SerializeTests.java,v 1.17 2011/05/14 06:58:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -133,7 +133,9 @@ public class SerializeTests extends XtextTestCase
 		//
 		//
 //		assertSameModel(pivotResource, pivotResource2);
-		assertSameModel(umlResource, ecoreResource2);		
+		UML2Ecore2Pivot uml2Ecore2Pivot = UML2Ecore2Pivot.getAdapter(umlResource, typeManager);
+		Resource ecoreResource = uml2Ecore2Pivot.getEcoreResource();
+		assertSameModel(ecoreResource, ecoreResource2);		
 		return xtextResource;
 	}
 
