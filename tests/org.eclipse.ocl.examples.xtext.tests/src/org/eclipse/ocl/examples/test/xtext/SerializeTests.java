@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializeTests.java,v 1.17 2011/05/14 06:58:39 ewillink Exp $
+ * $Id: SerializeTests.java,v 1.18 2011/05/14 10:39:16 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -163,15 +163,15 @@ public class SerializeTests extends XtextTestCase
 		return umlResource;
 	}
 	
-	public void testBug320689Serialize() throws Exception {
+	public void testSerialize_Bug320689() throws Exception {
 		doSerialize("Bug320689");
 	}
 	
-	public void testLoad_Bug323741Serialize() throws Exception {
+	public void testSerialize_Bug323741() throws Exception {
 		doSerialize("Bug323741");
 	}
 
-	public void testCompanySerialize() throws Exception {
+	public void testSerialize_Company() throws Exception {
 //		Logger logger = Logger.getLogger(AbstractParseTreeConstructor.class);
 //		logger.setLevel(Level.TRACE);
 //		logger.addAppender(new ConsoleAppender(new SimpleLayout()));
@@ -182,42 +182,46 @@ public class SerializeTests extends XtextTestCase
 		doSerialize("Company", "Company.reference");
 	}
 
-	public void testImportsSerialize() throws Exception {
+	public void testSerialize_ConstraintMessages() throws Exception {
+		doSerialize("ConstraintMessages");
+	}
+
+	public void testSerialize_Imports() throws Exception {
 		XtextResource xtextResource = doSerialize("Imports");
 		RootPackageCS documentCS = (RootPackageCS) xtextResource.getContents().get(0);
 		List<ImportCS> imports = documentCS.getOwnedImport();
 		assertEquals("One import", 1, imports.size());
 	}
 
-	public void testKeysSerialize() throws Exception {
+	public void testSerialize_Keys() throws Exception {
 		doSerialize("Keys");
 	}
 
-	public void testNamesSerialize() throws Exception {
+	public void testSerialize_Names() throws Exception {
 		doSerialize("Names");
 	}
 
-	public void testOCLinEcoreCSTSerialize() throws Exception {
+	public void testSerialize_OCLinEcoreCST() throws Exception {
 		doSerialize("OCLinEcoreCST");
 	}
 
-	public void testOCLstdlibSerialize() throws Exception {
+	public void testSerialize_OCLstdlib() throws Exception {
 		doSerialize("OCLstdlib");
 	}
 
-	public void testOCLCSTSerialize() throws Exception {
+	public void testSerialize_OCLCST() throws Exception {
 		doSerialize("OCLCST");
 	}
 
-	public void testQVTSerialize() throws Exception {
+	public void testSerialize_QVT() throws Exception {
 		doSerialize("QVT");
 	}	
 
-	public void testRoyalAndLoyalSerialize() throws Exception {
+	public void testSerialize_RoyalAndLoyal() throws Exception {
 		doSerialize("RoyalAndLoyal");
 	}	
 
-	public void testXMLNamespaceSerialize() throws Exception {
+	public void testSerialize_XMLNamespace() throws Exception {
 		doSerialize("XMLNamespace");
 	}	
 }
