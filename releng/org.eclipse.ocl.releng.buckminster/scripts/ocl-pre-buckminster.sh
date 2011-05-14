@@ -1,4 +1,5 @@
 #!/bin/bash
+wget http://download.eclipse.org/releases/helios/compositeContent.jar
 
 rm -rf buildroot MDT-OCL.*
 mkdir buildroot
