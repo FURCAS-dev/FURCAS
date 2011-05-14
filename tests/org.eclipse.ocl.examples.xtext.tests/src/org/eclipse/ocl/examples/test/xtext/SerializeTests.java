@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializeTests.java,v 1.18 2011/05/14 10:39:16 ewillink Exp $
+ * $Id: SerializeTests.java,v 1.19 2011/05/14 11:18:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -219,6 +219,10 @@ public class SerializeTests extends XtextTestCase
 
 	public void testSerialize_RoyalAndLoyal() throws Exception {
 		doSerialize("RoyalAndLoyal");
+	}	
+	
+	public void testSerialize_States() throws Exception {
+		doSerialize("States");
 	}	
 
 	public void testSerialize_XMLNamespace() throws Exception {
