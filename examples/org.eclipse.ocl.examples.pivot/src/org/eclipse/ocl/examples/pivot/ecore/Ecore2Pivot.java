@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2Pivot.java,v 1.11 2011/05/14 06:55:41 ewillink Exp $
+ * $Id: Ecore2Pivot.java,v 1.12 2011/05/15 20:16:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -59,6 +59,7 @@ import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.External2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 public class Ecore2Pivot extends AbstractConversion implements External2Pivot, PivotConstants
@@ -357,7 +358,7 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 				pivotRoot = (org.eclipse.ocl.examples.pivot.Package)pivotResource.getContents().get(0);
 			}
 			else {
-				pivotResource = importObjects(ecoreResource.getContents(), ecoreResource.getURI());
+				pivotResource = importObjects(ecoreResource.getContents(), PivotUtil.getPivotURI(ecoreResource.getURI()));
 				AliasAdapter ecoreAdapter = AliasAdapter.findAdapter(ecoreResource);
 				if (ecoreAdapter != null) {
 					Map<EObject, String> ecoreAliasMap = ecoreAdapter.getAliasMap();

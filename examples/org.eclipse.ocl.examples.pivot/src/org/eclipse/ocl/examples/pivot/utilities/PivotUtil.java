@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.16 2011/05/13 18:41:43 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.17 2011/05/15 20:16:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -80,6 +80,8 @@ import org.eclipse.ocl.examples.pivot.util.Pivotable;
 
 public class PivotUtil
 {	
+	public static final String SCHEME_PIVOT = "pivot";
+
 //	public static final URI INTERNAL_URI = URI.createURI("internal.essentialocl");
 
 	private static final AdapterFactory reflectiveAdapterFactory =
@@ -657,6 +659,31 @@ public class PivotUtil
 		return castElement;
 	}
 
+	public static URI getNonPivotURI(URI uri) {
+		assert isPivotURI(uri);
+		String[] oldSegments = uri.segments();
+		String[] newSegments = new String[oldSegments.length - 1];
+		newSegments[0] = uri.scheme();
+		System.arraycopy(oldSegments, 1, newSegments, 0, oldSegments.length-1);
+		URI pivotURI = URI.createHierarchicalURI(oldSegments[0], uri.authority(), uri.device(), newSegments,
+				uri.query(), uri.fragment());
+		return pivotURI;
+	}
+
+	public static URI getPivotURI(URI uri) {
+		String oldScheme = uri.scheme();
+		if (oldScheme == null) {
+			oldScheme = "null";
+		}
+		String[] oldSegments = uri.segments();
+		String[] newSegments = new String[oldSegments.length + 1];
+		newSegments[0] = oldScheme;
+		System.arraycopy(oldSegments, 0, newSegments, 1, oldSegments.length);
+		URI pivotURI = URI.createHierarchicalURI(SCHEME_PIVOT, uri.authority(), uri.device(), newSegments,
+				uri.query(), uri.fragment());
+		return pivotURI;
+	}
+
 	public static Feature getReferredFeature(CallExp callExp) {
 		Feature feature = null;
 		if (callExp instanceof LoopExp) {
@@ -808,8 +835,15 @@ public class PivotUtil
 //		return unspecializedTemplateableElement;
 		return (T) templateableElement.getUnspecializedElement(); */
 	}
+
+	public static boolean isPivotURI(URI uri) {
+		return SCHEME_PIVOT.equals(uri.scheme()) && (uri.segments().length > 0);
+	}
 	
 	public static boolean isValidIdentifier(String value) {
+		if (value == null) {
+			return false;
+		}
 		int iMax = value.length();
 		for (int i = 0; i < iMax; i++) {
 			char c = value.charAt(i);
