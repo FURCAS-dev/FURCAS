@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotStandardLibrary.java,v 1.12 2011/05/11 19:46:14 ewillink Exp $
+ * $Id: PivotStandardLibrary.java,v 1.13 2011/05/15 20:15:04 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -88,6 +88,12 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		if (bagType == null) {
 			Type type = getRequiredLibraryType("Bag");
 			if (type instanceof BagType) {
+				if (((BagType) type).getOwnedTemplateSignature() == null) {
+					throw new IllegalLibraryException("Bag is not a templated type");
+				}
+				else if (((BagType) type).getOwnedTemplateSignature().getParameters().size() != 1) {
+					throw new IllegalLibraryException("Bag is not a templated type with a single argument");
+				}
 				bagType = (BagType) type;
 			}
 			else if (type != null) {
@@ -133,6 +139,12 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		if (collectionType == null) {
 			Type type = getRequiredLibraryType("Collection");
 			if (type instanceof CollectionType) {
+				if (((CollectionType) type).getOwnedTemplateSignature() == null) {
+					throw new IllegalLibraryException("Collection is not a templated type");
+				}
+				else if (((CollectionType) type).getOwnedTemplateSignature().getParameters().size() != 1) {
+					throw new IllegalLibraryException("Collection is not a templated type with a single argument");
+				}
 				collectionType = (CollectionType) type;
 			}
 			else if (type != null) {
@@ -223,6 +235,12 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		if (orderedSetType == null) {
 			Type type = getRequiredLibraryType("OrderedSet");
 			if (type instanceof OrderedSetType) {
+				if (((OrderedSetType) type).getOwnedTemplateSignature() == null) {
+					throw new IllegalLibraryException("OrderedSet is not a templated type");
+				}
+				else if (((OrderedSetType) type).getOwnedTemplateSignature().getParameters().size() != 1) {
+					throw new IllegalLibraryException("OrderedSet is not a templated type with a single argument");
+				}
 				orderedSetType = (OrderedSetType) type;
 			}
 			else if (type != null) {
@@ -264,6 +282,12 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		if (sequenceType == null) {
 			Type type = getRequiredLibraryType("Sequence");
 			if (type instanceof SequenceType) {
+				if (((SequenceType) type).getOwnedTemplateSignature() == null) {
+					throw new IllegalLibraryException("Sequence is not a templated type");
+				}
+				else if (((SequenceType) type).getOwnedTemplateSignature().getParameters().size() != 1) {
+					throw new IllegalLibraryException("Sequence is not a templated type with a single argument");
+				}
 				sequenceType = (SequenceType) type;
 			}
 			else if (type != null) {
@@ -277,6 +301,12 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		if (setType == null) {
 			Type type = getRequiredLibraryType("Set");
 			if (type instanceof SetType) {
+				if (((SetType) type).getOwnedTemplateSignature() == null) {
+					throw new IllegalLibraryException("Set is not a templated type");
+				}
+				else if (((SetType) type).getOwnedTemplateSignature().getParameters().size() != 1) {
+					throw new IllegalLibraryException("Set is not a templated type with a single argument");
+				}
 				setType = (SetType) type;
 			}
 			else if (type != null) {
