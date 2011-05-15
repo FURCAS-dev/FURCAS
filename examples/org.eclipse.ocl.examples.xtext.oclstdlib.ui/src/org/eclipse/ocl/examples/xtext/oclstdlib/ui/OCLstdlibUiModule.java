@@ -5,15 +5,21 @@ package org.eclipse.ocl.examples.xtext.oclstdlib.ui;
 
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.BaseLocationInFileProvider;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.autoedit.BaseAutoEditStrategyProvider;
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.findrefs.BaseReferenceFinder;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseEObjectTextHover;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseTerminalsTokenTypeToPartitionMapper;
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseURIEditorOpener;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.BaseAntlrTokenToAttributeIdMapper;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLHighlightingConfiguration;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLSemanticHighlightingCalculator;
+import org.eclipse.ocl.examples.xtext.oclstdlib.ui.refactoring.OCLstdlibReferenceUpdater;
+import org.eclipse.ocl.examples.xtext.oclstdlib.ui.refactoring.OCLstdlibRenameStrategy;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.common.types.access.jdt.IJavaProjectProvider;
 import org.eclipse.xtext.resource.ILocationInFileProvider;
+import org.eclipse.xtext.ui.editor.IURIEditorOpener;
+import org.eclipse.xtext.ui.editor.IXtextEditorCallback;
 import org.eclipse.xtext.ui.editor.autoedit.AbstractEditStrategyProvider;
 import org.eclipse.xtext.ui.editor.hover.DispatchingEObjectTextHover;
 import org.eclipse.xtext.ui.editor.model.ITokenTypeToPartitionTypeMapper;
@@ -49,6 +55,21 @@ public class OCLstdlibUiModule extends AbstractOCLstdlibUiModule
 		return BaseLocationInFileProvider.class;
 	}
 	
+	@SuppressWarnings("restriction")
+	public Class<? extends org.eclipse.xtext.ui.refactoring.IRenameStrategy.Provider> bindIRenameStrategy$Provider() {
+		return OCLstdlibRenameStrategy.Provider.class;
+	}
+	
+	@SuppressWarnings("restriction")
+	public Class<? extends org.eclipse.xtext.ui.editor.findrefs.IReferenceFinder> bindIReferenceFinder() {
+		return BaseReferenceFinder.class;
+	}
+	
+	@SuppressWarnings("restriction")
+	public Class<? extends org.eclipse.xtext.ui.refactoring.IReferenceUpdater> bindIReferenceUpdater() {
+		return OCLstdlibReferenceUpdater.class;
+	}
+	
 	public Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
 		return EssentialOCLSemanticHighlightingCalculator.class;
 	}
@@ -66,8 +87,12 @@ public class OCLstdlibUiModule extends AbstractOCLstdlibUiModule
 		return BaseTerminalsTokenTypeToPartitionMapper.class;
 	}
 
+	public Class<? extends IURIEditorOpener> bindIURIEditorOpener() {
+		return BaseURIEditorOpener.class;
+	}
+
 	@Override
-	public Class<? extends org.eclipse.xtext.ui.editor.IXtextEditorCallback> bindIXtextEditorCallback() {
+	public Class<? extends IXtextEditorCallback> bindIXtextEditorCallback() {
 		return ValidatingEditorCallback.class;
 	}
 
