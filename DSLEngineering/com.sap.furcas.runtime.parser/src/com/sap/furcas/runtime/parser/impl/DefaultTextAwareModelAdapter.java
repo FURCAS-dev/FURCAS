@@ -58,17 +58,16 @@ public class DefaultTextAwareModelAdapter implements IModelAdapter {
 
             try {
                 Collection<Object> resultSet = modelAdapter.queryElement(typeName, attributes);
-
                 if (resultSet != null && resultSet.size() >= 1) {
                     if (resultSet.size() == 1) {
                         return resultSet.iterator().next();
                     } else {
                         throw new ModelElementCreationException("Reference " + typeName + " with attributes " + attributes
-                                + " is ambiguous.");
+                                + " is ambiguous. Expected one result but found " + resultSet.size());
                     }
                 } else {
                     throw new ModelElementCreationException("Reference " + typeName + " with attributes " + attributes
-                            + " could not be resolved.");
+                            + " could not be resolved. Nothing found.");
                 }
             } catch (ModelAdapterException e) {
                 // TODO move this to getModelAdapter() and

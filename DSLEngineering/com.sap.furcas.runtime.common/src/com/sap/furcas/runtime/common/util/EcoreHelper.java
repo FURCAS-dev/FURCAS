@@ -83,7 +83,8 @@ public class EcoreHelper {
     }
     
     /**
-     * Constructs a query context that contains the given <tt>resources</tt> .
+     * Constructs a query context that contains only the given <tt>resources</tt> but no other
+     * resources from the resourceSet or the workspace.
      */
     public static QueryContext getRestrictedQueryContext(final ResourceSet resourceSet, final Set<URI> resources) {
         return new QueryContext() {
@@ -260,15 +261,11 @@ public class EcoreHelper {
 
     /**
      * Creates a new resource in the given {@link ResourceSet#} named according to the uri of the 
-     * given <code>rootPackage</code> and postfixed with a generated UUID.
-     * 
-     * @param rootPackage
-     *            the {@link EPackage} of the instances stored in the resource.
-     *            Used for creating the {@link URI} of the resource.
+     * given <code>rootPackage</code> nsURI and postfixed with a generated UUID.
      */
-    public static Resource createTransientParsingResource(ResourceSet resourceSet, EPackage rootPackage) {
+    public static Resource createTransientParsingResource(ResourceSet resourceSet, String nsURI) {
         Resource resource = resourceSet.createResource(URI.createURI(
-                rootPackage.getNsURI() + "/transientParsingResource" + EcoreUtil.generateUUID()));
+                nsURI + "/transientParsingResource" + EcoreUtil.generateUUID()));
         // This is a documented hack to consider an empty resource being loaded. See {@link Resource#isLoaded()}
         resource.getContents().clear();
         return resource;

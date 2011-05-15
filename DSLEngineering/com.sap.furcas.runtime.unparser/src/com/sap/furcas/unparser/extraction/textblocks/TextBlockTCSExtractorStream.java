@@ -36,6 +36,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksFactory;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
+import com.sap.furcas.runtime.parser.ParserFactory;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.tcs.TcsDebugUtil;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
@@ -49,7 +50,6 @@ import com.sap.furcas.unparser.extraction.textblocks.TextBlockCommands.EnterAlte
 import com.sap.furcas.unparser.extraction.textblocks.TextBlockCommands.ExitAlternativeMarkerCommand;
 import com.sap.furcas.unparser.extraction.textblocks.TextBlockCommands.FinishTextBlockCommand;
 import com.sap.furcas.unparser.extraction.textblocks.TextBlockCommands.TextBlockCommand;
-import com.sap.ide.cts.parser.incremental.ParserFactory;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
 
 

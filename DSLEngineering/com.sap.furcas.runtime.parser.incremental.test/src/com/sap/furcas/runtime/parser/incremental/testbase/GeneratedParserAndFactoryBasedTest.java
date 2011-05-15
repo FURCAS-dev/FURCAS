@@ -1,14 +1,14 @@
 package com.sap.furcas.runtime.parser.incremental.testbase;
 
-import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.common.exceptions.ParserGeneratorInvocationException;
+import com.sap.furcas.runtime.common.exceptions.ParserInstantiationException;
+import com.sap.furcas.runtime.parser.PartitionAssignmentHandler;
 import com.sap.furcas.runtime.parser.testbase.ClassLookup;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
-import com.sap.ide.cts.parser.incremental.PartitionAssignmentHandler;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 
 /**
@@ -23,19 +23,21 @@ import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 public abstract class GeneratedParserAndFactoryBasedTest extends GeneratedParserBasedTest {
 
     protected static IncrementalParserFacade generateParserAndParserFactoryForLanguage(TCSSyntaxContainerBean syntaxBean,
-            GeneratedParserAndFactoryTestConfiguration testConfig, EditingDomain editingDomain, OppositeEndFinder oppositeEndFinder,
+            GeneratedParserAndFactoryTestConfiguration testConfig, ResourceSet resourceSet,
             PartitionAssignmentHandler partitionAssignmentHandler,
-            ClassLookup classLookup) throws GrammarGenerationException, ParserGeneratorInvocationException, InstantiationException, IllegalAccessException {
+            ClassLookup classLookup) throws GrammarGenerationException, ParserGeneratorInvocationException, InstantiationException, IllegalAccessException, ParserInstantiationException {
 
         ParserAndFactoryGenerator generator = new ParserAndFactoryGenerator(testConfig);
         try {
+            System.out.println(""); // spacing to make our generation report easier to spot.
             generator.generateGrammar(syntaxBean);
+            System.out.println(""); // spacing to make our generation report easier to spot.
             generator.generateParser();
-            generator.generateParserFactory();
+            generator.generateParserFactory(syntaxBean);
             generator.compileParser();
             generator.compileParserFactory();
 
-            return generator.loadIncrementalParserFacade(classLookup, editingDomain, oppositeEndFinder, partitionAssignmentHandler);
+            return generator.loadIncrementalParserFacade(classLookup, resourceSet, partitionAssignmentHandler);
         } finally {
             generator.cleanUp();
         }

@@ -40,7 +40,7 @@ public class SyntaxProviderImpl implements SyntaxProvider {
     @Override
     public synchronized ConcreteSyntax getSyntax(ResourceSet loadSyntaxIn) throws IOException, ParserException {
         if (syntax == null && syntaxResource == null) {
-            URI syntaxUri = parserFactory.getSyntaxUri();
+            URI syntaxUri = parserFactory.getSyntaxResourceURI();
             if (syntaxUri != null) {
                 if (loadSyntaxIn == null) {
                     loadSyntaxIn = new ResourceSetImpl();

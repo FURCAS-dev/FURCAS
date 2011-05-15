@@ -26,7 +26,9 @@ import com.sap.furcas.runtime.common.exceptions.DeferredActionResolvingException
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.ReferenceSettingException;
 import com.sap.furcas.runtime.common.interfaces.IBareModelAdapter;
+import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
+import com.sap.furcas.runtime.common.util.MessageUtil;
 
 /**
  * Facade for the creation of EMF model elements. 
@@ -56,15 +58,15 @@ public class EMFModelAdapter implements IBareModelAdapter {
      * @param transientResource A resource that is meant to be in-memory only. It must be contained
      *          in the given resource set. All elements created by this adapter are added to this resource..
      *          It is the responsponsability of the caller to cleanup the resource and the contained elements afterwards.
-     * @param metaModelURIs A list URIs of all metamodels this modeladapter is supposed to work on.
+     * @param metamodelLookup A {@link IMetaModelLookup} configured for all the metamodels this modeladapter is supposed to work on.
      * @param additionalQueryScope A list of additional URIs that shall be looked at when references are
      *          resolved or when existing model elements are queres. The queryScope by default already includes the
      *          URI of the root element
      *          and the visible URIs of the give resource set. In most cases the scope can therefore remain
      *          empty.
      */
-    public EMFModelAdapter(ResourceSet resourceSet, Resource transientResource, Set<URI> metaModelURIs, Set<URI> additionalQueryScope) {
-        delegate = new EMFModelAdapterDelegate(resourceSet, transientResource, metaModelURIs, additionalQueryScope);
+    public EMFModelAdapter(ResourceSet resourceSet, Resource transientResource, IMetaModelLookup<EObject> metamodelLookup, Set<URI> additionalQueryScope) {
+        delegate = new EMFModelAdapterDelegate(resourceSet, transientResource, metamodelLookup, additionalQueryScope);
     }
 
     @Override

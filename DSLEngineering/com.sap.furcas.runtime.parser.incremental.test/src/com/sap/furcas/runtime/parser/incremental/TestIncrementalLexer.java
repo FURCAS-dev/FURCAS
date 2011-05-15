@@ -6,11 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +18,6 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksFactory;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
-import com.sap.furcas.metamodel.FURCAS.textblocks.util.TextblocksAdapterFactory;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
@@ -51,10 +47,7 @@ public class TestIncrementalLexer extends TextBlockTest {
         // should leave the textblock as it is.
 
         MockLexerAdapter mockLexerAdapter = new MockLexerAdapter(null);
-        EditingDomain editingDomain = new AdapterFactoryEditingDomain(
-                new TextblocksAdapterFactory(), new BasicCommandStack());
-        ANTLRIncrementalLexerAdapter incrementalLexer = new ANTLRIncrementalLexerAdapter(
-                mockLexerAdapter, null, editingDomain);
+        ANTLRIncrementalLexerAdapter incrementalLexer = new ANTLRIncrementalLexerAdapter(mockLexerAdapter, null);
 
         LexedToken contentToken = modelFactory.createToken("test");
 
@@ -89,9 +82,7 @@ public class TestIncrementalLexer extends TextBlockTest {
 
         MockLexerAdapter mockLexerAdapter = new MockLexerAdapter(null);
         ANTLRIncrementalLexerAdapter incrementalLexer = new ANTLRIncrementalLexerAdapter(
-                mockLexerAdapter, null,
-                new AdapterFactoryEditingDomain(new TextblocksAdapterFactory(),
-                        new BasicCommandStack()));
+                mockLexerAdapter, null);
 
         LexedToken contentToken = modelFactory.createToken("test");
 
@@ -162,9 +153,7 @@ public class TestIncrementalLexer extends TextBlockTest {
 
         MockLexerAdapter mockLexerAdapter = new MockLexerAdapter(null);
         ANTLRIncrementalLexerAdapter incrementalLexer = new ANTLRIncrementalLexerAdapter(
-                mockLexerAdapter, null,
-                new AdapterFactoryEditingDomain(new TextblocksAdapterFactory(),
-                        new BasicCommandStack()));
+                mockLexerAdapter, null);
 
         LexedToken contentToken = modelFactory.createToken("test");
 
@@ -217,9 +206,7 @@ public class TestIncrementalLexer extends TextBlockTest {
 
         MockLexerAdapter mockLexerAdapter = new MockLexerAdapter(null);
         ANTLRIncrementalLexerAdapter incrementalLexer = new ANTLRIncrementalLexerAdapter(
-                mockLexerAdapter, null,
-                new AdapterFactoryEditingDomain(new TextblocksAdapterFactory(),
-                        new BasicCommandStack()));
+                mockLexerAdapter, null);
 
         LexedToken tok1 = modelFactory.createToken("tok1");
 
@@ -307,9 +294,7 @@ public class TestIncrementalLexer extends TextBlockTest {
         MockLexerAdapterWithLookaheadLLStar mockLexerAdapter = new MockLexerAdapterWithLookaheadLLStar(
                 null);
         ANTLRIncrementalLexerAdapter incrementalLexer = new ANTLRIncrementalLexerAdapter(
-                mockLexerAdapter, null,
-                new AdapterFactoryEditingDomain(new TextblocksAdapterFactory(),
-                        new BasicCommandStack()));
+                mockLexerAdapter, null);
 
         LexedToken tok1 = modelFactory.createToken("tok1");
 
@@ -451,8 +436,7 @@ public class TestIncrementalLexer extends TextBlockTest {
 
         };
         ANTLRIncrementalLexerAdapter incrementalLexer = new ANTLRIncrementalLexerAdapter(
-                mockLexerAdapter, null,  new AdapterFactoryEditingDomain(new TextblocksAdapterFactory(),
-                        new BasicCommandStack()));
+                mockLexerAdapter, null);
 
         LexedToken tok1 = modelFactory.createToken("tok1");
 

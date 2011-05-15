@@ -1,11 +1,10 @@
 package com.sap.furcas.ide.editor;
 
-import java.util.Collections;
 import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.action.Action;
@@ -25,6 +24,8 @@ import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
+import com.sap.furcas.modeladaptation.emf.lookup.QueryBasedEcoreMetaModelLookUp;
+import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.textblocks.TbUtil;
@@ -120,11 +121,11 @@ public class AbstractGrammarBasedContentOutlinePage extends ContentOutlinePage {
 		if (contentOutlineViewer != null) {
 		    	if(contentOutlineViewer.getLabelProvider() == null || contentOutlineViewer.getLabelProvider() instanceof LabelProvider) {
 		    	    ResourceSet resourceSet = abstractGrammarBasedEditor.getEditingDomain().getResourceSet();
-		    	EPackage metamodelPackage = abstractGrammarBasedEditor.getParserFactory().getMetamodelPackage(resourceSet);
+		    	Set<URI> metaModelURIs = abstractGrammarBasedEditor.getParserFactory().getMetamodelURIs();
 		        
-		    	Resource transientResource = EcoreHelper.createTransientParsingResource(resourceSet, metamodelPackage);
-			IModelElementInvestigator adapter = new EMFModelAdapter(resourceSet, transientResource,
-			        Collections.singleton(abstractGrammarBasedEditor.getParserFactory().getMetamodelUri(resourceSet)), new HashSet<URI>());
+		    	Resource transientResource = EcoreHelper.createTransientParsingResource(resourceSet, metaModelURIs.iterator().next().toString());
+		    	IMetaModelLookup<EObject> metamodelLookup = new QueryBasedEcoreMetaModelLookUp(resourceSet, metaModelURIs);
+			IModelElementInvestigator adapter = new EMFModelAdapter(resourceSet, transientResource, metamodelLookup, new HashSet<URI>());
 			contentOutlineViewer.setLabelProvider(new TextBlocksLabelProvider(adapter));
 		    	}
 			updateTreeView();

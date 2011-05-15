@@ -6,17 +6,11 @@ import static org.junit.Assert.assertNotNull;
 import java.io.File;
 import java.util.List;
 
-import org.eclipse.emf.common.command.BasicCommandStack;
-import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
-import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -27,6 +21,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.parser.incremental.testbase.GeneratedParserAndFactoryBasedTest;
 import com.sap.furcas.runtime.parser.incremental.testbase.GeneratedParserAndFactoryTestConfiguration;
+import com.sap.furcas.runtime.parser.incremental.testbase.MockPartitionAssignmentHandler;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.testutils.EMFTextBlocksModelElementFactory;
@@ -55,17 +50,12 @@ public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
         GeneratedParserAndFactoryTestConfiguration testConfig = new GeneratedParserAndFactoryTestConfiguration(LANGUAGE, TCS, MM_PACKAGE_URI, METAMODELS);
 
         resourceSet = testConfig.getSourceConfiguration().getResourceSet();
-        EditingDomain editingDomain = new AdapterFactoryEditingDomain(new AdapterFactoryImpl(),
-                new BasicCommandStack(), resourceSet);
-
-        OppositeEndFinder oppositeEndFinder = DefaultOppositeEndFinder.getInstance();
         
         TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
-        
         transientParsingResource = ResourceTestHelper.createTransientResource(resourceSet);
         
         incrementalParserFacade = generateParserAndParserFactoryForLanguage(syntaxBean, testConfig,
-                editingDomain, oppositeEndFinder, new MockPartitionAssignmentHandler(transientParsingResource),
+                resourceSet, new MockPartitionAssignmentHandler(transientParsingResource),
                 new ClassLookupImpl());
         
         ECrossReferenceAdapter crossRefAdapter = new ECrossReferenceAdapter();

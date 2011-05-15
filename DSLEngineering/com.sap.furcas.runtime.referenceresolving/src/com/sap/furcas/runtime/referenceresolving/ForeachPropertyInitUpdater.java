@@ -5,6 +5,7 @@ import java.lang.reflect.Modifier;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,11 +17,13 @@ import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.Lexer;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ParserException;
@@ -48,17 +51,23 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksFactory;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
+import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
+import com.sap.furcas.modeladaptation.emf.lookup.QueryBasedEcoreMetaModelLookUp;
+import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.IRuleName;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
+import com.sap.furcas.runtime.common.util.EcoreHelper;
+import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.IParsingObserver;
 import com.sap.furcas.runtime.parser.ModelElementCreationException;
+import com.sap.furcas.runtime.parser.ParserFactory;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
+import com.sap.furcas.runtime.parser.impl.DefaultTextAwareModelAdapter;
 import com.sap.furcas.runtime.parser.impl.DelegationParsingObserver;
 import com.sap.furcas.runtime.parser.impl.ForeachParsingObserver;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.parser.textblocks.TbParsingUtil;
 import com.sap.furcas.runtime.tcs.TcsUtil;
-import com.sap.ide.cts.parser.incremental.ParserFactory;
 
 /**
  * Updates a model element property by evaluating a so-called <code>foreach</code> OCL expression. Based on the
@@ -530,8 +539,17 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
         try {
             String ruleName = ruleNameFinder.getRuleName(template, mode);
             Lexer lexer = parserFactory.createLexer(new ANTLRStringStream(getRootBlock(textBlock).getCachedString()));
-            ObservableInjectingParser parser = parserFactory.createParser(new CommonTokenStream(lexer), elementToUpdate
-                    .eResource().getResourceSet());
+            
+            // TODO: This is soemwhat odd. We don't have the information at hand to accurately parameterize
+            // our parser infrastructure.
+            ResourceSet resourceSet = elementToUpdate.eResource().getResourceSet();
+            IMetaModelLookup<EObject> metamodelLookup = new QueryBasedEcoreMetaModelLookUp(resourceSet, getResourceURIs(resourceSet));
+            
+            Resource transientResource = EcoreHelper.createTransientParsingResource(resourceSet, "http://furcas.org/foreach/reevaluation/");
+            IModelAdapter modelAdapter = new DefaultTextAwareModelAdapter(new EMFModelAdapter(elementToUpdate
+                    .eResource().getResourceSet(), transientResource, metamodelLookup, getResourceURIs(resourceSet)));
+            
+            ObservableInjectingParser parser = parserFactory.createParser(new CommonTokenStream(lexer), modelAdapter);
             DelegationParsingObserver delegator = new DelegationParsingObserver();
             IParsingObserver originalObserver = parser.getObserver();
             if (originalObserver != null) {
@@ -547,6 +565,8 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
             }
             parser.setCurrentForeachElement(foreachElement);
             TbParsingUtil.constructContext(textBlock, parser);
+            // TODO How can we be sure that the model is in a valid state when the parser is called?
+            // Simply injecting (modifying) the domain model through the parser might lead to data loss
             EObject parseReturn = (EObject) methodToCall.invoke(parser);
             if (parseReturn == null) {
                 throw new ModelElementCreationException("Unable to create model element using parse rule " + ruleName
@@ -557,6 +577,14 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+    
+    private Set<URI> getResourceURIs(ResourceSet resourceSet) {
+        HashSet<URI> uris = new HashSet<URI>();
+        for (Resource resource : resourceSet.getResources()) {
+            uris.add(resource.getURI());
+        }
+        return uris;
     }
 
     private TextBlock getRootBlock(TextBlock textBlock) {
