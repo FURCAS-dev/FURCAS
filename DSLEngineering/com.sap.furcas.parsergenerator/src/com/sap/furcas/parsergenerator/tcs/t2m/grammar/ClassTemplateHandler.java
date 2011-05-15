@@ -29,6 +29,7 @@ import com.sap.furcas.runtime.common.exceptions.NameResolutionFailedException;
 import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.runtime.common.util.MessageUtil;
 import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
 import com.sap.furcas.runtime.tcs.MetaModelElementResolutionHelper;
 import com.sap.furcas.runtime.tcs.MetamodelNameResolvingException;
@@ -337,7 +338,7 @@ public class ClassTemplateHandler<Type extends Object> {
             boolean isFirstAlternative = true;
 
             //get the templates for the direct subtypes
-            if (subtypes != null) {
+            if (subtypes.size() > 0) {
             	List<Template> templates = new ArrayList<Template>(subtypes.size());
                 for (Iterator<ResolvedNameAndReferenceBean<Type>> iterator = subtypes.iterator(); iterator.hasNext();) {
                     try {
@@ -346,10 +347,10 @@ public class ClassTemplateHandler<Type extends Object> {
 
                         subtemps = syntaxLookup.getTCSTemplate(subTypeName, templateMode);
 
-                        if (subtemps != null) {
+                        if (subtemps.size() > 0) {
                             templates.addAll(subtemps);
                         } else {
-                            errorBucket.addWarning("No template present for subtype " + subTypeName.getNames() +" with mode #"+templateMode+" of type " + resolutionHelper.resolve(template), template);
+                            errorBucket.addWarning("No template present for subtype " + MessageUtil.asModelName(subTypeName.getNames()) +" with mode #"+templateMode+" of type " + MessageUtil.asModelName(resolutionHelper.resolve(template).getNames()), template);
                         }
                     } catch (SyntaxElementException e) {
 						errorBucket.addException(e);
@@ -365,8 +366,9 @@ public class ClassTemplateHandler<Type extends Object> {
 						if(o1.equals(o2)) {
 						    return 0;
 						} else {
-							if(o1.getConcreteSyntax() == null || o2.getConcreteSyntax() == null)
-								return 0;
+							if(o1.getConcreteSyntax() == null || o2.getConcreteSyntax() == null) {
+                                return 0;
+                            }
 							return o1.getConcreteSyntax().getTemplates().indexOf(o1) -
 							o2.getConcreteSyntax().getTemplates().indexOf(o2);
 						}
@@ -390,8 +392,9 @@ public class ClassTemplateHandler<Type extends Object> {
 							
 						}
 						else{
-							if(!isFirstAlternative)
-								rulebody.append("\n  | ");
+							if(!isFirstAlternative) {
+                                rulebody.append("\n  | ");
+                            }
 							if (subtemp.getDisambiguateV3() != null) {
 								// add disambiguation rule
 								rulebody.append("(" + subtemp.getDisambiguateV3() + ")=>("); // b2
@@ -509,7 +512,7 @@ public class ClassTemplateHandler<Type extends Object> {
             
             List<ClassTemplate> primaries = syntaxLookup.getPrimaries(subtypes, metaLookup);
             
-            boolean hasPrimaries = subtypes != null && primaries.size() > 0;
+            boolean hasPrimaries = primaries.size() > 0;
             
             
             operatorHandler.addOperatorList(operatorList, templateRulename, hasPrimaries, ruleBodyBufferFactory, template);
@@ -564,7 +567,7 @@ public class ClassTemplateHandler<Type extends Object> {
         try {
             List<ClassTemplate> primaries = syntaxLookup.getPrimaries(subtypes, metaLookup);
             if(primaries.size() == 0){
-                errorBucket.addError("No template for concrete subclass found to be able to terminate operator this template", template);
+                errorBucket.addError("No template for concrete subclass found, required to terminate this operator template", template);
             }
             if (subtypes != null && primaries.size() > 0) {
                 StringBuilder rulebody = new StringBuilder();

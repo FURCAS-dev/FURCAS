@@ -41,6 +41,7 @@ import com.sap.furcas.runtime.common.exceptions.NameResolutionFailedException;
 import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.runtime.common.util.MessageUtil;
 import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
 import com.sap.furcas.runtime.tcs.MetaModelElementResolutionHelper;
 import com.sap.furcas.runtime.tcs.SyntaxLookup;
@@ -153,7 +154,7 @@ public class ConditionalElementHandler<Type extends Object> {
 		// means feature used in condition does not actually exist in
 		// metamodel
 		errorBucket.addError("Feature with name " + propName + " does not exist for metamodel type "
-			+ metaElementRef.getNames(), atomExp);
+			+ MessageUtil.asModelName(metaElementRef.getNames()), atomExp);
 	    }
 
 	    if (atomExp instanceof IsDefinedExp) {
