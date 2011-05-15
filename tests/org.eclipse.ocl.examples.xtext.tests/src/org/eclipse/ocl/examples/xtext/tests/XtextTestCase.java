@@ -459,9 +459,10 @@ public class XtextTestCase extends TestCase
 		//
 		//	CS save and reload
 		//		
-//		pivotResource.setURI(pivotURI);
+		URI savedURI = pivotResource.getURI();
+		pivotResource.setURI(PivotUtil.getNonPivotURI(savedURI).appendFileExtension("pivot"));
 		pivotResource.save(null);
-		
+		pivotResource.setURI(savedURI);
 		
 		assertNoDiagnosticErrors("Concrete Syntax validation failed", xtextResource);
 		try {

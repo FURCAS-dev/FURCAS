@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotResourceAdapter.java,v 1.11 2011/05/13 19:19:11 ewillink Exp $
+ * $Id: CS2PivotResourceAdapter.java,v 1.12 2011/05/15 20:20:22 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
@@ -96,10 +97,10 @@ public class CS2PivotResourceAdapter extends TypeManagerResourceAdapter
 				List<EObject> contents = acsResource.getContents();
 	//			if (!"java".equals(uri.scheme())) { //$NON-NLS-1$
 				if ((contents.size() > 0) && (contents.get(0) instanceof ModelElementCS)) { //$NON-NLS-1$
-					URI pivotURI = uri.appendFileExtension("pivot");
+					URI pivotURI = PivotUtil.getPivotURI(uri);
 					Resource pivotResource = pivotResourceSet.getResource(pivotURI, false);
 					if (pivotResource == null) {
-						pivotResource = pivotResourceSet.createResource(pivotURI);
+						pivotResource = pivotResourceSet.createResource(pivotURI, PivotPackage.eCONTENT_TYPE);
 					}
 					cs2pivotResourceMap.put(acsResource, pivotResource);
 				}
