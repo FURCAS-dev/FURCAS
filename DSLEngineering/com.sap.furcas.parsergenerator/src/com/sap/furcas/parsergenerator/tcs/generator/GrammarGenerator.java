@@ -95,6 +95,7 @@ public class GrammarGenerator {
     }
 
     private static boolean checkForErrorsAndReport(GenerationReport report, GenerationErrorHandler errorhandler) {
+        errorhandler.info("FURCAS Generation Report for Textual Concrete Syntax: " + report.getSyntaxName());
         boolean hasErrors = false;
         if (report.getWarnings() != null && report.getWarnings().size() > 0) {
             for (ParsingError warning : report.getWarnings()) {
@@ -106,6 +107,11 @@ public class GrammarGenerator {
             for (ParsingError error : report.getErrors()) {
                 errorhandler.error(error);
             }
+        }
+        if (hasErrors) {
+            errorhandler.info("Finished with errors.");
+        } else {
+            errorhandler.info("Finished successfully.");
         }
         return hasErrors;
     }

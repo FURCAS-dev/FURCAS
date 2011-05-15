@@ -28,12 +28,12 @@ import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
-import com.sap.furcas.modeladaptation.emf.adaptation.MessageUtil;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.MultiplicityBean;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
+import com.sap.furcas.runtime.common.util.MessageUtil;
 
 /**
  * Abstract implementation of {@link IMetaModelLookup} allowing clients to inspect ecore metamodels.

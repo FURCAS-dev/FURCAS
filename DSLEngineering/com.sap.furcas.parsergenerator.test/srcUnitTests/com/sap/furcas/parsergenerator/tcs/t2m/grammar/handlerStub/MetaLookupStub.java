@@ -8,8 +8,10 @@ import static org.junit.Assert.fail;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 
 import com.sap.furcas.emf.stubs.EcoreAnyStub;
@@ -95,17 +97,7 @@ public class MetaLookupStub<Type extends Object> implements IMetaModelLookup<Typ
      * List)
      */
     public boolean isClassName(List<String> reference) {
-
 	return isClassName;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.sap.mi.textual.inter@Override elLookup#close()
-     */
-    @Override
-    public void close() {
     }
 
     /*
@@ -185,6 +177,12 @@ public class MetaLookupStub<Type extends Object> implements IMetaModelLookup<Typ
     @Override
     public Type getOclReturnType(Object parsingContext, String oclQuery) throws MetaModelLookupException {
         return (Type) new EcoreAnyStub();
+    }
+    
+    @Override
+    public Set<URI> getMetaModelURIs() {
+        fail("not implemented");
+        return Collections.emptySet();
     }
 
 }

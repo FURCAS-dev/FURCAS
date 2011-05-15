@@ -68,7 +68,7 @@ operators {
 -- Specifies the lexical entities.
 -- Only needs modification when default lexer is not satisfactory.
 -- Generally modified along with Primitive templates.
-	token COMMENT	: endOfLine(start = "--");
+	omitted token COMMENT	: endOfLine(start = "--");
 
 	lexer = "
 %options testLiterals = false;
@@ -79,13 +79,13 @@ NL
 		|	'\\r'
 		|	'\\n'
 		)
-	{newline();}
+	{newline();$channel=HIDDEN;}
 	;
 
 WS
 	:	(	' '
 		|	'\\t'
-		)
+		){$channel=HIDDEN;}
 	;
 
 %protected
@@ -116,18 +116,18 @@ SNAME
 NAME
 	:	(
 			SNAME
-		|	'\"'!
+		|	'\"'
 			(	ESC
 			|	'\\n' {newline();}
 			|	~('\\\\'|'\\\"'|'\\n')
 			)*
-			'\"'!
+			'\"'
 		)
 	;
 
 %protected
 ESC
-	:	'\\\\'!
+	:	'\\\\'
 		(	'n' 
 		|	'r' 
 		|	't' 
@@ -155,12 +155,12 @@ ESC
 	;
 
 STRING
-	:	'\\''!
+	:	'\\''
 		(	ESC
 		|	'\\n' {newline();}
 		|	~('\\\\'|'\\''|'\\n')
 		)*
-		'\\''!
+		'\\''
 			{setText(unescapeString(getText(), 1));}
 	;
 

@@ -1496,7 +1496,7 @@ public class TcsUtil {
             Collection<Template> subtemps = null;
 
             subtemps = syntaxLookup.getTCSTemplate(subTypeName, mode);
-            if (subtemps != null && subtemps.size() > 0) {
+            if (subtemps.size() > 0) {
                 return true;
             }
         }

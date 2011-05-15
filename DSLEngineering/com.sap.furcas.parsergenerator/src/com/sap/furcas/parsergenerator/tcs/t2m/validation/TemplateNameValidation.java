@@ -26,6 +26,7 @@ import com.sap.furcas.parsergenerator.tcs.t2m.grammar.SemanticErrorBucket;
 import com.sap.furcas.runtime.common.exceptions.NameResolutionFailedException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.runtime.common.util.MessageUtil;
 import com.sap.furcas.runtime.tcs.MetaModelElementResolutionHelper;
 
 
@@ -82,7 +83,7 @@ public class TemplateNameValidation implements ISyntaxValidationRule {
 
                     if (names.contains(templatename)) {
                 	// FIXME trying to manage multiple operatorTemplate specifications for distinct operator sets
-                        errorBucket.addError("Duplicate template for same metamodel element " + templatename, template);
+                        errorBucket.addError("Duplicate template for same metamodel element " + MessageUtil.asModelName(templatename), template);
                     } else {
 
                         names.add(templatename);

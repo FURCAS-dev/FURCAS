@@ -2,15 +2,21 @@ package com.sap.furcas.parser.tcs.bootstrap;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
+import com.sap.furcas.modeladaptation.emf.lookup.QueryBasedEcoreMetaModelLookUp;
 import com.sap.furcas.parser.tcs.TCSSyntaxDefinition;
 import com.sap.furcas.parser.tcs.scenario.ClassLookupImpl;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
+import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ParserFacade;
@@ -37,7 +43,7 @@ public class TCSBootstrappingTest extends GeneratedParserBasedTest {
 
     private static final String LANGUAGE = "TCS";
     private static final File TCS = TCSSyntaxDefinition.TCS_TCS;
-    private static final File[] METAMODELS = { }; // keep empty. The FURCAS metamodel is added by the testConfig
+    private static final File[] METAMODELS = { }; // keep empty. The FURCAS metamodel is added below
 
     private static StubParsingHelper parsingHelper;
     private static IModelAdapter modelAdapter;
@@ -45,18 +51,21 @@ public class TCSBootstrappingTest extends GeneratedParserBasedTest {
     @BeforeClass
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
-        testConfig.getSourceConfiguration().getReferenceScope().addAll(ResourceTestHelper.createFURCASReferenceScope());
-        testConfig.getSourceConfiguration().getReferenceScope().addAll(ResourceTestHelper.createEcoreReferenceScope());
+        ResourceSet resourceSet = testConfig.getSourceConfiguration().getResourceSet();
+
+        Set<URI> metamodels = testConfig.getSourceConfiguration().getReferenceScope();
+        metamodels.addAll(ResourceTestHelper.createEcoreReferenceScope());
+        metamodels.addAll(ResourceTestHelper.createFURCASReferenceScope());
+
+        IMetaModelLookup<EObject> metamodelLookup = new QueryBasedEcoreMetaModelLookUp(resourceSet, metamodels);
         
         TCSSyntaxContainerBean syntaxBeanyntaxBean = parseSyntax(testConfig);
         ParserFacade facade = generateParserForLanguage(syntaxBeanyntaxBean, testConfig, new ClassLookupImpl());
 
         parsingHelper = new StubParsingHelper(facade);
-        modelAdapter = new DefaultTextAwareModelAdapter(new EMFModelAdapter(
-                testConfig.getSourceConfiguration().getResourceSet(), 
-                EcoreHelper.createTransientParsingResource( testConfig.getSourceConfiguration().getResourceSet(), FURCASPackage.eINSTANCE),
-                testConfig.getSourceConfiguration().getReferenceScope(),
-                testConfig.getSourceConfiguration().getReferenceScope()));
+        modelAdapter = new DefaultTextAwareModelAdapter(new EMFModelAdapter(testConfig.getSourceConfiguration().getResourceSet(), 
+                EcoreHelper.createTransientParsingResource(resourceSet, FURCASPackage.eINSTANCE.getNsURI()),
+                metamodelLookup, metamodels));
     }
 
     @Test

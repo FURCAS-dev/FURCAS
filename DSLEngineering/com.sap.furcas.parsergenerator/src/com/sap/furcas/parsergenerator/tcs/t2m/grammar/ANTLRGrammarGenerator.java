@@ -219,12 +219,12 @@ public class ANTLRGrammarGenerator {
             writer.setParserSuperClass(parserSuperClass);
         }
         
-        if (syntax.getK() == null) { // if lookahead is 0, we need backtracking
-                                    // for ambiguous situations
+        if (syntax.getK() == null) {
+            // if lookahead is 0, we need backtracking for ambiguous situations
             writer.setGrammarOptions("backtrack = true;");
         } else if (syntax.getK() == 0) {
-        	//leave empty which means that synpreds have to be added manually
-        	writer.setGrammarOptions(null);
+            // leave empty which means that synpreds have to be added manually
+            writer.setGrammarOptions(null);
         } else {
             writer.setGrammarOptions("k = " + syntax.getK() + ";");
         }
@@ -363,12 +363,12 @@ public class ANTLRGrammarGenerator {
         "NAME\r\n" + 
         "    :   (\r\n" + 
         "            SNAME\r\n" + 
-        "        |   \'\"\'!\r\n" + 
+        "        |   \'\"\'\r\n" + 
         "            (   ESC\r\n" + 
         "            |   \'\\n\' {newline();}\r\n" + 
         "            |   ~(\'\\\\\'|\'\\\"\'|\'\\n\')\r\n" + 
         "            )*\r\n" + 
-        "            \'\"\'!\r\n" + 
+        "            \'\"\'\r\n" + 
         "            \r\n" + 
         "        )\r\n" + 
         "    ;\r\n" + 
@@ -381,7 +381,7 @@ public class ANTLRGrammarGenerator {
         "\r\n" + 
         "fragment\r\n" + 
         "ESC\r\n" + 
-        "    :   \'\\\\\'!\r\n" + 
+        "    :   \'\\\\\'\r\n" + 
         "        (   \'n\' \r\n" + 
         "        |   \'r\' \r\n" + 
         "        |   \'t\' \r\n" + 
@@ -409,12 +409,12 @@ public class ANTLRGrammarGenerator {
         "    ;\r\n" + 
         "\r\n" + 
         "STRING\r\n" + 
-        "    :   \'\\\'\'!\r\n" + 
+        "    :   \'\\\'\'\r\n" + 
         "        (   ESC\r\n" + 
         "        |   \'\\n\' {newline();}\r\n" + 
         "        |   ~(\'\\\\\'|\'\\\'\'|\'\\n\')\r\n" + 
         "        )*\r\n" + 
-        "        \'\\\'\'!\r\n" + 
+        "        \'\\\'\'\r\n" + 
         "       \r\n" + 
         "    ;";
   

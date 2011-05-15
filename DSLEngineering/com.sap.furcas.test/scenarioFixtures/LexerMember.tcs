@@ -14,7 +14,7 @@ syntax LexerMember {
 		
 
 
-token COMMENT	: endOfLine(start = "--");
+omitted token COMMENT	: endOfLine(start = "--");
 
 lexer = "
 %options testLiterals = false;
@@ -30,13 +30,13 @@ NL
 		|	'\\r'
 		|	'\\n'
 		)
-	{newline();}
+	{newline();$channel=HIDDEN;}
 	;
 
 WS
 	:	(	' '
 		|	'\\t'
-		)
+		){$channel=HIDDEN;}
 	;
 
 %protected
@@ -67,13 +67,13 @@ OBJECT	:	'o:'	;
 NAME
 	:	(
 			SNAME
-		|	'\\''!
+		|	'\\''
 			(	
 		//	ESC	|
 			'\\n' {newline();}
 			|	~('\\\\'|'\\\''|'\\n')
 			)*
-			'\\''!
+			'\\''
 		{setText(unescapeString(getText(), 1));}
 		)
 	;
@@ -101,13 +101,13 @@ FLOAT	:	{!noFloatMode}?=>DIGIT+ '.' DIGIT*	;
 DATE	:	DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT DIGIT DIGIT ;
 
 STRING
-	:	'\"'!
+	:	'\"'
 		(	
 		//ESC	|		
 			'\\n' {newline();}
 		|	~('\\\\'|'\\\"'|'\\n')
 		)*
-		'\"'!
+		'\"'
 		{setText(unescapeString(getText(), 1));}
 
 	;

@@ -609,7 +609,7 @@ syntax SPL {
 					
 					
 				);
-	token COMMENT	:	endOfLine(start = "//") | multiLine(start = "/*", end = "*/");
+	omitted token COMMENT	:	endOfLine(start = "//") | multiLine(start = "/*", end = "*/");
 	token URI	:	multiLine(start = "\'", end = "\'");
 	token HEADERID	:	word(
 					start = "#",
@@ -631,7 +631,7 @@ NL
 WS
 	:	(	' '
 		|	'\\t'
-		)
+		){$channel=HIDDEN;}
 	;
 
 %protected
@@ -646,7 +646,7 @@ INT
 
 %protected
 ESC
-	:	'\\\\'!
+	:	'\\\\'
 		(	'n' %v2{%setText(\"\\n\");}
 		|	'r' %v2{%setText(\"\\r\");}
 		|	't' %v2{%setText(\"\\t\");}
@@ -692,12 +692,12 @@ ESC
 	;
 
 STRING
-	:	'\\\"'!
+	:	'\\\"'
 		(	ESC
 		|	'\\n' {newline();}
 		|	~('\\\\'|'\\\"'|'\\n')
 		)*
-		'\\\"'!
+		'\\\"'
 %v3		{setText(unescapeString(getText(), 1));}
 	;
 	";

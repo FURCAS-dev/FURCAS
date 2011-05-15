@@ -74,6 +74,6 @@ operators {
 	}
 -- END Operator table
 
-token COMMENT	: endOfLine(start = "--");
+omitted token COMMENT	: endOfLine(start = "--");
 
 }

@@ -40,11 +40,11 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
+import com.sap.furcas.runtime.parser.ParserFactory;
 import com.sap.furcas.runtime.parser.impl.ModelUpdaterRegistry;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.syntaxprovider.SyntaxProvider;
 import com.sap.furcas.runtime.tcs.PropertyArgumentUtil;
-import com.sap.ide.cts.parser.incremental.ParserFactory;
 
 /**
  * Manages the relationship between {@link ConcreteSyntax FURCAS syntaxes} with their OCL-based

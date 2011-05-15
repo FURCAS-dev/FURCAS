@@ -49,12 +49,7 @@ public class GeneratedParserWrapper {
     private Lexer lexer;
 
     private Class<? extends Parser> parserClass;
-	private Class<? extends Lexer> lexerClass;
-
-
-    private int TT_NL;
-    private int TT_WS;
-    private int TT_COMMENT;
+    private Class<? extends Lexer> lexerClass;
 
     private ModelInjector injector;
 
@@ -83,9 +78,6 @@ public class GeneratedParserWrapper {
             this.lexerClass = lexerClass;
     
             this.injector = new ModelInjector(parser.getTokenNames());
-//            Field f = parserClass.getField("ei");
-//            f.set(parser, injector);
-   
             parser.setInjector(injector);
             
             try {
@@ -94,11 +86,6 @@ public class GeneratedParserWrapper {
             } catch (NoSuchFieldException nsfe) {
                 System.out.println("Warning, lexer has no ModelInjector fiel ei, lexer errors will only be reported to System.err");
             }
-            
-            TT_NL = ((Integer)parserClass.getField("NL").get(null)).intValue();
-            TT_WS = ((Integer) parserClass.getField("WS").get(null)).intValue();
-            TT_COMMENT = ((Integer) parserClass.getField("COMMENT").get(null))
-                    .intValue();
         } catch (IllegalArgumentException e) {
             throw new InvalidParserImplementationException(e);
         } catch (InstantiationException e) {
@@ -108,8 +95,6 @@ public class GeneratedParserWrapper {
         } catch (InvocationTargetException e) {
             throw new InvalidParserImplementationException(e);
         } catch (NoSuchMethodException e) {
-            throw new InvalidParserImplementationException(e);
-        } catch (NoSuchFieldException e) {
             throw new InvalidParserImplementationException(e);
         }
 
@@ -128,8 +113,6 @@ public class GeneratedParserWrapper {
         this.parserClass = parser.getClass();
 
         this.injector = new ModelInjector(parser.getTokenNames());
-//      Field f = parserClass.getField("ei");
-//      f.set(parser, injector);
         try {
             parser.setInjector(injector);
 
@@ -140,15 +123,9 @@ public class GeneratedParserWrapper {
                 System.out.println("Warning, lexer has no ModelInjector fiel ei, lexer errors will only be reported to System.err");
             }
 
-            TT_NL = ((Integer)parserClass.getField("NL").get(null)).intValue();
-            TT_WS = ((Integer) parserClass.getField("WS").get(null)).intValue();
-            TT_COMMENT = ((Integer) parserClass.getField("COMMENT").get(null))
-            .intValue();
         } catch (IllegalArgumentException e) {
             throw new InvalidParserImplementationException(e);
         } catch (IllegalAccessException e) {
-            throw new InvalidParserImplementationException(e);
-        } catch (NoSuchFieldException e) {
             throw new InvalidParserImplementationException(e);
         }
 
@@ -202,11 +179,6 @@ public class GeneratedParserWrapper {
             lexer.setCharStream(stream);
             CommonTokenStream tokens = new CommonTokenStream(lexer);
            
-            tokens.setTokenTypeChannel(TT_NL, 99);
-
-            tokens.discardTokenType(TT_WS);
-            tokens.setTokenTypeChannel(TT_COMMENT, 99);
-
             parser.setTokenStream(tokens);
             parser.setObserver(observer);
             

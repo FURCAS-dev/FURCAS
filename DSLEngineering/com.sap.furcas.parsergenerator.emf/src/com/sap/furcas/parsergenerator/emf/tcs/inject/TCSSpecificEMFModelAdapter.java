@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -19,10 +20,12 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
+import com.sap.furcas.modeladaptation.emf.lookup.QueryBasedEcoreMetaModelLookUp;
 import com.sap.furcas.runtime.common.exceptions.DeferredActionResolvingException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.ReferenceSettingException;
 import com.sap.furcas.runtime.common.interfaces.IBareModelAdapter;
+import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
 
 /**
@@ -40,7 +43,7 @@ public class TCSSpecificEMFModelAdapter implements IBareModelAdapter {
      * @param referenceScope, all metamodels referenced by the syntax to be parsed
      */
     public TCSSpecificEMFModelAdapter(ResourceSet resourceSet, Set<URI> referenceScope) {
-        transientResource = EcoreHelper.createTransientParsingResource(resourceSet, FURCASPackage.eINSTANCE);
+        transientResource = EcoreHelper.createTransientParsingResource(resourceSet, FURCASPackage.eINSTANCE.getNsURI());
         
         // Though we get metamodel URIs passed in, we do actually want to instantiate TCS models.
         // The metamodels passed in are only referenced by the templates we create. Thus, they have to
@@ -48,8 +51,9 @@ public class TCSSpecificEMFModelAdapter implements IBareModelAdapter {
         Set<URI> metamodelURIs = new HashSet<URI>();
         metamodelURIs.add(URI.createURI(FURCASPackage.eINSTANCE.getNsURI()));
         metamodelURIs.add(URI.createURI(EcorePackage.eINSTANCE.getNsURI()));
-            
-        adapter = new EMFModelAdapter(resourceSet, transientResource, metamodelURIs, referenceScope);
+        
+        IMetaModelLookup<EObject> metamodelLookup = new QueryBasedEcoreMetaModelLookUp(resourceSet, metamodelURIs);
+        adapter = new EMFModelAdapter(resourceSet, transientResource, metamodelLookup, referenceScope);
     }
 
     public void close() {
