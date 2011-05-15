@@ -111,7 +111,7 @@ public class TokenHandler {
 			    StringPattern sPat = (StringPattern) simplePattern;
 			    String name = sPat.getName();
 			    if (name == null ) {
-			        errorBucket.addError("Name cannot be null", simplePattern);                
+			        errorBucket.addError("SimplePattern name cannot be null", simplePattern);                
 			    }
                 rulebody.append('\'').append(escapeString(name)).append('\'');
 			    

@@ -54,6 +54,7 @@ import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.MultiplicityBean;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.runtime.common.util.MessageUtil;
 import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
 import com.sap.furcas.runtime.tcs.MessageHelper;
 import com.sap.furcas.runtime.tcs.MetaModelElementResolutionHelper;
@@ -141,9 +142,9 @@ public class PropertyTypeHandler<Type extends Object> {
         } else {
             String propertyTemplateRule = namingHelper.buildRuleName(metaModelTypeOfProperty);
             String modeArg = args.modePArg != null ? args.modePArg.getMode() : null;
-            if (syntaxLookup.getTCSTemplate(metaModelTypeOfProperty, modeArg) == null) {
-                errorBucket.addError("Syntax does not define a rule for " + metaModelTypeOfProperty + " with mode "
-                        + modeArg, prop);
+            if (syntaxLookup.getTCSTemplate(metaModelTypeOfProperty, modeArg).isEmpty()) {
+                errorBucket.addError("Syntax does not define a rule for " + MessageUtil.asModelName(metaModelTypeOfProperty.getNames())
+                        + " with mode #" + modeArg, prop);
             }
             repeatablePart.append(propertyTemplateRule);
         }
@@ -210,10 +211,10 @@ public class PropertyTypeHandler<Type extends Object> {
             }
         }
         if (args.referenceByPArg != null && args.lookupScopePArg == null) {
-            errorBucket.addError("ReferenceBy does only work when lookupScope is defined.", args.referenceByPArg);
+            errorBucket.addError("ReferenceBy only be used together with lookupScope.", args.referenceByPArg);
         }
         if (args.lookupScopePArg != null && (args.referenceByPArg == null)) {
-            errorBucket.addError("LookupScope does only work in concunction with referenceBy.", args.lookupScopePArg);
+            errorBucket.addError("LookupScope only be used together with referenceBy.", args.lookupScopePArg);
         }
     }
 
@@ -353,7 +354,7 @@ public class PropertyTypeHandler<Type extends Object> {
             } else {
                 String asRule = args.asPArg.getValue();
                 if (!syntaxLookup.hasPrimitiveRule(asRule)) {
-                    errorBucket.addError("Unknown As reference " + args.asPArg, args.asPArg);
+                    errorBucket.addError("Unknown As reference " + asRule, args.asPArg);
                 }
                 ruleBodyPart.append(asRule);
             }
@@ -390,7 +391,7 @@ public class PropertyTypeHandler<Type extends Object> {
                         String calledRuleName = namingHelper.buildRuleName(referredFeatureType);
                         // TODO: check if we need to consider mode here
                         Collection<Template> checkTemplates = syntaxLookup.getTCSTemplate(referredFeatureType, null);
-                        if (checkTemplates == null) {
+                        if (checkTemplates.isEmpty()) {
                             errorBucket.addError("Syntax does not define a rule for " + referredFeatureType, prop);
                         }
                         for (Template checkTemplate : checkTemplates) {
