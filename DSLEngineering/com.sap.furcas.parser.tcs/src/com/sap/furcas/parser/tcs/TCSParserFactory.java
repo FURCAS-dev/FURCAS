@@ -10,11 +10,15 @@
  ******************************************************************************/
 package com.sap.furcas.parser.tcs;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.EcorePackage;
 
 import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
+import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
 import com.sap.furcas.parser.tcs.stable.TCSLexer;
 import com.sap.furcas.parser.tcs.stable.TCSParser;
 
@@ -38,13 +42,21 @@ public class TCSParserFactory extends AbstractParserFactory<TCSParser, TCSLexer>
     }
 
     @Override
-    public EPackage getMetamodelPackage(ResourceSet connection) {
-        return EPackage.Registry.INSTANCE.getEPackage("http://www.furcas.org");
+    public Set<URI> getMetamodelURIs() {
+        HashSet<URI> metamodels = new HashSet<URI>();
+        metamodels.add(URI.createURI(FURCASPackage.eINSTANCE.getNsURI()));
+        metamodels.add(URI.createURI(EcorePackage.eINSTANCE.getNsURI()));
+        return metamodels;
     }
 
     @Override
-    public URI getSyntaxUri() {
-        return URI.createPlatformPluginURI("/com.sap.furcas.parser.tcs/mappings/TCS.tcs", /* encode */ false);
+    public URI getSyntaxResourceURI() {
+        return URI.createPlatformPluginURI("/com.sap.furcas.parser.tcs/mappings/TCS.tcs", /*encode*/ false);
+    }
+
+    @Override
+    public Set<URI> getAdditionalQueryScope() {
+        return Collections.emptySet();
     }
 
 }

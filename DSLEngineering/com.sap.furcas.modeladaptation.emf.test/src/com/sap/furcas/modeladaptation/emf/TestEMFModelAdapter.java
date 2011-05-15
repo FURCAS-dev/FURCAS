@@ -19,10 +19,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -46,13 +43,8 @@ public class TestEMFModelAdapter {
     @Before
     public void setup() {
         ResourceSet resourceSet = ResourceTestHelper.createResourceSet();
-        Resource transientResource = EcoreHelper.createTransientParsingResource(resourceSet, FURCASPackage.eINSTANCE);
-        
-        adapter = new TestableEMFModelAdapter(
-                resourceSet,
-                transientResource,
-                Collections.singleton(URI.createURI(FURCASPackage.eINSTANCE.getNsURI())),
-                new HashSet<URI>());
+        Resource transientResource = EcoreHelper.createTransientParsingResource(resourceSet, FURCASPackage.eNS_URI);
+        adapter = new TestableEMFModelAdapter(resourceSet, transientResource, FURCASPackage.eINSTANCE);
     }
         
     @Test

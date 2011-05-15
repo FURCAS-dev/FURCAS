@@ -21,7 +21,6 @@ public class GrammarGenerationSourceConfiguration {
         this.referenceScope = referenceScope;
     }
 
-
     public ResourceSet getResourceSet() {
         return resourceSet;
     }

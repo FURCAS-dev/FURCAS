@@ -10,20 +10,11 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.antlr.runtime.Lexer;
-import org.eclipse.emf.common.command.BasicCommandStack;
-import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
-import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -39,11 +30,9 @@ import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
-import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
 import com.sap.furcas.parser.tcs.TCSParserFactory;
-import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
-import com.sap.furcas.runtime.parser.textblocks.TextBlocksAwareModelAdapter;
+import com.sap.furcas.runtime.parser.incremental.testbase.MockPartitionAssignmentHandler;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.testutils.EMFTextBlocksModelElementFactory;
@@ -64,18 +53,12 @@ public class TestParsingObserverWithTcsSyntax {
     public static void setupParser() throws Exception {
         resourceSet = ResourceTestHelper.createResourceSet();
         transientParsingResource = ResourceTestHelper.createTransientResource(resourceSet);
-        Set<URI> referenceScope = ResourceTestHelper.createFURCASReferenceScope();
-        
-        EditingDomain editingDomain = new AdapterFactoryEditingDomain(new AdapterFactoryImpl(), new BasicCommandStack(), resourceSet);
-        OppositeEndFinder oppositeEndFinder = DefaultOppositeEndFinder.getInstance();
         
         AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory = new TCSParserFactory();
-        resourceSet.getResource(parserFactory.getSyntaxUri(), true);
-        IModelAdapter modelAdapter = new TextBlocksAwareModelAdapter(new EMFModelAdapter(resourceSet,
-                transientParsingResource, referenceScope, new HashSet<URI>()));
+        resourceSet.getResource(parserFactory.getSyntaxResourceURI(), true);
 
-        incrementalParserFacade = new IncrementalParserFacade(parserFactory, modelAdapter, editingDomain, referenceScope,
-            oppositeEndFinder, new MockPartitionAssignmentHandler(transientParsingResource));
+        incrementalParserFacade = new IncrementalParserFacade(parserFactory, resourceSet,
+            new MockPartitionAssignmentHandler(transientParsingResource));
         
         ECrossReferenceAdapter crossRefAdapter = new ECrossReferenceAdapter();
         resourceSet.eAdapters().add(crossRefAdapter);

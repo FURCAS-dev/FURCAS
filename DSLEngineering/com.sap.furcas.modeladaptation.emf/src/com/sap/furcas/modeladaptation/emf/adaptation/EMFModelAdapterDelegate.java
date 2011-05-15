@@ -36,15 +36,16 @@ import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import com.sap.furcas.modeladaptation.emf.lookup.QueryBasedEcoreMetaModelLookUp;
 import com.sap.furcas.runtime.common.exceptions.DeferredActionResolvingException;
 import com.sap.furcas.runtime.common.exceptions.DeferredModelElementCreationException;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.ReferenceSettingException;
+import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
+import com.sap.furcas.runtime.common.util.MessageUtil;
 import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
@@ -62,10 +63,9 @@ public class EMFModelAdapterDelegate {
     private final Map<Object, Object> mock2ModelElementMap = new HashMap<Object, Object>();
 
     private final Resource transientResource;
-    private final Set<URI> metaModelURIs;
     
     private final EcoreModelElementFinder modelLookup;
-    private final QueryBasedEcoreMetaModelLookUp metamodelLookup;
+    private final IMetaModelLookup<EObject> metamodelLookup;
 
     private final TCSSpecificOCLEvaluator oclEvaluator;
     private final Query2OppositeEndFinder oppositeEndFinder;
@@ -73,15 +73,14 @@ public class EMFModelAdapterDelegate {
     /**
      * @see {@link EMFModelAdapter} for any API documentation.
      */
-    public EMFModelAdapterDelegate(ResourceSet resourceSet, Resource transientResource, Set<URI> metaModelURIs, Set<URI> additionalQueryScope) {
+    public EMFModelAdapterDelegate(ResourceSet resourceSet, Resource transientResource, IMetaModelLookup<EObject> metamodelLookup, Set<URI> additionalQueryScope) {
         if (transientResource.getResourceSet() != resourceSet) {
             throw new IllegalArgumentException("Transient resource must be, as all other dirty resources, contained within the given resourceSet");
         }
+        this.metamodelLookup = metamodelLookup;
         this.transientResource = transientResource;
-        this.metaModelURIs = metaModelURIs;
-        this.metamodelLookup = new QueryBasedEcoreMetaModelLookUp(resourceSet, metaModelURIs);
         
-        Set<URI> explicitQueryScope = new HashSet<URI>();
+        HashSet<URI> explicitQueryScope = new HashSet<URI>();
         explicitQueryScope.add(transientResource.getURI());
         explicitQueryScope.addAll(additionalQueryScope);
         
@@ -93,7 +92,7 @@ public class EMFModelAdapterDelegate {
         // Build a scope encompassing all resources in the resource set,
         // the additional queryScope, and all other resources visible via 
         // Eclipse bundle dependencies. This scope is used for OCL queries.
-        QueryContextProvider queryContext = EcoreHelper.createProjectDependencyQueryContextProvider(resourceSet, explicitQueryScope);
+        QueryContextProvider queryContext = EcoreHelper.createProjectDependencyQueryContextProvider(resourceSet, additionalQueryScope);
         this.oppositeEndFinder = new Query2OppositeEndFinder(queryContext);
         this.oclEvaluator = new TCSSpecificOCLEvaluator(oppositeEndFinder);
     }
@@ -145,7 +144,7 @@ public class EMFModelAdapterDelegate {
                 return (EClassifier) result.getReference();
             } else {
                 throw new ModelAdapterException("Could not find an EClassifier named " + MessageUtil.asModelName(qualifiedTypeName)
-                        + " within the metamodels  " + MessageUtil.asMetaModelNames(metaModelURIs) + " .");
+                        + " within the metamodels  " + MessageUtil.asMetaModelNames(metamodelLookup.getMetaModelURIs()) + " .");
             }
         } catch (MetaModelLookupException e) {
            throw new ModelAdapterException("Failed to find EClassifier named " + MessageUtil.asModelName(qualifiedTypeName), e);

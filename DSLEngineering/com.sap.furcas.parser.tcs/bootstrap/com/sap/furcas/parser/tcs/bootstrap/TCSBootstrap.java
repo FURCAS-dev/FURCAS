@@ -90,8 +90,12 @@ public class TCSBootstrap {
             Resource mappingResource = sourceConfiguration.getResourceSet().createResource(URI.createPlatformPluginURI(
                     "/com.sap.furcas.parser.tcs/"+MAPPINGS+"/"+LANGUAGE_NAME+".tcs", /* encode */ false));
             mappingResource.getContents().add(syntaxBean.getSyntax());
+            
+            System.out.println(""); // spacing to make our generation report easier to spot.
             generator.generateGrammarFromSyntax(syntaxBean, sourceConfiguration, targetConfiguration, errorHandler);
+            System.out.println(""); // spacing to make our generation report easier to spot.
             assertFalse("Must have completed without (critical) errors", errorHandler.hasFailedWithError());
+            
             FileOutputStream outputStream = new FileOutputStream(new File(GENERATIONDIR+LANGUAGE_NAME+".tcs"));
             mappingResource.save(outputStream, null);
             outputStream.close();

@@ -17,7 +17,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.edit.domain.EditingDomain;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
@@ -78,9 +77,8 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
     protected ShortPrettyPrinter shortPrettyPrinter;
 
     public IncrementalLexer(LexerAdapter lexerAdapter,
-            IModelElementInvestigator mi, EditingDomain editingDomain,
-            int bosTokenType, int eosTokenType) {
-        super(editingDomain);
+            IModelElementInvestigator mi, int bosTokenType, int eosTokenType) {
+
         this.shortPrettyPrinter = new ShortPrettyPrinter(mi);
         setBatchLexer(lexerAdapter);
         getBatchLexer().setIncrementalLexer(this);

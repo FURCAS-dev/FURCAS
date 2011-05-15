@@ -18,35 +18,26 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.antlr.runtime.Lexer;
 import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.emf.bundlelistener.EcorePackageLoadListener;
 import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
-import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
+import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.common.exceptions.ParserGeneratorInvocationException;
+import com.sap.furcas.runtime.common.exceptions.ParserInstantiationException;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
-import com.sap.furcas.runtime.common.util.EcoreHelper;
-import com.sap.furcas.runtime.parser.IModelAdapter;
+import com.sap.furcas.runtime.parser.PartitionAssignmentHandler;
 import com.sap.furcas.runtime.parser.antlr3.ITokenFactory;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.parser.testbase.ClassLookup;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParserGenerator;
-import com.sap.furcas.runtime.parser.textblocks.TextBlocksAwareModelAdapter;
 import com.sap.furcas.runtime.referenceresolving.SyntaxRegistryFacade;
 import com.sap.furcas.runtime.tcs.RuleNameFinder;
-import com.sap.ide.cts.parser.incremental.PartitionAssignmentHandler;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRParserFactory;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 import com.sun.tools.javac.Main;
@@ -77,7 +68,7 @@ public class ParserAndFactoryGenerator extends ParserGenerator {
         this.testConfig = testConfig;
     }
     
-    public void generateParserFactory() {
+    public void generateParserFactory(TCSSyntaxContainerBean syntaxBean) {
         try {
             File parserFactoryFile = new File(testConfig.getRelativePathToGeneratedParserFactoryClass());
             PrintStream out = new PrintStream(new FileOutputStream(parserFactoryFile));
@@ -90,6 +81,9 @@ public class ParserAndFactoryGenerator extends ParserGenerator {
             out.println("import com.sap.furcas.ide.parserfactory.AbstractParserFactory;");
             out.println("import org.eclipse.emf.ecore.resource.ResourceSet;");
             out.println("import org.eclipse.emf.ecore.EPackage;");
+            out.println("import org.eclipse.emf.common.util.URI;");
+            out.println("import java.util.Set;");
+            out.println("import java.util.Collections;");
 
             out.println("public class " + testConfig.getParserFactoryName() + " extends AbstractParserFactory<"
                     + testConfig.getParserName() + ", " + testConfig.getLexerName() + "> { ");
@@ -114,12 +108,19 @@ public class ParserAndFactoryGenerator extends ParserGenerator {
             out.println("       }");
 
             out.println("       @Override");
-            out.println("       public EPackage"
-                    + " getMetamodelPackage(ResourceSet connection) {");
-            out.println("           EPackage pck = EPackage.Registry.INSTANCE.getEPackage(\""
-                    + testConfig.getMetamodelPackageURI() + "\");");
-            out.println("               return pck;");
-            out.println("       } ");
+            out.println("       public Set<URI> getMetamodelURIs() {");
+            out.println("           return Collections.singleton(URI.createURI(\"" + testConfig.getMetamodelPackageURI() + "\"));");
+            out.println("       }");
+
+            out.println("       @Override");
+            out.println("       public URI getSyntaxResourceURI() {");
+            out.println("           return URI.createURI(\"" + syntaxBean.getSyntax().eResource().getURI() + "\");"); 
+            out.println("       }");
+
+            out.println("       @Override");
+            out.println("       public Set<URI> getAdditionalQueryScope() {");
+            out.println("           return Collections.emptySet();");
+            out.println("       }");
 
             out.println("}");
 
@@ -159,23 +160,14 @@ public class ParserAndFactoryGenerator extends ParserGenerator {
         }
     }
 
-    public IncrementalParserFacade loadIncrementalParserFacade(ClassLookup classLookup, EditingDomain editingDomain,
-            OppositeEndFinder oppositeEndFinder, PartitionAssignmentHandler partitionAssignmentHandler) throws ParserGeneratorInvocationException, InstantiationException,
-            IllegalAccessException {
+    public IncrementalParserFacade loadIncrementalParserFacade(ClassLookup classLookup, ResourceSet resourceSet,
+            PartitionAssignmentHandler partitionAssignmentHandler) throws ParserGeneratorInvocationException, InstantiationException,
+            IllegalAccessException, ParserInstantiationException {
 
         AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory =
             loadParserFactory(classLookup).newInstance();
 
-        ResourceSet resourceSet = testConfig.getSourceConfiguration().getResourceSet();
-        Set<URI> referenceScope = testConfig.getSourceConfiguration().getReferenceScope();
-
-        EPackage metamodelPackage = parserFactory.getMetamodelPackage(resourceSet);
-        Resource transientResource = EcoreHelper.createTransientParsingResource(resourceSet, metamodelPackage);
-       
-        IModelAdapter modelAdapter = new TextBlocksAwareModelAdapter(new EMFModelAdapter(
-            resourceSet, transientResource, referenceScope, new HashSet<URI>()));
-
-        return new IncrementalParserFacade(parserFactory, modelAdapter, editingDomain, referenceScope, oppositeEndFinder, partitionAssignmentHandler);
+        return new IncrementalParserFacade(parserFactory, resourceSet, partitionAssignmentHandler);
     }
 
     @SuppressWarnings("unchecked")

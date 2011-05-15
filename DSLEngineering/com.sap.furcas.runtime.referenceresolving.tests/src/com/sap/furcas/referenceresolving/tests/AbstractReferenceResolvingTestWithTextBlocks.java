@@ -2,18 +2,13 @@ package com.sap.furcas.referenceresolving.tests;
 
 import java.io.File;
 
-import org.eclipse.emf.common.command.BasicCommandStack;
-import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
-import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.junit.After;
 
 import com.sap.emf.ocl.trigger.TriggerManager;
@@ -66,13 +61,11 @@ public abstract class AbstractReferenceResolvingTestWithTextBlocks extends Gener
     public static void setupParser(File TCS, String LANGUAGE, String MM_PACKAGE_URI, File... METAMODELS) throws Exception {
         GeneratedParserAndFactoryTestConfiguration testConfig = new GeneratedParserAndFactoryTestConfiguration(LANGUAGE, TCS, MM_PACKAGE_URI, METAMODELS);
         resourceSet = testConfig.getSourceConfiguration().getResourceSet();
-        EditingDomain editingDomain = new AdapterFactoryEditingDomain(new AdapterFactoryImpl(),
-                new BasicCommandStack(), resourceSet);
-        OppositeEndFinder oppositeEndFinder = DefaultOppositeEndFinder.getInstance();
+
         TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
         syntax = syntaxBean.getSyntax();
         incrementalParserFacade = generateParserAndParserFactoryForLanguage(syntaxBean, testConfig,
-                editingDomain, oppositeEndFinder, new DefaultPartitionAssignmentHandlerImpl(), new ClassLookupImpl());
+                resourceSet, new DefaultPartitionAssignmentHandlerImpl(), new ClassLookupImpl());
         ECrossReferenceAdapter crossRefAdapter = new ECrossReferenceAdapter();
         resourceSet.eAdapters().add(crossRefAdapter);
         crossRefAdapter.setTarget(resourceSet);

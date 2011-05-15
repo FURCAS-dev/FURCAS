@@ -1,24 +1,14 @@
 package com.sap.furcas.runtime.parser.incremental;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Set;
 
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.Token;
-import org.eclipse.emf.common.command.BasicCommandStack;
-import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
-import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -29,12 +19,13 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
-import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
 import com.sap.furcas.parser.tcs.TCSParserFactory;
 import com.sap.furcas.parser.tcs.stable.TCSLexer;
-import com.sap.furcas.runtime.parser.IModelAdapter;
+import com.sap.furcas.runtime.common.exceptions.ParserInstantiationException;
+import com.sap.furcas.runtime.parser.PartitionAssignmentHandler;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
-import com.sap.furcas.runtime.parser.textblocks.TextBlocksAwareModelAdapter;
+import com.sap.furcas.runtime.parser.impl.ParserScope;
+import com.sap.furcas.runtime.parser.incremental.testbase.MockPartitionAssignmentHandler;
 import com.sap.furcas.runtime.parser.textblocks.observer.ParserTextBlocksHandler;
 import com.sap.furcas.runtime.parser.textblocks.observer.TextBlockProxy;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
@@ -52,21 +43,15 @@ import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 public class TestLexerParserInteraction extends FixtureProvidingTextBlockTest {
 
     @Test
-    public void testTokenRelocationWithParser() {
+    public void testTokenRelocationWithParser() throws ParserInstantiationException {
         ResourceSet resourceSet = ResourceTestHelper.createResourceSet();
         Resource transientParsingResource = ResourceTestHelper.createTransientResource(resourceSet);
-        Set<URI> referenceScope = ResourceTestHelper.createFURCASReferenceScope();
-
-        EditingDomain editingDomain = new AdapterFactoryEditingDomain(new AdapterFactoryImpl(), new BasicCommandStack(), resourceSet);
-        OppositeEndFinder oppositeEndFinder = DefaultOppositeEndFinder.getInstance();
 
         AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory = new TCSParserFactory();
-        resourceSet.getResource(parserFactory.getSyntaxUri(), true);
+        resourceSet.getResource(parserFactory.getSyntaxResourceURI(), true);
 
-        IModelAdapter modelAdapter = new TextBlocksAwareModelAdapter(new EMFModelAdapter(resourceSet, transientParsingResource,
-                referenceScope, new HashSet<URI>()));
-        IncrementalParserFacade ipf = new IncrementalParserFacade(parserFactory, modelAdapter, editingDomain, referenceScope,
-                oppositeEndFinder, new MockPartitionAssignmentHandler(transientParsingResource));
+        IncrementalParserFacade ipf = new IncrementalParserFacade(parserFactory, resourceSet, new MockPartitionAssignmentHandler(
+                transientParsingResource));
 
         TextBlock root = modelFactory.createTextBlock();
         transientParsingResource.getContents().add(root);
@@ -118,14 +103,17 @@ public class TestLexerParserInteraction extends FixtureProvidingTextBlockTest {
     public void testTokenRelocationWithStub() {
         ResourceSet resourceSet = ResourceTestHelper.createResourceSet();
         Resource transientParsingResource = ResourceTestHelper.createTransientResource(resourceSet);
-        EditingDomain editingDomain = new AdapterFactoryEditingDomain(new AdapterFactoryImpl(), new BasicCommandStack(), resourceSet);
 
         TCSLexer antlrLexer = new TCSLexer(null, null);
         LexerAdapter lexerAdapter = new ANTLRLexerAdapter(antlrLexer, new TextBlockReuseStrategyImpl(antlrLexer, null));
-        ANTLRIncrementalLexerAdapter lexer = new ANTLRIncrementalLexerAdapter(lexerAdapter, null, editingDomain);
+        ANTLRIncrementalLexerAdapter lexer = new ANTLRIncrementalLexerAdapter(lexerAdapter, null);
         ANTLRIncrementalTokenStream input = new ANTLRIncrementalTokenStream(lexer);
-        ParserTextBlocksHandler tbh = new ParserTextBlocksHandler(input, resourceSet, null, null, null, null);
-         
+
+        ParserScope parserScope = new ParserScope(resourceSet, transientParsingResource, new TCSParserFactory());
+
+        PartitionAssignmentHandler partitioningHandler = new MockPartitionAssignmentHandler(transientParsingResource);
+        ParserTextBlocksHandler tbh = new ParserTextBlocksHandler(input, parserScope, partitioningHandler);
+
         TextBlock root = modelFactory.createTextBlock();
         transientParsingResource.getContents().add(root);
         root.setVersion(Version.REFERENCE);
@@ -149,11 +137,10 @@ public class TestLexerParserInteraction extends FixtureProvidingTextBlockTest {
         model.replace(0, 0, "syntax test{template bla:;}");
 
         lexer.setSource(bostoken);
-        boolean success = lexer.lex(root);
-        assertTrue(success);
-
+        lexer.lex(root);
         bostoken = TbVersionUtil.getOtherVersion(bostoken, Version.CURRENT);
         lexer.setCurrentTokenForParser(bostoken);
+
         root = TbVersionUtil.getOtherVersion(root, Version.CURRENT);
         tbh.setRootBlock(root);
 

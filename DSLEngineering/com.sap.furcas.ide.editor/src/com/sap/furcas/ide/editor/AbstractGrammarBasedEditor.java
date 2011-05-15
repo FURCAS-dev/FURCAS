@@ -12,9 +12,12 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.antlr.runtime.ANTLRStringStream;
+import org.antlr.runtime.CharStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.RecognitionException;
+import org.antlr.runtime.TokenSource;
+import org.antlr.runtime.TokenStream;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
@@ -28,7 +31,6 @@ import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -102,11 +104,18 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.metamodel.FURCAS.textblocks.provider.TextblocksItemProviderAdapterFactory;
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
+import com.sap.furcas.runtime.common.exceptions.ParserInstantiationException;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
+import com.sap.furcas.runtime.parser.IModelAdapter;
+import com.sap.furcas.runtime.parser.ParserFactory;
 import com.sap.furcas.runtime.parser.ParsingError;
+import com.sap.furcas.runtime.parser.PartitionAssignmentHandler;
+import com.sap.furcas.runtime.parser.impl.DefaultTextAwareModelAdapter;
 import com.sap.furcas.runtime.parser.impl.ModelInjector;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.parser.impl.ParserScope;
 import com.sap.furcas.runtime.parser.textblocks.ITextBlocksTokenStream;
+import com.sap.furcas.runtime.parser.textblocks.TextBlocksAwareModelAdapter;
 import com.sap.furcas.runtime.parser.textblocks.observer.ParserTextBlocksHandler;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
@@ -117,8 +126,6 @@ import com.sap.furcas.unparser.textblocks.IncrementalTextBlockPrettyPrinter;
 import com.sap.ide.cts.parser.errorhandling.ErrorEntry;
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
 import com.sap.ide.cts.parser.incremental.MappingLinkRecoveringIncrementalParser;
-import com.sap.ide.cts.parser.incremental.ParserFactory;
-import com.sap.ide.cts.parser.incremental.PartitionAssignmentHandler;
 import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategyImpl;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRLexerAdapter;
@@ -278,24 +285,6 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
 
     public String getLanguageId() {
         return parserFactory.getLanguageId();
-    }
-
-    protected void setParser(ObservableInjectingParser parser) {
-        this.parser = parser;
-        if (parser.getTokenStream() instanceof ITextBlocksTokenStream) {
-            ITextBlocksTokenStream tokenStream = (ITextBlocksTokenStream) parser
-                    .getTokenStream();
-            textBlocksHandler = new ParserTextBlocksHandler(tokenStream,
-                    getEditingDomain().getResourceSet(), getParserFactory().getMetamodelUri(
-                            getEditingDomain().getResourceSet()), TcsUtil.getSyntaxPartitions(
-                                    getEditingDomain().getResourceSet(), getLanguageId()),
-                    getAdditionalLookupURIS(), getAdditionalLookupURIS());
-            this.parser.setObserver(textBlocksHandler);
-        } else {
-            throw new IllegalArgumentException(
-                    "Only TextBlocks Aware Parsers are supported as parsers if this Editor. Given was a:"
-                            + parser.getClass());
-        }
     }
 
     protected void setLexer(ANTLRIncrementalLexerAdapter lexer) {
@@ -641,6 +630,8 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
             TbRecoverUtil.checkAndMigrateTokenIds(rootBlock, getParser(),
                     getLexer(), shortPrettyPrinter, false);
             tbPartition = rootBlock.eResource();
+        } catch (ParserInstantiationException e) {
+            throw new RuntimeException(e);
         } finally {
 //            editingDomain.getCommandStack().closeGroup();
         }
@@ -1059,6 +1050,8 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
     private ResourceSet resourceSet;
     private final OppositeEndFinder oppositeEndFinder;
     private ObservableInjectingParser dryParser;
+    private ParserScope parserScope;
+    private Resource transientResource;
 
     private void updateOutlineSave() {
         try {
@@ -1252,10 +1245,12 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
     private ObservableInjectingParser createDryParser(TextBlock rootBlock,
             ResourceSet connection) {
 //        if(dryParser == null) {
-            Lexer lexer = getParserFactory().createLexer(
-                    new ANTLRStringStream(rootBlock.getCachedString()));
-            dryParser = getParserFactory().createParser(new CommonTokenStream(lexer),
-                connection);
+        CharStream inputStream = new ANTLRStringStream(rootBlock.getCachedString());
+        TokenSource lexer = parserFactory.createLexer(inputStream);
+        TokenStream tokenStream = new CommonTokenStream(lexer);
+                
+        IModelAdapter modelAdapter = new DefaultTextAwareModelAdapter(new EMFModelAdapter(parserScope.getResourceSet(),
+                transientResource, parserScope.getMetamodelLookup(), parserScope.getExplicitQueryScope()));
 //        }
 //        dryParser.reset();
         return dryParser;
@@ -1378,34 +1373,38 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
         return getParserFactory().getParserClass();
     }
 
-    protected void initializeNewParser() {
+    protected void initializeNewParser() throws ParserInstantiationException {
         //add mapping resource to resource set
-        getEditingDomain().loadResource(getParserFactory().getSyntaxUri().toString());
+        getEditingDomain().loadResource(getParserFactory().getSyntaxResourceURI().toString());
         
         TextBlockReuseStrategyImpl reuseStrategy = new TextBlockReuseStrategyImpl(
                 createLexer(), null);
         setLexer(new ANTLRIncrementalLexerAdapter(new ANTLRLexerAdapter(
-                createLexer(), reuseStrategy), null, getEditingDomain()));
+                createLexer(), reuseStrategy), null));
         ObservableInjectingParser parser;
-
-        parser = getParserFactory().createParser(
-                getParserFactory().createIncrementalTokenStream(getLexer()),
-                getEditingDomain().getResourceSet(), getAdditionalLookupURIS(),
-                getAdditionalLookupURIS());
-        getLexer().setModelInjector(parser.getInjector());
-        reuseStrategy.setModelElementInvestigator(((ModelInjector) parser
-                .getInjector()).getModelAdapter());
-        setParser(parser);
-        PartitionAssignmentHandler partitionHandler = ((CtsDocument) getDocumentProvider().getDocument(getEditorInput())).getPartitionHandler();
-        incrementalParser = new MappingLinkRecoveringIncrementalParser(
-                getEditingDomain(), getParserFactory(), getLexer(), getParser(),
-                reuseStrategy, getAdditionalLookupURIS(), oppositeEndFinder,
-                partitionHandler);
         
-        EPackage metamodelPackage = parserFactory.getMetamodelPackage(resourceSet);
-        Resource transientResource = EcoreHelper.createTransientParsingResource(resourceSet, metamodelPackage);
-        shortPrettyPrinter = new ShortPrettyPrinter(new EMFModelAdapter(getEditingDomain().getResourceSet(),
-                transientResource, Collections.singleton(parserFactory.getMetamodelUri(resourceSet)), getAdditionalLookupURIS()));
+        transientResource = EcoreHelper.createTransientParsingResource(
+                resourceSet, parserFactory.getMetamodelURIs().iterator().next().toString());
+        
+        parserScope = new ParserScope(resourceSet, transientResource, parserFactory);
+        
+        TextBlocksAwareModelAdapter modelAdapter = new TextBlocksAwareModelAdapter(new EMFModelAdapter(
+                resourceSet, transientResource, parserScope.getMetamodelLookup(), parserScope.getExplicitQueryScope()));
+        
+        
+        parser = getParserFactory().createParser(parserFactory.createIncrementalTokenStream(getLexer()), modelAdapter);
+        getLexer().setModelInjector(parser.getInjector());
+        reuseStrategy.setModelElementInvestigator(((ModelInjector) parser.getInjector()).getModelAdapter());
+        
+        this.parser = parser;
+        PartitionAssignmentHandler partitionHandler = ((CtsDocument) getDocumentProvider().getDocument(getEditorInput())).getPartitionHandler();
+        incrementalParser = new MappingLinkRecoveringIncrementalParser(parser, parserScope, reuseStrategy, partitionHandler);
+        
+        ITextBlocksTokenStream tokenStream = (ITextBlocksTokenStream) parser.getTokenStream();
+        textBlocksHandler = new ParserTextBlocksHandler(tokenStream, parserScope, partitionHandler);
+        this.parser.setObserver(textBlocksHandler);
+        
+        shortPrettyPrinter = new ShortPrettyPrinter(modelAdapter);
         
     }
 

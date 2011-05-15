@@ -1,4 +1,4 @@
-package com.sap.furcas.runtime.parser.incremental;
+package com.sap.furcas.runtime.parser.incremental.testbase;
 
 import java.io.IOException;
 import java.util.Map;
@@ -6,7 +6,7 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
-import com.sap.ide.cts.parser.incremental.PartitionAssignmentHandler;
+import com.sap.furcas.runtime.parser.PartitionAssignmentHandler;
 
 public class MockPartitionAssignmentHandler implements
         PartitionAssignmentHandler {
@@ -49,6 +49,11 @@ public class MockPartitionAssignmentHandler implements
     @Override
     public void saveAllPartitions(Map<?, ?> options) throws IOException {
         //do nothing
+    }
+
+    @Override
+    public Resource getDefaultTextBlockPartition() {
+        return partition;
     }
 
 }

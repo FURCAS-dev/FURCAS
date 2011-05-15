@@ -7,6 +7,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
+import com.sap.furcas.runtime.parser.PartitionAssignmentHandler;
+
 
 
 
@@ -104,7 +106,12 @@ public class DefaultPartitionAssignmentHandlerImpl implements PartitionAssignmen
 
     @Override
     public void saveAllPartitions(Map<?,?> options) throws IOException {
-        this.defaultPartition.save(options);
-        this.defaultTextBlocksPartition.save(options);
+        defaultPartition.save(options);
+        defaultTextBlocksPartition.save(options);
+    }
+
+    @Override
+    public Resource getDefaultTextBlockPartition() {
+        return defaultTextBlocksPartition;
     }
 }

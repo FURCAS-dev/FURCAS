@@ -9,8 +9,10 @@
 package com.sap.furcas.runtime.common.interfaces;
 
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.URI;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
@@ -72,11 +74,6 @@ public interface IMetaModelLookup<Type> {
             NameResolutionFailedException;
 
     /**
-     * closes connection to metamodel repositories if any.
-     */
-    void close();
-
-    /**
      * looks up name and returns all qualified names for this type.
      * @param names
      * @return
@@ -134,5 +131,10 @@ public interface IMetaModelLookup<Type> {
      * Returns the return type of the given OCL query.
      */
     public Type getOclReturnType(Type parsingContext, String oclQuery) throws MetaModelLookupException;
+
+    /**
+     * Returns the set of metamodels this lookup class is operating on.
+     */
+    public Set<URI> getMetaModelURIs();
     
 }

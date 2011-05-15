@@ -13,11 +13,11 @@ Require-Bundle: org.eclipse.osgi,
  com.sap.furcas.runtime.textblocks,
  com.sap.furcas.runtime.textblocks.test,
  com.sap.furcas.runtime.common,
+ com.sap.furcas.modeladaptation.emf,
  com.sap.furcas.runtime.parser,
  com.sap.furcas.runtime.referenceresolving,
  com.sap.furcas.utils,
- com.sap.furcas.parser.tcs,
- com.sap.furcas.modeladaptation.emf
+ com.sap.furcas.parser.tcs
 Export-Package: com.sap.furcas.runtime.parser.testbase,
  com.sap.furcas.runtime.parser.testbase.stubs,
  com.sun.tools.javac

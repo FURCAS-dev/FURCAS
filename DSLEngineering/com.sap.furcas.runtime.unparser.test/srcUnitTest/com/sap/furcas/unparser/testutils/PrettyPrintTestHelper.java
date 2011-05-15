@@ -10,12 +10,12 @@ import org.eclipse.emf.ecore.EObject;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
+import com.sap.furcas.runtime.parser.ParserFactory;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.unparser.PrettyPrinter;
 import com.sap.furcas.unparser.SyntaxAndModelMismatchException;
 import com.sap.furcas.unparser.extraction.TCSExtractorPrintStream;
 import com.sap.furcas.unparser.extraction.textblocks.TextBlockTCSExtractorStream;
-import com.sap.ide.cts.parser.incremental.ParserFactory;
 
 
 
