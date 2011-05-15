@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibRuntimeModule.java,v 1.4 2011/04/20 19:03:01 ewillink Exp $
+ * $Id: OCLstdlibRuntimeModule.java,v 1.5 2011/05/15 20:22:21 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib;
@@ -57,7 +57,7 @@ public class OCLstdlibRuntimeModule extends org.eclipse.ocl.examples.xtext.oclst
 	  return OCLstdlibValueConverterService.class;
 	}
 	
-	// URI remapping from CS to pivot
+	// Potential resolution of Pivot fragments for CST resource
 	@Override
 	public Class<? extends IFragmentProvider> bindIFragmentProvider() {
 		return BaseFragmentProvider.class;
