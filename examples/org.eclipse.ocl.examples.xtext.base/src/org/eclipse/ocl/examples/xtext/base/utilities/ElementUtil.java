@@ -12,16 +12,20 @@
  *
  * </copyright>
  *
- * $Id: ElementUtil.java,v 1.7 2011/05/13 19:19:11 ewillink Exp $
+ * $Id: ElementUtil.java,v 1.8 2011/05/15 20:19:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
@@ -29,6 +33,7 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
@@ -37,6 +42,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitution
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
@@ -81,6 +87,16 @@ public class ElementUtil
 		else {
 			return isUnique ? "Set" : "Bag"; //$NON-NLS-1$ //$NON-NLS-2$
 		}
+	}
+	
+	public static MonikeredElementCS getCsElement(MonikeredElement obj) {
+		String moniker = obj.getMoniker();
+		Resource resource = obj.eResource();
+		ResourceSet resourceSet = resource.getResourceSet();
+		CS2Pivot cs2Pivot = CS2Pivot.findAdapter(resourceSet);
+		Map<String, MonikeredElementCS> moniker2CSMap = cs2Pivot.computeMoniker2CSMap();
+		MonikeredElementCS csMonikeredElement = moniker2CSMap.get(moniker);
+		return csMonikeredElement;
 	}
 
 	public static TemplateParameter getFormalTemplateParameter(TemplateParameterSubstitutionCS csTemplateParameterSubstitution) {
