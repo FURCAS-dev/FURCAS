@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibPreOrderVisitor.java,v 1.9 2011/05/11 19:28:04 ewillink Exp $
+ * $Id: OCLstdlibPreOrderVisitor.java,v 1.10 2011/05/15 20:23:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot;
 
@@ -82,7 +82,13 @@ public class OCLstdlibPreOrderVisitor
 		@Override
 		public BasicContinuation<?> execute() {
 			CollectionType type = PivotUtil.getPivot(CollectionType.class, csElement);
-			type.setElementType((Type) type.getOwnedTemplateSignature().getParameters().get(0).getParameteredElement());
+			TemplateSignature ownedTemplateSignature = type.getOwnedTemplateSignature();
+			if (ownedTemplateSignature != null) {
+				List<TemplateParameter> parameters = ownedTemplateSignature.getParameters();
+				if (parameters.size() > 0) {
+					type.setElementType((Type) parameters.get(0).getParameteredElement());
+				}
+			}
 			return null;
 		}
 	}
