@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.WeakHashMap;
 
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
@@ -24,11 +25,11 @@ import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
-import com.sap.furcas.modeladaptation.emf.adaptation.MessageUtil;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
+import com.sap.furcas.runtime.common.util.MessageUtil;
 import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
@@ -40,6 +41,21 @@ import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider
  */
 public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup {
 
+    /**
+     * A simple scope provider that can only be used to navigate with interconnected
+     * metamodels.
+     */
+    private class MetamodelQueryContextProvider implements QueryContextProvider {
+        @Override
+        public QueryContext getForwardScopeQueryContext(Notifier context) {
+            return EcoreHelper.getRestrictedQueryContext(resourceSet, metaModelURIs);
+        }
+        @Override
+        public QueryContext getBackwardScopeQueryContext(Notifier context) {
+            return EcoreHelper.getRestrictedQueryContext(resourceSet, metaModelURIs);
+        }
+    }
+    
     private final ResourceSet resourceSet;
     private final Set<URI> metaModelURIs;
     
@@ -54,9 +70,7 @@ public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup
         
         queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
         
-        // TODO: we just need to look at the metamodels. No need to look elsewhere.
-        QueryContextProvider queryContext = EcoreHelper.createProjectDependencyQueryContextProvider(resourceSet, metaModelURIs);
-        oppositeEndFinder = new Query2OppositeEndFinder(queryContext);
+        oppositeEndFinder = new Query2OppositeEndFinder(new MetamodelQueryContextProvider());
         oclEvaluator = new TCSSpecificOCLEvaluator(oppositeEndFinder);
     }
     
@@ -163,14 +177,10 @@ public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup
     }
 
     @Override
-    public void close() {
-        
-    }
-    
-    @Override
     public List<Diagnostic> validateOclQuery(Template template, String queryToValidate) {
         return oclEvaluator.validateOclQuery(template, queryToValidate);
     }
+    
     @Override
     public List<Diagnostic> validateOclQuery(EObject parsingContext, String queryToValidate) {
         if (parsingContext instanceof EClassifier) {
@@ -193,6 +203,11 @@ public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup
     @Override
     protected OppositeEndFinder getOppositeEndFinder() {
         return oppositeEndFinder;
+    }
+
+    @Override
+    public Set<URI> getMetaModelURIs() {
+        return metaModelURIs;
     }
 
 }

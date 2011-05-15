@@ -124,7 +124,7 @@ syntax KM3(k = 4) {
 		larrow		= "<-";
 	}
 
-	token COMMENT	: endOfLine(start = "--");
+	omitted token COMMENT	: endOfLine(start = "--");
 
 	lexer = "
 %options testLiterals = false;
@@ -135,13 +135,13 @@ NL
 		|	'\\r'
 		|	'\\n'
 		)
-	{newline();}
+	{newline();$channel=HIDDEN;}
 	;
 
 WS
 	:	(	' '
 		|	'\\t'
-		)
+		){$channel=HIDDEN;}
 	;
 
 %protected
@@ -176,12 +176,12 @@ NAME
 %v2	if($getText.equals(\"true\")) $setType(BOOLEAN);
 %v2	if($getText.equals(\"false\")) $setType(BOOLEAN);
 %v2	}
-		|	'\"'!
+		|	'\"'
 			(	ESC
 			|	'\\n' {newline();}
 			|	~('\\\\'|'\\\"'|'\\n')
 			)*
-			'\"'!
+			'\"'
 		)
 	;
 
@@ -194,7 +194,7 @@ INT
 
 %protected
 ESC
-	:	'\\\\'!
+	:	'\\\\'
 		(	'n' 
 		|	'r' 
 		|	't' 
@@ -231,12 +231,12 @@ ESC
 	;
 
 STRING
-	:	'\\''!
+	:	'\\''
 		(	ESC
 		|	'\\n' {newline();}
 		|	~('\\\\'|'\\''|'\\n')
 		)*
-		'\\''!
+		'\\''
 	;
 
 	";

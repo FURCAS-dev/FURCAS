@@ -46,6 +46,7 @@ import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
+import com.sap.furcas.runtime.common.util.MessageUtil;
 
 /**
  * A helper class allowing to search a given reference scope for model elements.

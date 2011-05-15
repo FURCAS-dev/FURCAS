@@ -11,11 +11,14 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnumLiteral;
@@ -318,11 +321,6 @@ public class TestAbstractEcoreMetaModelLookup {
         }
 
         @Override
-        public void close() {
-            fail("Not implemented");
-        }
-
-        @Override
         public List<Diagnostic> validateOclQuery(EObject parsingContext, String oclQuery) {
             return new BasicEList<Diagnostic>();
         }
@@ -335,6 +333,11 @@ public class TestAbstractEcoreMetaModelLookup {
         @Override
         protected OppositeEndFinder getOppositeEndFinder() {
             return DefaultOppositeEndFinder.getInstance();
+        }
+
+        @Override
+        public Set<URI> getMetaModelURIs() {
+            return Collections.emptySet();
         }
 
     }

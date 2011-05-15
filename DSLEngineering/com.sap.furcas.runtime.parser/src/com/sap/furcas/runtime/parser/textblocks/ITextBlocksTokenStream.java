@@ -45,4 +45,10 @@ public interface ITextBlocksTokenStream extends TokenStream {
 	 * Returns the last consumed model element token ()
 	 */
 	public AbstractToken getLastConsumedToken();
+	
+	/**
+         * Resets all states to the intial values.
+         */
+	public void reset();
+	
 }

@@ -16,12 +16,9 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
@@ -32,14 +29,14 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
-import com.sap.furcas.modeladaptation.emf.lookup.FileResourceHelper;
-import com.sap.furcas.modeladaptation.emf.lookup.QueryBasedEcoreMetaModelLookUp;
 import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.parser.ParsingError;
+import com.sap.furcas.runtime.parser.PartitionAssignmentHandler;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.parser.impl.ParserScope;
 import com.sap.furcas.runtime.parser.textblocks.ITextBlocksTokenStream;
 import com.sap.furcas.runtime.parser.textblocks.ModelElementFromTextBlocksFactory;
 import com.sap.furcas.runtime.parser.textblocks.TbParsingUtil;
@@ -48,7 +45,6 @@ import com.sap.furcas.runtime.parser.textblocks.observer.ParserTextBlocksHandler
 import com.sap.furcas.runtime.parser.textblocks.observer.TextBlockProxy;
 import com.sap.furcas.runtime.parser.textblocks.observer.TokenRelocationUtil;
 import com.sap.furcas.runtime.tcs.MetaModelElementResolutionHelper;
-import com.sap.furcas.runtime.tcs.SyntaxLookup;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
@@ -67,63 +63,41 @@ public class IncrementalParser extends IncrementalRecognizer {
     private static final String MAIN_PARSE_RULE_NAME = "main";
 
     private final TextBlockReuseStrategy reuseStrategy;
-
-    protected final ParserFactory<?, ?> parserFactory;
-
-    protected final Set<URI> additionalCRIScope;
-
-    protected final ObservableInjectingParser batchParser;
-
-    protected final ITextBlocksTokenStream tbtokenStream;
-
-    protected final TextBlockFactory tbFactory;
-
     private final ReferenceHandler referenceHandler;
 
-    private Set<URI> syntaxPartitions;
+    protected final ObservableInjectingParser batchParser;
+    protected final ITextBlocksTokenStream tbtokenStream;
 
-    private TemplateNamingHelper<EObject> namingHelper;
+    protected final ParserScope parserScope;
+    private final TemplateNamingHelper<EObject> namingHelper;
 
-    private MetaModelElementResolutionHelper<EObject> resolutionHelper;
+    protected final PartitionAssignmentHandler partitionHandler;
 
-    private SyntaxLookup syntaxLookup;
 
-    private final ModelElementFromTextBlocksFactory modelElementFactory;
-
-    private final PartitionAssignmentHandler partitionHandler;
-
-    private final OppositeEndFinder oppositeEndFinder;
-
-    public IncrementalParser(EditingDomain editingDomain,
-            ParserFactory<?, ?> parserFactory,
-            IncrementalLexer incrementalLexer,
-            ObservableInjectingParser batchParser,
-            TextBlockReuseStrategy reuseStrategy,
-            Set<URI> additionalCRIScope,
-            OppositeEndFinder oppositeEndFinder,
+    public IncrementalParser(ObservableInjectingParser batchParser, ParserScope parserScope, TextBlockReuseStrategy reuseStrategy,
             PartitionAssignmentHandler partitionAssignmentHandler) {
-        super(editingDomain);
-        this.parserFactory = parserFactory;
-        this.additionalCRIScope = additionalCRIScope;
         if (!(batchParser.getTokenStream() instanceof ITextBlocksTokenStream)) {
-            throw new IllegalArgumentException(
-                    "token stream of parser needs to be "
-                            + "ITextBlocksTokenStream in order to be used with incremental parser");
+            throw new IllegalArgumentException("token stream of parser needs to be ITextBlocksTokenStream" +
+            		" in order to be used with incremental parser");
         }
-        this.tbtokenStream = (ITextBlocksTokenStream) batchParser
-                .getTokenStream();
+        this.parserScope = parserScope;
         this.batchParser = batchParser;
-        this.oppositeEndFinder = oppositeEndFinder;
+        this.tbtokenStream = (ITextBlocksTokenStream) batchParser.getTokenStream();
         this.partitionHandler = partitionAssignmentHandler;
-        this.referenceHandler = new ReferenceHandlerImpl(batchParser,
-                tbtokenStream);
-        this.modelElementFactory = new ModelElementFromTextBlocksFactoryImpl(
-                batchParser, getReferenceHandler(), partitionHandler);
-        this.tbFactory = new ReuseAwareTextBlockFactoryImpl(textblocksFactory,
-                reuseStrategy, modelElementFactory, oppositeEndFinder);
+        this.referenceHandler = new ReferenceHandlerImpl(batchParser, tbtokenStream);
+        
+        ModelElementFromTextBlocksFactory modelElementFactory = new ModelElementFromTextBlocksFactoryImpl(batchParser,
+                referenceHandler, partitionHandler);
+        TextBlockFactory tbFactory = new ReuseAwareTextBlockFactoryImpl(textblocksFactory, reuseStrategy, modelElementFactory);
+        
         this.reuseStrategy = reuseStrategy;
-        this.reuseStrategy.setReferenceHandler(getReferenceHandler());
+        this.reuseStrategy.setReferenceHandler(referenceHandler);
         this.reuseStrategy.setTextBlockFactory(tbFactory);
+        
+        MetaModelElementResolutionHelper<EObject> resolutionHelper = new MetaModelElementResolutionHelper<EObject>(
+                parserScope.getMetamodelLookup());
+        this.namingHelper = new TemplateNamingHelper<EObject>(resolutionHelper);
+        
     }
 
     public TextBlock incrementalParse(TextBlock root) {
@@ -153,14 +127,8 @@ public class IncrementalParser extends IncrementalRecognizer {
         // if there is a change
         if (!isEOS(findNextRegion(root))) {
 
-            syntaxPartitions = TcsUtil.getSyntaxPartitions(getEditingDomain()
-                    .getResourceSet(), parserFactory.getLanguageId());
-            ParserTextBlocksHandler parserTextBlocksHandler = new ParserTextBlocksHandler(
-                    tbtokenStream, getEditingDomain().getResourceSet(),
-                    parserFactory.getMetamodelUri(getEditingDomain()
-                            .getResourceSet()), syntaxPartitions,
-                    parserFactory.getParserLookupScope(getEditingDomain()
-                            .getResourceSet()), additionalCRIScope);
+            ParserTextBlocksHandler parserTextBlocksHandler = new ParserTextBlocksHandler(tbtokenStream, parserScope,
+                    partitionHandler);
             // IParsingObserver originalObserver = batchParser.getObserver();
             batchParser.setObserver(parserTextBlocksHandler);
             // Ensure no model elements get created
@@ -288,7 +256,8 @@ public class IncrementalParser extends IncrementalRecognizer {
                 } catch (IllegalAccessException e) {
                     throw new RuntimeException(e);
                 } catch (InvocationTargetException e) {
-                    throw new RuntimeException(e);
+                    e.printStackTrace();
+                    throw new RuntimeException(e.getCause());
                 } catch (UnknownProductionRuleException e) {
                     throw new RuntimeException(e);
                 }
@@ -296,7 +265,7 @@ public class IncrementalParser extends IncrementalRecognizer {
             }
             // batchParser.setObserver(originalObserver);
             batchParser.setResolveProxies(originalResolveProxiesValue);
-            getReferenceHandler().resolveRemainingReferences();
+            referenceHandler.resolveRemainingReferences();
         }
         return newRoot;
     }
@@ -374,7 +343,7 @@ public class IncrementalParser extends IncrementalRecognizer {
     }
 
     private void reset() {
-        getReferenceHandler().reset();
+        referenceHandler.reset();
         reuseStrategy.clearChangedBlocksList();
     }
 
@@ -488,7 +457,7 @@ public class IncrementalParser extends IncrementalRecognizer {
                         .next(), ((Property) oldVersion.getSequenceElement())
                         .getPropertyReference().getStrucfeature().getName(),
                         value.getRealObject(), 0);
-                getReferenceHandler().setNewFeature(bean, false);
+                referenceHandler.setNewFeature(bean, false);
             } else {
                 replaceCorrespondingModelElements(oldVersion, result);
             }
@@ -504,7 +473,7 @@ public class IncrementalParser extends IncrementalRecognizer {
             SetNewFeatureBean newFeatureBean = IncrementalParsingUtil
                     .insertFeatureValue(resultBean.textBlock, oldVersion,
                             insertBefore);
-            getReferenceHandler().setNewFeature(newFeatureBean, true);
+            referenceHandler.setNewFeature(newFeatureBean, true);
         } else if (resultBean.reuseType
                 .equals(TextBlockReuseStrategy.ReuseType.COMPLETE)) {
             // no further actions have to be done, the tb was completely re-used
@@ -560,9 +529,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 
                 if (parent != null) {
                     IncrementalParsingUtil.CompositeRefAssociationBean compositeFeatureAssocBean = IncrementalParsingUtil
-                            .findComposingFeature(parent,
-                                    correspondingModelElement,
-                                    getEditingDomain().getResourceSet());
+                            .findComposingFeature(parent, correspondingModelElement, parserScope.getResourceSet());
 
                     if (compositeFeatureAssocBean != null
                             && compositeFeatureAssocBean.compositeFeatureAssoc != null) {
@@ -743,54 +710,9 @@ public class IncrementalParser extends IncrementalRecognizer {
 
     private String getStartRule(TextBlock root) throws SyntaxElementException {
         ClassTemplate template = (ClassTemplate) root.getType();
-        return getNamingHelper().getConcreteRuleNameForTemplate(template,
-                getSyntaxLookup());
+        return namingHelper.getConcreteRuleNameForTemplate(template, parserScope.getSyntaxLookup());
     }
-
-    private SyntaxLookup getSyntaxLookup() {
-        if (syntaxLookup == null) {
-            syntaxLookup = new SyntaxLookup(TcsUtil.getSyntaxByName(
-                    getEditingDomain().getResourceSet(),
-                    parserFactory.getLanguageId()), getResolutionHelper());
-        }
-        return syntaxLookup;
-    }
-
-    private TemplateNamingHelper<EObject> getNamingHelper() {
-        if (namingHelper == null) {
-            resolutionHelper = getResolutionHelper();
-            namingHelper = new TemplateNamingHelper<EObject>(resolutionHelper);
-        }
-        return namingHelper;
-    }
-
-    private MetaModelElementResolutionHelper<EObject> getResolutionHelper() {
-        if (resolutionHelper == null) {
-            resolutionHelper = new MetaModelElementResolutionHelper<EObject>(
-                    new QueryBasedEcoreMetaModelLookUp(getEditingDomain().getResourceSet(),
-                            // FIXME: That is to much. Only metamodels are sufficient.
-                            FileResourceHelper.getResourceSetAsScope(getEditingDomain().getResourceSet())));
-        }
-        return resolutionHelper;
-    }
-
-    // /**
-    // * Get the upper most node n in the tree so that leftBoundary is its
-    // * leftmost token.
-    // *
-    // * @param leftBoundary
-    // * @return
-    // */
-    // private DocumentNode getStartNode(AbstractToken leftBoundary) {
-    // DocumentNode result = leftBoundary;
-    // TextBlock parent = (TextBlock) result.refImmediateComposite();
-    // while (parent != null
-    // && TbNavigationUtil.getSubNodeAt(parent, 0).equals(result)) {
-    // result = parent;
-    // }
-    // return result;
-    // }
-
+    
     public static class TextBlocksTarjanTreeContentProvider implements
             ITarjanTreeContentProvider<DocumentNode> {
 
@@ -814,14 +736,6 @@ public class IncrementalParser extends IncrementalRecognizer {
 
     public Collection<TextBlock> getChangedBlocks() {
         return reuseStrategy.getChangedBlocks();
-    }
-
-    public ReferenceHandler getReferenceHandler() {
-        return referenceHandler;
-    }
-
-    public OppositeEndFinder getOppositeEndFinder() {
-        return oppositeEndFinder;
     }
 
 }

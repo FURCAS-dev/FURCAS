@@ -1,4 +1,4 @@
-package com.sap.ide.cts.parser.incremental;
+package com.sap.furcas.runtime.parser;
 
 import java.io.IOException;
 import java.util.Map;
@@ -48,6 +48,13 @@ public interface PartitionAssignmentHandler {
          */
         Resource getDefaultPartition();
         
+        /**
+         * Returns the default textblock resource set by {@link #setDefaultPartition(Resource)}.
+         * 
+         * @return the default model {@link Resource}
+         */
+        Resource getDefaultTextBlockPartition();
+
         /**
          * Saves all handled partitions.
          * 

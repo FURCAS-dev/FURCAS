@@ -3,7 +3,6 @@ package com.sap.ide.cts.parser.incremental;
 import static com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil.addToBlockAt;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
@@ -30,11 +29,10 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 	
 
 	public ReuseAwareTextBlockFactoryImpl(TextblocksFactory textblocksPackage, 
-		TextBlockReuseStrategy tbReuseStrategy, ModelElementFromTextBlocksFactory modelElementFactory,
-		OppositeEndFinder oppositeEndFinder) {
+		TextBlockReuseStrategy tbReuseStrategy, ModelElementFromTextBlocksFactory modelElementFactory) {
 		super();
 		this.textblocksFactory = textblocksPackage;
-		reuseStrategy = tbReuseStrategy;
+		this.reuseStrategy = tbReuseStrategy;
 		this.modelElementFactory = modelElementFactory;
 	}
 

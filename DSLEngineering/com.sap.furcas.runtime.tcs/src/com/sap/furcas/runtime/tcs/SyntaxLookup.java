@@ -216,7 +216,6 @@ public class SyntaxLookup {
             IMetaModelLookup<Type> metaLookup) throws SyntaxElementException, NameResolutionFailedException,
             MetaModelLookupException {
         ArrayList<ClassTemplate> primaries = new ArrayList<ClassTemplate>();
-        if (subtypes != null) {
             for (ResolvedNameAndReferenceBean<Type> subType : subtypes) {
                 Collection<Template> subtemps = null;
                 subtemps = getTCSTemplate(subType, null);
@@ -239,7 +238,6 @@ public class SyntaxLookup {
                     }
                 }
             }
-        }
         return primaries;
     }
 

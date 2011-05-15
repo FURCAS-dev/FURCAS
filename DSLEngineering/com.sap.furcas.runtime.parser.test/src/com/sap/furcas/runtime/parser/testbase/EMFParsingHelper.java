@@ -14,10 +14,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
+import com.sap.furcas.modeladaptation.emf.lookup.QueryBasedEcoreMetaModelLookUp;
+import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ModelParsingResult;
@@ -31,18 +33,20 @@ public class EMFParsingHelper extends AbstractParsingHelper<ModelParsingResult> 
     
     private final Set<URI> referenceScope;
     private final ResourceSet resourceSet;
+    private final String packageURI;
     
     public EMFParsingHelper(ParserFacade parserFacade, GeneratedParserTestConfiguration testConfig, String packageURI) {
         super(parserFacade);
-        resourceSet = testConfig.getSourceConfiguration().getResourceSet();
-        referenceScope = testConfig.getSourceConfiguration().getReferenceScope();
+        this.packageURI = packageURI;
+        this.resourceSet = testConfig.getSourceConfiguration().getResourceSet();
+        this.referenceScope = testConfig.getSourceConfiguration().getReferenceScope();
     }
 
     @Override
     protected IModelAdapter createModelAdapter() {
+        IMetaModelLookup<EObject> metamodelLookup = new QueryBasedEcoreMetaModelLookUp(resourceSet, referenceScope);
         return new DefaultTextAwareModelAdapter(new EMFModelAdapter(resourceSet,
-                EcoreHelper.createTransientParsingResource(resourceSet, FURCASPackage.eINSTANCE),
-                referenceScope, new HashSet<URI>()));
+                EcoreHelper.createTransientParsingResource(resourceSet, packageURI), metamodelLookup, new HashSet<URI>()));
     }
 
     @Override

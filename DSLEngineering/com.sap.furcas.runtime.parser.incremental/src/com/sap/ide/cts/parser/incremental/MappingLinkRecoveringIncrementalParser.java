@@ -5,14 +5,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.common.command.AbstractCommand;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
@@ -22,30 +17,23 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
-import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
+import com.sap.furcas.runtime.parser.PartitionAssignmentHandler;
 import com.sap.furcas.runtime.parser.impl.DelayedReference;
 import com.sap.furcas.runtime.parser.impl.DelayedReferencesHelper;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.parser.impl.ParserScope;
 import com.sap.furcas.runtime.parser.textblocks.observer.ParserTextBlocksHandler;
 import com.sap.furcas.runtime.parser.textblocks.observer.TextBlockProxy;
-import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
 
 
 public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
 
-    public MappingLinkRecoveringIncrementalParser(EditingDomain editingDomain,
-            ParserFactory<?, ?> parserFactory,
-            IncrementalLexer incrementalLexer,
-            ObservableInjectingParser batchParser,
-            TextBlockReuseStrategy reuseStrategy,
-            Set<URI> additionalCRIScope,
-            OppositeEndFinder oppositeEndFinder,
+    public MappingLinkRecoveringIncrementalParser(ObservableInjectingParser batchParser, ParserScope parserScope, TextBlockReuseStrategy reuseStrategy,
             PartitionAssignmentHandler partitionAssignmentHandler) {
-        super(editingDomain, parserFactory, incrementalLexer, batchParser,
-                reuseStrategy, additionalCRIScope, oppositeEndFinder, partitionAssignmentHandler);
+        super(batchParser, parserScope, reuseStrategy, partitionAssignmentHandler);
     }
 
     /**
@@ -60,12 +48,10 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
     public void recoverMappingLink(TextBlock existingRoot,
             ClassTemplate rootTemplate)
             throws TextBlockMappingRecoveringFailedException {
-        ParserTextBlocksHandler parserTextBlocksHandler = new ParserTextBlocksHandler(
-                tbtokenStream, getEditingDomain().getResourceSet(), parserFactory
-                        .getMetamodelUri(getEditingDomain().getResourceSet()), TcsUtil
-                        .getSyntaxPartitions(getEditingDomain().getResourceSet(), parserFactory
-                                .getLanguageId()), parserFactory
-                        .getParserLookupScope(getEditingDomain().getResourceSet()), additionalCRIScope);
+        
+        ParserTextBlocksHandler parserTextBlocksHandler = new ParserTextBlocksHandler(tbtokenStream, parserScope,
+                partitionHandler);
+        
         // IParsingObserver originalObserver = batchParser.getObserver();
         batchParser.setObserver(parserTextBlocksHandler);
         ((ANTLRIncrementalLexerAdapter) batchParser.input.getTokenSource())
@@ -78,8 +64,8 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
         try {
             existingRoot.setType(rootTemplate);
             RecoverMappingLinkComand rmlc = new RecoverMappingLinkComand(
-                    existingRoot, parserTextBlocksHandler, getOppositeEndFinder());
-            getEditingDomain().getCommandStack().execute(rmlc);
+                    existingRoot, parserTextBlocksHandler);
+            rmlc.execute();
             if (rmlc.hasFailed()) {
                 // connection.getCommandStack().undo();
                 throw new TextBlockMappingRecoveringFailedException(rmlc.getException(), 
@@ -98,6 +84,8 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
         }
     }
 
+    // FIXME: Should not run in command mode. Editor is repsonsible for 
+    // synchronization with the domain.
     public class RecoverMappingLinkComand extends AbstractCommand {
 
         private final TextBlock existingRoot;
@@ -105,16 +93,12 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
         private Exception exception;
         private final ParserTextBlocksHandler parserTextBlocksHandler;
         private Map<TextBlockProxy, List<DelayedReference>> tBProxy2Reference;
-		private final OppositeEndFinder oppositeEndFinder;
-		private final EStructuralFeature templateTypeRef;
 
         public RecoverMappingLinkComand(TextBlock existingRoot,
-                ParserTextBlocksHandler parserTextBlocksHandler, OppositeEndFinder oppositeEndFinder) {
+                ParserTextBlocksHandler parserTextBlocksHandler) {
             super("Recover Link to Mapping Model");
             this.existingRoot = existingRoot;
             this.parserTextBlocksHandler = parserTextBlocksHandler;
-			this.oppositeEndFinder = oppositeEndFinder;
-            templateTypeRef = TextblocksPackage.eINSTANCE.getTextBlock_Type();
         }
 
         @Override

@@ -164,7 +164,7 @@ syntax Kmelia {
 -- Specifies the lexical entities.
 -- Only needs modification when default lexer is not satisfactory.
 -- Generally modified along with Primitive templates.
-	token COMMENT	:	endOfLine(start = "#") |
+	omitted token COMMENT	:	endOfLine(start = "#") |
 						multiLine(start = "/*", end = "*/");
 
 	lexer = "
@@ -176,13 +176,13 @@ NL
 		|	'\\r'
 		|	'\\n'
 		)
-	{newline();}
+	{newline();$channel=HIDDEN;}
 	;
 
 WS
 	:	(	' '
 		|	'\\t'
-		)
+		){$channel=HIDDEN;}
 	;
 
 %protected
@@ -213,12 +213,12 @@ NAME
 	:	(
 %v3			SNAME
 %v2			s:SNAME {if(s.getType() != SNAME) $setType(s.getType());}
-		|	'\"'!
+		|	'\"'
 			(	ESC
 			|	'\\n' {newline();}
 			|	~('\\\\'|'\\\"'|'\\n')
 			)*
-			'\"'!
+			'\"'
 %v3			{setText(unescapeString(getText(), 1));}
 		)
 	;
@@ -232,7 +232,7 @@ INT
 
 %protected
 ESC
-	:	'\\\\'!
+	:	'\\\\'
 		(	'n' %v2{%setText(\"\\n\");}
 		|	'r' %v2{%setText(\"\\r\");}
 		|	't' %v2{%setText(\"\\t\");}
@@ -277,12 +277,12 @@ ESC
 	;
 
 STRING
-	:	'\\''!
+	:	'\\''
 		(	ESC
 		|	'\\n' {newline();}
 		|	~('\\\\'|'\\''|'\\n')
 		)*
-		'\\''!
+		'\\''
 %v3			{setText(unescapeString(getText(), 1));}
 	;
 

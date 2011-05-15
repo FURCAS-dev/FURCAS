@@ -1055,6 +1055,7 @@
 //        }
 //        return partitionHighlighter;
 //    }
+<<<<<<< HEAD
 //
 //    private boolean runningOutlineUpdate = false;
 //    private ResourceSet resourceSet;
@@ -1070,6 +1071,109 @@
 //                    public void run() {
 //                        runningOutlineUpdate = false;
 //                        outlinePage.setInput(getModel());
+=======
+
+    void refreshModelAnnotations(Resource rootPartition) {
+        if (!annotatedPartitionsToUpdate.contains(rootPartition)) {
+//            AnnotationUpdater updater = new AnnotationUpdater(rootPartition);
+//            Display.getDefault().asyncExec(updater);
+        }
+    }
+
+    private PartitionHighlighter getPartitionHighlighter() {
+        if (partitionHighlighter == null) {
+            partitionHighlighter = createHighlighter();
+        }
+        return partitionHighlighter;
+    }
+
+    private boolean runningOutlineUpdate = false;
+    private ResourceSet resourceSet;
+    private final OppositeEndFinder oppositeEndFinder;
+    private ObservableInjectingParser dryParser;
+    private ParserScope parserScope;
+    private Resource transientResource;
+
+    private void updateOutlineSave() {
+        try {
+            if (outlinePage != null && !runningOutlineUpdate) {
+                runningOutlineUpdate = true;
+                Display.getDefault().asyncExec(new Runnable() {
+                    @Override
+                    public void run() {
+                        runningOutlineUpdate = false;
+                        outlinePage.setInput(getModel());
+                    }
+                });
+            }
+        } catch (Exception ex) {
+            // log the error but we do not want the saving process or whatever
+            // caused the
+            // updatge to be disturbed by an error here.
+            CtsActivator.logError(ex);
+        }
+    }
+
+    // private void showInputWarning(ParsingError ex) {
+    // fAnnotationModel.addAnnotation(new Annotation(WARNING_TYPE, false, ex
+    // .getMessage()), new Position(0, textViewer.getDocument()
+    // .getLength()));
+    // }
+
+    public TextBlock parse(TextBlock previousBlock)
+            throws SemanticParserException {
+        return parse(previousBlock, false);
+    }
+
+    public TextBlock parse(TextBlock root, boolean errorMode)
+            throws SemanticParserException {
+        boolean syntacticallyCorrect = true;
+        // ensure to work on previous version
+        TextBlock previousBlock = TbVersionUtil.getOtherVersion(root,
+                Version.PREVIOUS);
+        if (previousBlock == null) {
+            previousBlock = root;
+        }
+        TextBlock newBlock = previousBlock;
+
+        try {
+            dryParse(previousBlock);
+        } catch (SemanticParserException e) {
+            syntacticallyCorrect = false;
+            throw e;
+        }
+
+        if (syntacticallyCorrect) {
+            // reset errors in modelinjector
+            parser.getInjector().getErrorList().clear();
+            getLexer().setSource(previousBlock.getTokens().get(0));
+            syntacticallyCorrect = getLexer().lex(previousBlock);
+
+            // set the start token to the lexer
+            TextBlock newlyLexedTextBlock = TbVersionUtil.getOtherVersion(
+                    previousBlock, Version.CURRENT);
+            if (newlyLexedTextBlock != null) {
+                getLexer().setCurrentTokenForParser(
+                        newlyLexedTextBlock.getTokens().get(0));
+                textBlocksHandler.setRootBlock(newlyLexedTextBlock);
+
+                if (syntacticallyCorrect) {
+
+                    newBlock = incrementalParser.incrementalParse(
+                            newlyLexedTextBlock, errorMode);
+                    removeOutdatedParseErrorMarkers(incrementalParser
+                            .getChangedBlocks());
+
+                    // TODO this is only for debugging
+                    if (highlightTBCanges) {
+                        highlightChangedBlocks(incrementalParser
+                                .getChangedBlocks());
+                    }
+
+//                    // assign newly created block to partition
+//                    if(!tbPartition.equals(newBlock.eResource())){
+//                        tbPartition.getContents().add(newBlock);
+>>>>>>> master
 //                    }
 //                });
 //            }
@@ -1322,6 +1426,7 @@
 ////                    IMarker.PROBLEM, IMarker.SEVERITY_ERROR, e.getMessage());
 ////            parseErrorMarkers.add(marker);
 //        }
+<<<<<<< HEAD
 //    }
 //
 //    /**
@@ -1449,3 +1554,253 @@
 //        return incrementalParser;
 //    }
 //}
+=======
+    }
+
+    private void highlightChangedBlocks(Collection<TextBlock> changedBlocks) {
+        removeAllAnnotations(getSourceViewerPublic().getAnnotationModel(),
+                tbHighlightAnnotations);
+        for (TextBlock textBlock : changedBlocks) {
+            //FIXME
+//            Annotation highlightAnnotation = new Annotation(
+//                    HighlightTextBlockAction.TB_HIGHLIGHT_ANNOTATION, false,
+//                    null);
+//            tbHighlightAnnotations.add(highlightAnnotation);
+//
+//            getSourceViewerPublic().getAnnotationModel().addAnnotation(
+//                    highlightAnnotation,
+//                    new Position(TbUtil.getAbsoluteOffset(textBlock), textBlock
+//                            .getLength()));
+
+        }
+    }
+
+    private void removeAllAnnotations(IAnnotationModel annotationModel,
+            List<Annotation> tbHighlightAnnotations2) {
+        for (Annotation annotation : tbHighlightAnnotations2) {
+            annotationModel.removeAnnotation(annotation);
+        }
+    }
+
+    // /**
+    // * Execute a parse run with a dummy ModelInjector that actually does
+    // * not create any model element. This may be useful if you only want to
+    // * do a syntax check without creating model elements at all.
+    // *
+    // * @throws RecognitionException, {@link SemanticParserException}
+    // */
+    // protected abstract TextBlock dryParse(String text) throws
+    // RecognitionException,
+    // SemanticParserException;
+
+    private ObservableInjectingParser createDryParser(TextBlock rootBlock,
+            ResourceSet connection) {
+//        if(dryParser == null) {
+        CharStream inputStream = new ANTLRStringStream(rootBlock.getCachedString());
+        TokenSource lexer = parserFactory.createLexer(inputStream);
+        TokenStream tokenStream = new CommonTokenStream(lexer);
+                
+        IModelAdapter modelAdapter = new DefaultTextAwareModelAdapter(new EMFModelAdapter(parserScope.getResourceSet(),
+                transientResource, parserScope.getMetamodelLookup(), parserScope.getExplicitQueryScope()));
+//        }
+//        dryParser.reset();
+        return dryParser;
+    }
+
+    /**
+     * Execute a parse run with a dummy ModelInjector that actually does not
+     * create any model element. This may be useful if you only want to do a
+     * syntax check without creating model elements at all.
+     * 
+     * @throws RecognitionException
+     *             , {@link SemanticParserException}
+     */
+    public void dryParse(TextBlock rootBlock) throws SemanticParserException {
+        ResourceSet connection = getEditingDomain().getResourceSet();
+        ObservableInjectingParser p = createDryParser(rootBlock, connection);
+        removeOutdatedParseErrorMarkers(Collections.singleton(rootBlock));
+
+        List<ParsingError> errorList = p.checkSyntaxWithoutInjecting();
+
+        if (errorList != null && errorList.size() > 0) {
+            throw new SemanticParserException(errorList, rootBlock, null);
+        }
+
+    }
+
+    private void showInputInvalidInfo(Exception e) {
+        Annotation annotation = new Annotation(ERROR_TYPE, false,
+                e.getMessage() == null ? e.getClass().getName()
+                        : e.getMessage());
+        getDocumentProvider().getAnnotationModel(getEditorInput())
+                .addAnnotation(annotation, guessPosition(e));
+        /*
+         * this .setStatusLineErrorMessageInUIThread(
+         * "Entered expression is invalid. Cause given: " + e.getClass() + " : "
+         * + e.getMessage());
+         */
+    }
+
+    /**
+     * @param e
+     */
+    private void showInputInvalidInfo(ParsingError e) {
+        getDocumentProvider().getAnnotationModel(getEditorInput())
+                .addAnnotation(
+                        new Annotation(ERROR_TYPE, false,
+                                e.getMessage() == null ? e.getClass().getName()
+                                        : e.getMessage()), guessPosition(e));
+        setStatusLineErrorMessageInUIThread("Entered expression is invalid. Cause given: "
+                + e.getMessage());
+        AbstractToken tok = ((CtsDocument) getDocumentProvider().getDocument(
+                getEditorInput())).getTextBlocksModelStore().getFloorToken(
+                e.getIndex());
+        int length = e.getStopIndex() - e.getIndex();
+        length = length < 0 ? 1 : length;
+        if (tok != null) {
+            if (length > tok.getLength()) {
+                // TODO add adjecent tokens and find common ancestor for marker
+                // creation
+            }
+            //FIXME 
+//            IMarker marker = ModelManager.getMarkerManager().createMarker(tok,
+//                    IMarker.PROBLEM, IMarker.SEVERITY_ERROR, e.getMessage());
+//            parseErrorMarkers.add(marker);
+        }
+    }
+
+    /**
+     * @param e
+     * @return
+     */
+    private Position guessPosition(Object e) {
+        if (e instanceof ParsingError) {
+            ParsingError recException = (ParsingError) e;
+            int offset = recException.getIndex();
+            int length = recException.getStopIndex() - recException.getIndex();
+            length = length < 0 ? 1 : length;
+            return new Position(offset, length);
+        }
+        return new Position(0, getSourceViewerPublic().getDocument()
+                .getLength());
+    }
+
+    public void setModel(Object model) {
+        this.model = model;
+    }
+
+    /**
+     * Currently contains the root textblock of the current document. For a
+     * document that is parsed for the first time a new Textblock is created.
+     * 
+     * @return the current root textblock.
+     */
+    protected Object getModel() {
+        if (model == null) {
+            initializeModel();
+        }
+        return model;
+    }
+
+    /**
+     * the root element of a new text document(i.e. the root textblock node) is
+     * initialized here. Additionally attributes such as the definition of the
+     * textblock need to be set here.
+     */
+    private void initializeModel() {
+        // TextBlock tb = textblocksPackage.getTextBlock().createTextBlock();
+        // TODO get definition depending on the actual grammar/metamodel
+        // TextBlockDefinition definition = textblocksDefinitionPackage
+        // .getTextBlockDefinition().createTextBlockDefinition();
+        // Production production = grammarPackage.getProduction()
+        // .createProduction();
+        // // set the name of the root parse rule from the grammar.
+        // production.setName("prog");
+        // definition.setParseRule(production);
+        // tb.setType(definition);
+    }
+
+    protected Class<? extends ObservableInjectingParser> getParserClass() {
+        return getParserFactory().getParserClass();
+    }
+
+    protected void initializeNewParser() throws ParserInstantiationException {
+        //add mapping resource to resource set
+        getEditingDomain().loadResource(getParserFactory().getSyntaxResourceURI().toString());
+        
+        TextBlockReuseStrategyImpl reuseStrategy = new TextBlockReuseStrategyImpl(
+                createLexer(), null);
+        setLexer(new ANTLRIncrementalLexerAdapter(new ANTLRLexerAdapter(
+                createLexer(), reuseStrategy), null));
+        ObservableInjectingParser parser;
+        
+        transientResource = EcoreHelper.createTransientParsingResource(
+                resourceSet, parserFactory.getMetamodelURIs().iterator().next().toString());
+        
+        parserScope = new ParserScope(resourceSet, transientResource, parserFactory);
+        
+        TextBlocksAwareModelAdapter modelAdapter = new TextBlocksAwareModelAdapter(new EMFModelAdapter(
+                resourceSet, transientResource, parserScope.getMetamodelLookup(), parserScope.getExplicitQueryScope()));
+        
+        
+        parser = getParserFactory().createParser(parserFactory.createIncrementalTokenStream(getLexer()), modelAdapter);
+        getLexer().setModelInjector(parser.getInjector());
+        reuseStrategy.setModelElementInvestigator(((ModelInjector) parser.getInjector()).getModelAdapter());
+        
+        this.parser = parser;
+        PartitionAssignmentHandler partitionHandler = ((CtsDocument) getDocumentProvider().getDocument(getEditorInput())).getPartitionHandler();
+        incrementalParser = new MappingLinkRecoveringIncrementalParser(parser, parserScope, reuseStrategy, partitionHandler);
+        
+        ITextBlocksTokenStream tokenStream = (ITextBlocksTokenStream) parser.getTokenStream();
+        textBlocksHandler = new ParserTextBlocksHandler(tokenStream, parserScope, partitionHandler);
+        this.parser.setObserver(textBlocksHandler);
+        
+        shortPrettyPrinter = new ShortPrettyPrinter(modelAdapter);
+        
+    }
+
+    /**
+     * This method should be overridden if additional URIs should be added to
+     * the lookup scope of the parser.
+     * 
+     * @return
+     */
+    protected Set<URI> getAdditionalLookupURIS() {
+        return Collections.emptySet();
+    }
+
+    private Lexer createLexer() {
+        return getParserFactory().createLexer(null);
+    }
+
+    /**
+     * Should be overridden by subclass to return an instance or subclass of
+     * {@link AbstractGrammarBasedViewerConfiguration}.
+     * 
+     * @param annotationModel
+     * @return
+     */
+    protected AbstractGrammarBasedViewerConfiguration createSourceViewerConfig(
+            IAnnotationModel annotationModel) {
+        @SuppressWarnings("unchecked")
+        AbstractGrammarBasedViewerConfiguration svc = new AbstractGrammarBasedViewerConfiguration(
+                getEditingDomain().getResourceSet(), annotationModel, 
+                (AbstractParserFactory<ObservableInjectingParser, Lexer>) getParserFactory(),
+                getTokenMapper(), getLanguageId(), this);
+        return svc;
+    }
+
+    private void setParserFactory(
+            ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) {
+        this.parserFactory = parserFactory;
+    }
+
+    public ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> getParserFactory() {
+        return parserFactory;
+    }
+
+    public MappingLinkRecoveringIncrementalParser getIncrementalParser() {
+        return incrementalParser;
+    }
+}
+>>>>>>> master

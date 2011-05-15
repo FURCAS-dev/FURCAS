@@ -7,6 +7,11 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
+import com.sap.furcas.runtime.parser.PartitionAssignmentHandler;
+
+
+
+
 public class DefaultPartitionAssignmentHandlerImpl implements PartitionAssignmentHandler {
 
     public static final String TEXTBLOCKS_PARTITION_EXTENSION = "textblocks";
@@ -28,7 +33,9 @@ public class DefaultPartitionAssignmentHandlerImpl implements PartitionAssignmen
             Resource partition = null;
             partition = elementInPartition.eResource();
             partition.getContents().add(element);
-        }
+        } else {
+            assignToDefaultPartition(element);
+        }	
     }
 
     @Override
@@ -65,14 +72,14 @@ public class DefaultPartitionAssignmentHandlerImpl implements PartitionAssignmen
     }
     
     @Override
-    public void saveAllPartitions(Map<?, ?> options) throws IOException {
-        // It is imposible to store empty xmi resources
-        if (!this.defaultPartition.getContents().isEmpty()) {
-            this.defaultPartition.save(options);
-        }
-        if (!this.defaultTextBlocksPartition.getContents().isEmpty()) {
-            this.defaultTextBlocksPartition.save(options);
-        }
+    public void saveAllPartitions(Map<?,?> options) throws IOException {
+        defaultPartition.save(options);
+        defaultTextBlocksPartition.save(options);
+    }
+
+    @Override
+    public Resource getDefaultTextBlockPartition() {
+        return defaultTextBlocksPartition;
     }
 
 }

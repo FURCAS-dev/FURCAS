@@ -36,7 +36,9 @@ public abstract class GeneratedParserBasedTest {
         ParserGenerator generator = new ParserGenerator(testConfig);
         boolean failed = false;
         try {
+            System.out.println(""); // spacing to make our generation report easier to spot.
             generator.generateGrammar(syntaxBean);
+            System.out.println(""); // spacing to make our generation report easier to spot.
             generator.generateParser();
             generator.compileParser();
 

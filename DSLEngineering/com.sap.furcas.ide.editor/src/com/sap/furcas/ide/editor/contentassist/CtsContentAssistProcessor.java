@@ -67,7 +67,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 		this.connection = connection;
 		
 		QueryContextProvider queryContext = EcoreHelper.createProjectDependencyQueryContextProvider(connection,
-		        parserFactory.getParserLookupScope(connection));
+		        parserFactory.getAdditionalQueryScope());
 	        this.oppositeEndFinder = new Query2OppositeEndFinder(queryContext);
 	        this.oclEvaluator = new TCSSpecificOCLEvaluator(oppositeEndFinder);
 
@@ -95,7 +95,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
                 Assert.isNotNull(connection, "moin connection is null");
 		
 		QueryContextProvider queryContext = EcoreHelper.createProjectDependencyQueryContextProvider(connection, 
-		        parserFactory.getParserLookupScope(connection));
+		        parserFactory.getAdditionalQueryScope());
                 this.oppositeEndFinder = new Query2OppositeEndFinder(queryContext);
                 this.oclEvaluator = new TCSSpecificOCLEvaluator(oppositeEndFinder);
 

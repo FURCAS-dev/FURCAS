@@ -69,7 +69,7 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
         this.syntax = syntax;
         
         transientPartition = EcoreHelper.createTransientParsingResource(syntax.eResource().getResourceSet(),
-                TCSPackage.eINSTANCE);
+                TCSPackage.eINSTANCE.getNsURI());
 
         classTemplateMap = TcsUtil.createClassTemplateMap(syntax);
         operatorTemplateMap = TcsUtil.createOperatorTemplateMap(syntax);

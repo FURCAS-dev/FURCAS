@@ -11,8 +11,6 @@ import static com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil.getOth
 
 import java.util.List;
 
-import org.eclipse.emf.edit.domain.EditingDomain;
-
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
@@ -32,24 +30,19 @@ public abstract class IncrementalRecognizer {
 	public static final String BOS = "BOS";
 	protected Bostoken bosRef;
 	protected Eostoken eosRef;
-	protected TextblocksFactory textblocksFactory;
-	private final EditingDomain editingDomain;
-	
-	public IncrementalRecognizer(EditingDomain resourceSet) {
-		this.editingDomain = resourceSet;
-		textblocksFactory = TextblocksFactory.eINSTANCE;
-	}
-
+	protected TextblocksFactory textblocksFactory = TextblocksFactory.eINSTANCE;
 	
 	/**
 	 * Find the next marked token within or after node.
 	 */
 	protected AbstractToken findNextRegion(DocumentNode node) {
-		if (isEOS(node) || (isToken(node) && marked((AbstractToken) node)))
-			return (AbstractToken) node;
+		if (isEOS(node) || (isToken(node) && marked((AbstractToken) node))) {
+            return (AbstractToken) node;
+        }
 		if (node instanceof TextBlock
-				&& hasNestedChanges((TextBlock) node, Version.PREVIOUS))
-			return findNextRegion(getSubNodeAt(((TextBlock) node), 0));
+				&& hasNestedChanges((TextBlock) node, Version.PREVIOUS)) {
+            return findNextRegion(getSubNodeAt(((TextBlock) node), 0));
+        }
 		if (node instanceof TextBlock
 				&& ((TextBlock) node).getParent() == null) {
 			// node is the parent block and there were no changes detected so
@@ -60,8 +53,6 @@ public abstract class IncrementalRecognizer {
 
 		return findNextRegion(nextSubtree(node));
 	}
-	
-	
 	
 	protected DocumentNode nextSubtree(DocumentNode node) {
 		TextBlock parent = node.getParent();
@@ -93,7 +84,6 @@ public abstract class IncrementalRecognizer {
 		return -1;
 	}
 
-
 	/**
 	 * This method should be overridden if a parser uses another token type for
 	 * bof/bes than -1
@@ -103,7 +93,6 @@ public abstract class IncrementalRecognizer {
 	protected int getBOSTokenType() {
 		return -2;
 	}
-
 
 	protected static boolean hasNestedChanges(TextBlock node, Version reference) {
 		TextBlock otherVersion = getOtherVersion(node, reference);
@@ -119,12 +108,5 @@ public abstract class IncrementalRecognizer {
 		// TODO check if this is correct here
 		return token.isRelexingNeeded();
 	}
-
-
-	public EditingDomain getEditingDomain() {
-		return editingDomain;
-	}
-
-	
 	
 }

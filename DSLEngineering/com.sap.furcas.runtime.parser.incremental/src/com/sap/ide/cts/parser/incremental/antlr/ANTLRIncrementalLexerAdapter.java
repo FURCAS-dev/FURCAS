@@ -9,9 +9,9 @@ import org.antlr.runtime.CharStream;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenSource;
-import org.eclipse.emf.edit.domain.EditingDomain;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
@@ -27,8 +27,6 @@ import com.sap.ide.cts.parser.incremental.LexerAdapter;
 
 
 /**
- * 
- * 
  * <b>Looahead tracking</b> To be able to compute the correct lookahead it
  * needs to be tracked whether the lexer is doing a lookahead using e.g. the
  * DFA.predict() method. Before doing this ANTLR will store the position from
@@ -41,15 +39,14 @@ import com.sap.ide.cts.parser.incremental.LexerAdapter;
  * 
  * 
  * The difference between constructionLoc (the place representing the end of the
- * token being constructed ) readLoc is lateron used to identify how much
  * further the lexer had to look to decide the the boundaries and type of the
+ * token being constructed ) readLoc is lateron used to identify how much
  * token.
  * 
  * @author C5106462
  * 
  */
-public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements
-		CharStream, TokenSource {
+public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements CharStream, TokenSource {
 
 	public static final int eosTokenType = -1;
 	public static final int bosTokenType = -2;
@@ -70,9 +67,8 @@ public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements
 		return tokenToModelElement;
 	}
 
-	public ANTLRIncrementalLexerAdapter(LexerAdapter lexerAdapter, IModelElementInvestigator mi,
-			EditingDomain editingDomain) {
-		super(lexerAdapter, mi, editingDomain, bosTokenType, eosTokenType);
+	public ANTLRIncrementalLexerAdapter(LexerAdapter lexerAdapter, IModelElementInvestigator mi) {
+		super(lexerAdapter, mi, bosTokenType, eosTokenType);
 	}
 
 	@Override
@@ -269,7 +265,9 @@ public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements
 	protected ANTLR3LocationToken createToken(AbstractToken abstractToken) {
 		ANTLR3LocationToken tok = new ANTLR3LocationTokenImpl(abstractToken
 				.getType(), getSynchronizedValue(abstractToken));
-
+		if (abstractToken instanceof OmittedToken) {
+		    tok.setChannel(Token.HIDDEN_CHANNEL);
+		}
 		int absoluteOffset = TbUtil.getAbsoluteOffset(abstractToken);
 		tok.setStartIndex(absoluteOffset);
 		tok.setStopIndex(absoluteOffset + abstractToken.getLength());
@@ -325,7 +323,7 @@ public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements
 
 	@Override
 	public String getSourceName() {
-		return "From editing domain: " + getEditingDomain().toString();
+		return "Unknown Filename";
 	}
 
 	@Override

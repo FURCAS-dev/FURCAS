@@ -2,23 +2,15 @@ package com.sap.furcas.runtime.parser.textblocks.observer;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query2.QueryContext;
-import org.eclipse.emf.query2.ResultSet;
-import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
@@ -26,7 +18,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
-import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
@@ -34,16 +25,23 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
 import com.sap.furcas.runtime.common.implementation.ResolvedModelElementProxy;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
+import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
+import com.sap.furcas.runtime.common.util.MessageUtil;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.IParsingObserver;
+import com.sap.furcas.runtime.parser.PartitionAssignmentHandler;
 import com.sap.furcas.runtime.parser.impl.DelayedReference;
 import com.sap.furcas.runtime.parser.impl.ModelElementProxy;
+import com.sap.furcas.runtime.parser.impl.ParserScope;
 import com.sap.furcas.runtime.parser.textblocks.ITextBlocksTokenStream;
-import com.sap.furcas.runtime.parser.textblocks.ParsingTextblocksActivator;
 import com.sap.furcas.runtime.textblocks.TbUtil;
+import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
+
+import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider;
 
 /**
  * This class handles the connection between the parser and the textblocks
@@ -60,73 +58,59 @@ import com.sap.furcas.runtime.textblocks.TbUtil;
  * 
  */
 public class ParserTextBlocksHandler implements IParsingObserver {
+    
+    /**
+     * A simple scope provider that can only be used to navigate from the domain
+     * to the textblocks model. 
+     */
+    private class TextBlocksPartitonQueryContextProvider implements QueryContextProvider {
+ 
+        @Override
+        public QueryContext getForwardScopeQueryContext(Notifier context) {
+            throw new UnsupportedOperationException("Cannot navigate from domain to view");
+        }
+        @Override
+        public QueryContext getBackwardScopeQueryContext(Notifier context) {
+            return EcoreHelper.getRestrictedQueryContext(parserScope.getResourceSet(),
+                    Collections.singleton(partitionAssignmentHandler.getDefaultTextBlockPartition().getURI()));
+        }
+    }
 
-	private static final int EOF = -1;
-
-	/*
-	 * TODO: use TextBlocksModel whenever adding anything to the root tree
-	 * (relocate and add new textBlock to Parent)
-	 */
-//	protected TextBlocksModel textBlocksModel;
-	/*
+	/**
 	 * used to track current context in virtual tree in parallel to existing
 	 * tree
 	 */
-	protected TextBlockTraverser traverser;
-
+	private TextBlockTraverser traverser;
 	private final ITextBlocksTokenStream input;
 
-	// flag to indicate whether root rule has been entered yet or not. 
-	private int ruleDepth = -1; // -1 initial value means outside root context
-
-	private ResourceSet resourceSet;
-
-	private final Map<String, Template> templateCache  = new HashMap<String, Template>();
-
-	private final QueryContext metamodelContainerQueryScope;
-
-	private final Collection<URI> mappingDefinitionPartitions;
-
-	private final Set<URI> queryScope;
-	
-	private final OppositeEndFinder oppositeEndFinder;
-
-
 	/**
-	 * Constructs a new Handler which will read from the TextBlocksTokenStream
-	 * on Parser events, and build up a textBlocks model
-	 * 	 
-	 * @param input
-	 * @param moinConnection
-	 * @param metamodelCri 
-	 * @param mappingDefinitionPartitions
-	 * @param additionalScope Additional URIS from where to lookup elements.
-	 * @param additionalCRIScope Additional CRIS from where to lookup elements.
+	 * Flag to indicate whether root rule has been entered yet or not.
+	 * initial value "-1" means outside root context
 	 */
-	public ParserTextBlocksHandler(ITextBlocksTokenStream input,
-			ResourceSet moinConnection, URI metamodelCri,
-			Collection<URI> mappingDefinitionPartitions,
-			Collection<URI> additionalScope, Collection<URI> additionalCRIScope) {
-		this.resourceSet = moinConnection;
-		this.mappingDefinitionPartitions = mappingDefinitionPartitions;
-		this.queryScope = new HashSet<URI>();
-		if (additionalCRIScope != null) {
-			this.queryScope.addAll(additionalCRIScope);
-		}
-		this.queryScope.add(metamodelCri);
-		if(additionalScope != null) {
-			this.queryScope.addAll(additionalScope);
-		}
-		this.metamodelContainerQueryScope = EcoreHelper.getQueryContext(moinConnection, this.queryScope);
-		this.input = input;
-		this.traverser = new TextBlockTraverser();
-		this.oppositeEndFinder = DefaultOppositeEndFinder.getInstance();
-	}
-	
-	public void setConnection(ResourceSet conn) {
-	        this.resourceSet = conn;
-	    }
+	private int ruleDepth = -1; 
+	private static final int EOF = -1;
 
+	private final OppositeEndFinder textBlocksOnlyOppositeEndFinder;
+        private final ParserScope parserScope;
+        private final PartitionAssignmentHandler partitionAssignmentHandler;
+
+
+    /**
+     * Constructs a new Handler which will read from the TextBlocksTokenStream
+     * on Parser events, and build up a textBlocks model
+     * 
+     * @param partitionAssignmentHandler to retrieve information about the location of textblocks
+     * @param injector used for error reporting 
+     */
+    public ParserTextBlocksHandler(ITextBlocksTokenStream input, ParserScope parserScope,
+            PartitionAssignmentHandler partitionAssignmentHandler) {
+        this.parserScope = parserScope;
+        this.input = input;
+        this.partitionAssignmentHandler = partitionAssignmentHandler;
+        
+        this.traverser = new TextBlockTraverser();
+        this.textBlocksOnlyOppositeEndFinder = new Query2OppositeEndFinder(new TextBlocksPartitonQueryContextProvider());
+    }
 	
 	/**
 	 * returns the current TextBlockProxy of the TextBlockTraverser.
@@ -199,100 +183,28 @@ public class ParserTextBlocksHandler implements IParsingObserver {
             if (createdElement == null) {
                 return null;
             }
-            String templateKey = createdElement.toString()
-                    + (mode == null ? "" : ("#" + mode));
-            Template template = templateCache.get(templateKey);
             try {
-            if (template == null) {
-                String queryClass = "select class \n"
-                        + "from "
-                        + "[" + EcoreUtil.getURI(EcorePackage.eINSTANCE.getEClass()) + "] "
-                        + "as class \n" + "where class.name = '"
-                        + createdElement.get(createdElement.size() - 1) + "'";
-                // get clazz by name
-                // TODO query fully qualified name!
-                ResultSet result;
-				
-				result = EcoreHelper.executeQuery(queryClass, metamodelContainerQueryScope);
-                URI[] eObjects = result.getUris("class");
-                EClassifier clazz = null;
-                if (eObjects.length > 1) {
-                    // throw new RuntimeException("Ambigous templates found for: " +
-                    // createdElement + " mode=" + mode);
-                    clazz = (EClassifier) resourceSet.getEObject(eObjects[1], true);
-                } else if (eObjects.length == 1) {
-                    clazz = (EClassifier) resourceSet.getEObject(eObjects[0], true);
+                ResolvedNameAndReferenceBean<EObject> resolvedName = parserScope.getMetamodelLookup().resolveReference(createdElement);
+                if (resolvedName == null) {
+                    failWithError("Could not find metaclass named " + MessageUtil.asModelName(createdElement)
+                        + " within the metamodels  " + MessageUtil.asMetaModelNames(parserScope.getMetamodelLookup().getMetaModelURIs()) + ".");
                 }
-                if (clazz != null) {
-                    String query = "select template \n"
-                            + "from "
-                            + "[" + EcoreUtil.getURI(TCSPackage.eINSTANCE.getClassTemplate()) + "] "
-                            + "as template, \n"
-                            + "[" + EcoreUtil.getURI(EcorePackage.eINSTANCE.getEClass()) + "] "
-                            + " as class in elements { "
-                            + "[" + EcoreUtil.getURI(clazz) + "] } "
-                            + " where template.metaReference = class where template.mode = ";
-                    if (mode != null) {
-                        query += "'" + mode + "'";
-                    } else {
-                        query += "null";
-                    }
-                    Set<URI> templateAndMMUris = new HashSet<URI>(this.queryScope);
-                    templateAndMMUris.addAll(mappingDefinitionPartitions);
-                    QueryContext templateAndMMContext = EcoreHelper.getQueryContext(resourceSet, templateAndMMUris);
-                    result = EcoreHelper.executeQuery(query, templateAndMMContext);
-                    eObjects = result.getUris("template");
-                    if (eObjects.length > 1) {
-                        // throw new
-                        // RuntimeException("Ambigous templates found for: " +
-                        // createdElement + " mode=" + mode);
-                        template = (Template) resourceSet.getEObject(eObjects[1], true);
-                    } else if (eObjects.length == 1) {
-                        template = (Template) resourceSet.getEObject(eObjects[0], true);
-                    }
-                    if (template == null) {
-                        // maybe operatorTemplate?
-                        query = "select template \n"
-                                + "from "
-                                + "[" + EcoreUtil.getURI(TCSPackage.eINSTANCE.getOperatorTemplate()) + "] "
-                                + "as template, \n"
-                                + "[" + EcoreUtil.getURI(EcorePackage.eINSTANCE.getEClass()) + "] "
-                                + " as class in elements { "
-                                + "[" + EcoreUtil.getURI(clazz) + "] } "
-                                + " where template.metaReference = class";
-    
-                        result = EcoreHelper.executeQuery(query, templateAndMMContext);
-                        eObjects = result.getUris("template");
-    
-                        if (eObjects.length > 1) {
-                            // throw new
-                            // RuntimeException("Ambigous templates found for: " +
-                            // createdElement + " mode=" + mode);
-                            template = (Template) resourceSet.getEObject(eObjects[1], true);
-                        } else if (eObjects.length == 1) {
-                            template = (Template) resourceSet.getEObject(eObjects[0], true);
-                        }
-                    }
-                    if (template != null) {
-                        templateCache.put(templateKey, template);
-                    } else {
-                        ParsingTextblocksActivator
-                                .logWarning("No template model element found for template:"
-                                        + createdElement
-                                        + " with mode = "
-                                        + mode
-                                        + "! Check if mapping model is available,"
-                                        + " otherwise incremental parsing will not work!");
-                    }
-    
+                Collection<Template> templates = parserScope.getSyntaxLookup().getTCSTemplate(resolvedName, mode);
+                
+                if (templates.size() == 1) {
+                    return templates.iterator().next();
+                } else {
+                    failWithError("Invalid combination of parser and mapping. Expected to find exactly one template for "
+                            + createdElement.toString() + "#" + mode + ".");
                 }
-            }
+            } catch (SyntaxElementException e) {
+                failWithError(e, "Failed to find template for " + MessageUtil.asModelName(createdElement) + "#" + mode);
             } catch (MetaModelLookupException e) {
-				throw new RuntimeException(e);
-			}
-            return template;
-        }
-
+                failWithError(e, "Failed to resolve a metaclass named " + MessageUtil.asModelName(createdElement));
+            }
+            return null;
+        }          
+            
 	/**
 	 * It navigates to the textblock that belongs to the given context within
 	 * the {@link #currentTextBlock} which is then used during parsing to add
@@ -431,10 +343,13 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	
 	@Override
 	public void notifyEnterSequenceElement(String sequenceElementURI) {
-		SequenceElement sequenceElement = (SequenceElement) resourceSet
-				.getEObject(URI.createURI(sequenceElementURI), true);
-		if(sequenceElement != null) {
+		SequenceElement sequenceElement = (SequenceElement) parserScope.getResourceSet().getEObject(
+		        URI.createURI(sequenceElementURI), true);
+		if (sequenceElement != null) {
 		    traverser.setCurrentSequenceElement(sequenceElement);
+		} else {
+		    failWithError("Could not resolve TCS sequence element " + sequenceElementURI 
+                          + ". This indicates that parser and mapping are not in sync.");
 		}
 	}
 	
@@ -573,7 +488,6 @@ public class ParserTextBlocksHandler implements IParsingObserver {
             }
         }
 	
-	
 
     /**
 	 * Attaches the current {@link SequenceElement} or {@link InjectorAction} to the given
@@ -640,14 +554,12 @@ public class ParserTextBlocksHandler implements IParsingObserver {
      * Uses {@link DocumentNodeReferencesCorrespondingModelElement} to find a corresponding {@link TextBlock} for the
      * given <code>element</code>.
      * 
-     * @param element
-     *            the element to get the {@link TextBlock} for
-     * @param i
+     * @param element the element to get the {@link TextBlock} for
      * @return the corresponding {@link TextBlock} for the given element
      */
     private TextBlock getTextBlockForElementAt(EObject element, ANTLR3LocationToken referenceToken) {
         TextBlock tb = null;
-        Collection<EObject> nodes = oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
+        Collection<EObject> nodes = textBlocksOnlyOppositeEndFinder.navigateOppositePropertyWithBackwardScope(
                 TextblocksPackage.eINSTANCE.getTextBlock_CorrespondingModelElements(), element);
         if (nodes != null) {
             for (EObject eObject : nodes) {
@@ -680,7 +592,6 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	 */
 	public void setRootBlock(TextBlock root) {
 		this.traverser = new TextBlockTraverser();
-		//textBlocksModel = new TextBlocksModel(root);
 	}
 
 	/*
@@ -690,9 +601,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	 */
 	@Override
 	public void notifyCommitModelElementFailed() {
-		// TODO set some flag maybe?
-		System.out
-				.println("TODO implement ParserTextBlocksHandler.notifyModelElementResolutionFailed");
+
 	}
 
     /* (non-Javadoc)
@@ -781,12 +690,19 @@ public class ParserTextBlocksHandler implements IParsingObserver {
         this.traverser = new TextBlockTraverser();
         //ruleDepth = 0;
     }
-
-    
-   
-
     
 
+    /**
+     * This class should not fail silently, as this means that we might continue incremental parsing based
+     * on false information. This might lead to information loss when we try to "re-use" information. 
+     */
+    private void failWithError(Throwable cause, String message) {
+        cause.printStackTrace();
+        throw new RuntimeException(message, cause);
+    }
 
+    private void failWithError(String message) {
+        failWithError(new RuntimeException(message), message);
+    }
 
 }
