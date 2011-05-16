@@ -22,7 +22,6 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
-import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.parser.tcs.TCSParserFactory;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.furcas.runtime.textblocks.testbase.TextblocksTestHelper;
@@ -33,7 +32,7 @@ public class TestTextBlockTCSExtractorStream {
 
 	@Before
 	public void initStream() {
-		stream = new TextBlockTCSExtractorStream(TextblocksPackage.eINSTANCE, new TCSParserFactory());
+		stream = new TextBlockTCSExtractorStream(new TCSParserFactory());
 	}
 
 	@Test

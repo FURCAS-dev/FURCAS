@@ -51,6 +51,8 @@ import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
+import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
+import com.sap.ide.cts.parser.errorhandling.SemanticParserException.Component;
 import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategy.ReuseType;
 import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategy.TbBean;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalTokenStream;
@@ -100,7 +102,7 @@ public class IncrementalParser extends IncrementalRecognizer {
         
     }
 
-    public TextBlock incrementalParse(TextBlock root) {
+    public TextBlock incrementalParse(TextBlock root) throws SemanticParserException {
         return incrementalParse(root, false);
     }
 
@@ -119,8 +121,9 @@ public class IncrementalParser extends IncrementalRecognizer {
      *            instantiates elements as far as possible.
      * @return returns the (possibly newly created) root block as a result of
      *         the parsing.
+     * @throws IncrementalParsingException 
      */
-    public TextBlock incrementalParse(TextBlock root, boolean errorMode) {
+    public TextBlock incrementalParse(TextBlock root, boolean errorMode) throws SemanticParserException {
         reset();
         setDefaultPartitionFromRoot(root);
         TextBlock newRoot = root;
@@ -194,15 +197,8 @@ public class IncrementalParser extends IncrementalRecognizer {
 
                     boolean errornous = false;
                     if (batchParser.getInjector().getErrorList().size() > 0) {
-                        StringBuilder errors = new StringBuilder();
-                        for (ParsingError err : batchParser.getInjector()
-                                .getErrorList()) {
-                            errors.append(err + "\n");
-                        }
                         if (!errorMode) {
-                            throw new IncrementalParsingException(
-                                    "Cannot parse, errors in TB Model:"
-                                            + errors);
+                            throw new SemanticParserException(getErrorList(), Component.PARSER);
                         } else {
                             errornous = true;
                         }
@@ -256,7 +252,6 @@ public class IncrementalParser extends IncrementalRecognizer {
                 } catch (IllegalAccessException e) {
                     throw new RuntimeException(e);
                 } catch (InvocationTargetException e) {
-                    e.printStackTrace();
                     throw new RuntimeException(e.getCause());
                 } catch (UnknownProductionRuleException e) {
                     throw new RuntimeException(e);
@@ -347,13 +342,11 @@ public class IncrementalParser extends IncrementalRecognizer {
         reuseStrategy.clearChangedBlocksList();
     }
 
-    protected TextBlock prepareForParsing(TextBlock commonAncestor,
-            ParserTextBlocksHandler parserTextBlocksHandler) {
+    /*package*/ TextBlock prepareForParsing(TextBlock commonAncestor, ParserTextBlocksHandler parserTextBlocksHandler) {
         parserTextBlocksHandler.setRootBlock(commonAncestor);
         batchParser.reset();
         commonAncestor = findStartableBlock(commonAncestor);
-        AbstractToken startToken = TbNavigationUtil
-                .firstTokenWithoutBOS(commonAncestor);
+        AbstractToken startToken = TbNavigationUtil.firstTokenWithoutBOS(commonAncestor);
         tbtokenStream.seek(startToken);
         return commonAncestor;
     }
@@ -667,18 +660,9 @@ public class IncrementalParser extends IncrementalRecognizer {
 
     /**
      * Calls the batch parser with to re-parse from the given root block.
-     * 
-     * @param root
-     * @throws SyntaxElementException
-     * @throws JmiException
-     * @throws SecurityException
-     * @throws NoSuchMethodException
-     * @throws IllegalArgumentException
-     * @throws IllegalAccessException
-     * @throws InvocationTargetException
-     * @throws UnknownProductionRuleException
+     * <b>Do not call this unless you know what you are doing.</b>
      */
-    void callBatchParser(TextBlock root) throws SyntaxElementException,
+    /*package*/ void callBatchParser(TextBlock root) throws SyntaxElementException,
             SecurityException, NoSuchMethodException, IllegalArgumentException,
             IllegalAccessException, InvocationTargetException,
             UnknownProductionRuleException {
@@ -692,8 +676,7 @@ public class IncrementalParser extends IncrementalRecognizer {
             // ensure that the given block was the root block, otherwise
             // parsing won't work
             if (root.getParent() != null) {
-                throw new IncrementalParsingException(
-                        "Could not find a proper starting point for parsing.");
+                throw new IncrementalParsingException("Could not find a proper starting point for parsing.");
             }
             ruleName = MAIN_PARSE_RULE_NAME;
         } else {

@@ -79,7 +79,7 @@ public class PrettyPrintAction extends Action {
             try {
                 AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory = EditorUtil
                         .constructParserFactoryForSyntax(syntax);
-                TextBlockTCSExtractorStream stream = new TextBlockTCSExtractorStream(TextblocksPackage.eINSTANCE, parserFactory);
+                TextBlockTCSExtractorStream stream = new TextBlockTCSExtractorStream(parserFactory);
 
                 IncrementalTextBlockPrettyPrinter prettyPrinter = new IncrementalTextBlockPrettyPrinter();
                 prettyPrinter.prettyPrint(modelElement, textBlockToReuse,

@@ -11,7 +11,6 @@
 package com.sap.furcas.example.bibtex.dsl.editor; 
 
 
-
 import com.sap.furcas.example.bibtex.dsl.parser.BibtexParserFactory;
 import com.sap.furcas.ide.editor.imp.AbstractFurcasEditor;
 

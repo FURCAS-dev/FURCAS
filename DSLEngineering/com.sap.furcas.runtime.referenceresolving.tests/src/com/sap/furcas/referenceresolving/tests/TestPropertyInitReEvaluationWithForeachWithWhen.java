@@ -6,7 +6,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -19,8 +18,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
+import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
 
 /**
  * A test case that use a FURCAS mapping specification (".tcs" file) and based on this produce lexer and
@@ -59,7 +58,7 @@ public class TestPropertyInitReEvaluationWithForeachWithWhen extends AbstractRef
      * @throws Exception
      */
     @Before
-    public void setupInitialModel() throws IOException, UnknownProductionRuleException {
+    public void setupInitialModel() throws SemanticParserException {
         String textToParse = "article{ Shrt, \"John Doe\"}" +
                              "article{ Medium, \"John Doe\"}" +
                              "article{ LongLongLong, \"Jane Doll\"}" +

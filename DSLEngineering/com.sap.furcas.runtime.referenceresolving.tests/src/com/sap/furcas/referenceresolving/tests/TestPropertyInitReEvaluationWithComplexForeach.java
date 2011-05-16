@@ -7,7 +7,6 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -26,7 +25,6 @@ import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
-import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 /**
@@ -62,7 +60,7 @@ public class TestPropertyInitReEvaluationWithComplexForeach extends AbstractRefe
      * @throws Exception
      */
     @Before
-    public void setupInitialModel() throws IOException, UnknownProductionRuleException {
+    public void setupInitialModel() throws Exception {
         String textToParse = "article{ Shrt, \"John Doe\"}" +
                              "article{ Medium, \"John Doe\"}" +
                              "article{ LongLongLong, \"Jane Doll\"}" +

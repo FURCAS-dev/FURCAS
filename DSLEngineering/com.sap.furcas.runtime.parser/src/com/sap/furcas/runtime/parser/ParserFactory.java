@@ -49,10 +49,13 @@ public interface ParserFactory<P extends ObservableInjectingParser, L extends Le
 
     public IRuleName getRuleNameFinder();
     
-   /**
-    * Additional URIs that shall be included in the OCL and Query2 lookup scope.
-    * By default all resources which are stored in the workspace and visible through
-    * project dependencies are already included. <p>
-    */
+    /** 
+     * This method should be overridden if additional URIs should be added to
+     * the lookup scope of the parser.<p>
+     * 
+     * By default, all resources in all dependent projects are sourced.
+     * If new resources are saved in a project, those are included automatically
+     * in the next parse run.
+     */
     public Set<URI> getAdditionalQueryScope();
 }

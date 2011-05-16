@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.text.AbstractDocument;
 import org.eclipse.jface.text.DefaultLineTracker;
@@ -18,9 +19,7 @@ import org.eclipse.ui.PartInitException;
 import com.sap.furcas.ide.editor.CtsActivator;
 import com.sap.furcas.ide.editor.commands.NullCommand;
 import com.sap.furcas.ide.editor.dialogs.PrettyPrintPreviewDialog;
-import com.sap.furcas.ide.editor.imp.AbstractFurcasEditor.ParserCollection;
 import com.sap.furcas.ide.editor.imp.parsing.FurcasParseController;
-import com.sap.furcas.ide.editor.recovery.TbRecoverUtil;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
@@ -28,11 +27,15 @@ import com.sap.furcas.runtime.tcs.MessageHelper;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
-import com.sap.furcas.runtime.textblocks.validation.IllegalTextBlocksStateException;
+import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.validation.TbValidationUtil;
 import com.sap.furcas.unparser.SyntaxAndModelMismatchException;
 import com.sap.furcas.unparser.extraction.TCSExtractorPrintStream;
+import com.sap.furcas.unparser.extraction.textblocks.TextBlockTCSExtractorStream;
 import com.sap.furcas.unparser.textblocks.IncrementalTextBlockPrettyPrinter;
+import com.sap.ide.cts.parser.incremental.IncrementalParserFacade;
+import com.sap.ide.cts.parser.incremental.MappingRecoveringTextBlocksValidator;
+import com.sap.ide.cts.parser.incremental.TextBlockMappingRecoveringFailedException;
 
 /**
  * A document implementation that is responsible for presenting a text blocks
@@ -91,15 +94,14 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
     /**
      * The document will be usable and completely initialized after this method was called.
      */
-    public void completeInit(ParserCollection parserCollection) throws PartInitException {
-        validateAndMigrateTextBlocksModel(parserCollection);
+    public void completeInit(IncrementalParserFacade parserFacade) throws PartInitException {
+        validateDomainModelCompliesToSyntax();
+        validateAndMigrateTextBlocksModel(parserFacade);
 
-        model = new TextBlocksModel(rootBlock, parserCollection.parser.getInjector().getModelAdapter());
+        model = new TextBlocksModel(rootBlock, parserFacade.getModelElementInvestigator());
         expandToEditableVersion();
         refreshContentFromTextBlocksModel();
-        // enable usage of cached string for get() operations as it is faster.
-        // FIXME: re-enable  once we know the non-cached stuff works
-        model.setUsecache(false); 
+        model.setUsecache(true); 
         
         addDocumentListener(new IDocumentListener() {
             @Override
@@ -116,67 +118,91 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
         completelyItitialized = true;
     }
 
-    private void validateAndMigrateTextBlocksModel(ParserCollection parserCollection) throws PartInitException {
+    private void validateAndMigrateTextBlocksModel(IncrementalParserFacade parserFacade) throws PartInitException  {
         ClassTemplate rootTemplate = TcsUtil.getMainClassTemplate(syntax);
-        if (rootBlock.getType() == null) {
-            boolean success = recoverBrokenTextBlockMapping(parserCollection, rootTemplate);
+        MappingRecoveringTextBlocksValidator validator = new MappingRecoveringTextBlocksValidator(parserFacade);
+        
+        validator.checkAndMigrateTokenIds(rootBlock);
+        
+        if (validator.hasBrokenMapping(rootBlock)) {
+            boolean success = recoverBrokenTextBlockMapping(validator, parserFacade);
             if (success && !TbUtil.isTextBlockOfType(rootTemplate, rootBlock)) {
-                throw new PartInitException("Main template " + MessageHelper.getTemplateName(rootTemplate) + " does not fit the given TextBlocks model.");
+                throw new PartInitException("Main template " + MessageHelper.getTemplateName(rootTemplate) +
+                        " does not fit the given TextBlocks model.");
             }
         } else if (!TbUtil.isTextBlockOfType(rootTemplate, rootBlock)) {
-            throw new PartInitException("Main template " + MessageHelper.getTemplateName(rootTemplate) + " does not fit the given TextBlocks model which uses " + MessageHelper.getTemplateName(rootBlock.getType()));
+            throw new PartInitException("Main template " + MessageHelper.getTemplateName(rootTemplate) +
+                    " does not fit the given TextBlocks model which uses " + MessageHelper.getTemplateName(rootBlock.getType()));
         }
-        TbRecoverUtil.checkAndMigrateTokenIds(rootBlock, parserCollection.parser, parserCollection.lexer, parserCollection.shortPrettyPrinter);
-        try {
-            TbValidationUtil.assertTextBlockConsistencyRecursive(rootBlock);
-            TbValidationUtil.assertCacheIsUpToDate(rootBlock);
-        } catch (IllegalTextBlocksStateException e) {
-            throw new PartInitException("TextBlock model is invalid", e);
-        }
+        
+        TbValidationUtil.assertTextBlockConsistencyRecursive(rootBlock);
+        TbValidationUtil.assertCacheIsUpToDate(rootBlock);
     }
     
-    private boolean recoverBrokenTextBlockMapping(ParserCollection parserCollection, ClassTemplate rootTemplate) throws PartInitException {
-        // might be a valid textblock but with a broken reference to the mapping
-        // but might also be a TextBlock of the wrong type...
-        if (TbRecoverUtil.recoverTextBlockFromBrokenMapping(rootBlock, rootTemplate, parserCollection.incrementalParser, parserCollection.parser, parserCollection.lexer, parserCollection.shortPrettyPrinter)) {
-            return true; // now recovered!
-        } else {    
+    /**
+     * Make sure the model element is still valid according
+     * to this concrete syntax (e.g., matching property inits)
+     */
+    private void validateDomainModelCompliesToSyntax() throws PartInitException {
+        prettyPrintModelToString(); // we don't care about any result.
+    }
+    
+    /**
+     * Inspect the {@link #rootBlock} and try to recover it. After the recovery it might turn out that
+     * we have a block of the wrong type at hand. <p>
+     * 
+     * The {@link #rootBlock} is directly modified by this method.
+     */
+    private boolean recoverBrokenTextBlockMapping(MappingRecoveringTextBlocksValidator validator, IncrementalParserFacade parserFacade) throws PartInitException {
+        try {
+            validator.recoverMappingLink(rootBlock, TcsUtil.getMainClassTemplate(syntax));
+            return true;
+        } catch (TextBlockMappingRecoveringFailedException e) {
+            
             String title = "Mapping Link Recovery Failed";
-            String error = "The link from the current document to the mapping definition is broken." + "The recovery failed!\n"
-            + "You have two options: \n" +
-            " a) Click OK and the model will be pretty printed. The old textual view will be replaced. \n" +
-            " b) Click Cancel to keep the texutal view but to force the recreation of all model elements defined in this view  upon changes to this document.";
+            String error = "The link from the current document to the mapping definition is broken." + "The recovery failed! \n "
+            + e.getMessage() + "\n \n"
+            + "You have two options: \n"
+            + " a) Click OK and the model will be pretty printed. The old textual view will be replaced. \n"
+            + " b) Click Cancel to keep the texutal view as it is. However, this will force the recreation of all model elements"
+            + " defined in this view upon changes to this document.";
+            
             String oldTextualView = rootBlock.getCachedString();
-            String newTextualView = prettyPrintToString(rootTemplate);
-            PrettyPrintPreviewDialog dialog = new PrettyPrintPreviewDialog(title, error, oldTextualView, newTextualView);
-            boolean prettyPrintAccepted = dialog.open();
-
+            String newTextualView = prettyPrintModelToString();
+            PrettyPrintPreviewDialog previewDialog = new PrettyPrintPreviewDialog(title, error, oldTextualView, newTextualView);
+            boolean prettyPrintAccepted = previewDialog.open();
+            
             if (prettyPrintAccepted) {
-                try {
-                    rootBlock = TbModelInitializationUtil.initilizeTextBlocksFromModel(rootObject, syntax, editingDomain, parserCollection.parserFactory);
-                } catch (SyntaxAndModelMismatchException e) {
-                    throw new PartInitException("Failed to pretty print " + rootObject, e);
-                }
-            } else {
-                // unaltered
-            }
-            return false;
-        } 
+                TextBlock newRootBlock = prettyPrintModelToTextBlock(parserFacade);
+                TbChangeUtil.deleteOtherVersions(rootBlock);
+                EcoreUtil.delete(rootBlock);
+                rootBlock = newRootBlock;
+                return true;
+            } 
+        }
+        return false;
+    }
+    
+    private String prettyPrintModelToString() throws PartInitException {
+        IncrementalTextBlockPrettyPrinter prettyPrinter = new IncrementalTextBlockPrettyPrinter();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        TCSExtractorPrintStream target = new TCSExtractorPrintStream(stream);
+        try {
+            prettyPrinter.prettyPrint(rootObject, rootBlock, syntax, TcsUtil.getMainClassTemplate(syntax), target);
+        } catch (SyntaxAndModelMismatchException e) {
+            throw new PartInitException("Model does not (fully) conform to syntax " + syntax.getName() + ": \n\n" + e.getCause().getMessage(), e);
+        }
+        return stream.toString();
     }
 
-    private String prettyPrintToString(ClassTemplate rootTemplate) {
-        String newTextualView = "";
+    private TextBlock prettyPrintModelToTextBlock(IncrementalParserFacade parserFacade) throws PartInitException {
+        IncrementalTextBlockPrettyPrinter prettyPrinter = new IncrementalTextBlockPrettyPrinter();
+        TextBlockTCSExtractorStream target = new TextBlockTCSExtractorStream(parserFacade.getParserFactory());
         try {
-            IncrementalTextBlockPrettyPrinter pp = new IncrementalTextBlockPrettyPrinter(/*readOnly*/true);
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            TCSExtractorPrintStream target = new TCSExtractorPrintStream(stream);
-            pp.prettyPrint(rootObject, rootBlock, rootTemplate.getConcreteSyntax(), rootTemplate, target);
-            newTextualView = stream.toString();
-        } catch (Exception e) {
-            CtsActivator.logError(e);
-            newTextualView = "Error occurred while pretty printing: " + e.getMessage();
-        }
-        return newTextualView;
+            prettyPrinter.prettyPrint(rootObject, rootBlock, syntax, TcsUtil.getMainClassTemplate(syntax), target);
+        } catch (SyntaxAndModelMismatchException e) {
+            throw new PartInitException("Model does not (fully) conform to syntax " + syntax.getName() + ": \n\n" + e.getCause().getMessage(), e);
+        }        return target.getPrintedResultRootBlock();
     }
 
     public EObject getRootObject() {
@@ -249,7 +275,8 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
             public void run() {
                 synchronized (getLockObject()) {
                     if (!bufferedChanges.isEmpty()) {
-                        CtsActivator.logWarning("Overwriting user edits when refreshing the document content. User might get confused");
+                        CtsActivator.logger.logWarning("Overwriting user edits when refreshing the " +
+                        	"document content. User might get confused");
                         bufferedChanges.clear();
                     }
                     inDocumentRefreshMode = true;

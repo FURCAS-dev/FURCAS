@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
-import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.PartInitException;
@@ -38,7 +38,9 @@ import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
+import com.sap.furcas.unparser.PrettyPrinter;
 import com.sap.furcas.unparser.SyntaxAndModelMismatchException;
+import com.sap.furcas.unparser.extraction.textblocks.TextBlockTCSExtractorStream;
 
 /**
  * Helper class that transforms a {@link IEditorInput} into a {@link ModelEditorInput}
@@ -48,14 +50,14 @@ import com.sap.furcas.unparser.SyntaxAndModelMismatchException;
  */
 public class ModelEditorInputLoader {
 
-    private final EditingDomain editingDomain;
-    private final ConcreteSyntax syntax;
+    private final ResourceSet resourceSet;
     private final OppositeEndFinder oppositeEndFinder;
     private final AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory;
+    private final ConcreteSyntax syntax;
 
-    public ModelEditorInputLoader(ConcreteSyntax syntax, EditingDomain editingDomain, OppositeEndFinder oppositeEndFinder, AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) {
+    public ModelEditorInputLoader(ConcreteSyntax syntax, ResourceSet resourceSet, OppositeEndFinder oppositeEndFinder, AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) {
         this.syntax = syntax;
-        this.editingDomain = editingDomain;
+        this.resourceSet = resourceSet;
         this.oppositeEndFinder = oppositeEndFinder;
         this.parserFactory = parserFactory;
     }
@@ -72,7 +74,7 @@ public class ModelEditorInputLoader {
         IFile file = ((FileEditorInput) input).getFile();
         URI uri = URI.createPlatformResourceURI(file.getFullPath().toString(), /*encode*/ true);
         
-        Resource resource = editingDomain.getResourceSet().getResource(uri, /*load*/ true);
+        Resource resource = resourceSet.getResource(uri, /*load*/ true);
         validateResource(resource);
 
         EObject root = resource.getContents().iterator().next();
@@ -104,7 +106,10 @@ public class ModelEditorInputLoader {
         if (rootBlock == null) {
             // no suitable node found, so create a new one
             try {
-                rootBlock = TbModelInitializationUtil.initilizeTextBlocksFromModel(rootObject, syntax, editingDomain, parserFactory);
+                TextBlockTCSExtractorStream target = new TextBlockTCSExtractorStream(parserFactory);
+                PrettyPrinter prettyPrinter = new PrettyPrinter();
+                prettyPrinter.prettyPrint(rootBlock, syntax, target);
+                return target.getPrintedResultRootBlock();
            } catch (SyntaxAndModelMismatchException e) {
                 throw new PartInitException("Model does not (fully) conform to syntax " + syntax.getName() + ": \n\n" + e.getCause().getMessage(), e);
             }

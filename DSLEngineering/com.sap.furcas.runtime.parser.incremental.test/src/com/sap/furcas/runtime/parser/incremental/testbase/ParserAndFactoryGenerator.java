@@ -25,10 +25,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.emf.bundlelistener.EcorePackageLoadListener;
 import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
-<<<<<<< HEAD
-import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
-=======
->>>>>>> master
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.common.exceptions.ParserGeneratorInvocationException;
 import com.sap.furcas.runtime.common.exceptions.ParserInstantiationException;
@@ -42,8 +38,8 @@ import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParserGenerator;
 import com.sap.furcas.runtime.referenceresolving.SyntaxRegistryFacade;
 import com.sap.furcas.runtime.tcs.RuleNameFinder;
+import com.sap.ide.cts.parser.incremental.IncrementalParserFacade;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRParserFactory;
-import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 import com.sun.tools.javac.Main;
 
 /**

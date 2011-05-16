@@ -35,7 +35,8 @@ public class FurcasContentProposer implements IContentProposer {
     private final CtsContentAssistProcessor contentProposer;
 
     public FurcasContentProposer(AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) {
-        // FIXME: the contentassit can have side effects! Nees to be fixed in the MASTER branch.
+        // FIXME: the contentassit can have side effects!
+        // It still assumes we have transactions and wipes the entire resourceSet
         ConcreteSyntax syntax = EditorUtil.loadConcreteSyntax(parserFactory);
         contentProposer = new CtsContentAssistProcessor(syntax, parserFactory, parserFactory.getLanguageId());
     }

@@ -1,5 +1,7 @@
 package com.sap.furcas.ide.editor.imp.services;
 
+import java.util.Collection;
+
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -27,9 +29,11 @@ public class FurcasLabelProvider implements ILabelProvider {
     
     private final org.eclipse.jface.viewers.ILabelProvider labelProvider;
     
-    public FurcasLabelProvider(ComposeableAdapterFactory adapterFactory) {
+    public FurcasLabelProvider(Collection<ComposeableAdapterFactory> adapterFactories) {
         ComposedAdapterFactory composite = createDefaultCompositeAdapterFactory();
-        composite.addAdapterFactory(adapterFactory);
+        for (ComposeableAdapterFactory factory : adapterFactories) {
+            composite.addAdapterFactory(factory);
+        }
         this.labelProvider = new AdapterFactoryLabelProvider(composite);
     }
 

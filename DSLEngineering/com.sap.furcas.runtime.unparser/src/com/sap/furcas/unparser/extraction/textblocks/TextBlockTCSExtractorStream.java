@@ -34,7 +34,6 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksFactory;
-import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.parser.ParserFactory;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
@@ -85,8 +84,8 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
     protected final Lexer lexer;
     
     
-    public TextBlockTCSExtractorStream(TextblocksPackage pack, ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) {
-	this.textblocksFactory = pack.getTextblocksFactory();
+    public TextBlockTCSExtractorStream(ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) {
+	this.textblocksFactory = TextblocksFactory.eINSTANCE;
 	this.lexer = parserFactory.createLexer(null);
     }
     
