@@ -16,15 +16,15 @@ import org.eclipse.emf.ecore.resource.impl.PlatformResourceURIHandlerImpl.Workbe
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.source.AnnotationModel;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.ui.texteditor.AbstractDocumentProvider;
 
 import com.sap.furcas.ide.editor.CtsActivator;
-import com.sap.furcas.ide.editor.CtsAnnotationModel;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.runtime.parser.PartitionAssignmentHandler;
 import com.sap.furcas.runtime.textblocks.TbUtil;
-import com.sap.ide.cts.parser.incremental.PartitionAssignmentHandler;
 
 public class CtsDocumentProvider extends AbstractDocumentProvider {
 
@@ -101,8 +101,7 @@ public class CtsDocumentProvider extends AbstractDocumentProvider {
 
     @Override
     protected IAnnotationModel createAnnotationModel(Object element) {
-        ModelEditorInput modelEditorInput = (ModelEditorInput) element;
-        return new CtsAnnotationModel(modelEditorInput.getRootObject());
+        return new AnnotationModel();
     }
 
     @Override

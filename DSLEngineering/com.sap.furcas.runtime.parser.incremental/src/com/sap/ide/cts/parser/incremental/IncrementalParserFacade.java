@@ -1,4 +1,4 @@
-package com.sap.ide.cts.parser.incremental.antlr;
+package com.sap.ide.cts.parser.incremental;
 
 import java.lang.reflect.Field;
 import java.util.Collection;
@@ -18,6 +18,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
 import com.sap.furcas.runtime.common.exceptions.ParserInstantiationException;
+import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ParserFactory;
@@ -32,14 +33,17 @@ import com.sap.furcas.runtime.parser.textblocks.TextBlocksAwareModelAdapter;
 import com.sap.furcas.runtime.parser.textblocks.observer.ParserTextBlocksHandler;
 import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
 import com.sap.ide.cts.parser.Activator;
-import com.sap.ide.cts.parser.incremental.IncrementalParser;
-import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategyImpl;
+import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
+import com.sap.ide.cts.parser.errorhandling.SemanticParserException.Component;
+import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
+import com.sap.ide.cts.parser.incremental.antlr.ANTLRLexerAdapter;
 
 /**
  * Facade for handling incremental parser and lexer construction as well as
- * calling of parsing methods.
+ * calling of parsing methods. Only completely configured components are exposed.
  * 
  * @author C5106462
+ * @author Stephan Erb
  * 
  */
 public class IncrementalParserFacade {
@@ -53,19 +57,20 @@ public class IncrementalParserFacade {
     private final ParserTextBlocksHandler observer;
     private final ParserScope parserScope;
     private final Resource transientResource;
+    private final PartitionAssignmentHandler partitionAssignmentHandler;
 
     public IncrementalParserFacade(ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory,
             ResourceSet resourceSet, PartitionAssignmentHandler partitionAssignmentHandler) throws ParserInstantiationException {
+        
+        this.parserFactory = parserFactory;
+        this.partitionAssignmentHandler = partitionAssignmentHandler;
         
         this.transientResource = EcoreHelper.createTransientParsingResource(
                 resourceSet, parserFactory.getMetamodelURIs().iterator().next().toString());
         
         this.parserScope = new ParserScope(resourceSet, transientResource, parserFactory);
-        
-        TextBlocksAwareModelAdapter modelAdapter = new TextBlocksAwareModelAdapter(new EMFModelAdapter(
-                resourceSet, transientResource, parserScope.getMetamodelLookup(), parserScope.getExplicitQueryScope()));
+        IModelAdapter modelAdapter = createModelAdapter();
 
-        this.parserFactory = parserFactory;
         // TODO use token wrapper factory here
         TextBlockReuseStrategyImpl reuseStrategy = new TextBlockReuseStrategyImpl(parserFactory.createLexer(null), modelAdapter);
 
@@ -82,7 +87,7 @@ public class IncrementalParserFacade {
         this.injector.setModelAdapter(modelAdapter);
         setInjector(domainLexer, domainParser, injector);
 
-        this.observer = new ParserTextBlocksHandler(tbTokenStream, parserScope, partitionAssignmentHandler);
+        this.observer = createParserTextBlocksHandler();
         this.domainParser.setObserver(observer);
     }
 
@@ -102,12 +107,13 @@ public class IncrementalParserFacade {
 
     /**
      * Uses the {@link IncrementalParser} to parse only the necessary parts of
-     * the given root {@link TextBlock}.
+     * the given root {@link TextBlock}. If lexing fails, the same old
+     * TextBlock is returned.
      * 
      * @param rootBlock
      * @return
      */
-    public TextBlock parseIncrementally(TextBlock rootBlock) {
+    public TextBlock parseIncrementally(TextBlock rootBlock) throws SemanticParserException {
         if (lexAndPrepareParsing(rootBlock)) {
             TextBlock preparedTextBlock = getCurrentVersion(rootBlock);
             incrementalLexer.setCurrentTokenForParser(preparedTextBlock.getTokens().get(0));
@@ -115,7 +121,7 @@ public class IncrementalParserFacade {
             TextBlock newRoot = incrementalParser.incrementalParse(preparedTextBlock);
             return newRoot;
         } else {
-            return rootBlock;
+            throw new SemanticParserException(getErrors(), Component.LEXER);
         }
     }
 
@@ -178,7 +184,51 @@ public class IncrementalParserFacade {
     
     public ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> getParserFactory() {
         return parserFactory;
-        
     }
+    
+    public ParserScope getParserScope() {
+        return parserScope;
+    }
+
+    public IModelElementInvestigator getModelElementInvestigator() {
+        return injector.getModelAdapter();
+    }
+    
+    /*
+     * The methods below are for the use by the {@link MappingRecoveringTextBlocksValidator}
+     * They must be used with care as they directly alter the internal state of this facade.
+     */
+    
+    /*package*/ ParserTextBlocksHandler createParserTextBlocksHandler() {
+        return new ParserTextBlocksHandler(tbTokenStream, parserScope, partitionAssignmentHandler);
+    }
+    
+    /*package*/ IModelAdapter createModelAdapter() {
+        return new TextBlocksAwareModelAdapter(new EMFModelAdapter(
+                parserScope.getResourceSet(), transientResource, parserScope.getMetamodelLookup(), parserScope.getExplicitQueryScope()));
+    }
+    
+    /*package*/ IModelAdapter getModelAdapter() {
+        return injector.getModelAdapter(); 
+    }
+
+    /*package*/ ObservableInjectingParser getParser() {
+        return domainParser;
+    }
+    
+    /*package*/ IncrementalParser getIncrementalParser() {
+        return incrementalParser;
+    }
+    
+    /*package*/ LexerAdapter getLexer() {
+        return incrementalLexer.getBatchLexer();
+    }
+    
+    /*package*/ ANTLRIncrementalLexerAdapter getIncrementalLexer() {
+        return incrementalLexer;
+    }
+
+
+
 
 }

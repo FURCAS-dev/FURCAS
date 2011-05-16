@@ -10,14 +10,18 @@
  ******************************************************************************/
 package com.sap.furcas.example.bibtex.dsl.imp.treeModelBuilder;
 
-import com.sap.furcas.ide.editor.imp.services.FurcasLabelProvider;
+import java.util.Collections;
+
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 
 import Bibtex.provider.BibtexItemProviderAdapterFactory;
+
+import com.sap.furcas.ide.editor.imp.services.FurcasLabelProvider;
 
 
 public class BibtexLabelProvider extends FurcasLabelProvider {
     
     public BibtexLabelProvider() {
-        super(new BibtexItemProviderAdapterFactory());
+        super(Collections.<ComposeableAdapterFactory>singleton(new BibtexItemProviderAdapterFactory()));
     }
 }

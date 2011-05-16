@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EObject;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
-import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.runtime.parser.ParserFactory;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.unparser.PrettyPrinter;
@@ -34,7 +33,7 @@ public class PrettyPrintTestHelper {
 	    ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory)
 	    throws SyntaxAndModelMismatchException {
 
-	TextBlockTCSExtractorStream target = new TextBlockTCSExtractorStream(TextblocksPackage.eINSTANCE, parserFactory);
+	TextBlockTCSExtractorStream target = new TextBlockTCSExtractorStream(parserFactory);
 	
     	PrettyPrinter prettyPrinter = new PrettyPrinter();
     	prettyPrinter.prettyPrint(source, syntax,  target);

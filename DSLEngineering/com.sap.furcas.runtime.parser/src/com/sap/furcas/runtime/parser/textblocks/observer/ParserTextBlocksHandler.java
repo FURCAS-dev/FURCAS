@@ -2,7 +2,6 @@ package com.sap.furcas.runtime.parser.textblocks.observer;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import org.antlr.runtime.RecognitionException;
@@ -71,8 +70,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
         }
         @Override
         public QueryContext getBackwardScopeQueryContext(Notifier context) {
-            return EcoreHelper.getRestrictedQueryContext(parserScope.getResourceSet(),
-                    Collections.singleton(partitionAssignmentHandler.getDefaultTextBlockPartition().getURI()));
+            return EcoreHelper.getQueryContext(parserScope.getResourceSet());
         }
     }
 

@@ -30,14 +30,16 @@ public class CtsAutoEditStrategy implements IAutoEditStrategy {
                             .getAttribute("autoIndentBraces");
                     if (autoIndentBraces != null) {
                         String braces[] = autoIndentBraces.split(",");
-                        if (braces.length == 2)
+                        if (braces.length == 2) {
                             bsm.setAutoIndentChars(braces[0], braces[1]);
+                        }
                     }
                 }
                 bAutoEdit = new CtsAutoEdit(bsm);
             }
-            if (autoEditingType.equals("dynamic (default)"))
+            if (autoEditingType.equals("dynamic (default)")) {
                 bAutoEdit = new CtsAutoEdit(new CtsDynamicMatcher());
+            }
             if (autoEditingType.equals("dynamic (configurable)")) {
                 Object o;
                 try {
@@ -46,13 +48,14 @@ public class CtsAutoEditStrategy implements IAutoEditStrategy {
                         bAutoEdit = new CtsAutoEdit((ICtsDynamicMatcher) o);
                     }
                 } catch (CoreException e1) {
-                    CtsActivator.logError(e1);
+                    CtsActivator.logger.logError("Auto edit strategy failed", e1);
                     return;
                 }
             }
 
-            if (bAutoEdit.isNewLineDetected(d, c))
+            if (bAutoEdit.isNewLineDetected(d, c)) {
                 bAutoEdit.autoEditAfterNewLine(d, c);
+            }
         }
 
     }

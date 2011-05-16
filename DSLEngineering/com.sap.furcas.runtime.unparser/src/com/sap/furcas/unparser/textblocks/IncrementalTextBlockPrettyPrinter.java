@@ -11,7 +11,6 @@
 package com.sap.furcas.unparser.textblocks;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
@@ -61,10 +60,6 @@ public class IncrementalTextBlockPrettyPrinter {
     }
 
     private final TextBlockIndex sharedTextBlocksIndex;
-    /**
-     * By default, delete the old textblocks
-     */
-    private boolean readOnly = false; 
     
     /**
      * Create a pretty printer that only tries to re-use information
@@ -74,20 +69,7 @@ public class IncrementalTextBlockPrettyPrinter {
 	// create a new empty index. Serves as a null-object.
 	this(new TextBlockIndex());
     }
-    
-    /**
-     * Create a pretty printer that only tries to re-use information
-     * from textblocks given in the textblock in the prettyPrint method.
-     * 
-     * readOnly can be set to false if it is desired that old blocks
-     * are not deleted upon finishing.
-     */
-    public IncrementalTextBlockPrettyPrinter(boolean readOnly) {
-	// create a new, empty index. Serves as a null-object.
-	this(new TextBlockIndex());
-	this.readOnly = readOnly;
-    }
-    
+        
     /**
      * Create the pretty printer with a pre-filled index. The index should contain
      * all textblocks for model elements which might be pretty printed by this
@@ -209,9 +191,10 @@ public class IncrementalTextBlockPrettyPrinter {
 //	    TbValidationUtil.assertTextBlockConsistencyRecursive(TbNavigationUtil.getUltraRoot(resultBlock));
 //	    TbValidationUtil.assertCacheIsUpToDate(TbNavigationUtil.getUltraRoot(resultBlock));
 	}
-	if (!readOnly) {
-	    EcoreUtil.delete(oldTextBlock);
-	}
+	// Commented until batch pretty printer is migrated to EMF
+//	if (!readOnly) {
+//	    EcoreUtil.delete(oldTextBlock);
+//	}
     }
 
     /**

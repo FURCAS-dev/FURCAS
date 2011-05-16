@@ -1,16 +1,14 @@
 package com.sap.furcas.metamodel.texteditor.editor;
 
-import org.eclipse.imp.parser.IParseController;
-import org.eclipse.imp.services.ITokenColorer;
-import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 
+import com.sap.furcas.ide.editor.imp.services.FurcasTokenColorer;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.parser.tcs.stable.TCSLexer;
 
-public class TCSTokenColorer implements ITokenColorer {
+public class TCSTokenColorer extends FurcasTokenColorer {
 
     protected final TextAttribute identifierAttribute, keywordAttribute, numberAttribute, commentAttribute, stringAttribute;
 
@@ -28,9 +26,7 @@ public class TCSTokenColorer implements ITokenColorer {
     }
 
     @Override
-    public TextAttribute getColoring(IParseController controller, Object o) {
-        AbstractToken token = (AbstractToken) o;
-
+    public TextAttribute getColoring(AbstractToken token) {
         switch (token.getType()) {
         case TCSLexer.EOF:
             return null;
@@ -46,9 +42,5 @@ public class TCSTokenColorer implements ITokenColorer {
             return keywordAttribute;
         }
     }
-    
-    @Override
-    public IRegion calculateDamageExtent(IRegion seed, IParseController ctlr) {
-        return seed;
-    }
+  
 }

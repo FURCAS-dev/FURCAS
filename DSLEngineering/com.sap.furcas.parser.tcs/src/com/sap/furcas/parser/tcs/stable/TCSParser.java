@@ -3501,7 +3501,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:360:4: ( ( (temp= ecore_epackage ) ) | ) (temp= identifier )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.8/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.8/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:360:128: ( ( (temp= ecore_epackage ) ) | )
             int alt3=2;
@@ -3517,7 +3517,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:360:146: (temp= ecore_epackage )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.8/@templateSequence/@elements.0/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.8/@templateSequence/@elements.0/@thenSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:360:295: (temp= ecore_epackage )
                     // ./generationTemp/generated/TCS.g:360:297: temp= ecore_epackage
@@ -3568,7 +3568,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.8/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.8/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:362:140: (temp= identifier )?
             int alt4=2;
@@ -3648,7 +3648,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:378:4: ( ( ( ( (temp= ecore_epackage_superPackage ) ) | ) (temp= identifier )? DLCOLON ) | ( (temp= uriSymbol )? SHARP ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.9/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.9/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:378:127: ( ( ( ( (temp= ecore_epackage_superPackage ) ) | ) (temp= identifier )? DLCOLON ) | ( (temp= uriSymbol )? SHARP ) )
             int alt8=2;
@@ -3807,7 +3807,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:378:145: ( ( (temp= ecore_epackage_superPackage ) ) | ) (temp= identifier )? DLCOLON
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.0/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.0/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:378:294: ( ( (temp= ecore_epackage_superPackage ) ) | )
                     int alt5=2;
@@ -3966,7 +3966,7 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:378:312: (temp= ecore_epackage_superPackage )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.0/@elements.0/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.0/@elements.0/@thenSequence/@elements.0");
                             }
                             // ./generationTemp/generated/TCS.g:378:486: (temp= ecore_epackage_superPackage )
                             // ./generationTemp/generated/TCS.g:378:488: temp= ecore_epackage_superPackage
@@ -4017,7 +4017,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.0/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.0/@elements.1");
                     }
                     // ./generationTemp/generated/TCS.g:380:165: (temp= identifier )?
                     int alt6=2;
@@ -4052,7 +4052,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.0/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.0/@elements.2");
                     }
                     match(input,DLCOLON,FOLLOW_DLCOLON_in_ecore_epackage1801); if (state.failed) {
                         return ret2;
@@ -4079,7 +4079,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:382:21: (temp= uriSymbol )? SHARP
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.1/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.1/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:382:169: (temp= uriSymbol )?
                     int alt7=2;
@@ -4114,7 +4114,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.1/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.1/@elements.1");
                     }
                     match(input,SHARP,FOLLOW_SHARP_in_ecore_epackage1828); if (state.failed) {
                         return ret2;
@@ -4183,7 +4183,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:398:4: ( ( (temp= identifier )? DLCOLON ) | ( (temp= uriSymbol )? SHARP ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.10/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.10/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:398:128: ( ( (temp= identifier )? DLCOLON ) | ( (temp= uriSymbol )? SHARP ) )
             int alt11=2;
@@ -4213,7 +4213,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:398:146: (temp= identifier )? DLCOLON
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.10/@templateSequence/@elements.0/@sequences.0/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.10/@templateSequence/@elements.0/@sequences.0/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:398:295: (temp= identifier )?
                     int alt9=2;
@@ -4248,7 +4248,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.10/@templateSequence/@elements.0/@sequences.0/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.10/@templateSequence/@elements.0/@sequences.0/@elements.1");
                     }
                     match(input,DLCOLON,FOLLOW_DLCOLON_in_ecore_epackage_superPackage1892); if (state.failed) {
                         return ret2;
@@ -4275,7 +4275,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:400:21: (temp= uriSymbol )? SHARP
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.10/@templateSequence/@elements.0/@sequences.1/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.10/@templateSequence/@elements.0/@sequences.1/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:400:170: (temp= uriSymbol )?
                     int alt10=2;
@@ -4310,7 +4310,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.10/@templateSequence/@elements.0/@sequences.1/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.10/@templateSequence/@elements.0/@sequences.1/@elements.1");
                     }
                     match(input,SHARP,FOLLOW_SHARP_in_ecore_epackage_superPackage1919); if (state.failed) {
                         return ret2;
@@ -4434,7 +4434,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:425:4: 'syntax' (temp= identifier ) ( ( LPAREN 'k' EQ (temp= integerSymbol ) RPAREN ) | ) LCURLY ( ( (temp= furcas_tcs_template (temp= furcas_tcs_template )* )? ( ( 'keywords' LCURLY ( ( (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )? ) ) RCURLY ) | ) ( ( 'symbols' LCURLY ( ( (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )? ) ) RCURLY ) | ) (temp= furcas_tcs_operatorlist (temp= furcas_tcs_operatorlist )* )? (temp= furcas_tcs_token (temp= furcas_tcs_token )* )? ( ( 'lexer' EQ (temp= stringSymbol ) SEMI ) | ) ) ) RCURLY
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.0");
             }
             match(input,73,FOLLOW_73_in_furcas_tcs_concretesyntax1997); if (state.failed) {
                 return ret2;
@@ -4443,7 +4443,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:425:276: (temp= identifier )
             // ./generationTemp/generated/TCS.g:425:278: temp= identifier
@@ -4467,7 +4467,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:426:171: ( ( LPAREN 'k' EQ (temp= integerSymbol ) RPAREN ) | )
             int alt12=2;
@@ -4497,7 +4497,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:426:189: LPAREN 'k' EQ (temp= integerSymbol ) RPAREN
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.2/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.2/@thenSequence/@elements.0");
                     }
                     match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_concretesyntax2017); if (state.failed) {
                         return ret2;
@@ -4506,7 +4506,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.2/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.2/@thenSequence/@elements.1");
                     }
                     match(input,119,FOLLOW_119_in_furcas_tcs_concretesyntax2021); if (state.failed) {
                         return ret2;
@@ -4515,7 +4515,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.2/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.2/@thenSequence/@elements.2");
                     }
                     match(input,EQ,FOLLOW_EQ_in_furcas_tcs_concretesyntax2025); if (state.failed) {
                         return ret2;
@@ -4524,7 +4524,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.2/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.2/@thenSequence/@elements.3");
                     }
                     // ./generationTemp/generated/TCS.g:426:852: (temp= integerSymbol )
                     // ./generationTemp/generated/TCS.g:426:854: temp= integerSymbol
@@ -4548,7 +4548,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.2/@thenSequence/@elements.4");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.2/@thenSequence/@elements.4");
                     }
                     match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_concretesyntax2040); if (state.failed) {
                         return ret2;
@@ -4584,7 +4584,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.3");
             }
             match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_concretesyntax2058); if (state.failed) {
                 return ret2;
@@ -4593,7 +4593,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4");
             }
             // ./generationTemp/generated/TCS.g:428:289: ( ( (temp= furcas_tcs_template (temp= furcas_tcs_template )* )? ( ( 'keywords' LCURLY ( ( (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )? ) ) RCURLY ) | ) ( ( 'symbols' LCURLY ( ( (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )? ) ) RCURLY ) | ) (temp= furcas_tcs_operatorlist (temp= furcas_tcs_operatorlist )* )? (temp= furcas_tcs_token (temp= furcas_tcs_token )* )? ( ( 'lexer' EQ (temp= stringSymbol ) SEMI ) | ) ) )
             // ./generationTemp/generated/TCS.g:428:290: ( (temp= furcas_tcs_template (temp= furcas_tcs_template )* )? ( ( 'keywords' LCURLY ( ( (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )? ) ) RCURLY ) | ) ( ( 'symbols' LCURLY ( ( (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )? ) ) RCURLY ) | ) (temp= furcas_tcs_operatorlist (temp= furcas_tcs_operatorlist )* )? (temp= furcas_tcs_token (temp= furcas_tcs_token )* )? ( ( 'lexer' EQ (temp= stringSymbol ) SEMI ) | ) )
@@ -4602,7 +4602,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:428:291: (temp= furcas_tcs_template (temp= furcas_tcs_template )* )? ( ( 'keywords' LCURLY ( ( (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )? ) ) RCURLY ) | ) ( ( 'symbols' LCURLY ( ( (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )? ) ) RCURLY ) | ) (temp= furcas_tcs_operatorlist (temp= furcas_tcs_operatorlist )* )? (temp= furcas_tcs_token (temp= furcas_tcs_token )* )? ( ( 'lexer' EQ (temp= stringSymbol ) SEMI ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:428:442: (temp= furcas_tcs_template (temp= furcas_tcs_template )* )?
             int alt14=2;
@@ -4673,7 +4673,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:430:208: ( ( 'keywords' LCURLY ( ( (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )? ) ) RCURLY ) | )
             int alt17=2;
@@ -4703,7 +4703,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:430:226: 'keywords' LCURLY ( ( (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )? ) ) RCURLY
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.0");
                     }
                     match(input,98,FOLLOW_98_in_furcas_tcs_concretesyntax2094); if (state.failed) {
                         return ret2;
@@ -4712,7 +4712,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.1");
                     }
                     match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_concretesyntax2098); if (state.failed) {
                         return ret2;
@@ -4721,7 +4721,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.2");
                     }
                     // ./generationTemp/generated/TCS.g:430:807: ( ( (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )? ) )
                     // ./generationTemp/generated/TCS.g:430:808: ( (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )? )
@@ -4730,7 +4730,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:430:809: (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.2/@blockSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.2/@blockSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:430:1013: (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )?
                     int alt16=2;
@@ -4810,7 +4810,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.3");
                     }
                     match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_concretesyntax2132); if (state.failed) {
                         return ret2;
@@ -4846,7 +4846,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:433:169: ( ( 'symbols' LCURLY ( ( (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )? ) ) RCURLY ) | )
             int alt20=2;
@@ -4876,7 +4876,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:433:187: 'symbols' LCURLY ( ( (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )? ) ) RCURLY
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.0");
                     }
                     match(input,83,FOLLOW_83_in_furcas_tcs_concretesyntax2155); if (state.failed) {
                         return ret2;
@@ -4885,7 +4885,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.1");
                     }
                     match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_concretesyntax2159); if (state.failed) {
                         return ret2;
@@ -4894,7 +4894,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.2");
                     }
                     // ./generationTemp/generated/TCS.g:433:767: ( ( (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )? ) )
                     // ./generationTemp/generated/TCS.g:433:768: ( (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )? )
@@ -4903,7 +4903,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:433:769: (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.2/@blockSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.2/@blockSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:433:973: (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )?
                     int alt19=2;
@@ -4983,7 +4983,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.3");
                     }
                     match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_concretesyntax2193); if (state.failed) {
                         return ret2;
@@ -5019,7 +5019,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.3");
             }
             // ./generationTemp/generated/TCS.g:436:168: (temp= furcas_tcs_operatorlist (temp= furcas_tcs_operatorlist )* )?
             int alt22=2;
@@ -5090,7 +5090,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.4");
             }
             // ./generationTemp/generated/TCS.g:438:211: (temp= furcas_tcs_token (temp= furcas_tcs_token )* )?
             int alt24=2;
@@ -5161,7 +5161,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.5");
             }
             // ./generationTemp/generated/TCS.g:440:205: ( ( 'lexer' EQ (temp= stringSymbol ) SEMI ) | )
             int alt25=2;
@@ -5191,7 +5191,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:440:223: 'lexer' EQ (temp= stringSymbol ) SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.5/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.5/@thenSequence/@elements.0");
                     }
                     match(input,88,FOLLOW_88_in_furcas_tcs_concretesyntax2262); if (state.failed) {
                         return ret2;
@@ -5200,7 +5200,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.5/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.5/@thenSequence/@elements.1");
                     }
                     match(input,EQ,FOLLOW_EQ_in_furcas_tcs_concretesyntax2266); if (state.failed) {
                         return ret2;
@@ -5209,7 +5209,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.5/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.5/@thenSequence/@elements.2");
                     }
                     // ./generationTemp/generated/TCS.g:440:797: (temp= stringSymbol )
                     // ./generationTemp/generated/TCS.g:440:799: temp= stringSymbol
@@ -5233,7 +5233,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.5/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.5/@thenSequence/@elements.3");
                     }
                     match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_concretesyntax2281); if (state.failed) {
                         return ret2;
@@ -5278,7 +5278,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.5");
             }
             match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_concretesyntax2302); if (state.failed) {
                 return ret2;
@@ -5287,13 +5287,13 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.6");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.6");
             }
             if ( state.backtracking==0 ) {
               _enterInjectorAction();setOclRef(ret, "keywords", null, null, "OCL:LiteralRef.allInstances()->select("+
               "                                lr | self.templates->includes(lr.parentTemplate)).referredLiteral->asSet()"+
               "                                ->union(self.operatorLists.priorities.operators.literal->asSet())"+
-              "                                ->select(k | k.oclIsTypeOf(Keyword))", true, "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.6/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
+              "                                ->select(k | k.oclIsTypeOf(Keyword))", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.6/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -5336,7 +5336,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:455:4: ( ( (temp= ecore_eclassifier ) ) | ( RARROW (temp= identifier ( ( DLCOLON ) temp= identifier )* ) ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@functionSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@functionSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:455:129: ( ( (temp= ecore_eclassifier ) ) | ( RARROW (temp= identifier ( ( DLCOLON ) temp= identifier )* ) ) )
             int alt27=2;
@@ -5366,7 +5366,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:455:147: (temp= ecore_eclassifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@functionSequence/@elements.0/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@functionSequence/@elements.0/@thenSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:455:297: (temp= ecore_eclassifier )
                     // ./generationTemp/generated/TCS.g:455:299: temp= ecore_eclassifier
@@ -5408,7 +5408,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:456:90: RARROW (temp= identifier ( ( DLCOLON ) temp= identifier )* )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@functionSequence/@elements.0/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@functionSequence/@elements.0/@elseSequence/@elements.0");
                     }
                     match(input,RARROW,FOLLOW_RARROW_in_reference2366); if (state.failed) {
                         return ;
@@ -5417,7 +5417,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@functionSequence/@elements.0/@elseSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@functionSequence/@elements.0/@elseSequence/@elements.1");
                     }
                     // ./generationTemp/generated/TCS.g:456:414: (temp= identifier ( ( DLCOLON ) temp= identifier )* )
                     // ./generationTemp/generated/TCS.g:456:416: temp= identifier ( ( DLCOLON ) temp= identifier )*
@@ -5456,7 +5456,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // ./generationTemp/generated/TCS.g:457:50: DLCOLON
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@functionSequence/@elements.0/@elseSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
+                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@functionSequence/@elements.0/@elseSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
                     	    }
                     	    match(input,DLCOLON,FOLLOW_DLCOLON_in_reference2383); if (state.failed) {
                                 return ;
@@ -5761,7 +5761,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:495:4: 'primitiveTemplate' (temp= identifier ) 'for' reference[ret] ( ( 'default' ) | ) 'using' (temp= identifier ) ( ( 'orKeyword' ) | ) COLON 'value' EQ (temp= stringSymbol ) ( ( COMA 'serializer' EQ (temp= stringSymbol ) ) | ) SEMI
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.0");
             }
             match(input,92,FOLLOW_92_in_furcas_tcs_primitivetemplate2519); if (state.failed) {
                 return ret2;
@@ -5770,7 +5770,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:495:287: (temp= identifier )
             // ./generationTemp/generated/TCS.g:495:289: temp= identifier
@@ -5794,7 +5794,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.2");
             }
             match(input,130,FOLLOW_130_in_furcas_tcs_primitivetemplate2532); if (state.failed) {
                 return ret2;
@@ -5803,7 +5803,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.3");
             }
             pushFollow(FOLLOW_reference_in_furcas_tcs_primitivetemplate2535);
             reference(ret);
@@ -5817,7 +5817,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.4");
             }
             // ./generationTemp/generated/TCS.g:496:478: ( ( 'default' ) | )
             int alt30=2;
@@ -5847,7 +5847,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:496:496: 'default'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.4/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.4/@thenSequence/@elements.0");
                     }
                     match(input,76,FOLLOW_76_in_furcas_tcs_primitivetemplate2545); if (state.failed) {
                         return ret2;
@@ -5889,7 +5889,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.5");
             }
             match(input,110,FOLLOW_110_in_furcas_tcs_primitivetemplate2563); if (state.failed) {
                 return ret2;
@@ -5898,7 +5898,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.6");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.6");
             }
             // ./generationTemp/generated/TCS.g:497:288: (temp= identifier )
             // ./generationTemp/generated/TCS.g:497:290: temp= identifier
@@ -5922,7 +5922,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.7");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.7");
             }
             // ./generationTemp/generated/TCS.g:498:176: ( ( 'orKeyword' ) | )
             int alt31=2;
@@ -5952,7 +5952,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:498:194: 'orKeyword'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.7/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.7/@thenSequence/@elements.0");
                     }
                     match(input,85,FOLLOW_85_in_furcas_tcs_primitivetemplate2582); if (state.failed) {
                         return ret2;
@@ -5994,7 +5994,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.8");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.8");
             }
             match(input,COLON,FOLLOW_COLON_in_furcas_tcs_primitivetemplate2601); if (state.failed) {
                 return ret2;
@@ -6003,7 +6003,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.9");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.9");
             }
             match(input,103,FOLLOW_103_in_furcas_tcs_primitivetemplate2605); if (state.failed) {
                 return ret2;
@@ -6012,7 +6012,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.10");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.10");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_primitivetemplate2609); if (state.failed) {
                 return ret2;
@@ -6021,7 +6021,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.11");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.11");
             }
             // ./generationTemp/generated/TCS.g:499:581: (temp= stringSymbol )
             // ./generationTemp/generated/TCS.g:499:583: temp= stringSymbol
@@ -6045,7 +6045,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.12");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.12");
             }
             // ./generationTemp/generated/TCS.g:500:173: ( ( COMA 'serializer' EQ (temp= stringSymbol ) ) | )
             int alt32=2;
@@ -6075,7 +6075,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:500:191: COMA 'serializer' EQ (temp= stringSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.12/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.12/@thenSequence/@elements.0");
                     }
                     match(input,COMA,FOLLOW_COMA_in_furcas_tcs_primitivetemplate2630); if (state.failed) {
                         return ret2;
@@ -6084,7 +6084,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.12/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.12/@thenSequence/@elements.1");
                     }
                     match(input,95,FOLLOW_95_in_furcas_tcs_primitivetemplate2634); if (state.failed) {
                         return ret2;
@@ -6093,7 +6093,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.12/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.12/@thenSequence/@elements.2");
                     }
                     match(input,EQ,FOLLOW_EQ_in_furcas_tcs_primitivetemplate2638); if (state.failed) {
                         return ret2;
@@ -6102,7 +6102,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.12/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.12/@thenSequence/@elements.3");
                     }
                     // ./generationTemp/generated/TCS.g:500:865: (temp= stringSymbol )
                     // ./generationTemp/generated/TCS.g:500:867: temp= stringSymbol
@@ -6153,7 +6153,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.13");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.13");
             }
             match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_primitivetemplate2666); if (state.failed) {
                 return ret2;
@@ -6207,7 +6207,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:517:4: 'enumerationTemplate' reference[ret] ( ( 'auto' ) | ) ( ( ( ( COLON ( ( (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )? ) ) SEMI ) ) ) | ( SEMI ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.0");
             }
             match(input,94,FOLLOW_94_in_furcas_tcs_enumerationtemplate2707); if (state.failed) {
                 return ret2;
@@ -6216,7 +6216,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.1");
             }
             pushFollow(FOLLOW_reference_in_furcas_tcs_enumerationtemplate2710);
             reference(ret);
@@ -6230,7 +6230,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:517:444: ( ( 'auto' ) | )
             int alt33=2;
@@ -6260,7 +6260,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:517:462: 'auto'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.2/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.2/@thenSequence/@elements.0");
                     }
                     match(input,123,FOLLOW_123_in_furcas_tcs_enumerationtemplate2720); if (state.failed) {
                         return ret2;
@@ -6302,7 +6302,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.3");
             }
             // ./generationTemp/generated/TCS.g:518:142: ( ( ( ( COLON ( ( (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )? ) ) SEMI ) ) ) | ( SEMI ) )
             int alt36=2;
@@ -6332,7 +6332,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:518:160: ( ( COLON ( ( (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )? ) ) SEMI ) )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.3/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.3/@thenSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:518:310: ( ( COLON ( ( (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )? ) ) SEMI ) )
                     // ./generationTemp/generated/TCS.g:518:311: ( COLON ( ( (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )? ) ) SEMI )
@@ -6341,7 +6341,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:518:312: COLON ( ( (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )? ) ) SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.0");
                     }
                     match(input,COLON,FOLLOW_COLON_in_furcas_tcs_enumerationtemplate2748); if (state.failed) {
                         return ret2;
@@ -6350,7 +6350,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1");
                     }
                     // ./generationTemp/generated/TCS.g:518:689: ( ( (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )? ) )
                     // ./generationTemp/generated/TCS.g:518:690: ( (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )? )
@@ -6359,7 +6359,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:518:691: (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1/@blockSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1/@blockSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:518:895: (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )?
                     int alt35=2;
@@ -6381,8 +6381,8 @@ public class TCSParser extends ObservableInjectingParser {
                                 return ret2;
                             }
                             if ( state.backtracking==0 ) {
-                              setProperty(ret, "mappings", temp);
-                              setParent(temp,ret,"mappings");
+                              setProperty(ret, "mapping", temp);
+                              setParent(temp,ret,"mapping");
                             }
                             // ./generationTemp/generated/TCS.g:519:34: ( ( COMA ) temp= furcas_tcs_enumliteralmapping )*
                             loop34:
@@ -6406,7 +6406,7 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // ./generationTemp/generated/TCS.g:519:53: COMA
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
+                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
                             	    }
                             	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_enumerationtemplate2768); if (state.failed) {
                                         return ret2;
@@ -6429,8 +6429,8 @@ public class TCSParser extends ObservableInjectingParser {
                                         return ret2;
                                     }
                             	    if ( state.backtracking==0 ) {
-                            	      setProperty(ret, "mappings", temp);
-                            	      setParent(temp,ret,"mappings");
+                            	      setProperty(ret, "mapping", temp);
+                            	      setParent(temp,ret,"mapping");
                             	    }
 
                             	    }
@@ -6460,7 +6460,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.2");
                     }
                     match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_enumerationtemplate2791); if (state.failed) {
                         return ret2;
@@ -6496,7 +6496,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:520:325: SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.3/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.3/@elseSequence/@elements.0");
                     }
                     match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_enumerationtemplate2808); if (state.failed) {
                         return ret2;
@@ -6565,7 +6565,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:536:4: (temp= furcas_tcs_enumliteralval ) EQ (temp= furcas_tcs_sequenceelement )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.17/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.17/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:536:128: (temp= furcas_tcs_enumliteralval )
             // ./generationTemp/generated/TCS.g:536:130: temp= furcas_tcs_enumliteralval
@@ -6589,7 +6589,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.17/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.17/@templateSequence/@elements.1");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_enumliteralmapping2866); if (state.failed) {
                 return ret2;
@@ -6598,7 +6598,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.17/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.17/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:537:317: (temp= furcas_tcs_sequenceelement )?
             int alt37=2;
@@ -6678,7 +6678,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:553:4: 'template' reference[ret] ( ( 'referenceOnly' ( ( SHARP (temp= identifierOrKeyword ) ) | ) ) | ( ( ( SHARP (temp= identifierOrKeyword ) ) | ) ( ( LPAREN 'disambiguate' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( LPAREN 'disambiguateV3' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( LPAREN 'semDisambiguate' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( 'multi' ) | ) ( ( 'main' ) | ) ( ( ( ( 'deep' ) | ) 'abstract' ) | ) ( ( 'operatored' ( ( LPAREN (temp= identifier ) RPAREN ) | ) ) | ) ( ( 'context' ( ( (temp= furcas_tcs_contexttags ) ) | ) ) | ) ( ( 'addToContext' ) | ) ( ( 'nonPrimary' ) | ) ) ) ( ( ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) ) ) | ( SEMI ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.0");
             }
             match(input,131,FOLLOW_131_in_furcas_tcs_classtemplate2919); if (state.failed) {
                 return ret2;
@@ -6687,7 +6687,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.1");
             }
             pushFollow(FOLLOW_reference_in_furcas_tcs_classtemplate2922);
             reference(ret);
@@ -6701,7 +6701,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:553:433: ( ( 'referenceOnly' ( ( SHARP (temp= identifierOrKeyword ) ) | ) ) | ( ( ( SHARP (temp= identifierOrKeyword ) ) | ) ( ( LPAREN 'disambiguate' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( LPAREN 'disambiguateV3' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( LPAREN 'semDisambiguate' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( 'multi' ) | ) ( ( 'main' ) | ) ( ( ( ( 'deep' ) | ) 'abstract' ) | ) ( ( 'operatored' ( ( LPAREN (temp= identifier ) RPAREN ) | ) ) | ) ( ( 'context' ( ( (temp= furcas_tcs_contexttags ) ) | ) ) | ) ( ( 'addToContext' ) | ) ( ( 'nonPrimary' ) | ) ) )
             int alt53=2;
@@ -6731,7 +6731,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:553:451: 'referenceOnly' ( ( SHARP (temp= identifierOrKeyword ) ) | )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@thenSequence/@elements.0");
                     }
                     match(input,90,FOLLOW_90_in_furcas_tcs_classtemplate2932); if (state.failed) {
                         return ret2;
@@ -6740,7 +6740,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@thenSequence/@elements.1");
                     }
                     // ./generationTemp/generated/TCS.g:553:783: ( ( SHARP (temp= identifierOrKeyword ) ) | )
                     int alt38=2;
@@ -6770,7 +6770,7 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:553:801: SHARP (temp= identifierOrKeyword )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@thenSequence/@elements.1/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@thenSequence/@elements.1/@thenSequence/@elements.0");
                             }
                             match(input,SHARP,FOLLOW_SHARP_in_furcas_tcs_classtemplate2942); if (state.failed) {
                                 return ret2;
@@ -6779,7 +6779,7 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@thenSequence/@elements.1/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@thenSequence/@elements.1/@thenSequence/@elements.1");
                             }
                             // ./generationTemp/generated/TCS.g:553:1176: (temp= identifierOrKeyword )
                             // ./generationTemp/generated/TCS.g:553:1178: temp= identifierOrKeyword
@@ -6851,7 +6851,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:555:114: ( ( SHARP (temp= identifierOrKeyword ) ) | ) ( ( LPAREN 'disambiguate' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( LPAREN 'disambiguateV3' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( LPAREN 'semDisambiguate' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( 'multi' ) | ) ( ( 'main' ) | ) ( ( ( ( 'deep' ) | ) 'abstract' ) | ) ( ( 'operatored' ( ( LPAREN (temp= identifier ) RPAREN ) | ) ) | ) ( ( 'context' ( ( (temp= furcas_tcs_contexttags ) ) | ) ) | ) ( ( 'addToContext' ) | ) ( ( 'nonPrimary' ) | )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:555:265: ( ( SHARP (temp= identifierOrKeyword ) ) | )
                     int alt39=2;
@@ -6881,7 +6881,7 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:555:283: SHARP (temp= identifierOrKeyword )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.0/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.0/@thenSequence/@elements.0");
                             }
                             match(input,SHARP,FOLLOW_SHARP_in_furcas_tcs_classtemplate2986); if (state.failed) {
                                 return ret2;
@@ -6890,7 +6890,7 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.0/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.0/@thenSequence/@elements.1");
                             }
                             // ./generationTemp/generated/TCS.g:555:658: (temp= identifierOrKeyword )
                             // ./generationTemp/generated/TCS.g:555:660: temp= identifierOrKeyword
@@ -6941,7 +6941,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.1");
                     }
                     // ./generationTemp/generated/TCS.g:557:168: ( ( LPAREN 'disambiguate' EQ (temp= stringSymbol ) RPAREN ) | )
                     int alt40=2;
@@ -6985,7 +6985,7 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:557:186: LPAREN 'disambiguate' EQ (temp= stringSymbol ) RPAREN
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.0");
                             }
                             match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_classtemplate3020); if (state.failed) {
                                 return ret2;
@@ -6994,7 +6994,7 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.1");
                             }
                             match(input,111,FOLLOW_111_in_furcas_tcs_classtemplate3024); if (state.failed) {
                                 return ret2;
@@ -7003,7 +7003,7 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.2");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.2");
                             }
                             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_classtemplate3028); if (state.failed) {
                                 return ret2;
@@ -7012,7 +7012,7 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.3");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.3");
                             }
                             // ./generationTemp/generated/TCS.g:557:964: (temp= stringSymbol )
                             // ./generationTemp/generated/TCS.g:557:966: temp= stringSymbol
@@ -7036,7 +7036,7 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.4");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.4");
                             }
                             match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_classtemplate3043); if (state.failed) {
                                 return ret2;
@@ -7072,7 +7072,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.2");
                     }
                     // ./generationTemp/generated/TCS.g:559:168: ( ( LPAREN 'disambiguateV3' EQ (temp= stringSymbol ) RPAREN ) | )
                     int alt41=2;
@@ -7116,7 +7116,7 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:559:186: LPAREN 'disambiguateV3' EQ (temp= stringSymbol ) RPAREN
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.0");
                             }
                             match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_classtemplate3067); if (state.failed) {
                                 return ret2;
@@ -7125,7 +7125,7 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.1");
                             }
                             match(input,63,FOLLOW_63_in_furcas_tcs_classtemplate3071); if (state.failed) {
                                 return ret2;
@@ -7134,7 +7134,7 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.2");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.2");
                             }
                             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_classtemplate3075); if (state.failed) {
                                 return ret2;
@@ -7143,7 +7143,7 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.3");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.3");
                             }
                             // ./generationTemp/generated/TCS.g:559:966: (temp= stringSymbol )
                             // ./generationTemp/generated/TCS.g:559:968: temp= stringSymbol
@@ -7167,7 +7167,7 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.4");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.4");
                             }
                             match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_classtemplate3090); if (state.failed) {
                                 return ret2;
@@ -7203,7 +7203,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.3");
                     }
                     // ./generationTemp/generated/TCS.g:561:168: ( ( LPAREN 'semDisambiguate' EQ (temp= stringSymbol ) RPAREN ) | )
                     int alt42=2;
@@ -7233,7 +7233,7 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:561:186: LPAREN 'semDisambiguate' EQ (temp= stringSymbol ) RPAREN
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.0");
                             }
                             match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_classtemplate3114); if (state.failed) {
                                 return ret2;
@@ -7242,7 +7242,7 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.1");
                             }
                             match(input,77,FOLLOW_77_in_furcas_tcs_classtemplate3118); if (state.failed) {
                                 return ret2;
@@ -7251,7 +7251,7 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.2");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.2");
                             }
                             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_classtemplate3122); if (state.failed) {
                                 return ret2;
@@ -7260,7 +7260,7 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.3");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.3");
                             }
                             // ./generationTemp/generated/TCS.g:561:967: (temp= stringSymbol )
                             // ./generationTemp/generated/TCS.g:561:969: temp= stringSymbol
@@ -7284,7 +7284,7 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.4");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.4");
                             }
                             match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_classtemplate3137); if (state.failed) {
                                 return ret2;
@@ -7320,7 +7320,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.4");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.4");
                     }
                     // ./generationTemp/generated/TCS.g:563:168: ( ( 'multi' ) | )
                     int alt43=2;
@@ -7350,7 +7350,7 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:563:186: 'multi'
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.4/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.4/@thenSequence/@elements.0");
                             }
                             match(input,96,FOLLOW_96_in_furcas_tcs_classtemplate3160); if (state.failed) {
                                 return ret2;
@@ -7392,7 +7392,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.5");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.5");
                     }
                     // ./generationTemp/generated/TCS.g:564:168: ( ( 'main' ) | )
                     int alt44=2;
@@ -7422,7 +7422,7 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:564:186: 'main'
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.5/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.5/@thenSequence/@elements.0");
                             }
                             match(input,61,FOLLOW_61_in_furcas_tcs_classtemplate3184); if (state.failed) {
                                 return ret2;
@@ -7464,7 +7464,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.6");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.6");
                     }
                     // ./generationTemp/generated/TCS.g:565:168: ( ( ( ( 'deep' ) | ) 'abstract' ) | )
                     int alt46=2;
@@ -7494,7 +7494,7 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:565:186: ( ( 'deep' ) | ) 'abstract'
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.6/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.6/@thenSequence/@elements.0");
                             }
                             // ./generationTemp/generated/TCS.g:565:363: ( ( 'deep' ) | )
                             int alt45=2;
@@ -7524,7 +7524,7 @@ public class TCSParser extends ObservableInjectingParser {
                                     // ./generationTemp/generated/TCS.g:565:381: 'deep'
                                     {
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.6/@thenSequence/@elements.0/@thenSequence/@elements.0");
+                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.6/@thenSequence/@elements.0/@thenSequence/@elements.0");
                                     }
                                     match(input,107,FOLLOW_107_in_furcas_tcs_classtemplate3214); if (state.failed) {
                                         return ret2;
@@ -7566,7 +7566,7 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.6/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.6/@thenSequence/@elements.1");
                             }
                             match(input,86,FOLLOW_86_in_furcas_tcs_classtemplate3232); if (state.failed) {
                                 return ret2;
@@ -7608,7 +7608,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.7");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.7");
                     }
                     // ./generationTemp/generated/TCS.g:567:168: ( ( 'operatored' ( ( LPAREN (temp= identifier ) RPAREN ) | ) ) | )
                     int alt48=2;
@@ -7638,7 +7638,7 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:567:186: 'operatored' ( ( LPAREN (temp= identifier ) RPAREN ) | )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.0");
                             }
                             match(input,104,FOLLOW_104_in_furcas_tcs_classtemplate3256); if (state.failed) {
                                 return ret2;
@@ -7647,7 +7647,7 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.1");
                             }
                             // ./generationTemp/generated/TCS.g:567:567: ( ( LPAREN (temp= identifier ) RPAREN ) | )
                             int alt47=2;
@@ -7677,7 +7677,7 @@ public class TCSParser extends ObservableInjectingParser {
                                     // ./generationTemp/generated/TCS.g:567:585: LPAREN (temp= identifier ) RPAREN
                                     {
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.1/@thenSequence/@elements.0");
+                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.1/@thenSequence/@elements.0");
                                     }
                                     match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_classtemplate3266); if (state.failed) {
                                         return ret2;
@@ -7686,7 +7686,7 @@ public class TCSParser extends ObservableInjectingParser {
                                       _afterSeqEl();
                                     }
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.1/@thenSequence/@elements.1");
+                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.1/@thenSequence/@elements.1");
                                     }
                                     // ./generationTemp/generated/TCS.g:567:1013: (temp= identifier )
                                     // ./generationTemp/generated/TCS.g:567:1015: temp= identifier
@@ -7709,7 +7709,7 @@ public class TCSParser extends ObservableInjectingParser {
                                       _afterSeqEl();
                                     }
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.1/@thenSequence/@elements.2");
+                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.1/@thenSequence/@elements.2");
                                     }
                                     match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_classtemplate3281); if (state.failed) {
                                         return ret2;
@@ -7778,7 +7778,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.8");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.8");
                     }
                     // ./generationTemp/generated/TCS.g:569:168: ( ( 'context' ( ( (temp= furcas_tcs_contexttags ) ) | ) ) | )
                     int alt50=2;
@@ -7808,7 +7808,7 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:569:186: 'context' ( ( (temp= furcas_tcs_contexttags ) ) | )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.8/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.8/@thenSequence/@elements.0");
                             }
                             match(input,72,FOLLOW_72_in_furcas_tcs_classtemplate3319); if (state.failed) {
                                 return ret2;
@@ -7817,7 +7817,7 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.8/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.8/@thenSequence/@elements.1");
                             }
                             // ./generationTemp/generated/TCS.g:569:564: ( ( (temp= furcas_tcs_contexttags ) ) | )
                             int alt49=2;
@@ -7847,7 +7847,7 @@ public class TCSParser extends ObservableInjectingParser {
                                     // ./generationTemp/generated/TCS.g:569:582: (temp= furcas_tcs_contexttags )
                                     {
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.8/@thenSequence/@elements.1/@thenSequence/@elements.0");
+                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.8/@thenSequence/@elements.1/@thenSequence/@elements.0");
                                     }
                                     // ./generationTemp/generated/TCS.g:569:784: (temp= furcas_tcs_contexttags )
                                     // ./generationTemp/generated/TCS.g:569:786: temp= furcas_tcs_contexttags
@@ -7931,7 +7931,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.9");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.9");
                     }
                     // ./generationTemp/generated/TCS.g:572:168: ( ( 'addToContext' ) | )
                     int alt51=2;
@@ -7961,7 +7961,7 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:572:186: 'addToContext'
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.9/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.9/@thenSequence/@elements.0");
                             }
                             match(input,79,FOLLOW_79_in_furcas_tcs_classtemplate3372); if (state.failed) {
                                 return ret2;
@@ -8003,7 +8003,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.10");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.10");
                     }
                     // ./generationTemp/generated/TCS.g:573:169: ( ( 'nonPrimary' ) | )
                     int alt52=2;
@@ -8033,7 +8033,7 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:573:187: 'nonPrimary'
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.10/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.10/@thenSequence/@elements.0");
                             }
                             match(input,81,FOLLOW_81_in_furcas_tcs_classtemplate3396); if (state.failed) {
                                 return ret2;
@@ -8093,7 +8093,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.3");
             }
             // ./generationTemp/generated/TCS.g:575:142: ( ( ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) ) ) | ( SEMI ) )
             int alt54=2;
@@ -8123,7 +8123,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:575:160: ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.3/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.3/@thenSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:575:310: ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) )
                     // ./generationTemp/generated/TCS.g:575:311: ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI )
@@ -8132,7 +8132,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:575:312: COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.0");
                     }
                     match(input,COLON,FOLLOW_COLON_in_furcas_tcs_classtemplate3431); if (state.failed) {
                         return ret2;
@@ -8141,7 +8141,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1");
                     }
                     // ./generationTemp/generated/TCS.g:575:689: ( ( (temp= furcas_tcs_sequence ) ) )
                     // ./generationTemp/generated/TCS.g:575:690: ( (temp= furcas_tcs_sequence ) )
@@ -8150,7 +8150,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:575:691: (temp= furcas_tcs_sequence )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1/@blockSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1/@blockSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:575:895: (temp= furcas_tcs_sequence )
                     // ./generationTemp/generated/TCS.g:575:897: temp= furcas_tcs_sequence
@@ -8183,7 +8183,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.2");
                     }
                     match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_classtemplate3452); if (state.failed) {
                         return ret2;
@@ -8219,7 +8219,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:576:328: SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.3/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.3/@elseSequence/@elements.0");
                     }
                     match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_classtemplate3469); if (state.failed) {
                         return ret2;
@@ -8288,7 +8288,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:592:4: 'operatorTemplate' reference[ret] LPAREN 'operators' EQ (temp= identifier (temp= identifier )* )? COMA 'source' EQ (temp= furcas_tcs_propertyreference )? ( ( COMA 'storeOpTo' EQ (temp= furcas_tcs_propertyreference ) ) | ) ( ( COMA 'storeRightTo' EQ (temp= furcas_tcs_propertyreference ) ) | ) ( ( COMA 'disambiguate' EQ (temp= stringSymbol ) ) | ) ( ( COMA 'disambiguateV3' EQ (temp= stringSymbol ) ) | ) ( ( COMA 'semDisambiguate' EQ (temp= stringSymbol ) ) | ) RPAREN ( ( 'referenceOnly' ) | ( ( ( 'context' ( ( (temp= furcas_tcs_contexttags ) ) | ) ) | ) ) ) ( ( ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) ) ) | ( SEMI ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.0");
             }
             match(input,70,FOLLOW_70_in_furcas_tcs_operatortemplate3516); if (state.failed) {
                 return ret2;
@@ -8297,7 +8297,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.1");
             }
             pushFollow(FOLLOW_reference_in_furcas_tcs_operatortemplate3519);
             reference(ret);
@@ -8311,7 +8311,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2");
             }
             match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_operatortemplate3524); if (state.failed) {
                 return ret2;
@@ -8320,7 +8320,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.3");
             }
             match(input,109,FOLLOW_109_in_furcas_tcs_operatortemplate3528); if (state.failed) {
                 return ret2;
@@ -8329,7 +8329,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.4");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3532); if (state.failed) {
                 return ret2;
@@ -8338,7 +8338,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.5");
             }
             // ./generationTemp/generated/TCS.g:592:883: (temp= identifier (temp= identifier )* )?
             int alt56=2;
@@ -8407,7 +8407,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.6");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.6");
             }
             match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3560); if (state.failed) {
                 return ret2;
@@ -8416,7 +8416,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.7");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.7");
             }
             match(input,115,FOLLOW_115_in_furcas_tcs_operatortemplate3564); if (state.failed) {
                 return ret2;
@@ -8425,7 +8425,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.8");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.8");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3568); if (state.failed) {
                 return ret2;
@@ -8434,7 +8434,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.9");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.9");
             }
             // ./generationTemp/generated/TCS.g:592:1720: (temp= furcas_tcs_propertyreference )?
             int alt57=2;
@@ -8469,7 +8469,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.10");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.10");
             }
             // ./generationTemp/generated/TCS.g:593:185: ( ( COMA 'storeOpTo' EQ (temp= furcas_tcs_propertyreference ) ) | )
             int alt58=2;
@@ -8513,7 +8513,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:593:203: COMA 'storeOpTo' EQ (temp= furcas_tcs_propertyreference )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.10/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.10/@thenSequence/@elements.0");
                     }
                     match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3591); if (state.failed) {
                         return ret2;
@@ -8522,7 +8522,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.10/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.10/@thenSequence/@elements.1");
                     }
                     match(input,105,FOLLOW_105_in_furcas_tcs_operatortemplate3595); if (state.failed) {
                         return ret2;
@@ -8531,7 +8531,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.10/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.10/@thenSequence/@elements.2");
                     }
                     match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3599); if (state.failed) {
                         return ret2;
@@ -8540,7 +8540,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.10/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.10/@thenSequence/@elements.3");
                     }
                     // ./generationTemp/generated/TCS.g:593:876: (temp= furcas_tcs_propertyreference )
                     // ./generationTemp/generated/TCS.g:593:878: temp= furcas_tcs_propertyreference
@@ -8591,7 +8591,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.11");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.11");
             }
             // ./generationTemp/generated/TCS.g:595:143: ( ( COMA 'storeRightTo' EQ (temp= furcas_tcs_propertyreference ) ) | )
             int alt59=2;
@@ -8635,7 +8635,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:595:161: COMA 'storeRightTo' EQ (temp= furcas_tcs_propertyreference )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.11/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.11/@thenSequence/@elements.0");
                     }
                     match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3633); if (state.failed) {
                         return ret2;
@@ -8644,7 +8644,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.11/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.11/@thenSequence/@elements.1");
                     }
                     match(input,120,FOLLOW_120_in_furcas_tcs_operatortemplate3637); if (state.failed) {
                         return ret2;
@@ -8653,7 +8653,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.11/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.11/@thenSequence/@elements.2");
                     }
                     match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3641); if (state.failed) {
                         return ret2;
@@ -8662,7 +8662,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.11/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.11/@thenSequence/@elements.3");
                     }
                     // ./generationTemp/generated/TCS.g:595:837: (temp= furcas_tcs_propertyreference )
                     // ./generationTemp/generated/TCS.g:595:839: temp= furcas_tcs_propertyreference
@@ -8713,7 +8713,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.12");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.12");
             }
             // ./generationTemp/generated/TCS.g:597:143: ( ( COMA 'disambiguate' EQ (temp= stringSymbol ) ) | )
             int alt60=2;
@@ -8757,7 +8757,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:597:161: COMA 'disambiguate' EQ (temp= stringSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.12/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.12/@thenSequence/@elements.0");
                     }
                     match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3675); if (state.failed) {
                         return ret2;
@@ -8766,7 +8766,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.12/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.12/@thenSequence/@elements.1");
                     }
                     match(input,111,FOLLOW_111_in_furcas_tcs_operatortemplate3679); if (state.failed) {
                         return ret2;
@@ -8775,7 +8775,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.12/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.12/@thenSequence/@elements.2");
                     }
                     match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3683); if (state.failed) {
                         return ret2;
@@ -8784,7 +8784,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.12/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.12/@thenSequence/@elements.3");
                     }
                     // ./generationTemp/generated/TCS.g:597:837: (temp= stringSymbol )
                     // ./generationTemp/generated/TCS.g:597:839: temp= stringSymbol
@@ -8835,7 +8835,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.13");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.13");
             }
             // ./generationTemp/generated/TCS.g:599:143: ( ( COMA 'disambiguateV3' EQ (temp= stringSymbol ) ) | )
             int alt61=2;
@@ -8879,7 +8879,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:599:161: COMA 'disambiguateV3' EQ (temp= stringSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.13/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.13/@thenSequence/@elements.0");
                     }
                     match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3717); if (state.failed) {
                         return ret2;
@@ -8888,7 +8888,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.13/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.13/@thenSequence/@elements.1");
                     }
                     match(input,63,FOLLOW_63_in_furcas_tcs_operatortemplate3721); if (state.failed) {
                         return ret2;
@@ -8897,7 +8897,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.13/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.13/@thenSequence/@elements.2");
                     }
                     match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3725); if (state.failed) {
                         return ret2;
@@ -8906,7 +8906,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.13/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.13/@thenSequence/@elements.3");
                     }
                     // ./generationTemp/generated/TCS.g:599:839: (temp= stringSymbol )
                     // ./generationTemp/generated/TCS.g:599:841: temp= stringSymbol
@@ -8957,7 +8957,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.14");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.14");
             }
             // ./generationTemp/generated/TCS.g:601:143: ( ( COMA 'semDisambiguate' EQ (temp= stringSymbol ) ) | )
             int alt62=2;
@@ -8987,7 +8987,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:601:161: COMA 'semDisambiguate' EQ (temp= stringSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.14/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.14/@thenSequence/@elements.0");
                     }
                     match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3759); if (state.failed) {
                         return ret2;
@@ -8996,7 +8996,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.14/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.14/@thenSequence/@elements.1");
                     }
                     match(input,77,FOLLOW_77_in_furcas_tcs_operatortemplate3763); if (state.failed) {
                         return ret2;
@@ -9005,7 +9005,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.14/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.14/@thenSequence/@elements.2");
                     }
                     match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3767); if (state.failed) {
                         return ret2;
@@ -9014,7 +9014,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.14/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.14/@thenSequence/@elements.3");
                     }
                     // ./generationTemp/generated/TCS.g:601:840: (temp= stringSymbol )
                     // ./generationTemp/generated/TCS.g:601:842: temp= stringSymbol
@@ -9065,7 +9065,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.15");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.15");
             }
             match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_operatortemplate3795); if (state.failed) {
                 return ret2;
@@ -9074,7 +9074,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.16");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.16");
             }
             // ./generationTemp/generated/TCS.g:603:292: ( ( 'referenceOnly' ) | ( ( ( 'context' ( ( (temp= furcas_tcs_contexttags ) ) | ) ) | ) ) )
             int alt65=2;
@@ -9104,7 +9104,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:603:310: 'referenceOnly'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.16/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.16/@thenSequence/@elements.0");
                     }
                     match(input,90,FOLLOW_90_in_furcas_tcs_operatortemplate3805); if (state.failed) {
                         return ret2;
@@ -9134,7 +9134,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:603:589: ( ( 'context' ( ( (temp= furcas_tcs_contexttags ) ) | ) ) | )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.16/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.16/@elseSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:603:741: ( ( 'context' ( ( (temp= furcas_tcs_contexttags ) ) | ) ) | )
                     int alt64=2;
@@ -9164,7 +9164,7 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:603:759: 'context' ( ( (temp= furcas_tcs_contexttags ) ) | )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.16/@elseSequence/@elements.0/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.16/@elseSequence/@elements.0/@thenSequence/@elements.0");
                             }
                             match(input,72,FOLLOW_72_in_furcas_tcs_operatortemplate3824); if (state.failed) {
                                 return ret2;
@@ -9173,7 +9173,7 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.16/@elseSequence/@elements.0/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.16/@elseSequence/@elements.0/@thenSequence/@elements.1");
                             }
                             // ./generationTemp/generated/TCS.g:603:1139: ( ( (temp= furcas_tcs_contexttags ) ) | )
                             int alt63=2;
@@ -9203,7 +9203,7 @@ public class TCSParser extends ObservableInjectingParser {
                                     // ./generationTemp/generated/TCS.g:603:1157: (temp= furcas_tcs_contexttags )
                                     {
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.16/@elseSequence/@elements.0/@thenSequence/@elements.1/@thenSequence/@elements.0");
+                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.16/@elseSequence/@elements.0/@thenSequence/@elements.1/@thenSequence/@elements.0");
                                     }
                                     // ./generationTemp/generated/TCS.g:603:1360: (temp= furcas_tcs_contexttags )
                                     // ./generationTemp/generated/TCS.g:603:1362: temp= furcas_tcs_contexttags
@@ -9305,7 +9305,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.17");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.17");
             }
             // ./generationTemp/generated/TCS.g:607:143: ( ( ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) ) ) | ( SEMI ) )
             int alt66=2;
@@ -9335,7 +9335,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:607:161: ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.17/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.17/@thenSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:607:312: ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) )
                     // ./generationTemp/generated/TCS.g:607:313: ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI )
@@ -9344,7 +9344,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:607:314: COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.17/@thenSequence/@elements.0/@blockSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.17/@thenSequence/@elements.0/@blockSequence/@elements.0");
                     }
                     match(input,COLON,FOLLOW_COLON_in_furcas_tcs_operatortemplate3888); if (state.failed) {
                         return ret2;
@@ -9353,7 +9353,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.17/@thenSequence/@elements.0/@blockSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.17/@thenSequence/@elements.0/@blockSequence/@elements.1");
                     }
                     // ./generationTemp/generated/TCS.g:607:693: ( ( (temp= furcas_tcs_sequence ) ) )
                     // ./generationTemp/generated/TCS.g:607:694: ( (temp= furcas_tcs_sequence ) )
@@ -9362,7 +9362,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:607:695: (temp= furcas_tcs_sequence )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.17/@thenSequence/@elements.0/@blockSequence/@elements.1/@blockSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.17/@thenSequence/@elements.0/@blockSequence/@elements.1/@blockSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:607:900: (temp= furcas_tcs_sequence )
                     // ./generationTemp/generated/TCS.g:607:902: temp= furcas_tcs_sequence
@@ -9395,7 +9395,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.17/@thenSequence/@elements.0/@blockSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.17/@thenSequence/@elements.0/@blockSequence/@elements.2");
                     }
                     match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_operatortemplate3909); if (state.failed) {
                         return ret2;
@@ -9431,7 +9431,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:608:329: SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.17/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.17/@elseSequence/@elements.0");
                     }
                     match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_operatortemplate3926); if (state.failed) {
                         return ret2;
@@ -9500,7 +9500,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:624:4: 'function' (temp= identifier ) LPAREN reference[ret] RPAREN ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.0");
             }
             match(input,126,FOLLOW_126_in_furcas_tcs_functiontemplate3973); if (state.failed) {
                 return ret2;
@@ -9509,7 +9509,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:624:278: (temp= identifier )
             // ./generationTemp/generated/TCS.g:624:280: temp= identifier
@@ -9533,7 +9533,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.2");
             }
             match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_functiontemplate3987); if (state.failed) {
                 return ret2;
@@ -9542,7 +9542,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.3");
             }
             pushFollow(FOLLOW_reference_in_furcas_tcs_functiontemplate3991);
             reference(ret);
@@ -9556,7 +9556,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.4");
             }
             match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_functiontemplate3996); if (state.failed) {
                 return ret2;
@@ -9565,7 +9565,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.5");
             }
             // ./generationTemp/generated/TCS.g:625:628: ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) )
             // ./generationTemp/generated/TCS.g:625:629: ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI )
@@ -9574,7 +9574,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:625:630: COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.5/@blockSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.5/@blockSequence/@elements.0");
             }
             match(input,COLON,FOLLOW_COLON_in_furcas_tcs_functiontemplate4004); if (state.failed) {
                 return ret2;
@@ -9583,7 +9583,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.5/@blockSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.5/@blockSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:625:955: ( ( (temp= furcas_tcs_sequence ) ) )
             // ./generationTemp/generated/TCS.g:625:956: ( (temp= furcas_tcs_sequence ) )
@@ -9592,7 +9592,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:625:957: (temp= furcas_tcs_sequence )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.5/@blockSequence/@elements.1/@blockSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.5/@blockSequence/@elements.1/@blockSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:625:1135: (temp= furcas_tcs_sequence )
             // ./generationTemp/generated/TCS.g:625:1137: temp= furcas_tcs_sequence
@@ -9625,7 +9625,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.5/@blockSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.5/@blockSequence/@elements.2");
             }
             match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_functiontemplate4025); if (state.failed) {
                 return ret2;
@@ -9688,7 +9688,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:641:4: LPAREN (temp= identifier ( ( COMA ) temp= identifier )* )? RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.21/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.21/@templateSequence/@elements.0");
             }
             match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_contexttags4070); if (state.failed) {
                 return ret2;
@@ -9697,7 +9697,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.21/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.21/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:641:276: (temp= identifier ( ( COMA ) temp= identifier )* )?
             int alt68=2;
@@ -9744,7 +9744,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // ./generationTemp/generated/TCS.g:642:49: COMA
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.21/@templateSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
+                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.21/@templateSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
                     	    }
                     	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_contexttags4087); if (state.failed) {
                                 return ret2;
@@ -9789,7 +9789,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.21/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.21/@templateSequence/@elements.2");
             }
             match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_contexttags4107); if (state.failed) {
                 return ret2;
@@ -9843,7 +9843,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:658:4: ( ( (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )? ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.22/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.22/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:658:128: ( ( (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )? ) )
             // ./generationTemp/generated/TCS.g:658:129: ( (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )? )
@@ -9852,7 +9852,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:658:130: (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.22/@templateSequence/@elements.0/@blockSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.22/@templateSequence/@elements.0/@blockSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:658:281: (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )?
             int alt70=2;
@@ -10262,7 +10262,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:691:4: (temp= stringSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.24/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.24/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:691:128: (temp= stringSymbol )
             // ./generationTemp/generated/TCS.g:691:130: temp= stringSymbol
@@ -10285,10 +10285,10 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.24/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.24/@templateSequence/@elements.1");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.24/@templateSequence/@elements.1/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.24/@templateSequence/@elements.1/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -10339,7 +10339,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:706:4: ( ( (temp= identifierOrKeyword ) ) | ( RARROW (temp= identifierOrKeyword ) ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.25/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.25/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:706:129: ( ( (temp= identifierOrKeyword ) ) | ( RARROW (temp= identifierOrKeyword ) ) )
             int alt72=2;
@@ -10369,7 +10369,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:706:147: (temp= identifierOrKeyword )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.25/@templateSequence/@elements.0/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.25/@templateSequence/@elements.0/@thenSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:706:297: (temp= identifierOrKeyword )
                     // ./generationTemp/generated/TCS.g:706:299: temp= identifierOrKeyword
@@ -10383,7 +10383,7 @@ public class TCSParser extends ObservableInjectingParser {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      setOclRef(ret, "strucfeature", null, temp, "OCL:#context.oclAsType(FURCAS::TCS::Template).metaReference.oclAsType(ecore::EClass).eAllStructuralFeatures->select(name = ?)", "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.25/@templateSequence/@elements.0/@thenSequence/@elements.0", SyntaxRegistryFacade.getModelUpdaterRegistry());
+                      setOclRef(ret, "strucfeature", null, temp, "OCL:#context.oclAsType(FURCAS::TCS::Template).metaReference.oclAsType(ecore::EClass).eAllStructuralFeatures->select(name = ?)", "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.25/@templateSequence/@elements.0/@thenSequence/@elements.0", SyntaxRegistryFacade.getModelUpdaterRegistry());
                     }
 
                     }
@@ -10410,7 +10410,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:706:733: RARROW (temp= identifierOrKeyword )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.25/@templateSequence/@elements.0/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.25/@templateSequence/@elements.0/@elseSequence/@elements.0");
                     }
                     match(input,RARROW,FOLLOW_RARROW_in_furcas_tcs_propertyreference4373); if (state.failed) {
                         return ret2;
@@ -10419,7 +10419,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.25/@templateSequence/@elements.0/@elseSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.25/@templateSequence/@elements.0/@elseSequence/@elements.1");
                     }
                     // ./generationTemp/generated/TCS.g:706:1057: (temp= identifierOrKeyword )
                     // ./generationTemp/generated/TCS.g:706:1059: temp= identifierOrKeyword
@@ -10503,7 +10503,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:723:4: (temp= furcas_tcs_propertyreference ) ( ( LCURLY (temp= furcas_tcs_propertyarg ( ( COMA ) temp= furcas_tcs_propertyarg )* )? RCURLY ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.26/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.26/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:723:128: (temp= furcas_tcs_propertyreference )
             // ./generationTemp/generated/TCS.g:723:130: temp= furcas_tcs_propertyreference
@@ -10527,7 +10527,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.26/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.26/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:724:184: ( ( LCURLY (temp= furcas_tcs_propertyarg ( ( COMA ) temp= furcas_tcs_propertyarg )* )? RCURLY ) | )
             int alt75=2;
@@ -10557,7 +10557,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:724:202: LCURLY (temp= furcas_tcs_propertyarg ( ( COMA ) temp= furcas_tcs_propertyarg )* )? RCURLY
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.26/@templateSequence/@elements.1/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.26/@templateSequence/@elements.1/@thenSequence/@elements.0");
                     }
                     match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_property4447); if (state.failed) {
                         return ret2;
@@ -10566,7 +10566,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.26/@templateSequence/@elements.1/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.26/@templateSequence/@elements.1/@thenSequence/@elements.1");
                     }
                     // ./generationTemp/generated/TCS.g:724:526: (temp= furcas_tcs_propertyarg ( ( COMA ) temp= furcas_tcs_propertyarg )* )?
                     int alt74=2;
@@ -10613,7 +10613,7 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // ./generationTemp/generated/TCS.g:725:57: COMA
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.26/@templateSequence/@elements.1/@thenSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
+                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.26/@templateSequence/@elements.1/@thenSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
                             	    }
                             	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_property4464); if (state.failed) {
                                         return ret2;
@@ -10658,7 +10658,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.26/@templateSequence/@elements.1/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.26/@templateSequence/@elements.1/@thenSequence/@elements.2");
                     }
                     match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_property4484); if (state.failed) {
                         return ret2;
@@ -10694,10 +10694,10 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.26/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.26/@templateSequence/@elements.2");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.26/@templateSequence/@elements.2/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.26/@templateSequence/@elements.2/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -10748,7 +10748,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:742:4: LT (temp= identifier ) GT
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.27/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.27/@templateSequence/@elements.0");
             }
             match(input,LT,FOLLOW_LT_in_furcas_tcs_customseparator4542); if (state.failed) {
                 return ret2;
@@ -10757,7 +10757,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.27/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.27/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:742:272: (temp= identifier )
             // ./generationTemp/generated/TCS.g:742:274: temp= identifier
@@ -10781,7 +10781,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.27/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.27/@templateSequence/@elements.2");
             }
             match(input,GT,FOLLOW_GT_in_furcas_tcs_customseparator4557); if (state.failed) {
                 return ret2;
@@ -10790,10 +10790,10 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.27/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.27/@templateSequence/@elements.3");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.27/@templateSequence/@elements.3/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.27/@templateSequence/@elements.3/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -10844,7 +10844,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:758:4: LSQUARE (temp= furcas_tcs_sequence ) RSQUARE ( ( LCURLY (temp= furcas_tcs_blockarg ( ( COMA ) temp= furcas_tcs_blockarg )* )? RCURLY ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.28/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.28/@templateSequence/@elements.0");
             }
             match(input,LSQUARE,FOLLOW_LSQUARE_in_furcas_tcs_block4602); if (state.failed) {
                 return ret2;
@@ -10853,7 +10853,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.28/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.28/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:758:277: (temp= furcas_tcs_sequence )
             // ./generationTemp/generated/TCS.g:758:279: temp= furcas_tcs_sequence
@@ -10877,7 +10877,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.28/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.28/@templateSequence/@elements.2");
             }
             match(input,RSQUARE,FOLLOW_RSQUARE_in_furcas_tcs_block4617); if (state.failed) {
                 return ret2;
@@ -10886,7 +10886,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.28/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.28/@templateSequence/@elements.3");
             }
             // ./generationTemp/generated/TCS.g:759:329: ( ( LCURLY (temp= furcas_tcs_blockarg ( ( COMA ) temp= furcas_tcs_blockarg )* )? RCURLY ) | )
             int alt78=2;
@@ -10916,7 +10916,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:759:347: LCURLY (temp= furcas_tcs_blockarg ( ( COMA ) temp= furcas_tcs_blockarg )* )? RCURLY
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.28/@templateSequence/@elements.3/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.28/@templateSequence/@elements.3/@thenSequence/@elements.0");
                     }
                     match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_block4628); if (state.failed) {
                         return ret2;
@@ -10925,7 +10925,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.28/@templateSequence/@elements.3/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.28/@templateSequence/@elements.3/@thenSequence/@elements.1");
                     }
                     // ./generationTemp/generated/TCS.g:759:671: (temp= furcas_tcs_blockarg ( ( COMA ) temp= furcas_tcs_blockarg )* )?
                     int alt77=2;
@@ -10972,7 +10972,7 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // ./generationTemp/generated/TCS.g:760:54: COMA
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.28/@templateSequence/@elements.3/@thenSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
+                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.28/@templateSequence/@elements.3/@thenSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
                             	    }
                             	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_block4645); if (state.failed) {
                                         return ret2;
@@ -11017,7 +11017,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.28/@templateSequence/@elements.3/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.28/@templateSequence/@elements.3/@thenSequence/@elements.2");
                     }
                     match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_block4665); if (state.failed) {
                         return ret2;
@@ -11053,10 +11053,10 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.28/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.28/@templateSequence/@elements.4");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.28/@templateSequence/@elements.4/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.28/@templateSequence/@elements.4/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -11107,7 +11107,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:777:4: LPAREN (temp= furcas_tcs_expression ) QMARK (temp= furcas_tcs_sequence ) ( ( COLON (temp= furcas_tcs_sequence ) ) | ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.0");
             }
             match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_conditionalelement4723); if (state.failed) {
                 return ret2;
@@ -11116,7 +11116,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:777:276: (temp= furcas_tcs_expression )
             // ./generationTemp/generated/TCS.g:777:278: temp= furcas_tcs_expression
@@ -11140,7 +11140,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.2");
             }
             match(input,QMARK,FOLLOW_QMARK_in_furcas_tcs_conditionalelement4738); if (state.failed) {
                 return ret2;
@@ -11149,7 +11149,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.3");
             }
             // ./generationTemp/generated/TCS.g:778:322: (temp= furcas_tcs_sequence )
             // ./generationTemp/generated/TCS.g:778:324: temp= furcas_tcs_sequence
@@ -11173,7 +11173,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.4");
             }
             // ./generationTemp/generated/TCS.g:779:179: ( ( COLON (temp= furcas_tcs_sequence ) ) | )
             int alt79=2;
@@ -11203,7 +11203,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:779:197: COLON (temp= furcas_tcs_sequence )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.4/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.4/@thenSequence/@elements.0");
                     }
                     match(input,COLON,FOLLOW_COLON_in_furcas_tcs_conditionalelement4759); if (state.failed) {
                         return ret2;
@@ -11212,7 +11212,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.4/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.4/@thenSequence/@elements.1");
                     }
                     // ./generationTemp/generated/TCS.g:779:520: (temp= furcas_tcs_sequence )
                     // ./generationTemp/generated/TCS.g:779:522: temp= furcas_tcs_sequence
@@ -11263,7 +11263,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.5");
             }
             match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_conditionalelement4787); if (state.failed) {
                 return ret2;
@@ -11272,10 +11272,10 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.6");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.6");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.6/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.6/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -11326,7 +11326,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:796:4: DLSQUARE ( ( (temp= furcas_tcs_sequenceinalternative_nestedSequence ( ( PIPE ) temp= furcas_tcs_sequenceinalternative_nestedSequence )+ ) ) ) DRSQUARE ( ( STAR ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.30/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.0");
             }
             match(input,DLSQUARE,FOLLOW_DLSQUARE_in_furcas_tcs_alternative4832); if (state.failed) {
                 return ret2;
@@ -11335,7 +11335,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.30/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:796:278: ( ( (temp= furcas_tcs_sequenceinalternative_nestedSequence ( ( PIPE ) temp= furcas_tcs_sequenceinalternative_nestedSequence )+ ) ) )
             // ./generationTemp/generated/TCS.g:796:279: ( (temp= furcas_tcs_sequenceinalternative_nestedSequence ( ( PIPE ) temp= furcas_tcs_sequenceinalternative_nestedSequence )+ ) )
@@ -11344,7 +11344,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:796:280: (temp= furcas_tcs_sequenceinalternative_nestedSequence ( ( PIPE ) temp= furcas_tcs_sequenceinalternative_nestedSequence )+ )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.30/@templateSequence/@elements.1/@blockSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.1/@blockSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:796:431: (temp= furcas_tcs_sequenceinalternative_nestedSequence ( ( PIPE ) temp= furcas_tcs_sequenceinalternative_nestedSequence )+ )
             // ./generationTemp/generated/TCS.g:796:433: temp= furcas_tcs_sequenceinalternative_nestedSequence ( ( PIPE ) temp= furcas_tcs_sequenceinalternative_nestedSequence )+
@@ -11384,7 +11384,7 @@ public class TCSParser extends ObservableInjectingParser {
             	    // ./generationTemp/generated/TCS.g:797:54: PIPE
             	    {
             	    if ( state.backtracking==0 ) {
-            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.30/@templateSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.1/@separatorSequence/@elements.0");
+            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.1/@separatorSequence/@elements.0");
             	    }
             	    match(input,PIPE,FOLLOW_PIPE_in_furcas_tcs_alternative4852); if (state.failed) {
                         return ret2;
@@ -11442,7 +11442,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.30/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.2");
             }
             match(input,DRSQUARE,FOLLOW_DRSQUARE_in_furcas_tcs_alternative4872); if (state.failed) {
                 return ret2;
@@ -11451,7 +11451,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.30/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.3");
             }
             // ./generationTemp/generated/TCS.g:798:346: ( ( STAR ) | )
             int alt81=2;
@@ -11481,7 +11481,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:798:364: STAR
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.30/@templateSequence/@elements.3/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.3/@thenSequence/@elements.0");
                     }
                     match(input,STAR,FOLLOW_STAR_in_furcas_tcs_alternative4883); if (state.failed) {
                         return ret2;
@@ -11523,10 +11523,10 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.30/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.4");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.30/@templateSequence/@elements.4/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.4/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -11577,7 +11577,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:814:4: ( ( 'disambiguate' LPAREN (temp= stringSymbol ) RPAREN ) | ) ( ( (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )? ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.31/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.31/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:814:129: ( ( 'disambiguate' LPAREN (temp= stringSymbol ) RPAREN ) | )
             int alt82=2;
@@ -11635,7 +11635,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:814:147: 'disambiguate' LPAREN (temp= stringSymbol ) RPAREN
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.31/@templateSequence/@elements.0/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.31/@templateSequence/@elements.0/@thenSequence/@elements.0");
                     }
                     match(input,111,FOLLOW_111_in_furcas_tcs_sequenceinalternative_nestedSequence4948); if (state.failed) {
                         return ret2;
@@ -11644,7 +11644,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.31/@templateSequence/@elements.0/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.31/@templateSequence/@elements.0/@thenSequence/@elements.1");
                     }
                     match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_sequenceinalternative_nestedSequence4952); if (state.failed) {
                         return ret2;
@@ -11653,7 +11653,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.31/@templateSequence/@elements.0/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.31/@templateSequence/@elements.0/@thenSequence/@elements.2");
                     }
                     // ./generationTemp/generated/TCS.g:814:651: (temp= stringSymbol )
                     // ./generationTemp/generated/TCS.g:814:653: temp= stringSymbol
@@ -11677,7 +11677,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.31/@templateSequence/@elements.0/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.31/@templateSequence/@elements.0/@thenSequence/@elements.3");
                     }
                     match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_sequenceinalternative_nestedSequence4967); if (state.failed) {
                         return ret2;
@@ -11713,7 +11713,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.31/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.31/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:816:141: ( ( (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )? ) )
             // ./generationTemp/generated/TCS.g:816:142: ( (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )? )
@@ -11722,7 +11722,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:816:143: (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.31/@templateSequence/@elements.1/@blockSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.31/@templateSequence/@elements.1/@blockSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:816:294: (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )?
             int alt84=2;
@@ -11847,7 +11847,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:833:4: DOLLAR (temp= identifier )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.32/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.32/@templateSequence/@elements.0");
             }
             match(input,DOLLAR,FOLLOW_DOLLAR_in_furcas_tcs_functioncall5051); if (state.failed) {
                 return ret2;
@@ -11856,7 +11856,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.32/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.32/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:833:276: (temp= identifier )
             // ./generationTemp/generated/TCS.g:833:278: temp= identifier
@@ -11879,10 +11879,10 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.32/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.32/@templateSequence/@elements.2");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.32/@templateSequence/@elements.2/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.32/@templateSequence/@elements.2/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -11933,7 +11933,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:848:4: DLCURLY ( ( (temp= furcas_tcs_injectoraction ( ( COMA ) temp= furcas_tcs_injectoraction )* )? ) ) DRCURLY
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.33/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.33/@templateSequence/@elements.0");
             }
             match(input,DLCURLY,FOLLOW_DLCURLY_in_furcas_tcs_injectoractionsblock5106); if (state.failed) {
                 return ret2;
@@ -11942,7 +11942,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.33/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.33/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:848:277: ( ( (temp= furcas_tcs_injectoraction ( ( COMA ) temp= furcas_tcs_injectoraction )* )? ) )
             // ./generationTemp/generated/TCS.g:848:278: ( (temp= furcas_tcs_injectoraction ( ( COMA ) temp= furcas_tcs_injectoraction )* )? )
@@ -11951,7 +11951,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:848:279: (temp= furcas_tcs_injectoraction ( ( COMA ) temp= furcas_tcs_injectoraction )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.33/@templateSequence/@elements.1/@blockSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.33/@templateSequence/@elements.1/@blockSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:848:430: (temp= furcas_tcs_injectoraction ( ( COMA ) temp= furcas_tcs_injectoraction )* )?
             int alt86=2;
@@ -11998,7 +11998,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // ./generationTemp/generated/TCS.g:849:60: COMA
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.33/@templateSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
+                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.33/@templateSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
                     	    }
                     	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_injectoractionsblock5126); if (state.failed) {
                                 return ret2;
@@ -12052,7 +12052,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.33/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.33/@templateSequence/@elements.2");
             }
             match(input,DRCURLY,FOLLOW_DRCURLY_in_furcas_tcs_injectoractionsblock5149); if (state.failed) {
                 return ret2;
@@ -12061,10 +12061,10 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.33/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.33/@templateSequence/@elements.3");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.33/@templateSequence/@elements.3/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.33/@templateSequence/@elements.3/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -12242,7 +12242,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:885:4: (temp= furcas_tcs_propertyreference )? ( ( LARROW ) | ( EQ ) ) (temp= escapedIdentifierOrKeyword )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.36/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.36/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:885:128: (temp= furcas_tcs_propertyreference )?
             int alt88=2;
@@ -12277,7 +12277,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.36/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.36/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:886:186: ( ( LARROW ) | ( EQ ) )
             int alt89=2;
@@ -12307,7 +12307,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:886:204: LARROW
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.36/@templateSequence/@elements.1/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.36/@templateSequence/@elements.1/@thenSequence/@elements.0");
                     }
                     match(input,LARROW,FOLLOW_LARROW_in_furcas_tcs_primitivepropertyinit5282); if (state.failed) {
                         return ret2;
@@ -12337,7 +12337,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:886:467: EQ
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.36/@templateSequence/@elements.1/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.36/@templateSequence/@elements.1/@elseSequence/@elements.0");
                     }
                     match(input,EQ,FOLLOW_EQ_in_furcas_tcs_primitivepropertyinit5297); if (state.failed) {
                         return ret2;
@@ -12364,7 +12364,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.36/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.36/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:887:141: (temp= escapedIdentifierOrKeyword )?
             int alt90=2;
@@ -12444,7 +12444,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:903:4: (temp= furcas_tcs_propertyreference )? ( ( LARROW ) | ( EQ ) ) 'lookIn' LPAREN (temp= stringSymbol )? RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.37/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.37/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:903:128: (temp= furcas_tcs_propertyreference )?
             int alt91=2;
@@ -12479,7 +12479,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.37/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.37/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:904:186: ( ( LARROW ) | ( EQ ) )
             int alt92=2;
@@ -12509,7 +12509,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:904:204: LARROW
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.37/@templateSequence/@elements.1/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.37/@templateSequence/@elements.1/@thenSequence/@elements.0");
                     }
                     match(input,LARROW,FOLLOW_LARROW_in_furcas_tcs_lookuppropertyinit5376); if (state.failed) {
                         return ret2;
@@ -12539,7 +12539,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:904:467: EQ
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.37/@templateSequence/@elements.1/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.37/@templateSequence/@elements.1/@elseSequence/@elements.0");
                     }
                     match(input,EQ,FOLLOW_EQ_in_furcas_tcs_lookuppropertyinit5391); if (state.failed) {
                         return ret2;
@@ -12566,7 +12566,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.37/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.37/@templateSequence/@elements.2");
             }
             match(input,50,FOLLOW_50_in_furcas_tcs_lookuppropertyinit5402); if (state.failed) {
                 return ret2;
@@ -12575,7 +12575,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.37/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.37/@templateSequence/@elements.3");
             }
             match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_lookuppropertyinit5406); if (state.failed) {
                 return ret2;
@@ -12584,7 +12584,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.37/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.37/@templateSequence/@elements.4");
             }
             // ./generationTemp/generated/TCS.g:905:437: (temp= stringSymbol )?
             int alt93=2;
@@ -12619,7 +12619,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.37/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.37/@templateSequence/@elements.5");
             }
             match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_lookuppropertyinit5423); if (state.failed) {
                 return ret2;
@@ -12673,7 +12673,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:921:4: (temp= furcas_tcs_propertyreference )? ( ( LARROW ) | ( EQ ) ) 'foreach' LPAREN (temp= stringSymbol )? ( ( COMA 'mode' EQ (temp= identifierOrKeyword ) ) | ) ( ( COMA ( ( (temp= furcas_tcs_predicatesemantic ( ( COMA ) temp= furcas_tcs_predicatesemantic )* )? ) ) ) | ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:921:128: (temp= furcas_tcs_propertyreference )?
             int alt94=2;
@@ -12708,7 +12708,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:922:186: ( ( LARROW ) | ( EQ ) )
             int alt95=2;
@@ -12738,7 +12738,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:922:204: LARROW
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.1/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.1/@thenSequence/@elements.0");
                     }
                     match(input,LARROW,FOLLOW_LARROW_in_furcas_tcs_foreachpredicatepropertyinit5483); if (state.failed) {
                         return ret2;
@@ -12768,7 +12768,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:922:467: EQ
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.1/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.1/@elseSequence/@elements.0");
                     }
                     match(input,EQ,FOLLOW_EQ_in_furcas_tcs_foreachpredicatepropertyinit5498); if (state.failed) {
                         return ret2;
@@ -12795,7 +12795,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.2");
             }
             match(input,112,FOLLOW_112_in_furcas_tcs_foreachpredicatepropertyinit5509); if (state.failed) {
                 return ret2;
@@ -12804,7 +12804,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.3");
             }
             match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_foreachpredicatepropertyinit5513); if (state.failed) {
                 return ret2;
@@ -12813,7 +12813,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.4");
             }
             // ./generationTemp/generated/TCS.g:923:438: (temp= stringSymbol )?
             int alt96=2;
@@ -12848,7 +12848,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.5");
             }
             // ./generationTemp/generated/TCS.g:924:174: ( ( COMA 'mode' EQ (temp= identifierOrKeyword ) ) | )
             int alt97=2;
@@ -12864,7 +12864,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:924:192: COMA 'mode' EQ (temp= identifierOrKeyword )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.5/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.5/@thenSequence/@elements.0");
                     }
                     match(input,COMA,FOLLOW_COMA_in_furcas_tcs_foreachpredicatepropertyinit5536); if (state.failed) {
                         return ret2;
@@ -12873,7 +12873,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.5/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.5/@thenSequence/@elements.1");
                     }
                     match(input,58,FOLLOW_58_in_furcas_tcs_foreachpredicatepropertyinit5540); if (state.failed) {
                         return ret2;
@@ -12882,7 +12882,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.5/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.5/@thenSequence/@elements.2");
                     }
                     match(input,EQ,FOLLOW_EQ_in_furcas_tcs_foreachpredicatepropertyinit5544); if (state.failed) {
                         return ret2;
@@ -12891,7 +12891,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.5/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.5/@thenSequence/@elements.3");
                     }
                     // ./generationTemp/generated/TCS.g:924:856: (temp= identifierOrKeyword )
                     // ./generationTemp/generated/TCS.g:924:858: temp= identifierOrKeyword
@@ -12942,7 +12942,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.6");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.6");
             }
             // ./generationTemp/generated/TCS.g:926:142: ( ( COMA ( ( (temp= furcas_tcs_predicatesemantic ( ( COMA ) temp= furcas_tcs_predicatesemantic )* )? ) ) ) | )
             int alt100=2;
@@ -12972,7 +12972,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:926:160: COMA ( ( (temp= furcas_tcs_predicatesemantic ( ( COMA ) temp= furcas_tcs_predicatesemantic )* )? ) )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.6/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.6/@thenSequence/@elements.0");
                     }
                     match(input,COMA,FOLLOW_COMA_in_furcas_tcs_foreachpredicatepropertyinit5578); if (state.failed) {
                         return ret2;
@@ -12981,7 +12981,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.6/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.6/@thenSequence/@elements.1");
                     }
                     // ./generationTemp/generated/TCS.g:926:482: ( ( (temp= furcas_tcs_predicatesemantic ( ( COMA ) temp= furcas_tcs_predicatesemantic )* )? ) )
                     // ./generationTemp/generated/TCS.g:926:483: ( (temp= furcas_tcs_predicatesemantic ( ( COMA ) temp= furcas_tcs_predicatesemantic )* )? )
@@ -12990,7 +12990,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:926:484: (temp= furcas_tcs_predicatesemantic ( ( COMA ) temp= furcas_tcs_predicatesemantic )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.6/@thenSequence/@elements.1/@blockSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.6/@thenSequence/@elements.1/@blockSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:926:661: (temp= furcas_tcs_predicatesemantic ( ( COMA ) temp= furcas_tcs_predicatesemantic )* )?
                     int alt99=2;
@@ -13037,7 +13037,7 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // ./generationTemp/generated/TCS.g:927:62: COMA
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.6/@thenSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
+                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.6/@thenSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
                             	    }
                             	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_foreachpredicatepropertyinit5598); if (state.failed) {
                                         return ret2;
@@ -13118,7 +13118,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.7");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.7");
             }
             match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_foreachpredicatepropertyinit5634); if (state.failed) {
                 return ret2;
@@ -13172,7 +13172,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:944:4: ( ( 'when' EQ (temp= stringSymbol ) COMA ) | ) ( ( 'mode' EQ (temp= identifierOrKeyword ) COMA ) | ) 'as' EQ (temp= identifierOrKeyword )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:944:129: ( ( 'when' EQ (temp= stringSymbol ) COMA ) | )
             int alt101=2;
@@ -13202,7 +13202,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:944:147: 'when' EQ (temp= stringSymbol ) COMA
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.0/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.0/@thenSequence/@elements.0");
                     }
                     match(input,62,FOLLOW_62_in_furcas_tcs_predicatesemantic5681); if (state.failed) {
                         return ret2;
@@ -13211,7 +13211,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.0/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.0/@thenSequence/@elements.1");
                     }
                     match(input,EQ,FOLLOW_EQ_in_furcas_tcs_predicatesemantic5685); if (state.failed) {
                         return ret2;
@@ -13220,7 +13220,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.0/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.0/@thenSequence/@elements.2");
                     }
                     // ./generationTemp/generated/TCS.g:944:639: (temp= stringSymbol )
                     // ./generationTemp/generated/TCS.g:944:641: temp= stringSymbol
@@ -13244,7 +13244,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.0/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.0/@thenSequence/@elements.3");
                     }
                     match(input,COMA,FOLLOW_COMA_in_furcas_tcs_predicatesemantic5700); if (state.failed) {
                         return ret2;
@@ -13280,7 +13280,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:946:142: ( ( 'mode' EQ (temp= identifierOrKeyword ) COMA ) | )
             int alt102=2;
@@ -13310,7 +13310,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:946:160: 'mode' EQ (temp= identifierOrKeyword ) COMA
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.1/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.1/@thenSequence/@elements.0");
                     }
                     match(input,58,FOLLOW_58_in_furcas_tcs_predicatesemantic5723); if (state.failed) {
                         return ret2;
@@ -13319,7 +13319,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.1/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.1/@thenSequence/@elements.1");
                     }
                     match(input,EQ,FOLLOW_EQ_in_furcas_tcs_predicatesemantic5727); if (state.failed) {
                         return ret2;
@@ -13328,7 +13328,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.1/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.1/@thenSequence/@elements.2");
                     }
                     // ./generationTemp/generated/TCS.g:946:652: (temp= identifierOrKeyword )
                     // ./generationTemp/generated/TCS.g:946:654: temp= identifierOrKeyword
@@ -13352,7 +13352,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.1/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.1/@thenSequence/@elements.3");
                     }
                     match(input,COMA,FOLLOW_COMA_in_furcas_tcs_predicatesemantic5742); if (state.failed) {
                         return ret2;
@@ -13388,7 +13388,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.2");
             }
             match(input,129,FOLLOW_129_in_furcas_tcs_predicatesemantic5759); if (state.failed) {
                 return ret2;
@@ -13397,7 +13397,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.3");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_predicatesemantic5763); if (state.failed) {
                 return ret2;
@@ -13406,7 +13406,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.4");
             }
             // ./generationTemp/generated/TCS.g:948:429: (temp= identifierOrKeyword )?
             int alt103=2;
@@ -13444,7 +13444,7 @@ public class TCSParser extends ObservableInjectingParser {
                       "                                                candidate.oclAsType(FURCAS::TCS::ClassTemplate).metaReference.name"+
                       "                                            else "+
                       "                                                candidate.oclAsType(FURCAS::TCS::PrimitiveTemplate).templateName"+
-                      "                                            endif = ?)", "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.4", SyntaxRegistryFacade.getModelUpdaterRegistry());
+                      "                                            endif = ?)", "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.4", SyntaxRegistryFacade.getModelUpdaterRegistry());
                     }
 
                     }
@@ -13871,7 +13871,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1004:4: 'refersTo' EQ (temp= identifierOrKeyword )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.41/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.41/@templateSequence/@elements.0");
             }
             match(input,121,FOLLOW_121_in_furcas_tcs_referstoparg5971); if (state.failed) {
                 return ret2;
@@ -13880,7 +13880,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.41/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.41/@templateSequence/@elements.1");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_referstoparg5975); if (state.failed) {
                 return ret2;
@@ -13889,7 +13889,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.41/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.41/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1004:422: (temp= identifierOrKeyword )
             // ./generationTemp/generated/TCS.g:1004:424: temp= identifierOrKeyword
@@ -13958,7 +13958,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1020:4: 'lookIn' EQ ( ( SHARP 'all' ) | ( (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* )? ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.42/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.42/@templateSequence/@elements.0");
             }
             match(input,50,FOLLOW_50_in_furcas_tcs_lookinparg6026); if (state.failed) {
                 return ret2;
@@ -13967,7 +13967,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.42/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.42/@templateSequence/@elements.1");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_lookinparg6030); if (state.failed) {
                 return ret2;
@@ -13976,7 +13976,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.42/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.42/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1020:421: ( ( SHARP 'all' ) | ( (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* )? ) )
             int alt107=2;
@@ -14006,7 +14006,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1020:439: SHARP 'all'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.42/@templateSequence/@elements.2/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.42/@templateSequence/@elements.2/@thenSequence/@elements.0");
                     }
                     match(input,SHARP,FOLLOW_SHARP_in_furcas_tcs_lookinparg6041); if (state.failed) {
                         return ret2;
@@ -14015,7 +14015,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.42/@templateSequence/@elements.2/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.42/@templateSequence/@elements.2/@thenSequence/@elements.1");
                     }
                     match(input,69,FOLLOW_69_in_furcas_tcs_lookinparg6045); if (state.failed) {
                         return ret2;
@@ -14045,7 +14045,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1020:873: (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.42/@templateSequence/@elements.2/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.42/@templateSequence/@elements.2/@elseSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:1020:1023: (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* )?
                     int alt106=2;
@@ -14092,7 +14092,7 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // ./generationTemp/generated/TCS.g:1021:57: POINT
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.42/@templateSequence/@elements.2/@elseSequence/@elements.0/@propertyArgs.1/@separatorSequence/@elements.0");
+                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.42/@templateSequence/@elements.2/@elseSequence/@elements.0/@propertyArgs.1/@separatorSequence/@elements.0");
                             	    }
                             	    match(input,POINT,FOLLOW_POINT_in_furcas_tcs_lookinparg6071); if (state.failed) {
                                         return ret2;
@@ -14199,7 +14199,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1038:4: 'createIn' EQ (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.43/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.43/@templateSequence/@elements.0");
             }
             match(input,82,FOLLOW_82_in_furcas_tcs_createinparg6134); if (state.failed) {
                 return ret2;
@@ -14208,7 +14208,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.43/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.43/@templateSequence/@elements.1");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_createinparg6138); if (state.failed) {
                 return ret2;
@@ -14217,7 +14217,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.43/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.43/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1038:422: (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* )?
             int alt109=2;
@@ -14264,7 +14264,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // ./generationTemp/generated/TCS.g:1039:57: POINT
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.43/@templateSequence/@elements.2/@propertyArgs.1/@separatorSequence/@elements.0");
+                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.43/@templateSequence/@elements.2/@propertyArgs.1/@separatorSequence/@elements.0");
                     	    }
                     	    match(input,POINT,FOLLOW_POINT_in_furcas_tcs_createinparg6155); if (state.failed) {
                                 return ret2;
@@ -14354,7 +14354,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1055:4: 'as' EQ (temp= identifierOrKeyword )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.44/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.44/@templateSequence/@elements.0");
             }
             match(input,129,FOLLOW_129_in_furcas_tcs_asparg6211); if (state.failed) {
                 return ret2;
@@ -14363,7 +14363,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.44/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.44/@templateSequence/@elements.1");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_asparg6215); if (state.failed) {
                 return ret2;
@@ -14372,7 +14372,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.44/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.44/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1055:416: (temp= identifierOrKeyword )
             // ./generationTemp/generated/TCS.g:1055:418: temp= identifierOrKeyword
@@ -14405,7 +14405,7 @@ public class TCSParser extends ObservableInjectingParser {
               "                                                candidate.oclAsType(FURCAS::TCS::ClassTemplate).metaReference.name"+
               "                                            else "+
               "                                                candidate.oclAsType(FURCAS::TCS::PrimitiveTemplate).templateName"+
-              "                                            endif = ?)", "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.44/@templateSequence/@elements.2", SyntaxRegistryFacade.getModelUpdaterRegistry());
+              "                                            endif = ?)", "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.44/@templateSequence/@elements.2", SyntaxRegistryFacade.getModelUpdaterRegistry());
             }
 
             }
@@ -14459,7 +14459,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1089:4: 'separator' EQ (temp= furcas_tcs_sequence )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.45/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.45/@templateSequence/@elements.0");
             }
             match(input,57,FOLLOW_57_in_furcas_tcs_separatorparg6266); if (state.failed) {
                 return ret2;
@@ -14468,7 +14468,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.45/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.45/@templateSequence/@elements.1");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_separatorparg6270); if (state.failed) {
                 return ret2;
@@ -14477,7 +14477,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.45/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.45/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1089:423: (temp= furcas_tcs_sequence )
             // ./generationTemp/generated/TCS.g:1089:425: temp= furcas_tcs_sequence
@@ -14546,7 +14546,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1105:4: 'disambiguate' EQ (temp= stringSymbol )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.46/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.46/@templateSequence/@elements.0");
             }
             match(input,111,FOLLOW_111_in_furcas_tcs_disambiguateparg6321); if (state.failed) {
                 return ret2;
@@ -14555,7 +14555,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.46/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.46/@templateSequence/@elements.1");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_disambiguateparg6325); if (state.failed) {
                 return ret2;
@@ -14564,7 +14564,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.46/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.46/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1105:426: (temp= stringSymbol )?
             int alt110=2;
@@ -14644,7 +14644,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1121:4: 'autoCreate' EQ (temp= furcas_tcs_autocreatekind )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.47/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.47/@templateSequence/@elements.0");
             }
             match(input,93,FOLLOW_93_in_furcas_tcs_autocreateparg6378); if (state.failed) {
                 return ret2;
@@ -14653,7 +14653,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.47/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.47/@templateSequence/@elements.1");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_autocreateparg6382); if (state.failed) {
                 return ret2;
@@ -14662,7 +14662,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.47/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.47/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1121:424: (temp= furcas_tcs_autocreatekind )
             // ./generationTemp/generated/TCS.g:1121:426: temp= furcas_tcs_autocreatekind
@@ -14753,7 +14753,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1132:5: 'always'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.48/@mappings.0/@element");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.48/@mapping.0/@element");
                     }
                     match(input,97,FOLLOW_97_in_furcas_tcs_autocreatekind6434); if (state.failed) {
                         return ret2;
@@ -14777,7 +14777,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1133:5: 'ifmissing'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.48/@mappings.1/@element");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.48/@mapping.1/@element");
                     }
                     match(input,117,FOLLOW_117_in_furcas_tcs_autocreatekind6444); if (state.failed) {
                         return ret2;
@@ -14801,7 +14801,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1134:5: 'never'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.48/@mappings.2/@element");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.48/@mapping.2/@element");
                     }
                     match(input,127,FOLLOW_127_in_furcas_tcs_autocreatekind6454); if (state.failed) {
                         return ret2;
@@ -14860,7 +14860,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1148:4: 'importContext'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.49/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.49/@templateSequence/@elements.0");
             }
             match(input,118,FOLLOW_118_in_furcas_tcs_importcontextparg6485); if (state.failed) {
                 return ret2;
@@ -14911,7 +14911,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1163:4: 'partial'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.50/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.50/@templateSequence/@elements.0");
             }
             match(input,101,FOLLOW_101_in_furcas_tcs_partialparg6525); if (state.failed) {
                 return ret2;
@@ -14965,7 +14965,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1178:4: 'forcedLower' EQ (temp= integerSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.51/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.51/@templateSequence/@elements.0");
             }
             match(input,75,FOLLOW_75_in_furcas_tcs_forcedlowerparg6565); if (state.failed) {
                 return ret2;
@@ -14974,7 +14974,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.51/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.51/@templateSequence/@elements.1");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_forcedlowerparg6569); if (state.failed) {
                 return ret2;
@@ -14983,7 +14983,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.51/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.51/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1178:425: (temp= integerSymbol )
             // ./generationTemp/generated/TCS.g:1178:427: temp= integerSymbol
@@ -15052,7 +15052,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1194:4: 'forcedUpper' EQ (temp= integerSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.52/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.52/@templateSequence/@elements.0");
             }
             match(input,132,FOLLOW_132_in_furcas_tcs_forcedupperparg6620); if (state.failed) {
                 return ret2;
@@ -15061,7 +15061,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.52/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.52/@templateSequence/@elements.1");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_forcedupperparg6624); if (state.failed) {
                 return ret2;
@@ -15070,7 +15070,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.52/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.52/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1194:425: (temp= integerSymbol )
             // ./generationTemp/generated/TCS.g:1194:427: temp= integerSymbol
@@ -15139,7 +15139,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1210:4: 'createAs' EQ (temp= identifierOrKeyword ( ( DLCOLON ) temp= identifierOrKeyword )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.53/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.53/@templateSequence/@elements.0");
             }
             match(input,67,FOLLOW_67_in_furcas_tcs_createasparg6675); if (state.failed) {
                 return ret2;
@@ -15148,7 +15148,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.53/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.53/@templateSequence/@elements.1");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_createasparg6679); if (state.failed) {
                 return ret2;
@@ -15157,7 +15157,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.53/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.53/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1210:422: (temp= identifierOrKeyword ( ( DLCOLON ) temp= identifierOrKeyword )* )?
             int alt113=2;
@@ -15204,7 +15204,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // ./generationTemp/generated/TCS.g:1211:49: DLCOLON
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.53/@templateSequence/@elements.2/@propertyArgs.1/@separatorSequence/@elements.0");
+                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.53/@templateSequence/@elements.2/@propertyArgs.1/@separatorSequence/@elements.0");
                     	    }
                     	    match(input,DLCOLON,FOLLOW_DLCOLON_in_furcas_tcs_createasparg6696); if (state.failed) {
                                 return ret2;
@@ -15294,7 +15294,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1227:4: 'lookupScope' EQ (temp= stringSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.54/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.54/@templateSequence/@elements.0");
             }
             match(input,128,FOLLOW_128_in_furcas_tcs_lookupscopeparg6752); if (state.failed) {
                 return ret2;
@@ -15303,7 +15303,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.54/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.54/@templateSequence/@elements.1");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_lookupscopeparg6756); if (state.failed) {
                 return ret2;
@@ -15312,7 +15312,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.54/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.54/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1227:425: (temp= stringSymbol )
             // ./generationTemp/generated/TCS.g:1227:427: temp= stringSymbol
@@ -15381,7 +15381,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1243:4: 'referenceBy' EQ (temp= stringSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.55/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.55/@templateSequence/@elements.0");
             }
             match(input,80,FOLLOW_80_in_furcas_tcs_referencebyparg6807); if (state.failed) {
                 return ret2;
@@ -15390,7 +15390,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.55/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.55/@templateSequence/@elements.1");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_referencebyparg6811); if (state.failed) {
                 return ret2;
@@ -15399,7 +15399,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.55/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.55/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1243:425: (temp= stringSymbol )
             // ./generationTemp/generated/TCS.g:1243:427: temp= stringSymbol
@@ -15468,7 +15468,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1259:4: 'prefix' EQ (temp= stringSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.56/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.56/@templateSequence/@elements.0");
             }
             match(input,91,FOLLOW_91_in_furcas_tcs_prefixparg6862); if (state.failed) {
                 return ret2;
@@ -15477,7 +15477,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.56/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.56/@templateSequence/@elements.1");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_prefixparg6866); if (state.failed) {
                 return ret2;
@@ -15486,7 +15486,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.56/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.56/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1259:420: (temp= stringSymbol )
             // ./generationTemp/generated/TCS.g:1259:422: temp= stringSymbol
@@ -15555,7 +15555,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1275:4: 'postfix' EQ (temp= stringSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.57/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.57/@templateSequence/@elements.0");
             }
             match(input,59,FOLLOW_59_in_furcas_tcs_postfixparg6917); if (state.failed) {
                 return ret2;
@@ -15564,7 +15564,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.57/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.57/@templateSequence/@elements.1");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_postfixparg6921); if (state.failed) {
                 return ret2;
@@ -15573,7 +15573,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.57/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.57/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1275:421: (temp= stringSymbol )
             // ./generationTemp/generated/TCS.g:1275:423: temp= stringSymbol
@@ -15642,7 +15642,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1291:4: 'mode' EQ (temp= identifierOrKeyword )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.58/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.58/@templateSequence/@elements.0");
             }
             match(input,58,FOLLOW_58_in_furcas_tcs_modeparg6972); if (state.failed) {
                 return ret2;
@@ -15651,7 +15651,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.58/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.58/@templateSequence/@elements.1");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_modeparg6976); if (state.failed) {
                 return ret2;
@@ -15660,7 +15660,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.58/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.58/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1291:418: (temp= identifierOrKeyword )
             // ./generationTemp/generated/TCS.g:1291:420: temp= identifierOrKeyword
@@ -15871,7 +15871,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1320:4: 'nbNL' EQ (temp= integerSymbol )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.60/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.60/@templateSequence/@elements.0");
             }
             match(input,64,FOLLOW_64_in_furcas_tcs_nbnlbarg7086); if (state.failed) {
                 return ret2;
@@ -15880,7 +15880,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.60/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.60/@templateSequence/@elements.1");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_nbnlbarg7090); if (state.failed) {
                 return ret2;
@@ -15889,7 +15889,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.60/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.60/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1320:418: (temp= integerSymbol )?
             int alt115=2;
@@ -15969,7 +15969,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1336:4: 'indentIncr' EQ (temp= integerSymbol )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.61/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.61/@templateSequence/@elements.0");
             }
             match(input,87,FOLLOW_87_in_furcas_tcs_indentincrbarg7143); if (state.failed) {
                 return ret2;
@@ -15978,7 +15978,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.61/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.61/@templateSequence/@elements.1");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_indentincrbarg7147); if (state.failed) {
                 return ret2;
@@ -15987,7 +15987,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.61/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.61/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1336:424: (temp= integerSymbol )?
             int alt116=2;
@@ -16064,7 +16064,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1352:4: 'startNL' EQ ( ( 'true' ) | ( 'false' ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.62/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.62/@templateSequence/@elements.0");
             }
             match(input,133,FOLLOW_133_in_furcas_tcs_startnlbarg7200); if (state.failed) {
                 return ret2;
@@ -16073,7 +16073,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.62/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.62/@templateSequence/@elements.1");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_startnlbarg7204); if (state.failed) {
                 return ret2;
@@ -16082,7 +16082,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.62/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.62/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1352:422: ( ( 'true' ) | ( 'false' ) )
             int alt117=2;
@@ -16112,7 +16112,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1352:440: 'true'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.62/@templateSequence/@elements.2/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.62/@templateSequence/@elements.2/@thenSequence/@elements.0");
                     }
                     match(input,125,FOLLOW_125_in_furcas_tcs_startnlbarg7214); if (state.failed) {
                         return ret2;
@@ -16142,7 +16142,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1352:699: 'false'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.62/@templateSequence/@elements.2/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.62/@templateSequence/@elements.2/@elseSequence/@elements.0");
                     }
                     match(input,68,FOLLOW_68_in_furcas_tcs_startnlbarg7227); if (state.failed) {
                         return ret2;
@@ -16214,7 +16214,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1368:4: 'startNbNL' EQ (temp= integerSymbol )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.63/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.63/@templateSequence/@elements.0");
             }
             match(input,122,FOLLOW_122_in_furcas_tcs_startnbnlbarg7274); if (state.failed) {
                 return ret2;
@@ -16223,7 +16223,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.63/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.63/@templateSequence/@elements.1");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_startnbnlbarg7278); if (state.failed) {
                 return ret2;
@@ -16232,7 +16232,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.63/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.63/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1368:423: (temp= integerSymbol )?
             int alt118=2;
@@ -16309,7 +16309,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1384:4: 'endNL' EQ ( ( 'true' ) | ( 'false' ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.64/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.64/@templateSequence/@elements.0");
             }
             match(input,113,FOLLOW_113_in_furcas_tcs_endnlbarg7331); if (state.failed) {
                 return ret2;
@@ -16318,7 +16318,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.64/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.64/@templateSequence/@elements.1");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_endnlbarg7335); if (state.failed) {
                 return ret2;
@@ -16327,7 +16327,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.64/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.64/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1384:420: ( ( 'true' ) | ( 'false' ) )
             int alt119=2;
@@ -16357,7 +16357,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1384:438: 'true'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.64/@templateSequence/@elements.2/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.64/@templateSequence/@elements.2/@thenSequence/@elements.0");
                     }
                     match(input,125,FOLLOW_125_in_furcas_tcs_endnlbarg7345); if (state.failed) {
                         return ret2;
@@ -16387,7 +16387,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1384:697: 'false'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.64/@templateSequence/@elements.2/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.64/@templateSequence/@elements.2/@elseSequence/@elements.0");
                     }
                     match(input,68,FOLLOW_68_in_furcas_tcs_endnlbarg7358); if (state.failed) {
                         return ret2;
@@ -16459,7 +16459,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1400:4: (temp= identifier ) EQ (temp= stringSymbol ) ( ( COLON (temp= furcas_tcs_spacekind ( ( COMA ) temp= furcas_tcs_spacekind )* )? ) | ) SEMI
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.65/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.65/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1400:128: (temp= identifier )
             // ./generationTemp/generated/TCS.g:1400:130: temp= identifier
@@ -16483,7 +16483,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.65/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.65/@templateSequence/@elements.1");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_symbol7416); if (state.failed) {
                 return ret2;
@@ -16492,7 +16492,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.65/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.65/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1401:314: (temp= stringSymbol )
             // ./generationTemp/generated/TCS.g:1401:316: temp= stringSymbol
@@ -16516,7 +16516,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.65/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.65/@templateSequence/@elements.3");
             }
             // ./generationTemp/generated/TCS.g:1402:172: ( ( COLON (temp= furcas_tcs_spacekind ( ( COMA ) temp= furcas_tcs_spacekind )* )? ) | )
             int alt122=2;
@@ -16546,7 +16546,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1402:190: COLON (temp= furcas_tcs_spacekind ( ( COMA ) temp= furcas_tcs_spacekind )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.65/@templateSequence/@elements.3/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.65/@templateSequence/@elements.3/@thenSequence/@elements.0");
                     }
                     match(input,COLON,FOLLOW_COLON_in_furcas_tcs_symbol7437); if (state.failed) {
                         return ret2;
@@ -16555,7 +16555,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.65/@templateSequence/@elements.3/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.65/@templateSequence/@elements.3/@thenSequence/@elements.1");
                     }
                     // ./generationTemp/generated/TCS.g:1402:513: (temp= furcas_tcs_spacekind ( ( COMA ) temp= furcas_tcs_spacekind )* )?
                     int alt121=2;
@@ -16602,7 +16602,7 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // ./generationTemp/generated/TCS.g:1403:51: COMA
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.65/@templateSequence/@elements.3/@thenSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
+                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.65/@templateSequence/@elements.3/@thenSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
                             	    }
                             	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_symbol7454); if (state.failed) {
                                         return ret2;
@@ -16674,7 +16674,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.65/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.65/@templateSequence/@elements.4");
             }
             match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_symbol7487); if (state.failed) {
                 return ret2;
@@ -16755,7 +16755,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1415:5: 'leftSpace'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.66/@mappings.0/@element");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.66/@mapping.0/@element");
                     }
                     match(input,108,FOLLOW_108_in_furcas_tcs_spacekind7529); if (state.failed) {
                         return ret2;
@@ -16779,7 +16779,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1416:5: 'leftNone'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.66/@mappings.1/@element");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.66/@mapping.1/@element");
                     }
                     match(input,66,FOLLOW_66_in_furcas_tcs_spacekind7539); if (state.failed) {
                         return ret2;
@@ -16803,7 +16803,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1417:5: 'rightSpace'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.66/@mappings.2/@element");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.66/@mapping.2/@element");
                     }
                     match(input,89,FOLLOW_89_in_furcas_tcs_spacekind7549); if (state.failed) {
                         return ret2;
@@ -16827,7 +16827,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1418:5: 'rightNone'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.66/@mappings.3/@element");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.66/@mapping.3/@element");
                     }
                     match(input,53,FOLLOW_53_in_furcas_tcs_spacekind7559); if (state.failed) {
                         return ret2;
@@ -16889,7 +16889,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1432:4: (temp= identifier ) EQ (temp= stringSymbol ) SEMI
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.67/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.67/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1432:128: (temp= identifier )
             // ./generationTemp/generated/TCS.g:1432:130: temp= identifier
@@ -16913,7 +16913,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.67/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.67/@templateSequence/@elements.1");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_keyword7601); if (state.failed) {
                 return ret2;
@@ -16922,7 +16922,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.67/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.67/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1433:314: (temp= stringSymbol )
             // ./generationTemp/generated/TCS.g:1433:316: temp= stringSymbol
@@ -16946,7 +16946,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.67/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.67/@templateSequence/@elements.3");
             }
             match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_keyword7616); if (state.failed) {
                 return ret2;
@@ -17000,7 +17000,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1449:4: 'operators' ( ( (temp= identifier ) ) | ) LCURLY ( ( (temp= furcas_tcs_priority (temp= furcas_tcs_priority )* )? ) ) RCURLY
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.68/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.68/@templateSequence/@elements.0");
             }
             match(input,109,FOLLOW_109_in_furcas_tcs_operatorlist7657); if (state.failed) {
                 return ret2;
@@ -17009,7 +17009,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.68/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.68/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:1449:280: ( ( (temp= identifier ) ) | )
             int alt124=2;
@@ -17039,7 +17039,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1449:298: (temp= identifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.68/@templateSequence/@elements.1/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.68/@templateSequence/@elements.1/@thenSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:1449:448: (temp= identifier )
                     // ./generationTemp/generated/TCS.g:1449:450: temp= identifier
@@ -17090,7 +17090,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.68/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.68/@templateSequence/@elements.2");
             }
             match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_operatorlist7690); if (state.failed) {
                 return ret2;
@@ -17099,7 +17099,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.68/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.68/@templateSequence/@elements.3");
             }
             // ./generationTemp/generated/TCS.g:1451:289: ( ( (temp= furcas_tcs_priority (temp= furcas_tcs_priority )* )? ) )
             // ./generationTemp/generated/TCS.g:1451:290: ( (temp= furcas_tcs_priority (temp= furcas_tcs_priority )* )? )
@@ -17108,7 +17108,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1451:291: (temp= furcas_tcs_priority (temp= furcas_tcs_priority )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.68/@templateSequence/@elements.3/@blockSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.68/@templateSequence/@elements.3/@blockSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1451:442: (temp= furcas_tcs_priority (temp= furcas_tcs_priority )* )?
             int alt126=2;
@@ -17188,7 +17188,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.68/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.68/@templateSequence/@elements.4");
             }
             match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_operatorlist7724); if (state.failed) {
                 return ret2;
@@ -17242,7 +17242,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1468:4: 'priority' (temp= integerSymbol ) ( () | ( COMA (temp= furcas_tcs_associativity ) ) ) LCURLY ( ( (temp= furcas_tcs_operator (temp= furcas_tcs_operator )* )? ) ) RCURLY
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.69/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.69/@templateSequence/@elements.0");
             }
             match(input,100,FOLLOW_100_in_furcas_tcs_priority7765); if (state.failed) {
                 return ret2;
@@ -17251,7 +17251,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.69/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.69/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:1468:278: (temp= integerSymbol )
             // ./generationTemp/generated/TCS.g:1468:280: temp= integerSymbol
@@ -17275,7 +17275,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.69/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.69/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1469:172: ( () | ( COMA (temp= furcas_tcs_associativity ) ) )
             int alt127=2;
@@ -17325,7 +17325,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1469:325: COMA (temp= furcas_tcs_associativity )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.69/@templateSequence/@elements.2/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.69/@templateSequence/@elements.2/@elseSequence/@elements.0");
                     }
                     match(input,COMA,FOLLOW_COMA_in_furcas_tcs_priority7795); if (state.failed) {
                         return ret2;
@@ -17334,7 +17334,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.69/@templateSequence/@elements.2/@elseSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.69/@templateSequence/@elements.2/@elseSequence/@elements.1");
                     }
                     // ./generationTemp/generated/TCS.g:1469:647: (temp= furcas_tcs_associativity )
                     // ./generationTemp/generated/TCS.g:1469:649: temp= furcas_tcs_associativity
@@ -17376,7 +17376,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.69/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.69/@templateSequence/@elements.3");
             }
             match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_priority7817); if (state.failed) {
                 return ret2;
@@ -17385,7 +17385,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.69/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.69/@templateSequence/@elements.4");
             }
             // ./generationTemp/generated/TCS.g:1471:289: ( ( (temp= furcas_tcs_operator (temp= furcas_tcs_operator )* )? ) )
             // ./generationTemp/generated/TCS.g:1471:290: ( (temp= furcas_tcs_operator (temp= furcas_tcs_operator )* )? )
@@ -17394,7 +17394,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1471:291: (temp= furcas_tcs_operator (temp= furcas_tcs_operator )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.69/@templateSequence/@elements.4/@blockSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.69/@templateSequence/@elements.4/@blockSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1471:442: (temp= furcas_tcs_operator (temp= furcas_tcs_operator )* )?
             int alt129=2;
@@ -17474,7 +17474,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.69/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.69/@templateSequence/@elements.5");
             }
             match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_priority7851); if (state.failed) {
                 return ret2;
@@ -17528,7 +17528,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1488:4: ( ( 'postfix' ) | ) (temp= identifier ) EQ ( ( ( ( (temp= identifier ) ) | ( (temp= stringSymbol ) ) ) ) | ) COMA (temp= integerSymbol ) SEMI
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1488:129: ( ( 'postfix' ) | )
             int alt130=2;
@@ -17558,7 +17558,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1488:147: 'postfix'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.0/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.0/@thenSequence/@elements.0");
                     }
                     match(input,59,FOLLOW_59_in_furcas_tcs_operator7898); if (state.failed) {
                         return ret2;
@@ -17600,7 +17600,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:1489:141: (temp= identifier )
             // ./generationTemp/generated/TCS.g:1489:143: temp= identifier
@@ -17624,7 +17624,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.2");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operator7927); if (state.failed) {
                 return ret2;
@@ -17633,7 +17633,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.3");
             }
             // ./generationTemp/generated/TCS.g:1490:315: ( ( ( ( (temp= identifier ) ) | ( (temp= stringSymbol ) ) ) ) | )
             int alt132=2;
@@ -17663,7 +17663,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1490:333: ( ( (temp= identifier ) ) | ( (temp= stringSymbol ) ) )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.3/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.3/@thenSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:1490:483: ( ( (temp= identifier ) ) | ( (temp= stringSymbol ) ) )
                     int alt131=2;
@@ -17693,7 +17693,7 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:1490:501: (temp= identifier )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.3/@thenSequence/@elements.0/@sequences.0/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.3/@thenSequence/@elements.0/@sequences.0/@elements.0");
                             }
                             // ./generationTemp/generated/TCS.g:1490:676: (temp= identifier )
                             // ./generationTemp/generated/TCS.g:1490:678: temp= identifier
@@ -17734,7 +17734,7 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:1491:21: (temp= stringSymbol )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.3/@thenSequence/@elements.0/@sequences.1/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.3/@thenSequence/@elements.0/@sequences.1/@elements.0");
                             }
                             // ./generationTemp/generated/TCS.g:1491:196: (temp= stringSymbol )
                             // ./generationTemp/generated/TCS.g:1491:198: temp= stringSymbol
@@ -17799,7 +17799,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.4");
             }
             match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operator7991); if (state.failed) {
                 return ret2;
@@ -17808,7 +17808,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.5");
             }
             // ./generationTemp/generated/TCS.g:1492:287: (temp= integerSymbol )
             // ./generationTemp/generated/TCS.g:1492:289: temp= integerSymbol
@@ -17832,7 +17832,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.6");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.6");
             }
             match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_operator8006); if (state.failed) {
                 return ret2;
@@ -17899,7 +17899,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1503:5: 'left'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.71/@mappings.0/@element");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.71/@mapping.0/@element");
                     }
                     match(input,56,FOLLOW_56_in_furcas_tcs_associativity8048); if (state.failed) {
                         return ret2;
@@ -17923,7 +17923,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1504:5: 'right'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.71/@mappings.1/@element");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.71/@mapping.1/@element");
                     }
                     match(input,54,FOLLOW_54_in_furcas_tcs_associativity8058); if (state.failed) {
                         return ret2;
@@ -18031,7 +18031,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1527:4: (temp= furcas_tcs_atomexp ( ( 'and' ) temp= furcas_tcs_atomexp )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.73/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.73/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1527:128: (temp= furcas_tcs_atomexp ( ( 'and' ) temp= furcas_tcs_atomexp )* )?
             int alt135=2;
@@ -18085,7 +18085,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // ./generationTemp/generated/TCS.g:1528:56: 'and'
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.73/@templateSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
+                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.73/@templateSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
                     	    }
                     	    match(input,55,FOLLOW_55_in_furcas_tcs_andexp8128); if (state.failed) {
                                 return ret2;
@@ -18284,7 +18284,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1557:4: (temp= furcas_tcs_propertyreference )? EQ (temp= furcas_tcs_value )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.75/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.75/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1557:128: (temp= furcas_tcs_propertyreference )?
             int alt137=2;
@@ -18319,7 +18319,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.75/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.75/@templateSequence/@elements.1");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_equalsexp8255); if (state.failed) {
                 return ret2;
@@ -18328,7 +18328,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.75/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.75/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1558:329: (temp= furcas_tcs_value )
             // ./generationTemp/generated/TCS.g:1558:331: temp= furcas_tcs_value
@@ -18397,7 +18397,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1574:4: (temp= furcas_tcs_propertyreference )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.76/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.76/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1574:128: (temp= furcas_tcs_propertyreference )?
             int alt138=2;
@@ -18484,7 +18484,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1590:4: 'isDefined' LPAREN (temp= furcas_tcs_propertyreference )? RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.77/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.77/@templateSequence/@elements.0");
             }
             match(input,78,FOLLOW_78_in_furcas_tcs_isdefinedexp8355); if (state.failed) {
                 return ret2;
@@ -18493,7 +18493,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.77/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.77/@templateSequence/@elements.1");
             }
             match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_isdefinedexp8359); if (state.failed) {
                 return ret2;
@@ -18502,7 +18502,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.77/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.77/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1590:427: (temp= furcas_tcs_propertyreference )?
             int alt139=2;
@@ -18537,7 +18537,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.77/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.77/@templateSequence/@elements.3");
             }
             match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_isdefinedexp8376); if (state.failed) {
                 return ret2;
@@ -18591,7 +18591,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1606:4: 'one' LPAREN (temp= furcas_tcs_propertyreference )? RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.78/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.78/@templateSequence/@elements.0");
             }
             match(input,124,FOLLOW_124_in_furcas_tcs_oneexp8417); if (state.failed) {
                 return ret2;
@@ -18600,7 +18600,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.78/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.78/@templateSequence/@elements.1");
             }
             match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_oneexp8421); if (state.failed) {
                 return ret2;
@@ -18609,7 +18609,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.78/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.78/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1606:421: (temp= furcas_tcs_propertyreference )?
             int alt140=2;
@@ -18644,7 +18644,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.78/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.78/@templateSequence/@elements.3");
             }
             match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_oneexp8438); if (state.failed) {
                 return ret2;
@@ -18698,7 +18698,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1622:4: (temp= furcas_tcs_propertyreference )? 'instanceOf' (temp= identifier ( ( DLCOLON ) temp= identifier )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.79/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.79/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1622:128: (temp= furcas_tcs_propertyreference )?
             int alt141=2;
@@ -18740,7 +18740,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.79/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.79/@templateSequence/@elements.1");
             }
             match(input,71,FOLLOW_71_in_furcas_tcs_instanceofexp8491); if (state.failed) {
                 return ret2;
@@ -18749,7 +18749,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.79/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.79/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1623:337: (temp= identifier ( ( DLCOLON ) temp= identifier )* )?
             int alt143=2;
@@ -18796,7 +18796,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // ./generationTemp/generated/TCS.g:1624:54: DLCOLON
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.79/@templateSequence/@elements.2/@propertyArgs.0/@separatorSequence/@elements.0");
+                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.79/@templateSequence/@elements.2/@propertyArgs.0/@separatorSequence/@elements.0");
                     	    }
                     	    match(input,DLCOLON,FOLLOW_DLCOLON_in_furcas_tcs_instanceofexp8507); if (state.failed) {
                                 return ret2;
@@ -19066,7 +19066,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1652:4: (temp= stringSymbol )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.81/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.81/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1652:128: (temp= stringSymbol )?
             int alt145=2;
@@ -19146,7 +19146,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1668:4: (temp= integerSymbol )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.82/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.82/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1668:128: (temp= integerSymbol )?
             int alt146=2;
@@ -19226,7 +19226,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1684:4: MINUS (temp= integerSymbol )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.83/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.83/@templateSequence/@elements.0");
             }
             match(input,MINUS,FOLLOW_MINUS_in_furcas_tcs_negativeintegerval8713); if (state.failed) {
                 return ret2;
@@ -19235,7 +19235,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.83/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.83/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:1684:275: (temp= integerSymbol )?
             int alt147=2;
@@ -19315,7 +19315,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1700:4: SHARP (temp= identifierOrKeyword )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.84/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.84/@templateSequence/@elements.0");
             }
             match(input,SHARP,FOLLOW_SHARP_in_furcas_tcs_enumliteralval8767); if (state.failed) {
                 return ret2;
@@ -19324,7 +19324,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.84/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.84/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:1700:275: (temp= identifierOrKeyword )
             // ./generationTemp/generated/TCS.g:1700:277: temp= identifierOrKeyword
@@ -19393,7 +19393,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1716:4: ( ( 'omitted' ) | ) 'token' (temp= identifier ) COLON (temp= furcas_tcs_orpattern ) SEMI
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.85/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.85/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1716:129: ( ( 'omitted' ) | )
             int alt148=2;
@@ -19423,7 +19423,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1716:147: 'omitted'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.85/@templateSequence/@elements.0/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.85/@templateSequence/@elements.0/@thenSequence/@elements.0");
                     }
                     match(input,99,FOLLOW_99_in_furcas_tcs_token8824); if (state.failed) {
                         return ret2;
@@ -19465,7 +19465,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.85/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.85/@templateSequence/@elements.1");
             }
             match(input,49,FOLLOW_49_in_furcas_tcs_token8842); if (state.failed) {
                 return ret2;
@@ -19474,7 +19474,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.85/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.85/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1717:288: (temp= identifier )
             // ./generationTemp/generated/TCS.g:1717:290: temp= identifier
@@ -19498,7 +19498,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.85/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.85/@templateSequence/@elements.3");
             }
             match(input,COLON,FOLLOW_COLON_in_furcas_tcs_token8856); if (state.failed) {
                 return ret2;
@@ -19507,7 +19507,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.85/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.85/@templateSequence/@elements.4");
             }
             // ./generationTemp/generated/TCS.g:1718:317: (temp= furcas_tcs_orpattern )
             // ./generationTemp/generated/TCS.g:1718:319: temp= furcas_tcs_orpattern
@@ -19531,7 +19531,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.85/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.85/@templateSequence/@elements.5");
             }
             match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_token8871); if (state.failed) {
                 return ret2;
@@ -19585,7 +19585,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1734:4: (temp= furcas_tcs_simplepattern ( ( PIPE ) temp= furcas_tcs_simplepattern )* )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.86/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.86/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1734:128: (temp= furcas_tcs_simplepattern ( ( PIPE ) temp= furcas_tcs_simplepattern )* )
             // ./generationTemp/generated/TCS.g:1734:130: temp= furcas_tcs_simplepattern ( ( PIPE ) temp= furcas_tcs_simplepattern )*
@@ -19624,7 +19624,7 @@ public class TCSParser extends ObservableInjectingParser {
             	    // ./generationTemp/generated/TCS.g:1735:59: PIPE
             	    {
             	    if ( state.backtracking==0 ) {
-            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.86/@templateSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
+            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.86/@templateSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
             	    }
             	    match(input,PIPE,FOLLOW_PIPE_in_furcas_tcs_orpattern8925); if (state.failed) {
                         return ret2;
@@ -19817,7 +19817,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1762:4: (temp= furcas_tcs_rule )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.88/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.88/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1762:128: (temp= furcas_tcs_rule )
             // ./generationTemp/generated/TCS.g:1762:130: temp= furcas_tcs_rule
@@ -19990,7 +19990,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1789:4: 'word' LPAREN 'start' EQ (temp= furcas_tcs_orpattern ) COMA 'part' EQ (temp= furcas_tcs_orpattern ) ( ( COMA 'end' EQ (temp= furcas_tcs_orpattern ) ) | ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.0");
             }
             match(input,74,FOLLOW_74_in_furcas_tcs_wordrule9112); if (state.failed) {
                 return ret2;
@@ -19999,7 +19999,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.1");
             }
             match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_wordrule9116); if (state.failed) {
                 return ret2;
@@ -20008,7 +20008,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.2");
             }
             match(input,102,FOLLOW_102_in_furcas_tcs_wordrule9120); if (state.failed) {
                 return ret2;
@@ -20017,7 +20017,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.3");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_wordrule9124); if (state.failed) {
                 return ret2;
@@ -20026,7 +20026,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.4");
             }
             // ./generationTemp/generated/TCS.g:1789:713: (temp= furcas_tcs_orpattern )
             // ./generationTemp/generated/TCS.g:1789:715: temp= furcas_tcs_orpattern
@@ -20050,7 +20050,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.5");
             }
             match(input,COMA,FOLLOW_COMA_in_furcas_tcs_wordrule9139); if (state.failed) {
                 return ret2;
@@ -20059,7 +20059,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.6");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.6");
             }
             match(input,106,FOLLOW_106_in_furcas_tcs_wordrule9143); if (state.failed) {
                 return ret2;
@@ -20068,7 +20068,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.7");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.7");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_wordrule9147); if (state.failed) {
                 return ret2;
@@ -20077,7 +20077,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.8");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.8");
             }
             // ./generationTemp/generated/TCS.g:1790:607: (temp= furcas_tcs_orpattern )
             // ./generationTemp/generated/TCS.g:1790:609: temp= furcas_tcs_orpattern
@@ -20101,7 +20101,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.9");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.9");
             }
             // ./generationTemp/generated/TCS.g:1791:171: ( ( COMA 'end' EQ (temp= furcas_tcs_orpattern ) ) | )
             int alt152=2;
@@ -20131,7 +20131,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1791:189: COMA 'end' EQ (temp= furcas_tcs_orpattern )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.9/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.9/@thenSequence/@elements.0");
                     }
                     match(input,COMA,FOLLOW_COMA_in_furcas_tcs_wordrule9168); if (state.failed) {
                         return ret2;
@@ -20140,7 +20140,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.9/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.9/@thenSequence/@elements.1");
                     }
                     match(input,65,FOLLOW_65_in_furcas_tcs_wordrule9172); if (state.failed) {
                         return ret2;
@@ -20149,7 +20149,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.9/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.9/@thenSequence/@elements.2");
                     }
                     match(input,EQ,FOLLOW_EQ_in_furcas_tcs_wordrule9176); if (state.failed) {
                         return ret2;
@@ -20158,7 +20158,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.9/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.9/@thenSequence/@elements.3");
                     }
                     // ./generationTemp/generated/TCS.g:1791:852: (temp= furcas_tcs_orpattern )
                     // ./generationTemp/generated/TCS.g:1791:854: temp= furcas_tcs_orpattern
@@ -20209,7 +20209,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.10");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.10");
             }
             match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_wordrule9204); if (state.failed) {
                 return ret2;
@@ -20263,7 +20263,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1808:4: 'endOfLine' LPAREN 'start' EQ ( ( 'drop' ) | ) (temp= furcas_tcs_stringpattern ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.0");
             }
             match(input,114,FOLLOW_114_in_furcas_tcs_endoflinerule9245); if (state.failed) {
                 return ret2;
@@ -20272,7 +20272,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.1");
             }
             match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_endoflinerule9249); if (state.failed) {
                 return ret2;
@@ -20281,7 +20281,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.2");
             }
             match(input,102,FOLLOW_102_in_furcas_tcs_endoflinerule9253); if (state.failed) {
                 return ret2;
@@ -20290,7 +20290,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.3");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_endoflinerule9257); if (state.failed) {
                 return ret2;
@@ -20299,7 +20299,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.4");
             }
             // ./generationTemp/generated/TCS.g:1808:719: ( ( 'drop' ) | )
             int alt153=2;
@@ -20329,7 +20329,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1808:737: 'drop'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.4/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.4/@thenSequence/@elements.0");
                     }
                     match(input,84,FOLLOW_84_in_furcas_tcs_endoflinerule9267); if (state.failed) {
                         return ret2;
@@ -20371,7 +20371,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.5");
             }
             // ./generationTemp/generated/TCS.g:1809:141: (temp= furcas_tcs_stringpattern )
             // ./generationTemp/generated/TCS.g:1809:143: temp= furcas_tcs_stringpattern
@@ -20395,7 +20395,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.6");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.6");
             }
             match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_endoflinerule9296); if (state.failed) {
                 return ret2;
@@ -20449,7 +20449,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1825:4: 'multiLine' LPAREN 'start' EQ ( ( 'drop' ) | ) (temp= furcas_tcs_stringpattern ) COMA 'end' EQ ( ( 'drop' ) | ) (temp= furcas_tcs_stringpattern ) ( ( COMA 'esc' EQ (temp= furcas_tcs_stringpattern ) ( ( COMA LPAREN (temp= furcas_tcs_mapping ( ( COMA ) temp= furcas_tcs_mapping )* )? RPAREN ) | ) ) | ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.0");
             }
             match(input,51,FOLLOW_51_in_furcas_tcs_multilinerule9337); if (state.failed) {
                 return ret2;
@@ -20458,7 +20458,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.1");
             }
             match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_multilinerule9341); if (state.failed) {
                 return ret2;
@@ -20467,7 +20467,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.2");
             }
             match(input,102,FOLLOW_102_in_furcas_tcs_multilinerule9345); if (state.failed) {
                 return ret2;
@@ -20476,7 +20476,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.3");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_multilinerule9349); if (state.failed) {
                 return ret2;
@@ -20485,7 +20485,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.4");
             }
             // ./generationTemp/generated/TCS.g:1825:719: ( ( 'drop' ) | )
             int alt154=2;
@@ -20515,7 +20515,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1825:737: 'drop'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.4/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.4/@thenSequence/@elements.0");
                     }
                     match(input,84,FOLLOW_84_in_furcas_tcs_multilinerule9359); if (state.failed) {
                         return ret2;
@@ -20557,7 +20557,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.5");
             }
             // ./generationTemp/generated/TCS.g:1826:141: (temp= furcas_tcs_stringpattern )
             // ./generationTemp/generated/TCS.g:1826:143: temp= furcas_tcs_stringpattern
@@ -20581,7 +20581,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.6");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.6");
             }
             match(input,COMA,FOLLOW_COMA_in_furcas_tcs_multilinerule9388); if (state.failed) {
                 return ret2;
@@ -20590,7 +20590,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.7");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.7");
             }
             match(input,65,FOLLOW_65_in_furcas_tcs_multilinerule9392); if (state.failed) {
                 return ret2;
@@ -20599,7 +20599,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.8");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.8");
             }
             match(input,EQ,FOLLOW_EQ_in_furcas_tcs_multilinerule9396); if (state.failed) {
                 return ret2;
@@ -20608,7 +20608,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.9");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.9");
             }
             // ./generationTemp/generated/TCS.g:1827:607: ( ( 'drop' ) | )
             int alt155=2;
@@ -20638,7 +20638,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1827:625: 'drop'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.9/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.9/@thenSequence/@elements.0");
                     }
                     match(input,84,FOLLOW_84_in_furcas_tcs_multilinerule9406); if (state.failed) {
                         return ret2;
@@ -20680,7 +20680,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.10");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.10");
             }
             // ./generationTemp/generated/TCS.g:1828:142: (temp= furcas_tcs_stringpattern )
             // ./generationTemp/generated/TCS.g:1828:144: temp= furcas_tcs_stringpattern
@@ -20704,7 +20704,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.11");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.11");
             }
             // ./generationTemp/generated/TCS.g:1829:171: ( ( COMA 'esc' EQ (temp= furcas_tcs_stringpattern ) ( ( COMA LPAREN (temp= furcas_tcs_mapping ( ( COMA ) temp= furcas_tcs_mapping )* )? RPAREN ) | ) ) | )
             int alt159=2;
@@ -20734,7 +20734,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1829:189: COMA 'esc' EQ (temp= furcas_tcs_stringpattern ) ( ( COMA LPAREN (temp= furcas_tcs_mapping ( ( COMA ) temp= furcas_tcs_mapping )* )? RPAREN ) | )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.0");
                     }
                     match(input,COMA,FOLLOW_COMA_in_furcas_tcs_multilinerule9441); if (state.failed) {
                         return ret2;
@@ -20743,7 +20743,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.1");
                     }
                     match(input,60,FOLLOW_60_in_furcas_tcs_multilinerule9445); if (state.failed) {
                         return ret2;
@@ -20752,7 +20752,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.2");
                     }
                     match(input,EQ,FOLLOW_EQ_in_furcas_tcs_multilinerule9449); if (state.failed) {
                         return ret2;
@@ -20761,7 +20761,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.3");
                     }
                     // ./generationTemp/generated/TCS.g:1829:856: (temp= furcas_tcs_stringpattern )
                     // ./generationTemp/generated/TCS.g:1829:858: temp= furcas_tcs_stringpattern
@@ -20785,7 +20785,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4");
                     }
                     // ./generationTemp/generated/TCS.g:1830:197: ( ( COMA LPAREN (temp= furcas_tcs_mapping ( ( COMA ) temp= furcas_tcs_mapping )* )? RPAREN ) | )
                     int alt158=2;
@@ -20815,7 +20815,7 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:1830:215: COMA LPAREN (temp= furcas_tcs_mapping ( ( COMA ) temp= furcas_tcs_mapping )* )? RPAREN
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.0");
                             }
                             match(input,COMA,FOLLOW_COMA_in_furcas_tcs_multilinerule9470); if (state.failed) {
                                 return ret2;
@@ -20824,7 +20824,7 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.1");
                             }
                             match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_multilinerule9475); if (state.failed) {
                                 return ret2;
@@ -20833,7 +20833,7 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.2");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.2");
                             }
                             // ./generationTemp/generated/TCS.g:1830:792: (temp= furcas_tcs_mapping ( ( COMA ) temp= furcas_tcs_mapping )* )?
                             int alt157=2;
@@ -20855,8 +20855,8 @@ public class TCSParser extends ObservableInjectingParser {
                                         return ret2;
                                     }
                                     if ( state.backtracking==0 ) {
-                                      setProperty(ret, "escMappings", temp);
-                                      setParent(temp,ret,"escMappings");
+                                      setProperty(ret, "escmapping", temp);
+                                      setParent(temp,ret,"escmapping");
                                     }
                                     // ./generationTemp/generated/TCS.g:1831:37: ( ( COMA ) temp= furcas_tcs_mapping )*
                                     loop156:
@@ -20880,7 +20880,7 @@ public class TCSParser extends ObservableInjectingParser {
                                     	    // ./generationTemp/generated/TCS.g:1831:56: COMA
                                     	    {
                                     	    if ( state.backtracking==0 ) {
-                                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.2/@propertyArgs.0/@separatorSequence/@elements.0");
+                                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.2/@propertyArgs.0/@separatorSequence/@elements.0");
                                     	    }
                                     	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_multilinerule9492); if (state.failed) {
                                                 return ret2;
@@ -20903,8 +20903,8 @@ public class TCSParser extends ObservableInjectingParser {
                                                 return ret2;
                                             }
                                     	    if ( state.backtracking==0 ) {
-                                    	      setProperty(ret, "escMappings", temp);
-                                    	      setParent(temp,ret,"escMappings");
+                                    	      setProperty(ret, "escmapping", temp);
+                                    	      setParent(temp,ret,"escmapping");
                                     	    }
 
                                     	    }
@@ -20925,7 +20925,7 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.3");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.3");
                             }
                             match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_multilinerule9512); if (state.failed) {
                                 return ret2;
@@ -20988,7 +20988,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.12");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.12");
             }
             match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_multilinerule9543); if (state.failed) {
                 return ret2;
@@ -21166,7 +21166,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1861:4: (temp= identifier )? RARROW (temp= identifier )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.94/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.94/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1861:128: (temp= identifier )?
             int alt161=2;
@@ -21201,7 +21201,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.94/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.94/@templateSequence/@elements.1");
             }
             match(input,RARROW,FOLLOW_RARROW_in_furcas_tcs_simplemapping9648); if (state.failed) {
                 return ret2;
@@ -21210,7 +21210,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.94/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.94/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1862:319: (temp= identifier )?
             int alt162=2;
@@ -21287,7 +21287,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1878:4: POINT RARROW POINT
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.95/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.95/@templateSequence/@elements.0");
             }
             match(input,POINT,FOLLOW_POINT_in_furcas_tcs_wildcardmapping9702); if (state.failed) {
                 return ret2;
@@ -21296,7 +21296,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.95/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.95/@templateSequence/@elements.1");
             }
             match(input,RARROW,FOLLOW_RARROW_in_furcas_tcs_wildcardmapping9707); if (state.failed) {
                 return ret2;
@@ -21305,7 +21305,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.95/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.95/@templateSequence/@elements.2");
             }
             match(input,POINT,FOLLOW_POINT_in_furcas_tcs_wildcardmapping9712); if (state.failed) {
                 return ret2;
@@ -21356,7 +21356,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1893:4: 'octal'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.96/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.96/@templateSequence/@elements.0");
             }
             match(input,116,FOLLOW_116_in_furcas_tcs_octalmapping9753); if (state.failed) {
                 return ret2;
@@ -21407,7 +21407,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1908:4: 'hex'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.97/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.97/@templateSequence/@elements.0");
             }
             match(input,52,FOLLOW_52_in_furcas_tcs_hexadecimalmapping9793); if (state.failed) {
                 return ret2;
@@ -21461,7 +21461,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1923:4: (temp= stringSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.98/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.98/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1923:128: (temp= stringSymbol )
             // ./generationTemp/generated/TCS.g:1923:130: temp= stringSymbol
@@ -21530,7 +21530,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1939:4: LSQUARE (temp= identifier ) RSQUARE
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.99/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.99/@templateSequence/@elements.0");
             }
             match(input,LSQUARE,FOLLOW_LSQUARE_in_furcas_tcs_classpattern9881); if (state.failed) {
                 return ret2;
@@ -21539,7 +21539,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.99/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.99/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:1939:277: (temp= identifier )
             // ./generationTemp/generated/TCS.g:1939:279: temp= identifier
@@ -21563,7 +21563,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.99/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.99/@templateSequence/@elements.2");
             }
             match(input,RSQUARE,FOLLOW_RSQUARE_in_furcas_tcs_classpattern9896); if (state.failed) {
                 return ret2;
@@ -21609,7 +21609,7 @@ public class TCSParser extends ObservableInjectingParser {
         // ./generationTemp/generated/TCS.g:360:146: (temp= ecore_epackage )
         {
         if ( state.backtracking==0 ) {
-          _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.8/@templateSequence/@elements.0/@thenSequence/@elements.0");
+          _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.8/@templateSequence/@elements.0/@thenSequence/@elements.0");
         }
         // ./generationTemp/generated/TCS.g:360:295: (temp= ecore_epackage )
         // ./generationTemp/generated/TCS.g:360:297: temp= ecore_epackage
@@ -21648,7 +21648,7 @@ public class TCSParser extends ObservableInjectingParser {
         // ./generationTemp/generated/TCS.g:924:192: COMA 'mode' EQ (temp= identifierOrKeyword )
         {
         if ( state.backtracking==0 ) {
-          _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.5/@thenSequence/@elements.0");
+          _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.5/@thenSequence/@elements.0");
         }
         match(input,COMA,FOLLOW_COMA_in_synpred274_TCS5536); if (state.failed) {
             return ;
@@ -21716,7 +21716,7 @@ public class TCSParser extends ObservableInjectingParser {
         	    // ./generationTemp/generated/TCS.g:1528:56: 'and'
         	    {
         	    if ( state.backtracking==0 ) {
-        	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.73/@templateSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
+        	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.73/@templateSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
         	    }
         	    match(input,55,FOLLOW_55_in_synpred333_TCS8128); if (state.failed) {
                     return ;

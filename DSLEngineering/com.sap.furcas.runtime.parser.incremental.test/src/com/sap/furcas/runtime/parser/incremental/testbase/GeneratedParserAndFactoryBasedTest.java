@@ -9,7 +9,7 @@ import com.sap.furcas.runtime.common.exceptions.ParserInstantiationException;
 import com.sap.furcas.runtime.parser.PartitionAssignmentHandler;
 import com.sap.furcas.runtime.parser.testbase.ClassLookup;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
-import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
+import com.sap.ide.cts.parser.incremental.IncrementalParserFacade;
 
 /**
  * A Test base class that allows to generate a language specific parser and parserfactory from a given TCS file.

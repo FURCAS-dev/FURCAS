@@ -10,6 +10,10 @@
  ******************************************************************************/
 package com.sap.furcas.metamodel.texteditor.tree;
 
+import java.util.Collections;
+
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+
 import com.sap.furcas.ide.editor.imp.services.FurcasLabelProvider;
 import com.sap.furcas.metamodel.FURCAS.TCS.provider.TCSItemProviderAdapterFactory;
 
@@ -18,6 +22,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.provider.TCSItemProviderAdapterFactor
 public class TCSLabelProvider extends FurcasLabelProvider {
     
     public TCSLabelProvider() {
-        super(new TCSItemProviderAdapterFactory());
+        super(Collections.<ComposeableAdapterFactory>singleton(new TCSItemProviderAdapterFactory()));
     }
 }

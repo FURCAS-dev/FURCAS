@@ -34,19 +34,23 @@ public class TbChangeUtil {
      */
     public static DocumentNode cleanUp(DocumentNode rootBlock) {
         DocumentNode currentVersion = getNewestVersion(rootBlock);
-        for (DocumentNode oldVersion : new ArrayList<DocumentNode>(currentVersion.getOtherVersions())) {
-            currentVersion.getOtherVersions().remove(oldVersion);
+        deleteOtherVersions(currentVersion);
+        makeReferenceVersion(currentVersion);
+        return currentVersion;
+    }
+
+    public static void deleteOtherVersions(DocumentNode versionToKeep) {
+        for (DocumentNode oldVersion : new ArrayList<DocumentNode>(versionToKeep.getOtherVersions())) {
+            versionToKeep.getOtherVersions().remove(oldVersion);
             if (TbNavigationUtil.isUltraRoot(oldVersion)) {
                 EcoreUtil.delete(oldVersion);
             }
         }
-        if (currentVersion instanceof TextBlock) {
-            for (DocumentNode subNode : ((TextBlock) currentVersion).getSubNodes()) {
+        if (versionToKeep instanceof TextBlock) {
+            for (DocumentNode subNode : ((TextBlock) versionToKeep).getSubNodes()) {
                 cleanUp(subNode);
             }
         }
-        makeReferenceVersion(currentVersion);
-        return currentVersion;
     }
 
     /**

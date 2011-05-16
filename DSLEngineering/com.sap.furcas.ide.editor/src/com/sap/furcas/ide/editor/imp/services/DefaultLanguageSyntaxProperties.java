@@ -36,6 +36,8 @@ public class DefaultLanguageSyntaxProperties implements ILanguageSyntaxPropertie
 
     @Override
     public String getSingleLineCommentPrefix() {
+        // FIXME: This should actually be inverted. The content assist should call this method
+        // to find out about comments. Not the other way around.
         return TcsUtil.getEndOfLineCommentPrefix(TcsUtil.getCommentToken(syntax));
     }
 
