@@ -13,8 +13,11 @@
 <booleanAttribute key="default" value="true"/>
 <booleanAttribute key="includeOptional" value="true"/>
 <stringAttribute key="location" value="${workspace_loc}/../runtime-workspace"/>
+<listAttribute key="org.eclipse.debug.ui.favoriteGroups">
+<listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
+</listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.pde.ui.workbenchClasspathProvider"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-XX:MaxPermSize=512m -ea"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-XX:MaxPermSize=256m -Xms512m -Xmx512m -ea"/>
 <booleanAttribute key="pde.generated.config" value="false"/>
 <stringAttribute key="pde.version" value="3.3"/>
 <stringAttribute key="product" value="org.eclipse.platform.ide"/>
