@@ -98,7 +98,6 @@ public class TestParsingObserverWithTcsSyntax {
     }
 
     @Test
-    @Ignore("Still not working on EMF")
     public void testParseBibText() throws Exception {
 
         AbstractToken content = modelFactory.createToken("");
@@ -245,7 +244,6 @@ public class TestParsingObserverWithTcsSyntax {
      * correctly set to thw new value;
      */
     @Test
-    @Ignore("Still not working on EMF")
     public void testParseBibTextReplaceReference() throws Exception {
         AbstractToken content = modelFactory.createToken("");
         TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, content);

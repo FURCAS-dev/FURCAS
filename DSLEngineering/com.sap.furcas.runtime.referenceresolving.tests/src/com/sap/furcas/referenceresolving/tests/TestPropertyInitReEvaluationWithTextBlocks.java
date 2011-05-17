@@ -6,7 +6,6 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -24,8 +23,8 @@ import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
-import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
+import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
 
 /**
  * A test case that use a FURCAS mapping specification (".tcs" file) and based on this produce lexer and
@@ -59,7 +58,7 @@ public class TestPropertyInitReEvaluationWithTextBlocks extends AbstractReferenc
      * @throws Exception
      */
     @Before
-    public void setupInitialModel() throws IOException, UnknownProductionRuleException {
+    public void setupInitialModel() throws SemanticParserException {
         String textToParse = "article{" + "  Testing, \"John Doe\"," + "  year = \"2002\"" + "}" +
                              "author = \"John Doe\"." + "author = \"Jane Doll\".";
         setupModelFromTextToParse(textToParse);

@@ -125,6 +125,7 @@ import com.sap.furcas.unparser.extraction.TCSExtractorPrintStream;
 import com.sap.furcas.unparser.textblocks.IncrementalTextBlockPrettyPrinter;
 import com.sap.ide.cts.parser.errorhandling.ErrorEntry;
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
+import com.sap.ide.cts.parser.errorhandling.SemanticParserException.Component;
 import com.sap.ide.cts.parser.incremental.MappingLinkRecoveringIncrementalParser;
 import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategyImpl;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
@@ -869,9 +870,7 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
                 showInputInvalidInfo(ex);
                 hasErrors = true;
             }
-            // TODO annotate Elements in Outline View with error marker
-            setModel(e.getTextBlock());
-            updateOutlineSave();
+
             if (hasErrors) {
                 return;
             } else if (hasWarnings) {
@@ -1140,10 +1139,9 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
                                 .iterator().next();
                     }
 
-                    if (result == null) {
-                        throw new SemanticParserException(
-                                incrementalParser.getErrorList(),
-                                previousBlock, result);
+                    if (incrementalParser.getErrorList().size() > 0) {
+                        throw new SemanticParserException(incrementalParser.getErrorList(),
+                                Component.SYNTACTIC_ANALYSIS);
                     }
 
                     ArrayList<ParsingError> errorList = new ArrayList<ParsingError>();
@@ -1156,19 +1154,18 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
 //                        }
                     }
                     if (errorList.size() > 0) {
-                        throw new SemanticParserException(errorList, newBlock,
-                                result);
+                        throw new SemanticParserException(incrementalParser.getErrorList(),
+                                Component.SEMANTIC_ANALYSIS);
                     }
 
                 } else {
-                    throw new SemanticParserException(
-                            incrementalParser.getErrorList(), previousBlock,
-                            null);
+                    throw new SemanticParserException(incrementalParser.getErrorList(),
+                            Component.LEXICAL_ANALYSIS);
                 }
             }
         } else {
             throw new SemanticParserException(incrementalParser.getErrorList(),
-                    previousBlock, null);
+                    Component.LEXICAL_ANALYSIS);
         }
         return newBlock;
 
@@ -1272,7 +1269,7 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
         List<ParsingError> errorList = p.checkSyntaxWithoutInjecting();
 
         if (errorList != null && errorList.size() > 0) {
-            throw new SemanticParserException(errorList, rootBlock, null);
+            throw new SemanticParserException(errorList, Component.SYNTACTIC_ANALYSIS);
         }
 
     }

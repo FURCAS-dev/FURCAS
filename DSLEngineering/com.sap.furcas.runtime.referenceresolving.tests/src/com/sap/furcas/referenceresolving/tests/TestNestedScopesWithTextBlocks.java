@@ -33,10 +33,14 @@ import org.junit.Test;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
 import com.sap.furcas.runtime.referenceresolving.TokenChanger;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
+import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
+import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
+import com.sap.ide.cts.parser.errorhandling.SemanticParserException.Component;
 
 /**
  * Tests NestedScopes TCS and metamodel and impact analysis behavior on renames using the NestedScopes language.
@@ -98,14 +102,24 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
      */
     @Test
     public void testDefinitionNotVisibleOutsideOfScope() {
+        boolean failed = false;
+
         String sample = "{" + "{ def a; }" + "use a; }";
-        setupModelFromTextToParse(sample);
-        assertNotNull(rootElement);
+        try {
+            setupModelFromTextToParse(sample);
+        } catch (SemanticParserException e) {
+            assertTrue(e.getComponentThatFailed() == Component.SEMANTIC_ANALYSIS);
+            failed = true;
+        }
+        
+        // if semantic analysis failed the root element should have been created.
+        // It should be valid in all aspect except for the missing reference
+        rootElement = TbVersionUtil.getOtherVersion(rootTextBlock, Version.CURRENT).getCorrespondingModelElements().iterator().next();
 
         EObject useA = getStatementNonNestingLevelM(2, 0);
         assertEquals("Usage", useA.eClass().getName());
         assertFalse(useA.eIsSet((useA.eClass().getEStructuralFeature("boundDefinition"))));
-
+        assertTrue(failed);
     }
 
     /**
@@ -113,21 +127,30 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
      */
     @Test
     public void testUseBeforeDeclaration() {
+        boolean failed = false;
+        
         String sample = "{use a; def a;}";
-        setupModelFromTextToParse(sample);
-        assertNotNull(rootElement);
+        try {
+            setupModelFromTextToParse(sample);
+        } catch (SemanticParserException e) {
+            assertTrue(e.getComponentThatFailed() == Component.SEMANTIC_ANALYSIS);
+            failed = true;
+        }
+        // if semantic analysis failed the root element should have been created.
+        // It should be valid in all aspect except for the missing reference
+        rootElement = TbVersionUtil.getOtherVersion(rootTextBlock, Version.CURRENT).getCorrespondingModelElements().iterator().next();
 
         EObject useA = getStatementNonNestingLevelM(1, 0);
         assertEquals("Usage", useA.eClass().getName());
         assertFalse(useA.eIsSet((useA.eClass().getEStructuralFeature("boundDefinition"))));
-
+        assertTrue(failed);
     }
 
     /**
      * TCS and metamodel test: Usage should be bound to the innermost definition of a.
      */
     @Test
-    public void testShadowing() {
+    public void testShadowing() throws SemanticParserException {
         String sample = "{ def a;" + "{def a; use a;}" + "}";
         setupModelFromTextToParse(sample);
         assertNotNull(rootElement);
@@ -152,7 +175,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
      * "b" inside the inner scope instead of being bound to the definition in the outer scope.
      */
     @Test
-    public void testRebindingToDefinitionInInnerScope() {
+    public void testRebindingToDefinitionInInnerScope() throws SemanticParserException {
         String sample = "{ def b;" + "{ def a; use b; }" + "}";
         setupModelFromTextToParse(sample);
         assertNotNull(rootElement);
@@ -178,7 +201,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
      * in the lookup scope. Thus after renaming the definition of "b" to "d" the usage should still be bound to this definition.
      */
     @Test
-    public void testChoosingOfcorrectLookupScopeElemen() {
+    public void testChoosingOfcorrectLookupScopeElemen() throws SemanticParserException {
         String sample = "{ def a; def b; def c; use b; }";
         setupModelFromTextToParse(sample);
 
@@ -201,7 +224,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
      * {@link SyntaxRegistry} will be requested to update the token value.
      */
     @Test
-    public void testCorrectBindingIfBoundElementIsStillInLookupScopeAfterRename() {
+    public void testCorrectBindingIfBoundElementIsStillInLookupScopeAfterRename() throws SemanticParserException {
         String sample = "{ def b; use b; }";
         final boolean[] receivedRequestToUpdateTokenValue = new boolean[1];
         TokenChanger tokenChanger = new TokenChanger() {
@@ -240,7 +263,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
      * based on the lookup result.
      */
     @Test
-    public void testCorrectBindingIfBoundElementIsNoLongerInLookupScopeAfterRenameWithShadowing() {
+    public void testCorrectBindingIfBoundElementIsNoLongerInLookupScopeAfterRenameWithShadowing() throws SemanticParserException {
         String sample = "{ def a;" + "{ def b; use a;}" + "}";
         setupModelFromTextToParse(sample);
 
@@ -260,7 +283,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
      */
     @Test
     @Ignore("Commented assertions currently fail. Assertions will be testet again, as soon as Stephan was able to fix his bug.")
-    public void testCorrectBindingIfBoundElementIsNoLongerInLookupScopeAfterRenameWithoutShadowing() {
+    public void testCorrectBindingIfBoundElementIsNoLongerInLookupScopeAfterRenameWithoutShadowing() throws SemanticParserException {
         String sample = "{ def a; { def b; use a;} }";
         setupModelFromTextToParse(sample);
         
@@ -297,7 +320,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
      * fresh lookup. It then should set the reference based on the lookup result.
      */
     @Test
-    public void testCorrectBindingIfElementWasNotBoundBeforeRenameVariant1() {
+    public void testCorrectBindingIfElementWasNotBoundBeforeRenameVariant1() throws SemanticParserException {
         String sample = "{ def a;" + "{ def b; use a; }" + "}";
         setupModelFromTextToParse(sample);
 
@@ -321,7 +344,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
      * of a usage to a wrong definition.
      */
     @Test
-    public void testCorrectBindingIfElementWasNotBoundBeforeRenameVariant2() {
+    public void testCorrectBindingIfElementWasNotBoundBeforeRenameVariant2() throws SemanticParserException {
         String sample = "{ def a;" + "{ def b; use a; }" + "}";
         setupModelFromTextToParse(sample);
 
@@ -359,7 +382,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
             element.eSet(element.eClass().getEStructuralFeature("name"), newValue);
     }
     
-    private void renameElementOnTextBlock(int replacedRegionOffset, int replacedRegionLength, String newText){
+    private void renameElementOnTextBlock(int replacedRegionOffset, int replacedRegionLength, String newText) throws SemanticParserException {
         TextBlocksModel model = new TextBlocksModel(rootTextBlock, null);
         model.replace(replacedRegionOffset, replacedRegionLength, newText);
         TextBlock currentVersionTb = incrementalParserFacade.parseIncrementally(rootTextBlock);
