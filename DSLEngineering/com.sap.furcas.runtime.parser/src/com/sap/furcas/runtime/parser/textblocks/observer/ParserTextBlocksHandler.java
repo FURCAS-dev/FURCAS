@@ -2,15 +2,13 @@ package com.sap.furcas.runtime.parser.textblocks.observer;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
-import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.query2.QueryContext;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
@@ -29,7 +27,6 @@ import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
 import com.sap.furcas.runtime.common.implementation.ResolvedModelElementProxy;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
-import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.common.util.MessageUtil;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.IParsingObserver;
@@ -39,9 +36,6 @@ import com.sap.furcas.runtime.parser.impl.ModelElementProxy;
 import com.sap.furcas.runtime.parser.impl.ParserScope;
 import com.sap.furcas.runtime.parser.textblocks.ITextBlocksTokenStream;
 import com.sap.furcas.runtime.textblocks.TbUtil;
-import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
-
-import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider;
 
 /**
  * This class handles the connection between the parser and the textblocks
@@ -59,22 +53,26 @@ import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider
  */
 public class ParserTextBlocksHandler implements IParsingObserver {
     
-    /**
-     * A simple scope provider that can only be used to navigate from the domain
-     * to the textblocks model. 
-     */
-    private class TextBlocksPartitonQueryContextProvider implements QueryContextProvider {
- 
-        @Override
-        public QueryContext getForwardScopeQueryContext(Notifier context) {
-            throw new UnsupportedOperationException("Cannot navigate from domain to view");
-        }
-        @Override
-        public QueryContext getBackwardScopeQueryContext(Notifier context) {
-            return EcoreHelper.getRestrictedQueryContext(parserScope.getResourceSet(),
-                    Collections.singleton(partitionAssignmentHandler.getDefaultTextBlockPartition().getURI()));
-        }
-    }
+    
+//    TODO: Disabled until the PartitonAssignmentHandler does no longer assign TextBlocks to
+//          domain model resources.  Stephan Erb, 17.05.2011     
+    
+//    /**
+//     * A simple scope provider that can only be used to navigate from the domain
+//     * to the textblocks model. 
+//     */
+//    private class TextBlocksPartitonQueryContextProvider implements QueryContextProvider {
+// 
+//        @Override
+//        public QueryContext getForwardScopeQueryContext(Notifier context) {
+//            throw new UnsupportedOperationException("Cannot navigate from domain to view");
+//        }
+//        @Override
+//        public QueryContext getBackwardScopeQueryContext(Notifier context) {
+//            return EcoreHelper.getRestrictedQueryContext(parserScope.getResourceSet(),
+//                    Collections.singleton(partitionAssignmentHandler.getDefaultTextBlockPartition().getURI()));
+//        }
+//    }
 
 	/**
 	 * used to track current context in virtual tree in parallel to existing
@@ -109,7 +107,10 @@ public class ParserTextBlocksHandler implements IParsingObserver {
         this.partitionAssignmentHandler = partitionAssignmentHandler;
         
         this.traverser = new TextBlockTraverser();
-        this.textBlocksOnlyOppositeEndFinder = new Query2OppositeEndFinder(new TextBlocksPartitonQueryContextProvider());
+//      TODO: Disabled until the PartitonAssignmentHandler does no longer assign TextBlocks to
+//      domain model resources.  Stephan Erb, 17.05.2011     
+//      this.textBlocksOnlyOppositeEndFinder = new Query2OppositeEndFinder(new TextBlocksPartitonQueryContextProvider());
+        this.textBlocksOnlyOppositeEndFinder = DefaultOppositeEndFinder.getInstance();
     }
 	
 	/**
