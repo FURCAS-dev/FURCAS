@@ -350,8 +350,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="MessageExp" eSuperTypes="#//OclExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
         lowerBound="1" eType="#//OclExpression" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="argument" ordered="false"
-        upperBound="-1" eType="#//OclExpression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="argument" upperBound="-1"
+        eType="#//OclExpression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="calledOperation" ordered="false"
         eType="#//CallOperationAction" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sentSignal" ordered="false"
