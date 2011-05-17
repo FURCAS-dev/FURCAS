@@ -32,6 +32,28 @@ public abstract class IncrementalRecognizer {
 	protected Eostoken eosRef;
 	protected TextblocksFactory textblocksFactory = TextblocksFactory.eINSTANCE;
 	
+    /**
+     * As the Beginning of Stream (BOS) token is always the first token in the
+     * root textblock this token is used here
+     * 
+     * @param root
+     *            The root textblock of the document to lex
+     */
+    protected void setBOSFromRoot(TextBlock root) {
+        bosRef = (Bostoken) root.getSubNodes().get(0);
+    }
+
+    /**
+     * As the End of Stream (EOS) token is always the last token in the root
+     * textblock this token is used here
+     * 
+     * @param root
+     *            The root textblock of the document to lex
+     */
+    protected void setEOSFromRoot(TextBlock root) {
+        eosRef = (Eostoken) root.getSubNodes().get(root.getSubNodes().size() - 1);
+    }
+	
 	/**
 	 * Find the next marked token within or after node.
 	 */
