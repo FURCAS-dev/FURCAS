@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessageExp.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
+ * $Id: MessageExp.java,v 1.4 2011/05/17 08:38:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -89,7 +89,7 @@ public interface MessageExp
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Argument</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getMessageExp_Argument()
-	 * @model containment="true" resolveProxies="true" ordered="false"
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<OclExpression> getArguments();
