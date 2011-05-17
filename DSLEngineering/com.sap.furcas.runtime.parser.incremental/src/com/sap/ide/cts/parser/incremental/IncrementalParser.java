@@ -123,6 +123,9 @@ public class IncrementalParser extends IncrementalRecognizer {
     public TextBlock incrementalParse(TextBlock root, boolean errorMode) {
         reset();
         setDefaultPartitionFromRoot(root);
+        // get EOS and BOS from root block
+        setEOSFromRoot(root);
+        setBOSFromRoot(root);
         TextBlock newRoot = root;
         // if there is a change
         if (!isEOS(findNextRegion(root))) {
@@ -138,8 +141,7 @@ public class IncrementalParser extends IncrementalRecognizer {
             batchParser.setResolveProxies(false);
 
             // find the next changed region
-            for (AbstractToken tok = findNextRegion(root); !isEOS(tok)
-                    && tok != null; tok = tok==null?null:findNextRegion(tok)) {
+            for (AbstractToken tok = findNextRegion(root); !isEOS(tok); tok = findNextRegion(tok)) {
                 AbstractToken leftBoundary = tok;
                 // left boundary has to be the element that is reachable by the
                 // lookback count of
