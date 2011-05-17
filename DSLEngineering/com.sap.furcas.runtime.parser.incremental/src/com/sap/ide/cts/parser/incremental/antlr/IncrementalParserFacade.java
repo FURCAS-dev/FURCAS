@@ -32,6 +32,8 @@ import com.sap.furcas.runtime.parser.textblocks.TextBlocksAwareModelAdapter;
 import com.sap.furcas.runtime.parser.textblocks.observer.ParserTextBlocksHandler;
 import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
 import com.sap.ide.cts.parser.Activator;
+import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
+import com.sap.ide.cts.parser.errorhandling.SemanticParserException.Component;
 import com.sap.ide.cts.parser.incremental.IncrementalParser;
 import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategyImpl;
 
@@ -107,7 +109,7 @@ public class IncrementalParserFacade {
      * @param rootBlock
      * @return
      */
-    public TextBlock parseIncrementally(TextBlock rootBlock) {
+    public TextBlock parseIncrementally(TextBlock rootBlock) throws SemanticParserException {
         if (lexAndPrepareParsing(rootBlock)) {
             TextBlock preparedTextBlock = getCurrentVersion(rootBlock);
             incrementalLexer.setCurrentTokenForParser(preparedTextBlock.getTokens().get(0));
@@ -115,7 +117,7 @@ public class IncrementalParserFacade {
             TextBlock newRoot = incrementalParser.incrementalParse(preparedTextBlock);
             return newRoot;
         } else {
-            return rootBlock;
+            throw new SemanticParserException(getErrors(), Component.LEXICAL_ANALYSIS);
         }
     }
 

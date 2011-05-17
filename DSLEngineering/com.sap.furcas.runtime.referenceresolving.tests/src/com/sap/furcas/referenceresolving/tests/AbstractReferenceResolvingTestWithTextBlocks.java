@@ -25,6 +25,7 @@ import com.sap.furcas.runtime.textblocks.testutils.EMFTextBlocksModelElementFact
 import com.sap.furcas.runtime.textblocks.testutils.TestSourceTextBlockCreator;
 import com.sap.furcas.runtime.textblocks.testutils.TextBlocksModelElementFactory;
 import com.sap.furcas.test.testutils.ResourceTestHelper;
+import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
 import com.sap.ide.cts.parser.incremental.DefaultPartitionAssignmentHandlerImpl;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 
@@ -107,11 +108,11 @@ public abstract class AbstractReferenceResolvingTestWithTextBlocks extends Gener
      * @param textToParse
      *            this text is parsed using the grammar passed to {@link #setupParser(File, String, String, File...)} as first argument.
      */
-    protected void setupModelFromTextToParse(String textToParse) {
+    protected void setupModelFromTextToParse(String textToParse) throws SemanticParserException {
         rootElement = parseFile(textToParse);
     }
 
-    protected EObject parseFile(String textToParse) {
+    protected EObject parseFile(String textToParse) throws SemanticParserException {
         modelFactory = new EMFTextBlocksModelElementFactory();
         transientParsingResource = ResourceTestHelper.createTransientResource(resourceSet);
         AbstractToken content = modelFactory.createToken("");

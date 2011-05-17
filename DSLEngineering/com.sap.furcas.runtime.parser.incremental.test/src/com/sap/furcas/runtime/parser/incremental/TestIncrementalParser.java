@@ -29,6 +29,7 @@ import com.sap.furcas.runtime.textblocks.testutils.TestSourceTextBlockCreator;
 import com.sap.furcas.runtime.textblocks.testutils.TextBlocksModelElementFactory;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
 import com.sap.furcas.test.testutils.ResourceTestHelper;
+import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 
 public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
@@ -75,7 +76,7 @@ public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
     }
 
     @Test
-    public void testIncrementalParserSetup() {
+    public void testIncrementalParserSetup() throws SemanticParserException {
         AbstractToken content = modelFactory.createToken("");
         TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, content);
         transientParsingResource.getContents().add(root);
