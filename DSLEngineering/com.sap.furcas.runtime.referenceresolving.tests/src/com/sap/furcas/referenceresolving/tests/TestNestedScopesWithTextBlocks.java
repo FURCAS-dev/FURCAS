@@ -27,7 +27,6 @@ import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.junit.After;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
@@ -282,7 +281,6 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
      * scope due to a textual rename of the usage's token value, Impact Analysis breaks the boundDefinition reference.
      */
     @Test
-    @Ignore("Commented assertions currently fail. Assertions will be testet again, as soon as Stephan was able to fix his bug.")
     public void testCorrectBindingIfBoundElementIsNoLongerInLookupScopeAfterRenameWithoutShadowing() throws SemanticParserException {
         String sample = "{ def a; { def b; use a;} }";
         setupModelFromTextToParse(sample);
@@ -296,7 +294,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
         
         OppositeEndFinder oppositeEndFinder = DefaultOppositeEndFinder.getInstance();
         LexedToken newLexedTokenOfUsage = findCurrentReferenceTokenReferencing(aDefinition, oppositeEndFinder);
-        //assertNotNull(newLexedTokenOfUsage);
+        assertNotNull(newLexedTokenOfUsage);
         //assertEquals("d", newLexedTokenOfUsage.getValue());
         assertEquals("d", aDefinition.eGet(aDefinition.eClass().getEStructuralFeature("name")));
         //assertFalse("boundDefinition reference should not be set",
