@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeCaches.java,v 1.6 2011/05/02 15:38:54 ewillink Exp $
+ * $Id: TypeCaches.java,v 1.7 2011/05/17 17:28:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -1382,7 +1382,7 @@ public abstract class TypeCaches extends PivotStandardLibrary
 			return;
 		}
 		org.eclipse.ocl.examples.pivot.Class thatType = (org.eclipse.ocl.examples.pivot.Class)thisProperty.getType();
-		if (thatType instanceof DataType) {
+		if ((thatType == null) || (thatType instanceof DataType)) {
 			return;
 		}
 		org.eclipse.ocl.examples.pivot.Class thisType = thisProperty.getClass_();
