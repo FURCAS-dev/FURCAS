@@ -29,7 +29,7 @@ public class TCSBootstrap {
     private static final String LANGUAGE_NAME = "TCS";
     private static final String GENERATIONDIR = "./generationTemp/";
     private static final String PACKAGE = "generated";
-    private static final String MAPPINGS = "mappings";
+    private static final String MAPPINGS = "mapping";
     private static final String GRAMMAR = GENERATIONDIR + PACKAGE + "/"+LANGUAGE_NAME+".g";
     private static final String SYNTAXDEFINITION = "./syntaxdefinition/"+LANGUAGE_NAME+".tcs";
     
