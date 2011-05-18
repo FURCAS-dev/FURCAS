@@ -107,6 +107,9 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
         @Override
         public boolean visit(IResourceDelta delta) throws CoreException {
             IResource resource = delta.getResource();
+            if (delta.getFlags() == IResourceDelta.MARKERS) {
+                return true;
+            }
             switch (delta.getKind()) {
             case IResourceDelta.ADDED:
                 // handle added resource
@@ -187,13 +190,15 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
             if (!hasModelContent(resource, refScopeBean)) {
                 monitor.subTask("Parsing Syntax " + resource.getName());
                 syntaxBean = parseSyntax(resource, sourceConfig);
-                IResource modelResource = resource.getProject().getFile("mapping" + File.separator + getFileNameBase(resource) + "." + "tcs");
-                if (modelResource.getModificationStamp() > resource.getModificationStamp()) {
-                    // The plaintext file is older than the model. We do not want to overwrite the model file.
-                    // (happens when the project is cleaned and a rebuilt is triggered)
-                    return;
+                if (syntaxBean != null) {
+                    IResource modelResource = resource.getProject().getFile("mapping" + File.separator + getFileNameBase(resource) + "." + "tcs");
+                    if (modelResource.getModificationStamp() > resource.getModificationStamp()) {
+                        // The plaintext file is older than the model. We do not want to overwrite the model file.
+                        // (happens when the project is cleaned and a rebuilt is triggered)
+                        return;
+                    }
+                    saveSyntaxAsModel(modelResource, sourceConfig, syntaxBean);
                 }
-                saveSyntaxAsModel(modelResource, sourceConfig, syntaxBean);
             } else {
                 syntaxBean = loadSyntaxFromModelFile(resource, sourceConfig);
             }
