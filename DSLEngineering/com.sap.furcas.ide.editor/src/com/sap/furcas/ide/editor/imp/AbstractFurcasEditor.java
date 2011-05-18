@@ -16,6 +16,7 @@ import org.antlr.runtime.Lexer;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
+import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -228,9 +229,12 @@ public class AbstractFurcasEditor extends UniversalEditor {
                 });
             }
         });
-
-        // Create the editing domain with a special command stack.
         AdapterFactoryEditingDomain domain = new AdapterFactoryEditingDomain(adapterFactory, commandStack);
+        
+        ECrossReferenceAdapter crossRefAdapter = new ECrossReferenceAdapter();
+        domain.getResourceSet().eAdapters().add(crossRefAdapter);
+        crossRefAdapter.setTarget(domain.getResourceSet());
+        
         return domain;
     }
     
