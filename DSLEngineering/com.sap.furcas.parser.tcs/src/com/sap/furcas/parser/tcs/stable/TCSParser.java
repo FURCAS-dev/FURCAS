@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 ./generationTemp/generated/TCS.g 2011-05-12 22:58:47
+// $ANTLR 3.1.1 ./generationTemp/generated/TCS.g 2011-05-18 23:12:14
 
 package com.sap.furcas.parser.tcs.stable;
 import java.util.List;
@@ -19,7 +19,7 @@ import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.referenceresolving.SyntaxRegistryFacade;
 public class TCSParser extends ObservableInjectingParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "NAME", "STRING", "INT", "FLOAT", "DLCOLON", "SHARP", "LPAREN", "EQ", "RPAREN", "LCURLY", "RCURLY", "SEMI", "RARROW", "COLON", "COMA", "LT", "GT", "LSQUARE", "RSQUARE", "QMARK", "DLSQUARE", "PIPE", "DRSQUARE", "STAR", "DOLLAR", "DLCURLY", "DRCURLY", "LARROW", "POINT", "MINUS", "COMMENT", "MULTI_LINE_COMMENT", "EXCL", "AROBAS", "SLASH", "PLUS", "GE", "LE", "NE", "NL", "WS", "DIGIT", "ALPHA", "SNAME", "ESC", "'token'", "'lookIn'", "'multiLine'", "'hex'", "'rightNone'", "'right'", "'and'", "'left'", "'separator'", "'mode'", "'postfix'", "'esc'", "'main'", "'when'", "'disambiguateV3'", "'nbNL'", "'end'", "'leftNone'", "'createAs'", "'false'", "'all'", "'operatorTemplate'", "'instanceOf'", "'context'", "'syntax'", "'word'", "'forcedLower'", "'default'", "'semDisambiguate'", "'isDefined'", "'addToContext'", "'referenceBy'", "'nonPrimary'", "'createIn'", "'symbols'", "'drop'", "'orKeyword'", "'abstract'", "'indentIncr'", "'lexer'", "'rightSpace'", "'referenceOnly'", "'prefix'", "'primitiveTemplate'", "'autoCreate'", "'enumerationTemplate'", "'serializer'", "'multi'", "'always'", "'keywords'", "'omitted'", "'priority'", "'partial'", "'start'", "'value'", "'operatored'", "'storeOpTo'", "'part'", "'deep'", "'leftSpace'", "'operators'", "'using'", "'disambiguate'", "'foreach'", "'endNL'", "'endOfLine'", "'source'", "'octal'", "'ifmissing'", "'importContext'", "'k'", "'storeRightTo'", "'refersTo'", "'startNbNL'", "'auto'", "'one'", "'true'", "'function'", "'never'", "'lookupScope'", "'as'", "'for'", "'template'", "'forcedUpper'", "'startNL'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "NAME", "STRING", "INT", "FLOAT", "DLCOLON", "SHARP", "LPAREN", "EQ", "RPAREN", "LCURLY", "RCURLY", "SEMI", "RARROW", "COLON", "COMA", "LT", "GT", "LSQUARE", "RSQUARE", "QMARK", "DLSQUARE", "PIPE", "DRSQUARE", "STAR", "DOLLAR", "DLCURLY", "DRCURLY", "LARROW", "POINT", "MINUS", "COMMENT", "MULTI_LINE_COMMENT", "EXCL", "AROBAS", "SLASH", "PLUS", "GE", "LE", "NE", "NL", "WS", "DIGIT", "ALPHA", "SNAME", "ESC", "'startNbNL'", "'default'", "'storeRightTo'", "'forcedUpper'", "'separator'", "'octal'", "'end'", "'rightNone'", "'word'", "'all'", "'never'", "'ifmissing'", "'disambiguate'", "'postfix'", "'context'", "'refersTo'", "'for'", "'indentIncr'", "'prefix'", "'and'", "'operatored'", "'left'", "'always'", "'semDisambiguate'", "'as'", "'keywords'", "'startNL'", "'instanceOf'", "'storeOpTo'", "'operatorTemplate'", "'forcedLower'", "'autoCreate'", "'deep'", "'using'", "'hex'", "'nonPrimary'", "'main'", "'esc'", "'endOfLine'", "'function'", "'primitiveTemplate'", "'lookIn'", "'disambiguateV3'", "'isDefined'", "'when'", "'abstract'", "'importContext'", "'nbNL'", "'mode'", "'lookupScope'", "'referenceBy'", "'referenceOnly'", "'syntax'", "'omitted'", "'createIn'", "'auto'", "'operators'", "'serializer'", "'one'", "'enumerationTemplate'", "'foreach'", "'true'", "'value'", "'drop'", "'source'", "'addToContext'", "'leftNone'", "'template'", "'createAs'", "'false'", "'k'", "'multiLine'", "'part'", "'rightSpace'", "'symbols'", "'endNL'", "'right'", "'token'", "'lexer'", "'orKeyword'", "'leftSpace'", "'priority'", "'start'", "'multi'", "'partial'"
     };
     public static final int DLCURLY=29;
     public static final int LT=19;
@@ -170,7 +170,7 @@ public class TCSParser extends ObservableInjectingParser {
     public String getGrammarFileName() { return "./generationTemp/generated/TCS.g"; }
 
 
-       private static final String syntaxUUID = "_m1iusHzaEeChc_j8XaCvCQ";
+       private static final String syntaxUUID = "_d1xT8IGTEeCR891dVzlIzA";
        public String getSyntaxUUID() {
             return syntaxUUID;
        }
@@ -235,7 +235,7 @@ public class TCSParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "identifierOrKeyword"
-    // ./generationTemp/generated/TCS.g:113:1: identifierOrKeyword returns [Object ret2] : (ast= NAME | 'token' | 'lookIn' | 'multiLine' | 'hex' | 'rightNone' | 'right' | 'and' | 'left' | 'separator' | 'mode' | 'postfix' | 'esc' | 'main' | 'when' | 'disambiguateV3' | 'nbNL' | 'end' | 'leftNone' | 'createAs' | 'false' | 'all' | 'operatorTemplate' | 'instanceOf' | 'context' | 'syntax' | 'word' | 'forcedLower' | 'default' | 'semDisambiguate' | 'isDefined' | 'addToContext' | 'referenceBy' | 'nonPrimary' | 'createIn' | 'symbols' | 'drop' | 'orKeyword' | 'abstract' | 'indentIncr' | 'lexer' | 'rightSpace' | 'referenceOnly' | 'prefix' | 'primitiveTemplate' | 'autoCreate' | 'enumerationTemplate' | 'serializer' | 'multi' | 'always' | 'keywords' | 'omitted' | 'priority' | 'partial' | 'start' | 'value' | 'operatored' | 'storeOpTo' | 'part' | 'deep' | 'leftSpace' | 'operators' | 'using' | 'disambiguate' | 'foreach' | 'endNL' | 'endOfLine' | 'source' | 'octal' | 'ifmissing' | 'importContext' | 'k' | 'storeRightTo' | 'refersTo' | 'startNbNL' | 'auto' | 'one' | 'true' | 'function' | 'never' | 'lookupScope' | 'as' | 'for' | 'template' | 'forcedUpper' | 'startNL' ) ;
+    // ./generationTemp/generated/TCS.g:113:1: identifierOrKeyword returns [Object ret2] : (ast= NAME | 'startNbNL' | 'default' | 'storeRightTo' | 'forcedUpper' | 'separator' | 'octal' | 'end' | 'rightNone' | 'word' | 'all' | 'never' | 'ifmissing' | 'disambiguate' | 'postfix' | 'context' | 'refersTo' | 'for' | 'indentIncr' | 'prefix' | 'and' | 'operatored' | 'left' | 'always' | 'semDisambiguate' | 'as' | 'keywords' | 'startNL' | 'instanceOf' | 'storeOpTo' | 'operatorTemplate' | 'forcedLower' | 'autoCreate' | 'deep' | 'using' | 'hex' | 'nonPrimary' | 'main' | 'esc' | 'endOfLine' | 'function' | 'primitiveTemplate' | 'lookIn' | 'disambiguateV3' | 'isDefined' | 'when' | 'abstract' | 'importContext' | 'nbNL' | 'mode' | 'lookupScope' | 'referenceBy' | 'referenceOnly' | 'syntax' | 'omitted' | 'createIn' | 'auto' | 'operators' | 'serializer' | 'one' | 'enumerationTemplate' | 'foreach' | 'true' | 'value' | 'drop' | 'source' | 'addToContext' | 'leftNone' | 'template' | 'createAs' | 'false' | 'k' | 'multiLine' | 'part' | 'rightSpace' | 'symbols' | 'endNL' | 'right' | 'token' | 'lexer' | 'orKeyword' | 'leftSpace' | 'priority' | 'start' | 'multi' | 'partial' ) ;
     public final Object identifierOrKeyword() throws RecognitionException {
         Object ret2 = null;
 
@@ -243,10 +243,10 @@ public class TCSParser extends ObservableInjectingParser {
 
         java.lang.Object ret=null;
         try {
-            // ./generationTemp/generated/TCS.g:114:3: ( (ast= NAME | 'token' | 'lookIn' | 'multiLine' | 'hex' | 'rightNone' | 'right' | 'and' | 'left' | 'separator' | 'mode' | 'postfix' | 'esc' | 'main' | 'when' | 'disambiguateV3' | 'nbNL' | 'end' | 'leftNone' | 'createAs' | 'false' | 'all' | 'operatorTemplate' | 'instanceOf' | 'context' | 'syntax' | 'word' | 'forcedLower' | 'default' | 'semDisambiguate' | 'isDefined' | 'addToContext' | 'referenceBy' | 'nonPrimary' | 'createIn' | 'symbols' | 'drop' | 'orKeyword' | 'abstract' | 'indentIncr' | 'lexer' | 'rightSpace' | 'referenceOnly' | 'prefix' | 'primitiveTemplate' | 'autoCreate' | 'enumerationTemplate' | 'serializer' | 'multi' | 'always' | 'keywords' | 'omitted' | 'priority' | 'partial' | 'start' | 'value' | 'operatored' | 'storeOpTo' | 'part' | 'deep' | 'leftSpace' | 'operators' | 'using' | 'disambiguate' | 'foreach' | 'endNL' | 'endOfLine' | 'source' | 'octal' | 'ifmissing' | 'importContext' | 'k' | 'storeRightTo' | 'refersTo' | 'startNbNL' | 'auto' | 'one' | 'true' | 'function' | 'never' | 'lookupScope' | 'as' | 'for' | 'template' | 'forcedUpper' | 'startNL' ) )
-            // ./generationTemp/generated/TCS.g:115:3: (ast= NAME | 'token' | 'lookIn' | 'multiLine' | 'hex' | 'rightNone' | 'right' | 'and' | 'left' | 'separator' | 'mode' | 'postfix' | 'esc' | 'main' | 'when' | 'disambiguateV3' | 'nbNL' | 'end' | 'leftNone' | 'createAs' | 'false' | 'all' | 'operatorTemplate' | 'instanceOf' | 'context' | 'syntax' | 'word' | 'forcedLower' | 'default' | 'semDisambiguate' | 'isDefined' | 'addToContext' | 'referenceBy' | 'nonPrimary' | 'createIn' | 'symbols' | 'drop' | 'orKeyword' | 'abstract' | 'indentIncr' | 'lexer' | 'rightSpace' | 'referenceOnly' | 'prefix' | 'primitiveTemplate' | 'autoCreate' | 'enumerationTemplate' | 'serializer' | 'multi' | 'always' | 'keywords' | 'omitted' | 'priority' | 'partial' | 'start' | 'value' | 'operatored' | 'storeOpTo' | 'part' | 'deep' | 'leftSpace' | 'operators' | 'using' | 'disambiguate' | 'foreach' | 'endNL' | 'endOfLine' | 'source' | 'octal' | 'ifmissing' | 'importContext' | 'k' | 'storeRightTo' | 'refersTo' | 'startNbNL' | 'auto' | 'one' | 'true' | 'function' | 'never' | 'lookupScope' | 'as' | 'for' | 'template' | 'forcedUpper' | 'startNL' )
+            // ./generationTemp/generated/TCS.g:114:3: ( (ast= NAME | 'startNbNL' | 'default' | 'storeRightTo' | 'forcedUpper' | 'separator' | 'octal' | 'end' | 'rightNone' | 'word' | 'all' | 'never' | 'ifmissing' | 'disambiguate' | 'postfix' | 'context' | 'refersTo' | 'for' | 'indentIncr' | 'prefix' | 'and' | 'operatored' | 'left' | 'always' | 'semDisambiguate' | 'as' | 'keywords' | 'startNL' | 'instanceOf' | 'storeOpTo' | 'operatorTemplate' | 'forcedLower' | 'autoCreate' | 'deep' | 'using' | 'hex' | 'nonPrimary' | 'main' | 'esc' | 'endOfLine' | 'function' | 'primitiveTemplate' | 'lookIn' | 'disambiguateV3' | 'isDefined' | 'when' | 'abstract' | 'importContext' | 'nbNL' | 'mode' | 'lookupScope' | 'referenceBy' | 'referenceOnly' | 'syntax' | 'omitted' | 'createIn' | 'auto' | 'operators' | 'serializer' | 'one' | 'enumerationTemplate' | 'foreach' | 'true' | 'value' | 'drop' | 'source' | 'addToContext' | 'leftNone' | 'template' | 'createAs' | 'false' | 'k' | 'multiLine' | 'part' | 'rightSpace' | 'symbols' | 'endNL' | 'right' | 'token' | 'lexer' | 'orKeyword' | 'leftSpace' | 'priority' | 'start' | 'multi' | 'partial' ) )
+            // ./generationTemp/generated/TCS.g:115:3: (ast= NAME | 'startNbNL' | 'default' | 'storeRightTo' | 'forcedUpper' | 'separator' | 'octal' | 'end' | 'rightNone' | 'word' | 'all' | 'never' | 'ifmissing' | 'disambiguate' | 'postfix' | 'context' | 'refersTo' | 'for' | 'indentIncr' | 'prefix' | 'and' | 'operatored' | 'left' | 'always' | 'semDisambiguate' | 'as' | 'keywords' | 'startNL' | 'instanceOf' | 'storeOpTo' | 'operatorTemplate' | 'forcedLower' | 'autoCreate' | 'deep' | 'using' | 'hex' | 'nonPrimary' | 'main' | 'esc' | 'endOfLine' | 'function' | 'primitiveTemplate' | 'lookIn' | 'disambiguateV3' | 'isDefined' | 'when' | 'abstract' | 'importContext' | 'nbNL' | 'mode' | 'lookupScope' | 'referenceBy' | 'referenceOnly' | 'syntax' | 'omitted' | 'createIn' | 'auto' | 'operators' | 'serializer' | 'one' | 'enumerationTemplate' | 'foreach' | 'true' | 'value' | 'drop' | 'source' | 'addToContext' | 'leftNone' | 'template' | 'createAs' | 'false' | 'k' | 'multiLine' | 'part' | 'rightSpace' | 'symbols' | 'endNL' | 'right' | 'token' | 'lexer' | 'orKeyword' | 'leftSpace' | 'priority' | 'start' | 'multi' | 'partial' )
             {
-            // ./generationTemp/generated/TCS.g:115:3: (ast= NAME | 'token' | 'lookIn' | 'multiLine' | 'hex' | 'rightNone' | 'right' | 'and' | 'left' | 'separator' | 'mode' | 'postfix' | 'esc' | 'main' | 'when' | 'disambiguateV3' | 'nbNL' | 'end' | 'leftNone' | 'createAs' | 'false' | 'all' | 'operatorTemplate' | 'instanceOf' | 'context' | 'syntax' | 'word' | 'forcedLower' | 'default' | 'semDisambiguate' | 'isDefined' | 'addToContext' | 'referenceBy' | 'nonPrimary' | 'createIn' | 'symbols' | 'drop' | 'orKeyword' | 'abstract' | 'indentIncr' | 'lexer' | 'rightSpace' | 'referenceOnly' | 'prefix' | 'primitiveTemplate' | 'autoCreate' | 'enumerationTemplate' | 'serializer' | 'multi' | 'always' | 'keywords' | 'omitted' | 'priority' | 'partial' | 'start' | 'value' | 'operatored' | 'storeOpTo' | 'part' | 'deep' | 'leftSpace' | 'operators' | 'using' | 'disambiguate' | 'foreach' | 'endNL' | 'endOfLine' | 'source' | 'octal' | 'ifmissing' | 'importContext' | 'k' | 'storeRightTo' | 'refersTo' | 'startNbNL' | 'auto' | 'one' | 'true' | 'function' | 'never' | 'lookupScope' | 'as' | 'for' | 'template' | 'forcedUpper' | 'startNL' )
+            // ./generationTemp/generated/TCS.g:115:3: (ast= NAME | 'startNbNL' | 'default' | 'storeRightTo' | 'forcedUpper' | 'separator' | 'octal' | 'end' | 'rightNone' | 'word' | 'all' | 'never' | 'ifmissing' | 'disambiguate' | 'postfix' | 'context' | 'refersTo' | 'for' | 'indentIncr' | 'prefix' | 'and' | 'operatored' | 'left' | 'always' | 'semDisambiguate' | 'as' | 'keywords' | 'startNL' | 'instanceOf' | 'storeOpTo' | 'operatorTemplate' | 'forcedLower' | 'autoCreate' | 'deep' | 'using' | 'hex' | 'nonPrimary' | 'main' | 'esc' | 'endOfLine' | 'function' | 'primitiveTemplate' | 'lookIn' | 'disambiguateV3' | 'isDefined' | 'when' | 'abstract' | 'importContext' | 'nbNL' | 'mode' | 'lookupScope' | 'referenceBy' | 'referenceOnly' | 'syntax' | 'omitted' | 'createIn' | 'auto' | 'operators' | 'serializer' | 'one' | 'enumerationTemplate' | 'foreach' | 'true' | 'value' | 'drop' | 'source' | 'addToContext' | 'leftNone' | 'template' | 'createAs' | 'false' | 'k' | 'multiLine' | 'part' | 'rightSpace' | 'symbols' | 'endNL' | 'right' | 'token' | 'lexer' | 'orKeyword' | 'leftSpace' | 'priority' | 'start' | 'multi' | 'partial' )
             int alt1=86;
             switch ( input.LA(1) ) {
             case NAME:
@@ -702,333 +702,21 @@ public class TCSParser extends ObservableInjectingParser {
                     }
                     break;
                 case 2 :
-                    // ./generationTemp/generated/TCS.g:117:5: 'token'
+                    // ./generationTemp/generated/TCS.g:117:5: 'startNbNL'
                     {
                     match(input,49,FOLLOW_49_in_identifierOrKeyword108); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "token";
+                      ret = "startNbNL";
                     }
 
                     }
                     break;
                 case 3 :
-                    // ./generationTemp/generated/TCS.g:118:5: 'lookIn'
+                    // ./generationTemp/generated/TCS.g:118:5: 'default'
                     {
                     match(input,50,FOLLOW_50_in_identifierOrKeyword116); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "lookIn";
-                    }
-
-                    }
-                    break;
-                case 4 :
-                    // ./generationTemp/generated/TCS.g:119:5: 'multiLine'
-                    {
-                    match(input,51,FOLLOW_51_in_identifierOrKeyword124); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "multiLine";
-                    }
-
-                    }
-                    break;
-                case 5 :
-                    // ./generationTemp/generated/TCS.g:120:5: 'hex'
-                    {
-                    match(input,52,FOLLOW_52_in_identifierOrKeyword132); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "hex";
-                    }
-
-                    }
-                    break;
-                case 6 :
-                    // ./generationTemp/generated/TCS.g:121:5: 'rightNone'
-                    {
-                    match(input,53,FOLLOW_53_in_identifierOrKeyword140); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "rightNone";
-                    }
-
-                    }
-                    break;
-                case 7 :
-                    // ./generationTemp/generated/TCS.g:122:5: 'right'
-                    {
-                    match(input,54,FOLLOW_54_in_identifierOrKeyword148); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "right";
-                    }
-
-                    }
-                    break;
-                case 8 :
-                    // ./generationTemp/generated/TCS.g:123:5: 'and'
-                    {
-                    match(input,55,FOLLOW_55_in_identifierOrKeyword156); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "and";
-                    }
-
-                    }
-                    break;
-                case 9 :
-                    // ./generationTemp/generated/TCS.g:124:5: 'left'
-                    {
-                    match(input,56,FOLLOW_56_in_identifierOrKeyword164); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "left";
-                    }
-
-                    }
-                    break;
-                case 10 :
-                    // ./generationTemp/generated/TCS.g:125:5: 'separator'
-                    {
-                    match(input,57,FOLLOW_57_in_identifierOrKeyword172); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "separator";
-                    }
-
-                    }
-                    break;
-                case 11 :
-                    // ./generationTemp/generated/TCS.g:126:5: 'mode'
-                    {
-                    match(input,58,FOLLOW_58_in_identifierOrKeyword180); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "mode";
-                    }
-
-                    }
-                    break;
-                case 12 :
-                    // ./generationTemp/generated/TCS.g:127:5: 'postfix'
-                    {
-                    match(input,59,FOLLOW_59_in_identifierOrKeyword188); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "postfix";
-                    }
-
-                    }
-                    break;
-                case 13 :
-                    // ./generationTemp/generated/TCS.g:128:5: 'esc'
-                    {
-                    match(input,60,FOLLOW_60_in_identifierOrKeyword196); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "esc";
-                    }
-
-                    }
-                    break;
-                case 14 :
-                    // ./generationTemp/generated/TCS.g:129:5: 'main'
-                    {
-                    match(input,61,FOLLOW_61_in_identifierOrKeyword204); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "main";
-                    }
-
-                    }
-                    break;
-                case 15 :
-                    // ./generationTemp/generated/TCS.g:130:5: 'when'
-                    {
-                    match(input,62,FOLLOW_62_in_identifierOrKeyword212); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "when";
-                    }
-
-                    }
-                    break;
-                case 16 :
-                    // ./generationTemp/generated/TCS.g:131:5: 'disambiguateV3'
-                    {
-                    match(input,63,FOLLOW_63_in_identifierOrKeyword220); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "disambiguateV3";
-                    }
-
-                    }
-                    break;
-                case 17 :
-                    // ./generationTemp/generated/TCS.g:132:5: 'nbNL'
-                    {
-                    match(input,64,FOLLOW_64_in_identifierOrKeyword228); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "nbNL";
-                    }
-
-                    }
-                    break;
-                case 18 :
-                    // ./generationTemp/generated/TCS.g:133:5: 'end'
-                    {
-                    match(input,65,FOLLOW_65_in_identifierOrKeyword236); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "end";
-                    }
-
-                    }
-                    break;
-                case 19 :
-                    // ./generationTemp/generated/TCS.g:134:5: 'leftNone'
-                    {
-                    match(input,66,FOLLOW_66_in_identifierOrKeyword244); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "leftNone";
-                    }
-
-                    }
-                    break;
-                case 20 :
-                    // ./generationTemp/generated/TCS.g:135:5: 'createAs'
-                    {
-                    match(input,67,FOLLOW_67_in_identifierOrKeyword252); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "createAs";
-                    }
-
-                    }
-                    break;
-                case 21 :
-                    // ./generationTemp/generated/TCS.g:136:5: 'false'
-                    {
-                    match(input,68,FOLLOW_68_in_identifierOrKeyword260); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "false";
-                    }
-
-                    }
-                    break;
-                case 22 :
-                    // ./generationTemp/generated/TCS.g:137:5: 'all'
-                    {
-                    match(input,69,FOLLOW_69_in_identifierOrKeyword268); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "all";
-                    }
-
-                    }
-                    break;
-                case 23 :
-                    // ./generationTemp/generated/TCS.g:138:5: 'operatorTemplate'
-                    {
-                    match(input,70,FOLLOW_70_in_identifierOrKeyword276); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "operatorTemplate";
-                    }
-
-                    }
-                    break;
-                case 24 :
-                    // ./generationTemp/generated/TCS.g:139:5: 'instanceOf'
-                    {
-                    match(input,71,FOLLOW_71_in_identifierOrKeyword284); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "instanceOf";
-                    }
-
-                    }
-                    break;
-                case 25 :
-                    // ./generationTemp/generated/TCS.g:140:5: 'context'
-                    {
-                    match(input,72,FOLLOW_72_in_identifierOrKeyword292); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "context";
-                    }
-
-                    }
-                    break;
-                case 26 :
-                    // ./generationTemp/generated/TCS.g:141:5: 'syntax'
-                    {
-                    match(input,73,FOLLOW_73_in_identifierOrKeyword300); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "syntax";
-                    }
-
-                    }
-                    break;
-                case 27 :
-                    // ./generationTemp/generated/TCS.g:142:5: 'word'
-                    {
-                    match(input,74,FOLLOW_74_in_identifierOrKeyword308); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "word";
-                    }
-
-                    }
-                    break;
-                case 28 :
-                    // ./generationTemp/generated/TCS.g:143:5: 'forcedLower'
-                    {
-                    match(input,75,FOLLOW_75_in_identifierOrKeyword316); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "forcedLower";
-                    }
-
-                    }
-                    break;
-                case 29 :
-                    // ./generationTemp/generated/TCS.g:144:5: 'default'
-                    {
-                    match(input,76,FOLLOW_76_in_identifierOrKeyword324); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -1037,478 +725,46 @@ public class TCSParser extends ObservableInjectingParser {
 
                     }
                     break;
-                case 30 :
-                    // ./generationTemp/generated/TCS.g:145:5: 'semDisambiguate'
+                case 4 :
+                    // ./generationTemp/generated/TCS.g:119:5: 'storeRightTo'
                     {
-                    match(input,77,FOLLOW_77_in_identifierOrKeyword332); if (state.failed) {
+                    match(input,51,FOLLOW_51_in_identifierOrKeyword124); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "semDisambiguate";
+                      ret = "storeRightTo";
                     }
 
                     }
                     break;
-                case 31 :
-                    // ./generationTemp/generated/TCS.g:146:5: 'isDefined'
+                case 5 :
+                    // ./generationTemp/generated/TCS.g:120:5: 'forcedUpper'
                     {
-                    match(input,78,FOLLOW_78_in_identifierOrKeyword340); if (state.failed) {
+                    match(input,52,FOLLOW_52_in_identifierOrKeyword132); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "isDefined";
+                      ret = "forcedUpper";
                     }
 
                     }
                     break;
-                case 32 :
-                    // ./generationTemp/generated/TCS.g:147:5: 'addToContext'
+                case 6 :
+                    // ./generationTemp/generated/TCS.g:121:5: 'separator'
                     {
-                    match(input,79,FOLLOW_79_in_identifierOrKeyword348); if (state.failed) {
+                    match(input,53,FOLLOW_53_in_identifierOrKeyword140); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "addToContext";
+                      ret = "separator";
                     }
 
                     }
                     break;
-                case 33 :
-                    // ./generationTemp/generated/TCS.g:148:5: 'referenceBy'
+                case 7 :
+                    // ./generationTemp/generated/TCS.g:122:5: 'octal'
                     {
-                    match(input,80,FOLLOW_80_in_identifierOrKeyword356); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "referenceBy";
-                    }
-
-                    }
-                    break;
-                case 34 :
-                    // ./generationTemp/generated/TCS.g:149:5: 'nonPrimary'
-                    {
-                    match(input,81,FOLLOW_81_in_identifierOrKeyword364); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "nonPrimary";
-                    }
-
-                    }
-                    break;
-                case 35 :
-                    // ./generationTemp/generated/TCS.g:150:5: 'createIn'
-                    {
-                    match(input,82,FOLLOW_82_in_identifierOrKeyword372); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "createIn";
-                    }
-
-                    }
-                    break;
-                case 36 :
-                    // ./generationTemp/generated/TCS.g:151:5: 'symbols'
-                    {
-                    match(input,83,FOLLOW_83_in_identifierOrKeyword380); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "symbols";
-                    }
-
-                    }
-                    break;
-                case 37 :
-                    // ./generationTemp/generated/TCS.g:152:5: 'drop'
-                    {
-                    match(input,84,FOLLOW_84_in_identifierOrKeyword388); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "drop";
-                    }
-
-                    }
-                    break;
-                case 38 :
-                    // ./generationTemp/generated/TCS.g:153:5: 'orKeyword'
-                    {
-                    match(input,85,FOLLOW_85_in_identifierOrKeyword396); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "orKeyword";
-                    }
-
-                    }
-                    break;
-                case 39 :
-                    // ./generationTemp/generated/TCS.g:154:5: 'abstract'
-                    {
-                    match(input,86,FOLLOW_86_in_identifierOrKeyword404); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "abstract";
-                    }
-
-                    }
-                    break;
-                case 40 :
-                    // ./generationTemp/generated/TCS.g:155:5: 'indentIncr'
-                    {
-                    match(input,87,FOLLOW_87_in_identifierOrKeyword412); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "indentIncr";
-                    }
-
-                    }
-                    break;
-                case 41 :
-                    // ./generationTemp/generated/TCS.g:156:5: 'lexer'
-                    {
-                    match(input,88,FOLLOW_88_in_identifierOrKeyword420); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "lexer";
-                    }
-
-                    }
-                    break;
-                case 42 :
-                    // ./generationTemp/generated/TCS.g:157:5: 'rightSpace'
-                    {
-                    match(input,89,FOLLOW_89_in_identifierOrKeyword428); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "rightSpace";
-                    }
-
-                    }
-                    break;
-                case 43 :
-                    // ./generationTemp/generated/TCS.g:158:5: 'referenceOnly'
-                    {
-                    match(input,90,FOLLOW_90_in_identifierOrKeyword436); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "referenceOnly";
-                    }
-
-                    }
-                    break;
-                case 44 :
-                    // ./generationTemp/generated/TCS.g:159:5: 'prefix'
-                    {
-                    match(input,91,FOLLOW_91_in_identifierOrKeyword444); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "prefix";
-                    }
-
-                    }
-                    break;
-                case 45 :
-                    // ./generationTemp/generated/TCS.g:160:5: 'primitiveTemplate'
-                    {
-                    match(input,92,FOLLOW_92_in_identifierOrKeyword452); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "primitiveTemplate";
-                    }
-
-                    }
-                    break;
-                case 46 :
-                    // ./generationTemp/generated/TCS.g:161:5: 'autoCreate'
-                    {
-                    match(input,93,FOLLOW_93_in_identifierOrKeyword460); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "autoCreate";
-                    }
-
-                    }
-                    break;
-                case 47 :
-                    // ./generationTemp/generated/TCS.g:162:5: 'enumerationTemplate'
-                    {
-                    match(input,94,FOLLOW_94_in_identifierOrKeyword468); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "enumerationTemplate";
-                    }
-
-                    }
-                    break;
-                case 48 :
-                    // ./generationTemp/generated/TCS.g:163:5: 'serializer'
-                    {
-                    match(input,95,FOLLOW_95_in_identifierOrKeyword476); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "serializer";
-                    }
-
-                    }
-                    break;
-                case 49 :
-                    // ./generationTemp/generated/TCS.g:164:5: 'multi'
-                    {
-                    match(input,96,FOLLOW_96_in_identifierOrKeyword484); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "multi";
-                    }
-
-                    }
-                    break;
-                case 50 :
-                    // ./generationTemp/generated/TCS.g:165:5: 'always'
-                    {
-                    match(input,97,FOLLOW_97_in_identifierOrKeyword492); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "always";
-                    }
-
-                    }
-                    break;
-                case 51 :
-                    // ./generationTemp/generated/TCS.g:166:5: 'keywords'
-                    {
-                    match(input,98,FOLLOW_98_in_identifierOrKeyword500); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "keywords";
-                    }
-
-                    }
-                    break;
-                case 52 :
-                    // ./generationTemp/generated/TCS.g:167:5: 'omitted'
-                    {
-                    match(input,99,FOLLOW_99_in_identifierOrKeyword508); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "omitted";
-                    }
-
-                    }
-                    break;
-                case 53 :
-                    // ./generationTemp/generated/TCS.g:168:5: 'priority'
-                    {
-                    match(input,100,FOLLOW_100_in_identifierOrKeyword516); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "priority";
-                    }
-
-                    }
-                    break;
-                case 54 :
-                    // ./generationTemp/generated/TCS.g:169:5: 'partial'
-                    {
-                    match(input,101,FOLLOW_101_in_identifierOrKeyword524); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "partial";
-                    }
-
-                    }
-                    break;
-                case 55 :
-                    // ./generationTemp/generated/TCS.g:170:5: 'start'
-                    {
-                    match(input,102,FOLLOW_102_in_identifierOrKeyword532); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "start";
-                    }
-
-                    }
-                    break;
-                case 56 :
-                    // ./generationTemp/generated/TCS.g:171:5: 'value'
-                    {
-                    match(input,103,FOLLOW_103_in_identifierOrKeyword540); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "value";
-                    }
-
-                    }
-                    break;
-                case 57 :
-                    // ./generationTemp/generated/TCS.g:172:5: 'operatored'
-                    {
-                    match(input,104,FOLLOW_104_in_identifierOrKeyword548); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "operatored";
-                    }
-
-                    }
-                    break;
-                case 58 :
-                    // ./generationTemp/generated/TCS.g:173:5: 'storeOpTo'
-                    {
-                    match(input,105,FOLLOW_105_in_identifierOrKeyword556); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "storeOpTo";
-                    }
-
-                    }
-                    break;
-                case 59 :
-                    // ./generationTemp/generated/TCS.g:174:5: 'part'
-                    {
-                    match(input,106,FOLLOW_106_in_identifierOrKeyword564); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "part";
-                    }
-
-                    }
-                    break;
-                case 60 :
-                    // ./generationTemp/generated/TCS.g:175:5: 'deep'
-                    {
-                    match(input,107,FOLLOW_107_in_identifierOrKeyword572); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "deep";
-                    }
-
-                    }
-                    break;
-                case 61 :
-                    // ./generationTemp/generated/TCS.g:176:5: 'leftSpace'
-                    {
-                    match(input,108,FOLLOW_108_in_identifierOrKeyword580); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "leftSpace";
-                    }
-
-                    }
-                    break;
-                case 62 :
-                    // ./generationTemp/generated/TCS.g:177:5: 'operators'
-                    {
-                    match(input,109,FOLLOW_109_in_identifierOrKeyword588); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "operators";
-                    }
-
-                    }
-                    break;
-                case 63 :
-                    // ./generationTemp/generated/TCS.g:178:5: 'using'
-                    {
-                    match(input,110,FOLLOW_110_in_identifierOrKeyword596); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "using";
-                    }
-
-                    }
-                    break;
-                case 64 :
-                    // ./generationTemp/generated/TCS.g:179:5: 'disambiguate'
-                    {
-                    match(input,111,FOLLOW_111_in_identifierOrKeyword604); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "disambiguate";
-                    }
-
-                    }
-                    break;
-                case 65 :
-                    // ./generationTemp/generated/TCS.g:180:5: 'foreach'
-                    {
-                    match(input,112,FOLLOW_112_in_identifierOrKeyword612); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "foreach";
-                    }
-
-                    }
-                    break;
-                case 66 :
-                    // ./generationTemp/generated/TCS.g:181:5: 'endNL'
-                    {
-                    match(input,113,FOLLOW_113_in_identifierOrKeyword620); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "endNL";
-                    }
-
-                    }
-                    break;
-                case 67 :
-                    // ./generationTemp/generated/TCS.g:182:5: 'endOfLine'
-                    {
-                    match(input,114,FOLLOW_114_in_identifierOrKeyword628); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "endOfLine";
-                    }
-
-                    }
-                    break;
-                case 68 :
-                    // ./generationTemp/generated/TCS.g:183:5: 'source'
-                    {
-                    match(input,115,FOLLOW_115_in_identifierOrKeyword636); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "source";
-                    }
-
-                    }
-                    break;
-                case 69 :
-                    // ./generationTemp/generated/TCS.g:184:5: 'octal'
-                    {
-                    match(input,116,FOLLOW_116_in_identifierOrKeyword644); if (state.failed) {
+                    match(input,54,FOLLOW_54_in_identifierOrKeyword148); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -1517,10 +773,70 @@ public class TCSParser extends ObservableInjectingParser {
 
                     }
                     break;
-                case 70 :
-                    // ./generationTemp/generated/TCS.g:185:5: 'ifmissing'
+                case 8 :
+                    // ./generationTemp/generated/TCS.g:123:5: 'end'
                     {
-                    match(input,117,FOLLOW_117_in_identifierOrKeyword652); if (state.failed) {
+                    match(input,55,FOLLOW_55_in_identifierOrKeyword156); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "end";
+                    }
+
+                    }
+                    break;
+                case 9 :
+                    // ./generationTemp/generated/TCS.g:124:5: 'rightNone'
+                    {
+                    match(input,56,FOLLOW_56_in_identifierOrKeyword164); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "rightNone";
+                    }
+
+                    }
+                    break;
+                case 10 :
+                    // ./generationTemp/generated/TCS.g:125:5: 'word'
+                    {
+                    match(input,57,FOLLOW_57_in_identifierOrKeyword172); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "word";
+                    }
+
+                    }
+                    break;
+                case 11 :
+                    // ./generationTemp/generated/TCS.g:126:5: 'all'
+                    {
+                    match(input,58,FOLLOW_58_in_identifierOrKeyword180); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "all";
+                    }
+
+                    }
+                    break;
+                case 12 :
+                    // ./generationTemp/generated/TCS.g:127:5: 'never'
+                    {
+                    match(input,59,FOLLOW_59_in_identifierOrKeyword188); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "never";
+                    }
+
+                    }
+                    break;
+                case 13 :
+                    // ./generationTemp/generated/TCS.g:128:5: 'ifmissing'
+                    {
+                    match(input,60,FOLLOW_60_in_identifierOrKeyword196); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -1529,14 +845,698 @@ public class TCSParser extends ObservableInjectingParser {
 
                     }
                     break;
+                case 14 :
+                    // ./generationTemp/generated/TCS.g:129:5: 'disambiguate'
+                    {
+                    match(input,61,FOLLOW_61_in_identifierOrKeyword204); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "disambiguate";
+                    }
+
+                    }
+                    break;
+                case 15 :
+                    // ./generationTemp/generated/TCS.g:130:5: 'postfix'
+                    {
+                    match(input,62,FOLLOW_62_in_identifierOrKeyword212); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "postfix";
+                    }
+
+                    }
+                    break;
+                case 16 :
+                    // ./generationTemp/generated/TCS.g:131:5: 'context'
+                    {
+                    match(input,63,FOLLOW_63_in_identifierOrKeyword220); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "context";
+                    }
+
+                    }
+                    break;
+                case 17 :
+                    // ./generationTemp/generated/TCS.g:132:5: 'refersTo'
+                    {
+                    match(input,64,FOLLOW_64_in_identifierOrKeyword228); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "refersTo";
+                    }
+
+                    }
+                    break;
+                case 18 :
+                    // ./generationTemp/generated/TCS.g:133:5: 'for'
+                    {
+                    match(input,65,FOLLOW_65_in_identifierOrKeyword236); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "for";
+                    }
+
+                    }
+                    break;
+                case 19 :
+                    // ./generationTemp/generated/TCS.g:134:5: 'indentIncr'
+                    {
+                    match(input,66,FOLLOW_66_in_identifierOrKeyword244); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "indentIncr";
+                    }
+
+                    }
+                    break;
+                case 20 :
+                    // ./generationTemp/generated/TCS.g:135:5: 'prefix'
+                    {
+                    match(input,67,FOLLOW_67_in_identifierOrKeyword252); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "prefix";
+                    }
+
+                    }
+                    break;
+                case 21 :
+                    // ./generationTemp/generated/TCS.g:136:5: 'and'
+                    {
+                    match(input,68,FOLLOW_68_in_identifierOrKeyword260); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "and";
+                    }
+
+                    }
+                    break;
+                case 22 :
+                    // ./generationTemp/generated/TCS.g:137:5: 'operatored'
+                    {
+                    match(input,69,FOLLOW_69_in_identifierOrKeyword268); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "operatored";
+                    }
+
+                    }
+                    break;
+                case 23 :
+                    // ./generationTemp/generated/TCS.g:138:5: 'left'
+                    {
+                    match(input,70,FOLLOW_70_in_identifierOrKeyword276); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "left";
+                    }
+
+                    }
+                    break;
+                case 24 :
+                    // ./generationTemp/generated/TCS.g:139:5: 'always'
+                    {
+                    match(input,71,FOLLOW_71_in_identifierOrKeyword284); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "always";
+                    }
+
+                    }
+                    break;
+                case 25 :
+                    // ./generationTemp/generated/TCS.g:140:5: 'semDisambiguate'
+                    {
+                    match(input,72,FOLLOW_72_in_identifierOrKeyword292); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "semDisambiguate";
+                    }
+
+                    }
+                    break;
+                case 26 :
+                    // ./generationTemp/generated/TCS.g:141:5: 'as'
+                    {
+                    match(input,73,FOLLOW_73_in_identifierOrKeyword300); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "as";
+                    }
+
+                    }
+                    break;
+                case 27 :
+                    // ./generationTemp/generated/TCS.g:142:5: 'keywords'
+                    {
+                    match(input,74,FOLLOW_74_in_identifierOrKeyword308); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "keywords";
+                    }
+
+                    }
+                    break;
+                case 28 :
+                    // ./generationTemp/generated/TCS.g:143:5: 'startNL'
+                    {
+                    match(input,75,FOLLOW_75_in_identifierOrKeyword316); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "startNL";
+                    }
+
+                    }
+                    break;
+                case 29 :
+                    // ./generationTemp/generated/TCS.g:144:5: 'instanceOf'
+                    {
+                    match(input,76,FOLLOW_76_in_identifierOrKeyword324); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "instanceOf";
+                    }
+
+                    }
+                    break;
+                case 30 :
+                    // ./generationTemp/generated/TCS.g:145:5: 'storeOpTo'
+                    {
+                    match(input,77,FOLLOW_77_in_identifierOrKeyword332); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "storeOpTo";
+                    }
+
+                    }
+                    break;
+                case 31 :
+                    // ./generationTemp/generated/TCS.g:146:5: 'operatorTemplate'
+                    {
+                    match(input,78,FOLLOW_78_in_identifierOrKeyword340); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "operatorTemplate";
+                    }
+
+                    }
+                    break;
+                case 32 :
+                    // ./generationTemp/generated/TCS.g:147:5: 'forcedLower'
+                    {
+                    match(input,79,FOLLOW_79_in_identifierOrKeyword348); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "forcedLower";
+                    }
+
+                    }
+                    break;
+                case 33 :
+                    // ./generationTemp/generated/TCS.g:148:5: 'autoCreate'
+                    {
+                    match(input,80,FOLLOW_80_in_identifierOrKeyword356); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "autoCreate";
+                    }
+
+                    }
+                    break;
+                case 34 :
+                    // ./generationTemp/generated/TCS.g:149:5: 'deep'
+                    {
+                    match(input,81,FOLLOW_81_in_identifierOrKeyword364); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "deep";
+                    }
+
+                    }
+                    break;
+                case 35 :
+                    // ./generationTemp/generated/TCS.g:150:5: 'using'
+                    {
+                    match(input,82,FOLLOW_82_in_identifierOrKeyword372); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "using";
+                    }
+
+                    }
+                    break;
+                case 36 :
+                    // ./generationTemp/generated/TCS.g:151:5: 'hex'
+                    {
+                    match(input,83,FOLLOW_83_in_identifierOrKeyword380); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "hex";
+                    }
+
+                    }
+                    break;
+                case 37 :
+                    // ./generationTemp/generated/TCS.g:152:5: 'nonPrimary'
+                    {
+                    match(input,84,FOLLOW_84_in_identifierOrKeyword388); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "nonPrimary";
+                    }
+
+                    }
+                    break;
+                case 38 :
+                    // ./generationTemp/generated/TCS.g:153:5: 'main'
+                    {
+                    match(input,85,FOLLOW_85_in_identifierOrKeyword396); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "main";
+                    }
+
+                    }
+                    break;
+                case 39 :
+                    // ./generationTemp/generated/TCS.g:154:5: 'esc'
+                    {
+                    match(input,86,FOLLOW_86_in_identifierOrKeyword404); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "esc";
+                    }
+
+                    }
+                    break;
+                case 40 :
+                    // ./generationTemp/generated/TCS.g:155:5: 'endOfLine'
+                    {
+                    match(input,87,FOLLOW_87_in_identifierOrKeyword412); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "endOfLine";
+                    }
+
+                    }
+                    break;
+                case 41 :
+                    // ./generationTemp/generated/TCS.g:156:5: 'function'
+                    {
+                    match(input,88,FOLLOW_88_in_identifierOrKeyword420); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "function";
+                    }
+
+                    }
+                    break;
+                case 42 :
+                    // ./generationTemp/generated/TCS.g:157:5: 'primitiveTemplate'
+                    {
+                    match(input,89,FOLLOW_89_in_identifierOrKeyword428); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "primitiveTemplate";
+                    }
+
+                    }
+                    break;
+                case 43 :
+                    // ./generationTemp/generated/TCS.g:158:5: 'lookIn'
+                    {
+                    match(input,90,FOLLOW_90_in_identifierOrKeyword436); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "lookIn";
+                    }
+
+                    }
+                    break;
+                case 44 :
+                    // ./generationTemp/generated/TCS.g:159:5: 'disambiguateV3'
+                    {
+                    match(input,91,FOLLOW_91_in_identifierOrKeyword444); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "disambiguateV3";
+                    }
+
+                    }
+                    break;
+                case 45 :
+                    // ./generationTemp/generated/TCS.g:160:5: 'isDefined'
+                    {
+                    match(input,92,FOLLOW_92_in_identifierOrKeyword452); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "isDefined";
+                    }
+
+                    }
+                    break;
+                case 46 :
+                    // ./generationTemp/generated/TCS.g:161:5: 'when'
+                    {
+                    match(input,93,FOLLOW_93_in_identifierOrKeyword460); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "when";
+                    }
+
+                    }
+                    break;
+                case 47 :
+                    // ./generationTemp/generated/TCS.g:162:5: 'abstract'
+                    {
+                    match(input,94,FOLLOW_94_in_identifierOrKeyword468); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "abstract";
+                    }
+
+                    }
+                    break;
+                case 48 :
+                    // ./generationTemp/generated/TCS.g:163:5: 'importContext'
+                    {
+                    match(input,95,FOLLOW_95_in_identifierOrKeyword476); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "importContext";
+                    }
+
+                    }
+                    break;
+                case 49 :
+                    // ./generationTemp/generated/TCS.g:164:5: 'nbNL'
+                    {
+                    match(input,96,FOLLOW_96_in_identifierOrKeyword484); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "nbNL";
+                    }
+
+                    }
+                    break;
+                case 50 :
+                    // ./generationTemp/generated/TCS.g:165:5: 'mode'
+                    {
+                    match(input,97,FOLLOW_97_in_identifierOrKeyword492); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "mode";
+                    }
+
+                    }
+                    break;
+                case 51 :
+                    // ./generationTemp/generated/TCS.g:166:5: 'lookupScope'
+                    {
+                    match(input,98,FOLLOW_98_in_identifierOrKeyword500); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "lookupScope";
+                    }
+
+                    }
+                    break;
+                case 52 :
+                    // ./generationTemp/generated/TCS.g:167:5: 'referenceBy'
+                    {
+                    match(input,99,FOLLOW_99_in_identifierOrKeyword508); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "referenceBy";
+                    }
+
+                    }
+                    break;
+                case 53 :
+                    // ./generationTemp/generated/TCS.g:168:5: 'referenceOnly'
+                    {
+                    match(input,100,FOLLOW_100_in_identifierOrKeyword516); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "referenceOnly";
+                    }
+
+                    }
+                    break;
+                case 54 :
+                    // ./generationTemp/generated/TCS.g:169:5: 'syntax'
+                    {
+                    match(input,101,FOLLOW_101_in_identifierOrKeyword524); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "syntax";
+                    }
+
+                    }
+                    break;
+                case 55 :
+                    // ./generationTemp/generated/TCS.g:170:5: 'omitted'
+                    {
+                    match(input,102,FOLLOW_102_in_identifierOrKeyword532); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "omitted";
+                    }
+
+                    }
+                    break;
+                case 56 :
+                    // ./generationTemp/generated/TCS.g:171:5: 'createIn'
+                    {
+                    match(input,103,FOLLOW_103_in_identifierOrKeyword540); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "createIn";
+                    }
+
+                    }
+                    break;
+                case 57 :
+                    // ./generationTemp/generated/TCS.g:172:5: 'auto'
+                    {
+                    match(input,104,FOLLOW_104_in_identifierOrKeyword548); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "auto";
+                    }
+
+                    }
+                    break;
+                case 58 :
+                    // ./generationTemp/generated/TCS.g:173:5: 'operators'
+                    {
+                    match(input,105,FOLLOW_105_in_identifierOrKeyword556); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "operators";
+                    }
+
+                    }
+                    break;
+                case 59 :
+                    // ./generationTemp/generated/TCS.g:174:5: 'serializer'
+                    {
+                    match(input,106,FOLLOW_106_in_identifierOrKeyword564); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "serializer";
+                    }
+
+                    }
+                    break;
+                case 60 :
+                    // ./generationTemp/generated/TCS.g:175:5: 'one'
+                    {
+                    match(input,107,FOLLOW_107_in_identifierOrKeyword572); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "one";
+                    }
+
+                    }
+                    break;
+                case 61 :
+                    // ./generationTemp/generated/TCS.g:176:5: 'enumerationTemplate'
+                    {
+                    match(input,108,FOLLOW_108_in_identifierOrKeyword580); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "enumerationTemplate";
+                    }
+
+                    }
+                    break;
+                case 62 :
+                    // ./generationTemp/generated/TCS.g:177:5: 'foreach'
+                    {
+                    match(input,109,FOLLOW_109_in_identifierOrKeyword588); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "foreach";
+                    }
+
+                    }
+                    break;
+                case 63 :
+                    // ./generationTemp/generated/TCS.g:178:5: 'true'
+                    {
+                    match(input,110,FOLLOW_110_in_identifierOrKeyword596); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "true";
+                    }
+
+                    }
+                    break;
+                case 64 :
+                    // ./generationTemp/generated/TCS.g:179:5: 'value'
+                    {
+                    match(input,111,FOLLOW_111_in_identifierOrKeyword604); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "value";
+                    }
+
+                    }
+                    break;
+                case 65 :
+                    // ./generationTemp/generated/TCS.g:180:5: 'drop'
+                    {
+                    match(input,112,FOLLOW_112_in_identifierOrKeyword612); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "drop";
+                    }
+
+                    }
+                    break;
+                case 66 :
+                    // ./generationTemp/generated/TCS.g:181:5: 'source'
+                    {
+                    match(input,113,FOLLOW_113_in_identifierOrKeyword620); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "source";
+                    }
+
+                    }
+                    break;
+                case 67 :
+                    // ./generationTemp/generated/TCS.g:182:5: 'addToContext'
+                    {
+                    match(input,114,FOLLOW_114_in_identifierOrKeyword628); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "addToContext";
+                    }
+
+                    }
+                    break;
+                case 68 :
+                    // ./generationTemp/generated/TCS.g:183:5: 'leftNone'
+                    {
+                    match(input,115,FOLLOW_115_in_identifierOrKeyword636); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "leftNone";
+                    }
+
+                    }
+                    break;
+                case 69 :
+                    // ./generationTemp/generated/TCS.g:184:5: 'template'
+                    {
+                    match(input,116,FOLLOW_116_in_identifierOrKeyword644); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "template";
+                    }
+
+                    }
+                    break;
+                case 70 :
+                    // ./generationTemp/generated/TCS.g:185:5: 'createAs'
+                    {
+                    match(input,117,FOLLOW_117_in_identifierOrKeyword652); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "createAs";
+                    }
+
+                    }
+                    break;
                 case 71 :
-                    // ./generationTemp/generated/TCS.g:186:5: 'importContext'
+                    // ./generationTemp/generated/TCS.g:186:5: 'false'
                     {
                     match(input,118,FOLLOW_118_in_identifierOrKeyword660); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "importContext";
+                      ret = "false";
                     }
 
                     }
@@ -1554,169 +1554,169 @@ public class TCSParser extends ObservableInjectingParser {
                     }
                     break;
                 case 73 :
-                    // ./generationTemp/generated/TCS.g:188:5: 'storeRightTo'
+                    // ./generationTemp/generated/TCS.g:188:5: 'multiLine'
                     {
                     match(input,120,FOLLOW_120_in_identifierOrKeyword676); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "storeRightTo";
+                      ret = "multiLine";
                     }
 
                     }
                     break;
                 case 74 :
-                    // ./generationTemp/generated/TCS.g:189:5: 'refersTo'
+                    // ./generationTemp/generated/TCS.g:189:5: 'part'
                     {
                     match(input,121,FOLLOW_121_in_identifierOrKeyword684); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "refersTo";
+                      ret = "part";
                     }
 
                     }
                     break;
                 case 75 :
-                    // ./generationTemp/generated/TCS.g:190:5: 'startNbNL'
+                    // ./generationTemp/generated/TCS.g:190:5: 'rightSpace'
                     {
                     match(input,122,FOLLOW_122_in_identifierOrKeyword692); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "startNbNL";
+                      ret = "rightSpace";
                     }
 
                     }
                     break;
                 case 76 :
-                    // ./generationTemp/generated/TCS.g:191:5: 'auto'
+                    // ./generationTemp/generated/TCS.g:191:5: 'symbols'
                     {
                     match(input,123,FOLLOW_123_in_identifierOrKeyword700); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "auto";
+                      ret = "symbols";
                     }
 
                     }
                     break;
                 case 77 :
-                    // ./generationTemp/generated/TCS.g:192:5: 'one'
+                    // ./generationTemp/generated/TCS.g:192:5: 'endNL'
                     {
                     match(input,124,FOLLOW_124_in_identifierOrKeyword708); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "one";
+                      ret = "endNL";
                     }
 
                     }
                     break;
                 case 78 :
-                    // ./generationTemp/generated/TCS.g:193:5: 'true'
+                    // ./generationTemp/generated/TCS.g:193:5: 'right'
                     {
                     match(input,125,FOLLOW_125_in_identifierOrKeyword716); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "true";
+                      ret = "right";
                     }
 
                     }
                     break;
                 case 79 :
-                    // ./generationTemp/generated/TCS.g:194:5: 'function'
+                    // ./generationTemp/generated/TCS.g:194:5: 'token'
                     {
                     match(input,126,FOLLOW_126_in_identifierOrKeyword724); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "function";
+                      ret = "token";
                     }
 
                     }
                     break;
                 case 80 :
-                    // ./generationTemp/generated/TCS.g:195:5: 'never'
+                    // ./generationTemp/generated/TCS.g:195:5: 'lexer'
                     {
                     match(input,127,FOLLOW_127_in_identifierOrKeyword732); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "never";
+                      ret = "lexer";
                     }
 
                     }
                     break;
                 case 81 :
-                    // ./generationTemp/generated/TCS.g:196:5: 'lookupScope'
+                    // ./generationTemp/generated/TCS.g:196:5: 'orKeyword'
                     {
                     match(input,128,FOLLOW_128_in_identifierOrKeyword740); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "lookupScope";
+                      ret = "orKeyword";
                     }
 
                     }
                     break;
                 case 82 :
-                    // ./generationTemp/generated/TCS.g:197:5: 'as'
+                    // ./generationTemp/generated/TCS.g:197:5: 'leftSpace'
                     {
                     match(input,129,FOLLOW_129_in_identifierOrKeyword748); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "as";
+                      ret = "leftSpace";
                     }
 
                     }
                     break;
                 case 83 :
-                    // ./generationTemp/generated/TCS.g:198:5: 'for'
+                    // ./generationTemp/generated/TCS.g:198:5: 'priority'
                     {
                     match(input,130,FOLLOW_130_in_identifierOrKeyword756); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "for";
+                      ret = "priority";
                     }
 
                     }
                     break;
                 case 84 :
-                    // ./generationTemp/generated/TCS.g:199:5: 'template'
+                    // ./generationTemp/generated/TCS.g:199:5: 'start'
                     {
                     match(input,131,FOLLOW_131_in_identifierOrKeyword764); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "template";
+                      ret = "start";
                     }
 
                     }
                     break;
                 case 85 :
-                    // ./generationTemp/generated/TCS.g:200:5: 'forcedUpper'
+                    // ./generationTemp/generated/TCS.g:200:5: 'multi'
                     {
                     match(input,132,FOLLOW_132_in_identifierOrKeyword772); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "forcedUpper";
+                      ret = "multi";
                     }
 
                     }
                     break;
                 case 86 :
-                    // ./generationTemp/generated/TCS.g:201:5: 'startNL'
+                    // ./generationTemp/generated/TCS.g:201:5: 'partial'
                     {
                     match(input,133,FOLLOW_133_in_identifierOrKeyword780); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "startNL";
+                      ret = "partial";
                     }
 
                     }
@@ -1745,7 +1745,7 @@ public class TCSParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "escapedIdentifierOrKeyword"
-    // ./generationTemp/generated/TCS.g:208:1: escapedIdentifierOrKeyword returns [Object ret2] : (ast= NAME | 'token' | 'lookIn' | 'multiLine' | 'hex' | 'rightNone' | 'right' | 'and' | 'left' | 'separator' | 'mode' | 'postfix' | 'esc' | 'main' | 'when' | 'disambiguateV3' | 'nbNL' | 'end' | 'leftNone' | 'createAs' | 'false' | 'all' | 'operatorTemplate' | 'instanceOf' | 'context' | 'syntax' | 'word' | 'forcedLower' | 'default' | 'semDisambiguate' | 'isDefined' | 'addToContext' | 'referenceBy' | 'nonPrimary' | 'createIn' | 'symbols' | 'drop' | 'orKeyword' | 'abstract' | 'indentIncr' | 'lexer' | 'rightSpace' | 'referenceOnly' | 'prefix' | 'primitiveTemplate' | 'autoCreate' | 'enumerationTemplate' | 'serializer' | 'multi' | 'always' | 'keywords' | 'omitted' | 'priority' | 'partial' | 'start' | 'value' | 'operatored' | 'storeOpTo' | 'part' | 'deep' | 'leftSpace' | 'operators' | 'using' | 'disambiguate' | 'foreach' | 'endNL' | 'endOfLine' | 'source' | 'octal' | 'ifmissing' | 'importContext' | 'k' | 'storeRightTo' | 'refersTo' | 'startNbNL' | 'auto' | 'one' | 'true' | 'function' | 'never' | 'lookupScope' | 'as' | 'for' | 'template' | 'forcedUpper' | 'startNL' ) ;
+    // ./generationTemp/generated/TCS.g:208:1: escapedIdentifierOrKeyword returns [Object ret2] : (ast= NAME | 'startNbNL' | 'default' | 'storeRightTo' | 'forcedUpper' | 'separator' | 'octal' | 'end' | 'rightNone' | 'word' | 'all' | 'never' | 'ifmissing' | 'disambiguate' | 'postfix' | 'context' | 'refersTo' | 'for' | 'indentIncr' | 'prefix' | 'and' | 'operatored' | 'left' | 'always' | 'semDisambiguate' | 'as' | 'keywords' | 'startNL' | 'instanceOf' | 'storeOpTo' | 'operatorTemplate' | 'forcedLower' | 'autoCreate' | 'deep' | 'using' | 'hex' | 'nonPrimary' | 'main' | 'esc' | 'endOfLine' | 'function' | 'primitiveTemplate' | 'lookIn' | 'disambiguateV3' | 'isDefined' | 'when' | 'abstract' | 'importContext' | 'nbNL' | 'mode' | 'lookupScope' | 'referenceBy' | 'referenceOnly' | 'syntax' | 'omitted' | 'createIn' | 'auto' | 'operators' | 'serializer' | 'one' | 'enumerationTemplate' | 'foreach' | 'true' | 'value' | 'drop' | 'source' | 'addToContext' | 'leftNone' | 'template' | 'createAs' | 'false' | 'k' | 'multiLine' | 'part' | 'rightSpace' | 'symbols' | 'endNL' | 'right' | 'token' | 'lexer' | 'orKeyword' | 'leftSpace' | 'priority' | 'start' | 'multi' | 'partial' ) ;
     public final Object escapedIdentifierOrKeyword() throws RecognitionException {
         Object ret2 = null;
 
@@ -1753,10 +1753,10 @@ public class TCSParser extends ObservableInjectingParser {
 
         java.lang.Object ret=null;
         try {
-            // ./generationTemp/generated/TCS.g:209:3: ( (ast= NAME | 'token' | 'lookIn' | 'multiLine' | 'hex' | 'rightNone' | 'right' | 'and' | 'left' | 'separator' | 'mode' | 'postfix' | 'esc' | 'main' | 'when' | 'disambiguateV3' | 'nbNL' | 'end' | 'leftNone' | 'createAs' | 'false' | 'all' | 'operatorTemplate' | 'instanceOf' | 'context' | 'syntax' | 'word' | 'forcedLower' | 'default' | 'semDisambiguate' | 'isDefined' | 'addToContext' | 'referenceBy' | 'nonPrimary' | 'createIn' | 'symbols' | 'drop' | 'orKeyword' | 'abstract' | 'indentIncr' | 'lexer' | 'rightSpace' | 'referenceOnly' | 'prefix' | 'primitiveTemplate' | 'autoCreate' | 'enumerationTemplate' | 'serializer' | 'multi' | 'always' | 'keywords' | 'omitted' | 'priority' | 'partial' | 'start' | 'value' | 'operatored' | 'storeOpTo' | 'part' | 'deep' | 'leftSpace' | 'operators' | 'using' | 'disambiguate' | 'foreach' | 'endNL' | 'endOfLine' | 'source' | 'octal' | 'ifmissing' | 'importContext' | 'k' | 'storeRightTo' | 'refersTo' | 'startNbNL' | 'auto' | 'one' | 'true' | 'function' | 'never' | 'lookupScope' | 'as' | 'for' | 'template' | 'forcedUpper' | 'startNL' ) )
-            // ./generationTemp/generated/TCS.g:210:3: (ast= NAME | 'token' | 'lookIn' | 'multiLine' | 'hex' | 'rightNone' | 'right' | 'and' | 'left' | 'separator' | 'mode' | 'postfix' | 'esc' | 'main' | 'when' | 'disambiguateV3' | 'nbNL' | 'end' | 'leftNone' | 'createAs' | 'false' | 'all' | 'operatorTemplate' | 'instanceOf' | 'context' | 'syntax' | 'word' | 'forcedLower' | 'default' | 'semDisambiguate' | 'isDefined' | 'addToContext' | 'referenceBy' | 'nonPrimary' | 'createIn' | 'symbols' | 'drop' | 'orKeyword' | 'abstract' | 'indentIncr' | 'lexer' | 'rightSpace' | 'referenceOnly' | 'prefix' | 'primitiveTemplate' | 'autoCreate' | 'enumerationTemplate' | 'serializer' | 'multi' | 'always' | 'keywords' | 'omitted' | 'priority' | 'partial' | 'start' | 'value' | 'operatored' | 'storeOpTo' | 'part' | 'deep' | 'leftSpace' | 'operators' | 'using' | 'disambiguate' | 'foreach' | 'endNL' | 'endOfLine' | 'source' | 'octal' | 'ifmissing' | 'importContext' | 'k' | 'storeRightTo' | 'refersTo' | 'startNbNL' | 'auto' | 'one' | 'true' | 'function' | 'never' | 'lookupScope' | 'as' | 'for' | 'template' | 'forcedUpper' | 'startNL' )
+            // ./generationTemp/generated/TCS.g:209:3: ( (ast= NAME | 'startNbNL' | 'default' | 'storeRightTo' | 'forcedUpper' | 'separator' | 'octal' | 'end' | 'rightNone' | 'word' | 'all' | 'never' | 'ifmissing' | 'disambiguate' | 'postfix' | 'context' | 'refersTo' | 'for' | 'indentIncr' | 'prefix' | 'and' | 'operatored' | 'left' | 'always' | 'semDisambiguate' | 'as' | 'keywords' | 'startNL' | 'instanceOf' | 'storeOpTo' | 'operatorTemplate' | 'forcedLower' | 'autoCreate' | 'deep' | 'using' | 'hex' | 'nonPrimary' | 'main' | 'esc' | 'endOfLine' | 'function' | 'primitiveTemplate' | 'lookIn' | 'disambiguateV3' | 'isDefined' | 'when' | 'abstract' | 'importContext' | 'nbNL' | 'mode' | 'lookupScope' | 'referenceBy' | 'referenceOnly' | 'syntax' | 'omitted' | 'createIn' | 'auto' | 'operators' | 'serializer' | 'one' | 'enumerationTemplate' | 'foreach' | 'true' | 'value' | 'drop' | 'source' | 'addToContext' | 'leftNone' | 'template' | 'createAs' | 'false' | 'k' | 'multiLine' | 'part' | 'rightSpace' | 'symbols' | 'endNL' | 'right' | 'token' | 'lexer' | 'orKeyword' | 'leftSpace' | 'priority' | 'start' | 'multi' | 'partial' ) )
+            // ./generationTemp/generated/TCS.g:210:3: (ast= NAME | 'startNbNL' | 'default' | 'storeRightTo' | 'forcedUpper' | 'separator' | 'octal' | 'end' | 'rightNone' | 'word' | 'all' | 'never' | 'ifmissing' | 'disambiguate' | 'postfix' | 'context' | 'refersTo' | 'for' | 'indentIncr' | 'prefix' | 'and' | 'operatored' | 'left' | 'always' | 'semDisambiguate' | 'as' | 'keywords' | 'startNL' | 'instanceOf' | 'storeOpTo' | 'operatorTemplate' | 'forcedLower' | 'autoCreate' | 'deep' | 'using' | 'hex' | 'nonPrimary' | 'main' | 'esc' | 'endOfLine' | 'function' | 'primitiveTemplate' | 'lookIn' | 'disambiguateV3' | 'isDefined' | 'when' | 'abstract' | 'importContext' | 'nbNL' | 'mode' | 'lookupScope' | 'referenceBy' | 'referenceOnly' | 'syntax' | 'omitted' | 'createIn' | 'auto' | 'operators' | 'serializer' | 'one' | 'enumerationTemplate' | 'foreach' | 'true' | 'value' | 'drop' | 'source' | 'addToContext' | 'leftNone' | 'template' | 'createAs' | 'false' | 'k' | 'multiLine' | 'part' | 'rightSpace' | 'symbols' | 'endNL' | 'right' | 'token' | 'lexer' | 'orKeyword' | 'leftSpace' | 'priority' | 'start' | 'multi' | 'partial' )
             {
-            // ./generationTemp/generated/TCS.g:210:3: (ast= NAME | 'token' | 'lookIn' | 'multiLine' | 'hex' | 'rightNone' | 'right' | 'and' | 'left' | 'separator' | 'mode' | 'postfix' | 'esc' | 'main' | 'when' | 'disambiguateV3' | 'nbNL' | 'end' | 'leftNone' | 'createAs' | 'false' | 'all' | 'operatorTemplate' | 'instanceOf' | 'context' | 'syntax' | 'word' | 'forcedLower' | 'default' | 'semDisambiguate' | 'isDefined' | 'addToContext' | 'referenceBy' | 'nonPrimary' | 'createIn' | 'symbols' | 'drop' | 'orKeyword' | 'abstract' | 'indentIncr' | 'lexer' | 'rightSpace' | 'referenceOnly' | 'prefix' | 'primitiveTemplate' | 'autoCreate' | 'enumerationTemplate' | 'serializer' | 'multi' | 'always' | 'keywords' | 'omitted' | 'priority' | 'partial' | 'start' | 'value' | 'operatored' | 'storeOpTo' | 'part' | 'deep' | 'leftSpace' | 'operators' | 'using' | 'disambiguate' | 'foreach' | 'endNL' | 'endOfLine' | 'source' | 'octal' | 'ifmissing' | 'importContext' | 'k' | 'storeRightTo' | 'refersTo' | 'startNbNL' | 'auto' | 'one' | 'true' | 'function' | 'never' | 'lookupScope' | 'as' | 'for' | 'template' | 'forcedUpper' | 'startNL' )
+            // ./generationTemp/generated/TCS.g:210:3: (ast= NAME | 'startNbNL' | 'default' | 'storeRightTo' | 'forcedUpper' | 'separator' | 'octal' | 'end' | 'rightNone' | 'word' | 'all' | 'never' | 'ifmissing' | 'disambiguate' | 'postfix' | 'context' | 'refersTo' | 'for' | 'indentIncr' | 'prefix' | 'and' | 'operatored' | 'left' | 'always' | 'semDisambiguate' | 'as' | 'keywords' | 'startNL' | 'instanceOf' | 'storeOpTo' | 'operatorTemplate' | 'forcedLower' | 'autoCreate' | 'deep' | 'using' | 'hex' | 'nonPrimary' | 'main' | 'esc' | 'endOfLine' | 'function' | 'primitiveTemplate' | 'lookIn' | 'disambiguateV3' | 'isDefined' | 'when' | 'abstract' | 'importContext' | 'nbNL' | 'mode' | 'lookupScope' | 'referenceBy' | 'referenceOnly' | 'syntax' | 'omitted' | 'createIn' | 'auto' | 'operators' | 'serializer' | 'one' | 'enumerationTemplate' | 'foreach' | 'true' | 'value' | 'drop' | 'source' | 'addToContext' | 'leftNone' | 'template' | 'createAs' | 'false' | 'k' | 'multiLine' | 'part' | 'rightSpace' | 'symbols' | 'endNL' | 'right' | 'token' | 'lexer' | 'orKeyword' | 'leftSpace' | 'priority' | 'start' | 'multi' | 'partial' )
             int alt2=86;
             switch ( input.LA(1) ) {
             case NAME:
@@ -2212,333 +2212,21 @@ public class TCSParser extends ObservableInjectingParser {
                     }
                     break;
                 case 2 :
-                    // ./generationTemp/generated/TCS.g:212:5: 'token'
+                    // ./generationTemp/generated/TCS.g:212:5: 'startNbNL'
                     {
                     match(input,49,FOLLOW_49_in_escapedIdentifierOrKeyword819); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "token";
+                      ret = "startNbNL";
                     }
 
                     }
                     break;
                 case 3 :
-                    // ./generationTemp/generated/TCS.g:213:5: 'lookIn'
+                    // ./generationTemp/generated/TCS.g:213:5: 'default'
                     {
                     match(input,50,FOLLOW_50_in_escapedIdentifierOrKeyword827); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "lookIn";
-                    }
-
-                    }
-                    break;
-                case 4 :
-                    // ./generationTemp/generated/TCS.g:214:5: 'multiLine'
-                    {
-                    match(input,51,FOLLOW_51_in_escapedIdentifierOrKeyword835); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "multiLine";
-                    }
-
-                    }
-                    break;
-                case 5 :
-                    // ./generationTemp/generated/TCS.g:215:5: 'hex'
-                    {
-                    match(input,52,FOLLOW_52_in_escapedIdentifierOrKeyword843); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "hex";
-                    }
-
-                    }
-                    break;
-                case 6 :
-                    // ./generationTemp/generated/TCS.g:216:5: 'rightNone'
-                    {
-                    match(input,53,FOLLOW_53_in_escapedIdentifierOrKeyword851); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "rightNone";
-                    }
-
-                    }
-                    break;
-                case 7 :
-                    // ./generationTemp/generated/TCS.g:217:5: 'right'
-                    {
-                    match(input,54,FOLLOW_54_in_escapedIdentifierOrKeyword859); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "right";
-                    }
-
-                    }
-                    break;
-                case 8 :
-                    // ./generationTemp/generated/TCS.g:218:5: 'and'
-                    {
-                    match(input,55,FOLLOW_55_in_escapedIdentifierOrKeyword867); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "and";
-                    }
-
-                    }
-                    break;
-                case 9 :
-                    // ./generationTemp/generated/TCS.g:219:5: 'left'
-                    {
-                    match(input,56,FOLLOW_56_in_escapedIdentifierOrKeyword875); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "left";
-                    }
-
-                    }
-                    break;
-                case 10 :
-                    // ./generationTemp/generated/TCS.g:220:5: 'separator'
-                    {
-                    match(input,57,FOLLOW_57_in_escapedIdentifierOrKeyword883); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "separator";
-                    }
-
-                    }
-                    break;
-                case 11 :
-                    // ./generationTemp/generated/TCS.g:221:5: 'mode'
-                    {
-                    match(input,58,FOLLOW_58_in_escapedIdentifierOrKeyword891); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "mode";
-                    }
-
-                    }
-                    break;
-                case 12 :
-                    // ./generationTemp/generated/TCS.g:222:5: 'postfix'
-                    {
-                    match(input,59,FOLLOW_59_in_escapedIdentifierOrKeyword899); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "postfix";
-                    }
-
-                    }
-                    break;
-                case 13 :
-                    // ./generationTemp/generated/TCS.g:223:5: 'esc'
-                    {
-                    match(input,60,FOLLOW_60_in_escapedIdentifierOrKeyword907); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "esc";
-                    }
-
-                    }
-                    break;
-                case 14 :
-                    // ./generationTemp/generated/TCS.g:224:5: 'main'
-                    {
-                    match(input,61,FOLLOW_61_in_escapedIdentifierOrKeyword915); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "main";
-                    }
-
-                    }
-                    break;
-                case 15 :
-                    // ./generationTemp/generated/TCS.g:225:5: 'when'
-                    {
-                    match(input,62,FOLLOW_62_in_escapedIdentifierOrKeyword923); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "when";
-                    }
-
-                    }
-                    break;
-                case 16 :
-                    // ./generationTemp/generated/TCS.g:226:5: 'disambiguateV3'
-                    {
-                    match(input,63,FOLLOW_63_in_escapedIdentifierOrKeyword931); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "disambiguateV3";
-                    }
-
-                    }
-                    break;
-                case 17 :
-                    // ./generationTemp/generated/TCS.g:227:5: 'nbNL'
-                    {
-                    match(input,64,FOLLOW_64_in_escapedIdentifierOrKeyword939); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "nbNL";
-                    }
-
-                    }
-                    break;
-                case 18 :
-                    // ./generationTemp/generated/TCS.g:228:5: 'end'
-                    {
-                    match(input,65,FOLLOW_65_in_escapedIdentifierOrKeyword947); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "end";
-                    }
-
-                    }
-                    break;
-                case 19 :
-                    // ./generationTemp/generated/TCS.g:229:5: 'leftNone'
-                    {
-                    match(input,66,FOLLOW_66_in_escapedIdentifierOrKeyword955); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "leftNone";
-                    }
-
-                    }
-                    break;
-                case 20 :
-                    // ./generationTemp/generated/TCS.g:230:5: 'createAs'
-                    {
-                    match(input,67,FOLLOW_67_in_escapedIdentifierOrKeyword963); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "createAs";
-                    }
-
-                    }
-                    break;
-                case 21 :
-                    // ./generationTemp/generated/TCS.g:231:5: 'false'
-                    {
-                    match(input,68,FOLLOW_68_in_escapedIdentifierOrKeyword971); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "false";
-                    }
-
-                    }
-                    break;
-                case 22 :
-                    // ./generationTemp/generated/TCS.g:232:5: 'all'
-                    {
-                    match(input,69,FOLLOW_69_in_escapedIdentifierOrKeyword979); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "all";
-                    }
-
-                    }
-                    break;
-                case 23 :
-                    // ./generationTemp/generated/TCS.g:233:5: 'operatorTemplate'
-                    {
-                    match(input,70,FOLLOW_70_in_escapedIdentifierOrKeyword987); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "operatorTemplate";
-                    }
-
-                    }
-                    break;
-                case 24 :
-                    // ./generationTemp/generated/TCS.g:234:5: 'instanceOf'
-                    {
-                    match(input,71,FOLLOW_71_in_escapedIdentifierOrKeyword995); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "instanceOf";
-                    }
-
-                    }
-                    break;
-                case 25 :
-                    // ./generationTemp/generated/TCS.g:235:5: 'context'
-                    {
-                    match(input,72,FOLLOW_72_in_escapedIdentifierOrKeyword1003); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "context";
-                    }
-
-                    }
-                    break;
-                case 26 :
-                    // ./generationTemp/generated/TCS.g:236:5: 'syntax'
-                    {
-                    match(input,73,FOLLOW_73_in_escapedIdentifierOrKeyword1011); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "syntax";
-                    }
-
-                    }
-                    break;
-                case 27 :
-                    // ./generationTemp/generated/TCS.g:237:5: 'word'
-                    {
-                    match(input,74,FOLLOW_74_in_escapedIdentifierOrKeyword1019); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "word";
-                    }
-
-                    }
-                    break;
-                case 28 :
-                    // ./generationTemp/generated/TCS.g:238:5: 'forcedLower'
-                    {
-                    match(input,75,FOLLOW_75_in_escapedIdentifierOrKeyword1027); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "forcedLower";
-                    }
-
-                    }
-                    break;
-                case 29 :
-                    // ./generationTemp/generated/TCS.g:239:5: 'default'
-                    {
-                    match(input,76,FOLLOW_76_in_escapedIdentifierOrKeyword1035); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -2547,478 +2235,46 @@ public class TCSParser extends ObservableInjectingParser {
 
                     }
                     break;
-                case 30 :
-                    // ./generationTemp/generated/TCS.g:240:5: 'semDisambiguate'
+                case 4 :
+                    // ./generationTemp/generated/TCS.g:214:5: 'storeRightTo'
                     {
-                    match(input,77,FOLLOW_77_in_escapedIdentifierOrKeyword1043); if (state.failed) {
+                    match(input,51,FOLLOW_51_in_escapedIdentifierOrKeyword835); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "semDisambiguate";
+                      ret = "storeRightTo";
                     }
 
                     }
                     break;
-                case 31 :
-                    // ./generationTemp/generated/TCS.g:241:5: 'isDefined'
+                case 5 :
+                    // ./generationTemp/generated/TCS.g:215:5: 'forcedUpper'
                     {
-                    match(input,78,FOLLOW_78_in_escapedIdentifierOrKeyword1051); if (state.failed) {
+                    match(input,52,FOLLOW_52_in_escapedIdentifierOrKeyword843); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "isDefined";
+                      ret = "forcedUpper";
                     }
 
                     }
                     break;
-                case 32 :
-                    // ./generationTemp/generated/TCS.g:242:5: 'addToContext'
+                case 6 :
+                    // ./generationTemp/generated/TCS.g:216:5: 'separator'
                     {
-                    match(input,79,FOLLOW_79_in_escapedIdentifierOrKeyword1059); if (state.failed) {
+                    match(input,53,FOLLOW_53_in_escapedIdentifierOrKeyword851); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "addToContext";
+                      ret = "separator";
                     }
 
                     }
                     break;
-                case 33 :
-                    // ./generationTemp/generated/TCS.g:243:5: 'referenceBy'
+                case 7 :
+                    // ./generationTemp/generated/TCS.g:217:5: 'octal'
                     {
-                    match(input,80,FOLLOW_80_in_escapedIdentifierOrKeyword1067); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "referenceBy";
-                    }
-
-                    }
-                    break;
-                case 34 :
-                    // ./generationTemp/generated/TCS.g:244:5: 'nonPrimary'
-                    {
-                    match(input,81,FOLLOW_81_in_escapedIdentifierOrKeyword1075); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "nonPrimary";
-                    }
-
-                    }
-                    break;
-                case 35 :
-                    // ./generationTemp/generated/TCS.g:245:5: 'createIn'
-                    {
-                    match(input,82,FOLLOW_82_in_escapedIdentifierOrKeyword1083); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "createIn";
-                    }
-
-                    }
-                    break;
-                case 36 :
-                    // ./generationTemp/generated/TCS.g:246:5: 'symbols'
-                    {
-                    match(input,83,FOLLOW_83_in_escapedIdentifierOrKeyword1091); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "symbols";
-                    }
-
-                    }
-                    break;
-                case 37 :
-                    // ./generationTemp/generated/TCS.g:247:5: 'drop'
-                    {
-                    match(input,84,FOLLOW_84_in_escapedIdentifierOrKeyword1099); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "drop";
-                    }
-
-                    }
-                    break;
-                case 38 :
-                    // ./generationTemp/generated/TCS.g:248:5: 'orKeyword'
-                    {
-                    match(input,85,FOLLOW_85_in_escapedIdentifierOrKeyword1107); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "orKeyword";
-                    }
-
-                    }
-                    break;
-                case 39 :
-                    // ./generationTemp/generated/TCS.g:249:5: 'abstract'
-                    {
-                    match(input,86,FOLLOW_86_in_escapedIdentifierOrKeyword1115); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "abstract";
-                    }
-
-                    }
-                    break;
-                case 40 :
-                    // ./generationTemp/generated/TCS.g:250:5: 'indentIncr'
-                    {
-                    match(input,87,FOLLOW_87_in_escapedIdentifierOrKeyword1123); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "indentIncr";
-                    }
-
-                    }
-                    break;
-                case 41 :
-                    // ./generationTemp/generated/TCS.g:251:5: 'lexer'
-                    {
-                    match(input,88,FOLLOW_88_in_escapedIdentifierOrKeyword1131); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "lexer";
-                    }
-
-                    }
-                    break;
-                case 42 :
-                    // ./generationTemp/generated/TCS.g:252:5: 'rightSpace'
-                    {
-                    match(input,89,FOLLOW_89_in_escapedIdentifierOrKeyword1139); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "rightSpace";
-                    }
-
-                    }
-                    break;
-                case 43 :
-                    // ./generationTemp/generated/TCS.g:253:5: 'referenceOnly'
-                    {
-                    match(input,90,FOLLOW_90_in_escapedIdentifierOrKeyword1147); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "referenceOnly";
-                    }
-
-                    }
-                    break;
-                case 44 :
-                    // ./generationTemp/generated/TCS.g:254:5: 'prefix'
-                    {
-                    match(input,91,FOLLOW_91_in_escapedIdentifierOrKeyword1155); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "prefix";
-                    }
-
-                    }
-                    break;
-                case 45 :
-                    // ./generationTemp/generated/TCS.g:255:5: 'primitiveTemplate'
-                    {
-                    match(input,92,FOLLOW_92_in_escapedIdentifierOrKeyword1163); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "primitiveTemplate";
-                    }
-
-                    }
-                    break;
-                case 46 :
-                    // ./generationTemp/generated/TCS.g:256:5: 'autoCreate'
-                    {
-                    match(input,93,FOLLOW_93_in_escapedIdentifierOrKeyword1171); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "autoCreate";
-                    }
-
-                    }
-                    break;
-                case 47 :
-                    // ./generationTemp/generated/TCS.g:257:5: 'enumerationTemplate'
-                    {
-                    match(input,94,FOLLOW_94_in_escapedIdentifierOrKeyword1179); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "enumerationTemplate";
-                    }
-
-                    }
-                    break;
-                case 48 :
-                    // ./generationTemp/generated/TCS.g:258:5: 'serializer'
-                    {
-                    match(input,95,FOLLOW_95_in_escapedIdentifierOrKeyword1187); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "serializer";
-                    }
-
-                    }
-                    break;
-                case 49 :
-                    // ./generationTemp/generated/TCS.g:259:5: 'multi'
-                    {
-                    match(input,96,FOLLOW_96_in_escapedIdentifierOrKeyword1195); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "multi";
-                    }
-
-                    }
-                    break;
-                case 50 :
-                    // ./generationTemp/generated/TCS.g:260:5: 'always'
-                    {
-                    match(input,97,FOLLOW_97_in_escapedIdentifierOrKeyword1203); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "always";
-                    }
-
-                    }
-                    break;
-                case 51 :
-                    // ./generationTemp/generated/TCS.g:261:5: 'keywords'
-                    {
-                    match(input,98,FOLLOW_98_in_escapedIdentifierOrKeyword1211); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "keywords";
-                    }
-
-                    }
-                    break;
-                case 52 :
-                    // ./generationTemp/generated/TCS.g:262:5: 'omitted'
-                    {
-                    match(input,99,FOLLOW_99_in_escapedIdentifierOrKeyword1219); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "omitted";
-                    }
-
-                    }
-                    break;
-                case 53 :
-                    // ./generationTemp/generated/TCS.g:263:5: 'priority'
-                    {
-                    match(input,100,FOLLOW_100_in_escapedIdentifierOrKeyword1227); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "priority";
-                    }
-
-                    }
-                    break;
-                case 54 :
-                    // ./generationTemp/generated/TCS.g:264:5: 'partial'
-                    {
-                    match(input,101,FOLLOW_101_in_escapedIdentifierOrKeyword1235); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "partial";
-                    }
-
-                    }
-                    break;
-                case 55 :
-                    // ./generationTemp/generated/TCS.g:265:5: 'start'
-                    {
-                    match(input,102,FOLLOW_102_in_escapedIdentifierOrKeyword1243); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "start";
-                    }
-
-                    }
-                    break;
-                case 56 :
-                    // ./generationTemp/generated/TCS.g:266:5: 'value'
-                    {
-                    match(input,103,FOLLOW_103_in_escapedIdentifierOrKeyword1251); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "value";
-                    }
-
-                    }
-                    break;
-                case 57 :
-                    // ./generationTemp/generated/TCS.g:267:5: 'operatored'
-                    {
-                    match(input,104,FOLLOW_104_in_escapedIdentifierOrKeyword1259); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "operatored";
-                    }
-
-                    }
-                    break;
-                case 58 :
-                    // ./generationTemp/generated/TCS.g:268:5: 'storeOpTo'
-                    {
-                    match(input,105,FOLLOW_105_in_escapedIdentifierOrKeyword1267); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "storeOpTo";
-                    }
-
-                    }
-                    break;
-                case 59 :
-                    // ./generationTemp/generated/TCS.g:269:5: 'part'
-                    {
-                    match(input,106,FOLLOW_106_in_escapedIdentifierOrKeyword1275); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "part";
-                    }
-
-                    }
-                    break;
-                case 60 :
-                    // ./generationTemp/generated/TCS.g:270:5: 'deep'
-                    {
-                    match(input,107,FOLLOW_107_in_escapedIdentifierOrKeyword1283); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "deep";
-                    }
-
-                    }
-                    break;
-                case 61 :
-                    // ./generationTemp/generated/TCS.g:271:5: 'leftSpace'
-                    {
-                    match(input,108,FOLLOW_108_in_escapedIdentifierOrKeyword1291); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "leftSpace";
-                    }
-
-                    }
-                    break;
-                case 62 :
-                    // ./generationTemp/generated/TCS.g:272:5: 'operators'
-                    {
-                    match(input,109,FOLLOW_109_in_escapedIdentifierOrKeyword1299); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "operators";
-                    }
-
-                    }
-                    break;
-                case 63 :
-                    // ./generationTemp/generated/TCS.g:273:5: 'using'
-                    {
-                    match(input,110,FOLLOW_110_in_escapedIdentifierOrKeyword1307); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "using";
-                    }
-
-                    }
-                    break;
-                case 64 :
-                    // ./generationTemp/generated/TCS.g:274:5: 'disambiguate'
-                    {
-                    match(input,111,FOLLOW_111_in_escapedIdentifierOrKeyword1315); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "disambiguate";
-                    }
-
-                    }
-                    break;
-                case 65 :
-                    // ./generationTemp/generated/TCS.g:275:5: 'foreach'
-                    {
-                    match(input,112,FOLLOW_112_in_escapedIdentifierOrKeyword1323); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "foreach";
-                    }
-
-                    }
-                    break;
-                case 66 :
-                    // ./generationTemp/generated/TCS.g:276:5: 'endNL'
-                    {
-                    match(input,113,FOLLOW_113_in_escapedIdentifierOrKeyword1331); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "endNL";
-                    }
-
-                    }
-                    break;
-                case 67 :
-                    // ./generationTemp/generated/TCS.g:277:5: 'endOfLine'
-                    {
-                    match(input,114,FOLLOW_114_in_escapedIdentifierOrKeyword1339); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "endOfLine";
-                    }
-
-                    }
-                    break;
-                case 68 :
-                    // ./generationTemp/generated/TCS.g:278:5: 'source'
-                    {
-                    match(input,115,FOLLOW_115_in_escapedIdentifierOrKeyword1347); if (state.failed) {
-                        return ret2;
-                    }
-                    if ( state.backtracking==0 ) {
-                      ret = "source";
-                    }
-
-                    }
-                    break;
-                case 69 :
-                    // ./generationTemp/generated/TCS.g:279:5: 'octal'
-                    {
-                    match(input,116,FOLLOW_116_in_escapedIdentifierOrKeyword1355); if (state.failed) {
+                    match(input,54,FOLLOW_54_in_escapedIdentifierOrKeyword859); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -3027,10 +2283,70 @@ public class TCSParser extends ObservableInjectingParser {
 
                     }
                     break;
-                case 70 :
-                    // ./generationTemp/generated/TCS.g:280:5: 'ifmissing'
+                case 8 :
+                    // ./generationTemp/generated/TCS.g:218:5: 'end'
                     {
-                    match(input,117,FOLLOW_117_in_escapedIdentifierOrKeyword1363); if (state.failed) {
+                    match(input,55,FOLLOW_55_in_escapedIdentifierOrKeyword867); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "end";
+                    }
+
+                    }
+                    break;
+                case 9 :
+                    // ./generationTemp/generated/TCS.g:219:5: 'rightNone'
+                    {
+                    match(input,56,FOLLOW_56_in_escapedIdentifierOrKeyword875); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "rightNone";
+                    }
+
+                    }
+                    break;
+                case 10 :
+                    // ./generationTemp/generated/TCS.g:220:5: 'word'
+                    {
+                    match(input,57,FOLLOW_57_in_escapedIdentifierOrKeyword883); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "word";
+                    }
+
+                    }
+                    break;
+                case 11 :
+                    // ./generationTemp/generated/TCS.g:221:5: 'all'
+                    {
+                    match(input,58,FOLLOW_58_in_escapedIdentifierOrKeyword891); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "all";
+                    }
+
+                    }
+                    break;
+                case 12 :
+                    // ./generationTemp/generated/TCS.g:222:5: 'never'
+                    {
+                    match(input,59,FOLLOW_59_in_escapedIdentifierOrKeyword899); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "never";
+                    }
+
+                    }
+                    break;
+                case 13 :
+                    // ./generationTemp/generated/TCS.g:223:5: 'ifmissing'
+                    {
+                    match(input,60,FOLLOW_60_in_escapedIdentifierOrKeyword907); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -3039,14 +2355,698 @@ public class TCSParser extends ObservableInjectingParser {
 
                     }
                     break;
+                case 14 :
+                    // ./generationTemp/generated/TCS.g:224:5: 'disambiguate'
+                    {
+                    match(input,61,FOLLOW_61_in_escapedIdentifierOrKeyword915); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "disambiguate";
+                    }
+
+                    }
+                    break;
+                case 15 :
+                    // ./generationTemp/generated/TCS.g:225:5: 'postfix'
+                    {
+                    match(input,62,FOLLOW_62_in_escapedIdentifierOrKeyword923); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "postfix";
+                    }
+
+                    }
+                    break;
+                case 16 :
+                    // ./generationTemp/generated/TCS.g:226:5: 'context'
+                    {
+                    match(input,63,FOLLOW_63_in_escapedIdentifierOrKeyword931); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "context";
+                    }
+
+                    }
+                    break;
+                case 17 :
+                    // ./generationTemp/generated/TCS.g:227:5: 'refersTo'
+                    {
+                    match(input,64,FOLLOW_64_in_escapedIdentifierOrKeyword939); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "refersTo";
+                    }
+
+                    }
+                    break;
+                case 18 :
+                    // ./generationTemp/generated/TCS.g:228:5: 'for'
+                    {
+                    match(input,65,FOLLOW_65_in_escapedIdentifierOrKeyword947); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "for";
+                    }
+
+                    }
+                    break;
+                case 19 :
+                    // ./generationTemp/generated/TCS.g:229:5: 'indentIncr'
+                    {
+                    match(input,66,FOLLOW_66_in_escapedIdentifierOrKeyword955); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "indentIncr";
+                    }
+
+                    }
+                    break;
+                case 20 :
+                    // ./generationTemp/generated/TCS.g:230:5: 'prefix'
+                    {
+                    match(input,67,FOLLOW_67_in_escapedIdentifierOrKeyword963); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "prefix";
+                    }
+
+                    }
+                    break;
+                case 21 :
+                    // ./generationTemp/generated/TCS.g:231:5: 'and'
+                    {
+                    match(input,68,FOLLOW_68_in_escapedIdentifierOrKeyword971); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "and";
+                    }
+
+                    }
+                    break;
+                case 22 :
+                    // ./generationTemp/generated/TCS.g:232:5: 'operatored'
+                    {
+                    match(input,69,FOLLOW_69_in_escapedIdentifierOrKeyword979); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "operatored";
+                    }
+
+                    }
+                    break;
+                case 23 :
+                    // ./generationTemp/generated/TCS.g:233:5: 'left'
+                    {
+                    match(input,70,FOLLOW_70_in_escapedIdentifierOrKeyword987); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "left";
+                    }
+
+                    }
+                    break;
+                case 24 :
+                    // ./generationTemp/generated/TCS.g:234:5: 'always'
+                    {
+                    match(input,71,FOLLOW_71_in_escapedIdentifierOrKeyword995); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "always";
+                    }
+
+                    }
+                    break;
+                case 25 :
+                    // ./generationTemp/generated/TCS.g:235:5: 'semDisambiguate'
+                    {
+                    match(input,72,FOLLOW_72_in_escapedIdentifierOrKeyword1003); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "semDisambiguate";
+                    }
+
+                    }
+                    break;
+                case 26 :
+                    // ./generationTemp/generated/TCS.g:236:5: 'as'
+                    {
+                    match(input,73,FOLLOW_73_in_escapedIdentifierOrKeyword1011); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "as";
+                    }
+
+                    }
+                    break;
+                case 27 :
+                    // ./generationTemp/generated/TCS.g:237:5: 'keywords'
+                    {
+                    match(input,74,FOLLOW_74_in_escapedIdentifierOrKeyword1019); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "keywords";
+                    }
+
+                    }
+                    break;
+                case 28 :
+                    // ./generationTemp/generated/TCS.g:238:5: 'startNL'
+                    {
+                    match(input,75,FOLLOW_75_in_escapedIdentifierOrKeyword1027); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "startNL";
+                    }
+
+                    }
+                    break;
+                case 29 :
+                    // ./generationTemp/generated/TCS.g:239:5: 'instanceOf'
+                    {
+                    match(input,76,FOLLOW_76_in_escapedIdentifierOrKeyword1035); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "instanceOf";
+                    }
+
+                    }
+                    break;
+                case 30 :
+                    // ./generationTemp/generated/TCS.g:240:5: 'storeOpTo'
+                    {
+                    match(input,77,FOLLOW_77_in_escapedIdentifierOrKeyword1043); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "storeOpTo";
+                    }
+
+                    }
+                    break;
+                case 31 :
+                    // ./generationTemp/generated/TCS.g:241:5: 'operatorTemplate'
+                    {
+                    match(input,78,FOLLOW_78_in_escapedIdentifierOrKeyword1051); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "operatorTemplate";
+                    }
+
+                    }
+                    break;
+                case 32 :
+                    // ./generationTemp/generated/TCS.g:242:5: 'forcedLower'
+                    {
+                    match(input,79,FOLLOW_79_in_escapedIdentifierOrKeyword1059); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "forcedLower";
+                    }
+
+                    }
+                    break;
+                case 33 :
+                    // ./generationTemp/generated/TCS.g:243:5: 'autoCreate'
+                    {
+                    match(input,80,FOLLOW_80_in_escapedIdentifierOrKeyword1067); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "autoCreate";
+                    }
+
+                    }
+                    break;
+                case 34 :
+                    // ./generationTemp/generated/TCS.g:244:5: 'deep'
+                    {
+                    match(input,81,FOLLOW_81_in_escapedIdentifierOrKeyword1075); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "deep";
+                    }
+
+                    }
+                    break;
+                case 35 :
+                    // ./generationTemp/generated/TCS.g:245:5: 'using'
+                    {
+                    match(input,82,FOLLOW_82_in_escapedIdentifierOrKeyword1083); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "using";
+                    }
+
+                    }
+                    break;
+                case 36 :
+                    // ./generationTemp/generated/TCS.g:246:5: 'hex'
+                    {
+                    match(input,83,FOLLOW_83_in_escapedIdentifierOrKeyword1091); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "hex";
+                    }
+
+                    }
+                    break;
+                case 37 :
+                    // ./generationTemp/generated/TCS.g:247:5: 'nonPrimary'
+                    {
+                    match(input,84,FOLLOW_84_in_escapedIdentifierOrKeyword1099); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "nonPrimary";
+                    }
+
+                    }
+                    break;
+                case 38 :
+                    // ./generationTemp/generated/TCS.g:248:5: 'main'
+                    {
+                    match(input,85,FOLLOW_85_in_escapedIdentifierOrKeyword1107); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "main";
+                    }
+
+                    }
+                    break;
+                case 39 :
+                    // ./generationTemp/generated/TCS.g:249:5: 'esc'
+                    {
+                    match(input,86,FOLLOW_86_in_escapedIdentifierOrKeyword1115); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "esc";
+                    }
+
+                    }
+                    break;
+                case 40 :
+                    // ./generationTemp/generated/TCS.g:250:5: 'endOfLine'
+                    {
+                    match(input,87,FOLLOW_87_in_escapedIdentifierOrKeyword1123); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "endOfLine";
+                    }
+
+                    }
+                    break;
+                case 41 :
+                    // ./generationTemp/generated/TCS.g:251:5: 'function'
+                    {
+                    match(input,88,FOLLOW_88_in_escapedIdentifierOrKeyword1131); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "function";
+                    }
+
+                    }
+                    break;
+                case 42 :
+                    // ./generationTemp/generated/TCS.g:252:5: 'primitiveTemplate'
+                    {
+                    match(input,89,FOLLOW_89_in_escapedIdentifierOrKeyword1139); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "primitiveTemplate";
+                    }
+
+                    }
+                    break;
+                case 43 :
+                    // ./generationTemp/generated/TCS.g:253:5: 'lookIn'
+                    {
+                    match(input,90,FOLLOW_90_in_escapedIdentifierOrKeyword1147); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "lookIn";
+                    }
+
+                    }
+                    break;
+                case 44 :
+                    // ./generationTemp/generated/TCS.g:254:5: 'disambiguateV3'
+                    {
+                    match(input,91,FOLLOW_91_in_escapedIdentifierOrKeyword1155); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "disambiguateV3";
+                    }
+
+                    }
+                    break;
+                case 45 :
+                    // ./generationTemp/generated/TCS.g:255:5: 'isDefined'
+                    {
+                    match(input,92,FOLLOW_92_in_escapedIdentifierOrKeyword1163); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "isDefined";
+                    }
+
+                    }
+                    break;
+                case 46 :
+                    // ./generationTemp/generated/TCS.g:256:5: 'when'
+                    {
+                    match(input,93,FOLLOW_93_in_escapedIdentifierOrKeyword1171); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "when";
+                    }
+
+                    }
+                    break;
+                case 47 :
+                    // ./generationTemp/generated/TCS.g:257:5: 'abstract'
+                    {
+                    match(input,94,FOLLOW_94_in_escapedIdentifierOrKeyword1179); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "abstract";
+                    }
+
+                    }
+                    break;
+                case 48 :
+                    // ./generationTemp/generated/TCS.g:258:5: 'importContext'
+                    {
+                    match(input,95,FOLLOW_95_in_escapedIdentifierOrKeyword1187); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "importContext";
+                    }
+
+                    }
+                    break;
+                case 49 :
+                    // ./generationTemp/generated/TCS.g:259:5: 'nbNL'
+                    {
+                    match(input,96,FOLLOW_96_in_escapedIdentifierOrKeyword1195); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "nbNL";
+                    }
+
+                    }
+                    break;
+                case 50 :
+                    // ./generationTemp/generated/TCS.g:260:5: 'mode'
+                    {
+                    match(input,97,FOLLOW_97_in_escapedIdentifierOrKeyword1203); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "mode";
+                    }
+
+                    }
+                    break;
+                case 51 :
+                    // ./generationTemp/generated/TCS.g:261:5: 'lookupScope'
+                    {
+                    match(input,98,FOLLOW_98_in_escapedIdentifierOrKeyword1211); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "lookupScope";
+                    }
+
+                    }
+                    break;
+                case 52 :
+                    // ./generationTemp/generated/TCS.g:262:5: 'referenceBy'
+                    {
+                    match(input,99,FOLLOW_99_in_escapedIdentifierOrKeyword1219); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "referenceBy";
+                    }
+
+                    }
+                    break;
+                case 53 :
+                    // ./generationTemp/generated/TCS.g:263:5: 'referenceOnly'
+                    {
+                    match(input,100,FOLLOW_100_in_escapedIdentifierOrKeyword1227); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "referenceOnly";
+                    }
+
+                    }
+                    break;
+                case 54 :
+                    // ./generationTemp/generated/TCS.g:264:5: 'syntax'
+                    {
+                    match(input,101,FOLLOW_101_in_escapedIdentifierOrKeyword1235); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "syntax";
+                    }
+
+                    }
+                    break;
+                case 55 :
+                    // ./generationTemp/generated/TCS.g:265:5: 'omitted'
+                    {
+                    match(input,102,FOLLOW_102_in_escapedIdentifierOrKeyword1243); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "omitted";
+                    }
+
+                    }
+                    break;
+                case 56 :
+                    // ./generationTemp/generated/TCS.g:266:5: 'createIn'
+                    {
+                    match(input,103,FOLLOW_103_in_escapedIdentifierOrKeyword1251); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "createIn";
+                    }
+
+                    }
+                    break;
+                case 57 :
+                    // ./generationTemp/generated/TCS.g:267:5: 'auto'
+                    {
+                    match(input,104,FOLLOW_104_in_escapedIdentifierOrKeyword1259); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "auto";
+                    }
+
+                    }
+                    break;
+                case 58 :
+                    // ./generationTemp/generated/TCS.g:268:5: 'operators'
+                    {
+                    match(input,105,FOLLOW_105_in_escapedIdentifierOrKeyword1267); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "operators";
+                    }
+
+                    }
+                    break;
+                case 59 :
+                    // ./generationTemp/generated/TCS.g:269:5: 'serializer'
+                    {
+                    match(input,106,FOLLOW_106_in_escapedIdentifierOrKeyword1275); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "serializer";
+                    }
+
+                    }
+                    break;
+                case 60 :
+                    // ./generationTemp/generated/TCS.g:270:5: 'one'
+                    {
+                    match(input,107,FOLLOW_107_in_escapedIdentifierOrKeyword1283); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "one";
+                    }
+
+                    }
+                    break;
+                case 61 :
+                    // ./generationTemp/generated/TCS.g:271:5: 'enumerationTemplate'
+                    {
+                    match(input,108,FOLLOW_108_in_escapedIdentifierOrKeyword1291); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "enumerationTemplate";
+                    }
+
+                    }
+                    break;
+                case 62 :
+                    // ./generationTemp/generated/TCS.g:272:5: 'foreach'
+                    {
+                    match(input,109,FOLLOW_109_in_escapedIdentifierOrKeyword1299); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "foreach";
+                    }
+
+                    }
+                    break;
+                case 63 :
+                    // ./generationTemp/generated/TCS.g:273:5: 'true'
+                    {
+                    match(input,110,FOLLOW_110_in_escapedIdentifierOrKeyword1307); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "true";
+                    }
+
+                    }
+                    break;
+                case 64 :
+                    // ./generationTemp/generated/TCS.g:274:5: 'value'
+                    {
+                    match(input,111,FOLLOW_111_in_escapedIdentifierOrKeyword1315); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "value";
+                    }
+
+                    }
+                    break;
+                case 65 :
+                    // ./generationTemp/generated/TCS.g:275:5: 'drop'
+                    {
+                    match(input,112,FOLLOW_112_in_escapedIdentifierOrKeyword1323); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "drop";
+                    }
+
+                    }
+                    break;
+                case 66 :
+                    // ./generationTemp/generated/TCS.g:276:5: 'source'
+                    {
+                    match(input,113,FOLLOW_113_in_escapedIdentifierOrKeyword1331); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "source";
+                    }
+
+                    }
+                    break;
+                case 67 :
+                    // ./generationTemp/generated/TCS.g:277:5: 'addToContext'
+                    {
+                    match(input,114,FOLLOW_114_in_escapedIdentifierOrKeyword1339); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "addToContext";
+                    }
+
+                    }
+                    break;
+                case 68 :
+                    // ./generationTemp/generated/TCS.g:278:5: 'leftNone'
+                    {
+                    match(input,115,FOLLOW_115_in_escapedIdentifierOrKeyword1347); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "leftNone";
+                    }
+
+                    }
+                    break;
+                case 69 :
+                    // ./generationTemp/generated/TCS.g:279:5: 'template'
+                    {
+                    match(input,116,FOLLOW_116_in_escapedIdentifierOrKeyword1355); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "template";
+                    }
+
+                    }
+                    break;
+                case 70 :
+                    // ./generationTemp/generated/TCS.g:280:5: 'createAs'
+                    {
+                    match(input,117,FOLLOW_117_in_escapedIdentifierOrKeyword1363); if (state.failed) {
+                        return ret2;
+                    }
+                    if ( state.backtracking==0 ) {
+                      ret = "createAs";
+                    }
+
+                    }
+                    break;
                 case 71 :
-                    // ./generationTemp/generated/TCS.g:281:5: 'importContext'
+                    // ./generationTemp/generated/TCS.g:281:5: 'false'
                     {
                     match(input,118,FOLLOW_118_in_escapedIdentifierOrKeyword1371); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "importContext";
+                      ret = "false";
                     }
 
                     }
@@ -3064,169 +3064,169 @@ public class TCSParser extends ObservableInjectingParser {
                     }
                     break;
                 case 73 :
-                    // ./generationTemp/generated/TCS.g:283:5: 'storeRightTo'
+                    // ./generationTemp/generated/TCS.g:283:5: 'multiLine'
                     {
                     match(input,120,FOLLOW_120_in_escapedIdentifierOrKeyword1387); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "storeRightTo";
+                      ret = "multiLine";
                     }
 
                     }
                     break;
                 case 74 :
-                    // ./generationTemp/generated/TCS.g:284:5: 'refersTo'
+                    // ./generationTemp/generated/TCS.g:284:5: 'part'
                     {
                     match(input,121,FOLLOW_121_in_escapedIdentifierOrKeyword1395); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "refersTo";
+                      ret = "part";
                     }
 
                     }
                     break;
                 case 75 :
-                    // ./generationTemp/generated/TCS.g:285:5: 'startNbNL'
+                    // ./generationTemp/generated/TCS.g:285:5: 'rightSpace'
                     {
                     match(input,122,FOLLOW_122_in_escapedIdentifierOrKeyword1403); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "startNbNL";
+                      ret = "rightSpace";
                     }
 
                     }
                     break;
                 case 76 :
-                    // ./generationTemp/generated/TCS.g:286:5: 'auto'
+                    // ./generationTemp/generated/TCS.g:286:5: 'symbols'
                     {
                     match(input,123,FOLLOW_123_in_escapedIdentifierOrKeyword1411); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "auto";
+                      ret = "symbols";
                     }
 
                     }
                     break;
                 case 77 :
-                    // ./generationTemp/generated/TCS.g:287:5: 'one'
+                    // ./generationTemp/generated/TCS.g:287:5: 'endNL'
                     {
                     match(input,124,FOLLOW_124_in_escapedIdentifierOrKeyword1419); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "one";
+                      ret = "endNL";
                     }
 
                     }
                     break;
                 case 78 :
-                    // ./generationTemp/generated/TCS.g:288:5: 'true'
+                    // ./generationTemp/generated/TCS.g:288:5: 'right'
                     {
                     match(input,125,FOLLOW_125_in_escapedIdentifierOrKeyword1427); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "true";
+                      ret = "right";
                     }
 
                     }
                     break;
                 case 79 :
-                    // ./generationTemp/generated/TCS.g:289:5: 'function'
+                    // ./generationTemp/generated/TCS.g:289:5: 'token'
                     {
                     match(input,126,FOLLOW_126_in_escapedIdentifierOrKeyword1435); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "function";
+                      ret = "token";
                     }
 
                     }
                     break;
                 case 80 :
-                    // ./generationTemp/generated/TCS.g:290:5: 'never'
+                    // ./generationTemp/generated/TCS.g:290:5: 'lexer'
                     {
                     match(input,127,FOLLOW_127_in_escapedIdentifierOrKeyword1443); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "never";
+                      ret = "lexer";
                     }
 
                     }
                     break;
                 case 81 :
-                    // ./generationTemp/generated/TCS.g:291:5: 'lookupScope'
+                    // ./generationTemp/generated/TCS.g:291:5: 'orKeyword'
                     {
                     match(input,128,FOLLOW_128_in_escapedIdentifierOrKeyword1451); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "lookupScope";
+                      ret = "orKeyword";
                     }
 
                     }
                     break;
                 case 82 :
-                    // ./generationTemp/generated/TCS.g:292:5: 'as'
+                    // ./generationTemp/generated/TCS.g:292:5: 'leftSpace'
                     {
                     match(input,129,FOLLOW_129_in_escapedIdentifierOrKeyword1459); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "as";
+                      ret = "leftSpace";
                     }
 
                     }
                     break;
                 case 83 :
-                    // ./generationTemp/generated/TCS.g:293:5: 'for'
+                    // ./generationTemp/generated/TCS.g:293:5: 'priority'
                     {
                     match(input,130,FOLLOW_130_in_escapedIdentifierOrKeyword1467); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "for";
+                      ret = "priority";
                     }
 
                     }
                     break;
                 case 84 :
-                    // ./generationTemp/generated/TCS.g:294:5: 'template'
+                    // ./generationTemp/generated/TCS.g:294:5: 'start'
                     {
                     match(input,131,FOLLOW_131_in_escapedIdentifierOrKeyword1475); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "template";
+                      ret = "start";
                     }
 
                     }
                     break;
                 case 85 :
-                    // ./generationTemp/generated/TCS.g:295:5: 'forcedUpper'
+                    // ./generationTemp/generated/TCS.g:295:5: 'multi'
                     {
                     match(input,132,FOLLOW_132_in_escapedIdentifierOrKeyword1483); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "forcedUpper";
+                      ret = "multi";
                     }
 
                     }
                     break;
                 case 86 :
-                    // ./generationTemp/generated/TCS.g:296:5: 'startNL'
+                    // ./generationTemp/generated/TCS.g:296:5: 'partial'
                     {
                     match(input,133,FOLLOW_133_in_escapedIdentifierOrKeyword1491); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      ret = "startNL";
+                      ret = "partial";
                     }
 
                     }
@@ -3501,7 +3501,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:360:4: ( ( (temp= ecore_epackage ) ) | ) (temp= identifier )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.8/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.8/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:360:128: ( ( (temp= ecore_epackage ) ) | )
             int alt3=2;
@@ -3517,7 +3517,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:360:146: (temp= ecore_epackage )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.8/@templateSequence/@elements.0/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.8/@templateSequence/@elements.0/@thenSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:360:295: (temp= ecore_epackage )
                     // ./generationTemp/generated/TCS.g:360:297: temp= ecore_epackage
@@ -3568,7 +3568,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.8/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.8/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:362:140: (temp= identifier )?
             int alt4=2;
@@ -3648,7 +3648,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:378:4: ( ( ( ( (temp= ecore_epackage_superPackage ) ) | ) (temp= identifier )? DLCOLON ) | ( (temp= uriSymbol )? SHARP ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.9/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.9/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:378:127: ( ( ( ( (temp= ecore_epackage_superPackage ) ) | ) (temp= identifier )? DLCOLON ) | ( (temp= uriSymbol )? SHARP ) )
             int alt8=2;
@@ -3672,7 +3672,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( (LA8_4==DLCOLON) ) {
                             alt8=1;
                         }
-                        else if ( (LA8_4==EOF||(LA8_4>=SHARP && LA8_4<=LPAREN)||LA8_4==RPAREN||LA8_4==SEMI||LA8_4==COLON||LA8_4==61||LA8_4==72||LA8_4==76||LA8_4==79||LA8_4==81||LA8_4==86||LA8_4==90||LA8_4==96||LA8_4==104||LA8_4==107||LA8_4==110||LA8_4==123) ) {
+                        else if ( (LA8_4==EOF||(LA8_4>=SHARP && LA8_4<=LPAREN)||LA8_4==RPAREN||LA8_4==SEMI||LA8_4==COLON||LA8_4==50||LA8_4==63||LA8_4==69||(LA8_4>=81 && LA8_4<=82)||(LA8_4>=84 && LA8_4<=85)||LA8_4==94||LA8_4==100||LA8_4==104||LA8_4==114||LA8_4==132) ) {
                             alt8=2;
                         }
                         else {
@@ -3695,18 +3695,18 @@ public class TCSParser extends ObservableInjectingParser {
                     case RPAREN:
                     case SEMI:
                     case COLON:
-                    case 61:
-                    case 72:
-                    case 76:
-                    case 79:
+                    case 50:
+                    case 63:
+                    case 69:
                     case 81:
-                    case 86:
-                    case 90:
-                    case 96:
+                    case 82:
+                    case 84:
+                    case 85:
+                    case 94:
+                    case 100:
                     case 104:
-                    case 107:
-                    case 110:
-                    case 123:
+                    case 114:
+                    case 132:
                         {
                         alt8=2;
                         }
@@ -3739,7 +3739,7 @@ public class TCSParser extends ObservableInjectingParser {
                     if ( (LA8_4==DLCOLON) ) {
                         alt8=1;
                     }
-                    else if ( (LA8_4==EOF||(LA8_4>=SHARP && LA8_4<=LPAREN)||LA8_4==RPAREN||LA8_4==SEMI||LA8_4==COLON||LA8_4==61||LA8_4==72||LA8_4==76||LA8_4==79||LA8_4==81||LA8_4==86||LA8_4==90||LA8_4==96||LA8_4==104||LA8_4==107||LA8_4==110||LA8_4==123) ) {
+                    else if ( (LA8_4==EOF||(LA8_4>=SHARP && LA8_4<=LPAREN)||LA8_4==RPAREN||LA8_4==SEMI||LA8_4==COLON||LA8_4==50||LA8_4==63||LA8_4==69||(LA8_4>=81 && LA8_4<=82)||(LA8_4>=84 && LA8_4<=85)||LA8_4==94||LA8_4==100||LA8_4==104||LA8_4==114||LA8_4==132) ) {
                         alt8=2;
                     }
                     else {
@@ -3762,18 +3762,18 @@ public class TCSParser extends ObservableInjectingParser {
                 case RPAREN:
                 case SEMI:
                 case COLON:
-                case 61:
-                case 72:
-                case 76:
-                case 79:
+                case 50:
+                case 63:
+                case 69:
                 case 81:
-                case 86:
-                case 90:
-                case 96:
+                case 82:
+                case 84:
+                case 85:
+                case 94:
+                case 100:
                 case 104:
-                case 107:
-                case 110:
-                case 123:
+                case 114:
+                case 132:
                     {
                     alt8=2;
                     }
@@ -3807,7 +3807,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:378:145: ( ( (temp= ecore_epackage_superPackage ) ) | ) (temp= identifier )? DLCOLON
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.0/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.0/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:378:294: ( ( (temp= ecore_epackage_superPackage ) ) | )
                     int alt5=2;
@@ -3825,7 +3825,7 @@ public class TCSParser extends ObservableInjectingParser {
                                 if ( (LA5_4==DLCOLON) ) {
                                     alt5=1;
                                 }
-                                else if ( (LA5_4==EOF||(LA5_4>=SHARP && LA5_4<=LPAREN)||LA5_4==RPAREN||LA5_4==SEMI||LA5_4==COLON||LA5_4==61||LA5_4==72||LA5_4==76||LA5_4==79||LA5_4==81||LA5_4==86||LA5_4==90||LA5_4==96||LA5_4==104||LA5_4==107||LA5_4==110||LA5_4==123) ) {
+                                else if ( (LA5_4==EOF||(LA5_4>=SHARP && LA5_4<=LPAREN)||LA5_4==RPAREN||LA5_4==SEMI||LA5_4==COLON||LA5_4==50||LA5_4==63||LA5_4==69||(LA5_4>=81 && LA5_4<=82)||(LA5_4>=84 && LA5_4<=85)||LA5_4==94||LA5_4==100||LA5_4==104||LA5_4==114||LA5_4==132) ) {
                                     alt5=2;
                                 }
                                 else {
@@ -3848,18 +3848,18 @@ public class TCSParser extends ObservableInjectingParser {
                             case RPAREN:
                             case SEMI:
                             case COLON:
-                            case 61:
-                            case 72:
-                            case 76:
-                            case 79:
+                            case 50:
+                            case 63:
+                            case 69:
                             case 81:
-                            case 86:
-                            case 90:
-                            case 96:
+                            case 82:
+                            case 84:
+                            case 85:
+                            case 94:
+                            case 100:
                             case 104:
-                            case 107:
-                            case 110:
-                            case 123:
+                            case 114:
+                            case 132:
                                 {
                                 alt5=2;
                                 }
@@ -3892,7 +3892,7 @@ public class TCSParser extends ObservableInjectingParser {
                             if ( (LA5_4==DLCOLON) ) {
                                 alt5=1;
                             }
-                            else if ( (LA5_4==EOF||(LA5_4>=SHARP && LA5_4<=LPAREN)||LA5_4==RPAREN||LA5_4==SEMI||LA5_4==COLON||LA5_4==61||LA5_4==72||LA5_4==76||LA5_4==79||LA5_4==81||LA5_4==86||LA5_4==90||LA5_4==96||LA5_4==104||LA5_4==107||LA5_4==110||LA5_4==123) ) {
+                            else if ( (LA5_4==EOF||(LA5_4>=SHARP && LA5_4<=LPAREN)||LA5_4==RPAREN||LA5_4==SEMI||LA5_4==COLON||LA5_4==50||LA5_4==63||LA5_4==69||(LA5_4>=81 && LA5_4<=82)||(LA5_4>=84 && LA5_4<=85)||LA5_4==94||LA5_4==100||LA5_4==104||LA5_4==114||LA5_4==132) ) {
                                 alt5=2;
                             }
                             else {
@@ -3915,18 +3915,18 @@ public class TCSParser extends ObservableInjectingParser {
                         case RPAREN:
                         case SEMI:
                         case COLON:
-                        case 61:
-                        case 72:
-                        case 76:
-                        case 79:
+                        case 50:
+                        case 63:
+                        case 69:
                         case 81:
-                        case 86:
-                        case 90:
-                        case 96:
+                        case 82:
+                        case 84:
+                        case 85:
+                        case 94:
+                        case 100:
                         case 104:
-                        case 107:
-                        case 110:
-                        case 123:
+                        case 114:
+                        case 132:
                             {
                             alt5=2;
                             }
@@ -3966,7 +3966,7 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:378:312: (temp= ecore_epackage_superPackage )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.0/@elements.0/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.0/@elements.0/@thenSequence/@elements.0");
                             }
                             // ./generationTemp/generated/TCS.g:378:486: (temp= ecore_epackage_superPackage )
                             // ./generationTemp/generated/TCS.g:378:488: temp= ecore_epackage_superPackage
@@ -4017,7 +4017,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.0/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.0/@elements.1");
                     }
                     // ./generationTemp/generated/TCS.g:380:165: (temp= identifier )?
                     int alt6=2;
@@ -4052,7 +4052,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.0/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.0/@elements.2");
                     }
                     match(input,DLCOLON,FOLLOW_DLCOLON_in_ecore_epackage1801); if (state.failed) {
                         return ret2;
@@ -4079,7 +4079,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:382:21: (temp= uriSymbol )? SHARP
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.1/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.1/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:382:169: (temp= uriSymbol )?
                     int alt7=2;
@@ -4114,7 +4114,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.1/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.1/@elements.1");
                     }
                     match(input,SHARP,FOLLOW_SHARP_in_ecore_epackage1828); if (state.failed) {
                         return ret2;
@@ -4183,7 +4183,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:398:4: ( ( (temp= identifier )? DLCOLON ) | ( (temp= uriSymbol )? SHARP ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.10/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.10/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:398:128: ( ( (temp= identifier )? DLCOLON ) | ( (temp= uriSymbol )? SHARP ) )
             int alt11=2;
@@ -4213,7 +4213,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:398:146: (temp= identifier )? DLCOLON
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.10/@templateSequence/@elements.0/@sequences.0/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.10/@templateSequence/@elements.0/@sequences.0/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:398:295: (temp= identifier )?
                     int alt9=2;
@@ -4248,7 +4248,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.10/@templateSequence/@elements.0/@sequences.0/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.10/@templateSequence/@elements.0/@sequences.0/@elements.1");
                     }
                     match(input,DLCOLON,FOLLOW_DLCOLON_in_ecore_epackage_superPackage1892); if (state.failed) {
                         return ret2;
@@ -4275,7 +4275,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:400:21: (temp= uriSymbol )? SHARP
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.10/@templateSequence/@elements.0/@sequences.1/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.10/@templateSequence/@elements.0/@sequences.1/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:400:170: (temp= uriSymbol )?
                     int alt10=2;
@@ -4310,7 +4310,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.10/@templateSequence/@elements.0/@sequences.1/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.10/@templateSequence/@elements.0/@sequences.1/@elements.1");
                     }
                     match(input,SHARP,FOLLOW_SHARP_in_ecore_epackage_superPackage1919); if (state.failed) {
                         return ret2;
@@ -4434,16 +4434,16 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:425:4: 'syntax' (temp= identifier ) ( ( LPAREN 'k' EQ (temp= integerSymbol ) RPAREN ) | ) LCURLY ( ( (temp= furcas_tcs_template (temp= furcas_tcs_template )* )? ( ( 'keywords' LCURLY ( ( (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )? ) ) RCURLY ) | ) ( ( 'symbols' LCURLY ( ( (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )? ) ) RCURLY ) | ) (temp= furcas_tcs_operatorlist (temp= furcas_tcs_operatorlist )* )? (temp= furcas_tcs_token (temp= furcas_tcs_token )* )? ( ( 'lexer' EQ (temp= stringSymbol ) SEMI ) | ) ) ) RCURLY
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.0");
             }
-            match(input,73,FOLLOW_73_in_furcas_tcs_concretesyntax1997); if (state.failed) {
+            match(input,101,FOLLOW_101_in_furcas_tcs_concretesyntax1997); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:425:276: (temp= identifier )
             // ./generationTemp/generated/TCS.g:425:278: temp= identifier
@@ -4467,7 +4467,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:426:171: ( ( LPAREN 'k' EQ (temp= integerSymbol ) RPAREN ) | )
             int alt12=2;
@@ -4497,7 +4497,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:426:189: LPAREN 'k' EQ (temp= integerSymbol ) RPAREN
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.2/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.2/@thenSequence/@elements.0");
                     }
                     match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_concretesyntax2017); if (state.failed) {
                         return ret2;
@@ -4506,7 +4506,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.2/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.2/@thenSequence/@elements.1");
                     }
                     match(input,119,FOLLOW_119_in_furcas_tcs_concretesyntax2021); if (state.failed) {
                         return ret2;
@@ -4515,7 +4515,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.2/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.2/@thenSequence/@elements.2");
                     }
                     match(input,EQ,FOLLOW_EQ_in_furcas_tcs_concretesyntax2025); if (state.failed) {
                         return ret2;
@@ -4524,7 +4524,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.2/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.2/@thenSequence/@elements.3");
                     }
                     // ./generationTemp/generated/TCS.g:426:852: (temp= integerSymbol )
                     // ./generationTemp/generated/TCS.g:426:854: temp= integerSymbol
@@ -4548,7 +4548,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.2/@thenSequence/@elements.4");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.2/@thenSequence/@elements.4");
                     }
                     match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_concretesyntax2040); if (state.failed) {
                         return ret2;
@@ -4584,7 +4584,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.3");
             }
             match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_concretesyntax2058); if (state.failed) {
                 return ret2;
@@ -4593,7 +4593,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4");
             }
             // ./generationTemp/generated/TCS.g:428:289: ( ( (temp= furcas_tcs_template (temp= furcas_tcs_template )* )? ( ( 'keywords' LCURLY ( ( (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )? ) ) RCURLY ) | ) ( ( 'symbols' LCURLY ( ( (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )? ) ) RCURLY ) | ) (temp= furcas_tcs_operatorlist (temp= furcas_tcs_operatorlist )* )? (temp= furcas_tcs_token (temp= furcas_tcs_token )* )? ( ( 'lexer' EQ (temp= stringSymbol ) SEMI ) | ) ) )
             // ./generationTemp/generated/TCS.g:428:290: ( (temp= furcas_tcs_template (temp= furcas_tcs_template )* )? ( ( 'keywords' LCURLY ( ( (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )? ) ) RCURLY ) | ) ( ( 'symbols' LCURLY ( ( (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )? ) ) RCURLY ) | ) (temp= furcas_tcs_operatorlist (temp= furcas_tcs_operatorlist )* )? (temp= furcas_tcs_token (temp= furcas_tcs_token )* )? ( ( 'lexer' EQ (temp= stringSymbol ) SEMI ) | ) )
@@ -4602,13 +4602,13 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:428:291: (temp= furcas_tcs_template (temp= furcas_tcs_template )* )? ( ( 'keywords' LCURLY ( ( (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )? ) ) RCURLY ) | ) ( ( 'symbols' LCURLY ( ( (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )? ) ) RCURLY ) | ) (temp= furcas_tcs_operatorlist (temp= furcas_tcs_operatorlist )* )? (temp= furcas_tcs_token (temp= furcas_tcs_token )* )? ( ( 'lexer' EQ (temp= stringSymbol ) SEMI ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:428:442: (temp= furcas_tcs_template (temp= furcas_tcs_template )* )?
             int alt14=2;
             int LA14_0 = input.LA(1);
 
-            if ( (LA14_0==70||LA14_0==92||LA14_0==94||LA14_0==126||LA14_0==131) ) {
+            if ( (LA14_0==78||(LA14_0>=88 && LA14_0<=89)||LA14_0==108||LA14_0==116) ) {
                 alt14=1;
             }
             switch (alt14) {
@@ -4633,7 +4633,7 @@ public class TCSParser extends ObservableInjectingParser {
                         int alt13=2;
                         int LA13_0 = input.LA(1);
 
-                        if ( (LA13_0==70||LA13_0==92||LA13_0==94||LA13_0==126||LA13_0==131) ) {
+                        if ( (LA13_0==78||(LA13_0>=88 && LA13_0<=89)||LA13_0==108||LA13_0==116) ) {
                             alt13=1;
                         }
 
@@ -4673,16 +4673,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:430:208: ( ( 'keywords' LCURLY ( ( (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )? ) ) RCURLY ) | )
             int alt17=2;
             int LA17_0 = input.LA(1);
 
-            if ( (LA17_0==98) ) {
+            if ( (LA17_0==74) ) {
                 alt17=1;
             }
-            else if ( (LA17_0==RCURLY||LA17_0==49||LA17_0==83||LA17_0==88||LA17_0==99||LA17_0==109) ) {
+            else if ( (LA17_0==RCURLY||LA17_0==102||LA17_0==105||LA17_0==123||(LA17_0>=126 && LA17_0<=127)) ) {
                 alt17=2;
             }
             else {
@@ -4703,16 +4703,16 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:430:226: 'keywords' LCURLY ( ( (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )? ) ) RCURLY
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.0");
                     }
-                    match(input,98,FOLLOW_98_in_furcas_tcs_concretesyntax2094); if (state.failed) {
+                    match(input,74,FOLLOW_74_in_furcas_tcs_concretesyntax2094); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.1");
                     }
                     match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_concretesyntax2098); if (state.failed) {
                         return ret2;
@@ -4721,7 +4721,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.2");
                     }
                     // ./generationTemp/generated/TCS.g:430:807: ( ( (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )? ) )
                     // ./generationTemp/generated/TCS.g:430:808: ( (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )? )
@@ -4730,7 +4730,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:430:809: (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.2/@blockSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.2/@blockSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:430:1013: (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )?
                     int alt16=2;
@@ -4810,7 +4810,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.3");
                     }
                     match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_concretesyntax2132); if (state.failed) {
                         return ret2;
@@ -4846,16 +4846,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:433:169: ( ( 'symbols' LCURLY ( ( (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )? ) ) RCURLY ) | )
             int alt20=2;
             int LA20_0 = input.LA(1);
 
-            if ( (LA20_0==83) ) {
+            if ( (LA20_0==123) ) {
                 alt20=1;
             }
-            else if ( (LA20_0==RCURLY||LA20_0==49||LA20_0==88||LA20_0==99||LA20_0==109) ) {
+            else if ( (LA20_0==RCURLY||LA20_0==102||LA20_0==105||(LA20_0>=126 && LA20_0<=127)) ) {
                 alt20=2;
             }
             else {
@@ -4876,16 +4876,16 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:433:187: 'symbols' LCURLY ( ( (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )? ) ) RCURLY
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.0");
                     }
-                    match(input,83,FOLLOW_83_in_furcas_tcs_concretesyntax2155); if (state.failed) {
+                    match(input,123,FOLLOW_123_in_furcas_tcs_concretesyntax2155); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.1");
                     }
                     match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_concretesyntax2159); if (state.failed) {
                         return ret2;
@@ -4894,7 +4894,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.2");
                     }
                     // ./generationTemp/generated/TCS.g:433:767: ( ( (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )? ) )
                     // ./generationTemp/generated/TCS.g:433:768: ( (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )? )
@@ -4903,7 +4903,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:433:769: (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.2/@blockSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.2/@blockSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:433:973: (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )?
                     int alt19=2;
@@ -4983,7 +4983,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.3");
                     }
                     match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_concretesyntax2193); if (state.failed) {
                         return ret2;
@@ -5019,13 +5019,13 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.3");
             }
             // ./generationTemp/generated/TCS.g:436:168: (temp= furcas_tcs_operatorlist (temp= furcas_tcs_operatorlist )* )?
             int alt22=2;
             int LA22_0 = input.LA(1);
 
-            if ( (LA22_0==109) ) {
+            if ( (LA22_0==105) ) {
                 alt22=1;
             }
             switch (alt22) {
@@ -5050,7 +5050,7 @@ public class TCSParser extends ObservableInjectingParser {
                         int alt21=2;
                         int LA21_0 = input.LA(1);
 
-                        if ( (LA21_0==109) ) {
+                        if ( (LA21_0==105) ) {
                             alt21=1;
                         }
 
@@ -5090,13 +5090,13 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.4");
             }
             // ./generationTemp/generated/TCS.g:438:211: (temp= furcas_tcs_token (temp= furcas_tcs_token )* )?
             int alt24=2;
             int LA24_0 = input.LA(1);
 
-            if ( (LA24_0==49||LA24_0==99) ) {
+            if ( (LA24_0==102||LA24_0==126) ) {
                 alt24=1;
             }
             switch (alt24) {
@@ -5121,7 +5121,7 @@ public class TCSParser extends ObservableInjectingParser {
                         int alt23=2;
                         int LA23_0 = input.LA(1);
 
-                        if ( (LA23_0==49||LA23_0==99) ) {
+                        if ( (LA23_0==102||LA23_0==126) ) {
                             alt23=1;
                         }
 
@@ -5161,13 +5161,13 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.5");
             }
             // ./generationTemp/generated/TCS.g:440:205: ( ( 'lexer' EQ (temp= stringSymbol ) SEMI ) | )
             int alt25=2;
             int LA25_0 = input.LA(1);
 
-            if ( (LA25_0==88) ) {
+            if ( (LA25_0==127) ) {
                 alt25=1;
             }
             else if ( (LA25_0==RCURLY) ) {
@@ -5191,16 +5191,16 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:440:223: 'lexer' EQ (temp= stringSymbol ) SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.5/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.5/@thenSequence/@elements.0");
                     }
-                    match(input,88,FOLLOW_88_in_furcas_tcs_concretesyntax2262); if (state.failed) {
+                    match(input,127,FOLLOW_127_in_furcas_tcs_concretesyntax2262); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.5/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.5/@thenSequence/@elements.1");
                     }
                     match(input,EQ,FOLLOW_EQ_in_furcas_tcs_concretesyntax2266); if (state.failed) {
                         return ret2;
@@ -5209,7 +5209,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.5/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.5/@thenSequence/@elements.2");
                     }
                     // ./generationTemp/generated/TCS.g:440:797: (temp= stringSymbol )
                     // ./generationTemp/generated/TCS.g:440:799: temp= stringSymbol
@@ -5233,7 +5233,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.5/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.5/@thenSequence/@elements.3");
                     }
                     match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_concretesyntax2281); if (state.failed) {
                         return ret2;
@@ -5278,7 +5278,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.5");
             }
             match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_concretesyntax2302); if (state.failed) {
                 return ret2;
@@ -5287,13 +5287,13 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.6");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.6");
             }
             if ( state.backtracking==0 ) {
               _enterInjectorAction();setOclRef(ret, "keywords", null, null, "OCL:LiteralRef.allInstances()->select("+
               "                                lr | self.templates->includes(lr.parentTemplate)).referredLiteral->asSet()"+
               "                                ->union(self.operatorLists.priorities.operators.literal->asSet())"+
-              "                                ->select(k | k.oclIsTypeOf(Keyword))", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.11/@templateSequence/@elements.6/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
+              "                                ->select(k | k.oclIsTypeOf(Keyword))", true, "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.11/@templateSequence/@elements.6/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -5336,13 +5336,13 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:455:4: ( ( (temp= ecore_eclassifier ) ) | ( RARROW (temp= identifier ( ( DLCOLON ) temp= identifier )* ) ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@functionSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@functionSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:455:129: ( ( (temp= ecore_eclassifier ) ) | ( RARROW (temp= identifier ( ( DLCOLON ) temp= identifier )* ) ) )
             int alt27=2;
             int LA27_0 = input.LA(1);
 
-            if ( (LA27_0==EOF||(LA27_0>=NAME && LA27_0<=STRING)||(LA27_0>=DLCOLON && LA27_0<=LPAREN)||LA27_0==RPAREN||LA27_0==SEMI||LA27_0==COLON||LA27_0==61||LA27_0==72||LA27_0==76||LA27_0==79||LA27_0==81||LA27_0==86||LA27_0==90||LA27_0==96||LA27_0==104||LA27_0==107||LA27_0==110||LA27_0==123) ) {
+            if ( (LA27_0==EOF||(LA27_0>=NAME && LA27_0<=STRING)||(LA27_0>=DLCOLON && LA27_0<=LPAREN)||LA27_0==RPAREN||LA27_0==SEMI||LA27_0==COLON||LA27_0==50||LA27_0==63||LA27_0==69||(LA27_0>=81 && LA27_0<=82)||(LA27_0>=84 && LA27_0<=85)||LA27_0==94||LA27_0==100||LA27_0==104||LA27_0==114||LA27_0==132) ) {
                 alt27=1;
             }
             else if ( (LA27_0==RARROW) ) {
@@ -5366,7 +5366,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:455:147: (temp= ecore_eclassifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@functionSequence/@elements.0/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@functionSequence/@elements.0/@thenSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:455:297: (temp= ecore_eclassifier )
                     // ./generationTemp/generated/TCS.g:455:299: temp= ecore_eclassifier
@@ -5408,7 +5408,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:456:90: RARROW (temp= identifier ( ( DLCOLON ) temp= identifier )* )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@functionSequence/@elements.0/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@functionSequence/@elements.0/@elseSequence/@elements.0");
                     }
                     match(input,RARROW,FOLLOW_RARROW_in_reference2366); if (state.failed) {
                         return ;
@@ -5417,7 +5417,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@functionSequence/@elements.0/@elseSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@functionSequence/@elements.0/@elseSequence/@elements.1");
                     }
                     // ./generationTemp/generated/TCS.g:456:414: (temp= identifier ( ( DLCOLON ) temp= identifier )* )
                     // ./generationTemp/generated/TCS.g:456:416: temp= identifier ( ( DLCOLON ) temp= identifier )*
@@ -5456,7 +5456,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // ./generationTemp/generated/TCS.g:457:50: DLCOLON
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@functionSequence/@elements.0/@elseSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
+                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@functionSequence/@elements.0/@elseSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
                     	    }
                     	    match(input,DLCOLON,FOLLOW_DLCOLON_in_reference2383); if (state.failed) {
                                 return ;
@@ -5549,23 +5549,23 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:468:3: (ret= furcas_tcs_contexttemplate | ret= furcas_tcs_primitivetemplate | ret= furcas_tcs_enumerationtemplate | ret= furcas_tcs_functiontemplate )
             int alt28=4;
             switch ( input.LA(1) ) {
-            case 70:
-            case 131:
+            case 78:
+            case 116:
                 {
                 alt28=1;
                 }
                 break;
-            case 92:
+            case 89:
                 {
                 alt28=2;
                 }
                 break;
-            case 94:
+            case 108:
                 {
                 alt28=3;
                 }
                 break;
-            case 126:
+            case 88:
                 {
                 alt28=4;
                 }
@@ -5674,10 +5674,10 @@ public class TCSParser extends ObservableInjectingParser {
             int alt29=2;
             int LA29_0 = input.LA(1);
 
-            if ( (LA29_0==131) ) {
+            if ( (LA29_0==116) ) {
                 alt29=1;
             }
-            else if ( (LA29_0==70) ) {
+            else if ( (LA29_0==78) ) {
                 alt29=2;
             }
             else {
@@ -5740,7 +5740,7 @@ public class TCSParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "furcas_tcs_primitivetemplate"
-    // ./generationTemp/generated/TCS.g:488:1: furcas_tcs_primitivetemplate returns [Object ret2] : ( 'primitiveTemplate' (temp= identifier ) 'for' reference[ret] ( ( 'default' ) | ) 'using' (temp= identifier ) ( ( 'orKeyword' ) | ) COLON 'value' EQ (temp= stringSymbol ) ( ( COMA 'serializer' EQ (temp= stringSymbol ) ) | ) SEMI ) ;
+    // ./generationTemp/generated/TCS.g:488:1: furcas_tcs_primitivetemplate returns [Object ret2] : ( 'primitiveTemplate' (temp= identifier ) 'for' reference[ret] ( ( 'default' ) | ) 'using' (temp= identifier ) ( ( 'orKeyword' ) | ) ( ( COLON ( ( 'value' EQ (temp= stringSymbol ) ( ( COMA 'serializer' EQ (temp= stringSymbol ) ) | ) ) ) SEMI ) ) ) ;
     public final Object furcas_tcs_primitivetemplate() throws RecognitionException {
         Object ret2 = null;
 
@@ -5754,23 +5754,23 @@ public class TCSParser extends ObservableInjectingParser {
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
-            // ./generationTemp/generated/TCS.g:494:3: ( ( 'primitiveTemplate' (temp= identifier ) 'for' reference[ret] ( ( 'default' ) | ) 'using' (temp= identifier ) ( ( 'orKeyword' ) | ) COLON 'value' EQ (temp= stringSymbol ) ( ( COMA 'serializer' EQ (temp= stringSymbol ) ) | ) SEMI ) )
-            // ./generationTemp/generated/TCS.g:495:3: ( 'primitiveTemplate' (temp= identifier ) 'for' reference[ret] ( ( 'default' ) | ) 'using' (temp= identifier ) ( ( 'orKeyword' ) | ) COLON 'value' EQ (temp= stringSymbol ) ( ( COMA 'serializer' EQ (temp= stringSymbol ) ) | ) SEMI )
+            // ./generationTemp/generated/TCS.g:494:3: ( ( 'primitiveTemplate' (temp= identifier ) 'for' reference[ret] ( ( 'default' ) | ) 'using' (temp= identifier ) ( ( 'orKeyword' ) | ) ( ( COLON ( ( 'value' EQ (temp= stringSymbol ) ( ( COMA 'serializer' EQ (temp= stringSymbol ) ) | ) ) ) SEMI ) ) ) )
+            // ./generationTemp/generated/TCS.g:495:3: ( 'primitiveTemplate' (temp= identifier ) 'for' reference[ret] ( ( 'default' ) | ) 'using' (temp= identifier ) ( ( 'orKeyword' ) | ) ( ( COLON ( ( 'value' EQ (temp= stringSymbol ) ( ( COMA 'serializer' EQ (temp= stringSymbol ) ) | ) ) ) SEMI ) ) )
             {
-            // ./generationTemp/generated/TCS.g:495:3: ( 'primitiveTemplate' (temp= identifier ) 'for' reference[ret] ( ( 'default' ) | ) 'using' (temp= identifier ) ( ( 'orKeyword' ) | ) COLON 'value' EQ (temp= stringSymbol ) ( ( COMA 'serializer' EQ (temp= stringSymbol ) ) | ) SEMI )
-            // ./generationTemp/generated/TCS.g:495:4: 'primitiveTemplate' (temp= identifier ) 'for' reference[ret] ( ( 'default' ) | ) 'using' (temp= identifier ) ( ( 'orKeyword' ) | ) COLON 'value' EQ (temp= stringSymbol ) ( ( COMA 'serializer' EQ (temp= stringSymbol ) ) | ) SEMI
+            // ./generationTemp/generated/TCS.g:495:3: ( 'primitiveTemplate' (temp= identifier ) 'for' reference[ret] ( ( 'default' ) | ) 'using' (temp= identifier ) ( ( 'orKeyword' ) | ) ( ( COLON ( ( 'value' EQ (temp= stringSymbol ) ( ( COMA 'serializer' EQ (temp= stringSymbol ) ) | ) ) ) SEMI ) ) )
+            // ./generationTemp/generated/TCS.g:495:4: 'primitiveTemplate' (temp= identifier ) 'for' reference[ret] ( ( 'default' ) | ) 'using' (temp= identifier ) ( ( 'orKeyword' ) | ) ( ( COLON ( ( 'value' EQ (temp= stringSymbol ) ( ( COMA 'serializer' EQ (temp= stringSymbol ) ) | ) ) ) SEMI ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.0");
             }
-            match(input,92,FOLLOW_92_in_furcas_tcs_primitivetemplate2519); if (state.failed) {
+            match(input,89,FOLLOW_89_in_furcas_tcs_primitivetemplate2519); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:495:287: (temp= identifier )
             // ./generationTemp/generated/TCS.g:495:289: temp= identifier
@@ -5794,16 +5794,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.2");
             }
-            match(input,130,FOLLOW_130_in_furcas_tcs_primitivetemplate2532); if (state.failed) {
+            match(input,65,FOLLOW_65_in_furcas_tcs_primitivetemplate2532); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.3");
             }
             pushFollow(FOLLOW_reference_in_furcas_tcs_primitivetemplate2535);
             reference(ret);
@@ -5817,16 +5817,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.4");
             }
             // ./generationTemp/generated/TCS.g:496:478: ( ( 'default' ) | )
             int alt30=2;
             int LA30_0 = input.LA(1);
 
-            if ( (LA30_0==76) ) {
+            if ( (LA30_0==50) ) {
                 alt30=1;
             }
-            else if ( (LA30_0==110) ) {
+            else if ( (LA30_0==82) ) {
                 alt30=2;
             }
             else {
@@ -5847,9 +5847,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:496:496: 'default'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.4/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.4/@thenSequence/@elements.0");
                     }
-                    match(input,76,FOLLOW_76_in_furcas_tcs_primitivetemplate2545); if (state.failed) {
+                    match(input,50,FOLLOW_50_in_furcas_tcs_primitivetemplate2545); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -5889,16 +5889,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.5");
             }
-            match(input,110,FOLLOW_110_in_furcas_tcs_primitivetemplate2563); if (state.failed) {
+            match(input,82,FOLLOW_82_in_furcas_tcs_primitivetemplate2563); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.6");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.6");
             }
             // ./generationTemp/generated/TCS.g:497:288: (temp= identifier )
             // ./generationTemp/generated/TCS.g:497:290: temp= identifier
@@ -5922,13 +5922,13 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.7");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.7");
             }
             // ./generationTemp/generated/TCS.g:498:176: ( ( 'orKeyword' ) | )
             int alt31=2;
             int LA31_0 = input.LA(1);
 
-            if ( (LA31_0==85) ) {
+            if ( (LA31_0==128) ) {
                 alt31=1;
             }
             else if ( (LA31_0==COLON) ) {
@@ -5952,9 +5952,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:498:194: 'orKeyword'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.7/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.7/@thenSequence/@elements.0");
                     }
-                    match(input,85,FOLLOW_85_in_furcas_tcs_primitivetemplate2582); if (state.failed) {
+                    match(input,128,FOLLOW_128_in_furcas_tcs_primitivetemplate2582); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -5994,39 +5994,57 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.8");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.8");
             }
-            match(input,COLON,FOLLOW_COLON_in_furcas_tcs_primitivetemplate2601); if (state.failed) {
-                return ret2;
-            }
-            if ( state.backtracking==0 ) {
-              _afterSeqEl();
-            }
-            if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.9");
-            }
-            match(input,103,FOLLOW_103_in_furcas_tcs_primitivetemplate2605); if (state.failed) {
-                return ret2;
-            }
-            if ( state.backtracking==0 ) {
-              _afterSeqEl();
-            }
-            if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.10");
-            }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_primitivetemplate2609); if (state.failed) {
-                return ret2;
-            }
-            if ( state.backtracking==0 ) {
-              _afterSeqEl();
-            }
-            if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.11");
-            }
-            // ./generationTemp/generated/TCS.g:499:581: (temp= stringSymbol )
-            // ./generationTemp/generated/TCS.g:499:583: temp= stringSymbol
+            // ./generationTemp/generated/TCS.g:499:141: ( ( COLON ( ( 'value' EQ (temp= stringSymbol ) ( ( COMA 'serializer' EQ (temp= stringSymbol ) ) | ) ) ) SEMI ) )
+            // ./generationTemp/generated/TCS.g:499:142: ( COLON ( ( 'value' EQ (temp= stringSymbol ) ( ( COMA 'serializer' EQ (temp= stringSymbol ) ) | ) ) ) SEMI )
             {
-            pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_primitivetemplate2617);
+            // ./generationTemp/generated/TCS.g:499:142: ( COLON ( ( 'value' EQ (temp= stringSymbol ) ( ( COMA 'serializer' EQ (temp= stringSymbol ) ) | ) ) ) SEMI )
+            // ./generationTemp/generated/TCS.g:499:143: COLON ( ( 'value' EQ (temp= stringSymbol ) ( ( COMA 'serializer' EQ (temp= stringSymbol ) ) | ) ) ) SEMI
+            {
+            if ( state.backtracking==0 ) {
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.8/@blockSequence/@elements.0");
+            }
+            match(input,COLON,FOLLOW_COLON_in_furcas_tcs_primitivetemplate2604); if (state.failed) {
+                return ret2;
+            }
+            if ( state.backtracking==0 ) {
+              _afterSeqEl();
+            }
+            if ( state.backtracking==0 ) {
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.8/@blockSequence/@elements.1");
+            }
+            // ./generationTemp/generated/TCS.g:499:468: ( ( 'value' EQ (temp= stringSymbol ) ( ( COMA 'serializer' EQ (temp= stringSymbol ) ) | ) ) )
+            // ./generationTemp/generated/TCS.g:499:469: ( 'value' EQ (temp= stringSymbol ) ( ( COMA 'serializer' EQ (temp= stringSymbol ) ) | ) )
+            {
+            // ./generationTemp/generated/TCS.g:499:469: ( 'value' EQ (temp= stringSymbol ) ( ( COMA 'serializer' EQ (temp= stringSymbol ) ) | ) )
+            // ./generationTemp/generated/TCS.g:499:470: 'value' EQ (temp= stringSymbol ) ( ( COMA 'serializer' EQ (temp= stringSymbol ) ) | )
+            {
+            if ( state.backtracking==0 ) {
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.8/@blockSequence/@elements.1/@blockSequence/@elements.0");
+            }
+            match(input,111,FOLLOW_111_in_furcas_tcs_primitivetemplate2611); if (state.failed) {
+                return ret2;
+            }
+            if ( state.backtracking==0 ) {
+              _afterSeqEl();
+            }
+            if ( state.backtracking==0 ) {
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.8/@blockSequence/@elements.1/@blockSequence/@elements.1");
+            }
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_primitivetemplate2615); if (state.failed) {
+                return ret2;
+            }
+            if ( state.backtracking==0 ) {
+              _afterSeqEl();
+            }
+            if ( state.backtracking==0 ) {
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.8/@blockSequence/@elements.1/@blockSequence/@elements.2");
+            }
+            // ./generationTemp/generated/TCS.g:499:1047: (temp= stringSymbol )
+            // ./generationTemp/generated/TCS.g:499:1049: temp= stringSymbol
+            {
+            pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_primitivetemplate2623);
             temp=stringSymbol();
 
             checkFollows();
@@ -6045,9 +6063,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.12");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.8/@blockSequence/@elements.1/@blockSequence/@elements.3");
             }
-            // ./generationTemp/generated/TCS.g:500:173: ( ( COMA 'serializer' EQ (temp= stringSymbol ) ) | )
+            // ./generationTemp/generated/TCS.g:500:226: ( ( COMA 'serializer' EQ (temp= stringSymbol ) ) | )
             int alt32=2;
             int LA32_0 = input.LA(1);
 
@@ -6066,48 +6084,48 @@ public class TCSParser extends ObservableInjectingParser {
             }
             switch (alt32) {
                 case 1 :
-                    // ./generationTemp/generated/TCS.g:500:174: ( COMA 'serializer' EQ (temp= stringSymbol ) )
+                    // ./generationTemp/generated/TCS.g:500:227: ( COMA 'serializer' EQ (temp= stringSymbol ) )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(0);
                     }
-                    // ./generationTemp/generated/TCS.g:500:190: ( COMA 'serializer' EQ (temp= stringSymbol ) )
-                    // ./generationTemp/generated/TCS.g:500:191: COMA 'serializer' EQ (temp= stringSymbol )
+                    // ./generationTemp/generated/TCS.g:500:243: ( COMA 'serializer' EQ (temp= stringSymbol ) )
+                    // ./generationTemp/generated/TCS.g:500:244: COMA 'serializer' EQ (temp= stringSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.12/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.8/@blockSequence/@elements.1/@blockSequence/@elements.3/@thenSequence/@elements.0");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_primitivetemplate2630); if (state.failed) {
+                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_primitivetemplate2636); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.12/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.8/@blockSequence/@elements.1/@blockSequence/@elements.3/@thenSequence/@elements.1");
                     }
-                    match(input,95,FOLLOW_95_in_furcas_tcs_primitivetemplate2634); if (state.failed) {
+                    match(input,106,FOLLOW_106_in_furcas_tcs_primitivetemplate2640); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.12/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.8/@blockSequence/@elements.1/@blockSequence/@elements.3/@thenSequence/@elements.2");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_primitivetemplate2638); if (state.failed) {
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_primitivetemplate2644); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.12/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.8/@blockSequence/@elements.1/@blockSequence/@elements.3/@thenSequence/@elements.3");
                     }
-                    // ./generationTemp/generated/TCS.g:500:865: (temp= stringSymbol )
-                    // ./generationTemp/generated/TCS.g:500:867: temp= stringSymbol
+                    // ./generationTemp/generated/TCS.g:500:1130: (temp= stringSymbol )
+                    // ./generationTemp/generated/TCS.g:500:1132: temp= stringSymbol
                     {
-                    pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_primitivetemplate2646);
+                    pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_primitivetemplate2652);
                     temp=stringSymbol();
 
                     checkFollows();
@@ -6152,12 +6170,30 @@ public class TCSParser extends ObservableInjectingParser {
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
-            if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.15/@templateSequence/@elements.13");
+
             }
-            match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_primitivetemplate2666); if (state.failed) {
+
+
+            }
+
+            if ( state.backtracking==0 ) {
+              _afterSeqEl();
+            }
+            if ( state.backtracking==0 ) {
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.15/@templateSequence/@elements.8/@blockSequence/@elements.2");
+            }
+            match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_primitivetemplate2675); if (state.failed) {
                 return ret2;
             }
+            if ( state.backtracking==0 ) {
+              _afterSeqEl();
+            }
+
+            }
+
+
+            }
+
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -6207,18 +6243,18 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:517:4: 'enumerationTemplate' reference[ret] ( ( 'auto' ) | ) ( ( ( ( COLON ( ( (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )? ) ) SEMI ) ) ) | ( SEMI ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.0");
             }
-            match(input,94,FOLLOW_94_in_furcas_tcs_enumerationtemplate2707); if (state.failed) {
+            match(input,108,FOLLOW_108_in_furcas_tcs_enumerationtemplate2719); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.1");
             }
-            pushFollow(FOLLOW_reference_in_furcas_tcs_enumerationtemplate2710);
+            pushFollow(FOLLOW_reference_in_furcas_tcs_enumerationtemplate2722);
             reference(ret);
 
             checkFollows();
@@ -6230,13 +6266,13 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:517:444: ( ( 'auto' ) | )
             int alt33=2;
             int LA33_0 = input.LA(1);
 
-            if ( (LA33_0==123) ) {
+            if ( (LA33_0==104) ) {
                 alt33=1;
             }
             else if ( (LA33_0==SEMI||LA33_0==COLON) ) {
@@ -6260,9 +6296,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:517:462: 'auto'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.2/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.2/@thenSequence/@elements.0");
                     }
-                    match(input,123,FOLLOW_123_in_furcas_tcs_enumerationtemplate2720); if (state.failed) {
+                    match(input,104,FOLLOW_104_in_furcas_tcs_enumerationtemplate2732); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -6302,7 +6338,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.3");
             }
             // ./generationTemp/generated/TCS.g:518:142: ( ( ( ( COLON ( ( (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )? ) ) SEMI ) ) ) | ( SEMI ) )
             int alt36=2;
@@ -6332,7 +6368,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:518:160: ( ( COLON ( ( (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )? ) ) SEMI ) )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.3/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.3/@thenSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:518:310: ( ( COLON ( ( (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )? ) ) SEMI ) )
                     // ./generationTemp/generated/TCS.g:518:311: ( COLON ( ( (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )? ) ) SEMI )
@@ -6341,16 +6377,16 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:518:312: COLON ( ( (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )? ) ) SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.0");
                     }
-                    match(input,COLON,FOLLOW_COLON_in_furcas_tcs_enumerationtemplate2748); if (state.failed) {
+                    match(input,COLON,FOLLOW_COLON_in_furcas_tcs_enumerationtemplate2760); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1");
                     }
                     // ./generationTemp/generated/TCS.g:518:689: ( ( (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )? ) )
                     // ./generationTemp/generated/TCS.g:518:690: ( (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )? )
@@ -6359,7 +6395,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:518:691: (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1/@blockSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1/@blockSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:518:895: (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )?
                     int alt35=2;
@@ -6372,7 +6408,7 @@ public class TCSParser extends ObservableInjectingParser {
                         case 1 :
                             // ./generationTemp/generated/TCS.g:518:897: temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )*
                             {
-                            pushFollow(FOLLOW_furcas_tcs_enumliteralmapping_in_furcas_tcs_enumerationtemplate2759);
+                            pushFollow(FOLLOW_furcas_tcs_enumliteralmapping_in_furcas_tcs_enumerationtemplate2771);
                             temp=furcas_tcs_enumliteralmapping();
 
                             checkFollows();
@@ -6406,9 +6442,9 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // ./generationTemp/generated/TCS.g:519:53: COMA
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
+                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
                             	    }
-                            	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_enumerationtemplate2768); if (state.failed) {
+                            	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_enumerationtemplate2780); if (state.failed) {
                                         return ret2;
                                     }
                             	    if ( state.backtracking==0 ) {
@@ -6420,7 +6456,7 @@ public class TCSParser extends ObservableInjectingParser {
                             	    if ( state.backtracking==0 ) {
                             	      _exitSepSeq();
                             	    }
-                            	    pushFollow(FOLLOW_furcas_tcs_enumliteralmapping_in_furcas_tcs_enumerationtemplate2776);
+                            	    pushFollow(FOLLOW_furcas_tcs_enumliteralmapping_in_furcas_tcs_enumerationtemplate2788);
                             	    temp=furcas_tcs_enumliteralmapping();
 
                             	    checkFollows();
@@ -6460,9 +6496,9 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.2");
                     }
-                    match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_enumerationtemplate2791); if (state.failed) {
+                    match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_enumerationtemplate2803); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -6496,9 +6532,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:520:325: SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.3/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.3/@elseSequence/@elements.0");
                     }
-                    match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_enumerationtemplate2808); if (state.failed) {
+                    match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_enumerationtemplate2820); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -6565,12 +6601,12 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:536:4: (temp= furcas_tcs_enumliteralval ) EQ (temp= furcas_tcs_sequenceelement )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.17/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.17/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:536:128: (temp= furcas_tcs_enumliteralval )
             // ./generationTemp/generated/TCS.g:536:130: temp= furcas_tcs_enumliteralval
             {
-            pushFollow(FOLLOW_furcas_tcs_enumliteralval_in_furcas_tcs_enumliteralmapping2859);
+            pushFollow(FOLLOW_furcas_tcs_enumliteralval_in_furcas_tcs_enumliteralmapping2871);
             temp=furcas_tcs_enumliteralval();
 
             checkFollows();
@@ -6589,16 +6625,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.17/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.17/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_enumliteralmapping2866); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_enumliteralmapping2878); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.17/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.17/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:537:317: (temp= furcas_tcs_sequenceelement )?
             int alt37=2;
@@ -6611,7 +6647,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:537:319: temp= furcas_tcs_sequenceelement
                     {
-                    pushFollow(FOLLOW_furcas_tcs_sequenceelement_in_furcas_tcs_enumliteralmapping2874);
+                    pushFollow(FOLLOW_furcas_tcs_sequenceelement_in_furcas_tcs_enumliteralmapping2886);
                     temp=furcas_tcs_sequenceelement();
 
                     checkFollows();
@@ -6678,18 +6714,18 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:553:4: 'template' reference[ret] ( ( 'referenceOnly' ( ( SHARP (temp= identifierOrKeyword ) ) | ) ) | ( ( ( SHARP (temp= identifierOrKeyword ) ) | ) ( ( LPAREN 'disambiguate' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( LPAREN 'disambiguateV3' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( LPAREN 'semDisambiguate' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( 'multi' ) | ) ( ( 'main' ) | ) ( ( ( ( 'deep' ) | ) 'abstract' ) | ) ( ( 'operatored' ( ( LPAREN (temp= identifier ) RPAREN ) | ) ) | ) ( ( 'context' ( ( (temp= furcas_tcs_contexttags ) ) | ) ) | ) ( ( 'addToContext' ) | ) ( ( 'nonPrimary' ) | ) ) ) ( ( ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) ) ) | ( SEMI ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.0");
             }
-            match(input,131,FOLLOW_131_in_furcas_tcs_classtemplate2919); if (state.failed) {
+            match(input,116,FOLLOW_116_in_furcas_tcs_classtemplate2931); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.1");
             }
-            pushFollow(FOLLOW_reference_in_furcas_tcs_classtemplate2922);
+            pushFollow(FOLLOW_reference_in_furcas_tcs_classtemplate2934);
             reference(ret);
 
             checkFollows();
@@ -6701,16 +6737,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:553:433: ( ( 'referenceOnly' ( ( SHARP (temp= identifierOrKeyword ) ) | ) ) | ( ( ( SHARP (temp= identifierOrKeyword ) ) | ) ( ( LPAREN 'disambiguate' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( LPAREN 'disambiguateV3' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( LPAREN 'semDisambiguate' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( 'multi' ) | ) ( ( 'main' ) | ) ( ( ( ( 'deep' ) | ) 'abstract' ) | ) ( ( 'operatored' ( ( LPAREN (temp= identifier ) RPAREN ) | ) ) | ) ( ( 'context' ( ( (temp= furcas_tcs_contexttags ) ) | ) ) | ) ( ( 'addToContext' ) | ) ( ( 'nonPrimary' ) | ) ) )
             int alt53=2;
             int LA53_0 = input.LA(1);
 
-            if ( (LA53_0==90) ) {
+            if ( (LA53_0==100) ) {
                 alt53=1;
             }
-            else if ( ((LA53_0>=SHARP && LA53_0<=LPAREN)||LA53_0==SEMI||LA53_0==COLON||LA53_0==61||LA53_0==72||LA53_0==79||LA53_0==81||LA53_0==86||LA53_0==96||LA53_0==104||LA53_0==107) ) {
+            else if ( ((LA53_0>=SHARP && LA53_0<=LPAREN)||LA53_0==SEMI||LA53_0==COLON||LA53_0==63||LA53_0==69||LA53_0==81||(LA53_0>=84 && LA53_0<=85)||LA53_0==94||LA53_0==114||LA53_0==132) ) {
                 alt53=2;
             }
             else {
@@ -6731,16 +6767,16 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:553:451: 'referenceOnly' ( ( SHARP (temp= identifierOrKeyword ) ) | )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@thenSequence/@elements.0");
                     }
-                    match(input,90,FOLLOW_90_in_furcas_tcs_classtemplate2932); if (state.failed) {
+                    match(input,100,FOLLOW_100_in_furcas_tcs_classtemplate2944); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@thenSequence/@elements.1");
                     }
                     // ./generationTemp/generated/TCS.g:553:783: ( ( SHARP (temp= identifierOrKeyword ) ) | )
                     int alt38=2;
@@ -6770,21 +6806,21 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:553:801: SHARP (temp= identifierOrKeyword )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@thenSequence/@elements.1/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@thenSequence/@elements.1/@thenSequence/@elements.0");
                             }
-                            match(input,SHARP,FOLLOW_SHARP_in_furcas_tcs_classtemplate2942); if (state.failed) {
+                            match(input,SHARP,FOLLOW_SHARP_in_furcas_tcs_classtemplate2954); if (state.failed) {
                                 return ret2;
                             }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@thenSequence/@elements.1/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@thenSequence/@elements.1/@thenSequence/@elements.1");
                             }
                             // ./generationTemp/generated/TCS.g:553:1176: (temp= identifierOrKeyword )
                             // ./generationTemp/generated/TCS.g:553:1178: temp= identifierOrKeyword
                             {
-                            pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_classtemplate2950);
+                            pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_classtemplate2962);
                             temp=identifierOrKeyword();
 
                             checkFollows();
@@ -6851,7 +6887,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:555:114: ( ( SHARP (temp= identifierOrKeyword ) ) | ) ( ( LPAREN 'disambiguate' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( LPAREN 'disambiguateV3' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( LPAREN 'semDisambiguate' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( 'multi' ) | ) ( ( 'main' ) | ) ( ( ( ( 'deep' ) | ) 'abstract' ) | ) ( ( 'operatored' ( ( LPAREN (temp= identifier ) RPAREN ) | ) ) | ) ( ( 'context' ( ( (temp= furcas_tcs_contexttags ) ) | ) ) | ) ( ( 'addToContext' ) | ) ( ( 'nonPrimary' ) | )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:555:265: ( ( SHARP (temp= identifierOrKeyword ) ) | )
                     int alt39=2;
@@ -6860,7 +6896,7 @@ public class TCSParser extends ObservableInjectingParser {
                     if ( (LA39_0==SHARP) ) {
                         alt39=1;
                     }
-                    else if ( (LA39_0==LPAREN||LA39_0==SEMI||LA39_0==COLON||LA39_0==61||LA39_0==72||LA39_0==79||LA39_0==81||LA39_0==86||LA39_0==96||LA39_0==104||LA39_0==107) ) {
+                    else if ( (LA39_0==LPAREN||LA39_0==SEMI||LA39_0==COLON||LA39_0==63||LA39_0==69||LA39_0==81||(LA39_0>=84 && LA39_0<=85)||LA39_0==94||LA39_0==114||LA39_0==132) ) {
                         alt39=2;
                     }
                     else {
@@ -6881,21 +6917,21 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:555:283: SHARP (temp= identifierOrKeyword )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.0/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.0/@thenSequence/@elements.0");
                             }
-                            match(input,SHARP,FOLLOW_SHARP_in_furcas_tcs_classtemplate2986); if (state.failed) {
+                            match(input,SHARP,FOLLOW_SHARP_in_furcas_tcs_classtemplate2998); if (state.failed) {
                                 return ret2;
                             }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.0/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.0/@thenSequence/@elements.1");
                             }
                             // ./generationTemp/generated/TCS.g:555:658: (temp= identifierOrKeyword )
                             // ./generationTemp/generated/TCS.g:555:660: temp= identifierOrKeyword
                             {
-                            pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_classtemplate2994);
+                            pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_classtemplate3006);
                             temp=identifierOrKeyword();
 
                             checkFollows();
@@ -6941,7 +6977,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.1");
                     }
                     // ./generationTemp/generated/TCS.g:557:168: ( ( LPAREN 'disambiguate' EQ (temp= stringSymbol ) RPAREN ) | )
                     int alt40=2;
@@ -6950,11 +6986,11 @@ public class TCSParser extends ObservableInjectingParser {
                     if ( (LA40_0==LPAREN) ) {
                         int LA40_1 = input.LA(2);
 
-                        if ( (LA40_1==111) ) {
-                            alt40=1;
-                        }
-                        else if ( (LA40_1==63||LA40_1==77) ) {
+                        if ( (LA40_1==72||LA40_1==91) ) {
                             alt40=2;
+                        }
+                        else if ( (LA40_1==61) ) {
+                            alt40=1;
                         }
                         else {
                             if (state.backtracking>0) {state.failed=true; return ret2;}
@@ -6964,7 +7000,7 @@ public class TCSParser extends ObservableInjectingParser {
                             throw nvae;
                         }
                     }
-                    else if ( (LA40_0==SEMI||LA40_0==COLON||LA40_0==61||LA40_0==72||LA40_0==79||LA40_0==81||LA40_0==86||LA40_0==96||LA40_0==104||LA40_0==107) ) {
+                    else if ( (LA40_0==SEMI||LA40_0==COLON||LA40_0==63||LA40_0==69||LA40_0==81||(LA40_0>=84 && LA40_0<=85)||LA40_0==94||LA40_0==114||LA40_0==132) ) {
                         alt40=2;
                     }
                     else {
@@ -6985,39 +7021,39 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:557:186: LPAREN 'disambiguate' EQ (temp= stringSymbol ) RPAREN
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.0");
                             }
-                            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_classtemplate3020); if (state.failed) {
+                            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_classtemplate3032); if (state.failed) {
                                 return ret2;
                             }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.1");
                             }
-                            match(input,111,FOLLOW_111_in_furcas_tcs_classtemplate3024); if (state.failed) {
+                            match(input,61,FOLLOW_61_in_furcas_tcs_classtemplate3036); if (state.failed) {
                                 return ret2;
                             }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.2");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.2");
                             }
-                            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_classtemplate3028); if (state.failed) {
+                            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_classtemplate3040); if (state.failed) {
                                 return ret2;
                             }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.3");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.3");
                             }
                             // ./generationTemp/generated/TCS.g:557:964: (temp= stringSymbol )
                             // ./generationTemp/generated/TCS.g:557:966: temp= stringSymbol
                             {
-                            pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_classtemplate3036);
+                            pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_classtemplate3048);
                             temp=stringSymbol();
 
                             checkFollows();
@@ -7036,9 +7072,9 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.4");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.4");
                             }
-                            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_classtemplate3043); if (state.failed) {
+                            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_classtemplate3055); if (state.failed) {
                                 return ret2;
                             }
                             if ( state.backtracking==0 ) {
@@ -7072,7 +7108,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.2");
                     }
                     // ./generationTemp/generated/TCS.g:559:168: ( ( LPAREN 'disambiguateV3' EQ (temp= stringSymbol ) RPAREN ) | )
                     int alt41=2;
@@ -7081,11 +7117,11 @@ public class TCSParser extends ObservableInjectingParser {
                     if ( (LA41_0==LPAREN) ) {
                         int LA41_1 = input.LA(2);
 
-                        if ( (LA41_1==63) ) {
-                            alt41=1;
-                        }
-                        else if ( (LA41_1==77) ) {
+                        if ( (LA41_1==72) ) {
                             alt41=2;
+                        }
+                        else if ( (LA41_1==91) ) {
+                            alt41=1;
                         }
                         else {
                             if (state.backtracking>0) {state.failed=true; return ret2;}
@@ -7095,7 +7131,7 @@ public class TCSParser extends ObservableInjectingParser {
                             throw nvae;
                         }
                     }
-                    else if ( (LA41_0==SEMI||LA41_0==COLON||LA41_0==61||LA41_0==72||LA41_0==79||LA41_0==81||LA41_0==86||LA41_0==96||LA41_0==104||LA41_0==107) ) {
+                    else if ( (LA41_0==SEMI||LA41_0==COLON||LA41_0==63||LA41_0==69||LA41_0==81||(LA41_0>=84 && LA41_0<=85)||LA41_0==94||LA41_0==114||LA41_0==132) ) {
                         alt41=2;
                     }
                     else {
@@ -7116,39 +7152,39 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:559:186: LPAREN 'disambiguateV3' EQ (temp= stringSymbol ) RPAREN
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.0");
                             }
-                            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_classtemplate3067); if (state.failed) {
+                            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_classtemplate3079); if (state.failed) {
                                 return ret2;
                             }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.1");
                             }
-                            match(input,63,FOLLOW_63_in_furcas_tcs_classtemplate3071); if (state.failed) {
+                            match(input,91,FOLLOW_91_in_furcas_tcs_classtemplate3083); if (state.failed) {
                                 return ret2;
                             }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.2");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.2");
                             }
-                            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_classtemplate3075); if (state.failed) {
+                            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_classtemplate3087); if (state.failed) {
                                 return ret2;
                             }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.3");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.3");
                             }
                             // ./generationTemp/generated/TCS.g:559:966: (temp= stringSymbol )
                             // ./generationTemp/generated/TCS.g:559:968: temp= stringSymbol
                             {
-                            pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_classtemplate3083);
+                            pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_classtemplate3095);
                             temp=stringSymbol();
 
                             checkFollows();
@@ -7167,9 +7203,9 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.4");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.4");
                             }
-                            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_classtemplate3090); if (state.failed) {
+                            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_classtemplate3102); if (state.failed) {
                                 return ret2;
                             }
                             if ( state.backtracking==0 ) {
@@ -7203,7 +7239,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.3");
                     }
                     // ./generationTemp/generated/TCS.g:561:168: ( ( LPAREN 'semDisambiguate' EQ (temp= stringSymbol ) RPAREN ) | )
                     int alt42=2;
@@ -7212,7 +7248,7 @@ public class TCSParser extends ObservableInjectingParser {
                     if ( (LA42_0==LPAREN) ) {
                         alt42=1;
                     }
-                    else if ( (LA42_0==SEMI||LA42_0==COLON||LA42_0==61||LA42_0==72||LA42_0==79||LA42_0==81||LA42_0==86||LA42_0==96||LA42_0==104||LA42_0==107) ) {
+                    else if ( (LA42_0==SEMI||LA42_0==COLON||LA42_0==63||LA42_0==69||LA42_0==81||(LA42_0>=84 && LA42_0<=85)||LA42_0==94||LA42_0==114||LA42_0==132) ) {
                         alt42=2;
                     }
                     else {
@@ -7233,39 +7269,39 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:561:186: LPAREN 'semDisambiguate' EQ (temp= stringSymbol ) RPAREN
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.0");
                             }
-                            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_classtemplate3114); if (state.failed) {
+                            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_classtemplate3126); if (state.failed) {
                                 return ret2;
                             }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.1");
                             }
-                            match(input,77,FOLLOW_77_in_furcas_tcs_classtemplate3118); if (state.failed) {
+                            match(input,72,FOLLOW_72_in_furcas_tcs_classtemplate3130); if (state.failed) {
                                 return ret2;
                             }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.2");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.2");
                             }
-                            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_classtemplate3122); if (state.failed) {
+                            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_classtemplate3134); if (state.failed) {
                                 return ret2;
                             }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.3");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.3");
                             }
                             // ./generationTemp/generated/TCS.g:561:967: (temp= stringSymbol )
                             // ./generationTemp/generated/TCS.g:561:969: temp= stringSymbol
                             {
-                            pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_classtemplate3130);
+                            pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_classtemplate3142);
                             temp=stringSymbol();
 
                             checkFollows();
@@ -7284,9 +7320,9 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.4");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.4");
                             }
-                            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_classtemplate3137); if (state.failed) {
+                            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_classtemplate3149); if (state.failed) {
                                 return ret2;
                             }
                             if ( state.backtracking==0 ) {
@@ -7320,16 +7356,16 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.4");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.4");
                     }
                     // ./generationTemp/generated/TCS.g:563:168: ( ( 'multi' ) | )
                     int alt43=2;
                     int LA43_0 = input.LA(1);
 
-                    if ( (LA43_0==96) ) {
+                    if ( (LA43_0==132) ) {
                         alt43=1;
                     }
-                    else if ( (LA43_0==SEMI||LA43_0==COLON||LA43_0==61||LA43_0==72||LA43_0==79||LA43_0==81||LA43_0==86||LA43_0==104||LA43_0==107) ) {
+                    else if ( (LA43_0==SEMI||LA43_0==COLON||LA43_0==63||LA43_0==69||LA43_0==81||(LA43_0>=84 && LA43_0<=85)||LA43_0==94||LA43_0==114) ) {
                         alt43=2;
                     }
                     else {
@@ -7350,9 +7386,9 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:563:186: 'multi'
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.4/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.4/@thenSequence/@elements.0");
                             }
-                            match(input,96,FOLLOW_96_in_furcas_tcs_classtemplate3160); if (state.failed) {
+                            match(input,132,FOLLOW_132_in_furcas_tcs_classtemplate3172); if (state.failed) {
                                 return ret2;
                             }
                             if ( state.backtracking==0 ) {
@@ -7392,16 +7428,16 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.5");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.5");
                     }
                     // ./generationTemp/generated/TCS.g:564:168: ( ( 'main' ) | )
                     int alt44=2;
                     int LA44_0 = input.LA(1);
 
-                    if ( (LA44_0==61) ) {
+                    if ( (LA44_0==85) ) {
                         alt44=1;
                     }
-                    else if ( (LA44_0==SEMI||LA44_0==COLON||LA44_0==72||LA44_0==79||LA44_0==81||LA44_0==86||LA44_0==104||LA44_0==107) ) {
+                    else if ( (LA44_0==SEMI||LA44_0==COLON||LA44_0==63||LA44_0==69||LA44_0==81||LA44_0==84||LA44_0==94||LA44_0==114) ) {
                         alt44=2;
                     }
                     else {
@@ -7422,9 +7458,9 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:564:186: 'main'
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.5/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.5/@thenSequence/@elements.0");
                             }
-                            match(input,61,FOLLOW_61_in_furcas_tcs_classtemplate3184); if (state.failed) {
+                            match(input,85,FOLLOW_85_in_furcas_tcs_classtemplate3196); if (state.failed) {
                                 return ret2;
                             }
                             if ( state.backtracking==0 ) {
@@ -7464,16 +7500,16 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.6");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.6");
                     }
                     // ./generationTemp/generated/TCS.g:565:168: ( ( ( ( 'deep' ) | ) 'abstract' ) | )
                     int alt46=2;
                     int LA46_0 = input.LA(1);
 
-                    if ( (LA46_0==86||LA46_0==107) ) {
+                    if ( (LA46_0==81||LA46_0==94) ) {
                         alt46=1;
                     }
-                    else if ( (LA46_0==SEMI||LA46_0==COLON||LA46_0==72||LA46_0==79||LA46_0==81||LA46_0==104) ) {
+                    else if ( (LA46_0==SEMI||LA46_0==COLON||LA46_0==63||LA46_0==69||LA46_0==84||LA46_0==114) ) {
                         alt46=2;
                     }
                     else {
@@ -7494,16 +7530,16 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:565:186: ( ( 'deep' ) | ) 'abstract'
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.6/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.6/@thenSequence/@elements.0");
                             }
                             // ./generationTemp/generated/TCS.g:565:363: ( ( 'deep' ) | )
                             int alt45=2;
                             int LA45_0 = input.LA(1);
 
-                            if ( (LA45_0==107) ) {
+                            if ( (LA45_0==81) ) {
                                 alt45=1;
                             }
-                            else if ( (LA45_0==86) ) {
+                            else if ( (LA45_0==94) ) {
                                 alt45=2;
                             }
                             else {
@@ -7524,9 +7560,9 @@ public class TCSParser extends ObservableInjectingParser {
                                     // ./generationTemp/generated/TCS.g:565:381: 'deep'
                                     {
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.6/@thenSequence/@elements.0/@thenSequence/@elements.0");
+                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.6/@thenSequence/@elements.0/@thenSequence/@elements.0");
                                     }
-                                    match(input,107,FOLLOW_107_in_furcas_tcs_classtemplate3214); if (state.failed) {
+                                    match(input,81,FOLLOW_81_in_furcas_tcs_classtemplate3226); if (state.failed) {
                                         return ret2;
                                     }
                                     if ( state.backtracking==0 ) {
@@ -7566,9 +7602,9 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.6/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.6/@thenSequence/@elements.1");
                             }
-                            match(input,86,FOLLOW_86_in_furcas_tcs_classtemplate3232); if (state.failed) {
+                            match(input,94,FOLLOW_94_in_furcas_tcs_classtemplate3244); if (state.failed) {
                                 return ret2;
                             }
                             if ( state.backtracking==0 ) {
@@ -7608,16 +7644,16 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.7");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.7");
                     }
                     // ./generationTemp/generated/TCS.g:567:168: ( ( 'operatored' ( ( LPAREN (temp= identifier ) RPAREN ) | ) ) | )
                     int alt48=2;
                     int LA48_0 = input.LA(1);
 
-                    if ( (LA48_0==104) ) {
+                    if ( (LA48_0==69) ) {
                         alt48=1;
                     }
-                    else if ( (LA48_0==SEMI||LA48_0==COLON||LA48_0==72||LA48_0==79||LA48_0==81) ) {
+                    else if ( (LA48_0==SEMI||LA48_0==COLON||LA48_0==63||LA48_0==84||LA48_0==114) ) {
                         alt48=2;
                     }
                     else {
@@ -7638,16 +7674,16 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:567:186: 'operatored' ( ( LPAREN (temp= identifier ) RPAREN ) | )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.0");
                             }
-                            match(input,104,FOLLOW_104_in_furcas_tcs_classtemplate3256); if (state.failed) {
+                            match(input,69,FOLLOW_69_in_furcas_tcs_classtemplate3268); if (state.failed) {
                                 return ret2;
                             }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.1");
                             }
                             // ./generationTemp/generated/TCS.g:567:567: ( ( LPAREN (temp= identifier ) RPAREN ) | )
                             int alt47=2;
@@ -7656,7 +7692,7 @@ public class TCSParser extends ObservableInjectingParser {
                             if ( (LA47_0==LPAREN) ) {
                                 alt47=1;
                             }
-                            else if ( (LA47_0==SEMI||LA47_0==COLON||LA47_0==72||LA47_0==79||LA47_0==81) ) {
+                            else if ( (LA47_0==SEMI||LA47_0==COLON||LA47_0==63||LA47_0==84||LA47_0==114) ) {
                                 alt47=2;
                             }
                             else {
@@ -7677,21 +7713,21 @@ public class TCSParser extends ObservableInjectingParser {
                                     // ./generationTemp/generated/TCS.g:567:585: LPAREN (temp= identifier ) RPAREN
                                     {
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.1/@thenSequence/@elements.0");
+                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.1/@thenSequence/@elements.0");
                                     }
-                                    match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_classtemplate3266); if (state.failed) {
+                                    match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_classtemplate3278); if (state.failed) {
                                         return ret2;
                                     }
                                     if ( state.backtracking==0 ) {
                                       _afterSeqEl();
                                     }
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.1/@thenSequence/@elements.1");
+                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.1/@thenSequence/@elements.1");
                                     }
                                     // ./generationTemp/generated/TCS.g:567:1013: (temp= identifier )
                                     // ./generationTemp/generated/TCS.g:567:1015: temp= identifier
                                     {
-                                    pushFollow(FOLLOW_identifier_in_furcas_tcs_classtemplate3274);
+                                    pushFollow(FOLLOW_identifier_in_furcas_tcs_classtemplate3286);
                                     temp=identifier();
 
                                     checkFollows();
@@ -7709,9 +7745,9 @@ public class TCSParser extends ObservableInjectingParser {
                                       _afterSeqEl();
                                     }
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.1/@thenSequence/@elements.2");
+                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.1/@thenSequence/@elements.2");
                                     }
-                                    match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_classtemplate3281); if (state.failed) {
+                                    match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_classtemplate3293); if (state.failed) {
                                         return ret2;
                                     }
                                     if ( state.backtracking==0 ) {
@@ -7778,16 +7814,16 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.8");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.8");
                     }
                     // ./generationTemp/generated/TCS.g:569:168: ( ( 'context' ( ( (temp= furcas_tcs_contexttags ) ) | ) ) | )
                     int alt50=2;
                     int LA50_0 = input.LA(1);
 
-                    if ( (LA50_0==72) ) {
+                    if ( (LA50_0==63) ) {
                         alt50=1;
                     }
-                    else if ( (LA50_0==SEMI||LA50_0==COLON||LA50_0==79||LA50_0==81) ) {
+                    else if ( (LA50_0==SEMI||LA50_0==COLON||LA50_0==84||LA50_0==114) ) {
                         alt50=2;
                     }
                     else {
@@ -7808,16 +7844,16 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:569:186: 'context' ( ( (temp= furcas_tcs_contexttags ) ) | )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.8/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.8/@thenSequence/@elements.0");
                             }
-                            match(input,72,FOLLOW_72_in_furcas_tcs_classtemplate3319); if (state.failed) {
+                            match(input,63,FOLLOW_63_in_furcas_tcs_classtemplate3331); if (state.failed) {
                                 return ret2;
                             }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.8/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.8/@thenSequence/@elements.1");
                             }
                             // ./generationTemp/generated/TCS.g:569:564: ( ( (temp= furcas_tcs_contexttags ) ) | )
                             int alt49=2;
@@ -7826,7 +7862,7 @@ public class TCSParser extends ObservableInjectingParser {
                             if ( (LA49_0==LPAREN) ) {
                                 alt49=1;
                             }
-                            else if ( (LA49_0==SEMI||LA49_0==COLON||LA49_0==79||LA49_0==81) ) {
+                            else if ( (LA49_0==SEMI||LA49_0==COLON||LA49_0==84||LA49_0==114) ) {
                                 alt49=2;
                             }
                             else {
@@ -7847,12 +7883,12 @@ public class TCSParser extends ObservableInjectingParser {
                                     // ./generationTemp/generated/TCS.g:569:582: (temp= furcas_tcs_contexttags )
                                     {
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.8/@thenSequence/@elements.1/@thenSequence/@elements.0");
+                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.8/@thenSequence/@elements.1/@thenSequence/@elements.0");
                                     }
                                     // ./generationTemp/generated/TCS.g:569:784: (temp= furcas_tcs_contexttags )
                                     // ./generationTemp/generated/TCS.g:569:786: temp= furcas_tcs_contexttags
                                     {
-                                    pushFollow(FOLLOW_furcas_tcs_contexttags_in_furcas_tcs_classtemplate3332);
+                                    pushFollow(FOLLOW_furcas_tcs_contexttags_in_furcas_tcs_classtemplate3344);
                                     temp=furcas_tcs_contexttags();
 
                                     checkFollows();
@@ -7931,16 +7967,16 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.9");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.9");
                     }
                     // ./generationTemp/generated/TCS.g:572:168: ( ( 'addToContext' ) | )
                     int alt51=2;
                     int LA51_0 = input.LA(1);
 
-                    if ( (LA51_0==79) ) {
+                    if ( (LA51_0==114) ) {
                         alt51=1;
                     }
-                    else if ( (LA51_0==SEMI||LA51_0==COLON||LA51_0==81) ) {
+                    else if ( (LA51_0==SEMI||LA51_0==COLON||LA51_0==84) ) {
                         alt51=2;
                     }
                     else {
@@ -7961,9 +7997,9 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:572:186: 'addToContext'
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.9/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.9/@thenSequence/@elements.0");
                             }
-                            match(input,79,FOLLOW_79_in_furcas_tcs_classtemplate3372); if (state.failed) {
+                            match(input,114,FOLLOW_114_in_furcas_tcs_classtemplate3384); if (state.failed) {
                                 return ret2;
                             }
                             if ( state.backtracking==0 ) {
@@ -8003,13 +8039,13 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.10");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.10");
                     }
                     // ./generationTemp/generated/TCS.g:573:169: ( ( 'nonPrimary' ) | )
                     int alt52=2;
                     int LA52_0 = input.LA(1);
 
-                    if ( (LA52_0==81) ) {
+                    if ( (LA52_0==84) ) {
                         alt52=1;
                     }
                     else if ( (LA52_0==SEMI||LA52_0==COLON) ) {
@@ -8033,9 +8069,9 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:573:187: 'nonPrimary'
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.10/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.10/@thenSequence/@elements.0");
                             }
-                            match(input,81,FOLLOW_81_in_furcas_tcs_classtemplate3396); if (state.failed) {
+                            match(input,84,FOLLOW_84_in_furcas_tcs_classtemplate3408); if (state.failed) {
                                 return ret2;
                             }
                             if ( state.backtracking==0 ) {
@@ -8093,7 +8129,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.3");
             }
             // ./generationTemp/generated/TCS.g:575:142: ( ( ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) ) ) | ( SEMI ) )
             int alt54=2;
@@ -8123,7 +8159,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:575:160: ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.3/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.3/@thenSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:575:310: ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) )
                     // ./generationTemp/generated/TCS.g:575:311: ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI )
@@ -8132,16 +8168,16 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:575:312: COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.0");
                     }
-                    match(input,COLON,FOLLOW_COLON_in_furcas_tcs_classtemplate3431); if (state.failed) {
+                    match(input,COLON,FOLLOW_COLON_in_furcas_tcs_classtemplate3443); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1");
                     }
                     // ./generationTemp/generated/TCS.g:575:689: ( ( (temp= furcas_tcs_sequence ) ) )
                     // ./generationTemp/generated/TCS.g:575:690: ( (temp= furcas_tcs_sequence ) )
@@ -8150,12 +8186,12 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:575:691: (temp= furcas_tcs_sequence )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1/@blockSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1/@blockSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:575:895: (temp= furcas_tcs_sequence )
                     // ./generationTemp/generated/TCS.g:575:897: temp= furcas_tcs_sequence
                     {
-                    pushFollow(FOLLOW_furcas_tcs_sequence_in_furcas_tcs_classtemplate3442);
+                    pushFollow(FOLLOW_furcas_tcs_sequence_in_furcas_tcs_classtemplate3454);
                     temp=furcas_tcs_sequence();
 
                     checkFollows();
@@ -8183,9 +8219,9 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.2");
                     }
-                    match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_classtemplate3452); if (state.failed) {
+                    match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_classtemplate3464); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -8219,9 +8255,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:576:328: SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.3/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.3/@elseSequence/@elements.0");
                     }
-                    match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_classtemplate3469); if (state.failed) {
+                    match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_classtemplate3481); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -8288,18 +8324,18 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:592:4: 'operatorTemplate' reference[ret] LPAREN 'operators' EQ (temp= identifier (temp= identifier )* )? COMA 'source' EQ (temp= furcas_tcs_propertyreference )? ( ( COMA 'storeOpTo' EQ (temp= furcas_tcs_propertyreference ) ) | ) ( ( COMA 'storeRightTo' EQ (temp= furcas_tcs_propertyreference ) ) | ) ( ( COMA 'disambiguate' EQ (temp= stringSymbol ) ) | ) ( ( COMA 'disambiguateV3' EQ (temp= stringSymbol ) ) | ) ( ( COMA 'semDisambiguate' EQ (temp= stringSymbol ) ) | ) RPAREN ( ( 'referenceOnly' ) | ( ( ( 'context' ( ( (temp= furcas_tcs_contexttags ) ) | ) ) | ) ) ) ( ( ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) ) ) | ( SEMI ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.0");
             }
-            match(input,70,FOLLOW_70_in_furcas_tcs_operatortemplate3516); if (state.failed) {
+            match(input,78,FOLLOW_78_in_furcas_tcs_operatortemplate3528); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.1");
             }
-            pushFollow(FOLLOW_reference_in_furcas_tcs_operatortemplate3519);
+            pushFollow(FOLLOW_reference_in_furcas_tcs_operatortemplate3531);
             reference(ret);
 
             checkFollows();
@@ -8311,34 +8347,34 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_operatortemplate3524); if (state.failed) {
+            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_operatortemplate3536); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.3");
             }
-            match(input,109,FOLLOW_109_in_furcas_tcs_operatortemplate3528); if (state.failed) {
+            match(input,105,FOLLOW_105_in_furcas_tcs_operatortemplate3540); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.4");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3532); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3544); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.5");
             }
             // ./generationTemp/generated/TCS.g:592:883: (temp= identifier (temp= identifier )* )?
             int alt56=2;
@@ -8351,7 +8387,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:592:885: temp= identifier (temp= identifier )*
                     {
-                    pushFollow(FOLLOW_identifier_in_furcas_tcs_operatortemplate3540);
+                    pushFollow(FOLLOW_identifier_in_furcas_tcs_operatortemplate3552);
                     temp=identifier();
 
                     checkFollows();
@@ -8377,7 +8413,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	case 1 :
                     	    // ./generationTemp/generated/TCS.g:592:1012: temp= identifier
                     	    {
-                    	    pushFollow(FOLLOW_identifier_in_furcas_tcs_operatortemplate3548);
+                    	    pushFollow(FOLLOW_identifier_in_furcas_tcs_operatortemplate3560);
                     	    temp=identifier();
 
                     	    checkFollows();
@@ -8407,34 +8443,34 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.6");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.6");
             }
-            match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3560); if (state.failed) {
+            match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3572); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.7");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.7");
             }
-            match(input,115,FOLLOW_115_in_furcas_tcs_operatortemplate3564); if (state.failed) {
+            match(input,113,FOLLOW_113_in_furcas_tcs_operatortemplate3576); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.8");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.8");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3568); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3580); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.9");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.9");
             }
             // ./generationTemp/generated/TCS.g:592:1720: (temp= furcas_tcs_propertyreference )?
             int alt57=2;
@@ -8447,7 +8483,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:592:1722: temp= furcas_tcs_propertyreference
                     {
-                    pushFollow(FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_operatortemplate3576);
+                    pushFollow(FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_operatortemplate3588);
                     temp=furcas_tcs_propertyreference();
 
                     checkFollows();
@@ -8469,7 +8505,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.10");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.10");
             }
             // ./generationTemp/generated/TCS.g:593:185: ( ( COMA 'storeOpTo' EQ (temp= furcas_tcs_propertyreference ) ) | )
             int alt58=2;
@@ -8478,10 +8514,10 @@ public class TCSParser extends ObservableInjectingParser {
             if ( (LA58_0==COMA) ) {
                 int LA58_1 = input.LA(2);
 
-                if ( (LA58_1==63||LA58_1==77||LA58_1==111||LA58_1==120) ) {
+                if ( (LA58_1==51||LA58_1==61||LA58_1==72||LA58_1==91) ) {
                     alt58=2;
                 }
-                else if ( (LA58_1==105) ) {
+                else if ( (LA58_1==77) ) {
                     alt58=1;
                 }
                 else {
@@ -8513,39 +8549,39 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:593:203: COMA 'storeOpTo' EQ (temp= furcas_tcs_propertyreference )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.10/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.10/@thenSequence/@elements.0");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3591); if (state.failed) {
+                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3603); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.10/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.10/@thenSequence/@elements.1");
                     }
-                    match(input,105,FOLLOW_105_in_furcas_tcs_operatortemplate3595); if (state.failed) {
+                    match(input,77,FOLLOW_77_in_furcas_tcs_operatortemplate3607); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.10/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.10/@thenSequence/@elements.2");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3599); if (state.failed) {
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3611); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.10/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.10/@thenSequence/@elements.3");
                     }
                     // ./generationTemp/generated/TCS.g:593:876: (temp= furcas_tcs_propertyreference )
                     // ./generationTemp/generated/TCS.g:593:878: temp= furcas_tcs_propertyreference
                     {
-                    pushFollow(FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_operatortemplate3607);
+                    pushFollow(FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_operatortemplate3619);
                     temp=furcas_tcs_propertyreference();
 
                     checkFollows();
@@ -8591,7 +8627,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.11");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.11");
             }
             // ./generationTemp/generated/TCS.g:595:143: ( ( COMA 'storeRightTo' EQ (temp= furcas_tcs_propertyreference ) ) | )
             int alt59=2;
@@ -8600,11 +8636,11 @@ public class TCSParser extends ObservableInjectingParser {
             if ( (LA59_0==COMA) ) {
                 int LA59_1 = input.LA(2);
 
-                if ( (LA59_1==63||LA59_1==77||LA59_1==111) ) {
-                    alt59=2;
-                }
-                else if ( (LA59_1==120) ) {
+                if ( (LA59_1==51) ) {
                     alt59=1;
+                }
+                else if ( (LA59_1==61||LA59_1==72||LA59_1==91) ) {
+                    alt59=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ret2;}
@@ -8635,39 +8671,39 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:595:161: COMA 'storeRightTo' EQ (temp= furcas_tcs_propertyreference )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.11/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.11/@thenSequence/@elements.0");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3633); if (state.failed) {
+                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3645); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.11/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.11/@thenSequence/@elements.1");
                     }
-                    match(input,120,FOLLOW_120_in_furcas_tcs_operatortemplate3637); if (state.failed) {
+                    match(input,51,FOLLOW_51_in_furcas_tcs_operatortemplate3649); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.11/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.11/@thenSequence/@elements.2");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3641); if (state.failed) {
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3653); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.11/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.11/@thenSequence/@elements.3");
                     }
                     // ./generationTemp/generated/TCS.g:595:837: (temp= furcas_tcs_propertyreference )
                     // ./generationTemp/generated/TCS.g:595:839: temp= furcas_tcs_propertyreference
                     {
-                    pushFollow(FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_operatortemplate3649);
+                    pushFollow(FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_operatortemplate3661);
                     temp=furcas_tcs_propertyreference();
 
                     checkFollows();
@@ -8713,7 +8749,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.12");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.12");
             }
             // ./generationTemp/generated/TCS.g:597:143: ( ( COMA 'disambiguate' EQ (temp= stringSymbol ) ) | )
             int alt60=2;
@@ -8722,11 +8758,11 @@ public class TCSParser extends ObservableInjectingParser {
             if ( (LA60_0==COMA) ) {
                 int LA60_1 = input.LA(2);
 
-                if ( (LA60_1==63||LA60_1==77) ) {
-                    alt60=2;
-                }
-                else if ( (LA60_1==111) ) {
+                if ( (LA60_1==61) ) {
                     alt60=1;
+                }
+                else if ( (LA60_1==72||LA60_1==91) ) {
+                    alt60=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ret2;}
@@ -8757,39 +8793,39 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:597:161: COMA 'disambiguate' EQ (temp= stringSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.12/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.12/@thenSequence/@elements.0");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3675); if (state.failed) {
+                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3687); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.12/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.12/@thenSequence/@elements.1");
                     }
-                    match(input,111,FOLLOW_111_in_furcas_tcs_operatortemplate3679); if (state.failed) {
+                    match(input,61,FOLLOW_61_in_furcas_tcs_operatortemplate3691); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.12/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.12/@thenSequence/@elements.2");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3683); if (state.failed) {
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3695); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.12/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.12/@thenSequence/@elements.3");
                     }
                     // ./generationTemp/generated/TCS.g:597:837: (temp= stringSymbol )
                     // ./generationTemp/generated/TCS.g:597:839: temp= stringSymbol
                     {
-                    pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_operatortemplate3691);
+                    pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_operatortemplate3703);
                     temp=stringSymbol();
 
                     checkFollows();
@@ -8835,7 +8871,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.13");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.13");
             }
             // ./generationTemp/generated/TCS.g:599:143: ( ( COMA 'disambiguateV3' EQ (temp= stringSymbol ) ) | )
             int alt61=2;
@@ -8844,10 +8880,10 @@ public class TCSParser extends ObservableInjectingParser {
             if ( (LA61_0==COMA) ) {
                 int LA61_1 = input.LA(2);
 
-                if ( (LA61_1==63) ) {
+                if ( (LA61_1==91) ) {
                     alt61=1;
                 }
-                else if ( (LA61_1==77) ) {
+                else if ( (LA61_1==72) ) {
                     alt61=2;
                 }
                 else {
@@ -8879,39 +8915,39 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:599:161: COMA 'disambiguateV3' EQ (temp= stringSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.13/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.13/@thenSequence/@elements.0");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3717); if (state.failed) {
+                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3729); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.13/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.13/@thenSequence/@elements.1");
                     }
-                    match(input,63,FOLLOW_63_in_furcas_tcs_operatortemplate3721); if (state.failed) {
+                    match(input,91,FOLLOW_91_in_furcas_tcs_operatortemplate3733); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.13/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.13/@thenSequence/@elements.2");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3725); if (state.failed) {
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3737); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.13/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.13/@thenSequence/@elements.3");
                     }
                     // ./generationTemp/generated/TCS.g:599:839: (temp= stringSymbol )
                     // ./generationTemp/generated/TCS.g:599:841: temp= stringSymbol
                     {
-                    pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_operatortemplate3733);
+                    pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_operatortemplate3745);
                     temp=stringSymbol();
 
                     checkFollows();
@@ -8957,7 +8993,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.14");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.14");
             }
             // ./generationTemp/generated/TCS.g:601:143: ( ( COMA 'semDisambiguate' EQ (temp= stringSymbol ) ) | )
             int alt62=2;
@@ -8987,39 +9023,39 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:601:161: COMA 'semDisambiguate' EQ (temp= stringSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.14/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.14/@thenSequence/@elements.0");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3759); if (state.failed) {
+                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3771); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.14/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.14/@thenSequence/@elements.1");
                     }
-                    match(input,77,FOLLOW_77_in_furcas_tcs_operatortemplate3763); if (state.failed) {
+                    match(input,72,FOLLOW_72_in_furcas_tcs_operatortemplate3775); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.14/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.14/@thenSequence/@elements.2");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3767); if (state.failed) {
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3779); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.14/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.14/@thenSequence/@elements.3");
                     }
                     // ./generationTemp/generated/TCS.g:601:840: (temp= stringSymbol )
                     // ./generationTemp/generated/TCS.g:601:842: temp= stringSymbol
                     {
-                    pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_operatortemplate3775);
+                    pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_operatortemplate3787);
                     temp=stringSymbol();
 
                     checkFollows();
@@ -9065,25 +9101,25 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.15");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.15");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_operatortemplate3795); if (state.failed) {
+            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_operatortemplate3807); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.16");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.16");
             }
             // ./generationTemp/generated/TCS.g:603:292: ( ( 'referenceOnly' ) | ( ( ( 'context' ( ( (temp= furcas_tcs_contexttags ) ) | ) ) | ) ) )
             int alt65=2;
             int LA65_0 = input.LA(1);
 
-            if ( (LA65_0==90) ) {
+            if ( (LA65_0==100) ) {
                 alt65=1;
             }
-            else if ( (LA65_0==SEMI||LA65_0==COLON||LA65_0==72) ) {
+            else if ( (LA65_0==SEMI||LA65_0==COLON||LA65_0==63) ) {
                 alt65=2;
             }
             else {
@@ -9104,9 +9140,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:603:310: 'referenceOnly'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.16/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.16/@thenSequence/@elements.0");
                     }
-                    match(input,90,FOLLOW_90_in_furcas_tcs_operatortemplate3805); if (state.failed) {
+                    match(input,100,FOLLOW_100_in_furcas_tcs_operatortemplate3817); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -9134,13 +9170,13 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:603:589: ( ( 'context' ( ( (temp= furcas_tcs_contexttags ) ) | ) ) | )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.16/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.16/@elseSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:603:741: ( ( 'context' ( ( (temp= furcas_tcs_contexttags ) ) | ) ) | )
                     int alt64=2;
                     int LA64_0 = input.LA(1);
 
-                    if ( (LA64_0==72) ) {
+                    if ( (LA64_0==63) ) {
                         alt64=1;
                     }
                     else if ( (LA64_0==SEMI||LA64_0==COLON) ) {
@@ -9164,16 +9200,16 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:603:759: 'context' ( ( (temp= furcas_tcs_contexttags ) ) | )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.16/@elseSequence/@elements.0/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.16/@elseSequence/@elements.0/@thenSequence/@elements.0");
                             }
-                            match(input,72,FOLLOW_72_in_furcas_tcs_operatortemplate3824); if (state.failed) {
+                            match(input,63,FOLLOW_63_in_furcas_tcs_operatortemplate3836); if (state.failed) {
                                 return ret2;
                             }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.16/@elseSequence/@elements.0/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.16/@elseSequence/@elements.0/@thenSequence/@elements.1");
                             }
                             // ./generationTemp/generated/TCS.g:603:1139: ( ( (temp= furcas_tcs_contexttags ) ) | )
                             int alt63=2;
@@ -9203,12 +9239,12 @@ public class TCSParser extends ObservableInjectingParser {
                                     // ./generationTemp/generated/TCS.g:603:1157: (temp= furcas_tcs_contexttags )
                                     {
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.16/@elseSequence/@elements.0/@thenSequence/@elements.1/@thenSequence/@elements.0");
+                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.16/@elseSequence/@elements.0/@thenSequence/@elements.1/@thenSequence/@elements.0");
                                     }
                                     // ./generationTemp/generated/TCS.g:603:1360: (temp= furcas_tcs_contexttags )
                                     // ./generationTemp/generated/TCS.g:603:1362: temp= furcas_tcs_contexttags
                                     {
-                                    pushFollow(FOLLOW_furcas_tcs_contexttags_in_furcas_tcs_operatortemplate3837);
+                                    pushFollow(FOLLOW_furcas_tcs_contexttags_in_furcas_tcs_operatortemplate3849);
                                     temp=furcas_tcs_contexttags();
 
                                     checkFollows();
@@ -9305,7 +9341,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.17");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.17");
             }
             // ./generationTemp/generated/TCS.g:607:143: ( ( ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) ) ) | ( SEMI ) )
             int alt66=2;
@@ -9335,7 +9371,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:607:161: ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.17/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.17/@thenSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:607:312: ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) )
                     // ./generationTemp/generated/TCS.g:607:313: ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI )
@@ -9344,16 +9380,16 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:607:314: COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.17/@thenSequence/@elements.0/@blockSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.17/@thenSequence/@elements.0/@blockSequence/@elements.0");
                     }
-                    match(input,COLON,FOLLOW_COLON_in_furcas_tcs_operatortemplate3888); if (state.failed) {
+                    match(input,COLON,FOLLOW_COLON_in_furcas_tcs_operatortemplate3900); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.17/@thenSequence/@elements.0/@blockSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.17/@thenSequence/@elements.0/@blockSequence/@elements.1");
                     }
                     // ./generationTemp/generated/TCS.g:607:693: ( ( (temp= furcas_tcs_sequence ) ) )
                     // ./generationTemp/generated/TCS.g:607:694: ( (temp= furcas_tcs_sequence ) )
@@ -9362,12 +9398,12 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:607:695: (temp= furcas_tcs_sequence )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.17/@thenSequence/@elements.0/@blockSequence/@elements.1/@blockSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.17/@thenSequence/@elements.0/@blockSequence/@elements.1/@blockSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:607:900: (temp= furcas_tcs_sequence )
                     // ./generationTemp/generated/TCS.g:607:902: temp= furcas_tcs_sequence
                     {
-                    pushFollow(FOLLOW_furcas_tcs_sequence_in_furcas_tcs_operatortemplate3899);
+                    pushFollow(FOLLOW_furcas_tcs_sequence_in_furcas_tcs_operatortemplate3911);
                     temp=furcas_tcs_sequence();
 
                     checkFollows();
@@ -9395,9 +9431,9 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.17/@thenSequence/@elements.0/@blockSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.17/@thenSequence/@elements.0/@blockSequence/@elements.2");
                     }
-                    match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_operatortemplate3909); if (state.failed) {
+                    match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_operatortemplate3921); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -9431,9 +9467,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:608:329: SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.17/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.17/@elseSequence/@elements.0");
                     }
-                    match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_operatortemplate3926); if (state.failed) {
+                    match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_operatortemplate3938); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -9500,21 +9536,21 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:624:4: 'function' (temp= identifier ) LPAREN reference[ret] RPAREN ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.0");
             }
-            match(input,126,FOLLOW_126_in_furcas_tcs_functiontemplate3973); if (state.failed) {
+            match(input,88,FOLLOW_88_in_furcas_tcs_functiontemplate3985); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:624:278: (temp= identifier )
             // ./generationTemp/generated/TCS.g:624:280: temp= identifier
             {
-            pushFollow(FOLLOW_identifier_in_furcas_tcs_functiontemplate3980);
+            pushFollow(FOLLOW_identifier_in_furcas_tcs_functiontemplate3992);
             temp=identifier();
 
             checkFollows();
@@ -9533,18 +9569,18 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.2");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_functiontemplate3987); if (state.failed) {
+            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_functiontemplate3999); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.3");
             }
-            pushFollow(FOLLOW_reference_in_furcas_tcs_functiontemplate3991);
+            pushFollow(FOLLOW_reference_in_furcas_tcs_functiontemplate4003);
             reference(ret);
 
             checkFollows();
@@ -9556,16 +9592,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.4");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_functiontemplate3996); if (state.failed) {
+            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_functiontemplate4008); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.5");
             }
             // ./generationTemp/generated/TCS.g:625:628: ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) )
             // ./generationTemp/generated/TCS.g:625:629: ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI )
@@ -9574,16 +9610,16 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:625:630: COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.5/@blockSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.5/@blockSequence/@elements.0");
             }
-            match(input,COLON,FOLLOW_COLON_in_furcas_tcs_functiontemplate4004); if (state.failed) {
+            match(input,COLON,FOLLOW_COLON_in_furcas_tcs_functiontemplate4016); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.5/@blockSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.5/@blockSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:625:955: ( ( (temp= furcas_tcs_sequence ) ) )
             // ./generationTemp/generated/TCS.g:625:956: ( (temp= furcas_tcs_sequence ) )
@@ -9592,12 +9628,12 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:625:957: (temp= furcas_tcs_sequence )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.5/@blockSequence/@elements.1/@blockSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.5/@blockSequence/@elements.1/@blockSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:625:1135: (temp= furcas_tcs_sequence )
             // ./generationTemp/generated/TCS.g:625:1137: temp= furcas_tcs_sequence
             {
-            pushFollow(FOLLOW_furcas_tcs_sequence_in_furcas_tcs_functiontemplate4015);
+            pushFollow(FOLLOW_furcas_tcs_sequence_in_furcas_tcs_functiontemplate4027);
             temp=furcas_tcs_sequence();
 
             checkFollows();
@@ -9625,9 +9661,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.5/@blockSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.5/@blockSequence/@elements.2");
             }
-            match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_functiontemplate4025); if (state.failed) {
+            match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_functiontemplate4037); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
@@ -9688,16 +9724,16 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:641:4: LPAREN (temp= identifier ( ( COMA ) temp= identifier )* )? RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.21/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.21/@templateSequence/@elements.0");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_contexttags4070); if (state.failed) {
+            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_contexttags4082); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.21/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.21/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:641:276: (temp= identifier ( ( COMA ) temp= identifier )* )?
             int alt68=2;
@@ -9710,7 +9746,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:641:278: temp= identifier ( ( COMA ) temp= identifier )*
                     {
-                    pushFollow(FOLLOW_identifier_in_furcas_tcs_contexttags4078);
+                    pushFollow(FOLLOW_identifier_in_furcas_tcs_contexttags4090);
                     temp=identifier();
 
                     checkFollows();
@@ -9744,9 +9780,9 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // ./generationTemp/generated/TCS.g:642:49: COMA
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.21/@templateSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
+                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.21/@templateSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
                     	    }
-                    	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_contexttags4087); if (state.failed) {
+                    	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_contexttags4099); if (state.failed) {
                                 return ret2;
                             }
                     	    if ( state.backtracking==0 ) {
@@ -9758,7 +9794,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	    if ( state.backtracking==0 ) {
                     	      _exitSepSeq();
                     	    }
-                    	    pushFollow(FOLLOW_identifier_in_furcas_tcs_contexttags4095);
+                    	    pushFollow(FOLLOW_identifier_in_furcas_tcs_contexttags4107);
                     	    temp=identifier();
 
                     	    checkFollows();
@@ -9789,9 +9825,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.21/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.21/@templateSequence/@elements.2");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_contexttags4107); if (state.failed) {
+            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_contexttags4119); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
@@ -9843,7 +9879,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:658:4: ( ( (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )? ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.22/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.22/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:658:128: ( ( (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )? ) )
             // ./generationTemp/generated/TCS.g:658:129: ( (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )? )
@@ -9852,7 +9888,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:658:130: (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.22/@templateSequence/@elements.0/@blockSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.22/@templateSequence/@elements.0/@blockSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:658:281: (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )?
             int alt70=2;
@@ -9865,7 +9901,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:658:283: temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )*
                     {
-                    pushFollow(FOLLOW_furcas_tcs_sequenceelement_in_furcas_tcs_sequence4155);
+                    pushFollow(FOLLOW_furcas_tcs_sequenceelement_in_furcas_tcs_sequence4167);
                     temp=furcas_tcs_sequenceelement();
 
                     checkFollows();
@@ -9892,7 +9928,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	case 1 :
                     	    // ./generationTemp/generated/TCS.g:659:36: temp= furcas_tcs_sequenceelement
                     	    {
-                    	    pushFollow(FOLLOW_furcas_tcs_sequenceelement_in_furcas_tcs_sequence4163);
+                    	    pushFollow(FOLLOW_furcas_tcs_sequenceelement_in_furcas_tcs_sequence4175);
                     	    temp=furcas_tcs_sequenceelement();
 
                     	    checkFollows();
@@ -10108,7 +10144,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:670:4: ret= furcas_tcs_literalref
                     {
-                    pushFollow(FOLLOW_furcas_tcs_literalref_in_furcas_tcs_sequenceelement4211);
+                    pushFollow(FOLLOW_furcas_tcs_literalref_in_furcas_tcs_sequenceelement4223);
                     ret=furcas_tcs_literalref();
 
                     checkFollows();
@@ -10122,7 +10158,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 2 :
                     // ./generationTemp/generated/TCS.g:671:5: ret= furcas_tcs_property
                     {
-                    pushFollow(FOLLOW_furcas_tcs_property_in_furcas_tcs_sequenceelement4219);
+                    pushFollow(FOLLOW_furcas_tcs_property_in_furcas_tcs_sequenceelement4231);
                     ret=furcas_tcs_property();
 
                     checkFollows();
@@ -10136,7 +10172,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 3 :
                     // ./generationTemp/generated/TCS.g:672:5: ret= furcas_tcs_customseparator
                     {
-                    pushFollow(FOLLOW_furcas_tcs_customseparator_in_furcas_tcs_sequenceelement4227);
+                    pushFollow(FOLLOW_furcas_tcs_customseparator_in_furcas_tcs_sequenceelement4239);
                     ret=furcas_tcs_customseparator();
 
                     checkFollows();
@@ -10150,7 +10186,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 4 :
                     // ./generationTemp/generated/TCS.g:673:5: ret= furcas_tcs_block
                     {
-                    pushFollow(FOLLOW_furcas_tcs_block_in_furcas_tcs_sequenceelement4235);
+                    pushFollow(FOLLOW_furcas_tcs_block_in_furcas_tcs_sequenceelement4247);
                     ret=furcas_tcs_block();
 
                     checkFollows();
@@ -10164,7 +10200,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 5 :
                     // ./generationTemp/generated/TCS.g:674:5: ret= furcas_tcs_conditionalelement
                     {
-                    pushFollow(FOLLOW_furcas_tcs_conditionalelement_in_furcas_tcs_sequenceelement4243);
+                    pushFollow(FOLLOW_furcas_tcs_conditionalelement_in_furcas_tcs_sequenceelement4255);
                     ret=furcas_tcs_conditionalelement();
 
                     checkFollows();
@@ -10178,7 +10214,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 6 :
                     // ./generationTemp/generated/TCS.g:675:5: ret= furcas_tcs_alternative
                     {
-                    pushFollow(FOLLOW_furcas_tcs_alternative_in_furcas_tcs_sequenceelement4251);
+                    pushFollow(FOLLOW_furcas_tcs_alternative_in_furcas_tcs_sequenceelement4263);
                     ret=furcas_tcs_alternative();
 
                     checkFollows();
@@ -10192,7 +10228,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 7 :
                     // ./generationTemp/generated/TCS.g:676:5: ret= furcas_tcs_functioncall
                     {
-                    pushFollow(FOLLOW_furcas_tcs_functioncall_in_furcas_tcs_sequenceelement4259);
+                    pushFollow(FOLLOW_furcas_tcs_functioncall_in_furcas_tcs_sequenceelement4271);
                     ret=furcas_tcs_functioncall();
 
                     checkFollows();
@@ -10206,7 +10242,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 8 :
                     // ./generationTemp/generated/TCS.g:677:5: ret= furcas_tcs_injectoractionsblock
                     {
-                    pushFollow(FOLLOW_furcas_tcs_injectoractionsblock_in_furcas_tcs_sequenceelement4267);
+                    pushFollow(FOLLOW_furcas_tcs_injectoractionsblock_in_furcas_tcs_sequenceelement4279);
                     ret=furcas_tcs_injectoractionsblock();
 
                     checkFollows();
@@ -10262,12 +10298,12 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:691:4: (temp= stringSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.24/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.24/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:691:128: (temp= stringSymbol )
             // ./generationTemp/generated/TCS.g:691:130: temp= stringSymbol
             {
-            pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_literalref4301);
+            pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_literalref4313);
             temp=stringSymbol();
 
             checkFollows();
@@ -10285,10 +10321,10 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.24/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.24/@templateSequence/@elements.1");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.24/@templateSequence/@elements.1/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.24/@templateSequence/@elements.1/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -10339,7 +10375,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:706:4: ( ( (temp= identifierOrKeyword ) ) | ( RARROW (temp= identifierOrKeyword ) ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.25/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.25/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:706:129: ( ( (temp= identifierOrKeyword ) ) | ( RARROW (temp= identifierOrKeyword ) ) )
             int alt72=2;
@@ -10369,12 +10405,12 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:706:147: (temp= identifierOrKeyword )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.25/@templateSequence/@elements.0/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.25/@templateSequence/@elements.0/@thenSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:706:297: (temp= identifierOrKeyword )
                     // ./generationTemp/generated/TCS.g:706:299: temp= identifierOrKeyword
                     {
-                    pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_propertyreference4357);
+                    pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_propertyreference4369);
                     temp=identifierOrKeyword();
 
                     checkFollows();
@@ -10383,7 +10419,7 @@ public class TCSParser extends ObservableInjectingParser {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      setOclRef(ret, "strucfeature", null, temp, "OCL:#context.oclAsType(FURCAS::TCS::Template).metaReference.oclAsType(ecore::EClass).eAllStructuralFeatures->select(name = ?)", "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.25/@templateSequence/@elements.0/@thenSequence/@elements.0", SyntaxRegistryFacade.getModelUpdaterRegistry());
+                      setOclRef(ret, "strucfeature", null, temp, "OCL:#context.oclAsType(FURCAS::TCS::Template).metaReference.oclAsType(ecore::EClass).eAllStructuralFeatures->select(name = ?)", "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.25/@templateSequence/@elements.0/@thenSequence/@elements.0", SyntaxRegistryFacade.getModelUpdaterRegistry());
                     }
 
                     }
@@ -10410,21 +10446,21 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:706:733: RARROW (temp= identifierOrKeyword )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.25/@templateSequence/@elements.0/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.25/@templateSequence/@elements.0/@elseSequence/@elements.0");
                     }
-                    match(input,RARROW,FOLLOW_RARROW_in_furcas_tcs_propertyreference4373); if (state.failed) {
+                    match(input,RARROW,FOLLOW_RARROW_in_furcas_tcs_propertyreference4385); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.25/@templateSequence/@elements.0/@elseSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.25/@templateSequence/@elements.0/@elseSequence/@elements.1");
                     }
                     // ./generationTemp/generated/TCS.g:706:1057: (temp= identifierOrKeyword )
                     // ./generationTemp/generated/TCS.g:706:1059: temp= identifierOrKeyword
                     {
-                    pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_propertyreference4381);
+                    pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_propertyreference4393);
                     temp=identifierOrKeyword();
 
                     checkFollows();
@@ -10503,12 +10539,12 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:723:4: (temp= furcas_tcs_propertyreference ) ( ( LCURLY (temp= furcas_tcs_propertyarg ( ( COMA ) temp= furcas_tcs_propertyarg )* )? RCURLY ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.26/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.26/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:723:128: (temp= furcas_tcs_propertyreference )
             // ./generationTemp/generated/TCS.g:723:130: temp= furcas_tcs_propertyreference
             {
-            pushFollow(FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_property4434);
+            pushFollow(FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_property4446);
             temp=furcas_tcs_propertyreference();
 
             checkFollows();
@@ -10527,7 +10563,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.26/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.26/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:724:184: ( ( LCURLY (temp= furcas_tcs_propertyarg ( ( COMA ) temp= furcas_tcs_propertyarg )* )? RCURLY ) | )
             int alt75=2;
@@ -10557,29 +10593,29 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:724:202: LCURLY (temp= furcas_tcs_propertyarg ( ( COMA ) temp= furcas_tcs_propertyarg )* )? RCURLY
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.26/@templateSequence/@elements.1/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.26/@templateSequence/@elements.1/@thenSequence/@elements.0");
                     }
-                    match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_property4447); if (state.failed) {
+                    match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_property4459); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.26/@templateSequence/@elements.1/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.26/@templateSequence/@elements.1/@thenSequence/@elements.1");
                     }
                     // ./generationTemp/generated/TCS.g:724:526: (temp= furcas_tcs_propertyarg ( ( COMA ) temp= furcas_tcs_propertyarg )* )?
                     int alt74=2;
                     int LA74_0 = input.LA(1);
 
-                    if ( (LA74_0==50||(LA74_0>=57 && LA74_0<=59)||LA74_0==67||LA74_0==75||LA74_0==80||LA74_0==82||LA74_0==91||LA74_0==93||LA74_0==101||LA74_0==111||LA74_0==118||LA74_0==121||(LA74_0>=128 && LA74_0<=129)||LA74_0==132) ) {
+                    if ( ((LA74_0>=52 && LA74_0<=53)||(LA74_0>=61 && LA74_0<=62)||LA74_0==64||LA74_0==67||LA74_0==73||(LA74_0>=79 && LA74_0<=80)||LA74_0==90||LA74_0==95||(LA74_0>=97 && LA74_0<=99)||LA74_0==103||LA74_0==117||LA74_0==133) ) {
                         alt74=1;
                     }
                     switch (alt74) {
                         case 1 :
                             // ./generationTemp/generated/TCS.g:724:528: temp= furcas_tcs_propertyarg ( ( COMA ) temp= furcas_tcs_propertyarg )*
                             {
-                            pushFollow(FOLLOW_furcas_tcs_propertyarg_in_furcas_tcs_property4455);
+                            pushFollow(FOLLOW_furcas_tcs_propertyarg_in_furcas_tcs_property4467);
                             temp=furcas_tcs_propertyarg();
 
                             checkFollows();
@@ -10613,9 +10649,9 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // ./generationTemp/generated/TCS.g:725:57: COMA
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.26/@templateSequence/@elements.1/@thenSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
+                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.26/@templateSequence/@elements.1/@thenSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
                             	    }
-                            	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_property4464); if (state.failed) {
+                            	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_property4476); if (state.failed) {
                                         return ret2;
                                     }
                             	    if ( state.backtracking==0 ) {
@@ -10627,7 +10663,7 @@ public class TCSParser extends ObservableInjectingParser {
                             	    if ( state.backtracking==0 ) {
                             	      _exitSepSeq();
                             	    }
-                            	    pushFollow(FOLLOW_furcas_tcs_propertyarg_in_furcas_tcs_property4472);
+                            	    pushFollow(FOLLOW_furcas_tcs_propertyarg_in_furcas_tcs_property4484);
                             	    temp=furcas_tcs_propertyarg();
 
                             	    checkFollows();
@@ -10658,9 +10694,9 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.26/@templateSequence/@elements.1/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.26/@templateSequence/@elements.1/@thenSequence/@elements.2");
                     }
-                    match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_property4484); if (state.failed) {
+                    match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_property4496); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -10694,10 +10730,10 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.26/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.26/@templateSequence/@elements.2");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.26/@templateSequence/@elements.2/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.26/@templateSequence/@elements.2/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -10748,21 +10784,21 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:742:4: LT (temp= identifier ) GT
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.27/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.27/@templateSequence/@elements.0");
             }
-            match(input,LT,FOLLOW_LT_in_furcas_tcs_customseparator4542); if (state.failed) {
+            match(input,LT,FOLLOW_LT_in_furcas_tcs_customseparator4554); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.27/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.27/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:742:272: (temp= identifier )
             // ./generationTemp/generated/TCS.g:742:274: temp= identifier
             {
-            pushFollow(FOLLOW_identifier_in_furcas_tcs_customseparator4550);
+            pushFollow(FOLLOW_identifier_in_furcas_tcs_customseparator4562);
             temp=identifier();
 
             checkFollows();
@@ -10781,19 +10817,19 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.27/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.27/@templateSequence/@elements.2");
             }
-            match(input,GT,FOLLOW_GT_in_furcas_tcs_customseparator4557); if (state.failed) {
+            match(input,GT,FOLLOW_GT_in_furcas_tcs_customseparator4569); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.27/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.27/@templateSequence/@elements.3");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.27/@templateSequence/@elements.3/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.27/@templateSequence/@elements.3/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -10844,21 +10880,21 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:758:4: LSQUARE (temp= furcas_tcs_sequence ) RSQUARE ( ( LCURLY (temp= furcas_tcs_blockarg ( ( COMA ) temp= furcas_tcs_blockarg )* )? RCURLY ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.28/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.28/@templateSequence/@elements.0");
             }
-            match(input,LSQUARE,FOLLOW_LSQUARE_in_furcas_tcs_block4602); if (state.failed) {
+            match(input,LSQUARE,FOLLOW_LSQUARE_in_furcas_tcs_block4614); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.28/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.28/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:758:277: (temp= furcas_tcs_sequence )
             // ./generationTemp/generated/TCS.g:758:279: temp= furcas_tcs_sequence
             {
-            pushFollow(FOLLOW_furcas_tcs_sequence_in_furcas_tcs_block4610);
+            pushFollow(FOLLOW_furcas_tcs_sequence_in_furcas_tcs_block4622);
             temp=furcas_tcs_sequence();
 
             checkFollows();
@@ -10877,16 +10913,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.28/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.28/@templateSequence/@elements.2");
             }
-            match(input,RSQUARE,FOLLOW_RSQUARE_in_furcas_tcs_block4617); if (state.failed) {
+            match(input,RSQUARE,FOLLOW_RSQUARE_in_furcas_tcs_block4629); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.28/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.28/@templateSequence/@elements.3");
             }
             // ./generationTemp/generated/TCS.g:759:329: ( ( LCURLY (temp= furcas_tcs_blockarg ( ( COMA ) temp= furcas_tcs_blockarg )* )? RCURLY ) | )
             int alt78=2;
@@ -10916,29 +10952,29 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:759:347: LCURLY (temp= furcas_tcs_blockarg ( ( COMA ) temp= furcas_tcs_blockarg )* )? RCURLY
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.28/@templateSequence/@elements.3/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.28/@templateSequence/@elements.3/@thenSequence/@elements.0");
                     }
-                    match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_block4628); if (state.failed) {
+                    match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_block4640); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.28/@templateSequence/@elements.3/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.28/@templateSequence/@elements.3/@thenSequence/@elements.1");
                     }
                     // ./generationTemp/generated/TCS.g:759:671: (temp= furcas_tcs_blockarg ( ( COMA ) temp= furcas_tcs_blockarg )* )?
                     int alt77=2;
                     int LA77_0 = input.LA(1);
 
-                    if ( (LA77_0==64||LA77_0==87||LA77_0==113||LA77_0==122||LA77_0==133) ) {
+                    if ( (LA77_0==49||LA77_0==66||LA77_0==75||LA77_0==96||LA77_0==124) ) {
                         alt77=1;
                     }
                     switch (alt77) {
                         case 1 :
                             // ./generationTemp/generated/TCS.g:759:673: temp= furcas_tcs_blockarg ( ( COMA ) temp= furcas_tcs_blockarg )*
                             {
-                            pushFollow(FOLLOW_furcas_tcs_blockarg_in_furcas_tcs_block4636);
+                            pushFollow(FOLLOW_furcas_tcs_blockarg_in_furcas_tcs_block4648);
                             temp=furcas_tcs_blockarg();
 
                             checkFollows();
@@ -10972,9 +11008,9 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // ./generationTemp/generated/TCS.g:760:54: COMA
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.28/@templateSequence/@elements.3/@thenSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
+                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.28/@templateSequence/@elements.3/@thenSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
                             	    }
-                            	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_block4645); if (state.failed) {
+                            	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_block4657); if (state.failed) {
                                         return ret2;
                                     }
                             	    if ( state.backtracking==0 ) {
@@ -10986,7 +11022,7 @@ public class TCSParser extends ObservableInjectingParser {
                             	    if ( state.backtracking==0 ) {
                             	      _exitSepSeq();
                             	    }
-                            	    pushFollow(FOLLOW_furcas_tcs_blockarg_in_furcas_tcs_block4653);
+                            	    pushFollow(FOLLOW_furcas_tcs_blockarg_in_furcas_tcs_block4665);
                             	    temp=furcas_tcs_blockarg();
 
                             	    checkFollows();
@@ -11017,9 +11053,9 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.28/@templateSequence/@elements.3/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.28/@templateSequence/@elements.3/@thenSequence/@elements.2");
                     }
-                    match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_block4665); if (state.failed) {
+                    match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_block4677); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -11053,10 +11089,10 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.28/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.28/@templateSequence/@elements.4");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.28/@templateSequence/@elements.4/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.28/@templateSequence/@elements.4/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -11107,21 +11143,21 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:777:4: LPAREN (temp= furcas_tcs_expression ) QMARK (temp= furcas_tcs_sequence ) ( ( COLON (temp= furcas_tcs_sequence ) ) | ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.0");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_conditionalelement4723); if (state.failed) {
+            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_conditionalelement4735); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:777:276: (temp= furcas_tcs_expression )
             // ./generationTemp/generated/TCS.g:777:278: temp= furcas_tcs_expression
             {
-            pushFollow(FOLLOW_furcas_tcs_expression_in_furcas_tcs_conditionalelement4731);
+            pushFollow(FOLLOW_furcas_tcs_expression_in_furcas_tcs_conditionalelement4743);
             temp=furcas_tcs_expression();
 
             checkFollows();
@@ -11140,21 +11176,21 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.2");
             }
-            match(input,QMARK,FOLLOW_QMARK_in_furcas_tcs_conditionalelement4738); if (state.failed) {
+            match(input,QMARK,FOLLOW_QMARK_in_furcas_tcs_conditionalelement4750); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.3");
             }
             // ./generationTemp/generated/TCS.g:778:322: (temp= furcas_tcs_sequence )
             // ./generationTemp/generated/TCS.g:778:324: temp= furcas_tcs_sequence
             {
-            pushFollow(FOLLOW_furcas_tcs_sequence_in_furcas_tcs_conditionalelement4746);
+            pushFollow(FOLLOW_furcas_tcs_sequence_in_furcas_tcs_conditionalelement4758);
             temp=furcas_tcs_sequence();
 
             checkFollows();
@@ -11173,7 +11209,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.4");
             }
             // ./generationTemp/generated/TCS.g:779:179: ( ( COLON (temp= furcas_tcs_sequence ) ) | )
             int alt79=2;
@@ -11203,21 +11239,21 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:779:197: COLON (temp= furcas_tcs_sequence )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.4/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.4/@thenSequence/@elements.0");
                     }
-                    match(input,COLON,FOLLOW_COLON_in_furcas_tcs_conditionalelement4759); if (state.failed) {
+                    match(input,COLON,FOLLOW_COLON_in_furcas_tcs_conditionalelement4771); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.4/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.4/@thenSequence/@elements.1");
                     }
                     // ./generationTemp/generated/TCS.g:779:520: (temp= furcas_tcs_sequence )
                     // ./generationTemp/generated/TCS.g:779:522: temp= furcas_tcs_sequence
                     {
-                    pushFollow(FOLLOW_furcas_tcs_sequence_in_furcas_tcs_conditionalelement4767);
+                    pushFollow(FOLLOW_furcas_tcs_sequence_in_furcas_tcs_conditionalelement4779);
                     temp=furcas_tcs_sequence();
 
                     checkFollows();
@@ -11263,19 +11299,19 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.5");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_conditionalelement4787); if (state.failed) {
+            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_conditionalelement4799); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.6");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.6");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.6/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.6/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -11326,16 +11362,16 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:796:4: DLSQUARE ( ( (temp= furcas_tcs_sequenceinalternative_nestedSequence ( ( PIPE ) temp= furcas_tcs_sequenceinalternative_nestedSequence )+ ) ) ) DRSQUARE ( ( STAR ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.30/@templateSequence/@elements.0");
             }
-            match(input,DLSQUARE,FOLLOW_DLSQUARE_in_furcas_tcs_alternative4832); if (state.failed) {
+            match(input,DLSQUARE,FOLLOW_DLSQUARE_in_furcas_tcs_alternative4844); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.30/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:796:278: ( ( (temp= furcas_tcs_sequenceinalternative_nestedSequence ( ( PIPE ) temp= furcas_tcs_sequenceinalternative_nestedSequence )+ ) ) )
             // ./generationTemp/generated/TCS.g:796:279: ( (temp= furcas_tcs_sequenceinalternative_nestedSequence ( ( PIPE ) temp= furcas_tcs_sequenceinalternative_nestedSequence )+ ) )
@@ -11344,12 +11380,12 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:796:280: (temp= furcas_tcs_sequenceinalternative_nestedSequence ( ( PIPE ) temp= furcas_tcs_sequenceinalternative_nestedSequence )+ )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.1/@blockSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.30/@templateSequence/@elements.1/@blockSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:796:431: (temp= furcas_tcs_sequenceinalternative_nestedSequence ( ( PIPE ) temp= furcas_tcs_sequenceinalternative_nestedSequence )+ )
             // ./generationTemp/generated/TCS.g:796:433: temp= furcas_tcs_sequenceinalternative_nestedSequence ( ( PIPE ) temp= furcas_tcs_sequenceinalternative_nestedSequence )+
             {
-            pushFollow(FOLLOW_furcas_tcs_sequenceinalternative_nestedSequence_in_furcas_tcs_alternative4843);
+            pushFollow(FOLLOW_furcas_tcs_sequenceinalternative_nestedSequence_in_furcas_tcs_alternative4855);
             temp=furcas_tcs_sequenceinalternative_nestedSequence();
 
             checkFollows();
@@ -11384,9 +11420,9 @@ public class TCSParser extends ObservableInjectingParser {
             	    // ./generationTemp/generated/TCS.g:797:54: PIPE
             	    {
             	    if ( state.backtracking==0 ) {
-            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.1/@separatorSequence/@elements.0");
+            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.30/@templateSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.1/@separatorSequence/@elements.0");
             	    }
-            	    match(input,PIPE,FOLLOW_PIPE_in_furcas_tcs_alternative4852); if (state.failed) {
+            	    match(input,PIPE,FOLLOW_PIPE_in_furcas_tcs_alternative4864); if (state.failed) {
                         return ret2;
                     }
             	    if ( state.backtracking==0 ) {
@@ -11398,7 +11434,7 @@ public class TCSParser extends ObservableInjectingParser {
             	    if ( state.backtracking==0 ) {
             	      _exitSepSeq();
             	    }
-            	    pushFollow(FOLLOW_furcas_tcs_sequenceinalternative_nestedSequence_in_furcas_tcs_alternative4860);
+            	    pushFollow(FOLLOW_furcas_tcs_sequenceinalternative_nestedSequence_in_furcas_tcs_alternative4872);
             	    temp=furcas_tcs_sequenceinalternative_nestedSequence();
 
             	    checkFollows();
@@ -11442,16 +11478,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.30/@templateSequence/@elements.2");
             }
-            match(input,DRSQUARE,FOLLOW_DRSQUARE_in_furcas_tcs_alternative4872); if (state.failed) {
+            match(input,DRSQUARE,FOLLOW_DRSQUARE_in_furcas_tcs_alternative4884); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.30/@templateSequence/@elements.3");
             }
             // ./generationTemp/generated/TCS.g:798:346: ( ( STAR ) | )
             int alt81=2;
@@ -11481,9 +11517,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:798:364: STAR
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.3/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.30/@templateSequence/@elements.3/@thenSequence/@elements.0");
                     }
-                    match(input,STAR,FOLLOW_STAR_in_furcas_tcs_alternative4883); if (state.failed) {
+                    match(input,STAR,FOLLOW_STAR_in_furcas_tcs_alternative4895); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -11523,10 +11559,10 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.30/@templateSequence/@elements.4");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.4/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.30/@templateSequence/@elements.4/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -11577,13 +11613,13 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:814:4: ( ( 'disambiguate' LPAREN (temp= stringSymbol ) RPAREN ) | ) ( ( (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )? ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.31/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.31/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:814:129: ( ( 'disambiguate' LPAREN (temp= stringSymbol ) RPAREN ) | )
             int alt82=2;
             int LA82_0 = input.LA(1);
 
-            if ( (LA82_0==111) ) {
+            if ( (LA82_0==61) ) {
                 int LA82_1 = input.LA(2);
 
                 if ( (LA82_1==EOF||(LA82_1>=NAME && LA82_1<=STRING)||LA82_1==LCURLY||LA82_1==RARROW||LA82_1==LT||LA82_1==LSQUARE||(LA82_1>=DLSQUARE && LA82_1<=DRSQUARE)||(LA82_1>=DOLLAR && LA82_1<=DLCURLY)||(LA82_1>=49 && LA82_1<=133)) ) {
@@ -11592,11 +11628,11 @@ public class TCSParser extends ObservableInjectingParser {
                 else if ( (LA82_1==LPAREN) ) {
                     int LA82_3 = input.LA(3);
 
-                    if ( (LA82_3==STRING) ) {
-                        alt82=1;
-                    }
-                    else if ( (LA82_3==NAME||LA82_3==EQ||LA82_3==RARROW||LA82_3==QMARK||(LA82_3>=49 && LA82_3<=133)) ) {
+                    if ( (LA82_3==NAME||LA82_3==EQ||LA82_3==RARROW||LA82_3==QMARK||(LA82_3>=49 && LA82_3<=133)) ) {
                         alt82=2;
+                    }
+                    else if ( (LA82_3==STRING) ) {
+                        alt82=1;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return ret2;}
@@ -11614,7 +11650,7 @@ public class TCSParser extends ObservableInjectingParser {
                     throw nvae;
                 }
             }
-            else if ( (LA82_0==EOF||(LA82_0>=NAME && LA82_0<=STRING)||LA82_0==LPAREN||LA82_0==RARROW||LA82_0==LT||LA82_0==LSQUARE||(LA82_0>=DLSQUARE && LA82_0<=DRSQUARE)||(LA82_0>=DOLLAR && LA82_0<=DLCURLY)||(LA82_0>=49 && LA82_0<=110)||(LA82_0>=112 && LA82_0<=133)) ) {
+            else if ( (LA82_0==EOF||(LA82_0>=NAME && LA82_0<=STRING)||LA82_0==LPAREN||LA82_0==RARROW||LA82_0==LT||LA82_0==LSQUARE||(LA82_0>=DLSQUARE && LA82_0<=DRSQUARE)||(LA82_0>=DOLLAR && LA82_0<=DLCURLY)||(LA82_0>=49 && LA82_0<=60)||(LA82_0>=62 && LA82_0<=133)) ) {
                 alt82=2;
             }
             else {
@@ -11635,30 +11671,30 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:814:147: 'disambiguate' LPAREN (temp= stringSymbol ) RPAREN
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.31/@templateSequence/@elements.0/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.31/@templateSequence/@elements.0/@thenSequence/@elements.0");
                     }
-                    match(input,111,FOLLOW_111_in_furcas_tcs_sequenceinalternative_nestedSequence4948); if (state.failed) {
+                    match(input,61,FOLLOW_61_in_furcas_tcs_sequenceinalternative_nestedSequence4960); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.31/@templateSequence/@elements.0/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.31/@templateSequence/@elements.0/@thenSequence/@elements.1");
                     }
-                    match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_sequenceinalternative_nestedSequence4952); if (state.failed) {
+                    match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_sequenceinalternative_nestedSequence4964); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.31/@templateSequence/@elements.0/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.31/@templateSequence/@elements.0/@thenSequence/@elements.2");
                     }
                     // ./generationTemp/generated/TCS.g:814:651: (temp= stringSymbol )
                     // ./generationTemp/generated/TCS.g:814:653: temp= stringSymbol
                     {
-                    pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_sequenceinalternative_nestedSequence4960);
+                    pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_sequenceinalternative_nestedSequence4972);
                     temp=stringSymbol();
 
                     checkFollows();
@@ -11677,9 +11713,9 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.31/@templateSequence/@elements.0/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.31/@templateSequence/@elements.0/@thenSequence/@elements.3");
                     }
-                    match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_sequenceinalternative_nestedSequence4967); if (state.failed) {
+                    match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_sequenceinalternative_nestedSequence4979); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -11713,7 +11749,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.31/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.31/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:816:141: ( ( (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )? ) )
             // ./generationTemp/generated/TCS.g:816:142: ( (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )? )
@@ -11722,7 +11758,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:816:143: (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.31/@templateSequence/@elements.1/@blockSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.31/@templateSequence/@elements.1/@blockSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:816:294: (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )?
             int alt84=2;
@@ -11735,7 +11771,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:816:296: temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )*
                     {
-                    pushFollow(FOLLOW_furcas_tcs_sequenceelement_in_furcas_tcs_sequenceinalternative_nestedSequence4991);
+                    pushFollow(FOLLOW_furcas_tcs_sequenceelement_in_furcas_tcs_sequenceinalternative_nestedSequence5003);
                     temp=furcas_tcs_sequenceelement();
 
                     checkFollows();
@@ -11762,7 +11798,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	case 1 :
                     	    // ./generationTemp/generated/TCS.g:817:36: temp= furcas_tcs_sequenceelement
                     	    {
-                    	    pushFollow(FOLLOW_furcas_tcs_sequenceelement_in_furcas_tcs_sequenceinalternative_nestedSequence4999);
+                    	    pushFollow(FOLLOW_furcas_tcs_sequenceelement_in_furcas_tcs_sequenceinalternative_nestedSequence5011);
                     	    temp=furcas_tcs_sequenceelement();
 
                     	    checkFollows();
@@ -11847,21 +11883,21 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:833:4: DOLLAR (temp= identifier )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.32/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.32/@templateSequence/@elements.0");
             }
-            match(input,DOLLAR,FOLLOW_DOLLAR_in_furcas_tcs_functioncall5051); if (state.failed) {
+            match(input,DOLLAR,FOLLOW_DOLLAR_in_furcas_tcs_functioncall5063); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.32/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.32/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:833:276: (temp= identifier )
             // ./generationTemp/generated/TCS.g:833:278: temp= identifier
             {
-            pushFollow(FOLLOW_identifier_in_furcas_tcs_functioncall5059);
+            pushFollow(FOLLOW_identifier_in_furcas_tcs_functioncall5071);
             temp=identifier();
 
             checkFollows();
@@ -11879,10 +11915,10 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.32/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.32/@templateSequence/@elements.2");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.32/@templateSequence/@elements.2/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.32/@templateSequence/@elements.2/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -11933,16 +11969,16 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:848:4: DLCURLY ( ( (temp= furcas_tcs_injectoraction ( ( COMA ) temp= furcas_tcs_injectoraction )* )? ) ) DRCURLY
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.33/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.33/@templateSequence/@elements.0");
             }
-            match(input,DLCURLY,FOLLOW_DLCURLY_in_furcas_tcs_injectoractionsblock5106); if (state.failed) {
+            match(input,DLCURLY,FOLLOW_DLCURLY_in_furcas_tcs_injectoractionsblock5118); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.33/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.33/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:848:277: ( ( (temp= furcas_tcs_injectoraction ( ( COMA ) temp= furcas_tcs_injectoraction )* )? ) )
             // ./generationTemp/generated/TCS.g:848:278: ( (temp= furcas_tcs_injectoraction ( ( COMA ) temp= furcas_tcs_injectoraction )* )? )
@@ -11951,7 +11987,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:848:279: (temp= furcas_tcs_injectoraction ( ( COMA ) temp= furcas_tcs_injectoraction )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.33/@templateSequence/@elements.1/@blockSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.33/@templateSequence/@elements.1/@blockSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:848:430: (temp= furcas_tcs_injectoraction ( ( COMA ) temp= furcas_tcs_injectoraction )* )?
             int alt86=2;
@@ -11964,7 +12000,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:848:432: temp= furcas_tcs_injectoraction ( ( COMA ) temp= furcas_tcs_injectoraction )*
                     {
-                    pushFollow(FOLLOW_furcas_tcs_injectoraction_in_furcas_tcs_injectoractionsblock5117);
+                    pushFollow(FOLLOW_furcas_tcs_injectoraction_in_furcas_tcs_injectoractionsblock5129);
                     temp=furcas_tcs_injectoraction();
 
                     checkFollows();
@@ -11998,9 +12034,9 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // ./generationTemp/generated/TCS.g:849:60: COMA
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.33/@templateSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
+                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.33/@templateSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
                     	    }
-                    	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_injectoractionsblock5126); if (state.failed) {
+                    	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_injectoractionsblock5138); if (state.failed) {
                                 return ret2;
                             }
                     	    if ( state.backtracking==0 ) {
@@ -12012,7 +12048,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	    if ( state.backtracking==0 ) {
                     	      _exitSepSeq();
                     	    }
-                    	    pushFollow(FOLLOW_furcas_tcs_injectoraction_in_furcas_tcs_injectoractionsblock5134);
+                    	    pushFollow(FOLLOW_furcas_tcs_injectoraction_in_furcas_tcs_injectoractionsblock5146);
                     	    temp=furcas_tcs_injectoraction();
 
                     	    checkFollows();
@@ -12052,19 +12088,19 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.33/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.33/@templateSequence/@elements.2");
             }
-            match(input,DRCURLY,FOLLOW_DRCURLY_in_furcas_tcs_injectoractionsblock5149); if (state.failed) {
+            match(input,DRCURLY,FOLLOW_DRCURLY_in_furcas_tcs_injectoractionsblock5161); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.33/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.33/@templateSequence/@elements.3");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.33/@templateSequence/@elements.3/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.33/@templateSequence/@elements.3/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -12108,7 +12144,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:860:3: (ret= furcas_tcs_propertyinit )
             // ./generationTemp/generated/TCS.g:860:4: ret= furcas_tcs_propertyinit
             {
-            pushFollow(FOLLOW_furcas_tcs_propertyinit_in_furcas_tcs_injectoraction5190);
+            pushFollow(FOLLOW_furcas_tcs_propertyinit_in_furcas_tcs_injectoraction5202);
             ret=furcas_tcs_propertyinit();
 
             checkFollows();
@@ -12158,7 +12194,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:869:4: ret= furcas_tcs_primitivepropertyinit
                     {
-                    pushFollow(FOLLOW_furcas_tcs_primitivepropertyinit_in_furcas_tcs_propertyinit5217);
+                    pushFollow(FOLLOW_furcas_tcs_primitivepropertyinit_in_furcas_tcs_propertyinit5229);
                     ret=furcas_tcs_primitivepropertyinit();
 
                     checkFollows();
@@ -12172,7 +12208,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 2 :
                     // ./generationTemp/generated/TCS.g:870:5: ret= furcas_tcs_lookuppropertyinit
                     {
-                    pushFollow(FOLLOW_furcas_tcs_lookuppropertyinit_in_furcas_tcs_propertyinit5225);
+                    pushFollow(FOLLOW_furcas_tcs_lookuppropertyinit_in_furcas_tcs_propertyinit5237);
                     ret=furcas_tcs_lookuppropertyinit();
 
                     checkFollows();
@@ -12186,7 +12222,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 3 :
                     // ./generationTemp/generated/TCS.g:871:5: ret= furcas_tcs_foreachpredicatepropertyinit
                     {
-                    pushFollow(FOLLOW_furcas_tcs_foreachpredicatepropertyinit_in_furcas_tcs_propertyinit5233);
+                    pushFollow(FOLLOW_furcas_tcs_foreachpredicatepropertyinit_in_furcas_tcs_propertyinit5245);
                     ret=furcas_tcs_foreachpredicatepropertyinit();
 
                     checkFollows();
@@ -12242,7 +12278,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:885:4: (temp= furcas_tcs_propertyreference )? ( ( LARROW ) | ( EQ ) ) (temp= escapedIdentifierOrKeyword )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.36/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.36/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:885:128: (temp= furcas_tcs_propertyreference )?
             int alt88=2;
@@ -12255,7 +12291,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:885:130: temp= furcas_tcs_propertyreference
                     {
-                    pushFollow(FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_primitivepropertyinit5267);
+                    pushFollow(FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_primitivepropertyinit5279);
                     temp=furcas_tcs_propertyreference();
 
                     checkFollows();
@@ -12277,7 +12313,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.36/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.36/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:886:186: ( ( LARROW ) | ( EQ ) )
             int alt89=2;
@@ -12307,9 +12343,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:886:204: LARROW
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.36/@templateSequence/@elements.1/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.36/@templateSequence/@elements.1/@thenSequence/@elements.0");
                     }
-                    match(input,LARROW,FOLLOW_LARROW_in_furcas_tcs_primitivepropertyinit5282); if (state.failed) {
+                    match(input,LARROW,FOLLOW_LARROW_in_furcas_tcs_primitivepropertyinit5294); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -12337,9 +12373,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:886:467: EQ
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.36/@templateSequence/@elements.1/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.36/@templateSequence/@elements.1/@elseSequence/@elements.0");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_primitivepropertyinit5297); if (state.failed) {
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_primitivepropertyinit5309); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -12364,7 +12400,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.36/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.36/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:887:141: (temp= escapedIdentifierOrKeyword )?
             int alt90=2;
@@ -12377,7 +12413,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:887:143: temp= escapedIdentifierOrKeyword
                     {
-                    pushFollow(FOLLOW_escapedIdentifierOrKeyword_in_furcas_tcs_primitivepropertyinit5312);
+                    pushFollow(FOLLOW_escapedIdentifierOrKeyword_in_furcas_tcs_primitivepropertyinit5324);
                     temp=escapedIdentifierOrKeyword();
 
                     checkFollows();
@@ -12444,7 +12480,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:903:4: (temp= furcas_tcs_propertyreference )? ( ( LARROW ) | ( EQ ) ) 'lookIn' LPAREN (temp= stringSymbol )? RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.37/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.37/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:903:128: (temp= furcas_tcs_propertyreference )?
             int alt91=2;
@@ -12457,7 +12493,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:903:130: temp= furcas_tcs_propertyreference
                     {
-                    pushFollow(FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_lookuppropertyinit5361);
+                    pushFollow(FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_lookuppropertyinit5373);
                     temp=furcas_tcs_propertyreference();
 
                     checkFollows();
@@ -12479,7 +12515,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.37/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.37/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:904:186: ( ( LARROW ) | ( EQ ) )
             int alt92=2;
@@ -12509,9 +12545,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:904:204: LARROW
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.37/@templateSequence/@elements.1/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.37/@templateSequence/@elements.1/@thenSequence/@elements.0");
                     }
-                    match(input,LARROW,FOLLOW_LARROW_in_furcas_tcs_lookuppropertyinit5376); if (state.failed) {
+                    match(input,LARROW,FOLLOW_LARROW_in_furcas_tcs_lookuppropertyinit5388); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -12539,9 +12575,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:904:467: EQ
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.37/@templateSequence/@elements.1/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.37/@templateSequence/@elements.1/@elseSequence/@elements.0");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_lookuppropertyinit5391); if (state.failed) {
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_lookuppropertyinit5403); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -12566,25 +12602,25 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.37/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.37/@templateSequence/@elements.2");
             }
-            match(input,50,FOLLOW_50_in_furcas_tcs_lookuppropertyinit5402); if (state.failed) {
+            match(input,90,FOLLOW_90_in_furcas_tcs_lookuppropertyinit5414); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.37/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.37/@templateSequence/@elements.3");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_lookuppropertyinit5406); if (state.failed) {
+            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_lookuppropertyinit5418); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.37/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.37/@templateSequence/@elements.4");
             }
             // ./generationTemp/generated/TCS.g:905:437: (temp= stringSymbol )?
             int alt93=2;
@@ -12597,7 +12633,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:905:439: temp= stringSymbol
                     {
-                    pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_lookuppropertyinit5414);
+                    pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_lookuppropertyinit5426);
                     temp=stringSymbol();
 
                     checkFollows();
@@ -12619,9 +12655,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.37/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.37/@templateSequence/@elements.5");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_lookuppropertyinit5423); if (state.failed) {
+            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_lookuppropertyinit5435); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
@@ -12673,7 +12709,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:921:4: (temp= furcas_tcs_propertyreference )? ( ( LARROW ) | ( EQ ) ) 'foreach' LPAREN (temp= stringSymbol )? ( ( COMA 'mode' EQ (temp= identifierOrKeyword ) ) | ) ( ( COMA ( ( (temp= furcas_tcs_predicatesemantic ( ( COMA ) temp= furcas_tcs_predicatesemantic )* )? ) ) ) | ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:921:128: (temp= furcas_tcs_propertyreference )?
             int alt94=2;
@@ -12686,7 +12722,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:921:130: temp= furcas_tcs_propertyreference
                     {
-                    pushFollow(FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_foreachpredicatepropertyinit5468);
+                    pushFollow(FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_foreachpredicatepropertyinit5480);
                     temp=furcas_tcs_propertyreference();
 
                     checkFollows();
@@ -12708,7 +12744,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:922:186: ( ( LARROW ) | ( EQ ) )
             int alt95=2;
@@ -12738,9 +12774,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:922:204: LARROW
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.1/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.1/@thenSequence/@elements.0");
                     }
-                    match(input,LARROW,FOLLOW_LARROW_in_furcas_tcs_foreachpredicatepropertyinit5483); if (state.failed) {
+                    match(input,LARROW,FOLLOW_LARROW_in_furcas_tcs_foreachpredicatepropertyinit5495); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -12768,9 +12804,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:922:467: EQ
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.1/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.1/@elseSequence/@elements.0");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_foreachpredicatepropertyinit5498); if (state.failed) {
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_foreachpredicatepropertyinit5510); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -12795,25 +12831,25 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.2");
             }
-            match(input,112,FOLLOW_112_in_furcas_tcs_foreachpredicatepropertyinit5509); if (state.failed) {
+            match(input,109,FOLLOW_109_in_furcas_tcs_foreachpredicatepropertyinit5521); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.3");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_foreachpredicatepropertyinit5513); if (state.failed) {
+            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_foreachpredicatepropertyinit5525); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.4");
             }
             // ./generationTemp/generated/TCS.g:923:438: (temp= stringSymbol )?
             int alt96=2;
@@ -12826,7 +12862,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:923:440: temp= stringSymbol
                     {
-                    pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_foreachpredicatepropertyinit5521);
+                    pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_foreachpredicatepropertyinit5533);
                     temp=stringSymbol();
 
                     checkFollows();
@@ -12848,7 +12884,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.5");
             }
             // ./generationTemp/generated/TCS.g:924:174: ( ( COMA 'mode' EQ (temp= identifierOrKeyword ) ) | )
             int alt97=2;
@@ -12864,39 +12900,39 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:924:192: COMA 'mode' EQ (temp= identifierOrKeyword )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.5/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.5/@thenSequence/@elements.0");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_foreachpredicatepropertyinit5536); if (state.failed) {
+                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_foreachpredicatepropertyinit5548); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.5/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.5/@thenSequence/@elements.1");
                     }
-                    match(input,58,FOLLOW_58_in_furcas_tcs_foreachpredicatepropertyinit5540); if (state.failed) {
+                    match(input,97,FOLLOW_97_in_furcas_tcs_foreachpredicatepropertyinit5552); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.5/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.5/@thenSequence/@elements.2");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_foreachpredicatepropertyinit5544); if (state.failed) {
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_foreachpredicatepropertyinit5556); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.5/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.5/@thenSequence/@elements.3");
                     }
                     // ./generationTemp/generated/TCS.g:924:856: (temp= identifierOrKeyword )
                     // ./generationTemp/generated/TCS.g:924:858: temp= identifierOrKeyword
                     {
-                    pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_foreachpredicatepropertyinit5552);
+                    pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_foreachpredicatepropertyinit5564);
                     temp=identifierOrKeyword();
 
                     checkFollows();
@@ -12942,7 +12978,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.6");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.6");
             }
             // ./generationTemp/generated/TCS.g:926:142: ( ( COMA ( ( (temp= furcas_tcs_predicatesemantic ( ( COMA ) temp= furcas_tcs_predicatesemantic )* )? ) ) ) | )
             int alt100=2;
@@ -12972,16 +13008,16 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:926:160: COMA ( ( (temp= furcas_tcs_predicatesemantic ( ( COMA ) temp= furcas_tcs_predicatesemantic )* )? ) )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.6/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.6/@thenSequence/@elements.0");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_foreachpredicatepropertyinit5578); if (state.failed) {
+                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_foreachpredicatepropertyinit5590); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.6/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.6/@thenSequence/@elements.1");
                     }
                     // ./generationTemp/generated/TCS.g:926:482: ( ( (temp= furcas_tcs_predicatesemantic ( ( COMA ) temp= furcas_tcs_predicatesemantic )* )? ) )
                     // ./generationTemp/generated/TCS.g:926:483: ( (temp= furcas_tcs_predicatesemantic ( ( COMA ) temp= furcas_tcs_predicatesemantic )* )? )
@@ -12990,20 +13026,20 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:926:484: (temp= furcas_tcs_predicatesemantic ( ( COMA ) temp= furcas_tcs_predicatesemantic )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.6/@thenSequence/@elements.1/@blockSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.6/@thenSequence/@elements.1/@blockSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:926:661: (temp= furcas_tcs_predicatesemantic ( ( COMA ) temp= furcas_tcs_predicatesemantic )* )?
                     int alt99=2;
                     int LA99_0 = input.LA(1);
 
-                    if ( (LA99_0==58||LA99_0==62||LA99_0==129) ) {
+                    if ( (LA99_0==73||LA99_0==93||LA99_0==97) ) {
                         alt99=1;
                     }
                     switch (alt99) {
                         case 1 :
                             // ./generationTemp/generated/TCS.g:926:663: temp= furcas_tcs_predicatesemantic ( ( COMA ) temp= furcas_tcs_predicatesemantic )*
                             {
-                            pushFollow(FOLLOW_furcas_tcs_predicatesemantic_in_furcas_tcs_foreachpredicatepropertyinit5589);
+                            pushFollow(FOLLOW_furcas_tcs_predicatesemantic_in_furcas_tcs_foreachpredicatepropertyinit5601);
                             temp=furcas_tcs_predicatesemantic();
 
                             checkFollows();
@@ -13037,9 +13073,9 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // ./generationTemp/generated/TCS.g:927:62: COMA
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.6/@thenSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
+                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.6/@thenSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
                             	    }
-                            	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_foreachpredicatepropertyinit5598); if (state.failed) {
+                            	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_foreachpredicatepropertyinit5610); if (state.failed) {
                                         return ret2;
                                     }
                             	    if ( state.backtracking==0 ) {
@@ -13051,7 +13087,7 @@ public class TCSParser extends ObservableInjectingParser {
                             	    if ( state.backtracking==0 ) {
                             	      _exitSepSeq();
                             	    }
-                            	    pushFollow(FOLLOW_furcas_tcs_predicatesemantic_in_furcas_tcs_foreachpredicatepropertyinit5606);
+                            	    pushFollow(FOLLOW_furcas_tcs_predicatesemantic_in_furcas_tcs_foreachpredicatepropertyinit5618);
                             	    temp=furcas_tcs_predicatesemantic();
 
                             	    checkFollows();
@@ -13118,9 +13154,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.7");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.7");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_foreachpredicatepropertyinit5634); if (state.failed) {
+            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_foreachpredicatepropertyinit5646); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
@@ -13172,16 +13208,16 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:944:4: ( ( 'when' EQ (temp= stringSymbol ) COMA ) | ) ( ( 'mode' EQ (temp= identifierOrKeyword ) COMA ) | ) 'as' EQ (temp= identifierOrKeyword )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:944:129: ( ( 'when' EQ (temp= stringSymbol ) COMA ) | )
             int alt101=2;
             int LA101_0 = input.LA(1);
 
-            if ( (LA101_0==62) ) {
+            if ( (LA101_0==93) ) {
                 alt101=1;
             }
-            else if ( (LA101_0==58||LA101_0==129) ) {
+            else if ( (LA101_0==73||LA101_0==97) ) {
                 alt101=2;
             }
             else {
@@ -13202,30 +13238,30 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:944:147: 'when' EQ (temp= stringSymbol ) COMA
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.0/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.0/@thenSequence/@elements.0");
                     }
-                    match(input,62,FOLLOW_62_in_furcas_tcs_predicatesemantic5681); if (state.failed) {
+                    match(input,93,FOLLOW_93_in_furcas_tcs_predicatesemantic5693); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.0/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.0/@thenSequence/@elements.1");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_predicatesemantic5685); if (state.failed) {
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_predicatesemantic5697); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.0/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.0/@thenSequence/@elements.2");
                     }
                     // ./generationTemp/generated/TCS.g:944:639: (temp= stringSymbol )
                     // ./generationTemp/generated/TCS.g:944:641: temp= stringSymbol
                     {
-                    pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_predicatesemantic5693);
+                    pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_predicatesemantic5705);
                     temp=stringSymbol();
 
                     checkFollows();
@@ -13244,9 +13280,9 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.0/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.0/@thenSequence/@elements.3");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_predicatesemantic5700); if (state.failed) {
+                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_predicatesemantic5712); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -13280,16 +13316,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:946:142: ( ( 'mode' EQ (temp= identifierOrKeyword ) COMA ) | )
             int alt102=2;
             int LA102_0 = input.LA(1);
 
-            if ( (LA102_0==58) ) {
+            if ( (LA102_0==97) ) {
                 alt102=1;
             }
-            else if ( (LA102_0==129) ) {
+            else if ( (LA102_0==73) ) {
                 alt102=2;
             }
             else {
@@ -13310,30 +13346,30 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:946:160: 'mode' EQ (temp= identifierOrKeyword ) COMA
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.1/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.1/@thenSequence/@elements.0");
                     }
-                    match(input,58,FOLLOW_58_in_furcas_tcs_predicatesemantic5723); if (state.failed) {
+                    match(input,97,FOLLOW_97_in_furcas_tcs_predicatesemantic5735); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.1/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.1/@thenSequence/@elements.1");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_predicatesemantic5727); if (state.failed) {
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_predicatesemantic5739); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.1/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.1/@thenSequence/@elements.2");
                     }
                     // ./generationTemp/generated/TCS.g:946:652: (temp= identifierOrKeyword )
                     // ./generationTemp/generated/TCS.g:946:654: temp= identifierOrKeyword
                     {
-                    pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_predicatesemantic5735);
+                    pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_predicatesemantic5747);
                     temp=identifierOrKeyword();
 
                     checkFollows();
@@ -13352,9 +13388,9 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.1/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.1/@thenSequence/@elements.3");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_predicatesemantic5742); if (state.failed) {
+                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_predicatesemantic5754); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -13388,25 +13424,25 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.2");
             }
-            match(input,129,FOLLOW_129_in_furcas_tcs_predicatesemantic5759); if (state.failed) {
+            match(input,73,FOLLOW_73_in_furcas_tcs_predicatesemantic5771); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.3");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_predicatesemantic5763); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_predicatesemantic5775); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.4");
             }
             // ./generationTemp/generated/TCS.g:948:429: (temp= identifierOrKeyword )?
             int alt103=2;
@@ -13419,7 +13455,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:948:431: temp= identifierOrKeyword
                     {
-                    pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_predicatesemantic5771);
+                    pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_predicatesemantic5783);
                     temp=identifierOrKeyword();
 
                     checkFollows();
@@ -13444,7 +13480,7 @@ public class TCSParser extends ObservableInjectingParser {
                       "                                                candidate.oclAsType(FURCAS::TCS::ClassTemplate).metaReference.name"+
                       "                                            else "+
                       "                                                candidate.oclAsType(FURCAS::TCS::PrimitiveTemplate).templateName"+
-                      "                                            endif = ?)", "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.4", SyntaxRegistryFacade.getModelUpdaterRegistry());
+                      "                                            endif = ?)", "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.4", SyntaxRegistryFacade.getModelUpdaterRegistry());
                     }
 
                     }
@@ -13494,87 +13530,87 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:974:3: (ret= furcas_tcs_referstoparg | ret= furcas_tcs_lookinparg | ret= furcas_tcs_createinparg | ret= furcas_tcs_asparg | ret= furcas_tcs_separatorparg | ret= furcas_tcs_disambiguateparg | ret= furcas_tcs_autocreateparg | ret= furcas_tcs_importcontextparg | ret= furcas_tcs_partialparg | ret= furcas_tcs_forcedlowerparg | ret= furcas_tcs_forcedupperparg | ret= furcas_tcs_createasparg | ret= furcas_tcs_lookupscopeparg | ret= furcas_tcs_referencebyparg | ret= furcas_tcs_prefixparg | ret= furcas_tcs_postfixparg | ret= furcas_tcs_modeparg )
             int alt104=17;
             switch ( input.LA(1) ) {
-            case 121:
+            case 64:
                 {
                 alt104=1;
                 }
                 break;
-            case 50:
+            case 90:
                 {
                 alt104=2;
                 }
                 break;
-            case 82:
+            case 103:
                 {
                 alt104=3;
                 }
                 break;
-            case 129:
+            case 73:
                 {
                 alt104=4;
                 }
                 break;
-            case 57:
+            case 53:
                 {
                 alt104=5;
                 }
                 break;
-            case 111:
+            case 61:
                 {
                 alt104=6;
                 }
                 break;
-            case 93:
+            case 80:
                 {
                 alt104=7;
                 }
                 break;
-            case 118:
+            case 95:
                 {
                 alt104=8;
                 }
                 break;
-            case 101:
+            case 133:
                 {
                 alt104=9;
                 }
                 break;
-            case 75:
+            case 79:
                 {
                 alt104=10;
                 }
                 break;
-            case 132:
+            case 52:
                 {
                 alt104=11;
                 }
                 break;
-            case 67:
+            case 117:
                 {
                 alt104=12;
                 }
                 break;
-            case 128:
+            case 98:
                 {
                 alt104=13;
                 }
                 break;
-            case 80:
+            case 99:
                 {
                 alt104=14;
                 }
                 break;
-            case 91:
+            case 67:
                 {
                 alt104=15;
                 }
                 break;
-            case 59:
+            case 62:
                 {
                 alt104=16;
                 }
                 break;
-            case 58:
+            case 97:
                 {
                 alt104=17;
                 }
@@ -13591,7 +13627,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:974:4: ret= furcas_tcs_referstoparg
                     {
-                    pushFollow(FOLLOW_furcas_tcs_referstoparg_in_furcas_tcs_propertyarg5813);
+                    pushFollow(FOLLOW_furcas_tcs_referstoparg_in_furcas_tcs_propertyarg5825);
                     ret=furcas_tcs_referstoparg();
 
                     checkFollows();
@@ -13605,7 +13641,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 2 :
                     // ./generationTemp/generated/TCS.g:975:5: ret= furcas_tcs_lookinparg
                     {
-                    pushFollow(FOLLOW_furcas_tcs_lookinparg_in_furcas_tcs_propertyarg5821);
+                    pushFollow(FOLLOW_furcas_tcs_lookinparg_in_furcas_tcs_propertyarg5833);
                     ret=furcas_tcs_lookinparg();
 
                     checkFollows();
@@ -13619,7 +13655,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 3 :
                     // ./generationTemp/generated/TCS.g:976:5: ret= furcas_tcs_createinparg
                     {
-                    pushFollow(FOLLOW_furcas_tcs_createinparg_in_furcas_tcs_propertyarg5829);
+                    pushFollow(FOLLOW_furcas_tcs_createinparg_in_furcas_tcs_propertyarg5841);
                     ret=furcas_tcs_createinparg();
 
                     checkFollows();
@@ -13633,7 +13669,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 4 :
                     // ./generationTemp/generated/TCS.g:977:5: ret= furcas_tcs_asparg
                     {
-                    pushFollow(FOLLOW_furcas_tcs_asparg_in_furcas_tcs_propertyarg5837);
+                    pushFollow(FOLLOW_furcas_tcs_asparg_in_furcas_tcs_propertyarg5849);
                     ret=furcas_tcs_asparg();
 
                     checkFollows();
@@ -13647,7 +13683,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 5 :
                     // ./generationTemp/generated/TCS.g:978:5: ret= furcas_tcs_separatorparg
                     {
-                    pushFollow(FOLLOW_furcas_tcs_separatorparg_in_furcas_tcs_propertyarg5845);
+                    pushFollow(FOLLOW_furcas_tcs_separatorparg_in_furcas_tcs_propertyarg5857);
                     ret=furcas_tcs_separatorparg();
 
                     checkFollows();
@@ -13661,7 +13697,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 6 :
                     // ./generationTemp/generated/TCS.g:979:5: ret= furcas_tcs_disambiguateparg
                     {
-                    pushFollow(FOLLOW_furcas_tcs_disambiguateparg_in_furcas_tcs_propertyarg5853);
+                    pushFollow(FOLLOW_furcas_tcs_disambiguateparg_in_furcas_tcs_propertyarg5865);
                     ret=furcas_tcs_disambiguateparg();
 
                     checkFollows();
@@ -13675,7 +13711,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 7 :
                     // ./generationTemp/generated/TCS.g:980:5: ret= furcas_tcs_autocreateparg
                     {
-                    pushFollow(FOLLOW_furcas_tcs_autocreateparg_in_furcas_tcs_propertyarg5861);
+                    pushFollow(FOLLOW_furcas_tcs_autocreateparg_in_furcas_tcs_propertyarg5873);
                     ret=furcas_tcs_autocreateparg();
 
                     checkFollows();
@@ -13689,7 +13725,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 8 :
                     // ./generationTemp/generated/TCS.g:981:5: ret= furcas_tcs_importcontextparg
                     {
-                    pushFollow(FOLLOW_furcas_tcs_importcontextparg_in_furcas_tcs_propertyarg5869);
+                    pushFollow(FOLLOW_furcas_tcs_importcontextparg_in_furcas_tcs_propertyarg5881);
                     ret=furcas_tcs_importcontextparg();
 
                     checkFollows();
@@ -13703,7 +13739,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 9 :
                     // ./generationTemp/generated/TCS.g:982:5: ret= furcas_tcs_partialparg
                     {
-                    pushFollow(FOLLOW_furcas_tcs_partialparg_in_furcas_tcs_propertyarg5877);
+                    pushFollow(FOLLOW_furcas_tcs_partialparg_in_furcas_tcs_propertyarg5889);
                     ret=furcas_tcs_partialparg();
 
                     checkFollows();
@@ -13717,7 +13753,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 10 :
                     // ./generationTemp/generated/TCS.g:983:5: ret= furcas_tcs_forcedlowerparg
                     {
-                    pushFollow(FOLLOW_furcas_tcs_forcedlowerparg_in_furcas_tcs_propertyarg5885);
+                    pushFollow(FOLLOW_furcas_tcs_forcedlowerparg_in_furcas_tcs_propertyarg5897);
                     ret=furcas_tcs_forcedlowerparg();
 
                     checkFollows();
@@ -13731,7 +13767,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 11 :
                     // ./generationTemp/generated/TCS.g:984:5: ret= furcas_tcs_forcedupperparg
                     {
-                    pushFollow(FOLLOW_furcas_tcs_forcedupperparg_in_furcas_tcs_propertyarg5893);
+                    pushFollow(FOLLOW_furcas_tcs_forcedupperparg_in_furcas_tcs_propertyarg5905);
                     ret=furcas_tcs_forcedupperparg();
 
                     checkFollows();
@@ -13745,7 +13781,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 12 :
                     // ./generationTemp/generated/TCS.g:985:5: ret= furcas_tcs_createasparg
                     {
-                    pushFollow(FOLLOW_furcas_tcs_createasparg_in_furcas_tcs_propertyarg5901);
+                    pushFollow(FOLLOW_furcas_tcs_createasparg_in_furcas_tcs_propertyarg5913);
                     ret=furcas_tcs_createasparg();
 
                     checkFollows();
@@ -13759,7 +13795,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 13 :
                     // ./generationTemp/generated/TCS.g:986:5: ret= furcas_tcs_lookupscopeparg
                     {
-                    pushFollow(FOLLOW_furcas_tcs_lookupscopeparg_in_furcas_tcs_propertyarg5909);
+                    pushFollow(FOLLOW_furcas_tcs_lookupscopeparg_in_furcas_tcs_propertyarg5921);
                     ret=furcas_tcs_lookupscopeparg();
 
                     checkFollows();
@@ -13773,7 +13809,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 14 :
                     // ./generationTemp/generated/TCS.g:987:5: ret= furcas_tcs_referencebyparg
                     {
-                    pushFollow(FOLLOW_furcas_tcs_referencebyparg_in_furcas_tcs_propertyarg5917);
+                    pushFollow(FOLLOW_furcas_tcs_referencebyparg_in_furcas_tcs_propertyarg5929);
                     ret=furcas_tcs_referencebyparg();
 
                     checkFollows();
@@ -13787,7 +13823,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 15 :
                     // ./generationTemp/generated/TCS.g:988:5: ret= furcas_tcs_prefixparg
                     {
-                    pushFollow(FOLLOW_furcas_tcs_prefixparg_in_furcas_tcs_propertyarg5925);
+                    pushFollow(FOLLOW_furcas_tcs_prefixparg_in_furcas_tcs_propertyarg5937);
                     ret=furcas_tcs_prefixparg();
 
                     checkFollows();
@@ -13801,7 +13837,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 16 :
                     // ./generationTemp/generated/TCS.g:989:5: ret= furcas_tcs_postfixparg
                     {
-                    pushFollow(FOLLOW_furcas_tcs_postfixparg_in_furcas_tcs_propertyarg5933);
+                    pushFollow(FOLLOW_furcas_tcs_postfixparg_in_furcas_tcs_propertyarg5945);
                     ret=furcas_tcs_postfixparg();
 
                     checkFollows();
@@ -13815,7 +13851,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 17 :
                     // ./generationTemp/generated/TCS.g:990:5: ret= furcas_tcs_modeparg
                     {
-                    pushFollow(FOLLOW_furcas_tcs_modeparg_in_furcas_tcs_propertyarg5941);
+                    pushFollow(FOLLOW_furcas_tcs_modeparg_in_furcas_tcs_propertyarg5953);
                     ret=furcas_tcs_modeparg();
 
                     checkFollows();
@@ -13871,30 +13907,30 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1004:4: 'refersTo' EQ (temp= identifierOrKeyword )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.41/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.41/@templateSequence/@elements.0");
             }
-            match(input,121,FOLLOW_121_in_furcas_tcs_referstoparg5971); if (state.failed) {
+            match(input,64,FOLLOW_64_in_furcas_tcs_referstoparg5983); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.41/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.41/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_referstoparg5975); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_referstoparg5987); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.41/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.41/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1004:422: (temp= identifierOrKeyword )
             // ./generationTemp/generated/TCS.g:1004:424: temp= identifierOrKeyword
             {
-            pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_referstoparg5983);
+            pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_referstoparg5995);
             temp=identifierOrKeyword();
 
             checkFollows();
@@ -13958,25 +13994,25 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1020:4: 'lookIn' EQ ( ( SHARP 'all' ) | ( (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* )? ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.42/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.42/@templateSequence/@elements.0");
             }
-            match(input,50,FOLLOW_50_in_furcas_tcs_lookinparg6026); if (state.failed) {
+            match(input,90,FOLLOW_90_in_furcas_tcs_lookinparg6038); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.42/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.42/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_lookinparg6030); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_lookinparg6042); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.42/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.42/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1020:421: ( ( SHARP 'all' ) | ( (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* )? ) )
             int alt107=2;
@@ -14006,18 +14042,18 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1020:439: SHARP 'all'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.42/@templateSequence/@elements.2/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.42/@templateSequence/@elements.2/@thenSequence/@elements.0");
                     }
-                    match(input,SHARP,FOLLOW_SHARP_in_furcas_tcs_lookinparg6041); if (state.failed) {
+                    match(input,SHARP,FOLLOW_SHARP_in_furcas_tcs_lookinparg6053); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.42/@templateSequence/@elements.2/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.42/@templateSequence/@elements.2/@thenSequence/@elements.1");
                     }
-                    match(input,69,FOLLOW_69_in_furcas_tcs_lookinparg6045); if (state.failed) {
+                    match(input,58,FOLLOW_58_in_furcas_tcs_lookinparg6057); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -14045,7 +14081,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1020:873: (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.42/@templateSequence/@elements.2/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.42/@templateSequence/@elements.2/@elseSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:1020:1023: (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* )?
                     int alt106=2;
@@ -14058,7 +14094,7 @@ public class TCSParser extends ObservableInjectingParser {
                         case 1 :
                             // ./generationTemp/generated/TCS.g:1020:1025: temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )*
                             {
-                            pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_lookinparg6062);
+                            pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_lookinparg6074);
                             temp=identifierOrKeyword();
 
                             checkFollows();
@@ -14092,9 +14128,9 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // ./generationTemp/generated/TCS.g:1021:57: POINT
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.42/@templateSequence/@elements.2/@elseSequence/@elements.0/@propertyArgs.1/@separatorSequence/@elements.0");
+                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.42/@templateSequence/@elements.2/@elseSequence/@elements.0/@propertyArgs.1/@separatorSequence/@elements.0");
                             	    }
-                            	    match(input,POINT,FOLLOW_POINT_in_furcas_tcs_lookinparg6071); if (state.failed) {
+                            	    match(input,POINT,FOLLOW_POINT_in_furcas_tcs_lookinparg6083); if (state.failed) {
                                         return ret2;
                                     }
                             	    if ( state.backtracking==0 ) {
@@ -14106,7 +14142,7 @@ public class TCSParser extends ObservableInjectingParser {
                             	    if ( state.backtracking==0 ) {
                             	      _exitSepSeq();
                             	    }
-                            	    pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_lookinparg6079);
+                            	    pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_lookinparg6091);
                             	    temp=identifierOrKeyword();
 
                             	    checkFollows();
@@ -14199,25 +14235,25 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1038:4: 'createIn' EQ (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.43/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.43/@templateSequence/@elements.0");
             }
-            match(input,82,FOLLOW_82_in_furcas_tcs_createinparg6134); if (state.failed) {
+            match(input,103,FOLLOW_103_in_furcas_tcs_createinparg6146); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.43/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.43/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_createinparg6138); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_createinparg6150); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.43/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.43/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1038:422: (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* )?
             int alt109=2;
@@ -14230,7 +14266,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:1038:424: temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )*
                     {
-                    pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_createinparg6146);
+                    pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_createinparg6158);
                     temp=identifierOrKeyword();
 
                     checkFollows();
@@ -14264,9 +14300,9 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // ./generationTemp/generated/TCS.g:1039:57: POINT
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.43/@templateSequence/@elements.2/@propertyArgs.1/@separatorSequence/@elements.0");
+                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.43/@templateSequence/@elements.2/@propertyArgs.1/@separatorSequence/@elements.0");
                     	    }
-                    	    match(input,POINT,FOLLOW_POINT_in_furcas_tcs_createinparg6155); if (state.failed) {
+                    	    match(input,POINT,FOLLOW_POINT_in_furcas_tcs_createinparg6167); if (state.failed) {
                                 return ret2;
                             }
                     	    if ( state.backtracking==0 ) {
@@ -14278,7 +14314,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	    if ( state.backtracking==0 ) {
                     	      _exitSepSeq();
                     	    }
-                    	    pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_createinparg6163);
+                    	    pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_createinparg6175);
                     	    temp=identifierOrKeyword();
 
                     	    checkFollows();
@@ -14354,30 +14390,30 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1055:4: 'as' EQ (temp= identifierOrKeyword )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.44/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.44/@templateSequence/@elements.0");
             }
-            match(input,129,FOLLOW_129_in_furcas_tcs_asparg6211); if (state.failed) {
+            match(input,73,FOLLOW_73_in_furcas_tcs_asparg6223); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.44/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.44/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_asparg6215); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_asparg6227); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.44/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.44/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1055:416: (temp= identifierOrKeyword )
             // ./generationTemp/generated/TCS.g:1055:418: temp= identifierOrKeyword
             {
-            pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_asparg6223);
+            pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_asparg6235);
             temp=identifierOrKeyword();
 
             checkFollows();
@@ -14405,7 +14441,7 @@ public class TCSParser extends ObservableInjectingParser {
               "                                                candidate.oclAsType(FURCAS::TCS::ClassTemplate).metaReference.name"+
               "                                            else "+
               "                                                candidate.oclAsType(FURCAS::TCS::PrimitiveTemplate).templateName"+
-              "                                            endif = ?)", "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.44/@templateSequence/@elements.2", SyntaxRegistryFacade.getModelUpdaterRegistry());
+              "                                            endif = ?)", "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.44/@templateSequence/@elements.2", SyntaxRegistryFacade.getModelUpdaterRegistry());
             }
 
             }
@@ -14459,30 +14495,30 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1089:4: 'separator' EQ (temp= furcas_tcs_sequence )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.45/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.45/@templateSequence/@elements.0");
             }
-            match(input,57,FOLLOW_57_in_furcas_tcs_separatorparg6266); if (state.failed) {
+            match(input,53,FOLLOW_53_in_furcas_tcs_separatorparg6278); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.45/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.45/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_separatorparg6270); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_separatorparg6282); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.45/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.45/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1089:423: (temp= furcas_tcs_sequence )
             // ./generationTemp/generated/TCS.g:1089:425: temp= furcas_tcs_sequence
             {
-            pushFollow(FOLLOW_furcas_tcs_sequence_in_furcas_tcs_separatorparg6278);
+            pushFollow(FOLLOW_furcas_tcs_sequence_in_furcas_tcs_separatorparg6290);
             temp=furcas_tcs_sequence();
 
             checkFollows();
@@ -14546,25 +14582,25 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1105:4: 'disambiguate' EQ (temp= stringSymbol )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.46/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.46/@templateSequence/@elements.0");
             }
-            match(input,111,FOLLOW_111_in_furcas_tcs_disambiguateparg6321); if (state.failed) {
+            match(input,61,FOLLOW_61_in_furcas_tcs_disambiguateparg6333); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.46/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.46/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_disambiguateparg6325); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_disambiguateparg6337); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.46/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.46/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1105:426: (temp= stringSymbol )?
             int alt110=2;
@@ -14577,7 +14613,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:1105:428: temp= stringSymbol
                     {
-                    pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_disambiguateparg6333);
+                    pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_disambiguateparg6345);
                     temp=stringSymbol();
 
                     checkFollows();
@@ -14644,30 +14680,30 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1121:4: 'autoCreate' EQ (temp= furcas_tcs_autocreatekind )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.47/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.47/@templateSequence/@elements.0");
             }
-            match(input,93,FOLLOW_93_in_furcas_tcs_autocreateparg6378); if (state.failed) {
+            match(input,80,FOLLOW_80_in_furcas_tcs_autocreateparg6390); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.47/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.47/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_autocreateparg6382); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_autocreateparg6394); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.47/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.47/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1121:424: (temp= furcas_tcs_autocreatekind )
             // ./generationTemp/generated/TCS.g:1121:426: temp= furcas_tcs_autocreatekind
             {
-            pushFollow(FOLLOW_furcas_tcs_autocreatekind_in_furcas_tcs_autocreateparg6390);
+            pushFollow(FOLLOW_furcas_tcs_autocreatekind_in_furcas_tcs_autocreateparg6402);
             temp=furcas_tcs_autocreatekind();
 
             checkFollows();
@@ -14722,17 +14758,17 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1132:3: ( ( 'always' ) | ( 'ifmissing' ) | ( 'never' ) )
             int alt111=3;
             switch ( input.LA(1) ) {
-            case 97:
+            case 71:
                 {
                 alt111=1;
                 }
                 break;
-            case 117:
+            case 60:
                 {
                 alt111=2;
                 }
                 break;
-            case 127:
+            case 59:
                 {
                 alt111=3;
                 }
@@ -14753,9 +14789,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1132:5: 'always'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.48/@mapping.0/@element");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.48/@mappings.0/@element");
                     }
-                    match(input,97,FOLLOW_97_in_furcas_tcs_autocreatekind6434); if (state.failed) {
+                    match(input,71,FOLLOW_71_in_furcas_tcs_autocreatekind6446); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -14777,9 +14813,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1133:5: 'ifmissing'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.48/@mapping.1/@element");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.48/@mappings.1/@element");
                     }
-                    match(input,117,FOLLOW_117_in_furcas_tcs_autocreatekind6444); if (state.failed) {
+                    match(input,60,FOLLOW_60_in_furcas_tcs_autocreatekind6456); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -14801,9 +14837,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1134:5: 'never'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.48/@mapping.2/@element");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.48/@mappings.2/@element");
                     }
-                    match(input,127,FOLLOW_127_in_furcas_tcs_autocreatekind6454); if (state.failed) {
+                    match(input,59,FOLLOW_59_in_furcas_tcs_autocreatekind6466); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -14860,9 +14896,9 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1148:4: 'importContext'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.49/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.49/@templateSequence/@elements.0");
             }
-            match(input,118,FOLLOW_118_in_furcas_tcs_importcontextparg6485); if (state.failed) {
+            match(input,95,FOLLOW_95_in_furcas_tcs_importcontextparg6497); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
@@ -14911,9 +14947,9 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1163:4: 'partial'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.50/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.50/@templateSequence/@elements.0");
             }
-            match(input,101,FOLLOW_101_in_furcas_tcs_partialparg6525); if (state.failed) {
+            match(input,133,FOLLOW_133_in_furcas_tcs_partialparg6537); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
@@ -14965,30 +15001,30 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1178:4: 'forcedLower' EQ (temp= integerSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.51/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.51/@templateSequence/@elements.0");
             }
-            match(input,75,FOLLOW_75_in_furcas_tcs_forcedlowerparg6565); if (state.failed) {
+            match(input,79,FOLLOW_79_in_furcas_tcs_forcedlowerparg6577); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.51/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.51/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_forcedlowerparg6569); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_forcedlowerparg6581); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.51/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.51/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1178:425: (temp= integerSymbol )
             // ./generationTemp/generated/TCS.g:1178:427: temp= integerSymbol
             {
-            pushFollow(FOLLOW_integerSymbol_in_furcas_tcs_forcedlowerparg6577);
+            pushFollow(FOLLOW_integerSymbol_in_furcas_tcs_forcedlowerparg6589);
             temp=integerSymbol();
 
             checkFollows();
@@ -15052,30 +15088,30 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1194:4: 'forcedUpper' EQ (temp= integerSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.52/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.52/@templateSequence/@elements.0");
             }
-            match(input,132,FOLLOW_132_in_furcas_tcs_forcedupperparg6620); if (state.failed) {
+            match(input,52,FOLLOW_52_in_furcas_tcs_forcedupperparg6632); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.52/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.52/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_forcedupperparg6624); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_forcedupperparg6636); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.52/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.52/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1194:425: (temp= integerSymbol )
             // ./generationTemp/generated/TCS.g:1194:427: temp= integerSymbol
             {
-            pushFollow(FOLLOW_integerSymbol_in_furcas_tcs_forcedupperparg6632);
+            pushFollow(FOLLOW_integerSymbol_in_furcas_tcs_forcedupperparg6644);
             temp=integerSymbol();
 
             checkFollows();
@@ -15139,25 +15175,25 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1210:4: 'createAs' EQ (temp= identifierOrKeyword ( ( DLCOLON ) temp= identifierOrKeyword )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.53/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.53/@templateSequence/@elements.0");
             }
-            match(input,67,FOLLOW_67_in_furcas_tcs_createasparg6675); if (state.failed) {
+            match(input,117,FOLLOW_117_in_furcas_tcs_createasparg6687); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.53/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.53/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_createasparg6679); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_createasparg6691); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.53/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.53/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1210:422: (temp= identifierOrKeyword ( ( DLCOLON ) temp= identifierOrKeyword )* )?
             int alt113=2;
@@ -15170,7 +15206,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:1210:424: temp= identifierOrKeyword ( ( DLCOLON ) temp= identifierOrKeyword )*
                     {
-                    pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_createasparg6687);
+                    pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_createasparg6699);
                     temp=identifierOrKeyword();
 
                     checkFollows();
@@ -15204,9 +15240,9 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // ./generationTemp/generated/TCS.g:1211:49: DLCOLON
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.53/@templateSequence/@elements.2/@propertyArgs.1/@separatorSequence/@elements.0");
+                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.53/@templateSequence/@elements.2/@propertyArgs.1/@separatorSequence/@elements.0");
                     	    }
-                    	    match(input,DLCOLON,FOLLOW_DLCOLON_in_furcas_tcs_createasparg6696); if (state.failed) {
+                    	    match(input,DLCOLON,FOLLOW_DLCOLON_in_furcas_tcs_createasparg6708); if (state.failed) {
                                 return ret2;
                             }
                     	    if ( state.backtracking==0 ) {
@@ -15218,7 +15254,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	    if ( state.backtracking==0 ) {
                     	      _exitSepSeq();
                     	    }
-                    	    pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_createasparg6704);
+                    	    pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_createasparg6716);
                     	    temp=identifierOrKeyword();
 
                     	    checkFollows();
@@ -15294,30 +15330,30 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1227:4: 'lookupScope' EQ (temp= stringSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.54/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.54/@templateSequence/@elements.0");
             }
-            match(input,128,FOLLOW_128_in_furcas_tcs_lookupscopeparg6752); if (state.failed) {
+            match(input,98,FOLLOW_98_in_furcas_tcs_lookupscopeparg6764); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.54/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.54/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_lookupscopeparg6756); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_lookupscopeparg6768); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.54/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.54/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1227:425: (temp= stringSymbol )
             // ./generationTemp/generated/TCS.g:1227:427: temp= stringSymbol
             {
-            pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_lookupscopeparg6764);
+            pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_lookupscopeparg6776);
             temp=stringSymbol();
 
             checkFollows();
@@ -15381,30 +15417,30 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1243:4: 'referenceBy' EQ (temp= stringSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.55/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.55/@templateSequence/@elements.0");
             }
-            match(input,80,FOLLOW_80_in_furcas_tcs_referencebyparg6807); if (state.failed) {
+            match(input,99,FOLLOW_99_in_furcas_tcs_referencebyparg6819); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.55/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.55/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_referencebyparg6811); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_referencebyparg6823); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.55/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.55/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1243:425: (temp= stringSymbol )
             // ./generationTemp/generated/TCS.g:1243:427: temp= stringSymbol
             {
-            pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_referencebyparg6819);
+            pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_referencebyparg6831);
             temp=stringSymbol();
 
             checkFollows();
@@ -15468,30 +15504,30 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1259:4: 'prefix' EQ (temp= stringSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.56/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.56/@templateSequence/@elements.0");
             }
-            match(input,91,FOLLOW_91_in_furcas_tcs_prefixparg6862); if (state.failed) {
+            match(input,67,FOLLOW_67_in_furcas_tcs_prefixparg6874); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.56/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.56/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_prefixparg6866); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_prefixparg6878); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.56/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.56/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1259:420: (temp= stringSymbol )
             // ./generationTemp/generated/TCS.g:1259:422: temp= stringSymbol
             {
-            pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_prefixparg6874);
+            pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_prefixparg6886);
             temp=stringSymbol();
 
             checkFollows();
@@ -15555,30 +15591,30 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1275:4: 'postfix' EQ (temp= stringSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.57/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.57/@templateSequence/@elements.0");
             }
-            match(input,59,FOLLOW_59_in_furcas_tcs_postfixparg6917); if (state.failed) {
+            match(input,62,FOLLOW_62_in_furcas_tcs_postfixparg6929); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.57/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.57/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_postfixparg6921); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_postfixparg6933); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.57/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.57/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1275:421: (temp= stringSymbol )
             // ./generationTemp/generated/TCS.g:1275:423: temp= stringSymbol
             {
-            pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_postfixparg6929);
+            pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_postfixparg6941);
             temp=stringSymbol();
 
             checkFollows();
@@ -15642,30 +15678,30 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1291:4: 'mode' EQ (temp= identifierOrKeyword )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.58/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.58/@templateSequence/@elements.0");
             }
-            match(input,58,FOLLOW_58_in_furcas_tcs_modeparg6972); if (state.failed) {
+            match(input,97,FOLLOW_97_in_furcas_tcs_modeparg6984); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.58/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.58/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_modeparg6976); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_modeparg6988); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.58/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.58/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1291:418: (temp= identifierOrKeyword )
             // ./generationTemp/generated/TCS.g:1291:420: temp= identifierOrKeyword
             {
-            pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_modeparg6984);
+            pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_modeparg6996);
             temp=identifierOrKeyword();
 
             checkFollows();
@@ -15722,27 +15758,27 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1302:3: (ret= furcas_tcs_nbnlbarg | ret= furcas_tcs_indentincrbarg | ret= furcas_tcs_startnlbarg | ret= furcas_tcs_startnbnlbarg | ret= furcas_tcs_endnlbarg )
             int alt114=5;
             switch ( input.LA(1) ) {
-            case 64:
+            case 96:
                 {
                 alt114=1;
                 }
                 break;
-            case 87:
+            case 66:
                 {
                 alt114=2;
                 }
                 break;
-            case 133:
+            case 75:
                 {
                 alt114=3;
                 }
                 break;
-            case 122:
+            case 49:
                 {
                 alt114=4;
                 }
                 break;
-            case 113:
+            case 124:
                 {
                 alt114=5;
                 }
@@ -15759,7 +15795,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:1302:4: ret= furcas_tcs_nbnlbarg
                     {
-                    pushFollow(FOLLOW_furcas_tcs_nbnlbarg_in_furcas_tcs_blockarg7024);
+                    pushFollow(FOLLOW_furcas_tcs_nbnlbarg_in_furcas_tcs_blockarg7036);
                     ret=furcas_tcs_nbnlbarg();
 
                     checkFollows();
@@ -15773,7 +15809,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 2 :
                     // ./generationTemp/generated/TCS.g:1303:5: ret= furcas_tcs_indentincrbarg
                     {
-                    pushFollow(FOLLOW_furcas_tcs_indentincrbarg_in_furcas_tcs_blockarg7032);
+                    pushFollow(FOLLOW_furcas_tcs_indentincrbarg_in_furcas_tcs_blockarg7044);
                     ret=furcas_tcs_indentincrbarg();
 
                     checkFollows();
@@ -15787,7 +15823,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 3 :
                     // ./generationTemp/generated/TCS.g:1304:5: ret= furcas_tcs_startnlbarg
                     {
-                    pushFollow(FOLLOW_furcas_tcs_startnlbarg_in_furcas_tcs_blockarg7040);
+                    pushFollow(FOLLOW_furcas_tcs_startnlbarg_in_furcas_tcs_blockarg7052);
                     ret=furcas_tcs_startnlbarg();
 
                     checkFollows();
@@ -15801,7 +15837,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 4 :
                     // ./generationTemp/generated/TCS.g:1305:5: ret= furcas_tcs_startnbnlbarg
                     {
-                    pushFollow(FOLLOW_furcas_tcs_startnbnlbarg_in_furcas_tcs_blockarg7048);
+                    pushFollow(FOLLOW_furcas_tcs_startnbnlbarg_in_furcas_tcs_blockarg7060);
                     ret=furcas_tcs_startnbnlbarg();
 
                     checkFollows();
@@ -15815,7 +15851,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 5 :
                     // ./generationTemp/generated/TCS.g:1306:5: ret= furcas_tcs_endnlbarg
                     {
-                    pushFollow(FOLLOW_furcas_tcs_endnlbarg_in_furcas_tcs_blockarg7056);
+                    pushFollow(FOLLOW_furcas_tcs_endnlbarg_in_furcas_tcs_blockarg7068);
                     ret=furcas_tcs_endnlbarg();
 
                     checkFollows();
@@ -15871,25 +15907,25 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1320:4: 'nbNL' EQ (temp= integerSymbol )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.60/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.60/@templateSequence/@elements.0");
             }
-            match(input,64,FOLLOW_64_in_furcas_tcs_nbnlbarg7086); if (state.failed) {
+            match(input,96,FOLLOW_96_in_furcas_tcs_nbnlbarg7098); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.60/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.60/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_nbnlbarg7090); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_nbnlbarg7102); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.60/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.60/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1320:418: (temp= integerSymbol )?
             int alt115=2;
@@ -15902,7 +15938,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:1320:420: temp= integerSymbol
                     {
-                    pushFollow(FOLLOW_integerSymbol_in_furcas_tcs_nbnlbarg7098);
+                    pushFollow(FOLLOW_integerSymbol_in_furcas_tcs_nbnlbarg7110);
                     temp=integerSymbol();
 
                     checkFollows();
@@ -15969,25 +16005,25 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1336:4: 'indentIncr' EQ (temp= integerSymbol )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.61/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.61/@templateSequence/@elements.0");
             }
-            match(input,87,FOLLOW_87_in_furcas_tcs_indentincrbarg7143); if (state.failed) {
+            match(input,66,FOLLOW_66_in_furcas_tcs_indentincrbarg7155); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.61/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.61/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_indentincrbarg7147); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_indentincrbarg7159); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.61/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.61/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1336:424: (temp= integerSymbol )?
             int alt116=2;
@@ -16000,7 +16036,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:1336:426: temp= integerSymbol
                     {
-                    pushFollow(FOLLOW_integerSymbol_in_furcas_tcs_indentincrbarg7155);
+                    pushFollow(FOLLOW_integerSymbol_in_furcas_tcs_indentincrbarg7167);
                     temp=integerSymbol();
 
                     checkFollows();
@@ -16064,34 +16100,34 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1352:4: 'startNL' EQ ( ( 'true' ) | ( 'false' ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.62/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.62/@templateSequence/@elements.0");
             }
-            match(input,133,FOLLOW_133_in_furcas_tcs_startnlbarg7200); if (state.failed) {
+            match(input,75,FOLLOW_75_in_furcas_tcs_startnlbarg7212); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.62/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.62/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_startnlbarg7204); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_startnlbarg7216); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.62/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.62/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1352:422: ( ( 'true' ) | ( 'false' ) )
             int alt117=2;
             int LA117_0 = input.LA(1);
 
-            if ( (LA117_0==125) ) {
+            if ( (LA117_0==110) ) {
                 alt117=1;
             }
-            else if ( (LA117_0==68) ) {
+            else if ( (LA117_0==118) ) {
                 alt117=2;
             }
             else {
@@ -16112,9 +16148,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1352:440: 'true'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.62/@templateSequence/@elements.2/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.62/@templateSequence/@elements.2/@thenSequence/@elements.0");
                     }
-                    match(input,125,FOLLOW_125_in_furcas_tcs_startnlbarg7214); if (state.failed) {
+                    match(input,110,FOLLOW_110_in_furcas_tcs_startnlbarg7226); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -16142,9 +16178,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1352:699: 'false'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.62/@templateSequence/@elements.2/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.62/@templateSequence/@elements.2/@elseSequence/@elements.0");
                     }
-                    match(input,68,FOLLOW_68_in_furcas_tcs_startnlbarg7227); if (state.failed) {
+                    match(input,118,FOLLOW_118_in_furcas_tcs_startnlbarg7239); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -16214,25 +16250,25 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1368:4: 'startNbNL' EQ (temp= integerSymbol )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.63/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.63/@templateSequence/@elements.0");
             }
-            match(input,122,FOLLOW_122_in_furcas_tcs_startnbnlbarg7274); if (state.failed) {
+            match(input,49,FOLLOW_49_in_furcas_tcs_startnbnlbarg7286); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.63/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.63/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_startnbnlbarg7278); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_startnbnlbarg7290); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.63/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.63/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1368:423: (temp= integerSymbol )?
             int alt118=2;
@@ -16245,7 +16281,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:1368:425: temp= integerSymbol
                     {
-                    pushFollow(FOLLOW_integerSymbol_in_furcas_tcs_startnbnlbarg7286);
+                    pushFollow(FOLLOW_integerSymbol_in_furcas_tcs_startnbnlbarg7298);
                     temp=integerSymbol();
 
                     checkFollows();
@@ -16309,34 +16345,34 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1384:4: 'endNL' EQ ( ( 'true' ) | ( 'false' ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.64/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.64/@templateSequence/@elements.0");
             }
-            match(input,113,FOLLOW_113_in_furcas_tcs_endnlbarg7331); if (state.failed) {
+            match(input,124,FOLLOW_124_in_furcas_tcs_endnlbarg7343); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.64/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.64/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_endnlbarg7335); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_endnlbarg7347); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.64/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.64/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1384:420: ( ( 'true' ) | ( 'false' ) )
             int alt119=2;
             int LA119_0 = input.LA(1);
 
-            if ( (LA119_0==125) ) {
+            if ( (LA119_0==110) ) {
                 alt119=1;
             }
-            else if ( (LA119_0==68) ) {
+            else if ( (LA119_0==118) ) {
                 alt119=2;
             }
             else {
@@ -16357,9 +16393,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1384:438: 'true'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.64/@templateSequence/@elements.2/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.64/@templateSequence/@elements.2/@thenSequence/@elements.0");
                     }
-                    match(input,125,FOLLOW_125_in_furcas_tcs_endnlbarg7345); if (state.failed) {
+                    match(input,110,FOLLOW_110_in_furcas_tcs_endnlbarg7357); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -16387,9 +16423,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1384:697: 'false'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.64/@templateSequence/@elements.2/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.64/@templateSequence/@elements.2/@elseSequence/@elements.0");
                     }
-                    match(input,68,FOLLOW_68_in_furcas_tcs_endnlbarg7358); if (state.failed) {
+                    match(input,118,FOLLOW_118_in_furcas_tcs_endnlbarg7370); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -16459,12 +16495,12 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1400:4: (temp= identifier ) EQ (temp= stringSymbol ) ( ( COLON (temp= furcas_tcs_spacekind ( ( COMA ) temp= furcas_tcs_spacekind )* )? ) | ) SEMI
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.65/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.65/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1400:128: (temp= identifier )
             // ./generationTemp/generated/TCS.g:1400:130: temp= identifier
             {
-            pushFollow(FOLLOW_identifier_in_furcas_tcs_symbol7409);
+            pushFollow(FOLLOW_identifier_in_furcas_tcs_symbol7421);
             temp=identifier();
 
             checkFollows();
@@ -16483,21 +16519,21 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.65/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.65/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_symbol7416); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_symbol7428); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.65/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.65/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1401:314: (temp= stringSymbol )
             // ./generationTemp/generated/TCS.g:1401:316: temp= stringSymbol
             {
-            pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_symbol7424);
+            pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_symbol7436);
             temp=stringSymbol();
 
             checkFollows();
@@ -16516,7 +16552,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.65/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.65/@templateSequence/@elements.3");
             }
             // ./generationTemp/generated/TCS.g:1402:172: ( ( COLON (temp= furcas_tcs_spacekind ( ( COMA ) temp= furcas_tcs_spacekind )* )? ) | )
             int alt122=2;
@@ -16546,29 +16582,29 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1402:190: COLON (temp= furcas_tcs_spacekind ( ( COMA ) temp= furcas_tcs_spacekind )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.65/@templateSequence/@elements.3/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.65/@templateSequence/@elements.3/@thenSequence/@elements.0");
                     }
-                    match(input,COLON,FOLLOW_COLON_in_furcas_tcs_symbol7437); if (state.failed) {
+                    match(input,COLON,FOLLOW_COLON_in_furcas_tcs_symbol7449); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.65/@templateSequence/@elements.3/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.65/@templateSequence/@elements.3/@thenSequence/@elements.1");
                     }
                     // ./generationTemp/generated/TCS.g:1402:513: (temp= furcas_tcs_spacekind ( ( COMA ) temp= furcas_tcs_spacekind )* )?
                     int alt121=2;
                     int LA121_0 = input.LA(1);
 
-                    if ( (LA121_0==53||LA121_0==66||LA121_0==89||LA121_0==108) ) {
+                    if ( (LA121_0==56||LA121_0==115||LA121_0==122||LA121_0==129) ) {
                         alt121=1;
                     }
                     switch (alt121) {
                         case 1 :
                             // ./generationTemp/generated/TCS.g:1402:515: temp= furcas_tcs_spacekind ( ( COMA ) temp= furcas_tcs_spacekind )*
                             {
-                            pushFollow(FOLLOW_furcas_tcs_spacekind_in_furcas_tcs_symbol7445);
+                            pushFollow(FOLLOW_furcas_tcs_spacekind_in_furcas_tcs_symbol7457);
                             temp=furcas_tcs_spacekind();
 
                             checkFollows();
@@ -16602,9 +16638,9 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // ./generationTemp/generated/TCS.g:1403:51: COMA
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.65/@templateSequence/@elements.3/@thenSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
+                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.65/@templateSequence/@elements.3/@thenSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
                             	    }
-                            	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_symbol7454); if (state.failed) {
+                            	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_symbol7466); if (state.failed) {
                                         return ret2;
                                     }
                             	    if ( state.backtracking==0 ) {
@@ -16616,7 +16652,7 @@ public class TCSParser extends ObservableInjectingParser {
                             	    if ( state.backtracking==0 ) {
                             	      _exitSepSeq();
                             	    }
-                            	    pushFollow(FOLLOW_furcas_tcs_spacekind_in_furcas_tcs_symbol7462);
+                            	    pushFollow(FOLLOW_furcas_tcs_spacekind_in_furcas_tcs_symbol7474);
                             	    temp=furcas_tcs_spacekind();
 
                             	    checkFollows();
@@ -16674,9 +16710,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.65/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.65/@templateSequence/@elements.4");
             }
-            match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_symbol7487); if (state.failed) {
+            match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_symbol7499); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
@@ -16719,22 +16755,22 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1415:3: ( ( 'leftSpace' ) | ( 'leftNone' ) | ( 'rightSpace' ) | ( 'rightNone' ) )
             int alt123=4;
             switch ( input.LA(1) ) {
-            case 108:
+            case 129:
                 {
                 alt123=1;
                 }
                 break;
-            case 66:
+            case 115:
                 {
                 alt123=2;
                 }
                 break;
-            case 89:
+            case 122:
                 {
                 alt123=3;
                 }
                 break;
-            case 53:
+            case 56:
                 {
                 alt123=4;
                 }
@@ -16755,9 +16791,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1415:5: 'leftSpace'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.66/@mapping.0/@element");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.66/@mappings.0/@element");
                     }
-                    match(input,108,FOLLOW_108_in_furcas_tcs_spacekind7529); if (state.failed) {
+                    match(input,129,FOLLOW_129_in_furcas_tcs_spacekind7541); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -16779,9 +16815,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1416:5: 'leftNone'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.66/@mapping.1/@element");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.66/@mappings.1/@element");
                     }
-                    match(input,66,FOLLOW_66_in_furcas_tcs_spacekind7539); if (state.failed) {
+                    match(input,115,FOLLOW_115_in_furcas_tcs_spacekind7551); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -16803,9 +16839,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1417:5: 'rightSpace'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.66/@mapping.2/@element");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.66/@mappings.2/@element");
                     }
-                    match(input,89,FOLLOW_89_in_furcas_tcs_spacekind7549); if (state.failed) {
+                    match(input,122,FOLLOW_122_in_furcas_tcs_spacekind7561); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -16827,9 +16863,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1418:5: 'rightNone'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.66/@mapping.3/@element");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.66/@mappings.3/@element");
                     }
-                    match(input,53,FOLLOW_53_in_furcas_tcs_spacekind7559); if (state.failed) {
+                    match(input,56,FOLLOW_56_in_furcas_tcs_spacekind7571); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -16889,12 +16925,12 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1432:4: (temp= identifier ) EQ (temp= stringSymbol ) SEMI
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.67/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.67/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1432:128: (temp= identifier )
             // ./generationTemp/generated/TCS.g:1432:130: temp= identifier
             {
-            pushFollow(FOLLOW_identifier_in_furcas_tcs_keyword7594);
+            pushFollow(FOLLOW_identifier_in_furcas_tcs_keyword7606);
             temp=identifier();
 
             checkFollows();
@@ -16913,21 +16949,21 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.67/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.67/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_keyword7601); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_keyword7613); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.67/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.67/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1433:314: (temp= stringSymbol )
             // ./generationTemp/generated/TCS.g:1433:316: temp= stringSymbol
             {
-            pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_keyword7609);
+            pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_keyword7621);
             temp=stringSymbol();
 
             checkFollows();
@@ -16946,9 +16982,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.67/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.67/@templateSequence/@elements.3");
             }
-            match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_keyword7616); if (state.failed) {
+            match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_keyword7628); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
@@ -17000,16 +17036,16 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1449:4: 'operators' ( ( (temp= identifier ) ) | ) LCURLY ( ( (temp= furcas_tcs_priority (temp= furcas_tcs_priority )* )? ) ) RCURLY
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.68/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.68/@templateSequence/@elements.0");
             }
-            match(input,109,FOLLOW_109_in_furcas_tcs_operatorlist7657); if (state.failed) {
+            match(input,105,FOLLOW_105_in_furcas_tcs_operatorlist7669); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.68/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.68/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:1449:280: ( ( (temp= identifier ) ) | )
             int alt124=2;
@@ -17039,12 +17075,12 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1449:298: (temp= identifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.68/@templateSequence/@elements.1/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.68/@templateSequence/@elements.1/@thenSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:1449:448: (temp= identifier )
                     // ./generationTemp/generated/TCS.g:1449:450: temp= identifier
                     {
-                    pushFollow(FOLLOW_identifier_in_furcas_tcs_operatorlist7670);
+                    pushFollow(FOLLOW_identifier_in_furcas_tcs_operatorlist7682);
                     temp=identifier();
 
                     checkFollows();
@@ -17090,16 +17126,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.68/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.68/@templateSequence/@elements.2");
             }
-            match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_operatorlist7690); if (state.failed) {
+            match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_operatorlist7702); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.68/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.68/@templateSequence/@elements.3");
             }
             // ./generationTemp/generated/TCS.g:1451:289: ( ( (temp= furcas_tcs_priority (temp= furcas_tcs_priority )* )? ) )
             // ./generationTemp/generated/TCS.g:1451:290: ( (temp= furcas_tcs_priority (temp= furcas_tcs_priority )* )? )
@@ -17108,20 +17144,20 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1451:291: (temp= furcas_tcs_priority (temp= furcas_tcs_priority )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.68/@templateSequence/@elements.3/@blockSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.68/@templateSequence/@elements.3/@blockSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1451:442: (temp= furcas_tcs_priority (temp= furcas_tcs_priority )* )?
             int alt126=2;
             int LA126_0 = input.LA(1);
 
-            if ( (LA126_0==100) ) {
+            if ( (LA126_0==130) ) {
                 alt126=1;
             }
             switch (alt126) {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:1451:444: temp= furcas_tcs_priority (temp= furcas_tcs_priority )*
                     {
-                    pushFollow(FOLLOW_furcas_tcs_priority_in_furcas_tcs_operatorlist7701);
+                    pushFollow(FOLLOW_furcas_tcs_priority_in_furcas_tcs_operatorlist7713);
                     temp=furcas_tcs_priority();
 
                     checkFollows();
@@ -17139,7 +17175,7 @@ public class TCSParser extends ObservableInjectingParser {
                         int alt125=2;
                         int LA125_0 = input.LA(1);
 
-                        if ( (LA125_0==100) ) {
+                        if ( (LA125_0==130) ) {
                             alt125=1;
                         }
 
@@ -17148,7 +17184,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	case 1 :
                     	    // ./generationTemp/generated/TCS.g:1452:38: temp= furcas_tcs_priority
                     	    {
-                    	    pushFollow(FOLLOW_furcas_tcs_priority_in_furcas_tcs_operatorlist7709);
+                    	    pushFollow(FOLLOW_furcas_tcs_priority_in_furcas_tcs_operatorlist7721);
                     	    temp=furcas_tcs_priority();
 
                     	    checkFollows();
@@ -17188,9 +17224,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.68/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.68/@templateSequence/@elements.4");
             }
-            match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_operatorlist7724); if (state.failed) {
+            match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_operatorlist7736); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
@@ -17242,21 +17278,21 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1468:4: 'priority' (temp= integerSymbol ) ( () | ( COMA (temp= furcas_tcs_associativity ) ) ) LCURLY ( ( (temp= furcas_tcs_operator (temp= furcas_tcs_operator )* )? ) ) RCURLY
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.69/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.69/@templateSequence/@elements.0");
             }
-            match(input,100,FOLLOW_100_in_furcas_tcs_priority7765); if (state.failed) {
+            match(input,130,FOLLOW_130_in_furcas_tcs_priority7777); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.69/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.69/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:1468:278: (temp= integerSymbol )
             // ./generationTemp/generated/TCS.g:1468:280: temp= integerSymbol
             {
-            pushFollow(FOLLOW_integerSymbol_in_furcas_tcs_priority7772);
+            pushFollow(FOLLOW_integerSymbol_in_furcas_tcs_priority7784);
             temp=integerSymbol();
 
             checkFollows();
@@ -17275,7 +17311,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.69/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.69/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1469:172: ( () | ( COMA (temp= furcas_tcs_associativity ) ) )
             int alt127=2;
@@ -17325,21 +17361,21 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1469:325: COMA (temp= furcas_tcs_associativity )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.69/@templateSequence/@elements.2/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.69/@templateSequence/@elements.2/@elseSequence/@elements.0");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_priority7795); if (state.failed) {
+                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_priority7807); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.69/@templateSequence/@elements.2/@elseSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.69/@templateSequence/@elements.2/@elseSequence/@elements.1");
                     }
                     // ./generationTemp/generated/TCS.g:1469:647: (temp= furcas_tcs_associativity )
                     // ./generationTemp/generated/TCS.g:1469:649: temp= furcas_tcs_associativity
                     {
-                    pushFollow(FOLLOW_furcas_tcs_associativity_in_furcas_tcs_priority7803);
+                    pushFollow(FOLLOW_furcas_tcs_associativity_in_furcas_tcs_priority7815);
                     temp=furcas_tcs_associativity();
 
                     checkFollows();
@@ -17376,16 +17412,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.69/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.69/@templateSequence/@elements.3");
             }
-            match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_priority7817); if (state.failed) {
+            match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_priority7829); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.69/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.69/@templateSequence/@elements.4");
             }
             // ./generationTemp/generated/TCS.g:1471:289: ( ( (temp= furcas_tcs_operator (temp= furcas_tcs_operator )* )? ) )
             // ./generationTemp/generated/TCS.g:1471:290: ( (temp= furcas_tcs_operator (temp= furcas_tcs_operator )* )? )
@@ -17394,20 +17430,20 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1471:291: (temp= furcas_tcs_operator (temp= furcas_tcs_operator )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.69/@templateSequence/@elements.4/@blockSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.69/@templateSequence/@elements.4/@blockSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1471:442: (temp= furcas_tcs_operator (temp= furcas_tcs_operator )* )?
             int alt129=2;
             int LA129_0 = input.LA(1);
 
-            if ( (LA129_0==NAME||LA129_0==59) ) {
+            if ( (LA129_0==NAME||LA129_0==62) ) {
                 alt129=1;
             }
             switch (alt129) {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:1471:444: temp= furcas_tcs_operator (temp= furcas_tcs_operator )*
                     {
-                    pushFollow(FOLLOW_furcas_tcs_operator_in_furcas_tcs_priority7828);
+                    pushFollow(FOLLOW_furcas_tcs_operator_in_furcas_tcs_priority7840);
                     temp=furcas_tcs_operator();
 
                     checkFollows();
@@ -17425,7 +17461,7 @@ public class TCSParser extends ObservableInjectingParser {
                         int alt128=2;
                         int LA128_0 = input.LA(1);
 
-                        if ( (LA128_0==NAME||LA128_0==59) ) {
+                        if ( (LA128_0==NAME||LA128_0==62) ) {
                             alt128=1;
                         }
 
@@ -17434,7 +17470,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	case 1 :
                     	    // ./generationTemp/generated/TCS.g:1472:37: temp= furcas_tcs_operator
                     	    {
-                    	    pushFollow(FOLLOW_furcas_tcs_operator_in_furcas_tcs_priority7836);
+                    	    pushFollow(FOLLOW_furcas_tcs_operator_in_furcas_tcs_priority7848);
                     	    temp=furcas_tcs_operator();
 
                     	    checkFollows();
@@ -17474,9 +17510,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.69/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.69/@templateSequence/@elements.5");
             }
-            match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_priority7851); if (state.failed) {
+            match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_priority7863); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
@@ -17528,13 +17564,13 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1488:4: ( ( 'postfix' ) | ) (temp= identifier ) EQ ( ( ( ( (temp= identifier ) ) | ( (temp= stringSymbol ) ) ) ) | ) COMA (temp= integerSymbol ) SEMI
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1488:129: ( ( 'postfix' ) | )
             int alt130=2;
             int LA130_0 = input.LA(1);
 
-            if ( (LA130_0==59) ) {
+            if ( (LA130_0==62) ) {
                 alt130=1;
             }
             else if ( (LA130_0==NAME) ) {
@@ -17558,9 +17594,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1488:147: 'postfix'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.0/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.0/@thenSequence/@elements.0");
                     }
-                    match(input,59,FOLLOW_59_in_furcas_tcs_operator7898); if (state.failed) {
+                    match(input,62,FOLLOW_62_in_furcas_tcs_operator7910); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -17600,12 +17636,12 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:1489:141: (temp= identifier )
             // ./generationTemp/generated/TCS.g:1489:143: temp= identifier
             {
-            pushFollow(FOLLOW_identifier_in_furcas_tcs_operator7920);
+            pushFollow(FOLLOW_identifier_in_furcas_tcs_operator7932);
             temp=identifier();
 
             checkFollows();
@@ -17624,16 +17660,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.2");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operator7927); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operator7939); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.3");
             }
             // ./generationTemp/generated/TCS.g:1490:315: ( ( ( ( (temp= identifier ) ) | ( (temp= stringSymbol ) ) ) ) | )
             int alt132=2;
@@ -17663,7 +17699,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1490:333: ( ( (temp= identifier ) ) | ( (temp= stringSymbol ) ) )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.3/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.3/@thenSequence/@elements.0");
                     }
                     // ./generationTemp/generated/TCS.g:1490:483: ( ( (temp= identifier ) ) | ( (temp= stringSymbol ) ) )
                     int alt131=2;
@@ -17693,12 +17729,12 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:1490:501: (temp= identifier )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.3/@thenSequence/@elements.0/@sequences.0/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.3/@thenSequence/@elements.0/@sequences.0/@elements.0");
                             }
                             // ./generationTemp/generated/TCS.g:1490:676: (temp= identifier )
                             // ./generationTemp/generated/TCS.g:1490:678: temp= identifier
                             {
-                            pushFollow(FOLLOW_identifier_in_furcas_tcs_operator7946);
+                            pushFollow(FOLLOW_identifier_in_furcas_tcs_operator7958);
                             temp=identifier();
 
                             checkFollows();
@@ -17734,12 +17770,12 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:1491:21: (temp= stringSymbol )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.3/@thenSequence/@elements.0/@sequences.1/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.3/@thenSequence/@elements.0/@sequences.1/@elements.0");
                             }
                             // ./generationTemp/generated/TCS.g:1491:196: (temp= stringSymbol )
                             // ./generationTemp/generated/TCS.g:1491:198: temp= stringSymbol
                             {
-                            pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_operator7966);
+                            pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_operator7978);
                             temp=stringSymbol();
 
                             checkFollows();
@@ -17799,21 +17835,21 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.4");
             }
-            match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operator7991); if (state.failed) {
+            match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operator8003); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.5");
             }
             // ./generationTemp/generated/TCS.g:1492:287: (temp= integerSymbol )
             // ./generationTemp/generated/TCS.g:1492:289: temp= integerSymbol
             {
-            pushFollow(FOLLOW_integerSymbol_in_furcas_tcs_operator7999);
+            pushFollow(FOLLOW_integerSymbol_in_furcas_tcs_operator8011);
             temp=integerSymbol();
 
             checkFollows();
@@ -17832,9 +17868,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.6");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.6");
             }
-            match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_operator8006); if (state.failed) {
+            match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_operator8018); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
@@ -17878,10 +17914,10 @@ public class TCSParser extends ObservableInjectingParser {
             int alt133=2;
             int LA133_0 = input.LA(1);
 
-            if ( (LA133_0==56) ) {
+            if ( (LA133_0==70) ) {
                 alt133=1;
             }
-            else if ( (LA133_0==54) ) {
+            else if ( (LA133_0==125) ) {
                 alt133=2;
             }
             else {
@@ -17899,9 +17935,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1503:5: 'left'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.71/@mapping.0/@element");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.71/@mappings.0/@element");
                     }
-                    match(input,56,FOLLOW_56_in_furcas_tcs_associativity8048); if (state.failed) {
+                    match(input,70,FOLLOW_70_in_furcas_tcs_associativity8060); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -17923,9 +17959,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1504:5: 'right'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.71/@mapping.1/@element");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.71/@mappings.1/@element");
                     }
-                    match(input,54,FOLLOW_54_in_furcas_tcs_associativity8058); if (state.failed) {
+                    match(input,125,FOLLOW_125_in_furcas_tcs_associativity8070); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -17978,7 +18014,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1513:3: (ret= furcas_tcs_andexp )
             // ./generationTemp/generated/TCS.g:1513:4: ret= furcas_tcs_andexp
             {
-            pushFollow(FOLLOW_furcas_tcs_andexp_in_furcas_tcs_expression8086);
+            pushFollow(FOLLOW_furcas_tcs_andexp_in_furcas_tcs_expression8098);
             ret=furcas_tcs_andexp();
 
             checkFollows();
@@ -18031,7 +18067,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1527:4: (temp= furcas_tcs_atomexp ( ( 'and' ) temp= furcas_tcs_atomexp )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.73/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.73/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1527:128: (temp= furcas_tcs_atomexp ( ( 'and' ) temp= furcas_tcs_atomexp )* )?
             int alt135=2;
@@ -18051,7 +18087,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:1527:130: temp= furcas_tcs_atomexp ( ( 'and' ) temp= furcas_tcs_atomexp )*
                     {
-                    pushFollow(FOLLOW_furcas_tcs_atomexp_in_furcas_tcs_andexp8120);
+                    pushFollow(FOLLOW_furcas_tcs_atomexp_in_furcas_tcs_andexp8132);
                     temp=furcas_tcs_atomexp();
 
                     checkFollows();
@@ -18069,7 +18105,7 @@ public class TCSParser extends ObservableInjectingParser {
                         int alt134=2;
                         int LA134_0 = input.LA(1);
 
-                        if ( (LA134_0==55) ) {
+                        if ( (LA134_0==68) ) {
                             alt134=1;
                         }
 
@@ -18085,9 +18121,9 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // ./generationTemp/generated/TCS.g:1528:56: 'and'
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.73/@templateSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
+                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.73/@templateSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
                     	    }
-                    	    match(input,55,FOLLOW_55_in_furcas_tcs_andexp8128); if (state.failed) {
+                    	    match(input,68,FOLLOW_68_in_furcas_tcs_andexp8140); if (state.failed) {
                                 return ret2;
                             }
                     	    if ( state.backtracking==0 ) {
@@ -18099,7 +18135,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	    if ( state.backtracking==0 ) {
                     	      _exitSepSeq();
                     	    }
-                    	    pushFollow(FOLLOW_furcas_tcs_atomexp_in_furcas_tcs_andexp8135);
+                    	    pushFollow(FOLLOW_furcas_tcs_atomexp_in_furcas_tcs_andexp8147);
                     	    temp=furcas_tcs_atomexp();
 
                     	    checkFollows();
@@ -18172,7 +18208,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:1539:4: ret= furcas_tcs_equalsexp
                     {
-                    pushFollow(FOLLOW_furcas_tcs_equalsexp_in_furcas_tcs_atomexp8180);
+                    pushFollow(FOLLOW_furcas_tcs_equalsexp_in_furcas_tcs_atomexp8192);
                     ret=furcas_tcs_equalsexp();
 
                     checkFollows();
@@ -18186,7 +18222,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 2 :
                     // ./generationTemp/generated/TCS.g:1540:5: ret= furcas_tcs_booleanpropertyexp
                     {
-                    pushFollow(FOLLOW_furcas_tcs_booleanpropertyexp_in_furcas_tcs_atomexp8188);
+                    pushFollow(FOLLOW_furcas_tcs_booleanpropertyexp_in_furcas_tcs_atomexp8200);
                     ret=furcas_tcs_booleanpropertyexp();
 
                     checkFollows();
@@ -18200,7 +18236,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 3 :
                     // ./generationTemp/generated/TCS.g:1541:5: ret= furcas_tcs_isdefinedexp
                     {
-                    pushFollow(FOLLOW_furcas_tcs_isdefinedexp_in_furcas_tcs_atomexp8196);
+                    pushFollow(FOLLOW_furcas_tcs_isdefinedexp_in_furcas_tcs_atomexp8208);
                     ret=furcas_tcs_isdefinedexp();
 
                     checkFollows();
@@ -18214,7 +18250,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 4 :
                     // ./generationTemp/generated/TCS.g:1542:5: ret= furcas_tcs_oneexp
                     {
-                    pushFollow(FOLLOW_furcas_tcs_oneexp_in_furcas_tcs_atomexp8204);
+                    pushFollow(FOLLOW_furcas_tcs_oneexp_in_furcas_tcs_atomexp8216);
                     ret=furcas_tcs_oneexp();
 
                     checkFollows();
@@ -18228,7 +18264,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 5 :
                     // ./generationTemp/generated/TCS.g:1543:5: ret= furcas_tcs_instanceofexp
                     {
-                    pushFollow(FOLLOW_furcas_tcs_instanceofexp_in_furcas_tcs_atomexp8212);
+                    pushFollow(FOLLOW_furcas_tcs_instanceofexp_in_furcas_tcs_atomexp8224);
                     ret=furcas_tcs_instanceofexp();
 
                     checkFollows();
@@ -18284,7 +18320,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1557:4: (temp= furcas_tcs_propertyreference )? EQ (temp= furcas_tcs_value )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.75/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.75/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1557:128: (temp= furcas_tcs_propertyreference )?
             int alt137=2;
@@ -18297,7 +18333,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:1557:130: temp= furcas_tcs_propertyreference
                     {
-                    pushFollow(FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_equalsexp8246);
+                    pushFollow(FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_equalsexp8258);
                     temp=furcas_tcs_propertyreference();
 
                     checkFollows();
@@ -18319,21 +18355,21 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.75/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.75/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_equalsexp8255); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_equalsexp8267); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.75/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.75/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1558:329: (temp= furcas_tcs_value )
             // ./generationTemp/generated/TCS.g:1558:331: temp= furcas_tcs_value
             {
-            pushFollow(FOLLOW_furcas_tcs_value_in_furcas_tcs_equalsexp8263);
+            pushFollow(FOLLOW_furcas_tcs_value_in_furcas_tcs_equalsexp8275);
             temp=furcas_tcs_value();
 
             checkFollows();
@@ -18397,16 +18433,16 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1574:4: (temp= furcas_tcs_propertyreference )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.76/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.76/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1574:128: (temp= furcas_tcs_propertyreference )?
             int alt138=2;
             int LA138_0 = input.LA(1);
 
-            if ( (LA138_0==NAME||LA138_0==RARROW||(LA138_0>=49 && LA138_0<=54)||(LA138_0>=56 && LA138_0<=133)) ) {
+            if ( (LA138_0==NAME||LA138_0==RARROW||(LA138_0>=49 && LA138_0<=67)||(LA138_0>=69 && LA138_0<=133)) ) {
                 alt138=1;
             }
-            else if ( (LA138_0==55) ) {
+            else if ( (LA138_0==68) ) {
                 int LA138_2 = input.LA(2);
 
                 if ( (synpred339_TCS()) ) {
@@ -18417,7 +18453,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:1574:130: temp= furcas_tcs_propertyreference
                     {
-                    pushFollow(FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_booleanpropertyexp8310);
+                    pushFollow(FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_booleanpropertyexp8322);
                     temp=furcas_tcs_propertyreference();
 
                     checkFollows();
@@ -18484,25 +18520,25 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1590:4: 'isDefined' LPAREN (temp= furcas_tcs_propertyreference )? RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.77/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.77/@templateSequence/@elements.0");
             }
-            match(input,78,FOLLOW_78_in_furcas_tcs_isdefinedexp8355); if (state.failed) {
+            match(input,92,FOLLOW_92_in_furcas_tcs_isdefinedexp8367); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.77/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.77/@templateSequence/@elements.1");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_isdefinedexp8359); if (state.failed) {
+            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_isdefinedexp8371); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.77/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.77/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1590:427: (temp= furcas_tcs_propertyreference )?
             int alt139=2;
@@ -18515,7 +18551,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:1590:429: temp= furcas_tcs_propertyreference
                     {
-                    pushFollow(FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_isdefinedexp8367);
+                    pushFollow(FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_isdefinedexp8379);
                     temp=furcas_tcs_propertyreference();
 
                     checkFollows();
@@ -18537,9 +18573,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.77/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.77/@templateSequence/@elements.3");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_isdefinedexp8376); if (state.failed) {
+            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_isdefinedexp8388); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
@@ -18591,25 +18627,25 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1606:4: 'one' LPAREN (temp= furcas_tcs_propertyreference )? RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.78/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.78/@templateSequence/@elements.0");
             }
-            match(input,124,FOLLOW_124_in_furcas_tcs_oneexp8417); if (state.failed) {
+            match(input,107,FOLLOW_107_in_furcas_tcs_oneexp8429); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.78/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.78/@templateSequence/@elements.1");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_oneexp8421); if (state.failed) {
+            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_oneexp8433); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.78/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.78/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1606:421: (temp= furcas_tcs_propertyreference )?
             int alt140=2;
@@ -18622,7 +18658,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:1606:423: temp= furcas_tcs_propertyreference
                     {
-                    pushFollow(FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_oneexp8429);
+                    pushFollow(FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_oneexp8441);
                     temp=furcas_tcs_propertyreference();
 
                     checkFollows();
@@ -18644,9 +18680,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.78/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.78/@templateSequence/@elements.3");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_oneexp8438); if (state.failed) {
+            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_oneexp8450); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
@@ -18698,19 +18734,19 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1622:4: (temp= furcas_tcs_propertyreference )? 'instanceOf' (temp= identifier ( ( DLCOLON ) temp= identifier )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.79/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.79/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1622:128: (temp= furcas_tcs_propertyreference )?
             int alt141=2;
             int LA141_0 = input.LA(1);
 
-            if ( (LA141_0==NAME||LA141_0==RARROW||(LA141_0>=49 && LA141_0<=70)||(LA141_0>=72 && LA141_0<=133)) ) {
+            if ( (LA141_0==NAME||LA141_0==RARROW||(LA141_0>=49 && LA141_0<=75)||(LA141_0>=77 && LA141_0<=133)) ) {
                 alt141=1;
             }
-            else if ( (LA141_0==71) ) {
+            else if ( (LA141_0==76) ) {
                 int LA141_2 = input.LA(2);
 
-                if ( (LA141_2==71) ) {
+                if ( (LA141_2==76) ) {
                     alt141=1;
                 }
             }
@@ -18718,7 +18754,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:1622:130: temp= furcas_tcs_propertyreference
                     {
-                    pushFollow(FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_instanceofexp8483);
+                    pushFollow(FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_instanceofexp8495);
                     temp=furcas_tcs_propertyreference();
 
                     checkFollows();
@@ -18740,16 +18776,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.79/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.79/@templateSequence/@elements.1");
             }
-            match(input,71,FOLLOW_71_in_furcas_tcs_instanceofexp8491); if (state.failed) {
+            match(input,76,FOLLOW_76_in_furcas_tcs_instanceofexp8503); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.79/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.79/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1623:337: (temp= identifier ( ( DLCOLON ) temp= identifier )* )?
             int alt143=2;
@@ -18762,7 +18798,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:1623:339: temp= identifier ( ( DLCOLON ) temp= identifier )*
                     {
-                    pushFollow(FOLLOW_identifier_in_furcas_tcs_instanceofexp8498);
+                    pushFollow(FOLLOW_identifier_in_furcas_tcs_instanceofexp8510);
                     temp=identifier();
 
                     checkFollows();
@@ -18796,9 +18832,9 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // ./generationTemp/generated/TCS.g:1624:54: DLCOLON
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.79/@templateSequence/@elements.2/@propertyArgs.0/@separatorSequence/@elements.0");
+                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.79/@templateSequence/@elements.2/@propertyArgs.0/@separatorSequence/@elements.0");
                     	    }
-                    	    match(input,DLCOLON,FOLLOW_DLCOLON_in_furcas_tcs_instanceofexp8507); if (state.failed) {
+                    	    match(input,DLCOLON,FOLLOW_DLCOLON_in_furcas_tcs_instanceofexp8519); if (state.failed) {
                                 return ret2;
                             }
                     	    if ( state.backtracking==0 ) {
@@ -18810,7 +18846,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	    if ( state.backtracking==0 ) {
                     	      _exitSepSeq();
                     	    }
-                    	    pushFollow(FOLLOW_identifier_in_furcas_tcs_instanceofexp8515);
+                    	    pushFollow(FOLLOW_identifier_in_furcas_tcs_instanceofexp8527);
                     	    temp=identifier();
 
                     	    checkFollows();
@@ -18884,7 +18920,7 @@ public class TCSParser extends ObservableInjectingParser {
                 alt144=1;
                 }
                 break;
-            case 55:
+            case 68:
                 {
                 int LA144_2 = input.LA(2);
 
@@ -18968,7 +19004,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:1635:4: ret= furcas_tcs_stringval
                     {
-                    pushFollow(FOLLOW_furcas_tcs_stringval_in_furcas_tcs_value8560);
+                    pushFollow(FOLLOW_furcas_tcs_stringval_in_furcas_tcs_value8572);
                     ret=furcas_tcs_stringval();
 
                     checkFollows();
@@ -18982,7 +19018,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 2 :
                     // ./generationTemp/generated/TCS.g:1636:5: ret= furcas_tcs_integerval
                     {
-                    pushFollow(FOLLOW_furcas_tcs_integerval_in_furcas_tcs_value8568);
+                    pushFollow(FOLLOW_furcas_tcs_integerval_in_furcas_tcs_value8580);
                     ret=furcas_tcs_integerval();
 
                     checkFollows();
@@ -18996,7 +19032,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 3 :
                     // ./generationTemp/generated/TCS.g:1637:5: ret= furcas_tcs_negativeintegerval
                     {
-                    pushFollow(FOLLOW_furcas_tcs_negativeintegerval_in_furcas_tcs_value8576);
+                    pushFollow(FOLLOW_furcas_tcs_negativeintegerval_in_furcas_tcs_value8588);
                     ret=furcas_tcs_negativeintegerval();
 
                     checkFollows();
@@ -19010,7 +19046,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 4 :
                     // ./generationTemp/generated/TCS.g:1638:5: ret= furcas_tcs_enumliteralval
                     {
-                    pushFollow(FOLLOW_furcas_tcs_enumliteralval_in_furcas_tcs_value8584);
+                    pushFollow(FOLLOW_furcas_tcs_enumliteralval_in_furcas_tcs_value8596);
                     ret=furcas_tcs_enumliteralval();
 
                     checkFollows();
@@ -19066,7 +19102,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1652:4: (temp= stringSymbol )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.81/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.81/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1652:128: (temp= stringSymbol )?
             int alt145=2;
@@ -19079,7 +19115,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:1652:130: temp= stringSymbol
                     {
-                    pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_stringval8618);
+                    pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_stringval8630);
                     temp=stringSymbol();
 
                     checkFollows();
@@ -19146,7 +19182,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1668:4: (temp= integerSymbol )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.82/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.82/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1668:128: (temp= integerSymbol )?
             int alt146=2;
@@ -19159,7 +19195,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:1668:130: temp= integerSymbol
                     {
-                    pushFollow(FOLLOW_integerSymbol_in_furcas_tcs_integerval8667);
+                    pushFollow(FOLLOW_integerSymbol_in_furcas_tcs_integerval8679);
                     temp=integerSymbol();
 
                     checkFollows();
@@ -19226,16 +19262,16 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1684:4: MINUS (temp= integerSymbol )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.83/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.83/@templateSequence/@elements.0");
             }
-            match(input,MINUS,FOLLOW_MINUS_in_furcas_tcs_negativeintegerval8713); if (state.failed) {
+            match(input,MINUS,FOLLOW_MINUS_in_furcas_tcs_negativeintegerval8725); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.83/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.83/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:1684:275: (temp= integerSymbol )?
             int alt147=2;
@@ -19248,7 +19284,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:1684:277: temp= integerSymbol
                     {
-                    pushFollow(FOLLOW_integerSymbol_in_furcas_tcs_negativeintegerval8721);
+                    pushFollow(FOLLOW_integerSymbol_in_furcas_tcs_negativeintegerval8733);
                     temp=integerSymbol();
 
                     checkFollows();
@@ -19315,21 +19351,21 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1700:4: SHARP (temp= identifierOrKeyword )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.84/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.84/@templateSequence/@elements.0");
             }
-            match(input,SHARP,FOLLOW_SHARP_in_furcas_tcs_enumliteralval8767); if (state.failed) {
+            match(input,SHARP,FOLLOW_SHARP_in_furcas_tcs_enumliteralval8779); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.84/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.84/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:1700:275: (temp= identifierOrKeyword )
             // ./generationTemp/generated/TCS.g:1700:277: temp= identifierOrKeyword
             {
-            pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_enumliteralval8775);
+            pushFollow(FOLLOW_identifierOrKeyword_in_furcas_tcs_enumliteralval8787);
             temp=identifierOrKeyword();
 
             checkFollows();
@@ -19393,16 +19429,16 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1716:4: ( ( 'omitted' ) | ) 'token' (temp= identifier ) COLON (temp= furcas_tcs_orpattern ) SEMI
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.85/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.85/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1716:129: ( ( 'omitted' ) | )
             int alt148=2;
             int LA148_0 = input.LA(1);
 
-            if ( (LA148_0==99) ) {
+            if ( (LA148_0==102) ) {
                 alt148=1;
             }
-            else if ( (LA148_0==49) ) {
+            else if ( (LA148_0==126) ) {
                 alt148=2;
             }
             else {
@@ -19423,9 +19459,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1716:147: 'omitted'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.85/@templateSequence/@elements.0/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.85/@templateSequence/@elements.0/@thenSequence/@elements.0");
                     }
-                    match(input,99,FOLLOW_99_in_furcas_tcs_token8824); if (state.failed) {
+                    match(input,102,FOLLOW_102_in_furcas_tcs_token8836); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -19465,21 +19501,21 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.85/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.85/@templateSequence/@elements.1");
             }
-            match(input,49,FOLLOW_49_in_furcas_tcs_token8842); if (state.failed) {
+            match(input,126,FOLLOW_126_in_furcas_tcs_token8854); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.85/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.85/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1717:288: (temp= identifier )
             // ./generationTemp/generated/TCS.g:1717:290: temp= identifier
             {
-            pushFollow(FOLLOW_identifier_in_furcas_tcs_token8849);
+            pushFollow(FOLLOW_identifier_in_furcas_tcs_token8861);
             temp=identifier();
 
             checkFollows();
@@ -19498,21 +19534,21 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.85/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.85/@templateSequence/@elements.3");
             }
-            match(input,COLON,FOLLOW_COLON_in_furcas_tcs_token8856); if (state.failed) {
+            match(input,COLON,FOLLOW_COLON_in_furcas_tcs_token8868); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.85/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.85/@templateSequence/@elements.4");
             }
             // ./generationTemp/generated/TCS.g:1718:317: (temp= furcas_tcs_orpattern )
             // ./generationTemp/generated/TCS.g:1718:319: temp= furcas_tcs_orpattern
             {
-            pushFollow(FOLLOW_furcas_tcs_orpattern_in_furcas_tcs_token8864);
+            pushFollow(FOLLOW_furcas_tcs_orpattern_in_furcas_tcs_token8876);
             temp=furcas_tcs_orpattern();
 
             checkFollows();
@@ -19531,9 +19567,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.85/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.85/@templateSequence/@elements.5");
             }
-            match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_token8871); if (state.failed) {
+            match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_token8883); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
@@ -19585,12 +19621,12 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1734:4: (temp= furcas_tcs_simplepattern ( ( PIPE ) temp= furcas_tcs_simplepattern )* )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.86/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.86/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1734:128: (temp= furcas_tcs_simplepattern ( ( PIPE ) temp= furcas_tcs_simplepattern )* )
             // ./generationTemp/generated/TCS.g:1734:130: temp= furcas_tcs_simplepattern ( ( PIPE ) temp= furcas_tcs_simplepattern )*
             {
-            pushFollow(FOLLOW_furcas_tcs_simplepattern_in_furcas_tcs_orpattern8916);
+            pushFollow(FOLLOW_furcas_tcs_simplepattern_in_furcas_tcs_orpattern8928);
             temp=furcas_tcs_simplepattern();
 
             checkFollows();
@@ -19624,9 +19660,9 @@ public class TCSParser extends ObservableInjectingParser {
             	    // ./generationTemp/generated/TCS.g:1735:59: PIPE
             	    {
             	    if ( state.backtracking==0 ) {
-            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.86/@templateSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
+            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.86/@templateSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
             	    }
-            	    match(input,PIPE,FOLLOW_PIPE_in_furcas_tcs_orpattern8925); if (state.failed) {
+            	    match(input,PIPE,FOLLOW_PIPE_in_furcas_tcs_orpattern8937); if (state.failed) {
                         return ret2;
                     }
             	    if ( state.backtracking==0 ) {
@@ -19638,7 +19674,7 @@ public class TCSParser extends ObservableInjectingParser {
             	    if ( state.backtracking==0 ) {
             	      _exitSepSeq();
             	    }
-            	    pushFollow(FOLLOW_furcas_tcs_simplepattern_in_furcas_tcs_orpattern8933);
+            	    pushFollow(FOLLOW_furcas_tcs_simplepattern_in_furcas_tcs_orpattern8945);
             	    temp=furcas_tcs_simplepattern();
 
             	    checkFollows();
@@ -19704,9 +19740,9 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1746:3: (ret= furcas_tcs_rulepattern | ret= furcas_tcs_stringpattern | ret= furcas_tcs_classpattern )
             int alt150=3;
             switch ( input.LA(1) ) {
-            case 51:
-            case 74:
-            case 114:
+            case 57:
+            case 87:
+            case 120:
                 {
                 alt150=1;
                 }
@@ -19733,7 +19769,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:1746:4: ret= furcas_tcs_rulepattern
                     {
-                    pushFollow(FOLLOW_furcas_tcs_rulepattern_in_furcas_tcs_simplepattern8976);
+                    pushFollow(FOLLOW_furcas_tcs_rulepattern_in_furcas_tcs_simplepattern8988);
                     ret=furcas_tcs_rulepattern();
 
                     checkFollows();
@@ -19747,7 +19783,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 2 :
                     // ./generationTemp/generated/TCS.g:1747:5: ret= furcas_tcs_stringpattern
                     {
-                    pushFollow(FOLLOW_furcas_tcs_stringpattern_in_furcas_tcs_simplepattern8984);
+                    pushFollow(FOLLOW_furcas_tcs_stringpattern_in_furcas_tcs_simplepattern8996);
                     ret=furcas_tcs_stringpattern();
 
                     checkFollows();
@@ -19761,7 +19797,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 3 :
                     // ./generationTemp/generated/TCS.g:1748:5: ret= furcas_tcs_classpattern
                     {
-                    pushFollow(FOLLOW_furcas_tcs_classpattern_in_furcas_tcs_simplepattern8992);
+                    pushFollow(FOLLOW_furcas_tcs_classpattern_in_furcas_tcs_simplepattern9004);
                     ret=furcas_tcs_classpattern();
 
                     checkFollows();
@@ -19817,12 +19853,12 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1762:4: (temp= furcas_tcs_rule )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.88/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.88/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1762:128: (temp= furcas_tcs_rule )
             // ./generationTemp/generated/TCS.g:1762:130: temp= furcas_tcs_rule
             {
-            pushFollow(FOLLOW_furcas_tcs_rule_in_furcas_tcs_rulepattern9026);
+            pushFollow(FOLLOW_furcas_tcs_rule_in_furcas_tcs_rulepattern9038);
             temp=furcas_tcs_rule();
 
             checkFollows();
@@ -19879,17 +19915,17 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1773:3: (ret= furcas_tcs_wordrule | ret= furcas_tcs_endoflinerule | ret= furcas_tcs_multilinerule )
             int alt151=3;
             switch ( input.LA(1) ) {
-            case 74:
+            case 57:
                 {
                 alt151=1;
                 }
                 break;
-            case 114:
+            case 87:
                 {
                 alt151=2;
                 }
                 break;
-            case 51:
+            case 120:
                 {
                 alt151=3;
                 }
@@ -19906,7 +19942,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:1773:4: ret= furcas_tcs_wordrule
                     {
-                    pushFollow(FOLLOW_furcas_tcs_wordrule_in_furcas_tcs_rule9066);
+                    pushFollow(FOLLOW_furcas_tcs_wordrule_in_furcas_tcs_rule9078);
                     ret=furcas_tcs_wordrule();
 
                     checkFollows();
@@ -19920,7 +19956,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 2 :
                     // ./generationTemp/generated/TCS.g:1774:5: ret= furcas_tcs_endoflinerule
                     {
-                    pushFollow(FOLLOW_furcas_tcs_endoflinerule_in_furcas_tcs_rule9074);
+                    pushFollow(FOLLOW_furcas_tcs_endoflinerule_in_furcas_tcs_rule9086);
                     ret=furcas_tcs_endoflinerule();
 
                     checkFollows();
@@ -19934,7 +19970,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 3 :
                     // ./generationTemp/generated/TCS.g:1775:5: ret= furcas_tcs_multilinerule
                     {
-                    pushFollow(FOLLOW_furcas_tcs_multilinerule_in_furcas_tcs_rule9082);
+                    pushFollow(FOLLOW_furcas_tcs_multilinerule_in_furcas_tcs_rule9094);
                     ret=furcas_tcs_multilinerule();
 
                     checkFollows();
@@ -19990,48 +20026,48 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1789:4: 'word' LPAREN 'start' EQ (temp= furcas_tcs_orpattern ) COMA 'part' EQ (temp= furcas_tcs_orpattern ) ( ( COMA 'end' EQ (temp= furcas_tcs_orpattern ) ) | ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.0");
             }
-            match(input,74,FOLLOW_74_in_furcas_tcs_wordrule9112); if (state.failed) {
+            match(input,57,FOLLOW_57_in_furcas_tcs_wordrule9124); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.1");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_wordrule9116); if (state.failed) {
+            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_wordrule9128); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.2");
             }
-            match(input,102,FOLLOW_102_in_furcas_tcs_wordrule9120); if (state.failed) {
+            match(input,131,FOLLOW_131_in_furcas_tcs_wordrule9132); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.3");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_wordrule9124); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_wordrule9136); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.4");
             }
             // ./generationTemp/generated/TCS.g:1789:713: (temp= furcas_tcs_orpattern )
             // ./generationTemp/generated/TCS.g:1789:715: temp= furcas_tcs_orpattern
             {
-            pushFollow(FOLLOW_furcas_tcs_orpattern_in_furcas_tcs_wordrule9132);
+            pushFollow(FOLLOW_furcas_tcs_orpattern_in_furcas_tcs_wordrule9144);
             temp=furcas_tcs_orpattern();
 
             checkFollows();
@@ -20050,39 +20086,39 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.5");
             }
-            match(input,COMA,FOLLOW_COMA_in_furcas_tcs_wordrule9139); if (state.failed) {
+            match(input,COMA,FOLLOW_COMA_in_furcas_tcs_wordrule9151); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.6");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.6");
             }
-            match(input,106,FOLLOW_106_in_furcas_tcs_wordrule9143); if (state.failed) {
+            match(input,121,FOLLOW_121_in_furcas_tcs_wordrule9155); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.7");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.7");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_wordrule9147); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_wordrule9159); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.8");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.8");
             }
             // ./generationTemp/generated/TCS.g:1790:607: (temp= furcas_tcs_orpattern )
             // ./generationTemp/generated/TCS.g:1790:609: temp= furcas_tcs_orpattern
             {
-            pushFollow(FOLLOW_furcas_tcs_orpattern_in_furcas_tcs_wordrule9155);
+            pushFollow(FOLLOW_furcas_tcs_orpattern_in_furcas_tcs_wordrule9167);
             temp=furcas_tcs_orpattern();
 
             checkFollows();
@@ -20101,7 +20137,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.9");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.9");
             }
             // ./generationTemp/generated/TCS.g:1791:171: ( ( COMA 'end' EQ (temp= furcas_tcs_orpattern ) ) | )
             int alt152=2;
@@ -20131,39 +20167,39 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1791:189: COMA 'end' EQ (temp= furcas_tcs_orpattern )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.9/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.9/@thenSequence/@elements.0");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_wordrule9168); if (state.failed) {
+                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_wordrule9180); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.9/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.9/@thenSequence/@elements.1");
                     }
-                    match(input,65,FOLLOW_65_in_furcas_tcs_wordrule9172); if (state.failed) {
+                    match(input,55,FOLLOW_55_in_furcas_tcs_wordrule9184); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.9/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.9/@thenSequence/@elements.2");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_wordrule9176); if (state.failed) {
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_wordrule9188); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.9/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.9/@thenSequence/@elements.3");
                     }
                     // ./generationTemp/generated/TCS.g:1791:852: (temp= furcas_tcs_orpattern )
                     // ./generationTemp/generated/TCS.g:1791:854: temp= furcas_tcs_orpattern
                     {
-                    pushFollow(FOLLOW_furcas_tcs_orpattern_in_furcas_tcs_wordrule9184);
+                    pushFollow(FOLLOW_furcas_tcs_orpattern_in_furcas_tcs_wordrule9196);
                     temp=furcas_tcs_orpattern();
 
                     checkFollows();
@@ -20209,9 +20245,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.90/@templateSequence/@elements.10");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.90/@templateSequence/@elements.10");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_wordrule9204); if (state.failed) {
+            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_wordrule9216); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
@@ -20263,49 +20299,49 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1808:4: 'endOfLine' LPAREN 'start' EQ ( ( 'drop' ) | ) (temp= furcas_tcs_stringpattern ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.0");
             }
-            match(input,114,FOLLOW_114_in_furcas_tcs_endoflinerule9245); if (state.failed) {
+            match(input,87,FOLLOW_87_in_furcas_tcs_endoflinerule9257); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.1");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_endoflinerule9249); if (state.failed) {
+            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_endoflinerule9261); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.2");
             }
-            match(input,102,FOLLOW_102_in_furcas_tcs_endoflinerule9253); if (state.failed) {
+            match(input,131,FOLLOW_131_in_furcas_tcs_endoflinerule9265); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.3");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_endoflinerule9257); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_endoflinerule9269); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.4");
             }
             // ./generationTemp/generated/TCS.g:1808:719: ( ( 'drop' ) | )
             int alt153=2;
             int LA153_0 = input.LA(1);
 
-            if ( (LA153_0==84) ) {
+            if ( (LA153_0==112) ) {
                 alt153=1;
             }
             else if ( (LA153_0==STRING) ) {
@@ -20329,9 +20365,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1808:737: 'drop'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.4/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.4/@thenSequence/@elements.0");
                     }
-                    match(input,84,FOLLOW_84_in_furcas_tcs_endoflinerule9267); if (state.failed) {
+                    match(input,112,FOLLOW_112_in_furcas_tcs_endoflinerule9279); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -20371,12 +20407,12 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.5");
             }
             // ./generationTemp/generated/TCS.g:1809:141: (temp= furcas_tcs_stringpattern )
             // ./generationTemp/generated/TCS.g:1809:143: temp= furcas_tcs_stringpattern
             {
-            pushFollow(FOLLOW_furcas_tcs_stringpattern_in_furcas_tcs_endoflinerule9289);
+            pushFollow(FOLLOW_furcas_tcs_stringpattern_in_furcas_tcs_endoflinerule9301);
             temp=furcas_tcs_stringpattern();
 
             checkFollows();
@@ -20395,9 +20431,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.6");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.6");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_endoflinerule9296); if (state.failed) {
+            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_endoflinerule9308); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
@@ -20449,49 +20485,49 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1825:4: 'multiLine' LPAREN 'start' EQ ( ( 'drop' ) | ) (temp= furcas_tcs_stringpattern ) COMA 'end' EQ ( ( 'drop' ) | ) (temp= furcas_tcs_stringpattern ) ( ( COMA 'esc' EQ (temp= furcas_tcs_stringpattern ) ( ( COMA LPAREN (temp= furcas_tcs_mapping ( ( COMA ) temp= furcas_tcs_mapping )* )? RPAREN ) | ) ) | ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.0");
             }
-            match(input,51,FOLLOW_51_in_furcas_tcs_multilinerule9337); if (state.failed) {
+            match(input,120,FOLLOW_120_in_furcas_tcs_multilinerule9349); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.1");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_multilinerule9341); if (state.failed) {
+            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_multilinerule9353); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.2");
             }
-            match(input,102,FOLLOW_102_in_furcas_tcs_multilinerule9345); if (state.failed) {
+            match(input,131,FOLLOW_131_in_furcas_tcs_multilinerule9357); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.3");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_multilinerule9349); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_multilinerule9361); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.4");
             }
             // ./generationTemp/generated/TCS.g:1825:719: ( ( 'drop' ) | )
             int alt154=2;
             int LA154_0 = input.LA(1);
 
-            if ( (LA154_0==84) ) {
+            if ( (LA154_0==112) ) {
                 alt154=1;
             }
             else if ( (LA154_0==STRING) ) {
@@ -20515,9 +20551,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1825:737: 'drop'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.4/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.4/@thenSequence/@elements.0");
                     }
-                    match(input,84,FOLLOW_84_in_furcas_tcs_multilinerule9359); if (state.failed) {
+                    match(input,112,FOLLOW_112_in_furcas_tcs_multilinerule9371); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -20557,12 +20593,12 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.5");
             }
             // ./generationTemp/generated/TCS.g:1826:141: (temp= furcas_tcs_stringpattern )
             // ./generationTemp/generated/TCS.g:1826:143: temp= furcas_tcs_stringpattern
             {
-            pushFollow(FOLLOW_furcas_tcs_stringpattern_in_furcas_tcs_multilinerule9381);
+            pushFollow(FOLLOW_furcas_tcs_stringpattern_in_furcas_tcs_multilinerule9393);
             temp=furcas_tcs_stringpattern();
 
             checkFollows();
@@ -20581,40 +20617,40 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.6");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.6");
             }
-            match(input,COMA,FOLLOW_COMA_in_furcas_tcs_multilinerule9388); if (state.failed) {
+            match(input,COMA,FOLLOW_COMA_in_furcas_tcs_multilinerule9400); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.7");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.7");
             }
-            match(input,65,FOLLOW_65_in_furcas_tcs_multilinerule9392); if (state.failed) {
+            match(input,55,FOLLOW_55_in_furcas_tcs_multilinerule9404); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.8");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.8");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_multilinerule9396); if (state.failed) {
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_multilinerule9408); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.9");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.9");
             }
             // ./generationTemp/generated/TCS.g:1827:607: ( ( 'drop' ) | )
             int alt155=2;
             int LA155_0 = input.LA(1);
 
-            if ( (LA155_0==84) ) {
+            if ( (LA155_0==112) ) {
                 alt155=1;
             }
             else if ( (LA155_0==STRING) ) {
@@ -20638,9 +20674,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1827:625: 'drop'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.9/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.9/@thenSequence/@elements.0");
                     }
-                    match(input,84,FOLLOW_84_in_furcas_tcs_multilinerule9406); if (state.failed) {
+                    match(input,112,FOLLOW_112_in_furcas_tcs_multilinerule9418); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
@@ -20680,12 +20716,12 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.10");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.10");
             }
             // ./generationTemp/generated/TCS.g:1828:142: (temp= furcas_tcs_stringpattern )
             // ./generationTemp/generated/TCS.g:1828:144: temp= furcas_tcs_stringpattern
             {
-            pushFollow(FOLLOW_furcas_tcs_stringpattern_in_furcas_tcs_multilinerule9428);
+            pushFollow(FOLLOW_furcas_tcs_stringpattern_in_furcas_tcs_multilinerule9440);
             temp=furcas_tcs_stringpattern();
 
             checkFollows();
@@ -20704,7 +20740,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.11");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.11");
             }
             // ./generationTemp/generated/TCS.g:1829:171: ( ( COMA 'esc' EQ (temp= furcas_tcs_stringpattern ) ( ( COMA LPAREN (temp= furcas_tcs_mapping ( ( COMA ) temp= furcas_tcs_mapping )* )? RPAREN ) | ) ) | )
             int alt159=2;
@@ -20734,39 +20770,39 @@ public class TCSParser extends ObservableInjectingParser {
                     // ./generationTemp/generated/TCS.g:1829:189: COMA 'esc' EQ (temp= furcas_tcs_stringpattern ) ( ( COMA LPAREN (temp= furcas_tcs_mapping ( ( COMA ) temp= furcas_tcs_mapping )* )? RPAREN ) | )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.0");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_multilinerule9441); if (state.failed) {
+                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_multilinerule9453); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.1");
                     }
-                    match(input,60,FOLLOW_60_in_furcas_tcs_multilinerule9445); if (state.failed) {
+                    match(input,86,FOLLOW_86_in_furcas_tcs_multilinerule9457); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.2");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_multilinerule9449); if (state.failed) {
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_multilinerule9461); if (state.failed) {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.3");
                     }
                     // ./generationTemp/generated/TCS.g:1829:856: (temp= furcas_tcs_stringpattern )
                     // ./generationTemp/generated/TCS.g:1829:858: temp= furcas_tcs_stringpattern
                     {
-                    pushFollow(FOLLOW_furcas_tcs_stringpattern_in_furcas_tcs_multilinerule9457);
+                    pushFollow(FOLLOW_furcas_tcs_stringpattern_in_furcas_tcs_multilinerule9469);
                     temp=furcas_tcs_stringpattern();
 
                     checkFollows();
@@ -20785,7 +20821,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4");
                     }
                     // ./generationTemp/generated/TCS.g:1830:197: ( ( COMA LPAREN (temp= furcas_tcs_mapping ( ( COMA ) temp= furcas_tcs_mapping )* )? RPAREN ) | )
                     int alt158=2;
@@ -20815,38 +20851,38 @@ public class TCSParser extends ObservableInjectingParser {
                             // ./generationTemp/generated/TCS.g:1830:215: COMA LPAREN (temp= furcas_tcs_mapping ( ( COMA ) temp= furcas_tcs_mapping )* )? RPAREN
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.0");
                             }
-                            match(input,COMA,FOLLOW_COMA_in_furcas_tcs_multilinerule9470); if (state.failed) {
+                            match(input,COMA,FOLLOW_COMA_in_furcas_tcs_multilinerule9482); if (state.failed) {
                                 return ret2;
                             }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.1");
                             }
-                            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_multilinerule9475); if (state.failed) {
+                            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_multilinerule9487); if (state.failed) {
                                 return ret2;
                             }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.2");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.2");
                             }
                             // ./generationTemp/generated/TCS.g:1830:792: (temp= furcas_tcs_mapping ( ( COMA ) temp= furcas_tcs_mapping )* )?
                             int alt157=2;
                             int LA157_0 = input.LA(1);
 
-                            if ( (LA157_0==NAME||LA157_0==RARROW||LA157_0==POINT||LA157_0==52||LA157_0==116) ) {
+                            if ( (LA157_0==NAME||LA157_0==RARROW||LA157_0==POINT||LA157_0==54||LA157_0==83) ) {
                                 alt157=1;
                             }
                             switch (alt157) {
                                 case 1 :
                                     // ./generationTemp/generated/TCS.g:1830:794: temp= furcas_tcs_mapping ( ( COMA ) temp= furcas_tcs_mapping )*
                                     {
-                                    pushFollow(FOLLOW_furcas_tcs_mapping_in_furcas_tcs_multilinerule9483);
+                                    pushFollow(FOLLOW_furcas_tcs_mapping_in_furcas_tcs_multilinerule9495);
                                     temp=furcas_tcs_mapping();
 
                                     checkFollows();
@@ -20855,8 +20891,8 @@ public class TCSParser extends ObservableInjectingParser {
                                         return ret2;
                                     }
                                     if ( state.backtracking==0 ) {
-                                      setProperty(ret, "escmapping", temp);
-                                      setParent(temp,ret,"escmapping");
+                                      setProperty(ret, "escMappings", temp);
+                                      setParent(temp,ret,"escMappings");
                                     }
                                     // ./generationTemp/generated/TCS.g:1831:37: ( ( COMA ) temp= furcas_tcs_mapping )*
                                     loop156:
@@ -20880,9 +20916,9 @@ public class TCSParser extends ObservableInjectingParser {
                                     	    // ./generationTemp/generated/TCS.g:1831:56: COMA
                                     	    {
                                     	    if ( state.backtracking==0 ) {
-                                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.2/@propertyArgs.0/@separatorSequence/@elements.0");
+                                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.2/@propertyArgs.0/@separatorSequence/@elements.0");
                                     	    }
-                                    	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_multilinerule9492); if (state.failed) {
+                                    	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_multilinerule9504); if (state.failed) {
                                                 return ret2;
                                             }
                                     	    if ( state.backtracking==0 ) {
@@ -20894,7 +20930,7 @@ public class TCSParser extends ObservableInjectingParser {
                                     	    if ( state.backtracking==0 ) {
                                     	      _exitSepSeq();
                                     	    }
-                                    	    pushFollow(FOLLOW_furcas_tcs_mapping_in_furcas_tcs_multilinerule9500);
+                                    	    pushFollow(FOLLOW_furcas_tcs_mapping_in_furcas_tcs_multilinerule9512);
                                     	    temp=furcas_tcs_mapping();
 
                                     	    checkFollows();
@@ -20903,8 +20939,8 @@ public class TCSParser extends ObservableInjectingParser {
                                                 return ret2;
                                             }
                                     	    if ( state.backtracking==0 ) {
-                                    	      setProperty(ret, "escmapping", temp);
-                                    	      setParent(temp,ret,"escmapping");
+                                    	      setProperty(ret, "escMappings", temp);
+                                    	      setParent(temp,ret,"escMappings");
                                     	    }
 
                                     	    }
@@ -20925,9 +20961,9 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.3");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.3");
                             }
-                            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_multilinerule9512); if (state.failed) {
+                            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_multilinerule9524); if (state.failed) {
                                 return ret2;
                             }
                             if ( state.backtracking==0 ) {
@@ -20988,9 +21024,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.12");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.12");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_multilinerule9543); if (state.failed) {
+            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_multilinerule9555); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
@@ -21046,12 +21082,12 @@ public class TCSParser extends ObservableInjectingParser {
                 alt160=2;
                 }
                 break;
-            case 116:
+            case 54:
                 {
                 alt160=3;
                 }
                 break;
-            case 52:
+            case 83:
                 {
                 alt160=4;
                 }
@@ -21068,7 +21104,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:1844:4: ret= furcas_tcs_simplemapping
                     {
-                    pushFollow(FOLLOW_furcas_tcs_simplemapping_in_furcas_tcs_mapping9581);
+                    pushFollow(FOLLOW_furcas_tcs_simplemapping_in_furcas_tcs_mapping9593);
                     ret=furcas_tcs_simplemapping();
 
                     checkFollows();
@@ -21082,7 +21118,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 2 :
                     // ./generationTemp/generated/TCS.g:1845:5: ret= furcas_tcs_wildcardmapping
                     {
-                    pushFollow(FOLLOW_furcas_tcs_wildcardmapping_in_furcas_tcs_mapping9589);
+                    pushFollow(FOLLOW_furcas_tcs_wildcardmapping_in_furcas_tcs_mapping9601);
                     ret=furcas_tcs_wildcardmapping();
 
                     checkFollows();
@@ -21096,7 +21132,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 3 :
                     // ./generationTemp/generated/TCS.g:1846:5: ret= furcas_tcs_octalmapping
                     {
-                    pushFollow(FOLLOW_furcas_tcs_octalmapping_in_furcas_tcs_mapping9597);
+                    pushFollow(FOLLOW_furcas_tcs_octalmapping_in_furcas_tcs_mapping9609);
                     ret=furcas_tcs_octalmapping();
 
                     checkFollows();
@@ -21110,7 +21146,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 4 :
                     // ./generationTemp/generated/TCS.g:1847:5: ret= furcas_tcs_hexadecimalmapping
                     {
-                    pushFollow(FOLLOW_furcas_tcs_hexadecimalmapping_in_furcas_tcs_mapping9605);
+                    pushFollow(FOLLOW_furcas_tcs_hexadecimalmapping_in_furcas_tcs_mapping9617);
                     ret=furcas_tcs_hexadecimalmapping();
 
                     checkFollows();
@@ -21166,7 +21202,7 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1861:4: (temp= identifier )? RARROW (temp= identifier )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.94/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.94/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1861:128: (temp= identifier )?
             int alt161=2;
@@ -21179,7 +21215,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:1861:130: temp= identifier
                     {
-                    pushFollow(FOLLOW_identifier_in_furcas_tcs_simplemapping9639);
+                    pushFollow(FOLLOW_identifier_in_furcas_tcs_simplemapping9651);
                     temp=identifier();
 
                     checkFollows();
@@ -21201,16 +21237,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.94/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.94/@templateSequence/@elements.1");
             }
-            match(input,RARROW,FOLLOW_RARROW_in_furcas_tcs_simplemapping9648); if (state.failed) {
+            match(input,RARROW,FOLLOW_RARROW_in_furcas_tcs_simplemapping9660); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.94/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.94/@templateSequence/@elements.2");
             }
             // ./generationTemp/generated/TCS.g:1862:319: (temp= identifier )?
             int alt162=2;
@@ -21223,7 +21259,7 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // ./generationTemp/generated/TCS.g:1862:321: temp= identifier
                     {
-                    pushFollow(FOLLOW_identifier_in_furcas_tcs_simplemapping9656);
+                    pushFollow(FOLLOW_identifier_in_furcas_tcs_simplemapping9668);
                     temp=identifier();
 
                     checkFollows();
@@ -21287,27 +21323,27 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1878:4: POINT RARROW POINT
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.95/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.95/@templateSequence/@elements.0");
             }
-            match(input,POINT,FOLLOW_POINT_in_furcas_tcs_wildcardmapping9702); if (state.failed) {
+            match(input,POINT,FOLLOW_POINT_in_furcas_tcs_wildcardmapping9714); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.95/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.95/@templateSequence/@elements.1");
             }
-            match(input,RARROW,FOLLOW_RARROW_in_furcas_tcs_wildcardmapping9707); if (state.failed) {
+            match(input,RARROW,FOLLOW_RARROW_in_furcas_tcs_wildcardmapping9719); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.95/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.95/@templateSequence/@elements.2");
             }
-            match(input,POINT,FOLLOW_POINT_in_furcas_tcs_wildcardmapping9712); if (state.failed) {
+            match(input,POINT,FOLLOW_POINT_in_furcas_tcs_wildcardmapping9724); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
@@ -21356,9 +21392,9 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1893:4: 'octal'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.96/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.96/@templateSequence/@elements.0");
             }
-            match(input,116,FOLLOW_116_in_furcas_tcs_octalmapping9753); if (state.failed) {
+            match(input,54,FOLLOW_54_in_furcas_tcs_octalmapping9765); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
@@ -21407,9 +21443,9 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1908:4: 'hex'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.97/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.97/@templateSequence/@elements.0");
             }
-            match(input,52,FOLLOW_52_in_furcas_tcs_hexadecimalmapping9793); if (state.failed) {
+            match(input,83,FOLLOW_83_in_furcas_tcs_hexadecimalmapping9805); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
@@ -21461,12 +21497,12 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1923:4: (temp= stringSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.98/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.98/@templateSequence/@elements.0");
             }
             // ./generationTemp/generated/TCS.g:1923:128: (temp= stringSymbol )
             // ./generationTemp/generated/TCS.g:1923:130: temp= stringSymbol
             {
-            pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_stringpattern9837);
+            pushFollow(FOLLOW_stringSymbol_in_furcas_tcs_stringpattern9849);
             temp=stringSymbol();
 
             checkFollows();
@@ -21530,21 +21566,21 @@ public class TCSParser extends ObservableInjectingParser {
             // ./generationTemp/generated/TCS.g:1939:4: LSQUARE (temp= identifier ) RSQUARE
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.99/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.99/@templateSequence/@elements.0");
             }
-            match(input,LSQUARE,FOLLOW_LSQUARE_in_furcas_tcs_classpattern9881); if (state.failed) {
+            match(input,LSQUARE,FOLLOW_LSQUARE_in_furcas_tcs_classpattern9893); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.99/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.99/@templateSequence/@elements.1");
             }
             // ./generationTemp/generated/TCS.g:1939:277: (temp= identifier )
             // ./generationTemp/generated/TCS.g:1939:279: temp= identifier
             {
-            pushFollow(FOLLOW_identifier_in_furcas_tcs_classpattern9889);
+            pushFollow(FOLLOW_identifier_in_furcas_tcs_classpattern9901);
             temp=identifier();
 
             checkFollows();
@@ -21563,9 +21599,9 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.99/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.99/@templateSequence/@elements.2");
             }
-            match(input,RSQUARE,FOLLOW_RSQUARE_in_furcas_tcs_classpattern9896); if (state.failed) {
+            match(input,RSQUARE,FOLLOW_RSQUARE_in_furcas_tcs_classpattern9908); if (state.failed) {
                 return ret2;
             }
             if ( state.backtracking==0 ) {
@@ -21609,7 +21645,7 @@ public class TCSParser extends ObservableInjectingParser {
         // ./generationTemp/generated/TCS.g:360:146: (temp= ecore_epackage )
         {
         if ( state.backtracking==0 ) {
-          _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.8/@templateSequence/@elements.0/@thenSequence/@elements.0");
+          _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.8/@templateSequence/@elements.0/@thenSequence/@elements.0");
         }
         // ./generationTemp/generated/TCS.g:360:295: (temp= ecore_epackage )
         // ./generationTemp/generated/TCS.g:360:297: temp= ecore_epackage
@@ -21648,21 +21684,21 @@ public class TCSParser extends ObservableInjectingParser {
         // ./generationTemp/generated/TCS.g:924:192: COMA 'mode' EQ (temp= identifierOrKeyword )
         {
         if ( state.backtracking==0 ) {
-          _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.5/@thenSequence/@elements.0");
+          _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.5/@thenSequence/@elements.0");
         }
-        match(input,COMA,FOLLOW_COMA_in_synpred274_TCS5536); if (state.failed) {
+        match(input,COMA,FOLLOW_COMA_in_synpred274_TCS5548); if (state.failed) {
             return ;
         }
-        match(input,58,FOLLOW_58_in_synpred274_TCS5540); if (state.failed) {
+        match(input,97,FOLLOW_97_in_synpred274_TCS5552); if (state.failed) {
             return ;
         }
-        match(input,EQ,FOLLOW_EQ_in_synpred274_TCS5544); if (state.failed) {
+        match(input,EQ,FOLLOW_EQ_in_synpred274_TCS5556); if (state.failed) {
             return ;
         }
         // ./generationTemp/generated/TCS.g:924:856: (temp= identifierOrKeyword )
         // ./generationTemp/generated/TCS.g:924:858: temp= identifierOrKeyword
         {
-        pushFollow(FOLLOW_identifierOrKeyword_in_synpred274_TCS5552);
+        pushFollow(FOLLOW_identifierOrKeyword_in_synpred274_TCS5564);
         temp=identifierOrKeyword();
 
         checkFollows();
@@ -21689,7 +21725,7 @@ public class TCSParser extends ObservableInjectingParser {
         // ./generationTemp/generated/TCS.g:1527:130: (temp= furcas_tcs_atomexp ( ( 'and' ) temp= furcas_tcs_atomexp )* )
         // ./generationTemp/generated/TCS.g:1527:130: temp= furcas_tcs_atomexp ( ( 'and' ) temp= furcas_tcs_atomexp )*
         {
-        pushFollow(FOLLOW_furcas_tcs_atomexp_in_synpred333_TCS8120);
+        pushFollow(FOLLOW_furcas_tcs_atomexp_in_synpred333_TCS8132);
         temp=furcas_tcs_atomexp();
 
         checkFollows();
@@ -21703,7 +21739,7 @@ public class TCSParser extends ObservableInjectingParser {
             int alt206=2;
             int LA206_0 = input.LA(1);
 
-            if ( (LA206_0==55) ) {
+            if ( (LA206_0==68) ) {
                 alt206=1;
             }
 
@@ -21716,15 +21752,15 @@ public class TCSParser extends ObservableInjectingParser {
         	    // ./generationTemp/generated/TCS.g:1528:56: 'and'
         	    {
         	    if ( state.backtracking==0 ) {
-        	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.73/@templateSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
+        	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.73/@templateSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
         	    }
-        	    match(input,55,FOLLOW_55_in_synpred333_TCS8128); if (state.failed) {
+        	    match(input,68,FOLLOW_68_in_synpred333_TCS8140); if (state.failed) {
                     return ;
                 }
 
         	    }
 
-        	    pushFollow(FOLLOW_furcas_tcs_atomexp_in_synpred333_TCS8135);
+        	    pushFollow(FOLLOW_furcas_tcs_atomexp_in_synpred333_TCS8147);
         	    temp=furcas_tcs_atomexp();
 
         	    checkFollows();
@@ -21754,7 +21790,7 @@ public class TCSParser extends ObservableInjectingParser {
         // ./generationTemp/generated/TCS.g:1539:4: (ret= furcas_tcs_equalsexp )
         // ./generationTemp/generated/TCS.g:1539:4: ret= furcas_tcs_equalsexp
         {
-        pushFollow(FOLLOW_furcas_tcs_equalsexp_in_synpred334_TCS8180);
+        pushFollow(FOLLOW_furcas_tcs_equalsexp_in_synpred334_TCS8192);
         ret=furcas_tcs_equalsexp();
 
         checkFollows();
@@ -21775,7 +21811,7 @@ public class TCSParser extends ObservableInjectingParser {
         // ./generationTemp/generated/TCS.g:1540:5: (ret= furcas_tcs_booleanpropertyexp )
         // ./generationTemp/generated/TCS.g:1540:5: ret= furcas_tcs_booleanpropertyexp
         {
-        pushFollow(FOLLOW_furcas_tcs_booleanpropertyexp_in_synpred335_TCS8188);
+        pushFollow(FOLLOW_furcas_tcs_booleanpropertyexp_in_synpred335_TCS8200);
         ret=furcas_tcs_booleanpropertyexp();
 
         checkFollows();
@@ -21796,7 +21832,7 @@ public class TCSParser extends ObservableInjectingParser {
         // ./generationTemp/generated/TCS.g:1574:130: (temp= furcas_tcs_propertyreference )
         // ./generationTemp/generated/TCS.g:1574:130: temp= furcas_tcs_propertyreference
         {
-        pushFollow(FOLLOW_furcas_tcs_propertyreference_in_synpred339_TCS8310);
+        pushFollow(FOLLOW_furcas_tcs_propertyreference_in_synpred339_TCS8322);
         temp=furcas_tcs_propertyreference();
 
         checkFollows();
@@ -21817,7 +21853,7 @@ public class TCSParser extends ObservableInjectingParser {
         // ./generationTemp/generated/TCS.g:1635:4: (ret= furcas_tcs_stringval )
         // ./generationTemp/generated/TCS.g:1635:4: ret= furcas_tcs_stringval
         {
-        pushFollow(FOLLOW_furcas_tcs_stringval_in_synpred345_TCS8560);
+        pushFollow(FOLLOW_furcas_tcs_stringval_in_synpred345_TCS8572);
         ret=furcas_tcs_stringval();
 
         checkFollows();
@@ -21838,7 +21874,7 @@ public class TCSParser extends ObservableInjectingParser {
         // ./generationTemp/generated/TCS.g:1636:5: (ret= furcas_tcs_integerval )
         // ./generationTemp/generated/TCS.g:1636:5: ret= furcas_tcs_integerval
         {
-        pushFollow(FOLLOW_furcas_tcs_integerval_in_synpred346_TCS8568);
+        pushFollow(FOLLOW_furcas_tcs_integerval_in_synpred346_TCS8580);
         ret=furcas_tcs_integerval();
 
         checkFollows();
@@ -21976,47 +22012,47 @@ public class TCSParser extends ObservableInjectingParser {
     static final String DFA3_eofS =
         "\2\4\1\uffff\1\2\21\uffff";
     static final String DFA3_minS =
-        "\1\4\1\10\1\uffff\1\4\1\uffff\3\0\1\12\7\0\1\4\1\12\1\4\2\0";
+        "\1\4\1\10\1\uffff\1\4\1\uffff\1\0\1\12\3\0\1\4\4\0\1\12\2\0\1\4"+
+        "\2\0";
     static final String DFA3_maxS =
-        "\2\173\1\uffff\1\u0085\1\uffff\3\0\1\156\7\0\2\153\1\u0085\2\0";
+        "\2\u0084\1\uffff\1\u0085\1\uffff\1\0\1\u0084\3\0\1\u0084\4\0\1\u0084"+
+        "\2\0\1\u0085\2\0";
     static final String DFA3_acceptS =
         "\2\uffff\1\1\1\uffff\1\2\20\uffff";
     static final String DFA3_specialS =
-        "\5\uffff\1\2\1\6\1\4\1\uffff\1\10\1\11\1\13\1\7\1\5\1\12\1\1\3\uffff"+
-        "\1\0\1\3}>";
+        "\5\uffff\1\6\1\uffff\1\7\1\11\1\2\1\uffff\1\13\1\10\1\1\1\0\1\uffff"+
+        "\1\12\1\5\1\uffff\1\3\1\4}>";
     static final String[] DFA3_transitionS = {
             "\1\1\1\2\2\uffff\1\2\1\3\1\4\1\uffff\1\4\2\uffff\1\4\1\uffff"+
-            "\1\4\53\uffff\1\4\12\uffff\1\4\3\uffff\1\4\2\uffff\1\4\1\uffff"+
-            "\1\4\4\uffff\1\4\3\uffff\1\4\5\uffff\1\4\7\uffff\1\4\2\uffff"+
-            "\1\4\2\uffff\1\4\14\uffff\1\4",
-            "\1\2\2\4\1\uffff\1\4\2\uffff\1\4\1\uffff\1\4\53\uffff\1\4\12"+
-            "\uffff\1\4\3\uffff\1\4\2\uffff\1\4\1\uffff\1\4\4\uffff\1\4\3"+
-            "\uffff\1\4\5\uffff\1\4\7\uffff\1\4\2\uffff\1\4\2\uffff\1\4\14"+
-            "\uffff\1\4",
+            "\1\4\40\uffff\1\4\14\uffff\1\4\5\uffff\1\4\13\uffff\2\4\1\uffff"+
+            "\2\4\10\uffff\1\4\5\uffff\1\4\3\uffff\1\4\11\uffff\1\4\21\uffff"+
+            "\1\4",
+            "\1\2\2\4\1\uffff\1\4\2\uffff\1\4\1\uffff\1\4\40\uffff\1\4\14"+
+            "\uffff\1\4\5\uffff\1\4\13\uffff\2\4\1\uffff\2\4\10\uffff\1\4"+
+            "\5\uffff\1\4\3\uffff\1\4\11\uffff\1\4\21\uffff\1\4",
             "",
             "\1\5\3\uffff\3\2\1\uffff\1\2\2\uffff\1\2\1\uffff\1\2\37\uffff"+
-            "\14\4\1\6\12\4\1\7\3\4\1\10\2\4\1\11\1\4\1\12\4\4\1\13\3\4\1"+
-            "\14\5\4\1\15\7\4\1\16\2\4\1\17\2\4\1\20\14\4\1\21\12\4",
+            "\1\4\1\6\14\4\1\7\5\4\1\10\13\4\1\11\1\12\1\4\1\13\1\14\10\4"+
+            "\1\15\5\4\1\16\3\4\1\17\11\4\1\20\21\4\1\21\1\4",
             "",
             "\1\uffff",
-            "\1\uffff",
-            "\1\uffff",
-            "\1\4\4\uffff\1\4\1\uffff\1\4\53\uffff\1\4\12\uffff\1\4\6\uffff"+
-            "\1\4\1\uffff\1\4\4\uffff\1\4\11\uffff\1\4\7\uffff\1\4\2\uffff"+
-            "\1\4\2\uffff\1\2",
+            "\1\4\4\uffff\1\4\1\uffff\1\4\55\uffff\1\4\5\uffff\1\4\13\uffff"+
+            "\1\4\1\2\1\uffff\2\4\10\uffff\1\4\23\uffff\1\4\21\uffff\1\4",
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
+            "\1\2\5\uffff\1\4\4\uffff\1\4\1\uffff\1\4\55\uffff\1\4\5\uffff"+
+            "\1\4\13\uffff\1\4\2\uffff\2\4\10\uffff\1\4\23\uffff\1\4\21\uffff"+
+            "\1\4",
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
-            "\1\2\5\uffff\1\4\4\uffff\1\4\1\uffff\1\4\53\uffff\1\4\12\uffff"+
-            "\1\4\6\uffff\1\4\1\uffff\1\4\4\uffff\1\4\11\uffff\1\4\7\uffff"+
-            "\1\4\2\uffff\1\4",
-            "\1\4\4\uffff\1\23\1\uffff\1\22\53\uffff\1\4\12\uffff\1\4\6"+
-            "\uffff\1\4\1\uffff\1\4\4\uffff\1\4\11\uffff\1\4\7\uffff\1\4"+
-            "\2\uffff\1\4",
+            "\1\4\4\uffff\1\23\1\uffff\1\22\55\uffff\1\4\5\uffff\1\4\13"+
+            "\uffff\1\4\2\uffff\2\4\10\uffff\1\4\23\uffff\1\4\21\uffff\1"+
+            "\4",
+            "\1\uffff",
+            "\1\uffff",
             "\2\4\3\uffff\1\2\1\4\4\uffff\1\24\1\4\2\uffff\1\4\1\uffff\1"+
             "\4\2\uffff\1\4\3\uffff\2\4\23\uffff\125\4",
             "\1\uffff",
@@ -22060,10 +22096,10 @@ public class TCSParser extends ObservableInjectingParser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA3_19 = input.LA(1);
+                        int LA3_14 = input.LA(1);
 
                          
-                        int index3_19 = input.index();
+                        int index3_14 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred171_TCS()) ) {s = 2;}
@@ -22071,80 +22107,12 @@ public class TCSParser extends ObservableInjectingParser {
                         else if ( (true) ) {s = 4;}
 
                          
-                        input.seek(index3_19);
+                        input.seek(index3_14);
                         if ( s>=0 ) {
                             return s;
                         }
                         break;
                     case 1 : 
-                        int LA3_15 = input.LA(1);
-
-                         
-                        int index3_15 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred171_TCS()) ) {s = 2;}
-
-                        else if ( (true) ) {s = 4;}
-
-                         
-                        input.seek(index3_15);
-                        if ( s>=0 ) {
-                            return s;
-                        }
-                        break;
-                    case 2 : 
-                        int LA3_5 = input.LA(1);
-
-                         
-                        int index3_5 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred171_TCS()) ) {s = 2;}
-
-                        else if ( (true) ) {s = 4;}
-
-                         
-                        input.seek(index3_5);
-                        if ( s>=0 ) {
-                            return s;
-                        }
-                        break;
-                    case 3 : 
-                        int LA3_20 = input.LA(1);
-
-                         
-                        int index3_20 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred171_TCS()) ) {s = 2;}
-
-                        else if ( (true) ) {s = 4;}
-
-                         
-                        input.seek(index3_20);
-                        if ( s>=0 ) {
-                            return s;
-                        }
-                        break;
-                    case 4 : 
-                        int LA3_7 = input.LA(1);
-
-                         
-                        int index3_7 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred171_TCS()) ) {s = 2;}
-
-                        else if ( (true) ) {s = 4;}
-
-                         
-                        input.seek(index3_7);
-                        if ( s>=0 ) {
-                            return s;
-                        }
-                        break;
-                    case 5 : 
                         int LA3_13 = input.LA(1);
 
                          
@@ -22161,41 +22129,7 @@ public class TCSParser extends ObservableInjectingParser {
                             return s;
                         }
                         break;
-                    case 6 : 
-                        int LA3_6 = input.LA(1);
-
-                         
-                        int index3_6 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred171_TCS()) ) {s = 2;}
-
-                        else if ( (true) ) {s = 4;}
-
-                         
-                        input.seek(index3_6);
-                        if ( s>=0 ) {
-                            return s;
-                        }
-                        break;
-                    case 7 : 
-                        int LA3_12 = input.LA(1);
-
-                         
-                        int index3_12 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred171_TCS()) ) {s = 2;}
-
-                        else if ( (true) ) {s = 4;}
-
-                         
-                        input.seek(index3_12);
-                        if ( s>=0 ) {
-                            return s;
-                        }
-                        break;
-                    case 8 : 
+                    case 2 : 
                         int LA3_9 = input.LA(1);
 
                          
@@ -22212,11 +22146,11 @@ public class TCSParser extends ObservableInjectingParser {
                             return s;
                         }
                         break;
-                    case 9 : 
-                        int LA3_10 = input.LA(1);
+                    case 3 : 
+                        int LA3_19 = input.LA(1);
 
                          
-                        int index3_10 = input.index();
+                        int index3_19 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred171_TCS()) ) {s = 2;}
@@ -22224,16 +22158,118 @@ public class TCSParser extends ObservableInjectingParser {
                         else if ( (true) ) {s = 4;}
 
                          
-                        input.seek(index3_10);
+                        input.seek(index3_19);
+                        if ( s>=0 ) {
+                            return s;
+                        }
+                        break;
+                    case 4 : 
+                        int LA3_20 = input.LA(1);
+
+                         
+                        int index3_20 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred171_TCS()) ) {s = 2;}
+
+                        else if ( (true) ) {s = 4;}
+
+                         
+                        input.seek(index3_20);
+                        if ( s>=0 ) {
+                            return s;
+                        }
+                        break;
+                    case 5 : 
+                        int LA3_17 = input.LA(1);
+
+                         
+                        int index3_17 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred171_TCS()) ) {s = 2;}
+
+                        else if ( (true) ) {s = 4;}
+
+                         
+                        input.seek(index3_17);
+                        if ( s>=0 ) {
+                            return s;
+                        }
+                        break;
+                    case 6 : 
+                        int LA3_5 = input.LA(1);
+
+                         
+                        int index3_5 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred171_TCS()) ) {s = 2;}
+
+                        else if ( (true) ) {s = 4;}
+
+                         
+                        input.seek(index3_5);
+                        if ( s>=0 ) {
+                            return s;
+                        }
+                        break;
+                    case 7 : 
+                        int LA3_7 = input.LA(1);
+
+                         
+                        int index3_7 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred171_TCS()) ) {s = 2;}
+
+                        else if ( (true) ) {s = 4;}
+
+                         
+                        input.seek(index3_7);
+                        if ( s>=0 ) {
+                            return s;
+                        }
+                        break;
+                    case 8 : 
+                        int LA3_12 = input.LA(1);
+
+                         
+                        int index3_12 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred171_TCS()) ) {s = 2;}
+
+                        else if ( (true) ) {s = 4;}
+
+                         
+                        input.seek(index3_12);
+                        if ( s>=0 ) {
+                            return s;
+                        }
+                        break;
+                    case 9 : 
+                        int LA3_8 = input.LA(1);
+
+                         
+                        int index3_8 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred171_TCS()) ) {s = 2;}
+
+                        else if ( (true) ) {s = 4;}
+
+                         
+                        input.seek(index3_8);
                         if ( s>=0 ) {
                             return s;
                         }
                         break;
                     case 10 : 
-                        int LA3_14 = input.LA(1);
+                        int LA3_16 = input.LA(1);
 
                          
-                        int index3_14 = input.index();
+                        int index3_16 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred171_TCS()) ) {s = 2;}
@@ -22241,7 +22277,7 @@ public class TCSParser extends ObservableInjectingParser {
                         else if ( (true) ) {s = 4;}
 
                          
-                        input.seek(index3_14);
+                        input.seek(index3_16);
                         if ( s>=0 ) {
                             return s;
                         }
@@ -22274,13 +22310,13 @@ public class TCSParser extends ObservableInjectingParser {
     static final String DFA87_eotS =
         "\u00b5\uffff";
     static final String DFA87_eofS =
-        "\130\uffff\2\u00b2\126\uffff\2\u00b2\3\uffff";
+        "\130\uffff\2\u00b0\127\uffff\2\u00b0\2\uffff";
     static final String DFA87_minS =
-        "\1\4\126\13\3\4\126\13\2\12\3\uffff";
+        "\1\4\126\13\3\4\126\13\1\uffff\2\12\2\uffff";
     static final String DFA87_maxS =
-        "\1\u0085\126\37\3\u0085\126\37\2\36\3\uffff";
+        "\1\u0085\126\37\3\u0085\126\37\1\uffff\2\36\2\uffff";
     static final String DFA87_acceptS =
-        "\u00b2\uffff\1\1\1\3\1\2";
+        "\u00b0\uffff\1\1\2\uffff\1\2\1\3";
     static final String DFA87_specialS =
         "\u00b5\uffff}>";
     static final String[] DFA87_transitionS = {
@@ -22389,10 +22425,10 @@ public class TCSParser extends ObservableInjectingParser {
             "\1\u0098\1\u0099\1\u009a\1\u009b\1\u009c\1\u009d\1\u009e\1\u009f"+
             "\1\u00a0\1\u00a1\1\u00a2\1\u00a3\1\u00a4\1\u00a5\1\u00a6\1\u00a7"+
             "\1\u00a8\1\u00a9\1\u00aa\1\u00ab\1\u00ac\1\u00ad\1\u00ae\1\u00af",
-            "\1\u00b2\15\uffff\1\u00b2\13\uffff\1\u00b2\22\uffff\1\u00b2"+
-            "\1\u00b1\75\u00b2\1\u00b0\25\u00b2",
-            "\1\u00b2\15\uffff\1\u00b2\13\uffff\1\u00b2\22\uffff\1\u00b2"+
-            "\1\u00b1\75\u00b2\1\u00b0\25\u00b2",
+            "\1\u00b0\15\uffff\1\u00b0\13\uffff\1\u00b0\22\uffff\51\u00b0"+
+            "\1\u00b1\22\u00b0\1\u00b2\30\u00b0",
+            "\1\u00b0\15\uffff\1\u00b0\13\uffff\1\u00b0\22\uffff\51\u00b0"+
+            "\1\u00b1\22\u00b0\1\u00b2\30\u00b0",
             "\1\131\23\uffff\1\130",
             "\1\131\23\uffff\1\130",
             "\1\131\23\uffff\1\130",
@@ -22479,9 +22515,9 @@ public class TCSParser extends ObservableInjectingParser {
             "\1\131\23\uffff\1\130",
             "\1\131\23\uffff\1\130",
             "\1\131\23\uffff\1\130",
-            "\1\u00b3\7\uffff\1\u00b2\13\uffff\1\u00b2",
-            "\1\u00b4\7\uffff\1\u00b2\13\uffff\1\u00b2",
             "",
+            "\1\u00b3\7\uffff\1\u00b0\13\uffff\1\u00b0",
+            "\1\u00b4\7\uffff\1\u00b0\13\uffff\1\u00b0",
             "",
             ""
     };
@@ -22526,14 +22562,14 @@ public class TCSParser extends ObservableInjectingParser {
     static final String DFA97_minS =
         "\2\14\1\uffff\1\13\1\4\126\14\1\0\1\uffff";
     static final String DFA97_maxS =
-        "\1\22\1\u0081\1\uffff\1\13\1\u0085\126\22\1\0\1\uffff";
+        "\1\22\1\141\1\uffff\1\13\1\u0085\126\22\1\0\1\uffff";
     static final String DFA97_acceptS =
         "\2\uffff\1\2\131\uffff\1\1";
     static final String DFA97_specialS =
         "\133\uffff\1\0\1\uffff}>";
     static final String[] DFA97_transitionS = {
             "\1\2\5\uffff\1\1",
-            "\1\2\55\uffff\1\3\3\uffff\1\2\102\uffff\1\2",
+            "\1\2\74\uffff\1\2\23\uffff\1\2\3\uffff\1\3",
             "",
             "\1\4",
             "\1\5\54\uffff\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15\1\16\1"+
@@ -22698,15 +22734,15 @@ public class TCSParser extends ObservableInjectingParser {
     static final String DFA136_eotS =
         "\u00b3\uffff";
     static final String DFA136_eofS =
-        "\10\131\1\uffff\17\131\1\uffff\76\131\6\uffff\126\131";
+        "\25\131\1\uffff\7\131\1\uffff\71\131\6\uffff\126\131";
     static final String DFA136_minS =
-        "\1\4\7\13\1\0\26\13\1\12\55\13\1\12\11\13\1\4\5\uffff\126\13";
+        "\1\4\24\13\1\0\27\13\1\12\16\13\1\12\32\13\1\4\5\uffff\126\13";
     static final String DFA136_maxS =
-        "\1\u0085\7\107\1\0\17\107\1\13\76\107\1\u0085\5\uffff\126\107";
+        "\1\u0085\24\114\1\0\7\114\1\13\71\114\1\u0085\5\uffff\126\114";
     static final String DFA136_acceptS =
         "\130\uffff\1\1\1\2\1\5\1\3\1\4\126\uffff";
     static final String DFA136_specialS =
-        "\10\uffff\1\0\17\uffff\1\1\u009a\uffff}>";
+        "\25\uffff\1\0\7\uffff\1\1\u0095\uffff}>";
     static final String[] DFA136_transitionS = {
             "\1\1\6\uffff\1\130\4\uffff\1\127\6\uffff\1\131\31\uffff\1\2"+
             "\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15\1\16\1\17"+
@@ -22717,92 +22753,92 @@ public class TCSParser extends ObservableInjectingParser {
             "\1\100\1\101\1\102\1\103\1\104\1\105\1\106\1\107\1\110\1\111"+
             "\1\112\1\113\1\114\1\115\1\116\1\117\1\120\1\121\1\122\1\123"+
             "\1\124\1\125\1\126",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
             "\1\uffff",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
             "\1\130",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\133\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\134\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\133\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\134\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
             "\1\135\54\uffff\1\136\1\137\1\140\1\141\1\142\1\143\1\144\1"+
             "\145\1\146\1\147\1\150\1\151\1\152\1\153\1\154\1\155\1\156\1"+
             "\157\1\160\1\161\1\162\1\163\1\164\1\165\1\166\1\167\1\170\1"+
@@ -22818,92 +22854,92 @@ public class TCSParser extends ObservableInjectingParser {
             "",
             "",
             "",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132",
-            "\1\130\13\uffff\1\131\37\uffff\1\131\17\uffff\1\132"
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132",
+            "\1\130\13\uffff\1\131\54\uffff\1\131\7\uffff\1\132"
     };
 
     static final short[] DFA136_eot = DFA.unpackEncodedString(DFA136_eotS);
@@ -22943,10 +22979,10 @@ public class TCSParser extends ObservableInjectingParser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA136_8 = input.LA(1);
+                        int LA136_21 = input.LA(1);
 
                          
-                        int index136_8 = input.index();
+                        int index136_21 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred334_TCS()) ) {s = 88;}
@@ -22956,26 +22992,26 @@ public class TCSParser extends ObservableInjectingParser {
                         else if ( (true) ) {s = 90;}
 
                          
-                        input.seek(index136_8);
+                        input.seek(index136_21);
                         if ( s>=0 ) {
                             return s;
                         }
                         break;
                     case 1 : 
-                        int LA136_24 = input.LA(1);
+                        int LA136_29 = input.LA(1);
 
                          
-                        int index136_24 = input.index();
+                        int index136_29 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (LA136_24==EQ) ) {s = 88;}
+                        if ( (LA136_29==EQ) ) {s = 88;}
 
                         else if ( (synpred335_TCS()) ) {s = 89;}
 
                         else if ( (true) ) {s = 90;}
 
                          
-                        input.seek(index136_24);
+                        input.seek(index136_29);
                         if ( s>=0 ) {
                             return s;
                         }
@@ -23181,31 +23217,31 @@ public class TCSParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_SHARP_in_ecore_epackage_superPackage1919 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_furcas_tcs_concretesyntax_in_main1963 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_main1966 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_73_in_furcas_tcs_concretesyntax1997 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_101_in_furcas_tcs_concretesyntax1997 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_identifier_in_furcas_tcs_concretesyntax2004 = new BitSet(new long[]{0x0000000000002400L});
     public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_concretesyntax2017 = new BitSet(new long[]{0x0000000000000000L,0x0080000000000000L});
     public static final BitSet FOLLOW_119_in_furcas_tcs_concretesyntax2021 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_furcas_tcs_concretesyntax2025 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_integerSymbol_in_furcas_tcs_concretesyntax2033 = new BitSet(new long[]{0x0000000000001000L});
     public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_concretesyntax2040 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_LCURLY_in_furcas_tcs_concretesyntax2058 = new BitSet(new long[]{0x0002000000004000L,0x4000200C51080040L,0x0000000000000008L});
-    public static final BitSet FOLLOW_furcas_tcs_template_in_furcas_tcs_concretesyntax2069 = new BitSet(new long[]{0x0002000000004000L,0x4000200C51080040L,0x0000000000000008L});
-    public static final BitSet FOLLOW_furcas_tcs_template_in_furcas_tcs_concretesyntax2077 = new BitSet(new long[]{0x0002000000004000L,0x4000200C51080040L,0x0000000000000008L});
-    public static final BitSet FOLLOW_98_in_furcas_tcs_concretesyntax2094 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_LCURLY_in_furcas_tcs_concretesyntax2058 = new BitSet(new long[]{0x0000000000004000L,0xC810124003004400L});
+    public static final BitSet FOLLOW_furcas_tcs_template_in_furcas_tcs_concretesyntax2069 = new BitSet(new long[]{0x0000000000004000L,0xC810124003004400L});
+    public static final BitSet FOLLOW_furcas_tcs_template_in_furcas_tcs_concretesyntax2077 = new BitSet(new long[]{0x0000000000004000L,0xC810124003004400L});
+    public static final BitSet FOLLOW_74_in_furcas_tcs_concretesyntax2094 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_LCURLY_in_furcas_tcs_concretesyntax2098 = new BitSet(new long[]{0x0000000000004010L});
     public static final BitSet FOLLOW_furcas_tcs_keyword_in_furcas_tcs_concretesyntax2109 = new BitSet(new long[]{0x0000000000004010L});
     public static final BitSet FOLLOW_furcas_tcs_keyword_in_furcas_tcs_concretesyntax2117 = new BitSet(new long[]{0x0000000000004010L});
-    public static final BitSet FOLLOW_RCURLY_in_furcas_tcs_concretesyntax2132 = new BitSet(new long[]{0x0002000000004000L,0x0000200801080000L});
-    public static final BitSet FOLLOW_83_in_furcas_tcs_concretesyntax2155 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_RCURLY_in_furcas_tcs_concretesyntax2132 = new BitSet(new long[]{0x0000000000004000L,0xC800024000000000L});
+    public static final BitSet FOLLOW_123_in_furcas_tcs_concretesyntax2155 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_LCURLY_in_furcas_tcs_concretesyntax2159 = new BitSet(new long[]{0x0000000000004010L});
     public static final BitSet FOLLOW_furcas_tcs_symbol_in_furcas_tcs_concretesyntax2170 = new BitSet(new long[]{0x0000000000004010L});
     public static final BitSet FOLLOW_furcas_tcs_symbol_in_furcas_tcs_concretesyntax2178 = new BitSet(new long[]{0x0000000000004010L});
-    public static final BitSet FOLLOW_RCURLY_in_furcas_tcs_concretesyntax2193 = new BitSet(new long[]{0x0002000000004000L,0x0000200801000000L});
-    public static final BitSet FOLLOW_furcas_tcs_operatorlist_in_furcas_tcs_concretesyntax2214 = new BitSet(new long[]{0x0002000000004000L,0x0000200801000000L});
-    public static final BitSet FOLLOW_furcas_tcs_operatorlist_in_furcas_tcs_concretesyntax2222 = new BitSet(new long[]{0x0002000000004000L,0x0000200801000000L});
-    public static final BitSet FOLLOW_furcas_tcs_token_in_furcas_tcs_concretesyntax2237 = new BitSet(new long[]{0x0002000000004000L,0x0000000801000000L});
-    public static final BitSet FOLLOW_furcas_tcs_token_in_furcas_tcs_concretesyntax2245 = new BitSet(new long[]{0x0002000000004000L,0x0000000801000000L});
-    public static final BitSet FOLLOW_88_in_furcas_tcs_concretesyntax2262 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_RCURLY_in_furcas_tcs_concretesyntax2193 = new BitSet(new long[]{0x0000000000004000L,0xC000024000000000L});
+    public static final BitSet FOLLOW_furcas_tcs_operatorlist_in_furcas_tcs_concretesyntax2214 = new BitSet(new long[]{0x0000000000004000L,0xC000024000000000L});
+    public static final BitSet FOLLOW_furcas_tcs_operatorlist_in_furcas_tcs_concretesyntax2222 = new BitSet(new long[]{0x0000000000004000L,0xC000024000000000L});
+    public static final BitSet FOLLOW_furcas_tcs_token_in_furcas_tcs_concretesyntax2237 = new BitSet(new long[]{0x0000000000004000L,0xC000004000000000L});
+    public static final BitSet FOLLOW_furcas_tcs_token_in_furcas_tcs_concretesyntax2245 = new BitSet(new long[]{0x0000000000004000L,0xC000004000000000L});
+    public static final BitSet FOLLOW_127_in_furcas_tcs_concretesyntax2262 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_furcas_tcs_concretesyntax2266 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_concretesyntax2274 = new BitSet(new long[]{0x0000000000008000L});
     public static final BitSet FOLLOW_SEMI_in_furcas_tcs_concretesyntax2281 = new BitSet(new long[]{0x0000000000004000L});
@@ -23221,483 +23257,483 @@ public class TCSParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_furcas_tcs_functiontemplate_in_furcas_tcs_template2454 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_furcas_tcs_classtemplate_in_furcas_tcs_contexttemplate2481 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_furcas_tcs_operatortemplate_in_furcas_tcs_contexttemplate2489 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_92_in_furcas_tcs_primitivetemplate2519 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_furcas_tcs_primitivetemplate2526 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000000000000004L});
-    public static final BitSet FOLLOW_130_in_furcas_tcs_primitivetemplate2532 = new BitSet(new long[]{0x0000000000010330L});
-    public static final BitSet FOLLOW_reference_in_furcas_tcs_primitivetemplate2535 = new BitSet(new long[]{0x0000000000000000L,0x0000400000001000L});
-    public static final BitSet FOLLOW_76_in_furcas_tcs_primitivetemplate2545 = new BitSet(new long[]{0x0000000000000000L,0x0000400000000000L});
-    public static final BitSet FOLLOW_110_in_furcas_tcs_primitivetemplate2563 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_furcas_tcs_primitivetemplate2570 = new BitSet(new long[]{0x0000000000020000L,0x0000000000200000L});
-    public static final BitSet FOLLOW_85_in_furcas_tcs_primitivetemplate2582 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_COLON_in_furcas_tcs_primitivetemplate2601 = new BitSet(new long[]{0x0000000000000000L,0x0000008000000000L});
-    public static final BitSet FOLLOW_103_in_furcas_tcs_primitivetemplate2605 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_primitivetemplate2609 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_primitivetemplate2617 = new BitSet(new long[]{0x0000000000048000L});
-    public static final BitSet FOLLOW_COMA_in_furcas_tcs_primitivetemplate2630 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
-    public static final BitSet FOLLOW_95_in_furcas_tcs_primitivetemplate2634 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_primitivetemplate2638 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_primitivetemplate2646 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_SEMI_in_furcas_tcs_primitivetemplate2666 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_94_in_furcas_tcs_enumerationtemplate2707 = new BitSet(new long[]{0x0000000000010330L});
-    public static final BitSet FOLLOW_reference_in_furcas_tcs_enumerationtemplate2710 = new BitSet(new long[]{0x0000000000028000L,0x0800000000000000L});
-    public static final BitSet FOLLOW_123_in_furcas_tcs_enumerationtemplate2720 = new BitSet(new long[]{0x0000000000028000L});
-    public static final BitSet FOLLOW_COLON_in_furcas_tcs_enumerationtemplate2748 = new BitSet(new long[]{0x0000000000008200L});
-    public static final BitSet FOLLOW_furcas_tcs_enumliteralmapping_in_furcas_tcs_enumerationtemplate2759 = new BitSet(new long[]{0x0000000000048000L});
-    public static final BitSet FOLLOW_COMA_in_furcas_tcs_enumerationtemplate2768 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_furcas_tcs_enumliteralmapping_in_furcas_tcs_enumerationtemplate2776 = new BitSet(new long[]{0x0000000000048000L});
-    public static final BitSet FOLLOW_SEMI_in_furcas_tcs_enumerationtemplate2791 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SEMI_in_furcas_tcs_enumerationtemplate2808 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_enumliteralval_in_furcas_tcs_enumliteralmapping2859 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_enumliteralmapping2866 = new BitSet(new long[]{0xFFFE000031290432L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_furcas_tcs_sequenceelement_in_furcas_tcs_enumliteralmapping2874 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_131_in_furcas_tcs_classtemplate2919 = new BitSet(new long[]{0x0000000000010330L});
-    public static final BitSet FOLLOW_reference_in_furcas_tcs_classtemplate2922 = new BitSet(new long[]{0x2000000000028600L,0x0000090104428100L});
-    public static final BitSet FOLLOW_90_in_furcas_tcs_classtemplate2932 = new BitSet(new long[]{0x0000000000028200L});
-    public static final BitSet FOLLOW_SHARP_in_furcas_tcs_classtemplate2942 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_classtemplate2950 = new BitSet(new long[]{0x0000000000028000L});
-    public static final BitSet FOLLOW_SHARP_in_furcas_tcs_classtemplate2986 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_classtemplate2994 = new BitSet(new long[]{0x2000000000028400L,0x0000090100428100L});
-    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_classtemplate3020 = new BitSet(new long[]{0x0000000000000000L,0x0000800000000000L});
-    public static final BitSet FOLLOW_111_in_furcas_tcs_classtemplate3024 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_classtemplate3028 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_classtemplate3036 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_classtemplate3043 = new BitSet(new long[]{0x2000000000028400L,0x0000090100428100L});
-    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_classtemplate3067 = new BitSet(new long[]{0x8000000000000000L});
-    public static final BitSet FOLLOW_63_in_furcas_tcs_classtemplate3071 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_classtemplate3075 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_classtemplate3083 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_classtemplate3090 = new BitSet(new long[]{0x2000000000028400L,0x0000090100428100L});
-    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_classtemplate3114 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
-    public static final BitSet FOLLOW_77_in_furcas_tcs_classtemplate3118 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_classtemplate3122 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_classtemplate3130 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_classtemplate3137 = new BitSet(new long[]{0x2000000000028000L,0x0000090100428100L});
-    public static final BitSet FOLLOW_96_in_furcas_tcs_classtemplate3160 = new BitSet(new long[]{0x2000000000028000L,0x0000090000428100L});
-    public static final BitSet FOLLOW_61_in_furcas_tcs_classtemplate3184 = new BitSet(new long[]{0x0000000000028000L,0x0000090000428100L});
-    public static final BitSet FOLLOW_107_in_furcas_tcs_classtemplate3214 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
-    public static final BitSet FOLLOW_86_in_furcas_tcs_classtemplate3232 = new BitSet(new long[]{0x0000000000028000L,0x0000010000028100L});
-    public static final BitSet FOLLOW_104_in_furcas_tcs_classtemplate3256 = new BitSet(new long[]{0x0000000000028400L,0x0000000000028100L});
-    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_classtemplate3266 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_furcas_tcs_classtemplate3274 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_classtemplate3281 = new BitSet(new long[]{0x0000000000028000L,0x0000000000028100L});
-    public static final BitSet FOLLOW_72_in_furcas_tcs_classtemplate3319 = new BitSet(new long[]{0x0000000000028400L,0x0000000000028000L});
-    public static final BitSet FOLLOW_furcas_tcs_contexttags_in_furcas_tcs_classtemplate3332 = new BitSet(new long[]{0x0000000000028000L,0x0000000000028000L});
-    public static final BitSet FOLLOW_79_in_furcas_tcs_classtemplate3372 = new BitSet(new long[]{0x0000000000028000L,0x0000000000020000L});
-    public static final BitSet FOLLOW_81_in_furcas_tcs_classtemplate3396 = new BitSet(new long[]{0x0000000000028000L});
-    public static final BitSet FOLLOW_COLON_in_furcas_tcs_classtemplate3431 = new BitSet(new long[]{0xFFFE000031298430L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_furcas_tcs_sequence_in_furcas_tcs_classtemplate3442 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_SEMI_in_furcas_tcs_classtemplate3452 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SEMI_in_furcas_tcs_classtemplate3469 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_70_in_furcas_tcs_operatortemplate3516 = new BitSet(new long[]{0x0000000000010330L});
-    public static final BitSet FOLLOW_reference_in_furcas_tcs_operatortemplate3519 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_operatortemplate3524 = new BitSet(new long[]{0x0000000000000000L,0x0000200000000000L});
-    public static final BitSet FOLLOW_109_in_furcas_tcs_operatortemplate3528 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_operatortemplate3532 = new BitSet(new long[]{0x0000000000040010L});
-    public static final BitSet FOLLOW_identifier_in_furcas_tcs_operatortemplate3540 = new BitSet(new long[]{0x0000000000040010L});
-    public static final BitSet FOLLOW_identifier_in_furcas_tcs_operatortemplate3548 = new BitSet(new long[]{0x0000000000040010L});
-    public static final BitSet FOLLOW_COMA_in_furcas_tcs_operatortemplate3560 = new BitSet(new long[]{0x0000000000000000L,0x0008000000000000L});
-    public static final BitSet FOLLOW_115_in_furcas_tcs_operatortemplate3564 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_operatortemplate3568 = new BitSet(new long[]{0xFFFE000000051010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_operatortemplate3576 = new BitSet(new long[]{0x0000000000041000L});
-    public static final BitSet FOLLOW_COMA_in_furcas_tcs_operatortemplate3591 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
-    public static final BitSet FOLLOW_105_in_furcas_tcs_operatortemplate3595 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_operatortemplate3599 = new BitSet(new long[]{0xFFFE000000010010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_operatortemplate3607 = new BitSet(new long[]{0x0000000000041000L});
-    public static final BitSet FOLLOW_COMA_in_furcas_tcs_operatortemplate3633 = new BitSet(new long[]{0x0000000000000000L,0x0100000000000000L});
-    public static final BitSet FOLLOW_120_in_furcas_tcs_operatortemplate3637 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_operatortemplate3641 = new BitSet(new long[]{0xFFFE000000010010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_operatortemplate3649 = new BitSet(new long[]{0x0000000000041000L});
-    public static final BitSet FOLLOW_COMA_in_furcas_tcs_operatortemplate3675 = new BitSet(new long[]{0x0000000000000000L,0x0000800000000000L});
-    public static final BitSet FOLLOW_111_in_furcas_tcs_operatortemplate3679 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_operatortemplate3683 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_operatortemplate3691 = new BitSet(new long[]{0x0000000000041000L});
-    public static final BitSet FOLLOW_COMA_in_furcas_tcs_operatortemplate3717 = new BitSet(new long[]{0x8000000000000000L});
-    public static final BitSet FOLLOW_63_in_furcas_tcs_operatortemplate3721 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_operatortemplate3725 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_operatortemplate3733 = new BitSet(new long[]{0x0000000000041000L});
-    public static final BitSet FOLLOW_COMA_in_furcas_tcs_operatortemplate3759 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
-    public static final BitSet FOLLOW_77_in_furcas_tcs_operatortemplate3763 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_operatortemplate3767 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_operatortemplate3775 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_operatortemplate3795 = new BitSet(new long[]{0x0000000000028000L,0x0000000004000100L});
-    public static final BitSet FOLLOW_90_in_furcas_tcs_operatortemplate3805 = new BitSet(new long[]{0x0000000000028000L});
-    public static final BitSet FOLLOW_72_in_furcas_tcs_operatortemplate3824 = new BitSet(new long[]{0x0000000000028400L});
-    public static final BitSet FOLLOW_furcas_tcs_contexttags_in_furcas_tcs_operatortemplate3837 = new BitSet(new long[]{0x0000000000028000L});
-    public static final BitSet FOLLOW_COLON_in_furcas_tcs_operatortemplate3888 = new BitSet(new long[]{0xFFFE000031298430L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_furcas_tcs_sequence_in_furcas_tcs_operatortemplate3899 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_SEMI_in_furcas_tcs_operatortemplate3909 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SEMI_in_furcas_tcs_operatortemplate3926 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_126_in_furcas_tcs_functiontemplate3973 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_furcas_tcs_functiontemplate3980 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_functiontemplate3987 = new BitSet(new long[]{0x0000000000010330L});
-    public static final BitSet FOLLOW_reference_in_furcas_tcs_functiontemplate3991 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_functiontemplate3996 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_COLON_in_furcas_tcs_functiontemplate4004 = new BitSet(new long[]{0xFFFE000031298430L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_furcas_tcs_sequence_in_furcas_tcs_functiontemplate4015 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_SEMI_in_furcas_tcs_functiontemplate4025 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_contexttags4070 = new BitSet(new long[]{0x0000000000001010L});
-    public static final BitSet FOLLOW_identifier_in_furcas_tcs_contexttags4078 = new BitSet(new long[]{0x0000000000041000L});
-    public static final BitSet FOLLOW_COMA_in_furcas_tcs_contexttags4087 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_furcas_tcs_contexttags4095 = new BitSet(new long[]{0x0000000000041000L});
-    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_contexttags4107 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_sequenceelement_in_furcas_tcs_sequence4155 = new BitSet(new long[]{0xFFFE000031290432L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_furcas_tcs_sequenceelement_in_furcas_tcs_sequence4163 = new BitSet(new long[]{0xFFFE000031290432L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_furcas_tcs_literalref_in_furcas_tcs_sequenceelement4211 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_property_in_furcas_tcs_sequenceelement4219 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_customseparator_in_furcas_tcs_sequenceelement4227 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_block_in_furcas_tcs_sequenceelement4235 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_conditionalelement_in_furcas_tcs_sequenceelement4243 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_alternative_in_furcas_tcs_sequenceelement4251 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_functioncall_in_furcas_tcs_sequenceelement4259 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_injectoractionsblock_in_furcas_tcs_sequenceelement4267 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_literalref4301 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_propertyreference4357 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RARROW_in_furcas_tcs_propertyreference4373 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_propertyreference4381 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_property4434 = new BitSet(new long[]{0x0000000000002002L});
-    public static final BitSet FOLLOW_LCURLY_in_furcas_tcs_property4447 = new BitSet(new long[]{0x0E04000000004000L,0x0240802028050808L,0x0000000000000013L});
-    public static final BitSet FOLLOW_furcas_tcs_propertyarg_in_furcas_tcs_property4455 = new BitSet(new long[]{0x0000000000044000L});
-    public static final BitSet FOLLOW_COMA_in_furcas_tcs_property4464 = new BitSet(new long[]{0x0E04000000000000L,0x0240802028050808L,0x0000000000000013L});
-    public static final BitSet FOLLOW_furcas_tcs_propertyarg_in_furcas_tcs_property4472 = new BitSet(new long[]{0x0000000000044000L});
-    public static final BitSet FOLLOW_RCURLY_in_furcas_tcs_property4484 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LT_in_furcas_tcs_customseparator4542 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_furcas_tcs_customseparator4550 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_GT_in_furcas_tcs_customseparator4557 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LSQUARE_in_furcas_tcs_block4602 = new BitSet(new long[]{0xFFFE000031690430L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_furcas_tcs_sequence_in_furcas_tcs_block4610 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_RSQUARE_in_furcas_tcs_block4617 = new BitSet(new long[]{0x0000000000002002L});
-    public static final BitSet FOLLOW_LCURLY_in_furcas_tcs_block4628 = new BitSet(new long[]{0x0000000000004000L,0x0402000000800001L,0x0000000000000020L});
-    public static final BitSet FOLLOW_furcas_tcs_blockarg_in_furcas_tcs_block4636 = new BitSet(new long[]{0x0000000000044000L});
-    public static final BitSet FOLLOW_COMA_in_furcas_tcs_block4645 = new BitSet(new long[]{0x0000000000000000L,0x0402000000800001L,0x0000000000000020L});
-    public static final BitSet FOLLOW_furcas_tcs_blockarg_in_furcas_tcs_block4653 = new BitSet(new long[]{0x0000000000044000L});
-    public static final BitSet FOLLOW_RCURLY_in_furcas_tcs_block4665 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_conditionalelement4723 = new BitSet(new long[]{0xFFFE000000010810L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_furcas_tcs_expression_in_furcas_tcs_conditionalelement4731 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_QMARK_in_furcas_tcs_conditionalelement4738 = new BitSet(new long[]{0xFFFE0000312B1430L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_furcas_tcs_sequence_in_furcas_tcs_conditionalelement4746 = new BitSet(new long[]{0x0000000000021000L});
-    public static final BitSet FOLLOW_COLON_in_furcas_tcs_conditionalelement4759 = new BitSet(new long[]{0xFFFE000031291430L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_furcas_tcs_sequence_in_furcas_tcs_conditionalelement4767 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_conditionalelement4787 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DLSQUARE_in_furcas_tcs_alternative4832 = new BitSet(new long[]{0xFFFE000033290430L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_furcas_tcs_sequenceinalternative_nestedSequence_in_furcas_tcs_alternative4843 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_PIPE_in_furcas_tcs_alternative4852 = new BitSet(new long[]{0xFFFE000037290430L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_furcas_tcs_sequenceinalternative_nestedSequence_in_furcas_tcs_alternative4860 = new BitSet(new long[]{0x0000000006000000L});
-    public static final BitSet FOLLOW_DRSQUARE_in_furcas_tcs_alternative4872 = new BitSet(new long[]{0x0000000008000002L});
-    public static final BitSet FOLLOW_STAR_in_furcas_tcs_alternative4883 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_111_in_furcas_tcs_sequenceinalternative_nestedSequence4948 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_sequenceinalternative_nestedSequence4952 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_sequenceinalternative_nestedSequence4960 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_sequenceinalternative_nestedSequence4967 = new BitSet(new long[]{0xFFFE000031290432L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_furcas_tcs_sequenceelement_in_furcas_tcs_sequenceinalternative_nestedSequence4991 = new BitSet(new long[]{0xFFFE000031290432L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_furcas_tcs_sequenceelement_in_furcas_tcs_sequenceinalternative_nestedSequence4999 = new BitSet(new long[]{0xFFFE000031290432L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_DOLLAR_in_furcas_tcs_functioncall5051 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_furcas_tcs_functioncall5059 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DLCURLY_in_furcas_tcs_injectoractionsblock5106 = new BitSet(new long[]{0xFFFE0000C0010810L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_furcas_tcs_injectoraction_in_furcas_tcs_injectoractionsblock5117 = new BitSet(new long[]{0x0000000040040000L});
-    public static final BitSet FOLLOW_COMA_in_furcas_tcs_injectoractionsblock5126 = new BitSet(new long[]{0xFFFE000080010810L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_furcas_tcs_injectoraction_in_furcas_tcs_injectoractionsblock5134 = new BitSet(new long[]{0x0000000040040000L});
-    public static final BitSet FOLLOW_DRCURLY_in_furcas_tcs_injectoractionsblock5149 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_propertyinit_in_furcas_tcs_injectoraction5190 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_primitivepropertyinit_in_furcas_tcs_propertyinit5217 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_lookuppropertyinit_in_furcas_tcs_propertyinit5225 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_foreachpredicatepropertyinit_in_furcas_tcs_propertyinit5233 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_primitivepropertyinit5267 = new BitSet(new long[]{0x0000000080000800L});
-    public static final BitSet FOLLOW_LARROW_in_furcas_tcs_primitivepropertyinit5282 = new BitSet(new long[]{0xFFFE000000000012L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_primitivepropertyinit5297 = new BitSet(new long[]{0xFFFE000000000012L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_escapedIdentifierOrKeyword_in_furcas_tcs_primitivepropertyinit5312 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_lookuppropertyinit5361 = new BitSet(new long[]{0x0000000080000800L});
-    public static final BitSet FOLLOW_LARROW_in_furcas_tcs_lookuppropertyinit5376 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_lookuppropertyinit5391 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_50_in_furcas_tcs_lookuppropertyinit5402 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_lookuppropertyinit5406 = new BitSet(new long[]{0x0000000000001020L});
-    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_lookuppropertyinit5414 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_lookuppropertyinit5423 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_foreachpredicatepropertyinit5468 = new BitSet(new long[]{0x0000000080000800L});
-    public static final BitSet FOLLOW_LARROW_in_furcas_tcs_foreachpredicatepropertyinit5483 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_foreachpredicatepropertyinit5498 = new BitSet(new long[]{0x0000000000000000L,0x0001000000000000L});
-    public static final BitSet FOLLOW_112_in_furcas_tcs_foreachpredicatepropertyinit5509 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_foreachpredicatepropertyinit5513 = new BitSet(new long[]{0x0000000000041020L});
-    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_foreachpredicatepropertyinit5521 = new BitSet(new long[]{0x0000000000041000L});
-    public static final BitSet FOLLOW_COMA_in_furcas_tcs_foreachpredicatepropertyinit5536 = new BitSet(new long[]{0x0400000000000000L});
-    public static final BitSet FOLLOW_58_in_furcas_tcs_foreachpredicatepropertyinit5540 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_foreachpredicatepropertyinit5544 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_foreachpredicatepropertyinit5552 = new BitSet(new long[]{0x0000000000041000L});
-    public static final BitSet FOLLOW_COMA_in_furcas_tcs_foreachpredicatepropertyinit5578 = new BitSet(new long[]{0x4400000000001000L,0x0000000000000000L,0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_predicatesemantic_in_furcas_tcs_foreachpredicatepropertyinit5589 = new BitSet(new long[]{0x0000000000041000L});
-    public static final BitSet FOLLOW_COMA_in_furcas_tcs_foreachpredicatepropertyinit5598 = new BitSet(new long[]{0x4400000000000000L,0x0000000000000000L,0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_predicatesemantic_in_furcas_tcs_foreachpredicatepropertyinit5606 = new BitSet(new long[]{0x0000000000041000L});
-    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_foreachpredicatepropertyinit5634 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_62_in_furcas_tcs_predicatesemantic5681 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_predicatesemantic5685 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_predicatesemantic5693 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_COMA_in_furcas_tcs_predicatesemantic5700 = new BitSet(new long[]{0x0400000000000000L,0x0000000000000000L,0x0000000000000002L});
-    public static final BitSet FOLLOW_58_in_furcas_tcs_predicatesemantic5723 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_predicatesemantic5727 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_predicatesemantic5735 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_COMA_in_furcas_tcs_predicatesemantic5742 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000000000000002L});
-    public static final BitSet FOLLOW_129_in_furcas_tcs_predicatesemantic5759 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_predicatesemantic5763 = new BitSet(new long[]{0xFFFE000000000012L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_predicatesemantic5771 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_referstoparg_in_furcas_tcs_propertyarg5813 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_lookinparg_in_furcas_tcs_propertyarg5821 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_createinparg_in_furcas_tcs_propertyarg5829 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_asparg_in_furcas_tcs_propertyarg5837 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_separatorparg_in_furcas_tcs_propertyarg5845 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_disambiguateparg_in_furcas_tcs_propertyarg5853 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_autocreateparg_in_furcas_tcs_propertyarg5861 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_importcontextparg_in_furcas_tcs_propertyarg5869 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_partialparg_in_furcas_tcs_propertyarg5877 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_forcedlowerparg_in_furcas_tcs_propertyarg5885 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_forcedupperparg_in_furcas_tcs_propertyarg5893 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_createasparg_in_furcas_tcs_propertyarg5901 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_lookupscopeparg_in_furcas_tcs_propertyarg5909 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_referencebyparg_in_furcas_tcs_propertyarg5917 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_prefixparg_in_furcas_tcs_propertyarg5925 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_postfixparg_in_furcas_tcs_propertyarg5933 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_modeparg_in_furcas_tcs_propertyarg5941 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_121_in_furcas_tcs_referstoparg5971 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_referstoparg5975 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_referstoparg5983 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_50_in_furcas_tcs_lookinparg6026 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_lookinparg6030 = new BitSet(new long[]{0xFFFE000000000212L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_SHARP_in_furcas_tcs_lookinparg6041 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_69_in_furcas_tcs_lookinparg6045 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_lookinparg6062 = new BitSet(new long[]{0x0000000100000002L});
-    public static final BitSet FOLLOW_POINT_in_furcas_tcs_lookinparg6071 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_lookinparg6079 = new BitSet(new long[]{0x0000000100000002L});
-    public static final BitSet FOLLOW_82_in_furcas_tcs_createinparg6134 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_createinparg6138 = new BitSet(new long[]{0xFFFE000000000012L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_createinparg6146 = new BitSet(new long[]{0x0000000100000002L});
-    public static final BitSet FOLLOW_POINT_in_furcas_tcs_createinparg6155 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_createinparg6163 = new BitSet(new long[]{0x0000000100000002L});
-    public static final BitSet FOLLOW_129_in_furcas_tcs_asparg6211 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_asparg6215 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_asparg6223 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_furcas_tcs_separatorparg6266 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_separatorparg6270 = new BitSet(new long[]{0xFFFE000031290430L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_furcas_tcs_sequence_in_furcas_tcs_separatorparg6278 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_111_in_furcas_tcs_disambiguateparg6321 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_disambiguateparg6325 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_disambiguateparg6333 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_93_in_furcas_tcs_autocreateparg6378 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_autocreateparg6382 = new BitSet(new long[]{0x0000000000000000L,0x8020000200000000L});
-    public static final BitSet FOLLOW_furcas_tcs_autocreatekind_in_furcas_tcs_autocreateparg6390 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_97_in_furcas_tcs_autocreatekind6434 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_117_in_furcas_tcs_autocreatekind6444 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_127_in_furcas_tcs_autocreatekind6454 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_118_in_furcas_tcs_importcontextparg6485 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_101_in_furcas_tcs_partialparg6525 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_75_in_furcas_tcs_forcedlowerparg6565 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_forcedlowerparg6569 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_integerSymbol_in_furcas_tcs_forcedlowerparg6577 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_132_in_furcas_tcs_forcedupperparg6620 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_forcedupperparg6624 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_integerSymbol_in_furcas_tcs_forcedupperparg6632 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_67_in_furcas_tcs_createasparg6675 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_createasparg6679 = new BitSet(new long[]{0xFFFE000000000012L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_createasparg6687 = new BitSet(new long[]{0x0000000000000102L});
-    public static final BitSet FOLLOW_DLCOLON_in_furcas_tcs_createasparg6696 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_createasparg6704 = new BitSet(new long[]{0x0000000000000102L});
-    public static final BitSet FOLLOW_128_in_furcas_tcs_lookupscopeparg6752 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_lookupscopeparg6756 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_lookupscopeparg6764 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_80_in_furcas_tcs_referencebyparg6807 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_referencebyparg6811 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_referencebyparg6819 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_91_in_furcas_tcs_prefixparg6862 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_prefixparg6866 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_prefixparg6874 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_59_in_furcas_tcs_postfixparg6917 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_postfixparg6921 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_postfixparg6929 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_58_in_furcas_tcs_modeparg6972 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_modeparg6976 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_modeparg6984 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_nbnlbarg_in_furcas_tcs_blockarg7024 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_indentincrbarg_in_furcas_tcs_blockarg7032 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_startnlbarg_in_furcas_tcs_blockarg7040 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_startnbnlbarg_in_furcas_tcs_blockarg7048 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_endnlbarg_in_furcas_tcs_blockarg7056 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_64_in_furcas_tcs_nbnlbarg7086 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_nbnlbarg7090 = new BitSet(new long[]{0x0000000000000042L});
-    public static final BitSet FOLLOW_integerSymbol_in_furcas_tcs_nbnlbarg7098 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_87_in_furcas_tcs_indentincrbarg7143 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_indentincrbarg7147 = new BitSet(new long[]{0x0000000000000042L});
-    public static final BitSet FOLLOW_integerSymbol_in_furcas_tcs_indentincrbarg7155 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_133_in_furcas_tcs_startnlbarg7200 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_startnlbarg7204 = new BitSet(new long[]{0x0000000000000000L,0x2000000000000010L});
-    public static final BitSet FOLLOW_125_in_furcas_tcs_startnlbarg7214 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_68_in_furcas_tcs_startnlbarg7227 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_122_in_furcas_tcs_startnbnlbarg7274 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_startnbnlbarg7278 = new BitSet(new long[]{0x0000000000000042L});
-    public static final BitSet FOLLOW_integerSymbol_in_furcas_tcs_startnbnlbarg7286 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_113_in_furcas_tcs_endnlbarg7331 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_endnlbarg7335 = new BitSet(new long[]{0x0000000000000000L,0x2000000000000010L});
-    public static final BitSet FOLLOW_125_in_furcas_tcs_endnlbarg7345 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_68_in_furcas_tcs_endnlbarg7358 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_identifier_in_furcas_tcs_symbol7409 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_symbol7416 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_symbol7424 = new BitSet(new long[]{0x0000000000028000L});
-    public static final BitSet FOLLOW_COLON_in_furcas_tcs_symbol7437 = new BitSet(new long[]{0x0020000000008000L,0x0000100002000004L});
-    public static final BitSet FOLLOW_furcas_tcs_spacekind_in_furcas_tcs_symbol7445 = new BitSet(new long[]{0x0000000000048000L});
-    public static final BitSet FOLLOW_COMA_in_furcas_tcs_symbol7454 = new BitSet(new long[]{0x0020000000000000L,0x0000100002000004L});
-    public static final BitSet FOLLOW_furcas_tcs_spacekind_in_furcas_tcs_symbol7462 = new BitSet(new long[]{0x0000000000048000L});
-    public static final BitSet FOLLOW_SEMI_in_furcas_tcs_symbol7487 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_108_in_furcas_tcs_spacekind7529 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_66_in_furcas_tcs_spacekind7539 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_89_in_furcas_tcs_spacekind7549 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_53_in_furcas_tcs_spacekind7559 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_identifier_in_furcas_tcs_keyword7594 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_keyword7601 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_keyword7609 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_SEMI_in_furcas_tcs_keyword7616 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_109_in_furcas_tcs_operatorlist7657 = new BitSet(new long[]{0x0000000000002010L});
-    public static final BitSet FOLLOW_identifier_in_furcas_tcs_operatorlist7670 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_LCURLY_in_furcas_tcs_operatorlist7690 = new BitSet(new long[]{0x0000000000004000L,0x0000001000000000L});
-    public static final BitSet FOLLOW_furcas_tcs_priority_in_furcas_tcs_operatorlist7701 = new BitSet(new long[]{0x0000000000004000L,0x0000001000000000L});
-    public static final BitSet FOLLOW_furcas_tcs_priority_in_furcas_tcs_operatorlist7709 = new BitSet(new long[]{0x0000000000004000L,0x0000001000000000L});
-    public static final BitSet FOLLOW_RCURLY_in_furcas_tcs_operatorlist7724 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_100_in_furcas_tcs_priority7765 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_integerSymbol_in_furcas_tcs_priority7772 = new BitSet(new long[]{0x0000000000042000L});
-    public static final BitSet FOLLOW_COMA_in_furcas_tcs_priority7795 = new BitSet(new long[]{0x0140000000000000L});
-    public static final BitSet FOLLOW_furcas_tcs_associativity_in_furcas_tcs_priority7803 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_LCURLY_in_furcas_tcs_priority7817 = new BitSet(new long[]{0x0800000000004010L});
-    public static final BitSet FOLLOW_furcas_tcs_operator_in_furcas_tcs_priority7828 = new BitSet(new long[]{0x0800000000004010L});
-    public static final BitSet FOLLOW_furcas_tcs_operator_in_furcas_tcs_priority7836 = new BitSet(new long[]{0x0800000000004010L});
-    public static final BitSet FOLLOW_RCURLY_in_furcas_tcs_priority7851 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_59_in_furcas_tcs_operator7898 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_furcas_tcs_operator7920 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_operator7927 = new BitSet(new long[]{0x0000000000040030L});
-    public static final BitSet FOLLOW_identifier_in_furcas_tcs_operator7946 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_operator7966 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_COMA_in_furcas_tcs_operator7991 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_integerSymbol_in_furcas_tcs_operator7999 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_SEMI_in_furcas_tcs_operator8006 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_furcas_tcs_associativity8048 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_54_in_furcas_tcs_associativity8058 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_andexp_in_furcas_tcs_expression8086 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_atomexp_in_furcas_tcs_andexp8120 = new BitSet(new long[]{0x0080000000000002L});
-    public static final BitSet FOLLOW_55_in_furcas_tcs_andexp8128 = new BitSet(new long[]{0xFFFE000000010810L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_furcas_tcs_atomexp_in_furcas_tcs_andexp8135 = new BitSet(new long[]{0x0080000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_equalsexp_in_furcas_tcs_atomexp8180 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_booleanpropertyexp_in_furcas_tcs_atomexp8188 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_isdefinedexp_in_furcas_tcs_atomexp8196 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_oneexp_in_furcas_tcs_atomexp8204 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_instanceofexp_in_furcas_tcs_atomexp8212 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_equalsexp8246 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_equalsexp8255 = new BitSet(new long[]{0x0000000200000260L});
-    public static final BitSet FOLLOW_furcas_tcs_value_in_furcas_tcs_equalsexp8263 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_booleanpropertyexp8310 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_78_in_furcas_tcs_isdefinedexp8355 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_isdefinedexp8359 = new BitSet(new long[]{0xFFFE000000011010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_isdefinedexp8367 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_isdefinedexp8376 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_124_in_furcas_tcs_oneexp8417 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_oneexp8421 = new BitSet(new long[]{0xFFFE000000011010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_oneexp8429 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_oneexp8438 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_instanceofexp8483 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
-    public static final BitSet FOLLOW_71_in_furcas_tcs_instanceofexp8491 = new BitSet(new long[]{0x0000000000000012L});
-    public static final BitSet FOLLOW_identifier_in_furcas_tcs_instanceofexp8498 = new BitSet(new long[]{0x0000000000000102L});
-    public static final BitSet FOLLOW_DLCOLON_in_furcas_tcs_instanceofexp8507 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_furcas_tcs_instanceofexp8515 = new BitSet(new long[]{0x0000000000000102L});
-    public static final BitSet FOLLOW_furcas_tcs_stringval_in_furcas_tcs_value8560 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_integerval_in_furcas_tcs_value8568 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_negativeintegerval_in_furcas_tcs_value8576 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_enumliteralval_in_furcas_tcs_value8584 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_stringval8618 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_integerSymbol_in_furcas_tcs_integerval8667 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_MINUS_in_furcas_tcs_negativeintegerval8713 = new BitSet(new long[]{0x0000000000000042L});
-    public static final BitSet FOLLOW_integerSymbol_in_furcas_tcs_negativeintegerval8721 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SHARP_in_furcas_tcs_enumliteralval8767 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_enumliteralval8775 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_99_in_furcas_tcs_token8824 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_49_in_furcas_tcs_token8842 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_furcas_tcs_token8849 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_COLON_in_furcas_tcs_token8856 = new BitSet(new long[]{0x0008000000200020L,0x0004000000000400L});
-    public static final BitSet FOLLOW_furcas_tcs_orpattern_in_furcas_tcs_token8864 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_SEMI_in_furcas_tcs_token8871 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_simplepattern_in_furcas_tcs_orpattern8916 = new BitSet(new long[]{0x0000000002000002L});
-    public static final BitSet FOLLOW_PIPE_in_furcas_tcs_orpattern8925 = new BitSet(new long[]{0x0008000000200020L,0x0004000000000400L});
-    public static final BitSet FOLLOW_furcas_tcs_simplepattern_in_furcas_tcs_orpattern8933 = new BitSet(new long[]{0x0000000002000002L});
-    public static final BitSet FOLLOW_furcas_tcs_rulepattern_in_furcas_tcs_simplepattern8976 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_stringpattern_in_furcas_tcs_simplepattern8984 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_classpattern_in_furcas_tcs_simplepattern8992 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_rule_in_furcas_tcs_rulepattern9026 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_wordrule_in_furcas_tcs_rule9066 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_endoflinerule_in_furcas_tcs_rule9074 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_multilinerule_in_furcas_tcs_rule9082 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_74_in_furcas_tcs_wordrule9112 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_wordrule9116 = new BitSet(new long[]{0x0000000000000000L,0x0000004000000000L});
-    public static final BitSet FOLLOW_102_in_furcas_tcs_wordrule9120 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_wordrule9124 = new BitSet(new long[]{0x0008000000200020L,0x0004000000000400L});
-    public static final BitSet FOLLOW_furcas_tcs_orpattern_in_furcas_tcs_wordrule9132 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_COMA_in_furcas_tcs_wordrule9139 = new BitSet(new long[]{0x0000000000000000L,0x0000040000000000L});
-    public static final BitSet FOLLOW_106_in_furcas_tcs_wordrule9143 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_wordrule9147 = new BitSet(new long[]{0x0008000000200020L,0x0004000000000400L});
-    public static final BitSet FOLLOW_furcas_tcs_orpattern_in_furcas_tcs_wordrule9155 = new BitSet(new long[]{0x0000000000041000L});
-    public static final BitSet FOLLOW_COMA_in_furcas_tcs_wordrule9168 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
-    public static final BitSet FOLLOW_65_in_furcas_tcs_wordrule9172 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_wordrule9176 = new BitSet(new long[]{0x0008000000200020L,0x0004000000000400L});
-    public static final BitSet FOLLOW_furcas_tcs_orpattern_in_furcas_tcs_wordrule9184 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_wordrule9204 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_114_in_furcas_tcs_endoflinerule9245 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_endoflinerule9249 = new BitSet(new long[]{0x0000000000000000L,0x0000004000000000L});
-    public static final BitSet FOLLOW_102_in_furcas_tcs_endoflinerule9253 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_endoflinerule9257 = new BitSet(new long[]{0x0000000000000020L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_furcas_tcs_endoflinerule9267 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_furcas_tcs_stringpattern_in_furcas_tcs_endoflinerule9289 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_endoflinerule9296 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_furcas_tcs_multilinerule9337 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_multilinerule9341 = new BitSet(new long[]{0x0000000000000000L,0x0000004000000000L});
-    public static final BitSet FOLLOW_102_in_furcas_tcs_multilinerule9345 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_multilinerule9349 = new BitSet(new long[]{0x0000000000000020L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_furcas_tcs_multilinerule9359 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_furcas_tcs_stringpattern_in_furcas_tcs_multilinerule9381 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_COMA_in_furcas_tcs_multilinerule9388 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
-    public static final BitSet FOLLOW_65_in_furcas_tcs_multilinerule9392 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_multilinerule9396 = new BitSet(new long[]{0x0000000000000020L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_furcas_tcs_multilinerule9406 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_furcas_tcs_stringpattern_in_furcas_tcs_multilinerule9428 = new BitSet(new long[]{0x0000000000041000L});
-    public static final BitSet FOLLOW_COMA_in_furcas_tcs_multilinerule9441 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_60_in_furcas_tcs_multilinerule9445 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_furcas_tcs_multilinerule9449 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_furcas_tcs_stringpattern_in_furcas_tcs_multilinerule9457 = new BitSet(new long[]{0x0000000000041000L});
-    public static final BitSet FOLLOW_COMA_in_furcas_tcs_multilinerule9470 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_multilinerule9475 = new BitSet(new long[]{0x0010000100011010L,0x0010000000000000L});
-    public static final BitSet FOLLOW_furcas_tcs_mapping_in_furcas_tcs_multilinerule9483 = new BitSet(new long[]{0x0000000000041000L});
-    public static final BitSet FOLLOW_COMA_in_furcas_tcs_multilinerule9492 = new BitSet(new long[]{0x0010000100010010L,0x0010000000000000L});
-    public static final BitSet FOLLOW_furcas_tcs_mapping_in_furcas_tcs_multilinerule9500 = new BitSet(new long[]{0x0000000000041000L});
-    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_multilinerule9512 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_multilinerule9543 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_simplemapping_in_furcas_tcs_mapping9581 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_wildcardmapping_in_furcas_tcs_mapping9589 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_octalmapping_in_furcas_tcs_mapping9597 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_hexadecimalmapping_in_furcas_tcs_mapping9605 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_identifier_in_furcas_tcs_simplemapping9639 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_RARROW_in_furcas_tcs_simplemapping9648 = new BitSet(new long[]{0x0000000000000012L});
-    public static final BitSet FOLLOW_identifier_in_furcas_tcs_simplemapping9656 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_POINT_in_furcas_tcs_wildcardmapping9702 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_RARROW_in_furcas_tcs_wildcardmapping9707 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_POINT_in_furcas_tcs_wildcardmapping9712 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_116_in_furcas_tcs_octalmapping9753 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_52_in_furcas_tcs_hexadecimalmapping9793 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_stringpattern9837 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LSQUARE_in_furcas_tcs_classpattern9881 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_furcas_tcs_classpattern9889 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_RSQUARE_in_furcas_tcs_classpattern9896 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_89_in_furcas_tcs_primitivetemplate2519 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_furcas_tcs_primitivetemplate2526 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_65_in_furcas_tcs_primitivetemplate2532 = new BitSet(new long[]{0x0000000000010330L});
+    public static final BitSet FOLLOW_reference_in_furcas_tcs_primitivetemplate2535 = new BitSet(new long[]{0x0004000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_50_in_furcas_tcs_primitivetemplate2545 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_82_in_furcas_tcs_primitivetemplate2563 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_furcas_tcs_primitivetemplate2570 = new BitSet(new long[]{0x0000000000020000L,0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_128_in_furcas_tcs_primitivetemplate2582 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_COLON_in_furcas_tcs_primitivetemplate2604 = new BitSet(new long[]{0x0000000000000000L,0x0000800000000000L});
+    public static final BitSet FOLLOW_111_in_furcas_tcs_primitivetemplate2611 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_primitivetemplate2615 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_primitivetemplate2623 = new BitSet(new long[]{0x0000000000048000L});
+    public static final BitSet FOLLOW_COMA_in_furcas_tcs_primitivetemplate2636 = new BitSet(new long[]{0x0000000000000000L,0x0000040000000000L});
+    public static final BitSet FOLLOW_106_in_furcas_tcs_primitivetemplate2640 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_primitivetemplate2644 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_primitivetemplate2652 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_SEMI_in_furcas_tcs_primitivetemplate2675 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_108_in_furcas_tcs_enumerationtemplate2719 = new BitSet(new long[]{0x0000000000010330L});
+    public static final BitSet FOLLOW_reference_in_furcas_tcs_enumerationtemplate2722 = new BitSet(new long[]{0x0000000000028000L,0x0000010000000000L});
+    public static final BitSet FOLLOW_104_in_furcas_tcs_enumerationtemplate2732 = new BitSet(new long[]{0x0000000000028000L});
+    public static final BitSet FOLLOW_COLON_in_furcas_tcs_enumerationtemplate2760 = new BitSet(new long[]{0x0000000000008200L});
+    public static final BitSet FOLLOW_furcas_tcs_enumliteralmapping_in_furcas_tcs_enumerationtemplate2771 = new BitSet(new long[]{0x0000000000048000L});
+    public static final BitSet FOLLOW_COMA_in_furcas_tcs_enumerationtemplate2780 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_furcas_tcs_enumliteralmapping_in_furcas_tcs_enumerationtemplate2788 = new BitSet(new long[]{0x0000000000048000L});
+    public static final BitSet FOLLOW_SEMI_in_furcas_tcs_enumerationtemplate2803 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SEMI_in_furcas_tcs_enumerationtemplate2820 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_enumliteralval_in_furcas_tcs_enumliteralmapping2871 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_enumliteralmapping2878 = new BitSet(new long[]{0xFFFE000031290432L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_furcas_tcs_sequenceelement_in_furcas_tcs_enumliteralmapping2886 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_116_in_furcas_tcs_classtemplate2931 = new BitSet(new long[]{0x0000000000010330L});
+    public static final BitSet FOLLOW_reference_in_furcas_tcs_classtemplate2934 = new BitSet(new long[]{0x8000000000028600L,0x0004001040320020L,0x0000000000000010L});
+    public static final BitSet FOLLOW_100_in_furcas_tcs_classtemplate2944 = new BitSet(new long[]{0x0000000000028200L});
+    public static final BitSet FOLLOW_SHARP_in_furcas_tcs_classtemplate2954 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_classtemplate2962 = new BitSet(new long[]{0x0000000000028000L});
+    public static final BitSet FOLLOW_SHARP_in_furcas_tcs_classtemplate2998 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_classtemplate3006 = new BitSet(new long[]{0x8000000000028400L,0x0004000040320020L,0x0000000000000010L});
+    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_classtemplate3032 = new BitSet(new long[]{0x2000000000000000L});
+    public static final BitSet FOLLOW_61_in_furcas_tcs_classtemplate3036 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_classtemplate3040 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_classtemplate3048 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_classtemplate3055 = new BitSet(new long[]{0x8000000000028400L,0x0004000040320020L,0x0000000000000010L});
+    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_classtemplate3079 = new BitSet(new long[]{0x0000000000000000L,0x0000000008000000L});
+    public static final BitSet FOLLOW_91_in_furcas_tcs_classtemplate3083 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_classtemplate3087 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_classtemplate3095 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_classtemplate3102 = new BitSet(new long[]{0x8000000000028400L,0x0004000040320020L,0x0000000000000010L});
+    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_classtemplate3126 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000100L});
+    public static final BitSet FOLLOW_72_in_furcas_tcs_classtemplate3130 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_classtemplate3134 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_classtemplate3142 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_classtemplate3149 = new BitSet(new long[]{0x8000000000028000L,0x0004000040320020L,0x0000000000000010L});
+    public static final BitSet FOLLOW_132_in_furcas_tcs_classtemplate3172 = new BitSet(new long[]{0x8000000000028000L,0x0004000040320020L});
+    public static final BitSet FOLLOW_85_in_furcas_tcs_classtemplate3196 = new BitSet(new long[]{0x8000000000028000L,0x0004000040120020L});
+    public static final BitSet FOLLOW_81_in_furcas_tcs_classtemplate3226 = new BitSet(new long[]{0x0000000000000000L,0x0000000040000000L});
+    public static final BitSet FOLLOW_94_in_furcas_tcs_classtemplate3244 = new BitSet(new long[]{0x8000000000028000L,0x0004000000100020L});
+    public static final BitSet FOLLOW_69_in_furcas_tcs_classtemplate3268 = new BitSet(new long[]{0x8000000000028400L,0x0004000000100000L});
+    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_classtemplate3278 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_furcas_tcs_classtemplate3286 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_classtemplate3293 = new BitSet(new long[]{0x8000000000028000L,0x0004000000100000L});
+    public static final BitSet FOLLOW_63_in_furcas_tcs_classtemplate3331 = new BitSet(new long[]{0x0000000000028400L,0x0004000000100000L});
+    public static final BitSet FOLLOW_furcas_tcs_contexttags_in_furcas_tcs_classtemplate3344 = new BitSet(new long[]{0x0000000000028000L,0x0004000000100000L});
+    public static final BitSet FOLLOW_114_in_furcas_tcs_classtemplate3384 = new BitSet(new long[]{0x0000000000028000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_furcas_tcs_classtemplate3408 = new BitSet(new long[]{0x0000000000028000L});
+    public static final BitSet FOLLOW_COLON_in_furcas_tcs_classtemplate3443 = new BitSet(new long[]{0xFFFE000031298430L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_furcas_tcs_sequence_in_furcas_tcs_classtemplate3454 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_SEMI_in_furcas_tcs_classtemplate3464 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SEMI_in_furcas_tcs_classtemplate3481 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_78_in_furcas_tcs_operatortemplate3528 = new BitSet(new long[]{0x0000000000010330L});
+    public static final BitSet FOLLOW_reference_in_furcas_tcs_operatortemplate3531 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_operatortemplate3536 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
+    public static final BitSet FOLLOW_105_in_furcas_tcs_operatortemplate3540 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_operatortemplate3544 = new BitSet(new long[]{0x0000000000040010L});
+    public static final BitSet FOLLOW_identifier_in_furcas_tcs_operatortemplate3552 = new BitSet(new long[]{0x0000000000040010L});
+    public static final BitSet FOLLOW_identifier_in_furcas_tcs_operatortemplate3560 = new BitSet(new long[]{0x0000000000040010L});
+    public static final BitSet FOLLOW_COMA_in_furcas_tcs_operatortemplate3572 = new BitSet(new long[]{0x0000000000000000L,0x0002000000000000L});
+    public static final BitSet FOLLOW_113_in_furcas_tcs_operatortemplate3576 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_operatortemplate3580 = new BitSet(new long[]{0xFFFE000000051010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_operatortemplate3588 = new BitSet(new long[]{0x0000000000041000L});
+    public static final BitSet FOLLOW_COMA_in_furcas_tcs_operatortemplate3603 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
+    public static final BitSet FOLLOW_77_in_furcas_tcs_operatortemplate3607 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_operatortemplate3611 = new BitSet(new long[]{0xFFFE000000010010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_operatortemplate3619 = new BitSet(new long[]{0x0000000000041000L});
+    public static final BitSet FOLLOW_COMA_in_furcas_tcs_operatortemplate3645 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_51_in_furcas_tcs_operatortemplate3649 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_operatortemplate3653 = new BitSet(new long[]{0xFFFE000000010010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_operatortemplate3661 = new BitSet(new long[]{0x0000000000041000L});
+    public static final BitSet FOLLOW_COMA_in_furcas_tcs_operatortemplate3687 = new BitSet(new long[]{0x2000000000000000L});
+    public static final BitSet FOLLOW_61_in_furcas_tcs_operatortemplate3691 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_operatortemplate3695 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_operatortemplate3703 = new BitSet(new long[]{0x0000000000041000L});
+    public static final BitSet FOLLOW_COMA_in_furcas_tcs_operatortemplate3729 = new BitSet(new long[]{0x0000000000000000L,0x0000000008000000L});
+    public static final BitSet FOLLOW_91_in_furcas_tcs_operatortemplate3733 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_operatortemplate3737 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_operatortemplate3745 = new BitSet(new long[]{0x0000000000041000L});
+    public static final BitSet FOLLOW_COMA_in_furcas_tcs_operatortemplate3771 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000100L});
+    public static final BitSet FOLLOW_72_in_furcas_tcs_operatortemplate3775 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_operatortemplate3779 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_operatortemplate3787 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_operatortemplate3807 = new BitSet(new long[]{0x8000000000028000L,0x0000001000000000L});
+    public static final BitSet FOLLOW_100_in_furcas_tcs_operatortemplate3817 = new BitSet(new long[]{0x0000000000028000L});
+    public static final BitSet FOLLOW_63_in_furcas_tcs_operatortemplate3836 = new BitSet(new long[]{0x0000000000028400L});
+    public static final BitSet FOLLOW_furcas_tcs_contexttags_in_furcas_tcs_operatortemplate3849 = new BitSet(new long[]{0x0000000000028000L});
+    public static final BitSet FOLLOW_COLON_in_furcas_tcs_operatortemplate3900 = new BitSet(new long[]{0xFFFE000031298430L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_furcas_tcs_sequence_in_furcas_tcs_operatortemplate3911 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_SEMI_in_furcas_tcs_operatortemplate3921 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SEMI_in_furcas_tcs_operatortemplate3938 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_88_in_furcas_tcs_functiontemplate3985 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_furcas_tcs_functiontemplate3992 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_functiontemplate3999 = new BitSet(new long[]{0x0000000000010330L});
+    public static final BitSet FOLLOW_reference_in_furcas_tcs_functiontemplate4003 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_functiontemplate4008 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_COLON_in_furcas_tcs_functiontemplate4016 = new BitSet(new long[]{0xFFFE000031298430L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_furcas_tcs_sequence_in_furcas_tcs_functiontemplate4027 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_SEMI_in_furcas_tcs_functiontemplate4037 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_contexttags4082 = new BitSet(new long[]{0x0000000000001010L});
+    public static final BitSet FOLLOW_identifier_in_furcas_tcs_contexttags4090 = new BitSet(new long[]{0x0000000000041000L});
+    public static final BitSet FOLLOW_COMA_in_furcas_tcs_contexttags4099 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_furcas_tcs_contexttags4107 = new BitSet(new long[]{0x0000000000041000L});
+    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_contexttags4119 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_sequenceelement_in_furcas_tcs_sequence4167 = new BitSet(new long[]{0xFFFE000031290432L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_furcas_tcs_sequenceelement_in_furcas_tcs_sequence4175 = new BitSet(new long[]{0xFFFE000031290432L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_furcas_tcs_literalref_in_furcas_tcs_sequenceelement4223 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_property_in_furcas_tcs_sequenceelement4231 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_customseparator_in_furcas_tcs_sequenceelement4239 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_block_in_furcas_tcs_sequenceelement4247 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_conditionalelement_in_furcas_tcs_sequenceelement4255 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_alternative_in_furcas_tcs_sequenceelement4263 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_functioncall_in_furcas_tcs_sequenceelement4271 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_injectoractionsblock_in_furcas_tcs_sequenceelement4279 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_literalref4313 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_propertyreference4369 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RARROW_in_furcas_tcs_propertyreference4385 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_propertyreference4393 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_property4446 = new BitSet(new long[]{0x0000000000002002L});
+    public static final BitSet FOLLOW_LCURLY_in_furcas_tcs_property4459 = new BitSet(new long[]{0x6030000000004000L,0x0020008E84018209L,0x0000000000000020L});
+    public static final BitSet FOLLOW_furcas_tcs_propertyarg_in_furcas_tcs_property4467 = new BitSet(new long[]{0x0000000000044000L});
+    public static final BitSet FOLLOW_COMA_in_furcas_tcs_property4476 = new BitSet(new long[]{0x6030000000000000L,0x0020008E84018209L,0x0000000000000020L});
+    public static final BitSet FOLLOW_furcas_tcs_propertyarg_in_furcas_tcs_property4484 = new BitSet(new long[]{0x0000000000044000L});
+    public static final BitSet FOLLOW_RCURLY_in_furcas_tcs_property4496 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LT_in_furcas_tcs_customseparator4554 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_furcas_tcs_customseparator4562 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_GT_in_furcas_tcs_customseparator4569 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LSQUARE_in_furcas_tcs_block4614 = new BitSet(new long[]{0xFFFE000031690430L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_furcas_tcs_sequence_in_furcas_tcs_block4622 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_RSQUARE_in_furcas_tcs_block4629 = new BitSet(new long[]{0x0000000000002002L});
+    public static final BitSet FOLLOW_LCURLY_in_furcas_tcs_block4640 = new BitSet(new long[]{0x0002000000004000L,0x1000000100000804L});
+    public static final BitSet FOLLOW_furcas_tcs_blockarg_in_furcas_tcs_block4648 = new BitSet(new long[]{0x0000000000044000L});
+    public static final BitSet FOLLOW_COMA_in_furcas_tcs_block4657 = new BitSet(new long[]{0x0002000000000000L,0x1000000100000804L});
+    public static final BitSet FOLLOW_furcas_tcs_blockarg_in_furcas_tcs_block4665 = new BitSet(new long[]{0x0000000000044000L});
+    public static final BitSet FOLLOW_RCURLY_in_furcas_tcs_block4677 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_conditionalelement4735 = new BitSet(new long[]{0xFFFE000000010810L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_furcas_tcs_expression_in_furcas_tcs_conditionalelement4743 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_QMARK_in_furcas_tcs_conditionalelement4750 = new BitSet(new long[]{0xFFFE0000312B1430L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_furcas_tcs_sequence_in_furcas_tcs_conditionalelement4758 = new BitSet(new long[]{0x0000000000021000L});
+    public static final BitSet FOLLOW_COLON_in_furcas_tcs_conditionalelement4771 = new BitSet(new long[]{0xFFFE000031291430L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_furcas_tcs_sequence_in_furcas_tcs_conditionalelement4779 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_conditionalelement4799 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DLSQUARE_in_furcas_tcs_alternative4844 = new BitSet(new long[]{0xFFFE000033290430L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_furcas_tcs_sequenceinalternative_nestedSequence_in_furcas_tcs_alternative4855 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_PIPE_in_furcas_tcs_alternative4864 = new BitSet(new long[]{0xFFFE000037290430L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_furcas_tcs_sequenceinalternative_nestedSequence_in_furcas_tcs_alternative4872 = new BitSet(new long[]{0x0000000006000000L});
+    public static final BitSet FOLLOW_DRSQUARE_in_furcas_tcs_alternative4884 = new BitSet(new long[]{0x0000000008000002L});
+    public static final BitSet FOLLOW_STAR_in_furcas_tcs_alternative4895 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_61_in_furcas_tcs_sequenceinalternative_nestedSequence4960 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_sequenceinalternative_nestedSequence4964 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_sequenceinalternative_nestedSequence4972 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_sequenceinalternative_nestedSequence4979 = new BitSet(new long[]{0xFFFE000031290432L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_furcas_tcs_sequenceelement_in_furcas_tcs_sequenceinalternative_nestedSequence5003 = new BitSet(new long[]{0xFFFE000031290432L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_furcas_tcs_sequenceelement_in_furcas_tcs_sequenceinalternative_nestedSequence5011 = new BitSet(new long[]{0xFFFE000031290432L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_DOLLAR_in_furcas_tcs_functioncall5063 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_furcas_tcs_functioncall5071 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DLCURLY_in_furcas_tcs_injectoractionsblock5118 = new BitSet(new long[]{0xFFFE0000C0010810L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_furcas_tcs_injectoraction_in_furcas_tcs_injectoractionsblock5129 = new BitSet(new long[]{0x0000000040040000L});
+    public static final BitSet FOLLOW_COMA_in_furcas_tcs_injectoractionsblock5138 = new BitSet(new long[]{0xFFFE000080010810L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_furcas_tcs_injectoraction_in_furcas_tcs_injectoractionsblock5146 = new BitSet(new long[]{0x0000000040040000L});
+    public static final BitSet FOLLOW_DRCURLY_in_furcas_tcs_injectoractionsblock5161 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_propertyinit_in_furcas_tcs_injectoraction5202 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_primitivepropertyinit_in_furcas_tcs_propertyinit5229 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_lookuppropertyinit_in_furcas_tcs_propertyinit5237 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_foreachpredicatepropertyinit_in_furcas_tcs_propertyinit5245 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_primitivepropertyinit5279 = new BitSet(new long[]{0x0000000080000800L});
+    public static final BitSet FOLLOW_LARROW_in_furcas_tcs_primitivepropertyinit5294 = new BitSet(new long[]{0xFFFE000000000012L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_primitivepropertyinit5309 = new BitSet(new long[]{0xFFFE000000000012L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_escapedIdentifierOrKeyword_in_furcas_tcs_primitivepropertyinit5324 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_lookuppropertyinit5373 = new BitSet(new long[]{0x0000000080000800L});
+    public static final BitSet FOLLOW_LARROW_in_furcas_tcs_lookuppropertyinit5388 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_lookuppropertyinit5403 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
+    public static final BitSet FOLLOW_90_in_furcas_tcs_lookuppropertyinit5414 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_lookuppropertyinit5418 = new BitSet(new long[]{0x0000000000001020L});
+    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_lookuppropertyinit5426 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_lookuppropertyinit5435 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_foreachpredicatepropertyinit5480 = new BitSet(new long[]{0x0000000080000800L});
+    public static final BitSet FOLLOW_LARROW_in_furcas_tcs_foreachpredicatepropertyinit5495 = new BitSet(new long[]{0x0000000000000000L,0x0000200000000000L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_foreachpredicatepropertyinit5510 = new BitSet(new long[]{0x0000000000000000L,0x0000200000000000L});
+    public static final BitSet FOLLOW_109_in_furcas_tcs_foreachpredicatepropertyinit5521 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_foreachpredicatepropertyinit5525 = new BitSet(new long[]{0x0000000000041020L});
+    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_foreachpredicatepropertyinit5533 = new BitSet(new long[]{0x0000000000041000L});
+    public static final BitSet FOLLOW_COMA_in_furcas_tcs_foreachpredicatepropertyinit5548 = new BitSet(new long[]{0x0000000000000000L,0x0000000200000000L});
+    public static final BitSet FOLLOW_97_in_furcas_tcs_foreachpredicatepropertyinit5552 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_foreachpredicatepropertyinit5556 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_foreachpredicatepropertyinit5564 = new BitSet(new long[]{0x0000000000041000L});
+    public static final BitSet FOLLOW_COMA_in_furcas_tcs_foreachpredicatepropertyinit5590 = new BitSet(new long[]{0x0000000000001000L,0x0000000220000200L});
+    public static final BitSet FOLLOW_furcas_tcs_predicatesemantic_in_furcas_tcs_foreachpredicatepropertyinit5601 = new BitSet(new long[]{0x0000000000041000L});
+    public static final BitSet FOLLOW_COMA_in_furcas_tcs_foreachpredicatepropertyinit5610 = new BitSet(new long[]{0x0000000000000000L,0x0000000220000200L});
+    public static final BitSet FOLLOW_furcas_tcs_predicatesemantic_in_furcas_tcs_foreachpredicatepropertyinit5618 = new BitSet(new long[]{0x0000000000041000L});
+    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_foreachpredicatepropertyinit5646 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_93_in_furcas_tcs_predicatesemantic5693 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_predicatesemantic5697 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_predicatesemantic5705 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_COMA_in_furcas_tcs_predicatesemantic5712 = new BitSet(new long[]{0x0000000000000000L,0x0000000200000200L});
+    public static final BitSet FOLLOW_97_in_furcas_tcs_predicatesemantic5735 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_predicatesemantic5739 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_predicatesemantic5747 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_COMA_in_furcas_tcs_predicatesemantic5754 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
+    public static final BitSet FOLLOW_73_in_furcas_tcs_predicatesemantic5771 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_predicatesemantic5775 = new BitSet(new long[]{0xFFFE000000000012L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_predicatesemantic5783 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_referstoparg_in_furcas_tcs_propertyarg5825 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_lookinparg_in_furcas_tcs_propertyarg5833 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_createinparg_in_furcas_tcs_propertyarg5841 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_asparg_in_furcas_tcs_propertyarg5849 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_separatorparg_in_furcas_tcs_propertyarg5857 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_disambiguateparg_in_furcas_tcs_propertyarg5865 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_autocreateparg_in_furcas_tcs_propertyarg5873 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_importcontextparg_in_furcas_tcs_propertyarg5881 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_partialparg_in_furcas_tcs_propertyarg5889 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_forcedlowerparg_in_furcas_tcs_propertyarg5897 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_forcedupperparg_in_furcas_tcs_propertyarg5905 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_createasparg_in_furcas_tcs_propertyarg5913 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_lookupscopeparg_in_furcas_tcs_propertyarg5921 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_referencebyparg_in_furcas_tcs_propertyarg5929 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_prefixparg_in_furcas_tcs_propertyarg5937 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_postfixparg_in_furcas_tcs_propertyarg5945 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_modeparg_in_furcas_tcs_propertyarg5953 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_64_in_furcas_tcs_referstoparg5983 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_referstoparg5987 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_referstoparg5995 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_90_in_furcas_tcs_lookinparg6038 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_lookinparg6042 = new BitSet(new long[]{0xFFFE000000000212L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_SHARP_in_furcas_tcs_lookinparg6053 = new BitSet(new long[]{0x0400000000000000L});
+    public static final BitSet FOLLOW_58_in_furcas_tcs_lookinparg6057 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_lookinparg6074 = new BitSet(new long[]{0x0000000100000002L});
+    public static final BitSet FOLLOW_POINT_in_furcas_tcs_lookinparg6083 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_lookinparg6091 = new BitSet(new long[]{0x0000000100000002L});
+    public static final BitSet FOLLOW_103_in_furcas_tcs_createinparg6146 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_createinparg6150 = new BitSet(new long[]{0xFFFE000000000012L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_createinparg6158 = new BitSet(new long[]{0x0000000100000002L});
+    public static final BitSet FOLLOW_POINT_in_furcas_tcs_createinparg6167 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_createinparg6175 = new BitSet(new long[]{0x0000000100000002L});
+    public static final BitSet FOLLOW_73_in_furcas_tcs_asparg6223 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_asparg6227 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_asparg6235 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_53_in_furcas_tcs_separatorparg6278 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_separatorparg6282 = new BitSet(new long[]{0xFFFE000031290430L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_furcas_tcs_sequence_in_furcas_tcs_separatorparg6290 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_61_in_furcas_tcs_disambiguateparg6333 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_disambiguateparg6337 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_disambiguateparg6345 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_80_in_furcas_tcs_autocreateparg6390 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_autocreateparg6394 = new BitSet(new long[]{0x1800000000000000L,0x0000000000000080L});
+    public static final BitSet FOLLOW_furcas_tcs_autocreatekind_in_furcas_tcs_autocreateparg6402 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_71_in_furcas_tcs_autocreatekind6446 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_60_in_furcas_tcs_autocreatekind6456 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_59_in_furcas_tcs_autocreatekind6466 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_95_in_furcas_tcs_importcontextparg6497 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_133_in_furcas_tcs_partialparg6537 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_79_in_furcas_tcs_forcedlowerparg6577 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_forcedlowerparg6581 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_integerSymbol_in_furcas_tcs_forcedlowerparg6589 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_52_in_furcas_tcs_forcedupperparg6632 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_forcedupperparg6636 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_integerSymbol_in_furcas_tcs_forcedupperparg6644 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_117_in_furcas_tcs_createasparg6687 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_createasparg6691 = new BitSet(new long[]{0xFFFE000000000012L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_createasparg6699 = new BitSet(new long[]{0x0000000000000102L});
+    public static final BitSet FOLLOW_DLCOLON_in_furcas_tcs_createasparg6708 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_createasparg6716 = new BitSet(new long[]{0x0000000000000102L});
+    public static final BitSet FOLLOW_98_in_furcas_tcs_lookupscopeparg6764 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_lookupscopeparg6768 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_lookupscopeparg6776 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_99_in_furcas_tcs_referencebyparg6819 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_referencebyparg6823 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_referencebyparg6831 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_67_in_furcas_tcs_prefixparg6874 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_prefixparg6878 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_prefixparg6886 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_62_in_furcas_tcs_postfixparg6929 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_postfixparg6933 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_postfixparg6941 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_97_in_furcas_tcs_modeparg6984 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_modeparg6988 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_modeparg6996 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_nbnlbarg_in_furcas_tcs_blockarg7036 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_indentincrbarg_in_furcas_tcs_blockarg7044 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_startnlbarg_in_furcas_tcs_blockarg7052 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_startnbnlbarg_in_furcas_tcs_blockarg7060 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_endnlbarg_in_furcas_tcs_blockarg7068 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_96_in_furcas_tcs_nbnlbarg7098 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_nbnlbarg7102 = new BitSet(new long[]{0x0000000000000042L});
+    public static final BitSet FOLLOW_integerSymbol_in_furcas_tcs_nbnlbarg7110 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_66_in_furcas_tcs_indentincrbarg7155 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_indentincrbarg7159 = new BitSet(new long[]{0x0000000000000042L});
+    public static final BitSet FOLLOW_integerSymbol_in_furcas_tcs_indentincrbarg7167 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_75_in_furcas_tcs_startnlbarg7212 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_startnlbarg7216 = new BitSet(new long[]{0x0000000000000000L,0x0040400000000000L});
+    public static final BitSet FOLLOW_110_in_furcas_tcs_startnlbarg7226 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_118_in_furcas_tcs_startnlbarg7239 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_49_in_furcas_tcs_startnbnlbarg7286 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_startnbnlbarg7290 = new BitSet(new long[]{0x0000000000000042L});
+    public static final BitSet FOLLOW_integerSymbol_in_furcas_tcs_startnbnlbarg7298 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_124_in_furcas_tcs_endnlbarg7343 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_endnlbarg7347 = new BitSet(new long[]{0x0000000000000000L,0x0040400000000000L});
+    public static final BitSet FOLLOW_110_in_furcas_tcs_endnlbarg7357 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_118_in_furcas_tcs_endnlbarg7370 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_identifier_in_furcas_tcs_symbol7421 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_symbol7428 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_symbol7436 = new BitSet(new long[]{0x0000000000028000L});
+    public static final BitSet FOLLOW_COLON_in_furcas_tcs_symbol7449 = new BitSet(new long[]{0x0100000000008000L,0x0408000000000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_spacekind_in_furcas_tcs_symbol7457 = new BitSet(new long[]{0x0000000000048000L});
+    public static final BitSet FOLLOW_COMA_in_furcas_tcs_symbol7466 = new BitSet(new long[]{0x0100000000000000L,0x0408000000000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_spacekind_in_furcas_tcs_symbol7474 = new BitSet(new long[]{0x0000000000048000L});
+    public static final BitSet FOLLOW_SEMI_in_furcas_tcs_symbol7499 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_129_in_furcas_tcs_spacekind7541 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_115_in_furcas_tcs_spacekind7551 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_122_in_furcas_tcs_spacekind7561 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_56_in_furcas_tcs_spacekind7571 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_identifier_in_furcas_tcs_keyword7606 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_keyword7613 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_keyword7621 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_SEMI_in_furcas_tcs_keyword7628 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_105_in_furcas_tcs_operatorlist7669 = new BitSet(new long[]{0x0000000000002010L});
+    public static final BitSet FOLLOW_identifier_in_furcas_tcs_operatorlist7682 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_LCURLY_in_furcas_tcs_operatorlist7702 = new BitSet(new long[]{0x0000000000004000L,0x0000000000000000L,0x0000000000000004L});
+    public static final BitSet FOLLOW_furcas_tcs_priority_in_furcas_tcs_operatorlist7713 = new BitSet(new long[]{0x0000000000004000L,0x0000000000000000L,0x0000000000000004L});
+    public static final BitSet FOLLOW_furcas_tcs_priority_in_furcas_tcs_operatorlist7721 = new BitSet(new long[]{0x0000000000004000L,0x0000000000000000L,0x0000000000000004L});
+    public static final BitSet FOLLOW_RCURLY_in_furcas_tcs_operatorlist7736 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_130_in_furcas_tcs_priority7777 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_integerSymbol_in_furcas_tcs_priority7784 = new BitSet(new long[]{0x0000000000042000L});
+    public static final BitSet FOLLOW_COMA_in_furcas_tcs_priority7807 = new BitSet(new long[]{0x0000000000000000L,0x2000000000000040L});
+    public static final BitSet FOLLOW_furcas_tcs_associativity_in_furcas_tcs_priority7815 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_LCURLY_in_furcas_tcs_priority7829 = new BitSet(new long[]{0x4000000000004010L});
+    public static final BitSet FOLLOW_furcas_tcs_operator_in_furcas_tcs_priority7840 = new BitSet(new long[]{0x4000000000004010L});
+    public static final BitSet FOLLOW_furcas_tcs_operator_in_furcas_tcs_priority7848 = new BitSet(new long[]{0x4000000000004010L});
+    public static final BitSet FOLLOW_RCURLY_in_furcas_tcs_priority7863 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_62_in_furcas_tcs_operator7910 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_furcas_tcs_operator7932 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_operator7939 = new BitSet(new long[]{0x0000000000040030L});
+    public static final BitSet FOLLOW_identifier_in_furcas_tcs_operator7958 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_operator7978 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_COMA_in_furcas_tcs_operator8003 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_integerSymbol_in_furcas_tcs_operator8011 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_SEMI_in_furcas_tcs_operator8018 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_70_in_furcas_tcs_associativity8060 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_125_in_furcas_tcs_associativity8070 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_andexp_in_furcas_tcs_expression8098 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_atomexp_in_furcas_tcs_andexp8132 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000010L});
+    public static final BitSet FOLLOW_68_in_furcas_tcs_andexp8140 = new BitSet(new long[]{0xFFFE000000010810L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_furcas_tcs_atomexp_in_furcas_tcs_andexp8147 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000010L});
+    public static final BitSet FOLLOW_furcas_tcs_equalsexp_in_furcas_tcs_atomexp8192 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_booleanpropertyexp_in_furcas_tcs_atomexp8200 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_isdefinedexp_in_furcas_tcs_atomexp8208 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_oneexp_in_furcas_tcs_atomexp8216 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_instanceofexp_in_furcas_tcs_atomexp8224 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_equalsexp8258 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_equalsexp8267 = new BitSet(new long[]{0x0000000200000260L});
+    public static final BitSet FOLLOW_furcas_tcs_value_in_furcas_tcs_equalsexp8275 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_booleanpropertyexp8322 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_92_in_furcas_tcs_isdefinedexp8367 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_isdefinedexp8371 = new BitSet(new long[]{0xFFFE000000011010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_isdefinedexp8379 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_isdefinedexp8388 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_107_in_furcas_tcs_oneexp8429 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_oneexp8433 = new BitSet(new long[]{0xFFFE000000011010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_oneexp8441 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_oneexp8450 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_propertyreference_in_furcas_tcs_instanceofexp8495 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+    public static final BitSet FOLLOW_76_in_furcas_tcs_instanceofexp8503 = new BitSet(new long[]{0x0000000000000012L});
+    public static final BitSet FOLLOW_identifier_in_furcas_tcs_instanceofexp8510 = new BitSet(new long[]{0x0000000000000102L});
+    public static final BitSet FOLLOW_DLCOLON_in_furcas_tcs_instanceofexp8519 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_furcas_tcs_instanceofexp8527 = new BitSet(new long[]{0x0000000000000102L});
+    public static final BitSet FOLLOW_furcas_tcs_stringval_in_furcas_tcs_value8572 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_integerval_in_furcas_tcs_value8580 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_negativeintegerval_in_furcas_tcs_value8588 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_enumliteralval_in_furcas_tcs_value8596 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_stringval8630 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_integerSymbol_in_furcas_tcs_integerval8679 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_MINUS_in_furcas_tcs_negativeintegerval8725 = new BitSet(new long[]{0x0000000000000042L});
+    public static final BitSet FOLLOW_integerSymbol_in_furcas_tcs_negativeintegerval8733 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SHARP_in_furcas_tcs_enumliteralval8779 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_furcas_tcs_enumliteralval8787 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_102_in_furcas_tcs_token8836 = new BitSet(new long[]{0x0000000000000000L,0x4000000000000000L});
+    public static final BitSet FOLLOW_126_in_furcas_tcs_token8854 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_furcas_tcs_token8861 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_COLON_in_furcas_tcs_token8868 = new BitSet(new long[]{0x0200000000200020L,0x0100000000800000L});
+    public static final BitSet FOLLOW_furcas_tcs_orpattern_in_furcas_tcs_token8876 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_SEMI_in_furcas_tcs_token8883 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_simplepattern_in_furcas_tcs_orpattern8928 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_PIPE_in_furcas_tcs_orpattern8937 = new BitSet(new long[]{0x0200000000200020L,0x0100000000800000L});
+    public static final BitSet FOLLOW_furcas_tcs_simplepattern_in_furcas_tcs_orpattern8945 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_furcas_tcs_rulepattern_in_furcas_tcs_simplepattern8988 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_stringpattern_in_furcas_tcs_simplepattern8996 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_classpattern_in_furcas_tcs_simplepattern9004 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_rule_in_furcas_tcs_rulepattern9038 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_wordrule_in_furcas_tcs_rule9078 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_endoflinerule_in_furcas_tcs_rule9086 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_multilinerule_in_furcas_tcs_rule9094 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_57_in_furcas_tcs_wordrule9124 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_wordrule9128 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_131_in_furcas_tcs_wordrule9132 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_wordrule9136 = new BitSet(new long[]{0x0200000000200020L,0x0100000000800000L});
+    public static final BitSet FOLLOW_furcas_tcs_orpattern_in_furcas_tcs_wordrule9144 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_COMA_in_furcas_tcs_wordrule9151 = new BitSet(new long[]{0x0000000000000000L,0x0200000000000000L});
+    public static final BitSet FOLLOW_121_in_furcas_tcs_wordrule9155 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_wordrule9159 = new BitSet(new long[]{0x0200000000200020L,0x0100000000800000L});
+    public static final BitSet FOLLOW_furcas_tcs_orpattern_in_furcas_tcs_wordrule9167 = new BitSet(new long[]{0x0000000000041000L});
+    public static final BitSet FOLLOW_COMA_in_furcas_tcs_wordrule9180 = new BitSet(new long[]{0x0080000000000000L});
+    public static final BitSet FOLLOW_55_in_furcas_tcs_wordrule9184 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_wordrule9188 = new BitSet(new long[]{0x0200000000200020L,0x0100000000800000L});
+    public static final BitSet FOLLOW_furcas_tcs_orpattern_in_furcas_tcs_wordrule9196 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_wordrule9216 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_87_in_furcas_tcs_endoflinerule9257 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_endoflinerule9261 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_131_in_furcas_tcs_endoflinerule9265 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_endoflinerule9269 = new BitSet(new long[]{0x0000000000000020L,0x0001000000000000L});
+    public static final BitSet FOLLOW_112_in_furcas_tcs_endoflinerule9279 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_furcas_tcs_stringpattern_in_furcas_tcs_endoflinerule9301 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_endoflinerule9308 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_120_in_furcas_tcs_multilinerule9349 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_multilinerule9353 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_131_in_furcas_tcs_multilinerule9357 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_multilinerule9361 = new BitSet(new long[]{0x0000000000000020L,0x0001000000000000L});
+    public static final BitSet FOLLOW_112_in_furcas_tcs_multilinerule9371 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_furcas_tcs_stringpattern_in_furcas_tcs_multilinerule9393 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_COMA_in_furcas_tcs_multilinerule9400 = new BitSet(new long[]{0x0080000000000000L});
+    public static final BitSet FOLLOW_55_in_furcas_tcs_multilinerule9404 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_multilinerule9408 = new BitSet(new long[]{0x0000000000000020L,0x0001000000000000L});
+    public static final BitSet FOLLOW_112_in_furcas_tcs_multilinerule9418 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_furcas_tcs_stringpattern_in_furcas_tcs_multilinerule9440 = new BitSet(new long[]{0x0000000000041000L});
+    public static final BitSet FOLLOW_COMA_in_furcas_tcs_multilinerule9453 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
+    public static final BitSet FOLLOW_86_in_furcas_tcs_multilinerule9457 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_furcas_tcs_multilinerule9461 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_furcas_tcs_stringpattern_in_furcas_tcs_multilinerule9469 = new BitSet(new long[]{0x0000000000041000L});
+    public static final BitSet FOLLOW_COMA_in_furcas_tcs_multilinerule9482 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_LPAREN_in_furcas_tcs_multilinerule9487 = new BitSet(new long[]{0x0040000100011010L,0x0000000000080000L});
+    public static final BitSet FOLLOW_furcas_tcs_mapping_in_furcas_tcs_multilinerule9495 = new BitSet(new long[]{0x0000000000041000L});
+    public static final BitSet FOLLOW_COMA_in_furcas_tcs_multilinerule9504 = new BitSet(new long[]{0x0040000100010010L,0x0000000000080000L});
+    public static final BitSet FOLLOW_furcas_tcs_mapping_in_furcas_tcs_multilinerule9512 = new BitSet(new long[]{0x0000000000041000L});
+    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_multilinerule9524 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_RPAREN_in_furcas_tcs_multilinerule9555 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_simplemapping_in_furcas_tcs_mapping9593 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_wildcardmapping_in_furcas_tcs_mapping9601 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_octalmapping_in_furcas_tcs_mapping9609 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_hexadecimalmapping_in_furcas_tcs_mapping9617 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_identifier_in_furcas_tcs_simplemapping9651 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_RARROW_in_furcas_tcs_simplemapping9660 = new BitSet(new long[]{0x0000000000000012L});
+    public static final BitSet FOLLOW_identifier_in_furcas_tcs_simplemapping9668 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_POINT_in_furcas_tcs_wildcardmapping9714 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_RARROW_in_furcas_tcs_wildcardmapping9719 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_POINT_in_furcas_tcs_wildcardmapping9724 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_54_in_furcas_tcs_octalmapping9765 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_83_in_furcas_tcs_hexadecimalmapping9805 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_stringSymbol_in_furcas_tcs_stringpattern9849 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LSQUARE_in_furcas_tcs_classpattern9893 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_furcas_tcs_classpattern9901 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_RSQUARE_in_furcas_tcs_classpattern9908 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ecore_epackage_in_synpred171_TCS1686 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_COMA_in_synpred274_TCS5536 = new BitSet(new long[]{0x0400000000000000L});
-    public static final BitSet FOLLOW_58_in_synpred274_TCS5540 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_synpred274_TCS5544 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_identifierOrKeyword_in_synpred274_TCS5552 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_atomexp_in_synpred333_TCS8120 = new BitSet(new long[]{0x0080000000000002L});
-    public static final BitSet FOLLOW_55_in_synpred333_TCS8128 = new BitSet(new long[]{0xFFFE000000010810L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_furcas_tcs_atomexp_in_synpred333_TCS8135 = new BitSet(new long[]{0x0080000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_equalsexp_in_synpred334_TCS8180 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_booleanpropertyexp_in_synpred335_TCS8188 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_propertyreference_in_synpred339_TCS8310 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_stringval_in_synpred345_TCS8560 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_furcas_tcs_integerval_in_synpred346_TCS8568 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_COMA_in_synpred274_TCS5548 = new BitSet(new long[]{0x0000000000000000L,0x0000000200000000L});
+    public static final BitSet FOLLOW_97_in_synpred274_TCS5552 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_synpred274_TCS5556 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_identifierOrKeyword_in_synpred274_TCS5564 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_atomexp_in_synpred333_TCS8132 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000010L});
+    public static final BitSet FOLLOW_68_in_synpred333_TCS8140 = new BitSet(new long[]{0xFFFE000000010810L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_furcas_tcs_atomexp_in_synpred333_TCS8147 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000010L});
+    public static final BitSet FOLLOW_furcas_tcs_equalsexp_in_synpred334_TCS8192 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_booleanpropertyexp_in_synpred335_TCS8200 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_propertyreference_in_synpred339_TCS8322 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_stringval_in_synpred345_TCS8572 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_furcas_tcs_integerval_in_synpred346_TCS8580 = new BitSet(new long[]{0x0000000000000002L});
 
 }
