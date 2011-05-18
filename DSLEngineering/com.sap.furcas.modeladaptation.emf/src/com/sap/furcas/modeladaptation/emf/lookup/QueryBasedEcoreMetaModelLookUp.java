@@ -196,7 +196,8 @@ public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup
         try {
             return oclEvaluator.getOclReturnType((EClassifier) parsingContext, oclQuery);
         } catch (ParserException e) {
-            throw new MetaModelLookupException("Unable to determine return type of expression " + oclQuery + ": " + e.getMessage(), e);
+            // Client can call validate to find out what is wrong.
+            return null;
         }
     }
 
