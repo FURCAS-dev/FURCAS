@@ -108,7 +108,7 @@ public class ModelEditorInputLoader {
             try {
                 TextBlockTCSExtractorStream target = new TextBlockTCSExtractorStream(parserFactory);
                 PrettyPrinter prettyPrinter = new PrettyPrinter();
-                prettyPrinter.prettyPrint(rootBlock, syntax, target);
+                prettyPrinter.prettyPrint(rootObject, syntax, target);
                 return target.getPrintedResultRootBlock();
            } catch (SyntaxAndModelMismatchException e) {
                 throw new PartInitException("Model does not (fully) conform to syntax " + syntax.getName() + ": \n\n" + e.getCause().getMessage(), e);

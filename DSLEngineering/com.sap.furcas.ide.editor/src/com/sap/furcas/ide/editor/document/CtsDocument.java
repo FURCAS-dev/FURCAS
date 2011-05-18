@@ -29,6 +29,7 @@ import com.sap.furcas.runtime.textblocks.TbUtil;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.validation.TbValidationUtil;
+import com.sap.furcas.unparser.PrettyPrinter;
 import com.sap.furcas.unparser.SyntaxAndModelMismatchException;
 import com.sap.furcas.unparser.extraction.TCSExtractorPrintStream;
 import com.sap.furcas.unparser.extraction.textblocks.TextBlockTCSExtractorStream;
@@ -144,7 +145,14 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
      * to this concrete syntax (e.g., matching property inits)
      */
     private void validateDomainModelCompliesToSyntax() throws PartInitException {
-        prettyPrintModelToString(); // we don't care about any result.
+        PrettyPrinter prettyPrinter = new PrettyPrinter();
+        TCSExtractorPrintStream target = new TCSExtractorPrintStream(new ByteArrayOutputStream());
+        try {
+            prettyPrinter.prettyPrint(rootObject, syntax, target);
+            // we don't care about the result. Validation is always performed.
+        } catch (SyntaxAndModelMismatchException e) {
+            throw new PartInitException("Model does not (fully) conform to syntax " + syntax.getName() + ": \n\n" + e.getCause().getMessage(), e);
+        }
     }
     
     /**
