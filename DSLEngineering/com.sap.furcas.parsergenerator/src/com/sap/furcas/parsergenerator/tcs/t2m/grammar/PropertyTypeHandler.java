@@ -360,13 +360,19 @@ public class PropertyTypeHandler<Type extends Object> {
             }
         } else if (args.referenceByPArg != null) {
             Type type = metaLookup.getOclReturnType(metaModelTypeOfPropertyReference.getReference(), PropertyArgumentUtil.getReferenceByAsOCL(args.referenceByPArg));
-            ResolvedNameAndReferenceBean<Type> metaModelTypeOfQueryResult = metaLookup.resolveReferenceName(type);
-            PrimitiveTemplate propertyPrimitiveTemplate = syntaxLookup.getDefaultPrimitiveTemplateRule(metaModelTypeOfQueryResult);
-            if (propertyPrimitiveTemplate == null) {
-                errorBucket.addError("Syntax does not define a rule for " + metaModelTypeOfQueryResult
-                        + " which is the return type of the referenceBy expression " + PropertyArgumentUtil.getReferenceByAsOCL(args.referenceByPArg), prop);
+            if (type == null) {
+                errorBucket.addError(metaModelTypeOfPropertyReference + " is no suitable context for the OCL expression "
+                        + PropertyArgumentUtil.getReferenceByAsOCL(args.referenceByPArg), prop);
+              
             } else {
-                ruleBodyPart.append(propertyPrimitiveTemplate.getTemplateName());
+                ResolvedNameAndReferenceBean<Type> metaModelTypeOfQueryResult = metaLookup.resolveReferenceName(type);
+                PrimitiveTemplate propertyPrimitiveTemplate = syntaxLookup.getDefaultPrimitiveTemplateRule(metaModelTypeOfQueryResult);
+                if (propertyPrimitiveTemplate == null) {
+                    errorBucket.addError("Syntax does not define a rule for " + metaModelTypeOfQueryResult
+                            + " which is the return type of the referenceBy expression " + PropertyArgumentUtil.getReferenceByAsOCL(args.referenceByPArg), prop);
+                } else {
+                    ruleBodyPart.append(propertyPrimitiveTemplate.getTemplateName());
+                }
             }
         } else {
             PrimitiveTemplate propertyPrimitiveTemplate = syntaxLookup.getDefaultPrimitiveTemplateRule(metaModelTypeOfPropertyReference);
