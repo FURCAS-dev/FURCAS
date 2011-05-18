@@ -3,14 +3,12 @@
  */
 package com.sap.furcas.runtime.textblocks;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
-import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 
 /**
@@ -100,46 +98,26 @@ public class TbNavigationUtil {
 		}
 
 		TextBlock textBlock = node.getParent();
-		List<TextBlock> subBlocks = textBlock.getSubBlocks();
-		List<AbstractToken> tokens = textBlock.getTokens();
+		Iterator<DocumentNode> itNodes = textBlock.getSubNodes().iterator();
 
-		Iterator<TextBlock> itBlocks = subBlocks.iterator();
-		Iterator<AbstractToken> itToks = tokens.iterator();
+		DocumentNode nextNode = null;
 
-		TextBlock nextBlock = null;
-		AbstractToken nextToken = null;
-
-		if (itBlocks.hasNext()) {
-			nextBlock = itBlocks.next();
-		}
-		if (itToks.hasNext()) {
-			nextToken = itToks.next();
+		if (itNodes.hasNext()) {
+			nextNode = itNodes.next();
 		}
 
 		DocumentNode candidate = null;
 		boolean returnNext = false;
 		// while there are still more elements
-		while (nextBlock != null || nextToken != null) {
+		while (nextNode != null) {
 			DocumentNode loopNode = null;
-			if ((nextToken == null)
-					|| (nextBlock != null && nextBlock.getOffset() < nextToken
-							.getOffset())) {
-				// subnodes.add(nextBlock);
-				loopNode = nextBlock;
-				if (itBlocks.hasNext()) {
-					nextBlock = itBlocks.next();
+				loopNode = nextNode;
+				if (itNodes.hasNext()) {
+					nextNode = itNodes.next();
 				} else {
-					nextBlock = null;
+					nextNode = null;
 				}
-			} else {
-				loopNode = nextToken;
-				// subnodes.add(nextToken);
-				if (itToks.hasNext()) {
-					nextToken = itToks.next();
-				} else {
-					nextToken = null;
-				}
-			}
+			 
 			if (returnNext) {
 				candidate = loopNode;
 				break;
@@ -163,59 +141,7 @@ public class TbNavigationUtil {
 	 * @return
 	 */
 	public static List<? extends DocumentNode> getSubNodes(TextBlock textBlock) {
-		List<TextBlock> subBlocks = textBlock.getSubBlocks();
-		List<AbstractToken> tokens = textBlock.getTokens();
-
-		if (subBlocks.isEmpty()) {
-			return tokens; // TODO TG: needs cloning?
-		} else {
-			if (tokens.isEmpty()) {
-				return subBlocks; // TODO TG: needs cloning?
-			}
-		}
-		// both lists contain values, need to add all into one new list
-
-		int totalSize = subBlocks.size() + tokens.size();
-		List<DocumentNode> subnodes = new ArrayList<DocumentNode>(totalSize);
-
-		Iterator<TextBlock> itBlocks = subBlocks.iterator();
-		Iterator<AbstractToken> itToks = tokens.iterator();
-		TextBlock nextBlock = itBlocks.next();
-		AbstractToken nextToken = itToks.next();
-
-		// Bostoken is always the first token
-		if (nextToken instanceof Bostoken) {
-			// add bos token first
-			subnodes.add(nextToken);
-			if(itToks.hasNext()) {
-			    nextToken = itToks.next();
-			} else {
-				nextToken = null;
-			}
-		}
-
-		// while there are still more elements
-		while (nextBlock != null || nextToken != null) {
-			// do {
-			if ((nextToken == null)
-					|| (nextBlock != null && isOffsetLessOrEqual(nextBlock, nextToken))) {
-				subnodes.add(nextBlock);
-				if (itBlocks.hasNext()) {
-					nextBlock = itBlocks.next();
-				} else {
-					nextBlock = null;
-				}
-			} else {
-				subnodes.add(nextToken);
-				if (itToks.hasNext()) {
-					nextToken = itToks.next();
-				} else {
-					nextToken = null;
-				}
-			}
-		}
-
-		return subnodes;
+	    return textBlock.getSubNodes();
 	}
 
 	public static int getSubNodesIndex(DocumentNode searchNode) {
@@ -225,167 +151,21 @@ public class TbNavigationUtil {
 			// this is the root node
 			return 0;
 		}
-
-		List<TextBlock> subBlocks = parent.getSubBlocks();
-		List<AbstractToken> tokens = parent.getTokens();
-
-		if (subBlocks == null || subBlocks.size() == 0) {
-			return tokens.indexOf(searchNode);
-		}
-		if (tokens == null || tokens.size() == 0) {
-			return subBlocks.indexOf(searchNode);
-		}
-
-		Iterator<TextBlock> itBlocks = subBlocks.iterator();
-		Iterator<AbstractToken> itToks = tokens.iterator();
-
-		TextBlock nextBlock = null;
-		AbstractToken nextToken = null;
-
-		if (itBlocks.hasNext()) {
-			nextBlock = itBlocks.next();
-		}
-		if (itToks.hasNext()) {
-			nextToken = itToks.next();
-		}
-
-		int candidateIndex = -1;
-
-		// Bostoken is always the first token
-		if (nextToken instanceof Bostoken) {
-			if (searchNode.equals(nextToken)) {
-				return 0;
-			}
-
-			// advance index and skip bos token
-			candidateIndex = 0;
-			nextToken = itToks.next();
-		}
-
-		// while there are still more elements
-
-		DocumentNode candidate = null;
-		// the second part of while loop should never happen, but in case of a
-		// bug somewhere else we do not want to get an infinite loop
-		while (!searchNode.equals(candidate)
-				&& (nextToken != null || nextBlock != null)) {
-			if ((nextToken == null)
-					|| (nextBlock != null && isOffsetLessOrEqual(nextBlock, nextToken))) {
-				candidate = nextBlock;
-				if (itBlocks.hasNext()) {
-					nextBlock = itBlocks.next();
-				} else {
-					nextBlock = null;
-				}
-			} else {
-				candidate = nextToken;
-				if (itToks.hasNext()) {
-					nextToken = itToks.next();
-				} else {
-					nextToken = null;
-				}
-			}
-			candidateIndex++;
-		}
-
-		return candidateIndex;
+		return parent.getSubNodes().indexOf(searchNode);
 	}
 
 	public static DocumentNode getSubNodeAt(TextBlock textBlock, int searchIndex) {
-
 		if (textBlock == null) {
 			return null;
 		}
-
-		List<TextBlock> subBlocks = textBlock.getSubBlocks();
-		List<AbstractToken> tokens = textBlock.getTokens();
-
-		int totalSize = subBlocks.size() + tokens.size();
-		if (searchIndex > totalSize - 1 || searchIndex < 0) {
+		if (searchIndex > textBlock.getSubNodes().size() - 1 || searchIndex < 0) {
 			return null;
 		}
-
-		// avoid complex list search if we can have it easy
-		if (subBlocks.size() == 0) {
-			// only tokens
-			return tokens.get(searchIndex);
-		}
-		if (tokens.size() == 0) {
-			// only blocks
-			return subBlocks.get(searchIndex);
-		}
-
-		Iterator<TextBlock> itBlocks = subBlocks.iterator();
-		Iterator<AbstractToken> itToks = tokens.iterator();
-
-		TextBlock nextBlock;
-		AbstractToken nextToken = null;
-		if(itBlocks.hasNext()) {
-			nextBlock = itBlocks.next();
-		} else {
-			nextBlock = null;
-		}
-		if (itToks.hasNext()) {
-			nextToken = itToks.next();
-		}
-
-		int loopIndex = 0;
-
-		// Bostoken is always the first token
-		if (nextToken instanceof Bostoken) {
-			if (searchIndex == 0) {
-				return nextToken;
-			}
-
-			// skip bos token
-			loopIndex = 1;
-			nextToken = itToks.next();
-		}
-
-		// while there are still more elements
-		DocumentNode candidate = null;
-		while (loopIndex <= searchIndex) {
-			// we can assume nextBlock != null || nextToken != null because
-			// totalsize >= searchIndex
-			if ((nextToken == null)
-					|| (nextBlock != null && isOffsetLessOrEqual(nextBlock, nextToken))) {
-				// subnodes.add(nextBlock);
-				candidate = nextBlock;
-				if(itBlocks.hasNext()) {
-					nextBlock = itBlocks.next();
-				} else {
-					nextBlock = null;
-				}
-			} else {
-				candidate = nextToken;
-				// subnodes.add(nextToken);
-				if (itToks.hasNext()) {
-					nextToken = itToks.next();
-				} else {
-					nextToken = null;
-				}
-			}
-			loopIndex++;
-		}
-
-		return candidate;
-	}
-
-
-	private static boolean isOffsetLessOrEqual(TextBlock nextBlock,
-			AbstractToken nextToken) {
-		if(nextBlock.isOffsetRelative() || nextToken.isOffsetRelative()) {
-			return TbUtil.getAbsoluteOffset(nextBlock) <= TbUtil.getAbsoluteOffset(nextToken);
-		} else {
-			return nextBlock.getOffset() <= nextToken
-				.getOffset();
-		}
+		return textBlock.getSubNodes().get(searchIndex);
 	}
 
 	public static int getSubNodesSize(TextBlock textBlock) {
-		List<TextBlock> subBlocks = textBlock.getSubBlocks();
-		List<AbstractToken> tokens = textBlock.getTokens();
-		return subBlocks.size() + tokens.size();
+		return textBlock.getSubNodes().size();
 	}
 
 	/**
@@ -398,36 +178,9 @@ public class TbNavigationUtil {
 		if (node.getParent() == null) {
 			return true;
 		}
-
 		TextBlock textBlock = node.getParent();
-		List<TextBlock> subBlocks = textBlock.getSubBlocks();
-		List<AbstractToken> tokens = textBlock.getTokens();
-
-		AbstractToken lastToken = null;
-		if (!tokens.isEmpty()) {
-			lastToken = tokens.get(tokens.size() - 1);
-		}
-
-		TextBlock lastTextBlock = null;
-		if (!subBlocks.isEmpty()) {
-			lastTextBlock = subBlocks.get(subBlocks.size() - 1);
-		}
-
-		DocumentNode lastNode = lastToken;
-		if (lastNode == null) {
-			lastNode = lastTextBlock;
-		} else {
-			if (lastTextBlock != null) { // need to check who is really last,
-				// there can be only one
-				if (lastToken instanceof Eostoken) {
-					lastNode = lastToken;
-				} else if (lastTextBlock.getOffset() > lastToken.getOffset()) {
-					lastNode = lastTextBlock;
-				}
-			}
-		}
-
-		return node.equals(lastNode);
+		DocumentNode lastInTree = textBlock.getSubNodes().get(textBlock.getSubNodes().size()-1);
+		return node.equals(lastInTree);
 	}
 
 	/**
