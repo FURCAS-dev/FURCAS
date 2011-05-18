@@ -29,5 +29,6 @@ Require-Bundle: org.junit;bundle-version="4.8.1",
  com.sap.furcas.test
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: generationTemp/,
- .
+Bundle-ClassPath: .,
+ generationTemp/,
+ lib/org.eclipse.swt.gtk.linux.x86_64_3.6.1.v3655c.jar
