@@ -146,7 +146,10 @@ public abstract class FurcasParseController extends ParseControllerBase {
         synchronized (document.getLockObject()) {
             document.setModelContent(getCurrentAst());
             document.flushUserEditsToTextBlocskModel();
-            document.expandToEditableVersion();
+            // FIXME: For now, disable the refresh of all tokens. It invalidates our curser position
+            //        This will be easier once we have implemented the TokenValueChanger
+            //        Stephan Erb, 19.05.2011
+            //document.expandToEditableVersion();
             document.refreshContentFromTextBlocksModel();
         }
         return getCurrentAst();
