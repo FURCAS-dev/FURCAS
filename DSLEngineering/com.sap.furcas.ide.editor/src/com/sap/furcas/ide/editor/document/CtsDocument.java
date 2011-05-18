@@ -288,8 +288,7 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
                         bufferedChanges.clear();
                     }
                     inDocumentRefreshMode = true;
-                    // FIXME: See FurcasParserController for an explanation why this is disabled
-                    //        Stephan Erb, 19.05.2011
+                    set(text);
                     inDocumentRefreshMode = false;
                 }
             }
