@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g 2011-04-30 01:41:50
+// $ANTLR 3.1.1 /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g 2011-05-19 01:24:52
 
 package generated;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
@@ -21,30 +21,30 @@ import java.util.Map;
 import java.util.HashMap;
 public class BibtexParser extends ObservableInjectingParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "NAME", "INT", "COMMENT", "NL", "WS", "DIGIT", "ALPHA", "SNAME", "ESC", "FLOAT", "STRING", "'Entries:'", "'{'", "'}'", "'Authors:'", "'@article'", "','", "'title'", "'='", "'author'", "'and'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "NAME", "INT", "LCURLY", "RCURLY", "COMA", "COMMENT", "NL", "WS", "DIGIT", "ALPHA", "SNAME", "ESC", "FLOAT", "STRING", "'Entries:'", "'Authors:'", "'@article'", "'title'", "'='", "'author'", "'and'"
     };
     public static final int T__24=24;
     public static final int T__23=23;
-    public static final int ESC=12;
+    public static final int ESC=15;
     public static final int T__22=22;
     public static final int T__21=21;
     public static final int T__20=20;
-    public static final int FLOAT=13;
+    public static final int LCURLY=6;
+    public static final int FLOAT=16;
     public static final int INT=5;
     public static final int EOF=-1;
-    public static final int ALPHA=10;
+    public static final int COMA=8;
+    public static final int ALPHA=13;
     public static final int T__19=19;
     public static final int NAME=4;
-    public static final int T__16=16;
-    public static final int WS=8;
-    public static final int T__15=15;
+    public static final int WS=11;
     public static final int T__18=18;
-    public static final int SNAME=11;
-    public static final int T__17=17;
-    public static final int NL=7;
-    public static final int DIGIT=9;
-    public static final int COMMENT=6;
-    public static final int STRING=14;
+    public static final int SNAME=14;
+    public static final int RCURLY=7;
+    public static final int NL=10;
+    public static final int DIGIT=12;
+    public static final int COMMENT=9;
+    public static final int STRING=17;
 
     // delegates
     // delegators
@@ -63,7 +63,7 @@ public class BibtexParser extends ObservableInjectingParser {
     public String getGrammarFileName() { return "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g"; }
 
 
-       private static final String syntaxUUID = "_QIhpAHK6EeCftvyg0GrDpQ";
+       private static final String syntaxUUID = "_B7ijEIGmEeCSHOA49C86mg";
        public String getSyntaxUUID() {
             return syntaxUUID;
        }
@@ -220,7 +220,7 @@ public class BibtexParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "bibtex_literaturedb"
-    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:132:1: bibtex_literaturedb returns [Object ret2] : ( (temp= identifier ) 'Entries:' '{' (temp= bibtex_entry (temp= bibtex_entry )* )? '}' 'Authors:' '{' (temp= bibtex_author (temp= bibtex_author )* )? '}' ) ;
+    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:132:1: bibtex_literaturedb returns [Object ret2] : ( (temp= identifier ) 'Entries:' LCURLY ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) ) RCURLY 'Authors:' LCURLY (temp= bibtex_author (temp= bibtex_author )* )? RCURLY ) ;
     public final Object bibtex_literaturedb() throws RecognitionException {
         Object ret2 = null;
 
@@ -234,11 +234,11 @@ public class BibtexParser extends ObservableInjectingParser {
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:138:3: ( ( (temp= identifier ) 'Entries:' '{' (temp= bibtex_entry (temp= bibtex_entry )* )? '}' 'Authors:' '{' (temp= bibtex_author (temp= bibtex_author )* )? '}' ) )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:139:3: ( (temp= identifier ) 'Entries:' '{' (temp= bibtex_entry (temp= bibtex_entry )* )? '}' 'Authors:' '{' (temp= bibtex_author (temp= bibtex_author )* )? '}' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:138:3: ( ( (temp= identifier ) 'Entries:' LCURLY ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) ) RCURLY 'Authors:' LCURLY (temp= bibtex_author (temp= bibtex_author )* )? RCURLY ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:139:3: ( (temp= identifier ) 'Entries:' LCURLY ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) ) RCURLY 'Authors:' LCURLY (temp= bibtex_author (temp= bibtex_author )* )? RCURLY )
             {
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:139:3: ( (temp= identifier ) 'Entries:' '{' (temp= bibtex_entry (temp= bibtex_entry )* )? '}' 'Authors:' '{' (temp= bibtex_author (temp= bibtex_author )* )? '}' )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:139:4: (temp= identifier ) 'Entries:' '{' (temp= bibtex_entry (temp= bibtex_entry )* )? '}' 'Authors:' '{' (temp= bibtex_author (temp= bibtex_author )* )? '}'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:139:3: ( (temp= identifier ) 'Entries:' LCURLY ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) ) RCURLY 'Authors:' LCURLY (temp= bibtex_author (temp= bibtex_author )* )? RCURLY )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:139:4: (temp= identifier ) 'Entries:' LCURLY ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) ) RCURLY 'Authors:' LCURLY (temp= bibtex_author (temp= bibtex_author )* )? RCURLY
             {
             if ( state.backtracking==0 ) {
               _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.2/@templateSequence/@elements.0");
@@ -265,32 +265,47 @@ public class BibtexParser extends ObservableInjectingParser {
             if ( state.backtracking==0 ) {
               _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.2/@templateSequence/@elements.1");
             }
-            match(input,15,FOLLOW_15_in_bibtex_literaturedb172); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
               _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.2/@templateSequence/@elements.2");
             }
-            match(input,16,FOLLOW_16_in_bibtex_literaturedb175); if (state.failed) return ret2;
+            match(input,18,FOLLOW_18_in_bibtex_literaturedb174); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
               _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.2/@templateSequence/@elements.3");
             }
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:140:490: (temp= bibtex_entry (temp= bibtex_entry )* )?
+            match(input,LCURLY,FOLLOW_LCURLY_in_bibtex_literaturedb178); if (state.failed) return ret2;
+            if ( state.backtracking==0 ) {
+              _afterSeqEl();
+            }
+            if ( state.backtracking==0 ) {
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.2/@templateSequence/@elements.4");
+            }
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:140:644: ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:140:645: ( (temp= bibtex_entry (temp= bibtex_entry )* )? )
+            {
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:140:645: ( (temp= bibtex_entry (temp= bibtex_entry )* )? )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:140:646: (temp= bibtex_entry (temp= bibtex_entry )* )?
+            {
+            if ( state.backtracking==0 ) {
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.2/@templateSequence/@elements.4/@blockSequence/@elements.0");
+            }
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:140:806: (temp= bibtex_entry (temp= bibtex_entry )* )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
-            if ( (LA2_0==19) ) {
+            if ( (LA2_0==20) ) {
                 alt2=1;
             }
             switch (alt2) {
                 case 1 :
-                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:140:492: temp= bibtex_entry (temp= bibtex_entry )*
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:140:808: temp= bibtex_entry (temp= bibtex_entry )*
                     {
-                    pushFollow(FOLLOW_bibtex_entry_in_bibtex_literaturedb182);
+                    pushFollow(FOLLOW_bibtex_entry_in_bibtex_literaturedb189);
                     temp=bibtex_entry();
 
                     checkFollows();
@@ -306,7 +321,7 @@ public class BibtexParser extends ObservableInjectingParser {
                         int alt1=2;
                         int LA1_0 = input.LA(1);
 
-                        if ( (LA1_0==19) ) {
+                        if ( (LA1_0==20) ) {
                             alt1=1;
                         }
 
@@ -315,7 +330,7 @@ public class BibtexParser extends ObservableInjectingParser {
                     	case 1 :
                     	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:141:35: temp= bibtex_entry
                     	    {
-                    	    pushFollow(FOLLOW_bibtex_entry_in_bibtex_literaturedb190);
+                    	    pushFollow(FOLLOW_bibtex_entry_in_bibtex_literaturedb197);
                     	    temp=bibtex_entry();
 
                     	    checkFollows();
@@ -343,31 +358,46 @@ public class BibtexParser extends ObservableInjectingParser {
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
-            if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.2/@templateSequence/@elements.4");
+
             }
-            match(input,17,FOLLOW_17_in_bibtex_literaturedb201); if (state.failed) return ret2;
+
+
+            }
+
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
               _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.2/@templateSequence/@elements.5");
             }
-            match(input,18,FOLLOW_18_in_bibtex_literaturedb204); if (state.failed) return ret2;
+            match(input,RCURLY,FOLLOW_RCURLY_in_bibtex_literaturedb212); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
               _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.2/@templateSequence/@elements.6");
             }
-            match(input,16,FOLLOW_16_in_bibtex_literaturedb207); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
               _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.2/@templateSequence/@elements.7");
             }
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:142:650: (temp= bibtex_author (temp= bibtex_author )* )?
+            match(input,19,FOLLOW_19_in_bibtex_literaturedb218); if (state.failed) return ret2;
+            if ( state.backtracking==0 ) {
+              _afterSeqEl();
+            }
+            if ( state.backtracking==0 ) {
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.2/@templateSequence/@elements.8");
+            }
+            match(input,LCURLY,FOLLOW_LCURLY_in_bibtex_literaturedb222); if (state.failed) return ret2;
+            if ( state.backtracking==0 ) {
+              _afterSeqEl();
+            }
+            if ( state.backtracking==0 ) {
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.2/@templateSequence/@elements.9");
+            }
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:142:827: (temp= bibtex_author (temp= bibtex_author )* )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -376,9 +406,9 @@ public class BibtexParser extends ObservableInjectingParser {
             }
             switch (alt4) {
                 case 1 :
-                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:142:652: temp= bibtex_author (temp= bibtex_author )*
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:142:829: temp= bibtex_author (temp= bibtex_author )*
                     {
-                    pushFollow(FOLLOW_bibtex_author_in_bibtex_literaturedb214);
+                    pushFollow(FOLLOW_bibtex_author_in_bibtex_literaturedb230);
                     temp=bibtex_author();
 
                     checkFollows();
@@ -403,7 +433,7 @@ public class BibtexParser extends ObservableInjectingParser {
                     	case 1 :
                     	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:143:34: temp= bibtex_author
                     	    {
-                    	    pushFollow(FOLLOW_bibtex_author_in_bibtex_literaturedb222);
+                    	    pushFollow(FOLLOW_bibtex_author_in_bibtex_literaturedb238);
                     	    temp=bibtex_author();
 
                     	    checkFollows();
@@ -432,9 +462,15 @@ public class BibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.2/@templateSequence/@elements.8");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.2/@templateSequence/@elements.10");
             }
-            match(input,17,FOLLOW_17_in_bibtex_literaturedb233); if (state.failed) return ret2;
+            match(input,RCURLY,FOLLOW_RCURLY_in_bibtex_literaturedb250); if (state.failed) return ret2;
+            if ( state.backtracking==0 ) {
+              _afterSeqEl();
+            }
+            if ( state.backtracking==0 ) {
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.2/@templateSequence/@elements.11");
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -463,7 +499,7 @@ public class BibtexParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "bibtex_entry"
-    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:152:1: bibtex_entry returns [Object ret2] : ( '@article' '{' ( ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' ) ) '}' ) ;
+    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:152:1: bibtex_entry returns [Object ret2] : ( '@article' LCURLY (temp= identifier ) COMA 'title' '=' LCURLY (temp= identifier ) RCURLY COMA 'author' '=' LCURLY (temp= identifier ( ( 'and' ) temp= identifier )* )? RCURLY RCURLY ) ;
     public final Object bibtex_entry() throws RecognitionException {
         Object ret2 = null;
 
@@ -477,42 +513,33 @@ public class BibtexParser extends ObservableInjectingParser {
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:158:3: ( ( '@article' '{' ( ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' ) ) '}' ) )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:159:3: ( '@article' '{' ( ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' ) ) '}' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:158:3: ( ( '@article' LCURLY (temp= identifier ) COMA 'title' '=' LCURLY (temp= identifier ) RCURLY COMA 'author' '=' LCURLY (temp= identifier ( ( 'and' ) temp= identifier )* )? RCURLY RCURLY ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:159:3: ( '@article' LCURLY (temp= identifier ) COMA 'title' '=' LCURLY (temp= identifier ) RCURLY COMA 'author' '=' LCURLY (temp= identifier ( ( 'and' ) temp= identifier )* )? RCURLY RCURLY )
             {
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:159:3: ( '@article' '{' ( ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' ) ) '}' )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:159:4: '@article' '{' ( ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' ) ) '}'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:159:3: ( '@article' LCURLY (temp= identifier ) COMA 'title' '=' LCURLY (temp= identifier ) RCURLY COMA 'author' '=' LCURLY (temp= identifier ( ( 'and' ) temp= identifier )* )? RCURLY RCURLY )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:159:4: '@article' LCURLY (temp= identifier ) COMA 'title' '=' LCURLY (temp= identifier ) RCURLY COMA 'author' '=' LCURLY (temp= identifier ( ( 'and' ) temp= identifier )* )? RCURLY RCURLY
             {
             if ( state.backtracking==0 ) {
               _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.0");
             }
-            match(input,19,FOLLOW_19_in_bibtex_entry273); if (state.failed) return ret2;
+            match(input,20,FOLLOW_20_in_bibtex_entry293); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
               _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.1");
             }
-            match(input,16,FOLLOW_16_in_bibtex_entry276); if (state.failed) return ret2;
+            match(input,LCURLY,FOLLOW_LCURLY_in_bibtex_entry297); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
               _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2");
             }
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:159:448: ( ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' ) )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:159:449: ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:159:453: (temp= identifier )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:159:455: temp= identifier
             {
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:159:449: ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:159:450: (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}'
-            {
-            if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.0");
-            }
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:159:610: (temp= identifier )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:159:612: temp= identifier
-            {
-            pushFollow(FOLLOW_identifier_in_bibtex_entry286);
+            pushFollow(FOLLOW_identifier_in_bibtex_entry305);
             temp=identifier();
 
             checkFollows();
@@ -529,40 +556,40 @@ public class BibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.3");
             }
-            match(input,20,FOLLOW_20_in_bibtex_entry292); if (state.failed) return ret2;
+            match(input,COMA,FOLLOW_COMA_in_bibtex_entry312); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.4");
             }
-            match(input,21,FOLLOW_21_in_bibtex_entry295); if (state.failed) return ret2;
+            match(input,21,FOLLOW_21_in_bibtex_entry316); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.5");
             }
-            match(input,22,FOLLOW_22_in_bibtex_entry298); if (state.failed) return ret2;
+            match(input,22,FOLLOW_22_in_bibtex_entry319); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.6");
             }
-            match(input,16,FOLLOW_16_in_bibtex_entry301); if (state.failed) return ret2;
+            match(input,LCURLY,FOLLOW_LCURLY_in_bibtex_entry323); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.7");
             }
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:160:924: (temp= identifier )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:160:926: temp= identifier
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:160:797: (temp= identifier )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:160:799: temp= identifier
             {
-            pushFollow(FOLLOW_identifier_in_bibtex_entry308);
+            pushFollow(FOLLOW_identifier_in_bibtex_entry331);
             temp=identifier();
 
             checkFollows();
@@ -579,44 +606,44 @@ public class BibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.6");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.8");
             }
-            match(input,17,FOLLOW_17_in_bibtex_entry314); if (state.failed) return ret2;
+            match(input,RCURLY,FOLLOW_RCURLY_in_bibtex_entry338); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.7");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.9");
             }
-            match(input,20,FOLLOW_20_in_bibtex_entry317); if (state.failed) return ret2;
+            match(input,COMA,FOLLOW_COMA_in_bibtex_entry343); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.8");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.10");
             }
-            match(input,23,FOLLOW_23_in_bibtex_entry320); if (state.failed) return ret2;
+            match(input,23,FOLLOW_23_in_bibtex_entry347); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.9");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.11");
             }
-            match(input,22,FOLLOW_22_in_bibtex_entry323); if (state.failed) return ret2;
+            match(input,22,FOLLOW_22_in_bibtex_entry350); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.10");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.12");
             }
-            match(input,16,FOLLOW_16_in_bibtex_entry326); if (state.failed) return ret2;
+            match(input,LCURLY,FOLLOW_LCURLY_in_bibtex_entry354); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.11");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.13");
             }
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:161:1109: (temp= identifier ( ( 'and' ) temp= identifier )* )?
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:161:962: (temp= identifier ( ( 'and' ) temp= identifier )* )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -625,18 +652,18 @@ public class BibtexParser extends ObservableInjectingParser {
             }
             switch (alt6) {
                 case 1 :
-                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:161:1111: temp= identifier ( ( 'and' ) temp= identifier )*
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:161:964: temp= identifier ( ( 'and' ) temp= identifier )*
                     {
-                    pushFollow(FOLLOW_identifier_in_bibtex_entry333);
+                    pushFollow(FOLLOW_identifier_in_bibtex_entry362);
                     temp=identifier();
 
                     checkFollows();
                     state._fsp--;
                     if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
-                      setOclRef(ret, "author", null, temp, "OCL:Bibtex::Author.allInstances()->select(name = ?)", "platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.11", SyntaxRegistryFacade.getModelUpdaterRegistry());
+                      setOclRef(ret, "author", null, temp, "OCL:self.literaturedb.author->select(name = ?)", "platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.13", SyntaxRegistryFacade.getModelUpdaterRegistry());
                     }
-                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:161:1416: ( ( 'and' ) temp= identifier )*
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:161:1237: ( ( 'and' ) temp= identifier )*
                     loop5:
                     do {
                         int alt5=2;
@@ -649,18 +676,18 @@ public class BibtexParser extends ObservableInjectingParser {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:161:1417: ( 'and' ) temp= identifier
+                    	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:161:1238: ( 'and' ) temp= identifier
                     	    {
                     	    if ( state.backtracking==0 ) {
                     	      _enterSepSeq();
                     	    }
-                    	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:161:1434: ( 'and' )
-                    	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:161:1435: 'and'
+                    	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:161:1255: ( 'and' )
+                    	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:161:1256: 'and'
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.11/@propertyArgs.1/@separatorSequence/@elements.0");
+                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.13/@propertyArgs.1/@separatorSequence/@elements.0");
                     	    }
-                    	    match(input,24,FOLLOW_24_in_bibtex_entry341); if (state.failed) return ret2;
+                    	    match(input,24,FOLLOW_24_in_bibtex_entry370); if (state.failed) return ret2;
                     	    if ( state.backtracking==0 ) {
                     	      _afterSeqEl();
                     	    }
@@ -670,14 +697,14 @@ public class BibtexParser extends ObservableInjectingParser {
                     	    if ( state.backtracking==0 ) {
                     	      _exitSepSeq();
                     	    }
-                    	    pushFollow(FOLLOW_identifier_in_bibtex_entry348);
+                    	    pushFollow(FOLLOW_identifier_in_bibtex_entry377);
                     	    temp=identifier();
 
                     	    checkFollows();
                     	    state._fsp--;
                     	    if (state.failed) return ret2;
                     	    if ( state.backtracking==0 ) {
-                    	      setOclRef(ret, "author", null, temp, "OCL:Bibtex::Author.allInstances()->select(name = ?)", "platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.11", SyntaxRegistryFacade.getModelUpdaterRegistry());
+                    	      setOclRef(ret, "author", null, temp, "OCL:self.literaturedb.author->select(name = ?)", "platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.13", SyntaxRegistryFacade.getModelUpdaterRegistry());
                     	    }
 
                     	    }
@@ -698,33 +725,24 @@ public class BibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.12");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.14");
             }
-            match(input,17,FOLLOW_17_in_bibtex_entry359); if (state.failed) return ret2;
-            if ( state.backtracking==0 ) {
-              _afterSeqEl();
-            }
-
-            }
-
-
-            }
-
+            match(input,RCURLY,FOLLOW_RCURLY_in_bibtex_entry389); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.15");
             }
-            match(input,17,FOLLOW_17_in_bibtex_entry365); if (state.failed) return ret2;
+            match(input,RCURLY,FOLLOW_RCURLY_in_bibtex_entry394); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.16");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "literaturedb", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.4/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "literaturedb", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs#//@templates.3/@templateSequence/@elements.16/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -780,7 +798,7 @@ public class BibtexParser extends ObservableInjectingParser {
             // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:176:137: (temp= identifier )
             // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:176:139: temp= identifier
             {
-            pushFollow(FOLLOW_identifier_in_bibtex_author412);
+            pushFollow(FOLLOW_identifier_in_bibtex_author442);
             temp=identifier();
 
             checkFollows();
@@ -837,35 +855,35 @@ public class BibtexParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_INT_in_integerSymbol100 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_bibtex_literaturedb_in_main128 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_main131 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_identifier_in_bibtex_literaturedb166 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_15_in_bibtex_literaturedb172 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_bibtex_literaturedb175 = new BitSet(new long[]{0x00000000000A0000L});
-    public static final BitSet FOLLOW_bibtex_entry_in_bibtex_literaturedb182 = new BitSet(new long[]{0x00000000000A0000L});
-    public static final BitSet FOLLOW_bibtex_entry_in_bibtex_literaturedb190 = new BitSet(new long[]{0x00000000000A0000L});
-    public static final BitSet FOLLOW_17_in_bibtex_literaturedb201 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_bibtex_literaturedb204 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_bibtex_literaturedb207 = new BitSet(new long[]{0x0000000000020010L});
-    public static final BitSet FOLLOW_bibtex_author_in_bibtex_literaturedb214 = new BitSet(new long[]{0x0000000000020010L});
-    public static final BitSet FOLLOW_bibtex_author_in_bibtex_literaturedb222 = new BitSet(new long[]{0x0000000000020010L});
-    public static final BitSet FOLLOW_17_in_bibtex_literaturedb233 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_19_in_bibtex_entry273 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_bibtex_entry276 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_bibtex_entry286 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_20_in_bibtex_entry292 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_21_in_bibtex_entry295 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_22_in_bibtex_entry298 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_bibtex_entry301 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_bibtex_entry308 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_17_in_bibtex_entry314 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_20_in_bibtex_entry317 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_bibtex_entry320 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_22_in_bibtex_entry323 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_bibtex_entry326 = new BitSet(new long[]{0x0000000000020010L});
-    public static final BitSet FOLLOW_identifier_in_bibtex_entry333 = new BitSet(new long[]{0x0000000001020000L});
-    public static final BitSet FOLLOW_24_in_bibtex_entry341 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_bibtex_entry348 = new BitSet(new long[]{0x0000000001020000L});
-    public static final BitSet FOLLOW_17_in_bibtex_entry359 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_17_in_bibtex_entry365 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_identifier_in_bibtex_author412 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_identifier_in_bibtex_literaturedb166 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_bibtex_literaturedb174 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_LCURLY_in_bibtex_literaturedb178 = new BitSet(new long[]{0x0000000000100080L});
+    public static final BitSet FOLLOW_bibtex_entry_in_bibtex_literaturedb189 = new BitSet(new long[]{0x0000000000100080L});
+    public static final BitSet FOLLOW_bibtex_entry_in_bibtex_literaturedb197 = new BitSet(new long[]{0x0000000000100080L});
+    public static final BitSet FOLLOW_RCURLY_in_bibtex_literaturedb212 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_19_in_bibtex_literaturedb218 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_LCURLY_in_bibtex_literaturedb222 = new BitSet(new long[]{0x0000000000000090L});
+    public static final BitSet FOLLOW_bibtex_author_in_bibtex_literaturedb230 = new BitSet(new long[]{0x0000000000000090L});
+    public static final BitSet FOLLOW_bibtex_author_in_bibtex_literaturedb238 = new BitSet(new long[]{0x0000000000000090L});
+    public static final BitSet FOLLOW_RCURLY_in_bibtex_literaturedb250 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_20_in_bibtex_entry293 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_LCURLY_in_bibtex_entry297 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_bibtex_entry305 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_COMA_in_bibtex_entry312 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_21_in_bibtex_entry316 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_22_in_bibtex_entry319 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_LCURLY_in_bibtex_entry323 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_bibtex_entry331 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_RCURLY_in_bibtex_entry338 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_COMA_in_bibtex_entry343 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_23_in_bibtex_entry347 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_22_in_bibtex_entry350 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_LCURLY_in_bibtex_entry354 = new BitSet(new long[]{0x0000000000000090L});
+    public static final BitSet FOLLOW_identifier_in_bibtex_entry362 = new BitSet(new long[]{0x0000000001000080L});
+    public static final BitSet FOLLOW_24_in_bibtex_entry370 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_bibtex_entry377 = new BitSet(new long[]{0x0000000001000080L});
+    public static final BitSet FOLLOW_RCURLY_in_bibtex_entry389 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_RCURLY_in_bibtex_entry394 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_identifier_in_bibtex_author442 = new BitSet(new long[]{0x0000000000000002L});
 
 }

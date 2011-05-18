@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/AlternativeBibtex.g 2011-04-30 01:41:52
+// $ANTLR 3.1.1 /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/AlternativeBibtex.g 2011-05-19 01:24:46
 
 package generated;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
@@ -242,6 +242,9 @@ public class AlternativeBibtexLexer extends Lexer {
 
             }
 
+            if ( state.backtracking==0 ) {
+              _channel=HIDDEN;
+            }
 
             }
 
