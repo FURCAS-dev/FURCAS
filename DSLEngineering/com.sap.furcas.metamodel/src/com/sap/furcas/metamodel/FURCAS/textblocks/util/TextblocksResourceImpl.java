@@ -7,6 +7,7 @@
 package com.sap.furcas.metamodel.FURCAS.textblocks.util;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 
 /**
@@ -16,7 +17,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
  * @see com.sap.furcas.metamodel.FURCAS.textblocks.util.TextblocksResourceFactoryImpl
  * @generated
  */
-public class TextblocksResourceImpl extends XMLResourceImpl {
+public class TextblocksResourceImpl extends XMIResourceImpl {
         /**
      * Creates an instance of the resource.
      * <!-- begin-user-doc -->
