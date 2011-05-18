@@ -121,8 +121,6 @@ public class AbstractFurcasEditor extends UniversalEditor {
     public AbstractFurcasEditor(AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>  parserFactory) {
         this.editingDomain = createEditingDomain();
         this.parserFactory = parserFactory;
-        this.syntax = TcsUtil.getSyntaxByName(editingDomain.getResourceSet(), parserFactory.getLanguageId());
-        validateEditorState(syntax, parserFactory);
     }
     
     /**
@@ -133,6 +131,9 @@ public class AbstractFurcasEditor extends UniversalEditor {
      */
     @Override
     public void init(IEditorSite site, IEditorInput input) throws PartInitException {
+        this.syntax = TcsUtil.getSyntaxByName(editingDomain.getResourceSet(), parserFactory.getLanguageId());
+        validateEditorState(syntax, parserFactory);
+        
         // create a temporary opposite end finder that knows about the static resources in the workspace
         // It is required to find potential textblocks
         OppositeEndFinder entireWorkspaceOppositeEndFinder = Query2OppositeEndFinder.getInstance();
