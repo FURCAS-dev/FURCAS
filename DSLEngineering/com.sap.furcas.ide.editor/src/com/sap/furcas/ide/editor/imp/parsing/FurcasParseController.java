@@ -150,7 +150,7 @@ public abstract class FurcasParseController extends ParseControllerBase {
             //        This will be easier once we have implemented the TokenValueChanger
             //        Stephan Erb, 19.05.2011
             //document.expandToEditableVersion();
-            document.refreshContentFromTextBlocksModel();
+            //document.refreshContentFromTextBlocksModel();
         }
         return getCurrentAst();
     }
