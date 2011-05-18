@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package com.sap.furcas.modeladaptation.emf.lookup;
+package com.sap.furcas.runtime.common.util;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,10 +27,13 @@ import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 
 
 public class FileResourceHelper {
-
+    
     public static ResourceSet loadResourceSet(File... fileArr) throws MetaModelLookupException {
         ResourceSet resourceSet = new ResourceSetImpl();
-        
+        return loadResourceSet(resourceSet, fileArr);
+    }
+    
+    public static ResourceSet loadResourceSet(ResourceSet resourceSet, File... fileArr) throws MetaModelLookupException {
         for (File file : fileArr) {
             java.net.URI uri = file.toURI();
             java.net.URI normUri = uri.normalize();
@@ -52,7 +55,7 @@ public class FileResourceHelper {
         for (EObject object : list) {
             if (object instanceof EPackage) {
                 EPackage new_package = (EPackage) object;
-                EPackage.Registry.INSTANCE.put(uri, new_package);
+                EPackage.Registry.INSTANCE.put(new_package.getNsURI(), new_package);
             }
         }
     }

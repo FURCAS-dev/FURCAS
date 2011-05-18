@@ -12,13 +12,13 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.modeladaptation.emf.lookup.FileResourceHelper;
 import com.sap.furcas.modeladaptation.emf.lookup.QueryBasedEcoreMetaModelLookUp;
 import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.parsergenerator.tcs.generator.SyntaxParser;
 import com.sap.furcas.parsergenerator.tcs.t2m.ModelBasedTCSGrammarGenerator;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ObservationDirectivesHelper;
+import com.sap.furcas.runtime.common.util.FileResourceHelper;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
 import com.sap.furcas.test.testutils.ResourceTestHelper;
 
