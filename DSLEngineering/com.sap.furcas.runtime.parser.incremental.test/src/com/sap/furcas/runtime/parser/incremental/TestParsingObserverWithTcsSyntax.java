@@ -106,7 +106,7 @@ public class TestParsingObserverWithTcsSyntax {
         assertEquals(78, syntax.getTemplates().size());
 
         assertNotNull(currentVersionTb); // future version
-        assertEquals(155, currentVersionTb.getSubNodes().size());
+        assertEquals(152, currentVersionTb.getSubNodes().size());
     }
 
     @Test
