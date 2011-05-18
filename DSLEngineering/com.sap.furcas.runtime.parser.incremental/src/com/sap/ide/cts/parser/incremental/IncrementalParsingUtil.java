@@ -614,7 +614,7 @@ public class IncrementalParsingUtil {
 				index += 1;
 			}
 			if (oldVersion.getParent().getCorrespondingModelElements().size() > 1) {
-				throw new IncrementalParsingException(
+				throw new RuntimeException (
 					"Tried to set a value for multiple parent elements:"
 						+ new ArrayList<EObject>(oldVersion
 							.getParent()

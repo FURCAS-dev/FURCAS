@@ -33,6 +33,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
+import com.sap.furcas.runtime.common.exceptions.DeferredModelElementCreationException;
 import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
@@ -84,12 +85,12 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 	}
 
 	@Override
-	public TbBean reuseTextBlock(TextBlock oldVersion, TextBlockProxy newVersion) {
+	public TbBean reuseTextBlock(TextBlock oldVersion, TextBlockProxy newVersion) throws DeferredModelElementCreationException {
 		return reusetextBlockInteral(TbVersionUtil.getOtherVersion(oldVersion,
 			Version.CURRENT), newVersion);
 	}
 
-	private TbBean reusetextBlockInteral(TextBlock oldVersion, TextBlockProxy newVersion) {
+	private TbBean reusetextBlockInteral(TextBlock oldVersion, TextBlockProxy newVersion) throws DeferredModelElementCreationException {
 
 		// now check if textblock was changed
 		if (TcsUtil.isReferenceOnly(newVersion.getTemplate())) {
@@ -229,8 +230,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 		}
 		// return new TbBean(tbCreator.createNewTextBlock(newVersion), true,
 		// getReuseType(oldVersion, newVersion));
-		TextBlock tb = tbFactory
-			.createNewTextBlock(newVersion, oldVersion.getParent());
+		TextBlock tb = tbFactory.createNewTextBlock(newVersion, oldVersion.getParent());
 		changedBlocks.add(tb);
 		if (!TbUtil.isEmpty(oldVersion)) {
 			// old version still there to this was an insert case
@@ -276,7 +276,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 		
 	}
 
-	private TbBean handleReferenceOnlyTemplate(TextBlock oldVersion, TextBlockProxy newVersion) {
+	private TbBean handleReferenceOnlyTemplate(TextBlock oldVersion, TextBlockProxy newVersion) throws DeferredModelElementCreationException {
                 if (oldVersion.getParent() != null) {
                     for (EObject ro : new ArrayList<EObject>(oldVersion.getParent()
                             .getCorrespondingModelElements())) {
@@ -295,8 +295,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
                         }
                     }
                 }
-		TextBlock tb = tbFactory
-			.createNewTextBlock(newVersion, oldVersion.getParent());
+		TextBlock tb = tbFactory.createNewTextBlock(newVersion, oldVersion.getParent());
 		changedBlocks.add(tb);
 		if (!TbUtil.isEmpty(oldVersion)) {
 			// old version still there to this was an insert case
@@ -617,7 +616,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 	
 	private int getTokenSize(TextBlock tb) {
 		int size = 0;
-		for (Object subNode : tb.getTokens()) {
+		for (Object subNode : tb.getSubNodes()) {
 			if (subNode instanceof LexedToken) {
 				size++;
 			}

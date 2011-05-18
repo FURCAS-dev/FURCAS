@@ -35,8 +35,8 @@ import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
 import com.sap.ide.cts.parser.Activator;
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException.Component;
-import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
-import com.sap.ide.cts.parser.incremental.antlr.ANTLRLexerAdapter;
+import com.sap.ide.cts.parser.incremental.IncrementalParser;
+import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategyImpl;
 
 /**
  * Facade for handling incremental parser and lexer construction as well as
@@ -121,7 +121,7 @@ public class IncrementalParserFacade {
             TextBlock newRoot = incrementalParser.incrementalParse(preparedTextBlock);
             return newRoot;
         } else {
-            throw new SemanticParserException(getErrors(), Component.LEXER);
+            throw new SemanticParserException(getErrors(), Component.LEXICAL_ANALYSIS);
         }
     }
 

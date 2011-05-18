@@ -9,6 +9,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksFactory;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
+import com.sap.furcas.runtime.common.exceptions.DeferredModelElementCreationException;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.parser.textblocks.ModelElementFromTextBlocksFactory;
 import com.sap.furcas.runtime.parser.textblocks.TextBlockFactory;
@@ -53,7 +54,7 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 	 * {@link ITextBlockCreator#createNewTextBlock(TextBlockProxy)}
 	 */
 	@Override
-	public TextBlock createNewTextBlock(TextBlockProxy proxy, TextBlock parent) {
+	public TextBlock createNewTextBlock(TextBlockProxy proxy, TextBlock parent) throws DeferredModelElementCreationException {
 		// createModelElements(proxy);
 		return instantiateBlockAndMoveTokens(proxy, parent);
 	}
@@ -71,7 +72,7 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 	 * @return the newly instantiated {@link TextBlock} for the given proxy.
 	 */
 	private TextBlock instantiateBlockAndMoveTokens(TextBlockProxy newVersion,
-			TextBlock parent) {
+			TextBlock parent) throws DeferredModelElementCreationException {
 		TextBlock tb = this.createBlock();;
 		tb.setType(newVersion.getTemplate());
 		tb.setSequenceElement(newVersion.getSequenceElement());
@@ -118,9 +119,7 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 		for (Object elementInContext : newVersion.getContextElements()) {
 			if (elementInContext instanceof IModelElementProxy) {
 				if (((IModelElementProxy) elementInContext).getRealObject() == null) {
-					throw new IncrementalParsingException(
-							"Element in context was not resolved: "
-									+ elementInContext);
+					throw new DeferredModelElementCreationException("ModelElementProxy in context was not resolved", elementInContext);
 				}
 				tb.getElementsInContext().add(
 						(EObject) ((IModelElementProxy) elementInContext)

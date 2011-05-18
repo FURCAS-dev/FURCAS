@@ -3,6 +3,8 @@
  */
 package com.sap.furcas.runtime.parser.incremental;
 
+import static com.sap.furcas.runtime.common.util.FileResourceHelper.getResourceSetAsScope;
+import static com.sap.furcas.runtime.common.util.FileResourceHelper.loadResourceSet;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -10,14 +12,16 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.antlr.runtime.Lexer;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -44,18 +48,25 @@ import com.sap.ide.cts.parser.incremental.IncrementalParserFacade;
 
 public class TestParsingObserverWithTcsSyntax {
 
-    private static IncrementalParserFacade incrementalParserFacade;
+    private IncrementalParserFacade incrementalParserFacade;
     private TextBlocksModelElementFactory modelFactory;
-    private static Resource transientParsingResource;
-    private static ResourceSet resourceSet;
+    private Resource transientParsingResource;
+    private ResourceSet resourceSet;
 
-    @BeforeClass
-    public static void setupParser() throws Exception {
+    private void setupParserFor(final Set<URI> metamodels) throws Exception {
         resourceSet = ResourceTestHelper.createResourceSet();
         transientParsingResource = ResourceTestHelper.createTransientResource(resourceSet);
         
-        AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory = new TCSParserFactory();
-        resourceSet.getResource(parserFactory.getSyntaxResourceURI(), true);
+        AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory = new TCSParserFactory() {
+            /**
+             * We must be able to reference the metamodels to which the different TCS
+             * languages that we parse refer to.
+             */
+            @Override
+            public Set<URI> getAdditionalQueryScope() {
+                return metamodels;
+            }
+        };
 
         incrementalParserFacade = new IncrementalParserFacade(parserFactory, resourceSet,
             new MockPartitionAssignmentHandler(transientParsingResource));
@@ -64,7 +75,7 @@ public class TestParsingObserverWithTcsSyntax {
         resourceSet.eAdapters().add(crossRefAdapter);
         crossRefAdapter.setTarget(resourceSet);
     }
-    
+
     @Before
     public void setup() {
         modelFactory = new EMFTextBlocksModelElementFactory();
@@ -72,13 +83,14 @@ public class TestParsingObserverWithTcsSyntax {
     
     @After
     public void cleanup() throws Exception {
-        transientParsingResource.getContents().clear();
+        transientParsingResource.delete(/*options*/ null);
     }
 
     @Test
-    @Ignore("Still not working on EMF")
     public void testParseTcsItself() throws Exception {
-
+        File[] metamodels = { ScenarioFixtureData.TCS_METAMODEL };
+        setupParserFor(getResourceSetAsScope(loadResourceSet(metamodels)));
+        
         AbstractToken content = modelFactory.createToken("");
         TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, content);
 
@@ -90,17 +102,18 @@ public class TestParsingObserverWithTcsSyntax {
         // assert no exception
         assertNotNull(syntaxObject);
         ConcreteSyntax syntax = (ConcreteSyntax) syntaxObject;
-        assertEquals("TCS", syntax.getName());
-        assertEquals(80, syntax.getTemplates().size());
+        assertEquals("TCSObsolete", syntax.getName());
+        assertEquals(78, syntax.getTemplates().size());
 
         assertNotNull(currentVersionTb); // future version
-        assertEquals(155, currentVersionTb.getSubNodes().size());
+        assertEquals(152, currentVersionTb.getSubNodes().size());
     }
 
     @Test
-    @Ignore("Still not working on EMF")
     public void testParseBibText() throws Exception {
-
+        File[] metamodels = { ScenarioFixtureData.BIBTEXT1_METAMODEL, ScenarioFixtureData.BIBTEXT_METAMODEL };
+        setupParserFor(getResourceSetAsScope(loadResourceSet(metamodels)));
+        
         AbstractToken content = modelFactory.createToken("");
         TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, content);
 
@@ -116,12 +129,15 @@ public class TestParsingObserverWithTcsSyntax {
         assertEquals(7, syntax.getTemplates().size());
 
         assertNotNull(currentVersionTb); // future version
-        assertEquals(88, currentVersionTb.getSubNodes().size());
+        assertEquals(81, currentVersionTb.getSubNodes().size());
     }
 
     @Test
     public void testMinimalSyntax() throws Exception {
-
+        HashSet<URI> metamodels = new HashSet<URI>();
+        metamodels.addAll(ResourceTestHelper.createFURCASReferenceScope());
+        setupParserFor(metamodels);
+        
         String syntaxString = "syntax test{}";
 
         AbstractToken content = modelFactory.createToken("");
@@ -142,8 +158,11 @@ public class TestParsingObserverWithTcsSyntax {
 
     @Test
     public void testMinimalSyntaxWithMain() throws Exception {
-
-        String syntaxString = "syntax test{template ->Foo main :\"foo\";}";
+        HashSet<URI> metamodels = new HashSet<URI>();
+        metamodels.addAll(ResourceTestHelper.createFURCASReferenceScope());
+        setupParserFor(metamodels);
+        
+        String syntaxString = "syntax test{template ClassTemplate main :\"foo\";}";
 
         AbstractToken content = modelFactory.createToken("");
         TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, content);
@@ -161,15 +180,18 @@ public class TestParsingObserverWithTcsSyntax {
 
         Template fooTemplate = syntax.getTemplates().get(0);
         assertTrue(fooTemplate instanceof ClassTemplate);
-        assertEquals("Foo", fooTemplate.getNames().get(0));
+        assertEquals("ClassTemplate", fooTemplate.getMetaReference().getName());
     }
 
     @Test
     public void testMinimalSyntaxWith2PrimitiveTemps() throws Exception {
+        HashSet<URI> metamodels = new HashSet<URI>();
+        metamodels.addAll(ResourceTestHelper.createEcoreReferenceScope());
+        setupParserFor(metamodels);
 
         String syntaxString = "syntax test{\r\n"
-                + "    primitiveTemplate identifier for ->String using NAME:value=\"%token%\";\r\n"
-                + "    primitiveTemplate name for ->String using NAME:value=\"%token%\";\r\n" + "}";
+                + "    primitiveTemplate identifier for EString using NAME:value=\"%token%\";\r\n"
+                + "    primitiveTemplate name for EString using NAME:value=\"%token%\";\r\n" + "}";
 
         AbstractToken content = modelFactory.createToken("");
         TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, content);
@@ -194,8 +216,11 @@ public class TestParsingObserverWithTcsSyntax {
 
     @Test
     public void testMinimalSyntaxWithMainAndBlanks() throws Exception {
+        HashSet<URI> metamodels = new HashSet<URI>();
+        metamodels.addAll(ResourceTestHelper.createEcoreReferenceScope());
+        setupParserFor(metamodels);
 
-        String syntaxString = "\r\n  \r\n\tsyntax test {\r\n  \r\n  \r\n  template ->Foo main \r\n  :  \"foo\"\r\n  ;}";
+        String syntaxString = "\r\n  \r\n\tsyntax test {\r\n  \r\n  \r\n  template ecore::EClass main \r\n  :  \"foo\"\r\n  ;}";
 
         AbstractToken content = modelFactory.createToken("");
         TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, content);
@@ -213,12 +238,13 @@ public class TestParsingObserverWithTcsSyntax {
 
         Template fooTemplate = syntax.getTemplates().get(0);
         assertTrue(fooTemplate instanceof ClassTemplate);
-        assertEquals("Foo", fooTemplate.getNames().get(0));
+        assertEquals("EClass", fooTemplate.getMetaReference().getName());
     }
 
     @Test
-    @Ignore("Still not working on EMF")
     public void testParseATL() throws Exception {
+        File[] metamodels = { ScenarioFixtureData.ATL_METAMODEL };
+        setupParserFor(getResourceSetAsScope(loadResourceSet(metamodels)));
 
         File syntaxDefFile = ScenarioFixtureData.ATL_TCS;
 
@@ -237,7 +263,7 @@ public class TestParsingObserverWithTcsSyntax {
         assertEquals(85, syntax.getTemplates().size());
 
         assertNotNull(currentVersionTb); // future version
-        assertEquals(183, currentVersionTb.getSubNodes().size());
+        assertEquals(176, currentVersionTb.getSubNodes().size());
     }
 	
     /**
@@ -245,14 +271,18 @@ public class TestParsingObserverWithTcsSyntax {
      * correctly set to thw new value;
      */
     @Test
-    @Ignore("Still not working on EMF")
+    @Ignore("Failing. Reference not set to new value")
     public void testParseBibTextReplaceReference() throws Exception {
+        File[] metamodels = { ScenarioFixtureData.BIBTEXT1_METAMODEL, ScenarioFixtureData.BIBTEXT_METAMODEL };
+        setupParserFor(getResourceSetAsScope(loadResourceSet(metamodels)));
+        
         AbstractToken content = modelFactory.createToken("");
         TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, content);
         transientParsingResource.getContents().add(root);
 
         TextBlocksModel tbModel = new TextBlocksModel(root, null);
-        tbModel.replace(0, 0, getTcsFileContent(ScenarioFixtureData.BIBTEXT_TCS));
+        String tcsContent = getTcsFileContent(ScenarioFixtureData.BIBTEXT_TCS);
+        tbModel.replace(0, 0, tcsContent);
 
         TextBlock currentVersionTb = incrementalParserFacade.parseIncrementally(root);
         ConcreteSyntax syntaxObject = (ConcreteSyntax) currentVersionTb.getCorrespondingModelElements().iterator().next();
@@ -265,13 +295,13 @@ public class TestParsingObserverWithTcsSyntax {
         Template article = syntaxObject.getTemplates().get(3);
 
         assertNotNull(currentVersionTb); // future version
-        assertEquals(88, currentVersionTb.getSubNodes().size());
+        assertEquals(81, currentVersionTb.getSubNodes().size());
 
         TbChangeUtil.cleanUp(currentVersionTb);
         // replace a reference that referred to the "." token with one that
         // refers to the "{" token
         tbModel = new TextBlocksModel(currentVersionTb, null);
-        tbModel.replace(423, 1, "{");
+        tbModel.replace(tcsContent.indexOf("."), 1, "{");
         TextBlock currentVersionTbNew = incrementalParserFacade.parseIncrementally(currentVersionTb);
         // textBlock shouldn't have changed
         assertEquals(currentVersionTb, currentVersionTb);
@@ -305,5 +335,5 @@ public class TestParsingObserverWithTcsSyntax {
         }
         return content;
     }
-
+    
 }

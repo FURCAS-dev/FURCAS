@@ -13,13 +13,14 @@ package com.sap.furcas.runtime.parser.exceptions;
  */
 public class UnknownProductionRuleException extends Exception {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = 6515713510828668903L;
 
     public UnknownProductionRuleException(String message) {
         super(message);
     }
-
+    
+    public UnknownProductionRuleException(String message, Throwable cause) {
+        super(message, cause);
+    }
+    
 }

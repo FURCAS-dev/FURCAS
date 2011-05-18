@@ -29,6 +29,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
+import com.sap.furcas.runtime.common.exceptions.DeferredModelElementCreationException;
 import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
@@ -126,6 +127,9 @@ public class IncrementalParser extends IncrementalRecognizer {
     public TextBlock incrementalParse(TextBlock root, boolean errorMode) throws SemanticParserException {
         reset();
         setDefaultPartitionFromRoot(root);
+        // get EOS and BOS from root block
+        setEOSFromRoot(root);
+        setBOSFromRoot(root);
         TextBlock newRoot = root;
         // if there is a change
         if (!isEOS(findNextRegion(root))) {
@@ -141,8 +145,7 @@ public class IncrementalParser extends IncrementalRecognizer {
             batchParser.setResolveProxies(false);
 
             // find the next changed region
-            for (AbstractToken tok = findNextRegion(root); !isEOS(tok)
-                    && tok != null; tok = tok==null?null:findNextRegion(tok)) {
+            for (AbstractToken tok = findNextRegion(root); !isEOS(tok); tok = findNextRegion(tok)) {
                 AbstractToken leftBoundary = tok;
                 // left boundary has to be the element that is reachable by the
                 // lookback count of
@@ -185,7 +188,7 @@ public class IncrementalParser extends IncrementalRecognizer {
                 try {
                     callBatchParser(commonAncestor);
                     while (!errorMode
-                            && (batchParser.getInjector().getErrorList().size() > 0 || !comsumedAllTokens(commonAncestor))
+                            && (getErrorList().size() > 0 || !comsumedAllTokens(commonAncestor))
                             && commonAncestor.getParent() != null) {
                         // parsing failed, so try to parse with the parent block
                         // and see if it works
@@ -198,7 +201,7 @@ public class IncrementalParser extends IncrementalRecognizer {
                     boolean errornous = false;
                     if (batchParser.getInjector().getErrorList().size() > 0) {
                         if (!errorMode) {
-                            throw new SemanticParserException(getErrorList(), Component.PARSER);
+                            throw new SemanticParserException(getErrorList(), Component.SYNTACTIC_ANALYSIS);
                         } else {
                             errornous = true;
                         }
@@ -241,26 +244,24 @@ public class IncrementalParser extends IncrementalRecognizer {
                         }
                     }
 
-                } catch (SyntaxElementException e) {
-                    throw new RuntimeException(e);
-                } catch (SecurityException e) {
-                    throw new RuntimeException(e);
-                } catch (IllegalArgumentException e) {
-                    throw new RuntimeException(e);
-                } catch (NoSuchMethodException e) {
-                    throw new RuntimeException(e);
-                } catch (IllegalAccessException e) {
-                    throw new RuntimeException(e);
-                } catch (InvocationTargetException e) {
-                    throw new RuntimeException(e.getCause());
                 } catch (UnknownProductionRuleException e) {
                     throw new RuntimeException(e);
                 }
 
             }
+            
+            if (getErrorList().size() > 0) {
+                // This is bad. Something went wrong while merging proxies / modifying the domain model
+                throw new IncrementalParsingException("Failed to perform model modifications", getErrorList());
+            }
+            
             // batchParser.setObserver(originalObserver);
             batchParser.setResolveProxies(originalResolveProxiesValue);
             referenceHandler.resolveRemainingReferences();
+            
+            if (getErrorList().size() > 0) {
+                throw new SemanticParserException(getErrorList(), Component.SEMANTIC_ANALYSIS);
+            }
         }
         return newRoot;
     }
@@ -411,12 +412,16 @@ public class IncrementalParser extends IncrementalRecognizer {
      * @param newVersion
      * @return
      */
-    private TextBlock mergeTbModelFromProxies(TextBlock oldVersion,
-            TextBlockProxy newVersion) {
+    private TextBlock mergeTbModelFromProxies(TextBlock oldVersion, TextBlockProxy newVersion) {
         TextBlock result = null;
 
-        TbBean resultBean = reuseStrategy
-                .reuseTextBlock(oldVersion, newVersion);
+        TbBean resultBean;
+        try {
+            resultBean = reuseStrategy
+                    .reuseTextBlock(oldVersion, newVersion);
+        } catch (DeferredModelElementCreationException e) {
+            throw new IncrementalParsingException(e.getMessage(), getErrorList());
+        }
 
         TokenRelocationUtil.makeRelativeOffsetRecursively(resultBean.textBlock);
         result = resultBean.textBlock;
@@ -660,35 +665,44 @@ public class IncrementalParser extends IncrementalRecognizer {
 
     /**
      * Calls the batch parser with to re-parse from the given root block.
-     * <b>Do not call this unless you know what you are doing.</b>
+     * 
      */
-    /*package*/ void callBatchParser(TextBlock root) throws SyntaxElementException,
-            SecurityException, NoSuchMethodException, IllegalArgumentException,
-            IllegalAccessException, InvocationTargetException,
-            UnknownProductionRuleException {
+    /*package*/ void callBatchParser(TextBlock root) throws UnknownProductionRuleException {
 
         // reconstruct the context
         // TODO is it correct to use the parent block to start looking for contexts or should the search start at root?
         TbParsingUtil.constructContext(root.getParent(), batchParser);
 
         String ruleName = null;
-        if (root.getType() == null || root.getType() == null) {
-            // ensure that the given block was the root block, otherwise
-            // parsing won't work
-            if (root.getParent() != null) {
-                throw new IncrementalParsingException("Could not find a proper starting point for parsing.");
+        try {
+            if (root.getType() == null || root.getType() == null) {
+                // ensure that the given block was the root block, otherwise
+                // parsing won't work
+                if (root.getParent() != null) {
+                    throw new IncrementalParsingException("Could not find a proper starting point for parsing.",
+                            getErrorList());
+                }
+                ruleName = MAIN_PARSE_RULE_NAME;
+            } else {
+                ruleName = getStartRule(root);
             }
-            ruleName = MAIN_PARSE_RULE_NAME;
-        } else {
-            ruleName = getStartRule(root);
+            Method methodToCall = batchParser.getClass().getMethod(ruleName);
+            if (!Modifier.isFinal(methodToCall.getModifiers())) {
+                throw new UnknownProductionRuleException(ruleName + " is not a production rule in generated Parser.");
+            }
+            // Object result = methodToCall.invoke(batchParser);
+            methodToCall.invoke(batchParser);
+        } catch (NoSuchMethodException e) {
+            throw new UnknownProductionRuleException("Parser has no rule named " + ruleName);
+        } catch (IllegalArgumentException e) {
+            throw new UnknownProductionRuleException("Failed to call production rule " + ruleName);
+        } catch (IllegalAccessException e) {
+            throw new UnknownProductionRuleException("Failed to call production rule " + ruleName);
+        } catch (InvocationTargetException e) {
+            throw new IncrementalParsingException("Generated parser crashed", e.getCause());
+        } catch (SyntaxElementException e) {
+            throw new UnknownProductionRuleException("Could not find production rule to parse " + root.getType(), e);
         }
-        Method methodToCall = batchParser.getClass().getMethod(ruleName);
-        if (!Modifier.isFinal(methodToCall.getModifiers())) {
-            throw new UnknownProductionRuleException(ruleName
-                    + " is not a production rule in generated Parser.");
-        }
-        // Object result = methodToCall.invoke(batchParser);
-        methodToCall.invoke(batchParser);
     }
 
     private String getStartRule(TextBlock root) throws SyntaxElementException {

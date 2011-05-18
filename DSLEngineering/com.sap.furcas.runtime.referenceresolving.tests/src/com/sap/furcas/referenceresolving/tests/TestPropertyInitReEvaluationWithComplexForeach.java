@@ -26,6 +26,7 @@ import org.junit.Test;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
+import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
 
 /**
  * A test case that use a FURCAS mapping specification (".tcs" file) and based on this produce lexer and
@@ -60,7 +61,7 @@ public class TestPropertyInitReEvaluationWithComplexForeach extends AbstractRefe
      * @throws Exception
      */
     @Before
-    public void setupInitialModel() throws Exception {
+    public void setupInitialModel() throws SemanticParserException {
         String textToParse = "article{ Shrt, \"John Doe\"}" +
                              "article{ Medium, \"John Doe\"}" +
                              "article{ LongLongLong, \"Jane Doll\"}" +

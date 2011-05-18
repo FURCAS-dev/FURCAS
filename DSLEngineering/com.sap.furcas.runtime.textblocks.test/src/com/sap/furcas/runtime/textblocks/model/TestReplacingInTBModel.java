@@ -171,10 +171,6 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	bos.setVersion(Version.REFERENCE);
 	bos.setParent(rootBlock);
 
-	Eostoken eos = modelFactory.createEostoken();
-	eos.setVersion(Version.REFERENCE);
-	eos.setParent(rootBlock);
-
 	// create gaps of 6 at start and end
 	int lastIndex = 0;
 	String fullString = "";
@@ -208,7 +204,11 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	}
 	rootBlock.setCachedString(fullString);
 	rootBlock.setLength(lastIndex);
-	eos.setOffset(lastIndex);
+	
+        Eostoken eos = modelFactory.createEostoken();
+        eos.setVersion(Version.REFERENCE);
+        eos.setParent(rootBlock);
+        eos.setOffset(lastIndex);
 
 	TbUtil.createNewCopy(TbVersionUtil.getOtherVersion(rootBlock, Version.REFERENCE), Version.PREVIOUS, false, null);
 

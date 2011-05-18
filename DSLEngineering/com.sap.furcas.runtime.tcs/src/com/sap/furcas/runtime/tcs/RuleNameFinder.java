@@ -4,10 +4,10 @@ import org.eclipse.emf.ecore.EObject;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
-import com.sap.furcas.modeladaptation.emf.lookup.FileResourceHelper;
 import com.sap.furcas.modeladaptation.emf.lookup.QueryBasedEcoreMetaModelLookUp;
 import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
 import com.sap.furcas.runtime.common.interfaces.IRuleName;
+import com.sap.furcas.runtime.common.util.FileResourceHelper;
 
 public class RuleNameFinder implements IRuleName {
 
