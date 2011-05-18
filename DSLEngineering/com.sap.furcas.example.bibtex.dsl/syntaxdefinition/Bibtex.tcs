@@ -44,7 +44,7 @@ syntax Bibtex {
 
   -- place tokens here (optional, except for COMMENT)
 
-  token COMMENT : endOfLine(start = "--");
+  omitted token COMMENT : endOfLine(start = "--");
 
   -- place lexer here (optional)
 
