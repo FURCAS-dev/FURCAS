@@ -402,7 +402,7 @@
       <genClasses ecoreClass="TCS.ecore#//LookupPropertyInit"/>
     </nestedGenPackages>
     <nestedGenPackages prefix="Textblocks" basePackage="com.sap.furcas.metamodel.FURCAS"
-        resource="XML" disposableProviderFactory="true" ecorePackage="textblocks.ecore#/">
+        resource="XMI" disposableProviderFactory="true" contentTypeIdentifier="" ecorePackage="textblocks.ecore#/">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="textblocks.ecore#//Version">
         <genEnumLiterals ecoreEnumLiteral="textblocks.ecore#//Version/REFERENCE"/>
         <genEnumLiterals ecoreEnumLiteral="textblocks.ecore#//Version/PREVIOUS"/>
