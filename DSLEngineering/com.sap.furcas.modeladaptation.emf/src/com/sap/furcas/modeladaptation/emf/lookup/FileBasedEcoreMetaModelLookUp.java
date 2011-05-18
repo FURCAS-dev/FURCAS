@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.runtime.common.util.FileResourceHelper;
 
 /**
  * Implementation of {@link IMetaModelLookup} allowing clients to inspect ecore metamodel

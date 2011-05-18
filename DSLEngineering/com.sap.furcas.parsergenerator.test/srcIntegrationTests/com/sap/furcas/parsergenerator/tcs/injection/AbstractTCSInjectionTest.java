@@ -13,10 +13,10 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
-import com.sap.furcas.modeladaptation.emf.lookup.FileResourceHelper;
 import com.sap.furcas.parsergenerator.emf.tcs.inject.ModelInjectionResult;
 import com.sap.furcas.parsergenerator.emf.tcs.inject.TCSSpecificEMFModelInjector;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.runtime.common.util.FileResourceHelper;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.test.testutils.ResourceTestHelper;

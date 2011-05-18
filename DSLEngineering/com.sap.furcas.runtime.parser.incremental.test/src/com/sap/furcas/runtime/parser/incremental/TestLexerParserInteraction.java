@@ -33,6 +33,7 @@ import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
 import com.sap.furcas.runtime.textblocks.testbase.FixtureProvidingTextBlockTest;
 import com.sap.furcas.test.testutils.ResourceTestHelper;
+import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
 import com.sap.ide.cts.parser.incremental.LexerAdapter;
 import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategyImpl;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
@@ -43,7 +44,7 @@ import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 public class TestLexerParserInteraction extends FixtureProvidingTextBlockTest {
 
     @Test
-    public void testTokenRelocationWithParser() throws ParserInstantiationException {
+    public void testTokenRelocationWithParser() throws ParserInstantiationException, SemanticParserException {
         ResourceSet resourceSet = ResourceTestHelper.createResourceSet();
         Resource transientParsingResource = ResourceTestHelper.createTransientResource(resourceSet);
 
