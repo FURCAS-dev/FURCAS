@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.runtime.common.exceptions.DeferredModelElementCreationException;
 import com.sap.furcas.runtime.parser.textblocks.TextBlockFactory;
 import com.sap.furcas.runtime.parser.textblocks.observer.TextBlockProxy;
 
@@ -52,7 +53,7 @@ public interface TextBlockReuseStrategy {
 	 * @param newVersion
 	 * @return
 	 */
-	TbBean reuseTextBlock(TextBlock oldVersion, TextBlockProxy newVersion);
+	TbBean reuseTextBlock(TextBlock oldVersion, TextBlockProxy newVersion) throws DeferredModelElementCreationException;
 
 	void setTextBlockFactory(TextBlockFactory factory);
 	

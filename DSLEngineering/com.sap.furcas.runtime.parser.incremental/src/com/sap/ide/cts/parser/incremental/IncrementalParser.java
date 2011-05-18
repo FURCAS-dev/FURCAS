@@ -29,6 +29,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
+import com.sap.furcas.runtime.common.exceptions.DeferredModelElementCreationException;
 import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
@@ -250,7 +251,7 @@ public class IncrementalParser extends IncrementalRecognizer {
             
             if (getErrorList().size() > 0) {
                 // This is bad. Something went wrong while merging proxies / modifying the domain model
-                throw new IncrementalParsingException("Failed to perform model modifications");
+                throw new IncrementalParsingException("Failed to perform model modifications", getErrorList());
             }
             
             // batchParser.setObserver(originalObserver);
@@ -412,12 +413,16 @@ public class IncrementalParser extends IncrementalRecognizer {
      * @param newVersion
      * @return
      */
-    private TextBlock mergeTbModelFromProxies(TextBlock oldVersion,
-            TextBlockProxy newVersion) {
+    private TextBlock mergeTbModelFromProxies(TextBlock oldVersion, TextBlockProxy newVersion) {
         TextBlock result = null;
 
-        TbBean resultBean = reuseStrategy
-                .reuseTextBlock(oldVersion, newVersion);
+        TbBean resultBean;
+        try {
+            resultBean = reuseStrategy
+                    .reuseTextBlock(oldVersion, newVersion);
+        } catch (DeferredModelElementCreationException e) {
+            throw new IncrementalParsingException(e.getMessage(), getErrorList());
+        }
 
         TokenRelocationUtil.makeRelativeOffsetRecursively(resultBean.textBlock);
         result = resultBean.textBlock;
@@ -675,7 +680,8 @@ public class IncrementalParser extends IncrementalRecognizer {
                 // ensure that the given block was the root block, otherwise
                 // parsing won't work
                 if (root.getParent() != null) {
-                    throw new IncrementalParsingException("Could not find a proper starting point for parsing.");
+                    throw new IncrementalParsingException("Could not find a proper starting point for parsing.",
+                            getErrorList());
                 }
                 ruleName = MAIN_PARSE_RULE_NAME;
             } else {
