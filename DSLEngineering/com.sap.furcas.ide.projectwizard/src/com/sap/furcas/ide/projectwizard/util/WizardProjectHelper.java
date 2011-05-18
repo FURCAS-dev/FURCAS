@@ -207,7 +207,7 @@ public class WizardProjectHelper {
 
     /**
      * 
-     * Add the required builders depending on wether this is a dsl project or a metamodelproject.
+     * Add the required builders depending on whether this is a dsl project or a metamodelproject.
      * 
      * @param progressMonitor
      * @param metamodel

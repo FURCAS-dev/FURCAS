@@ -186,28 +186,6 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
     }
 
     /**
-     * As the Beginning of Stream (BOS) token is always the first token in the
-     * root textblock this token is used here
-     * 
-     * @param root
-     *            The root textblock of the document to lex
-     */
-    private void setBOSFromRoot(TextBlock root) {
-        bosRef = (Bostoken) root.getTokens().get(0);
-    }
-
-    /**
-     * As the End of Stream (EOS) token is always the last token in the root
-     * textblock this token is used here
-     * 
-     * @param root
-     *            The root textblock of the document to lex
-     */
-    private void setEOSFromRoot(TextBlock root) {
-        eosRef = (Eostoken) root.getTokens().get(root.getTokens().size() - 1);
-    }
-
-    /**
      * Proceed to the next token of the given <code>version</code>.
      * 
      * @param token

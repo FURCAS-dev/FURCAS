@@ -905,7 +905,7 @@ public class TextBlocksModel {
 	if (rootBlock.getTokens().size() <= 0) {
 	    throw new IllegalStateException("TextBlocksModel is in illegal state, root block contains no tokens!");
 	}
-	if (!(rootBlock.getTokens().get(0) instanceof Bostoken)) {
+	if (!(rootBlock.getSubNodes().get(0) instanceof Bostoken)) {
 	    throw new IllegalStateException("TextBlocksModel is in illegal state, first token not BOS!");
 	}
 
