@@ -6381,8 +6381,8 @@ public class TCSParser extends ObservableInjectingParser {
                                 return ret2;
                             }
                             if ( state.backtracking==0 ) {
-                              setProperty(ret, "mapping", temp);
-                              setParent(temp,ret,"mapping");
+                              setProperty(ret, "mappings", temp);
+                              setParent(temp,ret,"mappings");
                             }
                             // ./generationTemp/generated/TCS.g:519:34: ( ( COMA ) temp= furcas_tcs_enumliteralmapping )*
                             loop34:
@@ -6429,8 +6429,8 @@ public class TCSParser extends ObservableInjectingParser {
                                         return ret2;
                                     }
                             	    if ( state.backtracking==0 ) {
-                            	      setProperty(ret, "mapping", temp);
-                            	      setParent(temp,ret,"mapping");
+                            	      setProperty(ret, "mappings", temp);
+                            	      setParent(temp,ret,"mappings");
                             	    }
 
                             	    }
