@@ -1,6 +1,7 @@
 package com.sap.furcas.runtime.parser.textblocks;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.runtime.common.exceptions.DeferredModelElementCreationException;
 import com.sap.furcas.runtime.parser.textblocks.observer.TextBlockProxy;
 
 /**
@@ -22,6 +23,6 @@ public interface TextBlockFactory {
 	 * @param parent The parent to which to add the new proxy.
 	 * @return A newly instantiated {@link TextBlock}
 	 */
-	TextBlock createNewTextBlock(TextBlockProxy proxy, TextBlock parent);
+	TextBlock createNewTextBlock(TextBlockProxy proxy, TextBlock parent) throws DeferredModelElementCreationException;
 
 }
