@@ -104,9 +104,11 @@ public class WizardProjectHelper {
         } else {
             projectDescription.setNatureIds(new String[] { JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature" });
         }
-        addBuilders(progressMonitor, metamodel, project, projectDescription);
-
-        setClasspath(srcFolders, nonSrcFolders, progressMonitor, project, javaProject, classpathEntries);
+        if (PlatformUI.isWorkbenchRunning()) {
+            // not running headless in the maven build. Cannot open project to set our options.
+            addBuilders(progressMonitor, metamodel, project, projectDescription);
+            setClasspath(srcFolders, nonSrcFolders, progressMonitor, project, javaProject, classpathEntries);
+        } 
 
         try {
             javaProject.setOutputLocation(new Path("/" + projectName + "/bin"), new SubProgressMonitor(progressMonitor, 1));
