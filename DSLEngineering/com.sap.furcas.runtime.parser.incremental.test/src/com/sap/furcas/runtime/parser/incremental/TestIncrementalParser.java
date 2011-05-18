@@ -30,7 +30,7 @@ import com.sap.furcas.runtime.textblocks.testutils.TextBlocksModelElementFactory
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
 import com.sap.furcas.test.testutils.ResourceTestHelper;
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
-import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
+import com.sap.ide.cts.parser.incremental.IncrementalParserFacade;
 
 public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
     
