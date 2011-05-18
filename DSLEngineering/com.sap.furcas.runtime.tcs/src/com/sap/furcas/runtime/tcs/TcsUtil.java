@@ -1090,7 +1090,7 @@ public class TcsUtil {
         URI[] resultElements = resultSet.getUris("cs");
 
         List<ConcreteSyntax> results = new ArrayList<ConcreteSyntax>();
-
+ 
         for (URI elem : resultElements) {
             results.add((ConcreteSyntax) connection.getEObject(elem, false));
         }

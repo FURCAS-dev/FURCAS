@@ -131,7 +131,8 @@ public class AbstractFurcasEditor extends UniversalEditor {
      */
     @Override
     public void init(IEditorSite site, IEditorInput input) throws PartInitException {
-        this.syntax = TcsUtil.getSyntaxByName(editingDomain.getResourceSet(), parserFactory.getLanguageId());
+        editingDomain.getResourceSet().getResource(parserFactory.getSyntaxResourceURI(), /*load*/ true);
+        syntax = TcsUtil.getSyntaxByName(editingDomain.getResourceSet(), parserFactory.getLanguageId());
         validateEditorState(syntax, parserFactory);
         
         // create a temporary opposite end finder that knows about the static resources in the workspace
@@ -146,7 +147,7 @@ public class AbstractFurcasEditor extends UniversalEditor {
         try {
             // create a parser/lexer combo suitable for the current editor input
             parserFacade = new IncrementalParserFacade(parserFactory, editingDomain.getResourceSet(), partitionHandler);
-            syntax = parserFacade.getParserScope().getSyntax();
+            assert syntax == parserFacade.getParserScope().getSyntax();
         } catch (ParserInstantiationException e) {
             throw new PartInitException("Unable to instantiate parser for language " + parserFactory.getLanguageId(), e);
         }
