@@ -162,7 +162,7 @@ public abstract class FurcasParseController extends ParseControllerBase {
             newBlock = parserFacade.parseIncrementally(oldBlock);
             
         } catch (SemanticParserException e) {
-            if (e.getComponentThatFailed() == Component.LEXER) {
+            if (e.getComponentThatFailed() == Component.LEXICAL_ANALYSIS) {
                 setParsingResult(null);
             } else {
                 // Lexing phase succeeded. We can use the created textblock as an intermediate result, as
