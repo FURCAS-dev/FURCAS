@@ -37,7 +37,7 @@ public class ProjectInfo {
     private String className = "";
 
     /**
-     * Is not directly entered by the user but gets assgigned on the {@link}LoadPage. It stores the Path to a referenced metamodel
+     * Is not directly entered by the user but gets assigned on the {@link}LoadPage. It stores the Path to a referenced metamodel
      * if needed.
      */
     private String modelPath = "";
