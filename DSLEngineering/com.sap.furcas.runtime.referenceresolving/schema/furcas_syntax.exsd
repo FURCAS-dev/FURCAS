@@ -22,7 +22,7 @@
                   interface com.sap.furcas.runtime.syntaxprovider.SyntaxProvider
                </documentation>
                <appinfo>
-                  <meta.attribute translatable="true"/>
+                  <meta.attribute kind="java" basedOn=":com.sap.furcas.runtime.syntaxprovider.SyntaxProvider"/>
                </appinfo>
             </annotation>
          </attribute>
