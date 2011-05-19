@@ -1,22 +1,19 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: TCSParser
-Bundle-SymbolicName: com.sap.furcas.parser.tcs
+Bundle-SymbolicName: com.sap.furcas.parser.tcs;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Require-Bundle: org.eclipse.osgi,
- org.junit,
+Require-Bundle: org.junit,
  org.antlr,
  org.eclipse.core.runtime;bundle-version="3.6.0",
- org.eclipse.core.resources;bundle-version="3.6.0",
  com.sap.furcas.runtime.common,
  com.sap.furcas.runtime.tcs,
  com.sap.furcas.runtime.parser,
- com.sap.furcas.runtime.parser.incremental,
- com.sap.furcas.ide.parserfactory,
  com.sap.furcas.runtime.referenceresolving,
- com.sap.emf.ocl.trigger
+ com.sap.furcas.ide.parserfactory
 Bundle-ClassPath: .
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: SAP
 Export-Package: com.sap.furcas.parser.tcs,
  com.sap.furcas.parser.tcs.stable;x-friends:="com.sap.furcas.runtime.parser.incremental.test,com.sap.furcas.metamodel.texteditor"
+Bundle-ActivationPolicy: lazy

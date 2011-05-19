@@ -25,7 +25,6 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.metamodel.FURCAS.TCS.Block;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
@@ -35,6 +34,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.parser.tcs.TCSParserFactory;
+import com.sap.furcas.runtime.parser.ParserFactory;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.parser.incremental.testbase.MockPartitionAssignmentHandler;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
@@ -57,7 +57,7 @@ public class TestParsingObserverWithTcsSyntax {
         resourceSet = ResourceTestHelper.createResourceSet();
         transientParsingResource = ResourceTestHelper.createTransientResource(resourceSet);
         
-        AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory = new TCSParserFactory() {
+        ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory = new TCSParserFactory() {
             /**
              * We must be able to reference the metamodels to which the different TCS
              * languages that we parse refer to.

@@ -11,18 +11,18 @@ import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.emf.ocl.trigger.TriggerManager;
-import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.runtime.parser.ParserFactory;
 import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
 
 public class SyntaxProviderImpl implements SyntaxProvider {
     private ConcreteSyntax syntax;
     private Resource syntaxResource;
-    private final AbstractParserFactory<?, ?> parserFactory;
+    private final ParserFactory<?, ?> parserFactory;
     private TriggerManager triggerManager;
     private final OppositeEndFinder oppositeEndFinder;
     
-    public SyntaxProviderImpl(AbstractParserFactory<?, ?> parserFactory, OppositeEndFinder oppositeEndFinder) {
+    public SyntaxProviderImpl(ParserFactory<?, ?> parserFactory, OppositeEndFinder oppositeEndFinder) {
         super();
         this.parserFactory = parserFactory;
         this.oppositeEndFinder = oppositeEndFinder;
