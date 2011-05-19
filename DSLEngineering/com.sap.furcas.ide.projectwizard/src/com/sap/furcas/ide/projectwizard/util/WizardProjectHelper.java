@@ -94,6 +94,12 @@ public class WizardProjectHelper {
         } catch (CoreException e) {
             throw new CodeGenerationException("Error while creating project: " + project.getName(), e.getCause());
         }
+        if (!PlatformUI.isWorkbenchRunning()) {
+            // FIXME: Ugly workaround. Want to reuse wizard coding within the test.
+            // running headless in the maven build. Cannot open project to set the options below
+            return project;
+        } 
+        
         List<IClasspathEntry> classpathEntries = new ArrayList<IClasspathEntry>();
 
         // Add the required natures depending on wether this is a dsl project or a metamodelproject.
@@ -104,11 +110,9 @@ public class WizardProjectHelper {
         } else {
             projectDescription.setNatureIds(new String[] { JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature" });
         }
-        if (PlatformUI.isWorkbenchRunning()) {
-            // not running headless in the maven build. Cannot open project to set our options.
-            addBuilders(progressMonitor, metamodel, project, projectDescription);
-            setClasspath(srcFolders, nonSrcFolders, progressMonitor, project, javaProject, classpathEntries);
-        } 
+        
+        addBuilders(progressMonitor, metamodel, project, projectDescription);
+        setClasspath(srcFolders, nonSrcFolders, progressMonitor, project, javaProject, classpathEntries);
 
         try {
             javaProject.setOutputLocation(new Path("/" + projectName + "/bin"), new SubProgressMonitor(progressMonitor, 1));
