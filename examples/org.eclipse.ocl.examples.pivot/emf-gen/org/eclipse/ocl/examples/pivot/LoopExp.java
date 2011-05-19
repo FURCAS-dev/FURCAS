@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoopExp.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
+ * $Id: LoopExp.java,v 1.4 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -51,7 +51,7 @@ public interface LoopExp
 	 * @return the value of the '<em>Body</em>' containment reference.
 	 * @see #setBody(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getLoopExp_Body()
-	 * @model containment="true" resolveProxies="true" required="true" ordered="false"
+	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
 	OclExpression getBody();
@@ -88,7 +88,7 @@ public interface LoopExp
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Iterator</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getLoopExp_Iterator()
-	 * @model containment="true" resolveProxies="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Variable> getIterators();

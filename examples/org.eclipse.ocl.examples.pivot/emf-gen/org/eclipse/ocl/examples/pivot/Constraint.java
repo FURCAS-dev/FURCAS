@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Constraint.java,v 1.3 2011/05/12 06:07:29 ewillink Exp $
+ * $Id: Constraint.java,v 1.4 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -74,7 +74,7 @@ public interface Constraint
 	 * @return the value of the '<em>Specification</em>' containment reference.
 	 * @see #setSpecification(ValueSpecification)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getConstraint_Specification()
-	 * @model containment="true" resolveProxies="true" required="true" ordered="false"
+	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
 	ValueSpecification getSpecification();

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CallExp.java,v 1.4 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: CallExp.java,v 1.5 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -49,7 +49,7 @@ public interface CallExp
 	 * @return the value of the '<em>Source</em>' containment reference.
 	 * @see #setSource(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCallExp_Source()
-	 * @model containment="true" resolveProxies="true" ordered="false"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	OclExpression getSource();

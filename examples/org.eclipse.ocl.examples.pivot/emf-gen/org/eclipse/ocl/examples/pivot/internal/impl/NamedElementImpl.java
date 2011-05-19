@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NamedElementImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
+ * $Id: NamedElementImpl.java,v 1.3 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -140,7 +140,7 @@ public abstract class NamedElementImpl
 	public EList<Annotation> getOwnedAnnotations() {
 		if (ownedAnnotations == null)
 		{
-			ownedAnnotations = new EObjectContainmentEList.Resolving<Annotation>(Annotation.class, this, PivotPackage.NAMED_ELEMENT__OWNED_ANNOTATION);
+			ownedAnnotations = new EObjectContainmentEList<Annotation>(Annotation.class, this, PivotPackage.NAMED_ELEMENT__OWNED_ANNOTATION);
 		}
 		return ownedAnnotations;
 	}
@@ -185,7 +185,7 @@ public abstract class NamedElementImpl
 	public EList<Constraint> getOwnedRules() {
 		if (ownedRules == null)
 		{
-			ownedRules = new EObjectContainmentEList.Resolving<Constraint>(Constraint.class, this, PivotPackage.NAMED_ELEMENT__OWNED_RULE);
+			ownedRules = new EObjectContainmentEList<Constraint>(Constraint.class, this, PivotPackage.NAMED_ELEMENT__OWNED_RULE);
 		}
 		return ownedRules;
 	}
