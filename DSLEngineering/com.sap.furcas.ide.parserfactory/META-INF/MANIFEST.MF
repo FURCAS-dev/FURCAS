@@ -9,8 +9,8 @@ Require-Bundle: com.sap.furcas.runtime.common,
  org.eclipse.emf,
  org.antlr,
  org.eclipse.emf.ecore,
- com.sap.furcas.runtime.parser,
- com.sap.furcas.runtime.parser.incremental,
+ com.sap.furcas.runtime.parser;visibility:=reexport,
+ com.sap.furcas.runtime.parser.incremental;visibility:=reexport,
  com.sap.furcas.modeladaptation.emf
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: com.sap.furcas.ide.parserfactory
