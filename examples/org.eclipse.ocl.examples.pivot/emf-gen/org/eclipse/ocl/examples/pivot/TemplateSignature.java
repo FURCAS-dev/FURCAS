@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateSignature.java,v 1.2 2011/01/24 20:49:35 ewillink Exp $
+ * $Id: TemplateSignature.java,v 1.3 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -107,7 +107,7 @@ public interface TemplateSignature
 	 * @return the value of the '<em>Owned Parameter</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateSignature_OwnedParameter()
 	 * @see org.eclipse.ocl.examples.pivot.TemplateParameter#getSignature
-	 * @model opposite="signature" containment="true" resolveProxies="true"
+	 * @model opposite="signature" containment="true"
 	 * @generated
 	 */
 	EList<TemplateParameter> getOwnedParameters();

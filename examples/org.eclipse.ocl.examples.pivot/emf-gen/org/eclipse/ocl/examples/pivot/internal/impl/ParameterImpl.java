@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ParameterImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
+ * $Id: ParameterImpl.java,v 1.3 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -80,16 +80,6 @@ public class ParameterImpl
 	public Operation getOperation() {
 		if (eContainerFeatureID() != PivotPackage.PARAMETER__OPERATION) return null;
 		return (Operation)eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Operation basicGetOperation() {
-		if (eContainerFeatureID() != PivotPackage.PARAMETER__OPERATION) return null;
-		return (Operation)eInternalContainer();
 	}
 
 	/**
@@ -214,8 +204,7 @@ public class ParameterImpl
 			case PivotPackage.PARAMETER__UPPER:
 				return getUpper();
 			case PivotPackage.PARAMETER__OPERATION:
-				if (resolve) return getOperation();
-				return basicGetOperation();
+				return getOperation();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -354,7 +343,7 @@ public class ParameterImpl
 			case PivotPackage.PARAMETER__UPPER:
 				return UPPER_EDEFAULT == null ? upper != null : !UPPER_EDEFAULT.equals(upper);
 			case PivotPackage.PARAMETER__OPERATION:
-				return basicGetOperation() != null;
+				return getOperation() != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionRangeImpl.java,v 1.3 2011/03/01 08:47:18 ewillink Exp $
+ * $Id: CollectionRangeImpl.java,v 1.4 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -21,7 +21,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -97,32 +96,6 @@ public class CollectionRangeImpl
 	 * @generated
 	 */
 	public OclExpression getFirst() {
-		if (first != null && ((EObject)first).eIsProxy())
-		{
-			InternalEObject oldFirst = (InternalEObject)first;
-			first = (OclExpression)eResolveProxy(oldFirst);
-			if (first != oldFirst)
-			{
-				InternalEObject newFirst = (InternalEObject)first;
-				NotificationChain msgs = oldFirst.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.COLLECTION_RANGE__FIRST, null, null);
-				if (newFirst.eInternalContainer() == null)
-				{
-					msgs = newFirst.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.COLLECTION_RANGE__FIRST, null, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.COLLECTION_RANGE__FIRST, oldFirst, first));
-			}
-		}
-		return first;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OclExpression basicGetFirst() {
 		return first;
 	}
 
@@ -180,32 +153,6 @@ public class CollectionRangeImpl
 	 * @generated
 	 */
 	public OclExpression getLast() {
-		if (last != null && ((EObject)last).eIsProxy())
-		{
-			InternalEObject oldLast = (InternalEObject)last;
-			last = (OclExpression)eResolveProxy(oldLast);
-			if (last != oldLast)
-			{
-				InternalEObject newLast = (InternalEObject)last;
-				NotificationChain msgs = oldLast.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.COLLECTION_RANGE__LAST, null, null);
-				if (newLast.eInternalContainer() == null)
-				{
-					msgs = newLast.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.COLLECTION_RANGE__LAST, null, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.COLLECTION_RANGE__LAST, oldLast, last));
-			}
-		}
-		return last;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OclExpression basicGetLast() {
 		return last;
 	}
 
@@ -306,11 +253,9 @@ public class CollectionRangeImpl
 				if (resolve) return getType();
 				return basicGetType();
 			case PivotPackage.COLLECTION_RANGE__FIRST:
-				if (resolve) return getFirst();
-				return basicGetFirst();
+				return getFirst();
 			case PivotPackage.COLLECTION_RANGE__LAST:
-				if (resolve) return getLast();
-				return basicGetLast();
+				return getLast();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
