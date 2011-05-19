@@ -28,7 +28,7 @@ junit --launch "org.eclipse.ocl.examples.tests/.launches/org.eclipse.ocl.example
 junit --launch "org.eclipse.ocl.examples.xtext.tests/.settings/org.eclipse.ocl.examples.xtext.tests\ \(standalone\).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.examples.xtext.tests.xml"
 
 junit --launch "org.eclipse.ocl.examples.eventmanager.tests/EventManagerTests.launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.examples.eventmanager.tests.xml"
-junit --launch "org.eclipse.ocl.examples.impactanalyzer.tests/ImpactAnalysisTests with TracebackSteps.launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.examples.impactanalyzer.tracebacksteps.tests.xml"
+#BUG 346368 junit --launch "org.eclipse.ocl.examples.impactanalyzer.tests/ImpactAnalysisTests with TracebackSteps.launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.examples.impactanalyzer.tracebacksteps.tests.xml"
 junit --launch "org.eclipse.ocl.examples.impactanalyzer.tests/ImpactAnalysisTests with Traceback+UnusedChecks.launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.examples.impactanalyzer.tracebacksteps_with_unused.tests.xml"
 junit --launch "org.eclipse.ocl.examples.impactanalyzer.tests/ImpactAnalysisTests with NavigationSteps.launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.examples.impactanalyzer.navigationsteps.tests.xml"
 
