@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ConstraintImpl.java,v 1.3 2011/05/12 06:07:29 ewillink Exp $
+ * $Id: ConstraintImpl.java,v 1.4 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -169,32 +169,6 @@ public class ConstraintImpl
 	 * @generated
 	 */
 	public ValueSpecification getSpecification() {
-		if (specification != null && ((EObject)specification).eIsProxy())
-		{
-			InternalEObject oldSpecification = (InternalEObject)specification;
-			specification = (ValueSpecification)eResolveProxy(oldSpecification);
-			if (specification != oldSpecification)
-			{
-				InternalEObject newSpecification = (InternalEObject)specification;
-				NotificationChain msgs = oldSpecification.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.CONSTRAINT__SPECIFICATION, null, null);
-				if (newSpecification.eInternalContainer() == null)
-				{
-					msgs = newSpecification.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.CONSTRAINT__SPECIFICATION, null, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.CONSTRAINT__SPECIFICATION, oldSpecification, specification));
-			}
-		}
-		return specification;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ValueSpecification basicGetSpecification() {
 		return specification;
 	}
 
@@ -396,8 +370,7 @@ public class ConstraintImpl
 			case PivotPackage.CONSTRAINT__CONSTRAINED_ELEMENT:
 				return getConstrainedElements();
 			case PivotPackage.CONSTRAINT__SPECIFICATION:
-				if (resolve) return getSpecification();
-				return basicGetSpecification();
+				return getSpecification();
 			case PivotPackage.CONSTRAINT__CONTEXT:
 				if (resolve) return getContext();
 				return basicGetContext();

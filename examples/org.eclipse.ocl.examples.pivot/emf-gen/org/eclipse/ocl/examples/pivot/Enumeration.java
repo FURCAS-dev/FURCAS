@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Enumeration.java,v 1.2 2011/01/24 20:42:34 ewillink Exp $
+ * $Id: Enumeration.java,v 1.3 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -53,7 +53,7 @@ public interface Enumeration
 	 * @return the value of the '<em>Owned Literal</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getEnumeration_OwnedLiteral()
 	 * @see org.eclipse.ocl.examples.pivot.EnumerationLiteral#getEnumeration
-	 * @model opposite="enumeration" containment="true" resolveProxies="true"
+	 * @model opposite="enumeration" containment="true"
 	 * @generated
 	 */
 	EList<EnumerationLiteral> getOwnedLiterals();
