@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLDocumentCS.java,v 1.2 2011/01/24 21:08:25 ewillink Exp $
+ * $Id: CompleteOCLDocumentCS.java,v 1.3 2011/05/20 15:26:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS#getPackages <em>Packages</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS#getContexts <em>Contexts</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS#getOwnedInclude <em>Owned Include</em>}</li>
  * </ul>
  * </p>
  *
@@ -68,5 +69,21 @@ public interface CompleteOCLDocumentCS extends RootPackageCS {
 	 * @generated
 	 */
 	EList<ContextDeclCS> getContexts();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Include</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.IncludeCS}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Include</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Include</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getCompleteOCLDocumentCS_OwnedInclude()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<IncludeCS> getOwnedInclude();
 
 } // DocumentCS
