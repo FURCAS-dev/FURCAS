@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: Ecore2PivotDeclarationSwitch.java,v 1.13 2011/05/12 06:07:29 ewillink Exp $
+ * $Id: Ecore2PivotDeclarationSwitch.java,v 1.14 2011/05/20 15:27:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
 import java.lang.reflect.Method;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -161,6 +162,75 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 	public DataType caseEDataType(EDataType eObject) {
 		DataType pivotElement = converter.refreshNamedElement(DataType.class, PivotPackage.Literals.DATA_TYPE, eObject);
 		copyDataTypeOrEnum(pivotElement, eObject);
+		Class<?> instanceClass = eObject.getInstanceClass();
+		if (instanceClass != null) {
+			try {
+				if (instanceClass == boolean.class) {
+					pivotElement.setBehavioralType(converter.getTypeManager().getBooleanType());
+				}
+				else if (instanceClass == byte.class) {
+					pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
+				}
+				else if (instanceClass == double.class) {
+					pivotElement.setBehavioralType(converter.getTypeManager().getRealType());
+				}
+				else if (instanceClass == float.class) {
+					pivotElement.setBehavioralType(converter.getTypeManager().getRealType());
+				}
+				else if (instanceClass == int.class) {
+					pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
+				}
+				else if (instanceClass == long.class) {
+					pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
+				}
+				else if (instanceClass == short.class) {
+					pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
+				}
+				else {
+					if (instanceClass == BigDecimal.class) {
+						pivotElement.setBehavioralType(converter.getTypeManager().getRealType());
+					}
+					else if (instanceClass == BigInteger.class) {
+						pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
+					}
+					else if (instanceClass == Boolean.class) {
+						pivotElement.setBehavioralType(converter.getTypeManager().getBooleanType());
+					}
+					else if (instanceClass == Byte.class) {
+						pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
+					}
+					else if (instanceClass == Double.class) {
+						pivotElement.setBehavioralType(converter.getTypeManager().getRealType());
+					}
+					else if (instanceClass == Float.class) {
+						pivotElement.setBehavioralType(converter.getTypeManager().getRealType());
+					}
+					else if (instanceClass == Integer.class) {
+						pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
+					}
+					else if (instanceClass == Long.class) {
+						pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
+					}
+					else if (instanceClass == Short.class) {
+						pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
+					}
+					else if (instanceClass == String.class) {
+						pivotElement.setBehavioralType(converter.getTypeManager().getStringType());
+					}
+					Method declaredMethod = instanceClass.getDeclaredMethod("compareTo", instanceClass);
+					List<Operation> ownedOperations = pivotElement.getOwnedOperations();
+					ownedOperations.add(createJavaComparisonOperation(
+						PivotConstants.GREATER_THAN_OPERATOR, new JavaGreaterThanOperation(declaredMethod)));
+					ownedOperations.add(createJavaComparisonOperation(
+						PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR, new JavaGreaterThanOrEqualOperation(declaredMethod)));
+					ownedOperations.add(createJavaComparisonOperation(
+						PivotConstants.LESS_THAN_OPERATOR, new JavaLessThanOperation(declaredMethod)));
+					ownedOperations.add(createJavaComparisonOperation(
+						PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR, new JavaLessThanOrEqualOperation(declaredMethod)));
+				}
+			} catch (Exception e) {
+			}
+		}
 		return pivotElement;
 	}
 
@@ -411,69 +481,6 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 	protected void copyDataTypeOrEnum(DataType pivotElement, EDataType eDataType) {
 		copyClassifier(pivotElement, eDataType);
 		pivotElement.setIsSerializable(eDataType.isSerializable());
-		Class<?> instanceClass = eDataType.getInstanceClass();
-		if (instanceClass != null) {
-			try {
-				if (instanceClass == boolean.class) {
-					pivotElement.setBehavioralType(converter.getTypeManager().getBooleanType());
-				}
-				else if (instanceClass == byte.class) {
-					pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
-				}
-				else if (instanceClass == double.class) {
-					pivotElement.setBehavioralType(converter.getTypeManager().getRealType());
-				}
-				else if (instanceClass == float.class) {
-					pivotElement.setBehavioralType(converter.getTypeManager().getRealType());
-				}
-				else if (instanceClass == int.class) {
-					pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
-				}
-				else if (instanceClass == long.class) {
-					pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
-				}
-				else if (instanceClass == short.class) {
-					pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
-				}
-				else {
-					if (instanceClass == Boolean.class) {
-						pivotElement.setBehavioralType(converter.getTypeManager().getBooleanType());
-					}
-					else if (instanceClass == Byte.class) {
-						pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
-					}
-					else if (instanceClass == Double.class) {
-						pivotElement.setBehavioralType(converter.getTypeManager().getRealType());
-					}
-					else if (instanceClass == Float.class) {
-						pivotElement.setBehavioralType(converter.getTypeManager().getRealType());
-					}
-					else if (instanceClass == Integer.class) {
-						pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
-					}
-					else if (instanceClass == Long.class) {
-						pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
-					}
-					else if (instanceClass == Short.class) {
-						pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
-					}
-					else if (instanceClass == String.class) {
-						pivotElement.setBehavioralType(converter.getTypeManager().getStringType());
-					}
-					Method declaredMethod = instanceClass.getDeclaredMethod("compareTo", instanceClass);
-					List<Operation> ownedOperations = pivotElement.getOwnedOperations();
-					ownedOperations.add(createJavaComparisonOperation(
-						PivotConstants.GREATER_THAN_OPERATOR, new JavaGreaterThanOperation(declaredMethod)));
-					ownedOperations.add(createJavaComparisonOperation(
-						PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR, new JavaGreaterThanOrEqualOperation(declaredMethod)));
-					ownedOperations.add(createJavaComparisonOperation(
-						PivotConstants.LESS_THAN_OPERATOR, new JavaLessThanOperation(declaredMethod)));
-					ownedOperations.add(createJavaComparisonOperation(
-						PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR, new JavaLessThanOrEqualOperation(declaredMethod)));
-				}
-			} catch (Exception e) {
-			}
-		}
 	}
 
 	protected Operation createJavaComparisonOperation(String operator, JavaComparisonOperation javaOperation) {

@@ -141,7 +141,7 @@ public class XtextTestCase extends TestCase
 	}
 
 	public static void assertNoResourceErrors(String prefix, Resource resource) {
-		String message = PivotUtil.getResourceErrorsString(resource, prefix);
+		String message = PivotUtil.formatResourceDiagnostics(resource.getErrors(), prefix, "\n\t");
 		if (message != null)
 			fail(message);
 	}
@@ -643,7 +643,7 @@ public class XtextTestCase extends TestCase
 				for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
 					EObject eObject = tit.next();
 					for (Adapter adapter : eObject.eAdapters()) {
-						assert !(adapter instanceof TypeManagedAdapter);//WIP
+						assert !(adapter instanceof TypeManagedAdapter);
 					}
 				}
 			}		

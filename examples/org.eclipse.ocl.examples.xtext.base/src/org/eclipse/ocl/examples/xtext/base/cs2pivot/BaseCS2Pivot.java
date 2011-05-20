@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCS2Pivot.java,v 1.3 2011/05/11 19:47:29 ewillink Exp $
+ * $Id: BaseCS2Pivot.java,v 1.4 2011/05/20 15:27:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -24,7 +24,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.ImportScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.LibraryScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.pivot.AbstractScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.osgi.util.NLS;
 
@@ -78,6 +82,8 @@ public class BaseCS2Pivot extends CS2Pivot
 		private Factory() {
 			CS2Pivot.addFactory(this);
 			addUnresolvedProxyMessageProvider(new TypedTypeRefCSTypeUnresolvedProxyMessageProvider());			
+			addUnresolvedProxyMessageProvider(new ImportCSNamespaceUnresolvedProxyMessageProvider());			
+			addUnresolvedProxyMessageProvider(new LibraryCSPackageUnresolvedProxyMessageProvider());			
 		}
 
 		public BaseLeft2RightVisitor createLeft2RightVisitor(CS2PivotConversion converter) {
@@ -98,6 +104,44 @@ public class BaseCS2Pivot extends CS2Pivot
 
 		public EPackage getEPackage() {
 			return BaseCSTPackage.eINSTANCE;
+		}
+	}
+	
+	private static final class ImportCSNamespaceUnresolvedProxyMessageProvider extends UnresolvedProxyMessageProvider
+	{		
+		private ImportCSNamespaceUnresolvedProxyMessageProvider() {
+			super(BaseCSTPackage.Literals.IMPORT_CS__NAMESPACE);
+		}
+		
+		@Override
+		public String getMessage(EObject context, String linkText) {
+			if (context instanceof ElementCS) {
+				ScopeCSAdapter scopeCSAdapter = AbstractScopeAdapter.getScopeCSAdapter((ElementCS) context);
+				if (scopeCSAdapter instanceof ImportScopeAdapter) {
+					String message = ((ImportScopeAdapter)scopeCSAdapter).getMessage();
+					return NLS.bind(OCLMessages.UnresolvedImport_ERROR_, linkText, message);
+				}
+			}
+			return null;
+		}
+	}
+	
+	private static final class LibraryCSPackageUnresolvedProxyMessageProvider extends UnresolvedProxyMessageProvider
+	{		
+		private LibraryCSPackageUnresolvedProxyMessageProvider() {
+			super(BaseCSTPackage.Literals.LIBRARY_CS__PACKAGE);
+		}
+		
+		@Override
+		public String getMessage(EObject context, String linkText) {
+			if (context instanceof ElementCS) {
+				ScopeCSAdapter scopeCSAdapter = AbstractScopeAdapter.getScopeCSAdapter((ElementCS) context);
+				if (scopeCSAdapter instanceof LibraryScopeAdapter) {
+					String message = ((LibraryScopeAdapter)scopeCSAdapter).getMessage();
+					return NLS.bind(OCLMessages.UnresolvedLibrary_ERROR_, linkText, message);
+				}
+			}
+			return null;
 		}
 	}
 	

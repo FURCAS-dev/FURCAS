@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibTests.java,v 1.7 2011/05/13 19:19:14 ewillink Exp $
+ * $Id: OCLstdlibTests.java,v 1.8 2011/05/20 15:27:16 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -292,8 +292,8 @@ public class OCLstdlibTests extends XtextTestCase
 	
 	public void testImport() throws Exception {
 		String testFile =
-			"import 'minimal.oclstdlib'\n"+
-			"import 'minimal.oclstdlib'\n"+
+			"import 'minimal.oclstdlib';\n"+
+			"import 'minimal.oclstdlib';\n"+
 			"library lib {\n"+
 			"    type OclAny : AnyType {\n"+
 			"    	operation a(elem : Boolean) : Integer {\n"+

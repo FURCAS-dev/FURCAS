@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2Pivot.java,v 1.12 2011/05/12 08:52:58 ewillink Exp $
+ * $Id: CS2Pivot.java,v 1.13 2011/05/20 15:27:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -107,7 +107,10 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 	public static String getUnresolvedProxyText(EReference eReference, EObject csContext, String linkText) {
 		UnresolvedProxyMessageProvider unresolvedProxyMessageProvider = unresolvedProxyMessageProviderMap.get(eReference);
 		if (unresolvedProxyMessageProvider != null) {
-			return unresolvedProxyMessageProvider.getMessage(csContext, linkText);
+			String message = unresolvedProxyMessageProvider.getMessage(csContext, linkText);
+			if (message != null) {
+				return message;
+			}
 		}
 		String messageTemplate = OCLMessages.Unresolved_ERROR_;
 		String errorContext = "Unknown";

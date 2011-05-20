@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotLinker.java,v 1.8 2011/05/12 08:52:58 ewillink Exp $
+ * $Id: CS2PivotLinker.java,v 1.9 2011/05/20 15:27:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -68,6 +68,17 @@ public class CS2PivotLinker extends LazyLinker
 			try {
 				CS2PivotResourceAdapter resourceAdapter = CS2PivotResourceAdapter.getAdapter(csResource, null);
 				resourceAdapter.refreshPivotMappings(diagnosticsConsumer);
+/*				Resource pivotResource = resourceAdapter.getPivotResource(csResource);
+				ResourceSet resourceSet = csResource.getResourceSet();
+				if (resourceSet instanceof ResourceSetImpl) {
+					ResourceSetImpl resourceSetImpl = (ResourceSetImpl) resourceSet;
+					Map<URI, Resource> uriResourceMap = resourceSetImpl.getURIResourceMap();
+					if (uriResourceMap == null) {
+						uriResourceMap = new HashMap<URI, Resource>();
+						resourceSetImpl.setURIResourceMap(uriResourceMap);
+					}
+					uriResourceMap.put(pivotResource.getURI(), pivotResource);
+				} */
 			}
 			catch (Exception exception) {	// Never let an Exception leak out to abort Xtext
 			    Exception cause = exception instanceof Resource.IOWrappedException ? (Exception)exception.getCause() : exception;

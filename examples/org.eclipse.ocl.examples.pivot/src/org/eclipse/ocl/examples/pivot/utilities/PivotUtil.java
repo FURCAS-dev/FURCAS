@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.17 2011/05/15 20:16:25 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.18 2011/05/20 15:27:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -154,18 +154,7 @@ public class PivotUtil
 	public static void checkResourceErrors(String message, Resource resource) throws ParserException {
 		List<Resource.Diagnostic> errors = resource.getErrors();
 		if (errors.size() > 0) {
-			StringBuffer s = new StringBuffer();
-			String prefix = "";
-			if (message != null) {
-				s.append(message);
-				prefix = "\n";
-			}
-			for (Resource.Diagnostic conversionError : errors) {
-				s.append(prefix);
-				s.append(conversionError.getMessage());
-				prefix = "\n";
-			}
-			throw new SemanticException(s.toString());
+			throw new SemanticException(formatResourceDiagnostics(resource.getErrors(), message, "\n"));
 		}
 	}
 
@@ -388,6 +377,19 @@ public class PivotUtil
 			}
 		}
 		return null;
+	}
+
+	public static String formatResourceDiagnostics(List<Resource.Diagnostic> diagnostics, String messagePrefix, String newLine) {
+		if (diagnostics.size() <= 0) {
+			return null;
+		}
+		StringBuffer s = new StringBuffer();
+		s.append(messagePrefix);
+		for (Resource.Diagnostic diagnostic : diagnostics) {
+			s.append(newLine);
+			s.append(diagnostic.getMessage());
+		}
+		return s.toString();
 	}
 
 	public static <T> T getAdapter(Class<T> adapterClass, List<Adapter> eAdapters) {
@@ -707,20 +709,6 @@ public class PivotUtil
 			operation = ((OperationCallExp)callExp).getReferredOperation();
 		}
 		return operation;
-	}
-
-	public static String getResourceErrorsString(Resource resource, String prefix) {
-		List<Resource.Diagnostic> errors = resource.getErrors();
-		if (errors.size() <= 0) {
-			return null;
-		}
-		StringBuffer s = new StringBuffer();
-		s.append(prefix);
-		for (Resource.Diagnostic conversionError : errors) {
-			s.append("\n");
-			s.append(conversionError.getMessage());
-		}
-		return s.toString();
 	}
 
 	public static List<TemplateParameter> getTemplateParameters(TemplateableElement templateableElement) {

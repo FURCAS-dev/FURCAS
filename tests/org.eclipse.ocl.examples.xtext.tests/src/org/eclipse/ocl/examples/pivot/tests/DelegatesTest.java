@@ -14,7 +14,7 @@
  * 
  * </copyright>
  *
- * $Id: DelegatesTest.java,v 1.10 2011/05/13 19:16:33 ewillink Exp $
+ * $Id: DelegatesTest.java,v 1.11 2011/05/20 15:27:16 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.tests;
 
@@ -277,22 +277,22 @@ public class DelegatesTest extends PivotTestSuite
 		Resource ecoreResource = initModelWithErrors();
 		configureTypeManagerForDelegate(companyPackage);
 		TypeManagerResourceSetAdapter.getAdapter(resourceSet, typeManager);
-		String message = PivotUtil.getResourceErrorsString(ecoreResource, "Model load");
+		String message = PivotUtil.formatResourceDiagnostics(ecoreResource.getErrors(), "Model load", "\n\t");
 		if (message != null)
 			fail(message);
 		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, typeManager);
 		Package pivotRoot = ecore2Pivot.getPivotRoot();
-		message = PivotUtil.getResourceErrorsString(pivotRoot.eResource(), "Pivot load");
+		message = PivotUtil.formatResourceDiagnostics(pivotRoot.eResource().getErrors(), "Pivot load", "\n\t");
 		if (message != null)
 			fail(message);
 		URI oclURI = getTestModelURI(MODEL_WITH_ERRORS_OCL);
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(oclURI, true);
-		message = PivotUtil.getResourceErrorsString(xtextResource, "OCL load");
+		message = PivotUtil.formatResourceDiagnostics(xtextResource.getErrors(), "OCL load", "\n\t");
 		if (message != null)
 			fail(message);
 		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, typeManager);
 		Resource pivotResource = adapter.getPivotResource(xtextResource);
-		message = PivotUtil.getResourceErrorsString(pivotResource, "Pivot OCL load");
+		message = PivotUtil.formatResourceDiagnostics(pivotResource.getErrors(), "Pivot OCL load", "\n\t");
 		if (message != null)
 			fail(message);
 		PivotInstaller.installDelegates(typeManager, pivotRoot);
@@ -815,7 +815,7 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		invokeWithException(badClassInstance, "operationParsingToSemanticError",
-			getErrorsInMessage("'self->at(1)'") + getBoundMessage(OCLMessages.UnresolvedOperationCall_ERROR_, "'at'", "'ModelWithErrors.ecore::modelWithErrors::BadClass value'", "'UnlimitedNatural'"));
+			getErrorsInMessage("'self->at(1)'") + getBoundMessage(OCLMessages.UnresolvedOperationCall_ERROR_, "'at'", "'ModelWithErrors.ecore::modelWithErrors::BadClass'", "'UnlimitedNatural'"));
 	}
 
 	public void test_operationParsingToSyntacticError() {
@@ -983,7 +983,7 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationParsingToSemanticError"), null);
 		validateWithDelegationError("parsingToSemanticError", badClassInstance, "not '5'",
-			OCLMessages.UnresolvedOperation_ERROR_, "not", "String value");
+			OCLMessages.UnresolvedOperation_ERROR_, "not", "String");
 	}
 	
 	public void test_validationParsingToSyntacticError() {

@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractExtendingDelegatingOCLstdlibCSVisitor.java,v 1.9 2011/05/05 17:53:38 ewillink Exp $
+ * $Id: AbstractExtendingDelegatingOCLstdlibCSVisitor.java,v 1.10 2011/05/20 15:27:09 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.oclstdlib.util;
 
