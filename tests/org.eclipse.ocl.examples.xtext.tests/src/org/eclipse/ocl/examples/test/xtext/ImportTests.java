@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ImportTests.java,v 1.1 2011/05/20 15:27:16 ewillink Exp $
+ * $Id: ImportTests.java,v 1.2 2011/05/20 16:39:13 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -149,6 +149,16 @@ public class ImportTests extends XtextTestCase
 		writer.append(customLibrary);
 		writer.close();
 	}
+
+	protected String getNoSuchFileMessage() {
+		String os = System.getProperty("os.name");
+		if ((os != null) && os.startsWith("Windows")) {
+			return "{0} (The system cannot find the file specified)";
+		}
+		else {
+			return "{0} (No such file or directory)";
+		}
+	}
 	
 	public void testImport_CompleteOCL_CompleteOCL() throws Exception {
 		rootLogger.removeAppender(testCaseAppender);
@@ -253,7 +263,7 @@ public class ImportTests extends XtextTestCase
 			"import 'NoSuchFile1'\n";
 		Bag<String> bag = new BagImpl<String>();
 		String template1 = "Cannot create a resource for ''{0}''; a registered resource factory is needed";
-		String template2 = "{0} (The system cannot find the file specified)";
+		String template2 = getNoSuchFileMessage();
 		bag.add(NLS.bind(OCLMessages.UnresolvedImport_ERROR_, "NoSuchFile1", NLS.bind(template1, getProjectFileURI("NoSuchFile1"))));
 		bag.add(NLS.bind(OCLMessages.UnresolvedImport_ERROR_, "NoSuchFile1", NLS.bind(template1, getProjectFileURI("NoSuchFile1"))));
 		bag.add(NLS.bind(OCLMessages.UnresolvedImport_ERROR_, "NoSuchFile2.ocl", NLS.bind(template2, getProjectFileURI("NoSuchFile2.ocl").toFileString())));
@@ -308,7 +318,7 @@ public class ImportTests extends XtextTestCase
 			"import 'NoSuchFile1';\n";
 		Bag<String> bag = new BagImpl<String>();
 		String template1 = "Cannot create a resource for ''{0}''; a registered resource factory is needed";
-		String template2 = "{0} (The system cannot find the file specified)";
+		String template2 = getNoSuchFileMessage();
 		bag.add(NLS.bind(OCLMessages.UnresolvedImport_ERROR_, "NoSuchFile1", NLS.bind(template1, getProjectFileURI("NoSuchFile1"))));
 		bag.add(NLS.bind(OCLMessages.UnresolvedImport_ERROR_, "NoSuchFile1", NLS.bind(template1, getProjectFileURI("NoSuchFile1"))));
 		bag.add(NLS.bind(OCLMessages.UnresolvedImport_ERROR_, "NoSuchFile2.ecore", NLS.bind(template2, getProjectFileURI("NoSuchFile2.ecore").toFileString())));
@@ -348,7 +358,7 @@ public class ImportTests extends XtextTestCase
 			"library anotherOne{}\n";
 		Bag<String> bag = new BagImpl<String>();
 		String template1 = "Cannot create a resource for ''{0}''; a registered resource factory is needed";
-		String template2 = "{0} (The system cannot find the file specified)";
+		String template2 = getNoSuchFileMessage();
 		bag.add(NLS.bind(OCLMessages.UnresolvedLibrary_ERROR_, "NoSuchFile1", NLS.bind(template1, getProjectFileURI("NoSuchFile1"))));
 		bag.add(NLS.bind(OCLMessages.UnresolvedLibrary_ERROR_, "NoSuchFile1", NLS.bind(template1, getProjectFileURI("NoSuchFile1"))));
 		bag.add(NLS.bind(OCLMessages.UnresolvedLibrary_ERROR_, "NoSuchFile2.oclstdlib", NLS.bind(template2, getProjectFileURI("NoSuchFile2.oclstdlib").toFileString())));
