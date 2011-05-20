@@ -219,23 +219,24 @@ public class SyntaxLookup {
             for (ResolvedNameAndReferenceBean<Type> subType : subtypes) {
                 Collection<Template> subtemps = null;
                 subtemps = getTCSTemplate(subType, null);
+                
+                // If a template is a class template or if no template found at all,
+                // continue to look for primaries recursively in subtypes of subType
                 for (Template subtemp : subtemps) {
-
-                    if (subtemp != null && subtemp instanceof ClassTemplate) {
+                    if (subtemp instanceof ClassTemplate) {
                         ClassTemplate classSubTemp = (ClassTemplate) subtemp;
-                        if (!classSubTemp.isIsNonPrimary()) { // Non Primaries not
-                            // added to primary rule
+                        if (!classSubTemp.isIsNonPrimary()) {
+                            // Non Primaries not added to primary rule
                             primaries.add(classSubTemp);
                             continue;
                         }
                     } else {
-                        // not a class template or no template found at all
-                        // continue to look for primaries recursively in
-                        // subtypes of subType
-                        List<ResolvedNameAndReferenceBean<Type>> subsubtypes = metaLookup.getDirectSubTypes(subType);
-                        List<ClassTemplate> subsubtypesPrimaries = getPrimaries(subsubtypes, metaLookup);
-                        primaries.addAll(subsubtypesPrimaries);
+                        primaries.addAll(getPrimaries(metaLookup.getDirectSubTypes(subType), metaLookup));
                     }
+                }
+                if (subtemps.isEmpty()) {
+                    primaries.addAll(getPrimaries(metaLookup.getDirectSubTypes(subType), metaLookup));
+
                 }
             }
         return primaries;

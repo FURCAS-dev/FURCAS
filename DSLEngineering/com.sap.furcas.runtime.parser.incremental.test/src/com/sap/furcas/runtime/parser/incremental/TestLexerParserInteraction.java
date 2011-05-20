@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
@@ -22,6 +21,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.parser.tcs.TCSParserFactory;
 import com.sap.furcas.parser.tcs.stable.TCSLexer;
 import com.sap.furcas.runtime.common.exceptions.ParserInstantiationException;
+import com.sap.furcas.runtime.parser.ParserFactory;
 import com.sap.furcas.runtime.parser.PartitionAssignmentHandler;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.parser.impl.ParserScope;
@@ -48,7 +48,7 @@ public class TestLexerParserInteraction extends FixtureProvidingTextBlockTest {
         ResourceSet resourceSet = ResourceTestHelper.createResourceSet();
         Resource transientParsingResource = ResourceTestHelper.createTransientResource(resourceSet);
 
-        AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory = new TCSParserFactory();
+        ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory = new TCSParserFactory();
         resourceSet.getResource(parserFactory.getSyntaxResourceURI(), true);
 
         IncrementalParserFacade ipf = new IncrementalParserFacade(parserFactory, resourceSet, new MockPartitionAssignmentHandler(
