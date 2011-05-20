@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2Ecore.java,v 1.5 2011/05/13 18:43:42 ewillink Exp $
+ * $Id: Pivot2Ecore.java,v 1.6 2011/05/20 19:06:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -139,14 +139,15 @@ public class Pivot2Ecore extends AbstractConversion
 	public static void installDelegates(TypeManager typeManager, EClassifier eClassifier, Type pivotType) {
 		StringBuffer s = null;
 		for (Constraint pivotConstraint : typeManager.getLocalConstraints((org.eclipse.ocl.examples.pivot.Class) pivotType)) {
-			if (!pivotConstraint.isCallable()) {
+			String constraintName = pivotConstraint.getName();
+			if (!pivotConstraint.isCallable() && (constraintName != null)) {
 				if (s == null) {
 					s = new StringBuffer();
 				}
 				else {
 					s.append(" ");
 				}
-				s.append(pivotConstraint.getName());
+				s.append(constraintName);
 			}
 		}
 		EAnnotation eAnnotation = eClassifier.getEAnnotation(EcorePackage.eNS_URI);
