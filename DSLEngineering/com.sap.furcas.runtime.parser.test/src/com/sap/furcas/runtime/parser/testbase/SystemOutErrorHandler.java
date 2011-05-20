@@ -11,30 +11,30 @@ class SystemOutErrorHandler implements GenerationErrorHandler {
 
     @Override
     public void error(ParsingError exception) {
-        System.err.println("ERROR: " + exception.getMessage());
+        System.err.println("ERROR: " + exception.getMessage() + " in line " + exception.getLine());
         failedWithError = true;
     }
 
     @Override
     public void fatalError(ParsingError exception) {
-        System.err.println("FATAL ERROR: " + exception.getMessage());
+        System.err.println("FATAL ERROR: " + exception.getMessage() + " in line " + exception.getLine());
         failedWithError = true;
     }
 
     @Override
     public void warning(ParsingError exception) {
-        System.out.println("WARNING: " + exception.getMessage());
+        System.out.println("WARNING: " + exception.getMessage() + " in line " + exception.getLine());
     }
 
     @Override
     public void error(Message err) {
-        System.err.println("ERROR: " + err);
+        System.err.println("ERROR: " + err + " in line " + err.line);
         failedWithError = true;
     }
 
     @Override
     public void warn(Message warn) {
-        System.out.println("WARNING: " + warn);
+        System.out.println("WARNING: " + warn + " in line " + warn.line);
     }
 
     @Override
