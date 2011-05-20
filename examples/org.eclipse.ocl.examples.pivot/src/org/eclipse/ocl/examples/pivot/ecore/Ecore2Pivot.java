@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2Pivot.java,v 1.12 2011/05/15 20:16:25 ewillink Exp $
+ * $Id: Ecore2Pivot.java,v 1.13 2011/05/20 15:27:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -43,6 +43,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIException;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -64,6 +66,38 @@ import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 public class Ecore2Pivot extends AbstractConversion implements External2Pivot, PivotConstants
 {
+	private static final class Factory implements TypeManager.Factory
+	{
+		private Factory() {
+			TypeManager.addFactory(this);
+		}
+
+		public boolean canHandle(Resource resource) {
+			return isEcore(resource);
+		}
+
+		public void configure(ResourceSet resourceSet) {}
+
+		public Element importFromResource(TypeManager typeManager, Resource ecoreResource, String uriFragment) {
+			if (ecoreResource == null) {
+				return null;
+			}
+			Ecore2Pivot conversion = getAdapter(ecoreResource, typeManager);
+			org.eclipse.ocl.examples.pivot.Package pivotRoot = conversion.getPivotRoot();
+			if (uriFragment == null) {
+				return pivotRoot;
+			}
+			else {
+				EObject eObject = ecoreResource.getEObject(uriFragment);
+				if (eObject == null) {
+					return null;
+				}
+				return conversion.createMap.get(eObject);
+			}
+		}
+	}
+
+	public static TypeManager.Factory FACTORY = new Factory();
 	private static final Logger logger = Logger.getLogger(Ecore2Pivot.class);
 
 	public static Ecore2Pivot findAdapter(Resource resource, TypeManager typeManager) {
@@ -126,6 +160,16 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 		}
 		Ecore2Pivot conversion = getAdapter(ecoreResource, typeManager);
 		return conversion.getPivotRoot();
+	}
+
+	public static boolean isEcore(Resource resource) {
+		List<EObject> contents = resource.getContents();
+		for (EObject content : contents) {
+			if (content instanceof EPackage) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 /*	public static Ecore2Pivot createConverter(TypeManager typeManager, Resource ecoreResource) {
@@ -337,8 +381,16 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 					String nsURI = ((EPackage)eObject).getNsURI();
 					String moniker = typeManager.getPackageMoniker(nsURI);
 					if (moniker != null) {
-						logger.error("Unsupported '" + nsURI + "' conflict");
-						return null;	// FIXME Need Ecore2Pivot to be able to refresh 2 Ecores to 1 Pivot
+//						logger.error("Unsupported '" + nsURI + "' conflict");
+						pivotRoot = PivotFactory.eINSTANCE.createPackage();
+						pivotRoot.setNsURI(nsURI);
+						String uri = EcoreUtil.generateUUID() + ".pivot";
+						pivotRoot.setMoniker(uri);
+						URI dummyURI = URI.createURI(uri);
+						pivotResource = typeManager.getPivotResourceSet().createResource(dummyURI);
+						pivotResource.getContents().add(pivotRoot);
+						pivotResource.getErrors().add(new XMIException("Unsupported '" + nsURI + "' conflict"));		// FIXME better class
+						return pivotRoot;	// FIXME Need Ecore2Pivot to be able to refresh 2 Ecores to 1 Pivot
 /*						org.eclipse.ocl.examples.pivot.Package existingPackage = typeManager.getPrimaryPackage(moniker);
 						if (existingPackage != null) {
 							Resource existingResource = existingPackage.eResource();
@@ -394,7 +446,7 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 
 	public Resource importObjects(Collection<EObject> ecoreContents, URI ecoreURI) {
 		Resource pivotResource = typeManager.createResource(ecoreURI, PivotPackage.eCONTENT_TYPE);
-		pivotRoot = typeManager.createPackage(ecoreURI.lastSegment());
+		pivotRoot = typeManager.createPackage(ecoreURI.lastSegment(), null);
 		pivotResource.getContents().add(pivotRoot);
 		List<org.eclipse.ocl.examples.pivot.Package> packages = pivotRoot.getNestedPackages();
 		for (EObject eObject : ecoreContents) {

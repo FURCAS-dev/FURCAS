@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeCaches.java,v 1.7 2011/05/17 17:28:18 ewillink Exp $
+ * $Id: TypeCaches.java,v 1.8 2011/05/20 15:27:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -627,8 +627,9 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		String moniker = pivotPackage.getMoniker();
 		String nsURI = pivotPackage.getNsURI();
 		if (nsURI != null) {
+			@SuppressWarnings("unused")
 			String existingMoniker = uri2package.put(nsURI, moniker);
-			assert (existingMoniker == null) || existingMoniker.equals(moniker) : "Duplicate package for '" + nsURI + "'";
+//			assert (existingMoniker == null) || existingMoniker.equals(moniker) : "Duplicate package for '" + nsURI + "'";
 		}
 		Iterable<org.eclipse.ocl.examples.pivot.Package> iterable = package2packages.get(moniker);
 		if (iterable == null) {
@@ -1353,9 +1354,13 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		}
 		else {
 			int suffix = 0;
+			String nsURI = pivotPackage.getNsURI();
 			while (true) {
 				Iterable<org.eclipse.ocl.examples.pivot.Package> existingPackage = package2packages.get(packageMoniker);
 				if (existingPackage == null) {
+					break;
+				}
+				if ((nsURI != null) && nsURI.equals(existingPackage.iterator().next().getNsURI())) {
 					break;
 				}
 				packageMoniker = name + "_" + ++suffix;
@@ -1364,7 +1369,7 @@ public abstract class TypeCaches extends PivotStandardLibrary
 			if (installTrackers) {
 				addPackage(pivotPackage);
 			}
-			if ((suffix > 0) && (name != PivotConstants.NULL_ROOT)) {
+			if ((suffix > 0) && (name != PivotConstants.NULL_ROOT) && (nsURI == null)) {
 				logger.warn("Conflicting package " + pivotPackage);
 			}
 		}
