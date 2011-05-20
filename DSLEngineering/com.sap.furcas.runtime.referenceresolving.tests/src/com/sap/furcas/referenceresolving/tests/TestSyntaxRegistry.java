@@ -13,10 +13,9 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.ParserException;
 import org.junit.Test;
 
-
 import com.sap.emf.ocl.trigger.TriggerManager;
-import com.sap.furcas.example.bibtex.dsl.editor.Activator;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.parser.tcs.Activator;
 import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
 import com.sap.furcas.runtime.syntaxprovider.SyntaxProvider;
 
@@ -34,10 +33,10 @@ public class TestSyntaxRegistry {
     
     @Test
     public void testGetSyntax() throws IOException, ParserException {
-        SyntaxProvider bibtexProvider = Activator.getDefault();
-        ConcreteSyntax syntax = bibtexProvider.getSyntax(null);
+        SyntaxProvider tcsProvider = Activator.getDefault();
+        ConcreteSyntax syntax = tcsProvider.getSyntax(null);
         assertNotNull(syntax);
-        assertEquals("Bibtex", syntax.getName());
+        assertEquals("TCS", syntax.getName());
     }
 
     @Test
