@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.20 2011/05/13 18:49:07 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.21 2011/05/20 15:27:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -553,7 +553,14 @@ public class EssentialOCLLeft2RightVisitor
 //			return context.addBadProxyError(EssentialOCLCSTPackage.Literals.NAME_EXP_CS__ELEMENT, csNamedExp);
 			namedElement = getBadOperation();
 		}
-		if (namedElement instanceof Operation) {
+		if ((namedElement == null) || namedElement.eIsProxy()) {
+			OperationCallExp operationCallExp = context.refreshExpression(OperationCallExp.class, PivotPackage.Literals.OPERATION_CALL_EXP, csNamedExp);
+			context.setReferredOperation(operationCallExp, null);
+			context.reusePivotElement(csNavigatingExp, operationCallExp);		
+			context.setType(operationCallExp, typeManager.getOclInvalidType());
+			return operationCallExp;
+		}
+		else if (namedElement instanceof Operation) {
 			Operation operation = (Operation)namedElement;
 			OclExpression source = resolveNavigationSource(csNavigatingExp, operation);
 			OclExpression expression;
@@ -674,7 +681,7 @@ public class EssentialOCLLeft2RightVisitor
 				boundMessage = NLS.bind(OCLMessages.UnresolvedOperationCall_ERROR_, new Object[]{csOperator, sourceType, s.toString()});
 			}
 			else {
-				boundMessage = NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, new Object[]{csOperator, sourceType + " value"});
+				boundMessage = NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, new Object[]{csOperator, sourceType});
 			}
 //			context.addBadExpressionError(csOperator, boundMessage);
 			context.addDiagnostic(csOperator, boundMessage);
@@ -703,7 +710,14 @@ public class EssentialOCLLeft2RightVisitor
 //			return context.addBadExpressionError(csNamedExp, boundMessage);
 			namedElement = getBadProperty();
 		}
-		if (namedElement instanceof Property) {
+		if ((namedElement == null) || namedElement.eIsProxy()) {
+			PropertyCallExp expression = context.refreshExpression(PropertyCallExp.class, PivotPackage.Literals.PROPERTY_CALL_EXP, csNamedExp);
+			expression.setReferredProperty(null);
+//			context.reusePivotElement(csNavigatingExp, operationCallExp);		
+			context.setType(expression, typeManager.getOclInvalidType());
+			return expression;
+		}
+		else if (namedElement instanceof Property) {
 			return resolvePropertyCallExp(csNamedExp, (Property)namedElement);
 		}
 		else {

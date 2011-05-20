@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSResource.java,v 1.11 2011/05/13 10:46:41 ewillink Exp $
+ * $Id: EssentialOCLCSResource.java,v 1.12 2011/05/20 15:27:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -280,7 +280,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 				else {
 					registryPath = ProjectHandle.DEFAULT_MODEL_REGISTRY_NAME;
 				}
-				if (registryPath != null) {
+				if ((projectFolder != null) && (registryPath != null)) {
 					JavaProjectHandle project = new JavaProjectHandle(projectFolder, registryPath);
 					modelResolver = new ModelFileResolver(project, file);
 				}
