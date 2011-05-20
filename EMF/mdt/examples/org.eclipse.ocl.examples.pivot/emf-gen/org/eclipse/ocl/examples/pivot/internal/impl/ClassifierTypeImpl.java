@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassifierTypeImpl.java,v 1.2 2011/05/02 15:38:53 ewillink Exp $
+ * $Id: ClassifierTypeImpl.java,v 1.3 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -151,19 +151,16 @@ public class ClassifierTypeImpl extends DataTypeImpl implements ClassifierType
 			case PivotPackage.CLASSIFIER_TYPE__TEMPLATE_BINDING:
 				return getTemplateBindings();
 			case PivotPackage.CLASSIFIER_TYPE__OWNED_TEMPLATE_SIGNATURE:
-				if (resolve) return getOwnedTemplateSignature();
-				return basicGetOwnedTemplateSignature();
+				return getOwnedTemplateSignature();
 			case PivotPackage.CLASSIFIER_TYPE__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
 			case PivotPackage.CLASSIFIER_TYPE__OWNING_TEMPLATE_PARAMETER:
-				if (resolve) return getOwningTemplateParameter();
-				return basicGetOwningTemplateParameter();
+				return getOwningTemplateParameter();
 			case PivotPackage.CLASSIFIER_TYPE__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
 			case PivotPackage.CLASSIFIER_TYPE__PACKAGE:
-				if (resolve) return getPackage();
-				return basicGetPackage();
+				return getPackage();
 			case PivotPackage.CLASSIFIER_TYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.CLASSIFIER_TYPE__IS_ABSTRACT:
@@ -388,11 +385,11 @@ public class ClassifierTypeImpl extends DataTypeImpl implements ClassifierType
 			case PivotPackage.CLASSIFIER_TYPE__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
 			case PivotPackage.CLASSIFIER_TYPE__OWNING_TEMPLATE_PARAMETER:
-				return basicGetOwningTemplateParameter() != null;
+				return getOwningTemplateParameter() != null;
 			case PivotPackage.CLASSIFIER_TYPE__TEMPLATE_PARAMETER:
 				return isSetTemplateParameter();
 			case PivotPackage.CLASSIFIER_TYPE__PACKAGE:
-				return basicGetPackage() != null;
+				return getPackage() != null;
 			case PivotPackage.CLASSIFIER_TYPE__INSTANCE_CLASS_NAME:
 				return isSetInstanceClassName();
 			case PivotPackage.CLASSIFIER_TYPE__IS_ABSTRACT:

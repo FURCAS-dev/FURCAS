@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTAdapterFactory.java,v 1.6 2011/03/01 08:47:04 ewillink Exp $
+ * $Id: CompleteOCLCSTAdapterFactory.java,v 1.7 2011/05/20 15:26:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.util;
 
@@ -163,6 +163,11 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseFeatureContextDeclCS(FeatureContextDeclCS object)
 			{
 				return createFeatureContextDeclCSAdapter();
+			}
+			@Override
+			public Adapter caseIncludeCS(IncludeCS object)
+			{
+				return createIncludeCSAdapter();
 			}
 			@Override
 			public Adapter caseInitCS(InitCS object)
@@ -467,6 +472,21 @@ public class CompleteOCLCSTAdapterFactory extends AdapterFactoryImpl
 	}
 
   /**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.IncludeCS <em>Include CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.IncludeCS
+	 * @generated
+	 */
+	public Adapter createIncludeCSAdapter()
+	{
+		return null;
+	}
+
+/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InitCS <em>Init CS</em>}'.
 	 * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;

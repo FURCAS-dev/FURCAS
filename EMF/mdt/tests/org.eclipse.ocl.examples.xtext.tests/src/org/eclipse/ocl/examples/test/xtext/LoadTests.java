@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoadTests.java,v 1.21 2011/05/02 09:31:37 ewillink Exp $
+ * $Id: LoadTests.java,v 1.23 2011/05/20 15:27:16 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -162,6 +162,47 @@ public class LoadTests extends XtextTestCase
 			}
 		}
 	}
+	
+	public Resource doLoad_Pivot(String stem, String extension) throws IOException {
+//		long startTime = System.currentTimeMillis();
+//		System.out.println("Start at " + startTime);
+		String inputName = stem + "." + extension;
+		String outputName = stem + "." + extension + ".xmi";
+		String output2Name = stem + ".saved." + extension;
+		URI inputURI = getProjectFileURI(inputName);
+		URI outputURI = getProjectFileURI(outputName);
+		URI output2URI = getProjectFileURI(output2Name);
+		if (typeManager == null) {
+			typeManager = new TypeManager();
+		}
+		TypeManagerResourceSetAdapter.getAdapter(resourceSet, typeManager);
+		Resource pivotResource = null;
+		try {
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
+			pivotResource = resourceSet.getResource(inputURI, true);
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " gotResource()");
+			assertNoResourceErrors("Load failed", pivotResource);
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " resolveProxies()");
+			assertNoUnresolvedProxies("Unresolved proxies", pivotResource);
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validate()");
+	//FIXME		assertNoValidationErrors("Validation errors", xtextResource.getContents().get(0));
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validated()");
+//			xtextResource.setURI(output2URI);
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " save()");
+//			xtextResource.save(null);
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
+//			assertNoResourceErrors("Save failed", xtextResource);
+		}
+		finally {
+//			unloadCS(resourceSet);
+//			if (xtextResource instanceof BaseCSResource) {
+//				CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter((BaseCSResource)xtextResource, null);
+//				adapter.dispose();
+//			}
+//			unloadPivot(typeManager);
+		}
+		return pivotResource;
+	}
 
 	protected void saveAsXMI(Resource resource, URI xmiURI) throws IOException {
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -179,6 +220,7 @@ public class LoadTests extends XtextTestCase
 	protected void setUp() throws Exception {
 		super.setUp();
 		configurePlatformResources();
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("pivot", new XMIResourceFactoryImpl()); //$NON-NLS-1$
 	}
 
 	@Override
@@ -209,6 +251,10 @@ public class LoadTests extends XtextTestCase
 
 	public void testLoad_Ecore_ecore() throws IOException, InterruptedException {
 		doLoad("Ecore", "ecore");
+	}	
+
+	public void testLoad_Empty_ecore() throws IOException, InterruptedException {
+		doLoad("Empty", "ecore");
 	}	
 
 	public void testLoad_Expression_oclinecore() throws IOException, InterruptedException {
@@ -247,6 +293,22 @@ public class LoadTests extends XtextTestCase
 		doLoad_Concrete("Types", "oclinecore");
 	}	
 	
+//	public void testLoad_Bug7_ocl() throws IOException, InterruptedException {
+//		doLoad_Concrete("Bug7", "ocl");
+//	}
+	
+	public void testLoad_Bug9_ocl() throws IOException, InterruptedException {
+		doLoad_Concrete("Bug9", "ocl");
+	}
+
+//	public void testLoad_Bug11_oclinecore() throws IOException, InterruptedException {
+//		doLoad_Concrete("Bug11", "oclinecore");
+//	}	
+
+	public void testLoad_Bug14_oclstdlib() throws IOException, InterruptedException {
+		doLoad_Concrete("Bug14", "oclstdlib");
+	}	
+	
 	public void testLoad_Bug321171_oclinecore() throws IOException, InterruptedException {
 		doLoad_Concrete("Bug321171", "oclinecore");
 	}
@@ -254,6 +316,18 @@ public class LoadTests extends XtextTestCase
 	public void testLoad_Bug321903_oclinecore() throws IOException, InterruptedException {
 		doLoad_Concrete("Bug321903", "oclinecore");
 	}	
+	
+	public void testLoad_Bug323741_ecore() throws IOException, InterruptedException {
+		doLoad("Bug323741", "ecore");
+	}
+	
+//FIXME	public void testLoad_Bug323741_pivot() throws IOException, InterruptedException {
+//		doLoad_Pivot("Bug323741", "pivot");
+//	}
+	
+	public void testLoad_Bug323741_oclinecore() throws IOException, InterruptedException {
+		doLoad_Concrete("Bug323741", "oclinecore");
+	}
 
 	public void testLoad_Fruit_ocl() throws IOException, InterruptedException {
 		typeManager = new TypeManager();

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AssociationClassCallExpImpl.java,v 1.3 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: AssociationClassCallExpImpl.java,v 1.4 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -147,8 +147,7 @@ public class AssociationClassCallExpImpl
 				if (resolve) return getType();
 				return basicGetType();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__SOURCE:
-				if (resolve) return getSource();
-				return basicGetSource();
+				return getSource();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IMPLICIT:
 				return isImplicit();
 			case PivotPackage.ASSOCIATION_CLASS_CALL_EXP__IS_PRE:

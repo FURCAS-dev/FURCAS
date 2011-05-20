@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCS2MonikerVisitor.java,v 1.8 2011/05/05 17:53:02 ewillink Exp $
+ * $Id: BaseCS2MonikerVisitor.java,v 1.9 2011/05/11 19:32:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -358,18 +358,20 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Boolea
 		int index = csTemplateBinding.getOwnedParameterSubstitution().indexOf(csTemplateParameterSubstitution);
 		TypedTypeRefCS csTemplateBindableElement = csTemplateBinding.getOwningTemplateBindableElement();
 		Type type = csTemplateBindableElement.getType();
-		TemplateSignature ownedTemplateSignature = type.getOwnedTemplateSignature();
 		context.appendElement(type);
-		context.append(BINDINGS_PREFIX);
-		if (ownedTemplateSignature != null) {
-			List<TemplateParameter> templateParameters = ownedTemplateSignature.getParameters();
-			if (index < templateParameters.size()) {
-				TemplateParameter templateParameter = templateParameters.get(index);
-				context.appendName(templateParameter.getParameteredElement());
-				context.append(MONIKER_SCOPE_SEPARATOR);
+		if (!type.eIsProxy()) {
+			context.append(BINDINGS_PREFIX);
+			TemplateSignature ownedTemplateSignature = type.getOwnedTemplateSignature();
+			if (ownedTemplateSignature != null) {
+				List<TemplateParameter> templateParameters = ownedTemplateSignature.getParameters();
+				if (index < templateParameters.size()) {
+					TemplateParameter templateParameter = templateParameters.get(index);
+					context.appendName(templateParameter.getParameteredElement());
+					context.append(MONIKER_SCOPE_SEPARATOR);
+				}
 			}
+			context.append(WILDCARD_INDICATOR + index);
 		}
-		context.append(WILDCARD_INDICATOR + index);
 		return true;
 	}
 }

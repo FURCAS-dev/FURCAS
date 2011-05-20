@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExpressionInOclImpl.java,v 1.4 2011/03/14 07:24:49 ewillink Exp $
+ * $Id: ExpressionInOclImpl.java,v 1.5 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -22,7 +22,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -134,32 +133,6 @@ public class ExpressionInOclImpl
 	 * @generated
 	 */
 	public OclExpression getBodyExpression() {
-		if (bodyExpression != null && ((EObject)bodyExpression).eIsProxy())
-		{
-			InternalEObject oldBodyExpression = (InternalEObject)bodyExpression;
-			bodyExpression = (OclExpression)eResolveProxy(oldBodyExpression);
-			if (bodyExpression != oldBodyExpression)
-			{
-				InternalEObject newBodyExpression = (InternalEObject)bodyExpression;
-				NotificationChain msgs = oldBodyExpression.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION, null, null);
-				if (newBodyExpression.eInternalContainer() == null)
-				{
-					msgs = newBodyExpression.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION, null, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION, oldBodyExpression, bodyExpression));
-			}
-		}
-		return bodyExpression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OclExpression basicGetBodyExpression() {
 		return bodyExpression;
 	}
 
@@ -217,32 +190,6 @@ public class ExpressionInOclImpl
 	 * @generated
 	 */
 	public Variable getContextVariable() {
-		if (contextVariable != null && ((EObject)contextVariable).eIsProxy())
-		{
-			InternalEObject oldContextVariable = (InternalEObject)contextVariable;
-			contextVariable = (Variable)eResolveProxy(oldContextVariable);
-			if (contextVariable != oldContextVariable)
-			{
-				InternalEObject newContextVariable = (InternalEObject)contextVariable;
-				NotificationChain msgs = oldContextVariable.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, null, null);
-				if (newContextVariable.eInternalContainer() == null)
-				{
-					msgs = newContextVariable.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, null, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE, oldContextVariable, contextVariable));
-			}
-		}
-		return contextVariable;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Variable basicGetContextVariable() {
 		return contextVariable;
 	}
 
@@ -300,32 +247,6 @@ public class ExpressionInOclImpl
 	 * @generated
 	 */
 	public Variable getResultVariable() {
-		if (resultVariable != null && ((EObject)resultVariable).eIsProxy())
-		{
-			InternalEObject oldResultVariable = (InternalEObject)resultVariable;
-			resultVariable = (Variable)eResolveProxy(oldResultVariable);
-			if (resultVariable != oldResultVariable)
-			{
-				InternalEObject newResultVariable = (InternalEObject)resultVariable;
-				NotificationChain msgs = oldResultVariable.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE, null, null);
-				if (newResultVariable.eInternalContainer() == null)
-				{
-					msgs = newResultVariable.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE, null, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE, oldResultVariable, resultVariable));
-			}
-		}
-		return resultVariable;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Variable basicGetResultVariable() {
 		return resultVariable;
 	}
 
@@ -385,7 +306,7 @@ public class ExpressionInOclImpl
 	public EList<Variable> getParameterVariables() {
 		if (parameterVariables == null)
 		{
-			parameterVariables = new EObjectContainmentEList.Resolving<Variable>(Variable.class, this, PivotPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE);
+			parameterVariables = new EObjectContainmentEList<Variable>(Variable.class, this, PivotPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE);
 		}
 		return parameterVariables;
 	}
@@ -407,33 +328,6 @@ public class ExpressionInOclImpl
 	 * @generated
 	 */
 	public OclExpression getMessageExpression()
-	{
-		if (messageExpression != null && ((EObject)messageExpression).eIsProxy())
-		{
-			InternalEObject oldMessageExpression = (InternalEObject)messageExpression;
-			messageExpression = (OclExpression)eResolveProxy(oldMessageExpression);
-			if (messageExpression != oldMessageExpression)
-			{
-				InternalEObject newMessageExpression = (InternalEObject)messageExpression;
-				NotificationChain msgs = oldMessageExpression.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.EXPRESSION_IN_OCL__MESSAGE_EXPRESSION, null, null);
-				if (newMessageExpression.eInternalContainer() == null)
-				{
-					msgs = newMessageExpression.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.EXPRESSION_IN_OCL__MESSAGE_EXPRESSION, null, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.EXPRESSION_IN_OCL__MESSAGE_EXPRESSION, oldMessageExpression, messageExpression));
-			}
-		}
-		return messageExpression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OclExpression basicGetMessageExpression()
 	{
 		return messageExpression;
 	}
@@ -547,8 +441,7 @@ public class ExpressionInOclImpl
 				if (resolve) return getType();
 				return basicGetType();
 			case PivotPackage.EXPRESSION_IN_OCL__OWNING_TEMPLATE_PARAMETER:
-				if (resolve) return getOwningTemplateParameter();
-				return basicGetOwningTemplateParameter();
+				return getOwningTemplateParameter();
 			case PivotPackage.EXPRESSION_IN_OCL__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
@@ -562,19 +455,15 @@ public class ExpressionInOclImpl
 				if (resolve) return getValueExpression();
 				return basicGetValueExpression();
 			case PivotPackage.EXPRESSION_IN_OCL__BODY_EXPRESSION:
-				if (resolve) return getBodyExpression();
-				return basicGetBodyExpression();
+				return getBodyExpression();
 			case PivotPackage.EXPRESSION_IN_OCL__CONTEXT_VARIABLE:
-				if (resolve) return getContextVariable();
-				return basicGetContextVariable();
+				return getContextVariable();
 			case PivotPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE:
-				if (resolve) return getResultVariable();
-				return basicGetResultVariable();
+				return getResultVariable();
 			case PivotPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE:
 				return getParameterVariables();
 			case PivotPackage.EXPRESSION_IN_OCL__MESSAGE_EXPRESSION:
-				if (resolve) return getMessageExpression();
-				return basicGetMessageExpression();
+				return getMessageExpression();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -745,7 +634,7 @@ public class ExpressionInOclImpl
 			case PivotPackage.EXPRESSION_IN_OCL__TYPE:
 				return type != null;
 			case PivotPackage.EXPRESSION_IN_OCL__OWNING_TEMPLATE_PARAMETER:
-				return basicGetOwningTemplateParameter() != null;
+				return getOwningTemplateParameter() != null;
 			case PivotPackage.EXPRESSION_IN_OCL__TEMPLATE_PARAMETER:
 				return templateParameter != null;
 			case PivotPackage.EXPRESSION_IN_OCL__BODY:

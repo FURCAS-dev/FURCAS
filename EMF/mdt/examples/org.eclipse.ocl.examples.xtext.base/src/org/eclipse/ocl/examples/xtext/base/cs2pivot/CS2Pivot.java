@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2Pivot.java,v 1.11 2011/05/06 09:04:47 ewillink Exp $
+ * $Id: CS2Pivot.java,v 1.13 2011/05/20 15:27:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -50,6 +50,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.xtext.TerminalRule;
 import org.eclipse.xtext.diagnostics.Diagnostic;
 import org.eclipse.xtext.diagnostics.DiagnosticMessage;
+import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
 import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.ILeafNode;
@@ -106,13 +107,20 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 	public static String getUnresolvedProxyText(EReference eReference, EObject csContext, String linkText) {
 		UnresolvedProxyMessageProvider unresolvedProxyMessageProvider = unresolvedProxyMessageProviderMap.get(eReference);
 		if (unresolvedProxyMessageProvider != null) {
-			return unresolvedProxyMessageProvider.getMessage(csContext, linkText);
+			String message = unresolvedProxyMessageProvider.getMessage(csContext, linkText);
+			if (message != null) {
+				return message;
+			}
 		}
-		else {
-			String messageTemplate = OCLMessages.Unresolved_ERROR_;
+		String messageTemplate = OCLMessages.Unresolved_ERROR_;
+		String errorContext = "Unknown";
+		if (eReference != null) {
 			EClass referenceType = eReference.getEReferenceType();
-			return NLS.bind(messageTemplate, referenceType.getName(), linkText);
+			if (referenceType != null) {
+				errorContext = referenceType.getName();
+			}
 		}
+		return NLS.bind(messageTemplate, errorContext, linkText);
 	}	
 	
 	public static CS2Pivot findAdapter(ResourceSet resourceSet) {
@@ -306,10 +314,10 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 		assert newTarget == typeManager.getPivotResourceSet();
 	}
 	
-	public void update() {
+	public void update(IDiagnosticConsumer diagnosticsConsumer) {
 //		System.out.println("==========================================================================");
 		moniker2PivotCSMap = null;			// Recomputation necessary
-		CS2PivotConversion conversion = new CS2PivotConversion(this, getCSResources());
+		CS2PivotConversion conversion = new CS2PivotConversion(this, diagnosticsConsumer, getCSResources());
 		conversion.update();
 //		System.out.println("---------------------------------------------------------------------------");
 		Collection<? extends Resource> pivotResources = cs2pivotResourceMap.values();

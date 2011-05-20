@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLRuntimeModule.java,v 1.10 2011/04/20 19:02:23 ewillink Exp $
+ * $Id: CompleteOCLRuntimeModule.java,v 1.11 2011/05/15 20:22:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl;
 
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseFragmentProvider;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotLinker;
 import org.eclipse.ocl.examples.xtext.completeocl.scoping.CompleteOCLScopeProvider;
 import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLCSResource;
@@ -30,6 +31,7 @@ import org.eclipse.xtext.linking.ILinkingDiagnosticMessageProvider;
 import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.parsetree.reconstr.ITokenSerializer.ICrossReferenceSerializer;
+import org.eclipse.xtext.resource.IFragmentProvider;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScopeProvider;
 
@@ -51,11 +53,11 @@ public class CompleteOCLRuntimeModule extends org.eclipse.ocl.examples.xtext.com
 		return EssentialOCLCrossReferenceSerializer.class;
 	}
 	
-	// URI remapping from CS to pivot
-//	@Override
-//	public Class<? extends IFragmentProvider> bindIFragmentProvider() {
-//		return BaseFragmentProvider.class;
-//	}
+	// Potential resolution of Pivot fragments for CST resource
+	@Override
+	public Class<? extends IFragmentProvider> bindIFragmentProvider() {
+		return BaseFragmentProvider.class;
+	}
 	
 	@Override
 	public Class<? extends ILinker> bindILinker() {

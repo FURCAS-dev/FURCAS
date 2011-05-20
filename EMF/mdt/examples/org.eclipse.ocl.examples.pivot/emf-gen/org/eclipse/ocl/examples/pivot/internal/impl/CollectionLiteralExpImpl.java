@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralExpImpl.java,v 1.2 2011/01/24 20:42:31 ewillink Exp $
+ * $Id: CollectionLiteralExpImpl.java,v 1.3 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -160,7 +160,7 @@ public class CollectionLiteralExpImpl
 	public EList<CollectionLiteralPart> getParts() {
 		if (parts == null)
 		{
-			parts = new EObjectContainmentEList.Resolving<CollectionLiteralPart>(CollectionLiteralPart.class, this, PivotPackage.COLLECTION_LITERAL_EXP__PART);
+			parts = new EObjectContainmentEList<CollectionLiteralPart>(CollectionLiteralPart.class, this, PivotPackage.COLLECTION_LITERAL_EXP__PART);
 		}
 		return parts;
 	}

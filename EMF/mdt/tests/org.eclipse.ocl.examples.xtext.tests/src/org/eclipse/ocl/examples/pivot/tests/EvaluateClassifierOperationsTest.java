@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluateClassifierOperationsTest.java,v 1.5 2011/04/25 19:40:00 ewillink Exp $
+ * $Id: EvaluateClassifierOperationsTest.java,v 1.6 2011/05/20 15:27:16 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -40,15 +40,15 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
 		assertQueryResults(null, "Set{null}", "OclVoid.allInstances()");
 		assertQueryResults(null, "Set{}", "ocl::Package.allInstances()");
 		assertQueryEquals(pkg1, 8, "Package.allInstances()->size()");
-		assertSemanticErrorQuery("Integer.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Integer type");
-		assertSemanticErrorQuery("String.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "String type");
-		assertSemanticErrorQuery("Set(Integer).allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Set<Integer> type");
-		assertSemanticErrorQuery("Tuple(a:Integer).allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Tuple(a:Integer) type");
-		assertSemanticErrorQuery("OclAny.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "OclAny type");
-		assertSemanticErrorQuery("4.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "UnlimitedNatural value");
-		assertSemanticErrorQuery("true.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Boolean value");
-		assertSemanticErrorQuery("Set{1}.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Set<UnlimitedNatural> value");
-		assertSemanticErrorQuery("Tuple{a:Integer=1}.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Tuple(a:Integer) value");
+		assertSemanticErrorQuery("Integer.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Classifier<Integer>");
+		assertSemanticErrorQuery("String.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Classifier<String>");
+		assertSemanticErrorQuery("Set(Integer).allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Classifier<Set<Integer>>");
+		assertSemanticErrorQuery("Tuple(a:Integer).allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Classifier<Tuple(a:Integer)>");
+		assertSemanticErrorQuery("OclAny.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Classifier<OclAny>");
+		assertSemanticErrorQuery("4.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "UnlimitedNatural");
+		assertSemanticErrorQuery("true.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Boolean");
+		assertSemanticErrorQuery("Set{1}.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Set<UnlimitedNatural>");
+		assertSemanticErrorQuery("Tuple{a:Integer=1}.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Tuple(a:Integer)");
 		assertQueryInvalid(null, "OclInvalid.allInstances()");
 	}
 	
@@ -60,7 +60,7 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
 		assertQueryInvalid(pkg2, "null.oclContainer()");
 		assertQueryResults(pkg1, "null", "oclContainer()");
 		assertQueryEquals(pkg2, pkg1, "oclContainer()");
-		assertSemanticErrorQuery("1.oclContainer()", OCLMessages.UnresolvedOperation_ERROR_, "oclContainer", "UnlimitedNatural value");
+		assertSemanticErrorQuery("1.oclContainer()", OCLMessages.UnresolvedOperation_ERROR_, "oclContainer", "UnlimitedNatural");
 	}
 	
 	/**
@@ -72,6 +72,6 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
 		assertQueryEquals(pkg1, valueFactory.createSetOf(bob, pkg2, pkg3), "oclContents()");
 		assertQueryEquals(pkg2, valueFactory.createSetOf(jim), "oclContents()");
 		assertQueryEquals(george, valueFactory.createSetOf(), "oclContents()");
-		assertSemanticErrorQuery("1.oclContents()", OCLMessages.UnresolvedOperation_ERROR_, "oclContents", "UnlimitedNatural value");
+		assertSemanticErrorQuery("1.oclContents()", OCLMessages.UnresolvedOperation_ERROR_, "oclContents", "UnlimitedNatural");
 	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateParameterSubstitution.java,v 1.2 2011/01/24 20:49:35 ewillink Exp $
+ * $Id: TemplateParameterSubstitution.java,v 1.3 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -113,7 +113,7 @@ public interface TemplateParameterSubstitution
 	 * @return the value of the '<em>Owned Actual</em>' containment reference.
 	 * @see #setOwnedActual(ParameterableElement)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateParameterSubstitution_OwnedActual()
-	 * @model containment="true" resolveProxies="true" ordered="false"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	ParameterableElement getOwnedActual();

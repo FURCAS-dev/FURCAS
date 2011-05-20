@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypedTypeRefCSScopeAdapter.java,v 1.4 2011/04/20 19:02:26 ewillink Exp $
+ * $Id: TypedTypeRefCSScopeAdapter.java,v 1.5 2011/05/11 19:51:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -45,7 +45,9 @@ public class TypedTypeRefCSScopeAdapter extends ModelElementCSScopeAdapter<Typed
 		}
 		else {
 			Type type = target.getType();
-			environmentView.addElementsOfScope(type, scopeView);
+			if ((type != null) && !type.eIsProxy()) {
+				environmentView.addElementsOfScope(type, scopeView);
+			}
 			return scopeView.getOuterScope();
 		}
 	}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreRuntimeModule.java,v 1.11 2011/04/20 19:02:56 ewillink Exp $
+ * $Id: OCLinEcoreRuntimeModule.java,v 1.12 2011/05/15 20:22:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore;
 
@@ -61,7 +61,7 @@ public class OCLinEcoreRuntimeModule extends AbstractOCLinEcoreRuntimeModule
 		return EssentialOCLCrossReferenceSerializer.class;
 	}
 	
-	// URI remapping from CS to pivot
+	// Potential resolution of Pivot fragments for CST resource
 	@Override
 	public Class<? extends IFragmentProvider> bindIFragmentProvider() {
 		return BaseFragmentProvider.class;
