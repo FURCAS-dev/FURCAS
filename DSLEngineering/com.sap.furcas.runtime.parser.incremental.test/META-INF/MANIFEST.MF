@@ -22,7 +22,7 @@ Require-Bundle: org.junit;bundle-version="4.8.1",
  com.sap.furcas.runtime.parser.incremental,
  com.sap.furcas.parsergenerator,
  com.sap.furcas.runtime.referenceresolving,
- com.sap.furcas.ide.parserfactory,
+ com.sap.furcas.ide.parserfactory;visibility:=reexport,
  com.sap.furcas.parser.tcs
 Bundle-ClassPath: generationTemp/,
  .
