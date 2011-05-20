@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2UMLReferenceVisitor.java,v 1.4 2011/03/01 08:47:20 ewillink Exp $
+ * $Id: Pivot2UMLReferenceVisitor.java,v 1.5 2011/05/13 18:41:17 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.uml;
 
@@ -95,7 +95,7 @@ public class Pivot2UMLReferenceVisitor
 
 	@Override
 	public EObject visitPackage(Package pivotPackage) {
-		org.eclipse.uml2.uml.Package umlPackage = context.getCreated(org.eclipse.uml2.uml.Package.class, pivotPackage);
+//		org.eclipse.uml2.uml.Package umlPackage = context.getCreated(org.eclipse.uml2.uml.Package.class, pivotPackage);
 /*		boolean needsDelegates = false;
 		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
 			EAnnotation classifierAnnotation = eClassifier.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
@@ -163,11 +163,11 @@ public class Pivot2UMLReferenceVisitor
 
 	@Override
 	public EObject visitTypeTemplateParameter(TypeTemplateParameter pivotTypeTemplateParameter) {
-		org.eclipse.uml2.uml.ClassifierTemplateParameter umlTypeParameter = context.getCreated(org.eclipse.uml2.uml.ClassifierTemplateParameter.class, pivotTypeTemplateParameter);
-		for (Type constrainingType : pivotTypeTemplateParameter.getConstrainingTypes()) {
+//		org.eclipse.uml2.uml.ClassifierTemplateParameter umlTypeParameter = context.getCreated(org.eclipse.uml2.uml.ClassifierTemplateParameter.class, pivotTypeTemplateParameter);
+//		for (Type constrainingType : pivotTypeTemplateParameter.getConstrainingTypes()) {
 //			EGenericType eGenericType = typeRefVisitor.resolveEGenericType(constrainingType);
 //			umlTypeParameter.getEBounds().add(eGenericType);
-		}
+//		}
 		return null;
 	}
 

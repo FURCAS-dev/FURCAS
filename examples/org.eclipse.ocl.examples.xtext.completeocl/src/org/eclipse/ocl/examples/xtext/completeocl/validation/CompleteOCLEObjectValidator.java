@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLEObjectValidator.java,v 1.3 2011/03/04 13:58:40 ewillink Exp $
+ * $Id: CompleteOCLEObjectValidator.java,v 1.4 2011/05/20 15:26:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.validation;
 
@@ -109,13 +109,13 @@ public class CompleteOCLEObjectValidator extends EObjectValidator
 		ResourceSet resourceSet = new ResourceSetImpl();
 		TypeManagerResourceSetAdapter.getAdapter(resourceSet, typeManager);
 		Resource ecoreResource = ePackage.eResource();
-		String message = PivotUtil.getResourceErrorsString(ecoreResource, "");
+		String message = PivotUtil.formatResourceDiagnostics(ecoreResource.getErrors(), "", "\n");
 		if (message != null) {
 			logger.error("Failed to load Ecore '" + ecoreResource.getURI() + message);
 		}
 		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, typeManager);
 		Package pivotRoot = ecore2Pivot.getPivotRoot();
-		message = PivotUtil.getResourceErrorsString(pivotRoot.eResource(), "");
+		message = PivotUtil.formatResourceDiagnostics(pivotRoot.eResource().getErrors(), "", "\n");
 		if (message != null) {
 			logger.error("Failed to load Pivot from '" + ecoreResource.getURI() + message);
 		}
@@ -141,13 +141,13 @@ public class CompleteOCLEObjectValidator extends EObjectValidator
 				throw e;
 			}
 		}
-		message = PivotUtil.getResourceErrorsString(xtextResource, "");
+		message = PivotUtil.formatResourceDiagnostics(xtextResource.getErrors(), "", "\n");
 		if (message != null) {
 			logger.error("Failed to load '" + oclURI + message);
 		}
 		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, typeManager);
 		Resource pivotResource = adapter.getPivotResource(xtextResource);
-		message = PivotUtil.getResourceErrorsString(pivotResource, "");
+		message = PivotUtil.formatResourceDiagnostics(pivotResource.getErrors(), "", "\n");
 		if (message != null) {
 			logger.error("Failed to load Pivot from '" + oclURI + message);
 		}

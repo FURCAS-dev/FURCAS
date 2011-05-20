@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCL.xtext,v 1.11 2011/03/11 20:23:52 ewillink Exp $
+ * $Id: CompleteOCL.xtext,v 1.12 2011/05/20 15:26:50 ewillink Exp $
  */
 grammar org.eclipse.ocl.examples.xtext.completeocl.CompleteOCL
 with org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL
@@ -24,7 +24,7 @@ import "platform:/resource/org.eclipse.ocl.examples.pivot/model/pivot.ecore" as 
 import "platform:/resource/org.eclipse.ocl.examples.xtext.completeocl/model/CompleteOCLCST.ecore"
 //generate completeOCL "http://www.eclipse.org/ocl/examples/xtext/completeocl/CompleteOCL"
 CompleteOCLDocumentCS returns CompleteOCLDocumentCS:
-	(ownedImport+=ImportCS)*
+	(ownedImport+=ImportCS | ownedInclude+=IncludeCS | ownedLibrary+=LibraryCS)*
 	(packages+=PackageDeclarationCS | contexts+=ContextDeclCS)*;
 
 NavigationOperator:						// Intended to be overridden
@@ -39,8 +39,10 @@ UnrestrictedName returns ecore::EString:
 	| 'derive'
 	//|	'endpackage'
 	| 'import'
+	| 'include'
 	| 'init'
 	| 'inv'
+	| 'library'
 	//|	'package'
 	|	'post'
 	|	'pre'
@@ -64,8 +66,8 @@ BodyCS returns BodyCS:
 
 ClassifierContextDeclCS returns ClassifierContextDeclCS:
 	'context' (selfName=UnrestrictedName ':')?
-	(namespace+=[pivot::Namespace|Identifier] '::')*
-	classifier=[pivot::Type|Identifier]
+	(namespace+=[pivot::Namespace|UnrestrictedName] '::')*
+	classifier=[pivot::Type|UnreservedName]
 	(rules+=InvCS | rules+=DefCS)*;
 
 ContextDeclCS returns ContextDeclCS:
@@ -84,11 +86,17 @@ DerCS returns DerCS:
 ImportCS returns base::ImportCS:
 	'import' (name=Identifier ':')? namespace=[pivot::Namespace|SINGLE_QUOTED_STRING];
 
+IncludeCS returns IncludeCS:
+	'include' namespace=[pivot::Namespace|SINGLE_QUOTED_STRING];
+
 InitCS returns InitCS:
 	stereotype='init' ':' specification=SpecificationCS;
 
 InvCS returns InvCS:
 	stereotype='inv' (name=UnrestrictedName ('(' messageSpecification=SpecificationCS ')')?)? ':' specification=SpecificationCS;
+
+LibraryCS returns base::LibraryCS:
+	'library' package=[pivot::Package|SINGLE_QUOTED_STRING];
 
 OperationContextDeclCS returns OperationContextDeclCS:
 	'context' (namespace+=[pivot::Namespace|Identifier] '::')*

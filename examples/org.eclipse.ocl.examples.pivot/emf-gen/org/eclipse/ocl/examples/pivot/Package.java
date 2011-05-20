@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Package.java,v 1.3 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: Package.java,v 1.4 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -112,7 +112,7 @@ public interface Package
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Precedence</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPackage_OwnedPrecedence()
-	 * @model containment="true" resolveProxies="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Precedence> getOwnedPrecedences();
@@ -139,7 +139,7 @@ public interface Package
 	 * @return the value of the '<em>Nested Package</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPackage_NestedPackage()
 	 * @see org.eclipse.ocl.examples.pivot.Package#getNestingPackage
-	 * @model opposite="nestingPackage" containment="true" resolveProxies="true" ordered="false"
+	 * @model opposite="nestingPackage" containment="true" ordered="false"
 	 * @generated
 	 */
 	EList<Package> getNestedPackages();
@@ -204,7 +204,7 @@ public interface Package
 	 * @return the value of the '<em>Owned Type</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getPackage_OwnedType()
 	 * @see org.eclipse.ocl.examples.pivot.Type#getPackage
-	 * @model opposite="package" containment="true" resolveProxies="true" ordered="false"
+	 * @model opposite="package" containment="true" ordered="false"
 	 * @generated
 	 */
 	EList<Type> getOwnedTypes();

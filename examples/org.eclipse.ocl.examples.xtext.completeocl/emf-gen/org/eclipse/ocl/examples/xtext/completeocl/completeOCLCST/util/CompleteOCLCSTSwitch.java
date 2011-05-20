@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTSwitch.java,v 1.6 2011/03/01 08:47:04 ewillink Exp $
+ * $Id: CompleteOCLCSTSwitch.java,v 1.7 2011/05/20 15:26:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.util;
 
@@ -249,6 +249,21 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = caseElementCS(featureContextDeclCS);
 				if (result == null) result = casePivotable(featureContextDeclCS);
 				if (result == null) result = caseVisitableCS(featureContextDeclCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CompleteOCLCSTPackage.INCLUDE_CS:
+			{
+				IncludeCS includeCS = (IncludeCS)theEObject;
+				T result = caseIncludeCS(includeCS);
+				if (result == null) result = caseNamespaceCS(includeCS);
+				if (result == null) result = caseNamedElementCS(includeCS);
+				if (result == null) result = caseMonikeredElementCS(includeCS);
+				if (result == null) result = caseNameable(includeCS);
+				if (result == null) result = caseModelElementCS(includeCS);
+				if (result == null) result = caseElementCS(includeCS);
+				if (result == null) result = casePivotable(includeCS);
+				if (result == null) result = caseVisitableCS(includeCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -549,6 +564,22 @@ protected T doSwitch(int classifierID, EObject theEObject)
 	}
 
   /**
+	 * Returns the result of interpreting the object as an instance of '<em>Include CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Include CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIncludeCS(IncludeCS object)
+	{
+		return null;
+	}
+
+/**
 	 * Returns the result of interpreting the object as an instance of '<em>Init CS</em>'.
 	 * <!-- begin-user-doc -->
    * This implementation returns null;

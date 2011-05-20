@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateBinding.java,v 1.2 2011/01/24 20:49:35 ewillink Exp $
+ * $Id: TemplateBinding.java,v 1.3 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -83,7 +83,7 @@ public interface TemplateBinding
 	 * @return the value of the '<em>Parameter Substitution</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateBinding_ParameterSubstitution()
 	 * @see org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution#getTemplateBinding
-	 * @model opposite="templateBinding" containment="true" resolveProxies="true" ordered="false"
+	 * @model opposite="templateBinding" containment="true" ordered="false"
 	 * @generated
 	 */
 	EList<TemplateParameterSubstitution> getParameterSubstitutions();

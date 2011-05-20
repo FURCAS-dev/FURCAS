@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLValidationDelegate.java,v 1.6 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: OCLValidationDelegate.java,v 1.7 2011/05/13 18:43:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -33,6 +33,7 @@ import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.InvalidEvaluationException;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
+import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -116,10 +117,27 @@ public class OCLValidationDelegate implements ValidationDelegate
 	public boolean validate(EClass eClass, EObject eObject,
 			Map<Object, Object> context, EOperation invariant, String expression) {
 		TypeManager typeManager = delegateDomain.getTypeManager();
-		Operation operation = delegateDomain.getPivot(Operation.class, invariant);
-		ExpressionInOcl query = InvocationBehavior.INSTANCE.getExpressionInOcl(typeManager, operation);
-		return validateExpressionInOcl(eClass, eObject, null, context,
-			invariant.getName(), null, 0, query);
+		NamedElement namedElement = delegateDomain.getPivot(NamedElement.class, invariant);
+		if (namedElement instanceof Operation) {
+			Operation operation = (Operation)namedElement;
+			ExpressionInOcl query = InvocationBehavior.INSTANCE.getExpressionInOcl(typeManager, operation);
+			return validateExpressionInOcl(eClass, eObject, null, context,
+				invariant.getName(), null, 0, query);
+		}
+		else if (namedElement instanceof Constraint) {
+			Constraint constraint = (Constraint)namedElement;
+			NamedElement contextType = constraint.getContext();
+			ExpressionInOcl query = ValidationBehavior.INSTANCE.getExpressionInOcl(typeManager, contextType, constraint);
+			if (query == null) {
+				String message = NLS.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, contextType);
+				throw new OCLDelegateException(message);
+			}
+			return validateExpressionInOcl(eClass, eObject, null, context,
+				invariant.getName(), null, 0, query);
+		}
+		else {
+			throw new ClassCastException(namedElement.getClass().getName() + " does not provide a Constraint");
+		}
 	}
 
 	public boolean validate(EClass eClass, EObject eObject,

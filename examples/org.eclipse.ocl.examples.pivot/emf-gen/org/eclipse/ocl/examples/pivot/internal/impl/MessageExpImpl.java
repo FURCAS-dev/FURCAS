@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessageExpImpl.java,v 1.3 2011/03/01 08:47:18 ewillink Exp $
+ * $Id: MessageExpImpl.java,v 1.4 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -22,7 +22,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -124,32 +123,6 @@ public class MessageExpImpl
 	 */
 	@Override
 	public OclExpression getTarget() {
-		if (target != null && ((EObject)target).eIsProxy())
-		{
-			InternalEObject oldTarget = (InternalEObject)target;
-			target = (OclExpression)eResolveProxy(oldTarget);
-			if (target != oldTarget)
-			{
-				InternalEObject newTarget = (InternalEObject)target;
-				NotificationChain msgs = oldTarget.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.MESSAGE_EXP__TARGET, null, null);
-				if (newTarget.eInternalContainer() == null)
-				{
-					msgs = newTarget.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.MESSAGE_EXP__TARGET, null, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.MESSAGE_EXP__TARGET, oldTarget, target));
-			}
-		}
-		return target;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OclExpression basicGetTarget() {
 		return target;
 	}
 
@@ -209,7 +182,7 @@ public class MessageExpImpl
 	public EList<OclExpression> getArguments() {
 		if (arguments == null)
 		{
-			arguments = new EObjectContainmentEList.Resolving<OclExpression>(OclExpression.class, this, PivotPackage.MESSAGE_EXP__ARGUMENT);
+			arguments = new EObjectContainmentEList<OclExpression>(OclExpression.class, this, PivotPackage.MESSAGE_EXP__ARGUMENT);
 		}
 		return arguments;
 	}
@@ -231,32 +204,6 @@ public class MessageExpImpl
 	 * @generated
 	 */
 	public CallOperationAction getCalledOperation() {
-		if (calledOperation != null && ((EObject)calledOperation).eIsProxy())
-		{
-			InternalEObject oldCalledOperation = (InternalEObject)calledOperation;
-			calledOperation = (CallOperationAction)eResolveProxy(oldCalledOperation);
-			if (calledOperation != oldCalledOperation)
-			{
-				InternalEObject newCalledOperation = (InternalEObject)calledOperation;
-				NotificationChain msgs = oldCalledOperation.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.MESSAGE_EXP__CALLED_OPERATION, null, null);
-				if (newCalledOperation.eInternalContainer() == null)
-				{
-					msgs = newCalledOperation.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.MESSAGE_EXP__CALLED_OPERATION, null, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.MESSAGE_EXP__CALLED_OPERATION, oldCalledOperation, calledOperation));
-			}
-		}
-		return calledOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CallOperationAction basicGetCalledOperation() {
 		return calledOperation;
 	}
 
@@ -314,32 +261,6 @@ public class MessageExpImpl
 	 * @generated
 	 */
 	public SendSignalAction getSentSignal() {
-		if (sentSignal != null && ((EObject)sentSignal).eIsProxy())
-		{
-			InternalEObject oldSentSignal = (InternalEObject)sentSignal;
-			sentSignal = (SendSignalAction)eResolveProxy(oldSentSignal);
-			if (sentSignal != oldSentSignal)
-			{
-				InternalEObject newSentSignal = (InternalEObject)sentSignal;
-				NotificationChain msgs = oldSentSignal.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.MESSAGE_EXP__SENT_SIGNAL, null, null);
-				if (newSentSignal.eInternalContainer() == null)
-				{
-					msgs = newSentSignal.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.MESSAGE_EXP__SENT_SIGNAL, null, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.MESSAGE_EXP__SENT_SIGNAL, oldSentSignal, sentSignal));
-			}
-		}
-		return sentSignal;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SendSignalAction basicGetSentSignal() {
 		return sentSignal;
 	}
 
@@ -444,16 +365,13 @@ public class MessageExpImpl
 				if (resolve) return getType();
 				return basicGetType();
 			case PivotPackage.MESSAGE_EXP__TARGET:
-				if (resolve) return getTarget();
-				return basicGetTarget();
+				return getTarget();
 			case PivotPackage.MESSAGE_EXP__ARGUMENT:
 				return getArguments();
 			case PivotPackage.MESSAGE_EXP__CALLED_OPERATION:
-				if (resolve) return getCalledOperation();
-				return basicGetCalledOperation();
+				return getCalledOperation();
 			case PivotPackage.MESSAGE_EXP__SENT_SIGNAL:
-				if (resolve) return getSentSignal();
-				return basicGetSentSignal();
+				return getSentSignal();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralPartImpl.java,v 1.3 2011/03/01 08:47:18 ewillink Exp $
+ * $Id: TupleLiteralPartImpl.java,v 1.4 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -21,7 +21,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -85,33 +84,6 @@ public class TupleLiteralPartImpl
 	 * @generated
 	 */
 	public OclExpression getInitExpression()
-	{
-		if (initExpression != null && ((EObject)initExpression).eIsProxy())
-		{
-			InternalEObject oldInitExpression = (InternalEObject)initExpression;
-			initExpression = (OclExpression)eResolveProxy(oldInitExpression);
-			if (initExpression != oldInitExpression)
-			{
-				InternalEObject newInitExpression = (InternalEObject)initExpression;
-				NotificationChain msgs = oldInitExpression.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TUPLE_LITERAL_PART__INIT_EXPRESSION, null, null);
-				if (newInitExpression.eInternalContainer() == null)
-				{
-					msgs = newInitExpression.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TUPLE_LITERAL_PART__INIT_EXPRESSION, null, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.TUPLE_LITERAL_PART__INIT_EXPRESSION, oldInitExpression, initExpression));
-			}
-		}
-		return initExpression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OclExpression basicGetInitExpression()
 	{
 		return initExpression;
 	}
@@ -213,8 +185,7 @@ public class TupleLiteralPartImpl
 				if (resolve) return getType();
 				return basicGetType();
 			case PivotPackage.TUPLE_LITERAL_PART__INIT_EXPRESSION:
-				if (resolve) return getInitExpression();
-				return basicGetInitExpression();
+				return getInitExpression();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}

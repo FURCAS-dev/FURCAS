@@ -51,6 +51,7 @@
     <extension
             point="org.eclipse.ui.preferencePages">
         <page
+            category="org.eclipse.ocl.examples.xtext.OCL"
             class="org.eclipse.ocl.examples.xtext.oclstdlib.ui.OCLstdlibExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
             id="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib"
             name="%MF_OCLstdlib">
@@ -181,5 +182,30 @@
             class="org.eclipse.ocl.examples.xtext.oclstdlib.ui.OCLstdlibExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator">
       </markerResolutionGenerator>
    </extension>
+   	<!-- Rename Refactoring>
+	<extension point="org.eclipse.ui.handlers">
+		<handler 
+			class="org.eclipse.ocl.examples.xtext.oclstdlib.ui.OCLstdlibExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RenameElementHandler"
+			commandId="org.eclipse.xtext.ui.refactoring.RenameElement">
+			<activeWhen>
+				<reference
+					definitionId="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib.Editor.opened">
+				</reference>
+			</activeWhen>
+		</handler>
+	</extension>
+    <extension point="org.eclipse.ui.menus">
+         <menuContribution
+            locationURI="popup:#TextEditorContext?after=group.edit">
+         <command commandId="org.eclipse.xtext.ui.refactoring.RenameElement"
+               style="push">
+            <visibleWhen checkEnabled="false">
+               <reference
+                     definitionId="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib.Editor.opened">
+               </reference>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension-->
 
 </plugin>

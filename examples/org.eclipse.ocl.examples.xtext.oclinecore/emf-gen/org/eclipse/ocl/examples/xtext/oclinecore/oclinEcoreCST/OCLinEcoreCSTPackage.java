@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSTPackage.java,v 1.10 2011/03/01 08:46:34 ewillink Exp $
+ * $Id: OCLinEcoreCSTPackage.java,v 1.11 2011/05/13 19:07:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
@@ -107,6 +108,17 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	EClass getOCLinEcoreConstraintCS();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreConstraintCS#isCallable <em>Callable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Callable</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreConstraintCS#isCallable()
+	 * @see #getOCLinEcoreConstraintCS()
+	 * @generated
+	 */
+	EAttribute getOCLinEcoreConstraintCS_Callable();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreSpecificationCS <em>OC Lin Ecore Specification CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -180,13 +192,22 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	int OC_LIN_ECORE_CONSTRAINT_CS__MESSAGE_SPECIFICATION = BaseCSTPackage.CONSTRAINT_CS__MESSAGE_SPECIFICATION;
 
 	/**
+	 * The feature id for the '<em><b>Callable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OC_LIN_ECORE_CONSTRAINT_CS__CALLABLE = BaseCSTPackage.CONSTRAINT_CS_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>OC Lin Ecore Constraint CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS_FEATURE_COUNT = BaseCSTPackage.CONSTRAINT_CS_FEATURE_COUNT + 0;
+	int OC_LIN_ECORE_CONSTRAINT_CS_FEATURE_COUNT = BaseCSTPackage.CONSTRAINT_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreSpecificationCSImpl <em>OC Lin Ecore Specification CS</em>}' class.
@@ -292,6 +313,13 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EClass OC_LIN_ECORE_CONSTRAINT_CS = eINSTANCE.getOCLinEcoreConstraintCS();
+		/**
+		 * The meta object literal for the '<em><b>Callable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OC_LIN_ECORE_CONSTRAINT_CS__CALLABLE = eINSTANCE.getOCLinEcoreConstraintCS_Callable();
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreSpecificationCSImpl <em>OC Lin Ecore Specification CS</em>}' class.
 		 * <!-- begin-user-doc -->

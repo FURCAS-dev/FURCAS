@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Abstract2Moniker.java,v 1.10 2011/05/02 15:38:54 ewillink Exp $
+ * $Id: Abstract2Moniker.java,v 1.11 2011/05/11 19:46:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -90,6 +90,9 @@ public abstract class Abstract2Moniker implements PivotConstants
 		}
 		else if (element == null) {
 			append(NULL_MARKER);	
+		}
+		else if (element.eIsProxy()) {
+			append(UNRESOLVED_PROXY_MARKER);	
 		}
 		else {
 			if (pivotVisitor == null) {

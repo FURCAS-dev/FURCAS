@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCS2MonikerVisitor.java,v 1.10 2011/05/05 17:53:08 ewillink Exp $
+ * $Id: CompleteOCLCS2MonikerVisitor.java,v 1.11 2011/05/11 19:28:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.utilities;
 
 import java.util.List;
 
+import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
@@ -92,6 +93,15 @@ public class CompleteOCLCS2MonikerVisitor
 		super((EssentialOCLCSVisitor<Boolean, CS2Moniker>) context.getVisitor(EssentialOCLCSTPackage.eINSTANCE), context);
 	}
 
+	public void safeAppendMonikerOf(MonikeredElement element) {
+		if (element.eIsProxy()) {
+			context.append(UNRESOLVED_PROXY_MARKER);
+		}
+		else {
+			context.append(element.getMoniker());
+		}
+	}
+
 	protected void appendParametersCS(List<VariableCS> csParameters) {
 		context.append(PARAMETER_PREFIX);
 		String prefix = ""; //$NON-NLS-1$
@@ -105,7 +115,7 @@ public class CompleteOCLCS2MonikerVisitor
 
 	@Override
 	public Boolean visitClassifierContextDeclCS(ClassifierContextDeclCS object) {
-		context.append(object.getClassifier().getMoniker());
+		safeAppendMonikerOf(object.getClassifier());
 		return true;
 	}
 
@@ -157,19 +167,19 @@ public class CompleteOCLCS2MonikerVisitor
 
 	@Override
 	public Boolean visitOperationContextDeclCS(OperationContextDeclCS object) {
-		context.append(object.getOperation().getMoniker());
+		safeAppendMonikerOf(object.getOperation());
 		return true;
 	}
 
 	@Override
 	public Boolean visitPackageDeclarationCS(PackageDeclarationCS object) {
-		context.append(object.getPackage().getMoniker());
+		safeAppendMonikerOf(object.getPackage());
 		return true;
 	}
 
 	@Override
 	public Boolean visitPropertyContextDeclCS(PropertyContextDeclCS object) {
-		context.append(object.getProperty().getMoniker());
+		safeAppendMonikerOf(object.getProperty());
 		return true;
 	}
 }

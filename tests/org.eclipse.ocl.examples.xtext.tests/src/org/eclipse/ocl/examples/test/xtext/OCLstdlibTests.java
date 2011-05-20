@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibTests.java,v 1.6 2011/05/05 17:56:29 ewillink Exp $
+ * $Id: OCLstdlibTests.java,v 1.8 2011/05/20 15:27:16 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -72,7 +72,7 @@ public class OCLstdlibTests extends XtextTestCase
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(libraryURI, true);
 		assertNoResourceErrors("Load failed", xtextResource);
 		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
-		adapter.refreshPivotMappings();
+		adapter.refreshPivotMappings(null);
 		Resource fileResource = adapter.getPivotResource(xtextResource);
 		assertNoResourceErrors("File Model", fileResource);
 		assertNoUnresolvedProxies("File Model", fileResource);
@@ -292,8 +292,8 @@ public class OCLstdlibTests extends XtextTestCase
 	
 	public void testImport() throws Exception {
 		String testFile =
-			"import 'minimal.oclstdlib'\n"+
-			"import 'minimal.oclstdlib'\n"+
+			"import 'minimal.oclstdlib';\n"+
+			"import 'minimal.oclstdlib';\n"+
 			"library lib {\n"+
 			"    type OclAny : AnyType {\n"+
 			"    	operation a(elem : Boolean) : Integer {\n"+

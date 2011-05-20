@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorsTest.java,v 1.8 2011/05/02 09:31:37 ewillink Exp $
+ * $Id: IteratorsTest.java,v 1.9 2011/05/20 15:27:16 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -264,7 +264,7 @@ public class IteratorsTest extends PivotTestSuite
     public void test_implicitCollect_unknownAttribute_232669() {
         assertBadInvariant(SemanticException.class, Diagnostic.ERROR,
     		"nestedPackage.unknownAttribute",
-        	OCLMessages.UnresolvedProperty_ERROR_, "unknownAttribute", "Set<Package> value");
+        	OCLMessages.UnresolvedProperty_ERROR_, "unknownAttribute", "Set<Package>");
    }
 
     /**
@@ -275,7 +275,7 @@ public class IteratorsTest extends PivotTestSuite
     public void test_implicitCollect_unknownOperation_232669() {
     	assertBadInvariant(SemanticException.class, Diagnostic.ERROR,
     		"nestedPackage.unknownOperation(self)",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "unknownOperation", "Set<Package> value", "Package");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "unknownOperation", "Set<Package>", "Package");
    }
 
     /**
@@ -389,7 +389,7 @@ public class IteratorsTest extends PivotTestSuite
      */
     public void test_closure_operations() {
     	Resource fakeResource = new XMIResourceFactoryImpl().createResource(null);
-    	org.eclipse.ocl.examples.pivot.Package fakePkg = typeManager.createPackage("fake");
+    	org.eclipse.ocl.examples.pivot.Package fakePkg = typeManager.createPackage("fake", null);
     	fakeResource.getContents().add(fakePkg);
         org.eclipse.ocl.examples.pivot.Class fake = createOwnedClass(fakePkg, "Fake", false);
         createGeneralization(fake, typeManager.getOclAnyType());
@@ -416,7 +416,7 @@ public class IteratorsTest extends PivotTestSuite
      */
     public void test_closureValidation_typeConformance_154695() {
     	Resource fakeResource = new XMIResourceFactoryImpl().createResource(null);
-    	org.eclipse.ocl.examples.pivot.Package fakePkg = typeManager.createPackage("fake");
+    	org.eclipse.ocl.examples.pivot.Package fakePkg = typeManager.createPackage("fake", null);
     	fakeResource.getContents().add(fakePkg);
         org.eclipse.ocl.examples.pivot.Class fake = createOwnedClass(fakePkg, "Fake", false);
         Operation getFakes = createOwnedOperation(fake, "getFakes", null, null, fake, true);
@@ -667,35 +667,35 @@ public class IteratorsTest extends PivotTestSuite
     public void test_invalidMultipleIteratorVariables() {
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,		// FIXME Bug 296990
         	"Sequence{'a', 'b', 'c'}->exists(e1, e2, e3 | e1 = e2)",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "exists", "Sequence<String> value", "e1, e2, e3| e1 = e2");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "exists", "Sequence<String>", "e1, e2, e3| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,		// FIXME Bug 296990
         	"Sequence{'a', 'b', 'c'}->forAll(e1, e2, e3 | e1 = e2)",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "forAll", "Sequence<String> value", "e1, e2, e3| e1 = e2");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "forAll", "Sequence<String>", "e1, e2, e3| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->collect(e1, e2 | Tuple{a : String = e1, b : String = e2})",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "collect", "Sequence<String> value", "e1, e2| Tuple{a : String = e1, b : String = e2}");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "collect", "Sequence<String>", "e1, e2| Tuple{a : String = e1, b : String = e2}");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->any(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "any", "Sequence<String> value", "e1, e2| e1 = e2");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "any", "Sequence<String>", "e1, e2| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->one(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "one", "Sequence<String> value", "e1, e2| e1 = e2");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "one", "Sequence<String>", "e1, e2| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->select(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "select", "Sequence<String> value", "e1, e2| e1 = e2");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "select", "Sequence<String>", "e1, e2| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->reject(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "reject", "Sequence<String> value", "e1, e2| e1 = e2");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "reject", "Sequence<String>", "e1, e2| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->isUnique(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "isUnique", "Sequence<String> value", "e1, e2| e1 = e2");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "isUnique", "Sequence<String>", "e1, e2| e1 = e2");
     }
 
 	/**
@@ -707,7 +707,7 @@ public class IteratorsTest extends PivotTestSuite
     	Type type = typeManager.getPivotType("Type");
      	assertBadQuery(SemanticException.class, Diagnostic.ERROR,
     		"ownedType->sortedBy(e | e)",
-        	OCLMessages.UnresolvedOperation_ERROR_, PivotConstants.LESS_THAN_OPERATOR, type + " value");
+        	OCLMessages.UnresolvedOperation_ERROR_, PivotConstants.LESS_THAN_OPERATOR, type + "");
        
     	assertQuery(context, "%ownedType->sortedBy(e | e.name)");
     	loadEPackage("ecore", EcorePackage.eINSTANCE);

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RootPackageCSScopeAdapter.java,v 1.5 2011/04/20 19:02:27 ewillink Exp $
+ * $Id: RootPackageCSScopeAdapter.java,v 1.6 2011/05/11 19:51:16 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -41,17 +41,19 @@ public class RootPackageCSScopeAdapter extends AbstractRootCSScopeAdapter<RootPa
 		if (environmentView.accepts(PivotPackage.Literals.NAMESPACE)) {
 			for (ImportCS anImport : getTarget().getOwnedImport()) {
 				Namespace namespace = anImport.getNamespace();
-				String importName = anImport.getName();
-				if (importName == null) {
-					if (namespace instanceof org.eclipse.ocl.examples.pivot.Package) {
-						environmentView.addNamedElements(typeManager.getLocalPackages((org.eclipse.ocl.examples.pivot.Package)namespace));
+				if (!namespace.eIsProxy()) {
+					String importName = anImport.getName();
+					if (importName == null) {
+						if (namespace instanceof org.eclipse.ocl.examples.pivot.Package) {
+							environmentView.addNamedElements(typeManager.getLocalPackages((org.eclipse.ocl.examples.pivot.Package)namespace));
+						}
 					}
-				}
-				else {
-//					if (environmentView.addNamedElement(namespace) > 0) {
-//						EcoreUtil.resolveAll(namespace);
-//					}
-					environmentView.addElement(importName, namespace);
+					else {
+//						if (environmentView.addNamedElement(namespace) > 0) {
+//							EcoreUtil.resolveAll(namespace);
+//						}
+						environmentView.addElement(importName, namespace);
+					}
 				}
 			}
 			if (pivotPackage != null) {
