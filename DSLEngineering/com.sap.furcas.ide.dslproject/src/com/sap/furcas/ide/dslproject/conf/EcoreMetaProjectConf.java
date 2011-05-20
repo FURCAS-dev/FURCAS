@@ -128,6 +128,7 @@ public final class EcoreMetaProjectConf implements IProjectMetaRefConf {
         }
         addAllCrossReferences(resourceSet);
         newURIs.add(URI.createURI(FURCASPackage.eINSTANCE.eClass().getEPackage().getNsURI()));
+        newURIs.addAll(FileResourceHelper.getResourceSetAsScope(resourceSet));
         return new ReferenceScopeBean(resourceSet, newURIs);
     }
 

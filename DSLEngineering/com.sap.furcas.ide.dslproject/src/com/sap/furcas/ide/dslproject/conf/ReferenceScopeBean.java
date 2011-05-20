@@ -16,10 +16,10 @@ public class ReferenceScopeBean {
     private final ResourceSet resourceSet;
     private final Set<URI> referenceScope;
 
-    public ReferenceScopeBean(ResourceSet resourceSet, Set<URI> referencePRIs) {
+    public ReferenceScopeBean(ResourceSet resourceSet, Set<URI> referenceURIs) {
         super();
         this.resourceSet = resourceSet;
-        this.referenceScope = referencePRIs;
+        this.referenceScope = referenceURIs;
     }
     public ResourceSet getResourceSet() {
         return resourceSet;
