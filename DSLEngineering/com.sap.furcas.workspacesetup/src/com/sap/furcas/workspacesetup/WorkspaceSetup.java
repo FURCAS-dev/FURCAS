@@ -58,7 +58,8 @@ public class WorkspaceSetup implements IWorkbenchWindowActionDelegate {
         FileDialog fileDialog = new FileDialog(window.getShell(), SWT.OPEN);
         fileDialog.setText("Import");
         fileDialog.setFilterPath(Platform.getLocation().toOSString());
-        fileDialog.setFilterExtensions(new String[] { "pom.xml" });
+        fileDialog.setFilterNames(new String[] {"pom.xml"});
+        fileDialog.setFilterExtensions(new String[] { "xml" });
         fileDialog.open();
 
         // Save path and find all Maven modules
