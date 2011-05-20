@@ -37,6 +37,7 @@ public class CompleteOCLParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
+					put(grammarAccess.getCompleteOCLDocumentCSAccess().getAlternatives_0(), "rule__CompleteOCLDocumentCS__Alternatives_0");
 					put(grammarAccess.getCompleteOCLDocumentCSAccess().getAlternatives_1(), "rule__CompleteOCLDocumentCS__Alternatives_1");
 					put(grammarAccess.getNavigationOperatorAccess().getAlternatives(), "rule__NavigationOperator__Alternatives");
 					put(grammarAccess.getUnrestrictedNameAccess().getAlternatives(), "rule__UnrestrictedName__Alternatives");
@@ -80,10 +81,12 @@ public class CompleteOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDerCSAccess().getGroup(), "rule__DerCS__Group__0");
 					put(grammarAccess.getImportCSAccess().getGroup(), "rule__ImportCS__Group__0");
 					put(grammarAccess.getImportCSAccess().getGroup_1(), "rule__ImportCS__Group_1__0");
+					put(grammarAccess.getIncludeCSAccess().getGroup(), "rule__IncludeCS__Group__0");
 					put(grammarAccess.getInitCSAccess().getGroup(), "rule__InitCS__Group__0");
 					put(grammarAccess.getInvCSAccess().getGroup(), "rule__InvCS__Group__0");
 					put(grammarAccess.getInvCSAccess().getGroup_1(), "rule__InvCS__Group_1__0");
 					put(grammarAccess.getInvCSAccess().getGroup_1_1(), "rule__InvCS__Group_1_1__0");
+					put(grammarAccess.getLibraryCSAccess().getGroup(), "rule__LibraryCS__Group__0");
 					put(grammarAccess.getOperationContextDeclCSAccess().getGroup(), "rule__OperationContextDeclCS__Group__0");
 					put(grammarAccess.getOperationContextDeclCSAccess().getGroup_1(), "rule__OperationContextDeclCS__Group_1__0");
 					put(grammarAccess.getOperationContextDeclCSAccess().getGroup_4(), "rule__OperationContextDeclCS__Group_4__0");
@@ -166,7 +169,9 @@ public class CompleteOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLetVariableCSAccess().getGroup_1(), "rule__LetVariableCS__Group_1__0");
 					put(grammarAccess.getNestedExpCSAccess().getGroup(), "rule__NestedExpCS__Group__0");
 					put(grammarAccess.getSelfExpCSAccess().getGroup(), "rule__SelfExpCS__Group__0");
-					put(grammarAccess.getCompleteOCLDocumentCSAccess().getOwnedImportAssignment_0(), "rule__CompleteOCLDocumentCS__OwnedImportAssignment_0");
+					put(grammarAccess.getCompleteOCLDocumentCSAccess().getOwnedImportAssignment_0_0(), "rule__CompleteOCLDocumentCS__OwnedImportAssignment_0_0");
+					put(grammarAccess.getCompleteOCLDocumentCSAccess().getOwnedIncludeAssignment_0_1(), "rule__CompleteOCLDocumentCS__OwnedIncludeAssignment_0_1");
+					put(grammarAccess.getCompleteOCLDocumentCSAccess().getOwnedLibraryAssignment_0_2(), "rule__CompleteOCLDocumentCS__OwnedLibraryAssignment_0_2");
 					put(grammarAccess.getCompleteOCLDocumentCSAccess().getPackagesAssignment_1_0(), "rule__CompleteOCLDocumentCS__PackagesAssignment_1_0");
 					put(grammarAccess.getCompleteOCLDocumentCSAccess().getContextsAssignment_1_1(), "rule__CompleteOCLDocumentCS__ContextsAssignment_1_1");
 					put(grammarAccess.getBodyCSAccess().getStereotypeAssignment_0(), "rule__BodyCS__StereotypeAssignment_0");
@@ -190,12 +195,14 @@ public class CompleteOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDerCSAccess().getSpecificationAssignment_2(), "rule__DerCS__SpecificationAssignment_2");
 					put(grammarAccess.getImportCSAccess().getNameAssignment_1_0(), "rule__ImportCS__NameAssignment_1_0");
 					put(grammarAccess.getImportCSAccess().getNamespaceAssignment_2(), "rule__ImportCS__NamespaceAssignment_2");
+					put(grammarAccess.getIncludeCSAccess().getNamespaceAssignment_1(), "rule__IncludeCS__NamespaceAssignment_1");
 					put(grammarAccess.getInitCSAccess().getStereotypeAssignment_0(), "rule__InitCS__StereotypeAssignment_0");
 					put(grammarAccess.getInitCSAccess().getSpecificationAssignment_2(), "rule__InitCS__SpecificationAssignment_2");
 					put(grammarAccess.getInvCSAccess().getStereotypeAssignment_0(), "rule__InvCS__StereotypeAssignment_0");
 					put(grammarAccess.getInvCSAccess().getNameAssignment_1_0(), "rule__InvCS__NameAssignment_1_0");
 					put(grammarAccess.getInvCSAccess().getMessageSpecificationAssignment_1_1_1(), "rule__InvCS__MessageSpecificationAssignment_1_1_1");
 					put(grammarAccess.getInvCSAccess().getSpecificationAssignment_3(), "rule__InvCS__SpecificationAssignment_3");
+					put(grammarAccess.getLibraryCSAccess().getPackageAssignment_1(), "rule__LibraryCS__PackageAssignment_1");
 					put(grammarAccess.getOperationContextDeclCSAccess().getNamespaceAssignment_1_0(), "rule__OperationContextDeclCS__NamespaceAssignment_1_0");
 					put(grammarAccess.getOperationContextDeclCSAccess().getOperationAssignment_2(), "rule__OperationContextDeclCS__OperationAssignment_2");
 					put(grammarAccess.getOperationContextDeclCSAccess().getParametersAssignment_4_0(), "rule__OperationContextDeclCS__ParametersAssignment_4_0");

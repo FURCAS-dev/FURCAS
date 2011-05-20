@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2PivotReferenceSwitch.java,v 1.8 2011/05/02 09:31:29 ewillink Exp $
+ * $Id: Ecore2PivotReferenceSwitch.java,v 1.9 2011/05/12 06:07:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -187,7 +187,9 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 	public <T extends Element> void doSwitchAll(Class<T> pivotClass, Collection<T> pivotElements, List<? extends EObject> eObjects) {
 		for (EObject eObject : eObjects) {
 			T pivotElement = converter.getCreated(pivotClass, eObject);
-			pivotElements.add(pivotElement);
+			if (pivotElement != null) {
+				pivotElements.add(pivotElement);
+			}
 		}
 	}
 }

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: GenericKeywordsTest.java,v 1.4 2011/04/20 19:02:32 ewillink Exp $
+ * $Id: GenericKeywordsTest.java,v 1.5 2011/05/20 15:27:16 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -47,7 +47,7 @@ public abstract class GenericKeywordsTest
 
         // create a little test model for a Smalltalk-like collection class that
         // defines operations corresponding to OCL iterators
-        smalltalk = typeManager.createPackage("Smalltalk");
+        smalltalk = typeManager.createPackage("Smalltalk", null);
         registerPackage(smalltalk, "st", "foo://smalltalk");
 
         org.eclipse.ocl.examples.pivot.Class object = createOwnedClass(smalltalk, "Object", false);

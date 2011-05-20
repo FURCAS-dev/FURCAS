@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Class.java,v 1.3 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: Class.java,v 1.4 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -86,7 +86,7 @@ public interface Class
 	 * @return the value of the '<em>Owned Attribute</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getClass_OwnedAttribute()
 	 * @see org.eclipse.ocl.examples.pivot.Property#getClass_
-	 * @model opposite="class" containment="true" resolveProxies="true"
+	 * @model opposite="class" containment="true"
 	 * @generated
 	 */
 	EList<Property> getOwnedAttributes();
@@ -113,7 +113,7 @@ public interface Class
 	 * @return the value of the '<em>Owned Operation</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getClass_OwnedOperation()
 	 * @see org.eclipse.ocl.examples.pivot.Operation#getClass_
-	 * @model opposite="class" containment="true" resolveProxies="true"
+	 * @model opposite="class" containment="true"
 	 * @generated
 	 */
 	EList<Operation> getOwnedOperations();

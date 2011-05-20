@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTAdapterFactory.java,v 1.9 2011/05/05 17:53:02 ewillink Exp $
+ * $Id: BaseCSTAdapterFactory.java,v 1.10 2011/05/12 08:46:40 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.util;
@@ -46,7 +46,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
@@ -242,11 +241,6 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 			public Adapter caseNamespaceCS(NamespaceCS object)
 			{
 				return createNamespaceCSAdapter();
-			}
-			@Override
-			public Adapter caseNamespaceRefCS(NamespaceRefCS object)
-			{
-				return createNamespaceRefCSAdapter();
 			}
 			@Override
 			public Adapter caseOperationCS(OperationCS object)
@@ -717,21 +711,6 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNamespaceCSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceRefCS <em>Namespace Ref CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceRefCS
-	 * @generated
-	 */
-	public Adapter createNamespaceRefCSAdapter()
-	{
 		return null;
 	}
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RoundTripTests.java,v 1.9 2011/05/05 17:56:29 ewillink Exp $
+ * $Id: RoundTripTests.java,v 1.10 2011/05/12 06:04:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -46,12 +46,17 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class RoundTripTests extends XtextTestCase
 {
 	public void doRoundTripFromEcore(String stem) throws IOException, InterruptedException {
+		doRoundTripFromEcore(stem, stem);
+	}
+	public void doRoundTripFromEcore(String stem, String reference) throws IOException, InterruptedException {
 		String inputName = stem + ".ecore";
 		String pivotName = stem + ".ecore.pivot";
 		String outputName = stem + ".regenerated.ecore";
+		String referenceName = reference + ".ecore";
 		URI inputURI = getProjectFileURI(inputName);
 		URI pivotURI = getProjectFileURI(pivotName);
 		URI outputURI = getProjectFileURI(outputName);
+		URI referenceURI = getProjectFileURI(referenceName);
 		Resource inputResource = resourceSet.getResource(inputURI, true);
 		assertNoResourceErrors("Ecore load", inputResource);
 		assertNoValidationErrors("Ecore load", inputResource);
@@ -92,7 +97,8 @@ public class RoundTripTests extends XtextTestCase
 	//		assertNoResourceErrors("To Ecore errors", rightResource);
 	//		rightResource.save(null);
 	//		resourceSet.getResources().add(rightResource);
-			assertSameModel(inputResource, outputResource);
+			Resource referenceResource = new ResourceSetImpl().getResource(referenceURI, true);
+			assertSameModel(referenceResource, outputResource);
 		} finally {
 			typeManager.dispose();
 		}
@@ -164,7 +170,9 @@ public class RoundTripTests extends XtextTestCase
 		assertNoValidationErrors("UML2Pivot invalid", pivotResource);
 		
 		List<? extends EObject> outputObjects = new ArrayList<EObject>(Pivot2UML.createResource(pivotManager, pivotResource));
-		outputObjects.remove(getNamedElement((List<? extends org.eclipse.uml2.uml.NamedElement>)outputObjects, "orphanage"));
+		@SuppressWarnings("unchecked")
+		List<? extends org.eclipse.uml2.uml.NamedElement> castOutputObjects = (List<? extends org.eclipse.uml2.uml.NamedElement>)outputObjects;
+		outputObjects.remove(getNamedElement(castOutputObjects, "orphanage"));
 		if (outputObjects.size() == 1) {
 			outputObjects = ((org.eclipse.uml2.uml.Package)outputObjects.get(0)).getNestedPackages();
 		}
@@ -186,11 +194,15 @@ public class RoundTripTests extends XtextTestCase
 	}
 
 	public void testCompanyRoundTrip() throws IOException, InterruptedException {
-		doRoundTripFromEcore("Company");
+		doRoundTripFromEcore("Company", "Company.reference");
 	}
 
 	public void testEcoreRoundTrip() throws IOException, InterruptedException {
 		doRoundTripFromEcore("Ecore");
+	}
+
+	public void testEmptyRoundTrip() throws IOException, InterruptedException {
+		doRoundTripFromEcore("Empty");
 	}
 
 	public void testImportsRoundTrip() throws IOException, InterruptedException {
@@ -210,7 +222,7 @@ public class RoundTripTests extends XtextTestCase
 	}
 
 	public void testOCLRoundTrip() throws IOException, InterruptedException {
-		doRoundTripFromEcore("OCL");
+		doRoundTripFromEcore("OCL", "OCL.reference"); 
 	}
 
 	public void testOCLCSTRoundTrip() throws IOException, InterruptedException {

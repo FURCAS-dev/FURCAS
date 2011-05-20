@@ -42,7 +42,7 @@
       <type metamodel="/0/@metamodelDeclarations.0">
         <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </type>
-      <alternatives xsi:type="xtext:Keyword" value="&#xa3;$%^&#xa3;$%^"/>
+      <alternatives xsi:type="xtext:Keyword" value="&#xc2;&#xa3;$%^&#xc2;&#xa3;$%^"/>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="INTEGER">
       <type metamodel="/0/@metamodelDeclarations.0">
@@ -75,6 +75,7 @@
         <elements xsi:type="xtext:Keyword" value="annotation"/>
         <elements xsi:type="xtext:Keyword" value="attribute"/>
         <elements xsi:type="xtext:Keyword" value="body"/>
+        <elements xsi:type="xtext:Keyword" value="callable"/>
         <elements xsi:type="xtext:Keyword" value="class"/>
         <elements xsi:type="xtext:Keyword" value="composes"/>
         <elements xsi:type="xtext:Keyword" value="datatype"/>
@@ -122,7 +123,7 @@
           <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
         </elements>
         <elements xsi:type="xtext:Keyword" value=":"/>
-        <elements xsi:type="xtext:Assignment" feature="specification" operator="=">
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="specification" operator="=">
           <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.30"/>
         </elements>
         <elements xsi:type="xtext:Keyword" value=";"/>
@@ -137,7 +138,7 @@
           <terminal xsi:type="xtext:Keyword" value="derivation"/>
         </elements>
         <elements xsi:type="xtext:Keyword" value=":"/>
-        <elements xsi:type="xtext:Assignment" feature="specification" operator="=">
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="specification" operator="=">
           <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.30"/>
         </elements>
         <elements xsi:type="xtext:Keyword" value=";"/>
@@ -152,7 +153,7 @@
           <terminal xsi:type="xtext:Keyword" value="initial"/>
         </elements>
         <elements xsi:type="xtext:Keyword" value=":"/>
-        <elements xsi:type="xtext:Assignment" feature="specification" operator="=">
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="specification" operator="=">
           <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.30"/>
         </elements>
         <elements xsi:type="xtext:Keyword" value=";"/>
@@ -163,6 +164,9 @@
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/OCLinEcoreCST#//OCLinEcoreConstraintCS"/>
       </type>
       <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="callable" operator="?=">
+          <terminal xsi:type="xtext:Keyword" value="callable"/>
+        </elements>
         <elements xsi:type="xtext:Assignment" feature="stereotype" operator="=">
           <terminal xsi:type="xtext:Keyword" value="invariant"/>
         </elements>
@@ -178,9 +182,11 @@
             <elements xsi:type="xtext:Keyword" value=")"/>
           </elements>
         </elements>
-        <elements xsi:type="xtext:Keyword" value=":"/>
-        <elements xsi:type="xtext:Assignment" feature="specification" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.30"/>
+        <elements xsi:type="xtext:Group" cardinality="?">
+          <elements xsi:type="xtext:Keyword" value=":"/>
+          <elements xsi:type="xtext:Assignment" cardinality="?" feature="specification" operator="=">
+            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.30"/>
+          </elements>
         </elements>
         <elements xsi:type="xtext:Keyword" value=";"/>
       </alternatives>
@@ -197,7 +203,7 @@
           <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
         </elements>
         <elements xsi:type="xtext:Keyword" value=":"/>
-        <elements xsi:type="xtext:Assignment" feature="specification" operator="=">
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="specification" operator="=">
           <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.30"/>
         </elements>
         <elements xsi:type="xtext:Keyword" value=";"/>
@@ -215,7 +221,7 @@
           <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
         </elements>
         <elements xsi:type="xtext:Keyword" value=":"/>
-        <elements xsi:type="xtext:Assignment" feature="specification" operator="=">
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="specification" operator="=">
           <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.30"/>
         </elements>
         <elements xsi:type="xtext:Keyword" value=";"/>
@@ -1123,19 +1129,12 @@
       <type metamodel="/0/@metamodelDeclarations.4">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/OCLinEcoreCST#//OCLinEcoreSpecificationCS"/>
       </type>
-      <alternatives xsi:type="xtext:Group">
-        <elements xsi:type="xtext:Action">
-          <type metamodel="/0/@metamodelDeclarations.4">
-            <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/OCLinEcoreCST#//OCLinEcoreSpecificationCS"/>
-          </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:Assignment" feature="ownedExpression" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.49"/>
         </elements>
-        <elements xsi:type="xtext:Alternatives" cardinality="?">
-          <elements xsi:type="xtext:Assignment" feature="ownedExpression" operator="=">
-            <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.49"/>
-          </elements>
-          <elements xsi:type="xtext:Assignment" feature="exprString" operator="=">
-            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.1"/>
-          </elements>
+        <elements xsi:type="xtext:Assignment" feature="exprString" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.1"/>
         </elements>
       </alternatives>
     </rules>

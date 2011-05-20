@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLLabelProvider.java,v 1.9 2011/05/02 09:31:24 ewillink Exp $
+ * $Id: CompleteOCLLabelProvider.java,v 1.10 2011/05/11 19:28:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.ui.labeling;
 
@@ -22,6 +22,7 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.BodyCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
@@ -67,7 +68,14 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 	}
 
 	protected String text(ClassifierContextDeclCS ele) {
-		return ele.getClassifier().getName();
+		Type classifier = ele.getClassifier();
+		if (classifier == null) {
+			return "<<null>>";
+		}
+		if (classifier.eIsProxy()) {
+			return "<<unresolved-proxy>>";
+		}
+		return classifier.getName();
 	}
 
 	protected String text(CompleteOCLDocumentCS ele) {
@@ -134,6 +142,12 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 	protected String text(OperationContextDeclCS ele) {
 		StringBuffer s = new StringBuffer();
 		Operation operation = ele.getOperation();
+		if (operation == null) {
+			return "<<null>>";
+		}
+		if (operation.eIsProxy()) {
+			return "<<unresolved-proxy>>";
+		}
 		appendName(s, PivotUtil.getFeaturingClass(operation));
 		s.append("::");
 		appendName(s, operation);
@@ -185,6 +199,12 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 	protected String text(PropertyContextDeclCS ele) {
 		StringBuffer s = new StringBuffer();
 		Property feature = ele.getProperty();
+		if (feature == null) {
+			return "<<null>>";
+		}
+		if (feature.eIsProxy()) {
+			return "<<unresolved-proxy>>";
+		}
 		appendName(s, PivotUtil.getFeaturingClass(feature));
 		s.append("::");
 		appendName(s, feature);

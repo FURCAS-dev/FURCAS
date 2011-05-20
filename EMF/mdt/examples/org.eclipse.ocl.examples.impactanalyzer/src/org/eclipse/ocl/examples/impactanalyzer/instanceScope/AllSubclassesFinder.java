@@ -91,7 +91,7 @@ public class AllSubclassesFinder {
                     cachedPackages.add(ePackage);
                     cachePackage(ePackage);
                 }
-            } catch (Exception e) {
+            } catch (Throwable e) {
                 // TODO problem resolving the packageUri into an EPackage; could be
                 // that the package class doesn't exist in generated form;
                 // ignore those for now (although it should somehow be possible

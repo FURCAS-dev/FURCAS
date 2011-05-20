@@ -12,15 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreScopeVisitor.java,v 1.4 2011/03/01 08:46:35 ewillink Exp $
+ * $Id: OCLinEcoreScopeVisitor.java,v 1.5 2011/05/14 06:55:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.cs2pivot;
 
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.EmptyCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLScopeVisitor;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreSpecificationCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.util.AbstractExtendingDelegatingOCLinEcoreCSVisitor;
 
 public class OCLinEcoreScopeVisitor
@@ -28,15 +26,5 @@ public class OCLinEcoreScopeVisitor
 {
 	public OCLinEcoreScopeVisitor(TypeManager context) {
 		super(new EssentialOCLScopeVisitor(context), context);
-	}
-
-//	@Override
-//	public ScopeCSAdapter visitOCLinEcoreConstraintCS(OCLinEcoreConstraintCS object) {
-//		return super.visitOCLinEcoreConstraintCS(object);
-//	}
-
-	@Override
-	public ScopeCSAdapter visitOCLinEcoreSpecificationCS(OCLinEcoreSpecificationCS eObject) {
-		return new EmptyCSScopeAdapter(context, eObject);
 	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterateExp.java,v 1.2 2011/01/24 20:49:36 ewillink Exp $
+ * $Id: IterateExp.java,v 1.3 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -46,7 +46,7 @@ public interface IterateExp extends LoopExp
 	 * @return the value of the '<em>Result</em>' containment reference.
 	 * @see #setResult(Variable)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getIterateExp_Result()
-	 * @model containment="true" resolveProxies="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	Variable getResult();

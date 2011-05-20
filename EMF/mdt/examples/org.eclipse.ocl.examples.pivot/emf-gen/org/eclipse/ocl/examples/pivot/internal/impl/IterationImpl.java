@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationImpl.java,v 1.4 2011/05/02 15:38:53 ewillink Exp $
+ * $Id: IterationImpl.java,v 1.5 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -106,7 +106,7 @@ public class IterationImpl extends OperationImpl implements Iteration
 	{
 		if (ownedIterators == null)
 		{
-			ownedIterators = new EObjectContainmentEList.Resolving<Parameter>(Parameter.class, this, PivotPackage.ITERATION__OWNED_ITERATOR);
+			ownedIterators = new EObjectContainmentEList<Parameter>(Parameter.class, this, PivotPackage.ITERATION__OWNED_ITERATOR);
 		}
 		return ownedIterators;
 	}
@@ -132,7 +132,7 @@ public class IterationImpl extends OperationImpl implements Iteration
 	{
 		if (ownedAccumulators == null)
 		{
-			ownedAccumulators = new EObjectContainmentEList.Resolving<Parameter>(Parameter.class, this, PivotPackage.ITERATION__OWNED_ACCUMULATOR);
+			ownedAccumulators = new EObjectContainmentEList<Parameter>(Parameter.class, this, PivotPackage.ITERATION__OWNED_ACCUMULATOR);
 		}
 		return ownedAccumulators;
 	}
@@ -225,13 +225,11 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__TEMPLATE_BINDING:
 				return getTemplateBindings();
 			case PivotPackage.ITERATION__OWNED_TEMPLATE_SIGNATURE:
-				if (resolve) return getOwnedTemplateSignature();
-				return basicGetOwnedTemplateSignature();
+				return getOwnedTemplateSignature();
 			case PivotPackage.ITERATION__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
 			case PivotPackage.ITERATION__OWNING_TEMPLATE_PARAMETER:
-				if (resolve) return getOwningTemplateParameter();
-				return basicGetOwningTemplateParameter();
+				return getOwningTemplateParameter();
 			case PivotPackage.ITERATION__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
@@ -243,8 +241,7 @@ public class IterationImpl extends OperationImpl implements Iteration
 				if (resolve) return getPrecedence();
 				return basicGetPrecedence();
 			case PivotPackage.ITERATION__CLASS:
-				if (resolve) return getClass_();
-				return basicGetClass_();
+				return getClass_();
 			case PivotPackage.ITERATION__OWNED_ITERATOR:
 				return getOwnedIterators();
 			case PivotPackage.ITERATION__OWNED_ACCUMULATOR:
@@ -477,7 +474,7 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
 			case PivotPackage.ITERATION__OWNING_TEMPLATE_PARAMETER:
-				return basicGetOwningTemplateParameter() != null;
+				return getOwningTemplateParameter() != null;
 			case PivotPackage.ITERATION__TEMPLATE_PARAMETER:
 				return isSetTemplateParameter();
 			case PivotPackage.ITERATION__RAISED_EXCEPTION:
@@ -487,7 +484,7 @@ public class IterationImpl extends OperationImpl implements Iteration
 			case PivotPackage.ITERATION__PRECEDENCE:
 				return precedence != null;
 			case PivotPackage.ITERATION__CLASS:
-				return basicGetClass_() != null;
+				return getClass_() != null;
 			case PivotPackage.ITERATION__OWNED_ITERATOR:
 				return ownedIterators != null && !ownedIterators.isEmpty();
 			case PivotPackage.ITERATION__OWNED_ACCUMULATOR:

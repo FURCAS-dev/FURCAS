@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ParameterableElementImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
+ * $Id: ParameterableElementImpl.java,v 1.3 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -126,7 +126,7 @@ public abstract class ParameterableElementImpl
 		}
 		Resource.Internal eInternalResource = eInternalResource();
 		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			TemplateParameter owningTemplateParameter = basicGetOwningTemplateParameter();
+			TemplateParameter owningTemplateParameter = getOwningTemplateParameter();
 			if (owningTemplateParameter != null && owningTemplateParameter != newTemplateParameter)
 			{
 				setOwningTemplateParameter(null);
@@ -163,16 +163,6 @@ public abstract class ParameterableElementImpl
 	public TemplateParameter getOwningTemplateParameter() {
 		if (eContainerFeatureID() != PivotPackage.PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER) return null;
 		return (TemplateParameter)eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplateParameter basicGetOwningTemplateParameter() {
-		if (eContainerFeatureID() != PivotPackage.PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER) return null;
-		return (TemplateParameter)eInternalContainer();
 	}
 
 	/**
@@ -300,8 +290,7 @@ public abstract class ParameterableElementImpl
 			case PivotPackage.PARAMETERABLE_ELEMENT__MONIKER:
 				return getMoniker();
 			case PivotPackage.PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER:
-				if (resolve) return getOwningTemplateParameter();
-				return basicGetOwningTemplateParameter();
+				return getOwningTemplateParameter();
 			case PivotPackage.PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
@@ -375,7 +364,7 @@ public abstract class ParameterableElementImpl
 			case PivotPackage.PARAMETERABLE_ELEMENT__MONIKER:
 				return MONIKER_EDEFAULT == null ? getMoniker() != null : !MONIKER_EDEFAULT.equals(getMoniker());
 			case PivotPackage.PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER:
-				return basicGetOwningTemplateParameter() != null;
+				return getOwningTemplateParameter() != null;
 			case PivotPackage.PARAMETERABLE_ELEMENT__TEMPLATE_PARAMETER:
 				return templateParameter != null;
 		}

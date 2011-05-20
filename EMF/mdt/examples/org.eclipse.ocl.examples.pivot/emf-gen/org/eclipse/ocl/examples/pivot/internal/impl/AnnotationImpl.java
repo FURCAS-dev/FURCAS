@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AnnotationImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
+ * $Id: AnnotationImpl.java,v 1.3 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -109,7 +109,7 @@ public class AnnotationImpl
 	public EList<Element> getOwnedContents() {
 		if (ownedContents == null)
 		{
-			ownedContents = new EObjectContainmentEList.Resolving<Element>(Element.class, this, PivotPackage.ANNOTATION__OWNED_CONTENT);
+			ownedContents = new EObjectContainmentEList<Element>(Element.class, this, PivotPackage.ANNOTATION__OWNED_CONTENT);
 		}
 		return ownedContents;
 	}
@@ -146,7 +146,7 @@ public class AnnotationImpl
 	public EList<Detail> getOwnedDetails() {
 		if (ownedDetails == null)
 		{
-			ownedDetails = new EObjectContainmentEList.Resolving<Detail>(Detail.class, this, PivotPackage.ANNOTATION__OWNED_DETAIL);
+			ownedDetails = new EObjectContainmentEList<Detail>(Detail.class, this, PivotPackage.ANNOTATION__OWNED_DETAIL);
 		}
 		return ownedDetails;
 	}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnumerationImpl.java,v 1.4 2011/05/02 15:38:53 ewillink Exp $
+ * $Id: EnumerationImpl.java,v 1.5 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -93,7 +93,7 @@ public class EnumerationImpl
 	public EList<EnumerationLiteral> getOwnedLiterals() {
 		if (ownedLiterals == null)
 		{
-			ownedLiterals = new EObjectContainmentWithInverseEList.Resolving<EnumerationLiteral>(EnumerationLiteral.class, this, PivotPackage.ENUMERATION__OWNED_LITERAL, PivotPackage.ENUMERATION_LITERAL__ENUMERATION);
+			ownedLiterals = new EObjectContainmentWithInverseEList<EnumerationLiteral>(EnumerationLiteral.class, this, PivotPackage.ENUMERATION__OWNED_LITERAL, PivotPackage.ENUMERATION_LITERAL__ENUMERATION);
 		}
 		return ownedLiterals;
 	}
@@ -208,19 +208,16 @@ public class EnumerationImpl
 			case PivotPackage.ENUMERATION__TEMPLATE_BINDING:
 				return getTemplateBindings();
 			case PivotPackage.ENUMERATION__OWNED_TEMPLATE_SIGNATURE:
-				if (resolve) return getOwnedTemplateSignature();
-				return basicGetOwnedTemplateSignature();
+				return getOwnedTemplateSignature();
 			case PivotPackage.ENUMERATION__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
 			case PivotPackage.ENUMERATION__OWNING_TEMPLATE_PARAMETER:
-				if (resolve) return getOwningTemplateParameter();
-				return basicGetOwningTemplateParameter();
+				return getOwningTemplateParameter();
 			case PivotPackage.ENUMERATION__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
 			case PivotPackage.ENUMERATION__PACKAGE:
-				if (resolve) return getPackage();
-				return basicGetPackage();
+				return getPackage();
 			case PivotPackage.ENUMERATION__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.ENUMERATION__IS_ABSTRACT:
@@ -442,11 +439,11 @@ public class EnumerationImpl
 			case PivotPackage.ENUMERATION__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
 			case PivotPackage.ENUMERATION__OWNING_TEMPLATE_PARAMETER:
-				return basicGetOwningTemplateParameter() != null;
+				return getOwningTemplateParameter() != null;
 			case PivotPackage.ENUMERATION__TEMPLATE_PARAMETER:
 				return isSetTemplateParameter();
 			case PivotPackage.ENUMERATION__PACKAGE:
-				return basicGetPackage() != null;
+				return getPackage() != null;
 			case PivotPackage.ENUMERATION__INSTANCE_CLASS_NAME:
 				return isSetInstanceClassName();
 			case PivotPackage.ENUMERATION__IS_ABSTRACT:
