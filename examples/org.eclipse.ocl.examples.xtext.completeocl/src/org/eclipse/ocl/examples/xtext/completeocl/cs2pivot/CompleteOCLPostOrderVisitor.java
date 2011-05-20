@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLPostOrderVisitor.java,v 1.8 2011/05/20 15:26:50 ewillink Exp $
+ * $Id: CompleteOCLPostOrderVisitor.java,v 1.9 2011/05/20 19:51:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
@@ -169,9 +169,9 @@ public class CompleteOCLPostOrderVisitor
 		}
 		String moniker = s.toString();
 		((ContextConstraintCSImpl)csNewConstraint).setMoniker(moniker);
-		Constraint pivotElement = context.refreshMonikeredElement(Constraint.class, PivotPackage.Literals.CONSTRAINT, moniker);
-		context.installPivotElement(csNewConstraint, pivotElement);
-		context.refreshName(pivotElement, csNewConstraint.getName());
+		Constraint pivotElement = context.refreshNamedElement(Constraint.class, PivotPackage.Literals.CONSTRAINT, csNewConstraint);
+//		context.installPivotElement(csNewConstraint, pivotElement);
+//		context.refreshName(pivotElement, csNewConstraint.getName());
 //		context.refreshComments(pivotElement, csNewConstraint);
 		pivotElement.setStereotype(stereotype);
 		if (csNewConstraint.getSpecification() != null) {
