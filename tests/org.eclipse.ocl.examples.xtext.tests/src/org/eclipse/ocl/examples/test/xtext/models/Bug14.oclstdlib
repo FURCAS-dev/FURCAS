@@ -1,0 +1,133 @@
+library ocl
+{
+precedence left:NAVIGATION left:UNARY left:MULTIPLICATIVE left:ADDITIVE left:RELATIONAL left:EQUALITY left:AND left:OR left:XOR left:IMPLIES;
+
+
+type Bag<T> : BagType conformsTo Collection<T> {
+}
+
+type Boolean : PrimitiveType conformsTo OclAny {
+	operation or(b : Boolean) : Boolean precedence=OR;
+}
+
+type Classifier<T> : ClassifierType conformsTo OclAny {}
+type Collection<T> : CollectionType conformsTo OclAny {}
+type Enumeration conformsTo OclAny {}
+type Integer : PrimitiveType conformsTo Real {}
+type OclAny : AnyType {
+	
+	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY;
+	operation oclIsUndefined() : Boolean
+	{
+		post: true or self.oclIsTypeOf(OclInvalid);
+	}
+	operation oclIsTypeOf<T>(type : Classifier<T>) : Boolean
+	{
+--		post: self.oclType() = type;
+	}
+	
+	
+}
+type OclExpression conformsTo OclAny {}
+
+/**
+The type OclInvalid is a type that conforms to all other types.
+It has one single instance, identified as  invalid.
+Any property call applied on invalid results in invalid, except for the operations oclIsUndefined() and oclIsInvalid().
+OclInvalid is itself an instance of the metatype InvalidType.
+**/
+type OclInvalid : InvalidType conformsTo OclVoid {
+}
+
+/**
+OclMessage
+This sub clause contains the definition of the standard type OclMessage.
+As defined in this sub clause, each ocl message type is actually a template type with one parameter.
+‘T’ denotes the parameter.
+A concrete ocl message type is created by substituting an operation or signal for the T.
+
+The predefined type OclMessage is an instance of MessageType.
+Every OclMessage is fully determined by either the operation, or signal given as parameter.
+Note that there is conceptually an undefined (infinite) number of these types,
+as each is determined by a different operation or signal.
+These types are unnamed. Every type has as attributes the name of the operation or signal,
+and either all formal parameters of the operation, or all attributes of the signal.
+OclMessage is itself an instance of the metatype MessageType.
+
+OclMessage has a number of predefined operations, as shown in the OCL Standard Library.
+**/
+type OclMessage conformsTo OclAny {
+}
+
+type OclState conformsTo OclAny {
+}
+
+/**
+The type OclVoid is a type that conforms to all other types except OclInvalid.
+It has one single instance, identified as null, that corresponds with the UML LiteralNull value specification.
+Any property call applied on null results in invalid, except for the
+oclIsUndefined(), oclIsInvalid(), =(OclAny) and <>(OclAny) operations.
+However, by virtue of the implicit conversion to a collection literal,
+an expression evaluating to null can be used as source of collection operations (such as ‘isEmpty’).
+If the source is the null literal, it is implicitly converted to Bag{}.
+
+OclVoid is itself an instance of the metatype VoidType.
+**/
+type OclVoid : VoidType conformsTo OclAny {
+}
+
+/**
+The OrderedSet is a Set, the elements of which are ordered.
+It contains no duplicates. OrderedSet is itself an instance of the metatype OrderedSetType.
+An OrderedSet is not a subtype of Set, neither a subtype of Sequence.
+The common supertype of Sets and OrderedSets is Collection.
+**/
+type OrderedSet<T> : OrderedSetType conformsTo Collection<T> {
+}
+
+/**
+The standard type Real represents the mathematical concept of real.
+Note that UnlimitedNatural is a subclass of Integer and that Integer is a subclass of Real,
+so for each parameter of type Real, you can use an unlimited natural or an integer as the actual parameter.
+Real is itself an instance of the metatype PrimitiveType (from UML).
+**/
+type Real : PrimitiveType conformsTo OclAny {
+}
+
+/**
+A sequence is a collection where the elements are ordered.
+An element may be part of a sequence more than once.
+Sequence is itself an instance of the metatype SequenceType.
+A Sentence is not a subtype of Bag.
+The common supertype of Sentence and Bags is Collection.
+**/
+type Sequence<T> : SequenceType conformsTo Collection<T> {
+}
+
+/**
+The Set is the mathematical set. It contains elements without duplicates.
+Set is itself an instance of the metatype SetType.
+**/
+type Set<T> : SetType conformsTo Collection<T> {
+}
+
+/**
+The standard type String represents strings, which can be both ASCII or Unicode.
+String is itself an instance of the metatype PrimitiveType (from UML).
+**/
+type String : PrimitiveType conformsTo OclAny {
+}
+
+type Tuple : TupleType conformsTo OclAny {}
+
+/**
+The standard type UnlimitedNatural is used to encode the non-negative values of a multiplicity specification.
+This includes a special unlimited value (*) that encodes the upper value of  a multiplicity specification.
+UnlimitedNatural is itself an instance of the metatype UnlimitedNaturalType.
+
+Note that although UnlimitedNatural is a subclass of Integer, the unlimited value cannot be represented as an Integer.
+Any use of the unlimited value as an integer or real is replaced by the invalid value.
+**/
+type UnlimitedNatural : PrimitiveType conformsTo Integer {
+}
+}
