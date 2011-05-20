@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotTests.java,v 1.6 2011/04/20 19:02:32 ewillink Exp $
+ * $Id: PivotTests.java,v 1.7 2011/05/12 08:54:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -49,6 +49,7 @@ import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.oclinecore.pivot2cs.OCLinEcorePivot2CS;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
+import org.eclipse.xtext.resource.impl.ListBasedDiagnosticConsumer;
 
 /**
  * Tests.
@@ -309,7 +310,7 @@ public class PivotTests extends XtextTestCase
 		//	Update Pivot model from unchanged CS
 		//
 		CS2Pivot updater = new CS2Pivot(creator);
-		updater.update();
+		updater.update(new ListBasedDiagnosticConsumer());
 		new Checker(creator).assertSameContents();
 		//
 		// Damage the Pivot model and update to repair.

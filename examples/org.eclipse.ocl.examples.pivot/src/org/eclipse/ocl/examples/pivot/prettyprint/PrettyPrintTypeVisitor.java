@@ -12,11 +12,13 @@
  *
  * </copyright>
  *
- * $Id: PrettyPrintTypeVisitor.java,v 1.5 2011/05/02 09:31:29 ewillink Exp $
+ * $Id: PrettyPrintTypeVisitor.java,v 1.6 2011/05/13 18:41:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.prettyprint;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.CollectionType;
@@ -48,6 +50,21 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Namespace>
 {
 	public static final String NULL_PLACEHOLDER = "<null>";
+	public static Set<String> reservedNames = new HashSet<String>();
+	public static Set<String> restrictedNames = new HashSet<String>();
+	private static String[] reservedNameList = {"and", "else", "endif", "false", "if", "implies", "in", "invalid", "let", "not", "null", "or", "self", "then", "true", "xor"};
+	private static String[] restrictedNameList = {"Bag", "Boolean", "Collection", "Integer", "OclAny", "OclInvalid", "OclVoid", "OrderedSet", "Real", "Sequence", "Set", "String", "Tuple", "UnlimitedNatural"};
+	
+	
+	static {
+		for (String name : reservedNameList) {
+			reservedNames.add(name);
+			restrictedNames.add(name);
+		}
+		for (String name : restrictedNameList) {
+			restrictedNames.add(name);
+		}
+	}
 	
 	public static String prettyPrint(Visitable element, Namespace scope) {
 		PrettyPrintTypeVisitor visitor = new PrettyPrintTypeVisitor(scope);
@@ -100,11 +117,23 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 	}
 
 	protected void appendName(NamedElement object) {
+		appendName(object, restrictedNames);
+	}
+		
+	protected void appendName(NamedElement object, Set<String> keywords) {
 		if (object == null) {
 			s.append(NULL_PLACEHOLDER);
 		}
 		else {
-			s.append(object.getName());
+			String name = object.getName();
+			if ((keywords != null) && (keywords.contains(name) || !PivotUtil.isValidIdentifier(name))) {
+				s.append("_'");
+				s.append(PivotUtil.convertToOCLString(name));
+				s.append("'");
+			}
+			else {
+				s.append(name);
+			}
 		}
 	}
 
@@ -203,7 +232,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 				for (TemplateParameter templateParameter : templateParameters) {
 					s.append(prefix);
 //					emittedTemplateParameter(templateParameter);
-					appendName((NamedElement) templateParameter.getParameteredElement());
+					appendName((NamedElement) templateParameter.getParameteredElement(), restrictedNames);
 					prefix = ", ";
 				}
 				s.append(useParentheses ? ")" : ">");
@@ -219,7 +248,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 	@Override
 	public Object visitLambdaType(LambdaType object) {
 //		appendParent(object.eContainer(), object, "::");
-		appendName(object);
+		appendName(object, restrictedNames);
 		s.append(" ");
 		appendElement(object.getContextType());
 		append("(");
@@ -238,14 +267,14 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 	@Override
 	public String visitNamedElement(NamedElement object) {
 		appendParent(null, object, "::");
-		appendName(object);
+		appendName(object, reservedNames);
 		return null;
 	}
 
 	@Override
 	public Object visitOperation(Operation operation) {
 		appendParent(null, operation, "::");
-		appendName(operation);
+		appendName(operation, reservedNames);
 		appendTemplateParameters(operation);
 		appendTemplateBindings(operation);
 		append("(");
@@ -278,21 +307,21 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 
 	@Override
 	public Object visitTemplateParameter(TemplateParameter object) {
-		appendName((NamedElement) object.getParameteredElement());
+		appendName((NamedElement) object.getParameteredElement(), restrictedNames);
 		return null;
 	}
 
 	@Override
 	public Object visitTupleType(TupleType object) {
 //		appendParent(object.eContainer(), object, "::");
-		appendName(object);
+		appendName(object, null);
 		s.append("(");
 		List<Property> tupleParts = object.getOwnedAttributes();
 		if (!tupleParts.isEmpty()) {
 			String prefix = ""; //$NON-NLS-1$
 			for (Property tuplePart : tupleParts) {
 				append(prefix);
-				appendName(tuplePart);
+				appendName(tuplePart, restrictedNames);
 				append(" : ");
 				appendElement(tuplePart.getType());
 				prefix = ", ";
@@ -305,7 +334,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 	@Override
 	public Object visitType(Type object) {
 		appendParent(object.eContainer(), object, "::");
-		appendName(object);
+		appendName(object, reservedNames);
 		appendTemplateParameters(object);
 		appendTemplateBindings(object);
 		return null;

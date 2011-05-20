@@ -13,6 +13,8 @@
         eType="#//PackageDeclarationCS" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contexts" upperBound="-1"
         eType="#//ContextDeclCS" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedInclude" upperBound="-1"
+        eType="#//IncludeCS" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ContextConstraintCS" abstract="true"
       eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//ConstraintCS">
@@ -42,6 +44,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="class" eType="ecore:EClass ../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//ClassCS"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" eType="ecore:EClass ../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//TypedRefCS"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IncludeCS" eSuperTypes="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore#//NamespaceCS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="namespace" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Namespace"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InitCS" eSuperTypes="#//ContextConstraintCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="InvCS" eSuperTypes="#//ContextConstraintCS"/>

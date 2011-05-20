@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotConstants.java,v 1.9 2011/04/25 09:49:15 ewillink Exp $
+ * $Id: PivotConstants.java,v 1.10 2011/05/11 19:44:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -49,6 +49,7 @@ public interface PivotConstants
 	static final String TUPLE_SIGNATURE_PART_SEPARATOR = ","; //$NON-NLS-1$
 	static final String TUPLE_SIGNATURE_TYPE_SEPARATOR = ":"; //$NON-NLS-1$
 	static final String TUPLE_SIGNATURE_SUFFIX = "}"; //$NON-NLS-1$
+	static final String UNRESOLVED_PROXY_MARKER = "<<unresolved-proxy>>"; //$NON-NLS-1$
 	static final String WILDCARD_INDICATOR = "?"; //$NON-NLS-1$
 
 	static final String COLLECTION_NAVIGATION_OPERATOR = "->";

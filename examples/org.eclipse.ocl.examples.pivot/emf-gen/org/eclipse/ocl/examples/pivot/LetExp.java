@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LetExp.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
+ * $Id: LetExp.java,v 1.4 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -49,7 +49,7 @@ public interface LetExp
 	 * @return the value of the '<em>In</em>' containment reference.
 	 * @see #setIn(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getLetExp_In()
-	 * @model containment="true" resolveProxies="true" required="true" ordered="false"
+	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
 	OclExpression getIn();
@@ -86,7 +86,7 @@ public interface LetExp
 	 * @return the value of the '<em>Variable</em>' containment reference.
 	 * @see #setVariable(Variable)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getLetExp_Variable()
-	 * @model containment="true" resolveProxies="true" required="true" ordered="false"
+	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
 	Variable getVariable();

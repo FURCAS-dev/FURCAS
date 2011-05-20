@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateSignatureImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
+ * $Id: TemplateSignatureImpl.java,v 1.3 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -136,16 +136,6 @@ public class TemplateSignatureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateableElement basicGetTemplate() {
-		if (eContainerFeatureID() != PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE) return null;
-		return (TemplateableElement)eInternalContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public NotificationChain basicSetTemplate(TemplateableElement newTemplate,
 			NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newTemplate, PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE, msgs);
@@ -182,7 +172,7 @@ public class TemplateSignatureImpl
 	public EList<TemplateParameter> getOwnedParameters() {
 		if (ownedParameters == null)
 		{
-			ownedParameters = new SubsetSupersetEObjectContainmentWithInverseEList.Resolving<TemplateParameter>(TemplateParameter.class, this, PivotPackage.TEMPLATE_SIGNATURE__OWNED_PARAMETER, OWNED_PARAMETER_ESUPERSETS, null, PivotPackage.TEMPLATE_PARAMETER__SIGNATURE);
+			ownedParameters = new SubsetSupersetEObjectContainmentWithInverseEList<TemplateParameter>(TemplateParameter.class, this, PivotPackage.TEMPLATE_SIGNATURE__OWNED_PARAMETER, OWNED_PARAMETER_ESUPERSETS, null, PivotPackage.TEMPLATE_PARAMETER__SIGNATURE);
 		}
 		return ownedParameters;
 	}
@@ -302,8 +292,7 @@ public class TemplateSignatureImpl
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_PARAMETER:
 				return getOwnedParameters();
 			case PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE:
-				if (resolve) return getTemplate();
-				return basicGetTemplate();
+				return getTemplate();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -386,7 +375,7 @@ public class TemplateSignatureImpl
 			case PivotPackage.TEMPLATE_SIGNATURE__OWNED_PARAMETER:
 				return ownedParameters != null && !ownedParameters.isEmpty();
 			case PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE:
-				return basicGetTemplate() != null;
+				return getTemplate() != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

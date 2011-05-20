@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLDocumentScopeAdapter.java,v 1.8 2011/02/08 17:53:05 ewillink Exp $
+ * $Id: CompleteOCLDocumentScopeAdapter.java,v 1.10 2011/05/20 15:26:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
+import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
@@ -32,23 +33,25 @@ public class CompleteOCLDocumentScopeAdapter extends StandardDocumentScopeAdapte
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
-//		if (environmentView.accepts(PivotPackage.Literals.NAMESPACE)) {
-			for (ImportCS anImport : getTarget().getOwnedImport()) {
-				if (anImport.getName() == null) {
-					Namespace namespace = anImport.getNamespace();
-					if (namespace instanceof org.eclipse.ocl.examples.pivot.Package) {
-						for (org.eclipse.ocl.examples.pivot.Package rootPackage : ((org.eclipse.ocl.examples.pivot.Package)namespace).getNestedPackages()) {
-							environmentView.addNamedElement(rootPackage);		// FIXME Rationmalize root of pivot model
-							environmentView.addNamedElements(rootPackage.getNestedPackages());
-							environmentView.addNamedElements(rootPackage.getOwnedTypes());
-						}
+		for (ImportCS anImport : getTarget().getOwnedImport()) {
+			Namespace namespace = anImport.getNamespace();
+			if ((namespace != null) && !namespace.eIsProxy()) {
+				String importName = anImport.getName();
+				if (importName != null) {
+					environmentView.addElement(importName, namespace);
+				} else if (namespace instanceof org.eclipse.ocl.examples.pivot.Package) {
+					for (org.eclipse.ocl.examples.pivot.Package rootPackage : ((org.eclipse.ocl.examples.pivot.Package)namespace).getNestedPackages()) {
+						environmentView.addNamedElement(rootPackage);		// FIXME Rationalize root of pivot model
+						environmentView.addNamedElements(rootPackage.getNestedPackages());
+						environmentView.addNamedElements(rootPackage.getOwnedTypes());
 					}
 				}
-				else {
-					environmentView.addElement(anImport.getName(), anImport.getNamespace());
-				}
 			}
-//		}
+		}
+		typeManager.getOclAnyType();
+		for (Library library : typeManager.getLibraries()) {
+			environmentView.addNamedElement(library);
+		}
 		return null;
 	}
 }

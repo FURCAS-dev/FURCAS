@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2Moniker.java,v 1.7 2011/05/02 09:31:26 ewillink Exp $
+ * $Id: CS2Moniker.java,v 1.8 2011/05/14 10:35:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -98,7 +98,11 @@ public class CS2Moniker
 
 	public void appendConstraintCSDisambiguator(ConstraintCS csConstraint) {
 		String csConstraintStereotype = csConstraint.getStereotype();
-		Object container = csConstraint.eContainer().eGet(csConstraint.eContainingFeature());
+		EObject csContainer = csConstraint.eContainer();
+		if (csContainer == null) {
+			return;
+		}
+		Object container = csContainer.eGet(csConstraint.eContainingFeature());
 		if (container instanceof List<?>) {
 			int index = 0;
 			String name2 = csConstraint.getName();

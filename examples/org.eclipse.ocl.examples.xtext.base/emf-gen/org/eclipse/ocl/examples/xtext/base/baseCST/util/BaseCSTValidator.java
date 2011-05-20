@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTValidator.java,v 1.8 2011/05/05 17:53:02 ewillink Exp $
+ * $Id: BaseCSTValidator.java,v 1.9 2011/05/12 08:46:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.util;
 
@@ -48,7 +48,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
@@ -196,8 +195,6 @@ public class BaseCSTValidator extends EObjectValidator
 				return validateNamedElementCS((NamedElementCS)value, diagnostics, context);
 			case BaseCSTPackage.NAMESPACE_CS:
 				return validateNamespaceCS((NamespaceCS)value, diagnostics, context);
-			case BaseCSTPackage.NAMESPACE_REF_CS:
-				return validateNamespaceRefCS((NamespaceRefCS)value, diagnostics, context);
 			case BaseCSTPackage.OPERATION_CS:
 				return validateOperationCS((OperationCS)value, diagnostics, context);
 			case BaseCSTPackage.PACKAGE_CS:
@@ -473,16 +470,6 @@ public class BaseCSTValidator extends EObjectValidator
 	public boolean validateNamespaceCS(NamespaceCS namespaceCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(namespaceCS, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateNamespaceRefCS(NamespaceRefCS namespaceRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(namespaceRefCS, diagnostics, context);
 	}
 
 	/**

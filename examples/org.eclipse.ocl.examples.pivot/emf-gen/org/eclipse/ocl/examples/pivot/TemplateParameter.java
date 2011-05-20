@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateParameter.java,v 1.2 2011/01/24 20:42:33 ewillink Exp $
+ * $Id: TemplateParameter.java,v 1.3 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -93,7 +93,7 @@ public interface TemplateParameter
 	 * @see #setOwnedParameteredElement(ParameterableElement)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateParameter_OwnedParameteredElement()
 	 * @see org.eclipse.ocl.examples.pivot.ParameterableElement#getOwningTemplateParameter
-	 * @model opposite="owningTemplateParameter" containment="true" resolveProxies="true" ordered="false"
+	 * @model opposite="owningTemplateParameter" containment="true" ordered="false"
 	 * @generated
 	 */
 	ParameterableElement getOwnedParameteredElement();
@@ -160,7 +160,7 @@ public interface TemplateParameter
 	 * @return the value of the '<em>Owned Default</em>' containment reference.
 	 * @see #setOwnedDefault(ParameterableElement)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateParameter_OwnedDefault()
-	 * @model containment="true" resolveProxies="true" ordered="false"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	ParameterableElement getOwnedDefault();

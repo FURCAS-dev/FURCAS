@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateableElement.java,v 1.3 2011/05/02 15:38:53 ewillink Exp $
+ * $Id: TemplateableElement.java,v 1.4 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -55,7 +55,7 @@ public interface TemplateableElement
 	 * @return the value of the '<em>Template Binding</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateableElement_TemplateBinding()
 	 * @see org.eclipse.ocl.examples.pivot.TemplateBinding#getBoundElement
-	 * @model opposite="boundElement" containment="true" resolveProxies="true" ordered="false"
+	 * @model opposite="boundElement" containment="true" ordered="false"
 	 * @generated
 	 */
 	EList<TemplateBinding> getTemplateBindings();
@@ -82,7 +82,7 @@ public interface TemplateableElement
 	 * @see #setOwnedTemplateSignature(TemplateSignature)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTemplateableElement_OwnedTemplateSignature()
 	 * @see org.eclipse.ocl.examples.pivot.TemplateSignature#getTemplate
-	 * @model opposite="template" containment="true" resolveProxies="true" ordered="false"
+	 * @model opposite="template" containment="true" ordered="false"
 	 * @generated
 	 */
 	TemplateSignature getOwnedTemplateSignature();

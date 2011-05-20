@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractExtendingCompleteOCLCSVisitor.java,v 1.9 2011/05/05 17:53:08 ewillink Exp $
+ * $Id: AbstractExtendingCompleteOCLCSVisitor.java,v 1.10 2011/05/20 15:26:49 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.completeocl.util;
 
@@ -79,6 +79,10 @@ public abstract class AbstractExtendingCompleteOCLCSVisitor<R, C>
 
 	public R visitFeatureContextDeclCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.FeatureContextDeclCS object) {
 		return visitContextDeclCS(object);
+	}
+
+	public R visitIncludeCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.IncludeCS object) {
+		return visitNamedElementCS(object);
 	}
 
 	public R visitInitCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InitCS object) {

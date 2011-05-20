@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IfExp.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
+ * $Id: IfExp.java,v 1.4 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -50,7 +50,7 @@ public interface IfExp
 	 * @return the value of the '<em>Condition</em>' containment reference.
 	 * @see #setCondition(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getIfExp_Condition()
-	 * @model containment="true" resolveProxies="true" required="true" ordered="false"
+	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
 	OclExpression getCondition();
@@ -87,7 +87,7 @@ public interface IfExp
 	 * @return the value of the '<em>Then Expression</em>' containment reference.
 	 * @see #setThenExpression(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getIfExp_ThenExpression()
-	 * @model containment="true" resolveProxies="true" required="true" ordered="false"
+	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
 	OclExpression getThenExpression();
@@ -124,7 +124,7 @@ public interface IfExp
 	 * @return the value of the '<em>Else Expression</em>' containment reference.
 	 * @see #setElseExpression(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getIfExp_ElseExpression()
-	 * @model containment="true" resolveProxies="true" required="true" ordered="false"
+	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
 	OclExpression getElseExpression();

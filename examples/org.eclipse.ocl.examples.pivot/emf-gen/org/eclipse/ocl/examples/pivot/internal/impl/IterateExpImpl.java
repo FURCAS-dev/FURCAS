@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterateExpImpl.java,v 1.3 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: IterateExpImpl.java,v 1.4 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -21,7 +21,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -88,33 +87,6 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 	 * @generated
 	 */
 	public Variable getResult()
-	{
-		if (result != null && ((EObject)result).eIsProxy())
-		{
-			InternalEObject oldResult = (InternalEObject)result;
-			result = (Variable)eResolveProxy(oldResult);
-			if (result != oldResult)
-			{
-				InternalEObject newResult = (InternalEObject)result;
-				NotificationChain msgs = oldResult.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.ITERATE_EXP__RESULT, null, null);
-				if (newResult.eInternalContainer() == null)
-				{
-					msgs = newResult.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.ITERATE_EXP__RESULT, null, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.ITERATE_EXP__RESULT, oldResult, result));
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Variable basicGetResult()
 	{
 		return result;
 	}
@@ -223,21 +195,18 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 				if (resolve) return getType();
 				return basicGetType();
 			case PivotPackage.ITERATE_EXP__SOURCE:
-				if (resolve) return getSource();
-				return basicGetSource();
+				return getSource();
 			case PivotPackage.ITERATE_EXP__IMPLICIT:
 				return isImplicit();
 			case PivotPackage.ITERATE_EXP__BODY:
-				if (resolve) return getBody();
-				return basicGetBody();
+				return getBody();
 			case PivotPackage.ITERATE_EXP__ITERATOR:
 				return getIterators();
 			case PivotPackage.ITERATE_EXP__REFERRED_ITERATION:
 				if (resolve) return getReferredIteration();
 				return basicGetReferredIteration();
 			case PivotPackage.ITERATE_EXP__RESULT:
-				if (resolve) return getResult();
-				return basicGetResult();
+				return getResult();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeManager.java,v 1.21 2011/05/05 17:53:32 ewillink Exp $
+ * $Id: TypeManager.java,v 1.22 2011/05/20 15:27:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -186,6 +186,40 @@ public class TypeManager extends TypeCaches implements Adapter
 		}
 	}
 	
+	public static interface Factory	// FIXME Support this via an extension point
+	{
+		/**
+		 * Return true if this factory can handle creatio of a Pivot resource from the
+		 * available resource.
+		 */
+		boolean canHandle(Resource resource);
+		
+		/**
+		 * Configure the TypeManager's external ResourceSet. Implementations may install
+		 * any required extension or content to factory mappinmgs in the resource factory registry.
+		 * @param resourceSet
+		 */
+		void configure(ResourceSet resourceSet);
+		
+		/**
+		 * Return the root element in the Pivot resource resulting from import of the available
+		 * resource. 
+		 * @param uriFragment 
+		 */
+		Element importFromResource(TypeManager typeManager, Resource resource, String uriFragment);
+	}
+	
+	private static Set<Factory> factoryMap = new HashSet<Factory>();
+	
+	public static void addFactory(Factory factory) {
+		factoryMap.add(factory);
+	}
+	
+	static {
+		Ecore2Pivot.FACTORY.getClass();
+		UML2Ecore2Pivot.FACTORY.getClass();
+	}
+	
 	private static final Logger logger = Logger.getLogger(TypeManager.class);
 
 	// public static final String OMG_OCL_LANG1 = "omg.ocl.lang";
@@ -263,9 +297,7 @@ public class TypeManager extends TypeCaches implements Adapter
 
 	protected final ResourceSet pivotResourceSet;
 	protected Resource pivotLibraryResource = null;
-
-//	private CompleteEnvironmentManager completeEnvironmentManager = null; //new CompleteEnvironmentManager(this); // FIXME Use a lightweight when no Complete required
-
+	protected Set<Library> pivotLibraries = new HashSet<Library>();
 
 	protected ResourceSetImpl externalResourceSet = null;
 
@@ -796,15 +828,16 @@ public class TypeManager extends TypeCaches implements Adapter
 		return pivotResourceSet.createResource(uri);
 	}
 
-	public org.eclipse.ocl.examples.pivot.Package createPackage(String string) {
-		return createPackage(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, string);
+	public org.eclipse.ocl.examples.pivot.Package createPackage(String string, String nsURI) {
+		return createPackage(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, string, nsURI);
 	}
 
 	public <T extends org.eclipse.ocl.examples.pivot.Package> T createPackage(Class<T> pivotClass,
-			EClass pivotEClass, String name) {
+			EClass pivotEClass, String name, String nsURI) {
 		@SuppressWarnings("unchecked")
 		T pivotPackage = (T) PivotFactory.eINSTANCE.create(pivotEClass);
 		pivotPackage.setName(name);
+		pivotPackage.setNsURI(nsURI);
 		installPackageMoniker(pivotPackage, true);
 //		installPackage(pivotPackage);
 		return pivotPackage;
@@ -1009,6 +1042,10 @@ public class TypeManager extends TypeCaches implements Adapter
 	public ResourceSet getExternalResourceSet() {
 		if (externalResourceSet == null) {
 			externalResourceSet = new ResourceSetImpl();
+			TypeManagerResourceSetAdapter.getAdapter(externalResourceSet, this);
+			for (Factory factory : factoryMap) {
+				factory.configure(externalResourceSet);
+			}
 		}
 		return externalResourceSet;
 	}
@@ -1119,6 +1156,7 @@ public class TypeManager extends TypeCaches implements Adapter
 		return lambdaType;
 	}
 	
+	public Set<Library> getLibraries() { return pivotLibraries; }
 	public Resource getLibraryResource() { return pivotLibraryResource; }
 
 	public Type getLibraryType(String string, List<? extends ParameterableElement> templateArguments) {
@@ -1719,9 +1757,6 @@ public class TypeManager extends TypeCaches implements Adapter
 			return null;
 		}
 		Resource resource = contribution.getResource();
-//		if (resource == null) {
-//			return null;
-//		}
 		loadLibrary(resource);
 		return resource;
 	}
@@ -1734,6 +1769,7 @@ public class TypeManager extends TypeCaches implements Adapter
 		}
 		for (org.eclipse.ocl.examples.pivot.Package rootPackage : computePivotRootPackages()) {
 			if (rootPackage instanceof Library) {
+				pivotLibraries.add((Library) rootPackage);
 				loadLibraryPackage(rootPackage);
 			}
 		}
@@ -1771,7 +1807,17 @@ public class TypeManager extends TypeCaches implements Adapter
 				}
 				else {
 					ResourceSet resourceSet = getExternalResourceSet();
-					resource = resourceSet.getResource(resourceURI, true);
+					try {
+						resource = resourceSet.getResource(resourceURI, true);
+					}
+					catch (RuntimeException e) {
+						resource = resourceSet.getResource(resourceURI, false);
+						if (resource != null) {
+							resourceSet.getResources().remove(resource);
+							resource = null;
+						}
+						throw e;
+					}
 //					if (resource != null) {
 //						if (externalResources == null) {
 //							externalResources = new HashMap<URI, Resource>();
@@ -1800,22 +1846,13 @@ public class TypeManager extends TypeCaches implements Adapter
 			}
 		}
 		if (resource != null) {
-			String fragment = uri.fragment();
-			if (fragment == null) {
-				if (UML2Ecore2Pivot.isUML(resource)) {	// FIXME polymorphize this with an extension point
-					return UML2Ecore2Pivot.importFromUML(this, alias, resource);
+			for (Factory factory : factoryMap) {
+				if (factory.canHandle(resource)) {
+					return factory.importFromResource(this, resource, uri.fragment());
 				}
-				else {
-					return Ecore2Pivot.importFromEcore(this, alias, resource);
-				}
-			} else {
-				EObject eObject = resource.getEObject(fragment);
-				if (eObject instanceof Element) {
-					return (Element) eObject;
-				}
-				// return null;
-				return Ecore2Pivot.importFromEcore(this, alias, eObject);
 			}
+			throw new IllegalArgumentException("Cannot ccreate pivot from '" + uri + "'");
+//			logger.warn("Cannot convert to pivot for package with URI '" + uri + "'");
 		}
 		logger.warn("Cannot load package with URI '" + uri + "'");
 		return null;

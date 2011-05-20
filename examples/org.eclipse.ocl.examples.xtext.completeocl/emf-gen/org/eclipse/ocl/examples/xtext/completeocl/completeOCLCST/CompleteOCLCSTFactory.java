@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTFactory.java,v 1.5 2011/03/01 08:47:03 ewillink Exp $
+ * $Id: CompleteOCLCSTFactory.java,v 1.6 2011/05/20 15:26:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
@@ -70,6 +70,15 @@ public interface CompleteOCLCSTFactory extends EFactory {
 	 * @generated
 	 */
 	DerCS createDerCS();
+
+	/**
+	 * Returns a new object of class '<em>Include CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Include CS</em>'.
+	 * @generated
+	 */
+	IncludeCS createIncludeCS();
 
 	/**
 	 * Returns a new object of class '<em>Classifier Context Decl CS</em>'.
