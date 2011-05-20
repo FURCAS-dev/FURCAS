@@ -1,0 +1,10 @@
+import 'Bug9.ecore'
+
+package pivot
+
+/* The operation asProperty results in a property that has the same name, type, etc. as the parameter. */
+context Parameter::asProperty(): Property
+post: result.upper = 1
+post: result.lower = 1
+
+endpackage
