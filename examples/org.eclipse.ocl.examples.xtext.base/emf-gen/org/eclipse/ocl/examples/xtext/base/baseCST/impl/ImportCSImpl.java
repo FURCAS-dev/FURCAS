@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ImportCSImpl.java,v 1.2 2011/01/24 20:59:32 ewillink Exp $
+ * $Id: ImportCSImpl.java,v 1.3 2011/05/20 15:27:24 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -51,7 +51,6 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	 * @ordered
 	 */
 	protected static final String URI_EDEFAULT = null;
-
 	/**
 	 * The cached value of the '{@link #getUri() <em>Uri</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -61,7 +60,6 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	 * @ordered
 	 */
 	protected String uri = URI_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getNamespace() <em>Namespace</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -96,7 +94,8 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getUri() {
+	public String getUri()
+	{
 		return uri;
 	}
 
@@ -105,7 +104,8 @@ public class ImportCSImpl extends NamedElementCSImpl implements ImportCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUri(String newUri) {
+	public void setUri(String newUri)
+	{
 		String oldUri = uri;
 		uri = newUri;
 		if (eNotificationRequired())
