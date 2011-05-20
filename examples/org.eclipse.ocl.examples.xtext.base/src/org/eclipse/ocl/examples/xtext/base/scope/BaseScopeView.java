@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseScopeView.java,v 1.7 2011/04/20 19:02:27 ewillink Exp $
+ * $Id: BaseScopeView.java,v 1.8 2011/05/20 18:26:13 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.EObjectDescription;
@@ -85,7 +86,10 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 	@Override
 	public Iterable<IEObjectDescription> getAllElements() {
 		EnvironmentView environmentView = new EnvironmentView(typeManager, targetReference, null);
-		computeLookupWithParents(environmentView);
+		try {
+			computeLookupWithParents(environmentView);
+		} catch (IllegalLibraryException e) {			
+		}
 		return environmentView.getDescriptions();
 	}
 
