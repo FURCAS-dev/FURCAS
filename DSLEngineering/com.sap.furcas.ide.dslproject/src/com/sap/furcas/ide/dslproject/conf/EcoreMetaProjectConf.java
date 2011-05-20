@@ -22,6 +22,7 @@ import com.sap.furcas.ide.dslproject.Activator;
 import com.sap.furcas.ide.dslproject.Constants;
 import com.sap.furcas.ide.dslproject.builder.BuildHelper;
 import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
+import com.sap.furcas.runtime.common.util.FileResourceHelper;
 import com.sap.furcas.utils.exceptions.EclipseExceptionHelper;
 
 /**
@@ -97,18 +98,18 @@ public final class EcoreMetaProjectConf implements IProjectMetaRefConf {
      */
     @Override
     public ReferenceScopeBean getMetaLookUpForProject() {
-        HashSet<URI> newPRIs = null;
-        newPRIs = new HashSet<URI>();
-        ResourceSet connection = BuildHelper.getResourceSetForProject(referencedProject);
+        HashSet<URI> newURIs = null;
+        newURIs = new HashSet<URI>();
+        ResourceSet resourceSet = BuildHelper.getResourceSetForProject(referencedProject);
         if (!modelPath.matches("")) {
-            connection = new ResourceSetImpl();
+            resourceSet = new ResourceSetImpl();
             String uri = URI.createPlatformResourceURI(modelPath, true).toString();
-            Resource resource = connection.createResource(URI.createPlatformResourceURI(modelPath, true));
+            Resource resource = resourceSet.createResource(URI.createPlatformResourceURI(modelPath, true));
             Map<Object, Object> options = new HashMap<Object, Object>();
             options.put(XMLResource.OPTION_ENCODING, "UTF-8");
             try {
                 resource.load(options);
-                newPRIs.add(resource.getURI());
+                newURIs.add(resource.getURI());
             } catch (IOException e) {
                 Activator.logger.logError("Error loading resource: " + resource.getURI() , e);
             }
@@ -122,13 +123,12 @@ public final class EcoreMetaProjectConf implements IProjectMetaRefConf {
 
         } else {
             URI createURI = URI.createURI(nsURI);
-            newPRIs.add(createURI);
-            connection.getResources().add(connection.getResource(createURI, true));
+            newURIs.add(createURI);
+            resourceSet.getResources().add(resourceSet.getResource(createURI, true));
         }
-        addAllCrossReferences(connection);
-        newPRIs.add(URI.createURI(FURCASPackage.eINSTANCE.eClass().getEPackage().getNsURI()));
-        
-        return new ReferenceScopeBean(connection, newPRIs);
+        addAllCrossReferences(resourceSet);
+        newURIs.add(URI.createURI(FURCASPackage.eINSTANCE.eClass().getEPackage().getNsURI()));
+        return new ReferenceScopeBean(resourceSet, newURIs);
     }
 
     private void addAllCrossReferences(ResourceSet connection) {
