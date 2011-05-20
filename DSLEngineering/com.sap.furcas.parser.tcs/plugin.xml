@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="com.sap.furcas.runtime.referenceresolving.furcas_syntax">
+       <furcas_syntax provider_class="com.sap.furcas.parser.tcs.Activator">
+       	 <metamodel nsURI="http://www.furcas.org" />
+       </furcas_syntax>
+   </extension>
+
+</plugin>

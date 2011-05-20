@@ -93,13 +93,7 @@ public class WizardProjectHelper {
             project.create(projectDescription, new SubProgressMonitor(progressMonitor, 1));
         } catch (CoreException e) {
             throw new CodeGenerationException("Error while creating project: " + project.getName(), e.getCause());
-        }
-        if (!PlatformUI.isWorkbenchRunning()) {
-            // FIXME: Ugly workaround. Want to reuse wizard coding within the test.
-            // running headless in the maven build. Cannot open project to set the options below
-            return project;
-        } 
-        
+        }        
         List<IClasspathEntry> classpathEntries = new ArrayList<IClasspathEntry>();
 
         // Add the required natures depending on wether this is a dsl project or a metamodelproject.

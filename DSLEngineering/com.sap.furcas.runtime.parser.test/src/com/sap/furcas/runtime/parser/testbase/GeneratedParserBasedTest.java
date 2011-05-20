@@ -23,8 +23,14 @@ public abstract class GeneratedParserBasedTest {
     public static TCSSyntaxContainerBean parseSyntax(GeneratedParserTestConfiguration testConfig)
             throws ParserGeneratorInvocationException, ParserInvokationException {
 
+        SystemOutErrorHandler errorHandler = new SystemOutErrorHandler();
         TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
-        TCSSyntaxContainerBean syntaxBean = generator.parseSyntax(testConfig.getSourceConfiguration(), testConfig.getSyntaxDefinitionFile(), new SystemOutErrorHandler());
+        TCSSyntaxContainerBean syntaxBean = generator.parseSyntax(testConfig.getSourceConfiguration(), testConfig.getSyntaxDefinitionFile(), errorHandler);
+        
+        if (errorHandler.hasFailedWithError()) {
+            throw new RuntimeException("Failed to parse the TCS of language " +  testConfig.getLanguageName() + 
+                    ". Errors have been logged to stdout.");
+        }
         
         return syntaxBean;
     }
