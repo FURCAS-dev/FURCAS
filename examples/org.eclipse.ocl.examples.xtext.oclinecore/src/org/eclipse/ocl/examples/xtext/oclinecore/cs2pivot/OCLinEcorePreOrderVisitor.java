@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcorePreOrderVisitor.java,v 1.3 2011/01/24 22:28:40 ewillink Exp $
+ * $Id: OCLinEcorePreOrderVisitor.java,v 1.4 2011/05/20 15:27:12 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.cs2pivot;
 
+import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.Continuation;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLPreOrderVisitor;
@@ -26,5 +27,11 @@ public class OCLinEcorePreOrderVisitor
 {
 	public OCLinEcorePreOrderVisitor(CS2PivotConversion context) {
 		super(new EssentialOCLPreOrderVisitor(context), context);
+	}
+
+	@Override
+	public Continuation<?> visitRootPackageCS(RootPackageCS object) {
+		// TODO Auto-generated method stub
+		return super.visitRootPackageCS(object);
 	}
 }
