@@ -27,6 +27,6 @@ Require-Bundle: org.junit;bundle-version="4.8.1",
  com.sap.furcas.runtime.referenceresolving,
  com.sap.furcas.runtime.parser.incremental,
  com.sap.furcas.runtime.parser.incremental.test,
- com.sap.furcas.example.bibtex.dsl
+ com.sap.furcas.parser.tcs
 Bundle-ClassPath: generationTemp/,
  .
