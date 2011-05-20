@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2PivotDeclarationSwitch.java,v 1.14 2011/05/20 15:27:20 ewillink Exp $
+ * $Id: Ecore2PivotDeclarationSwitch.java,v 1.15 2011/05/20 19:06:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -420,6 +420,9 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 			oclAnnotationDetails = oclAnnotation.getDetails();
 			for (Map.Entry<String,String> entry : oclAnnotationDetails.entrySet()) {
 				String constraintName = entry.getKey();
+				if (constraintName == null) {
+					constraintName = "";
+				}
 				if (!constraintName.endsWith("$message")) {
 					Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
 					constraint.setStereotype(UMLReflection.INVARIANT);
