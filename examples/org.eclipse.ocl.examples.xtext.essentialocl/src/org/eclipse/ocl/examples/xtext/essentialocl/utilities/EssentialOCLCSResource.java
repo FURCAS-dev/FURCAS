@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSResource.java,v 1.12 2011/05/20 15:27:01 ewillink Exp $
+ * $Id: EssentialOCLCSResource.java,v 1.13 2011/05/20 18:26:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -61,6 +61,21 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 	
 	public EssentialOCLCSResource() {
 		super();
+	}
+
+	protected void addLibraryError(List<Diagnostic> errors, IllegalLibraryException e) {
+		String message = e.getMessage();
+		for (Resource.Diagnostic diagnostic : errors) {
+			if (diagnostic instanceof LibraryDiagnostic) {
+				Exception exception = ((LibraryDiagnostic)diagnostic).getException();
+				if (exception instanceof IllegalLibraryException) {
+					if (message.equals(exception.getMessage())) {
+						return;
+					}
+				}
+			}
+		}
+		errors.add(new LibraryDiagnostic(e));
 	}
 
 	public CS2Pivot createCS2Pivot(
@@ -136,82 +151,82 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 				try {
 					typeManager.getOclAnyType();
 				} catch (IllegalLibraryException e) {			
-					errors.add(new LibraryDiagnostic(e));
+					addLibraryError(errors, e);
 				}
 				try {
 					typeManager.getOclVoidType();
 				} catch (IllegalLibraryException e) {			
-					errors.add(new LibraryDiagnostic(e));
+					addLibraryError(errors, e);
 				}
 				try {
 					typeManager.getOclInvalidType();
 				} catch (IllegalLibraryException e) {			
-					errors.add(new LibraryDiagnostic(e));
+					addLibraryError(errors, e);
 				}
 				try {
 					typeManager.getClassifierType();
 				} catch (IllegalLibraryException e) {			
-					errors.add(new LibraryDiagnostic(e));
+					addLibraryError(errors, e);
 				}
 				try {
 					typeManager.getBooleanType();
 				} catch (IllegalLibraryException e) {			
-					errors.add(new LibraryDiagnostic(e));
+					addLibraryError(errors, e);
 				}
 				try {
 					typeManager.getRealType();
 				} catch (IllegalLibraryException e) {			
-					errors.add(new LibraryDiagnostic(e));
+					addLibraryError(errors, e);
 				}
 				try {
 					typeManager.getIntegerType();
 				} catch (IllegalLibraryException e) {			
-					errors.add(new LibraryDiagnostic(e));
+					addLibraryError(errors, e);
 				}
 				try {
 					typeManager.getUnlimitedNaturalType();
 				} catch (IllegalLibraryException e) {			
-					errors.add(new LibraryDiagnostic(e));
+					addLibraryError(errors, e);
 				}
 				try {
 					typeManager.getStringType();
 				} catch (IllegalLibraryException e) {			
-					errors.add(new LibraryDiagnostic(e));
+					addLibraryError(errors, e);
 				}
 				try {
 					typeManager.getCollectionType();
 				} catch (IllegalLibraryException e) {			
-					errors.add(new LibraryDiagnostic(e));
+					addLibraryError(errors, e);
 				}
 				try {
 					typeManager.getBagType();
 				} catch (IllegalLibraryException e) {			
-					errors.add(new LibraryDiagnostic(e));
+					addLibraryError(errors, e);
 				}
 				try {
 					typeManager.getSequenceType();
 				} catch (IllegalLibraryException e) {			
-					errors.add(new LibraryDiagnostic(e));
+					addLibraryError(errors, e);
 				}
 				try {
 					typeManager.getSetType();
 				} catch (IllegalLibraryException e) {			
-					errors.add(new LibraryDiagnostic(e));
+					addLibraryError(errors, e);
 				}
 				try {
 					typeManager.getOrderedSetType();
 				} catch (IllegalLibraryException e) {			
-					errors.add(new LibraryDiagnostic(e));
+					addLibraryError(errors, e);
 				}
 				try {
 					typeManager.getEnumerationType();
 				} catch (IllegalLibraryException e) {			
-					errors.add(new LibraryDiagnostic(e));
+					addLibraryError(errors, e);
 				}
 				try {
 					typeManager.getTupleType();
 				} catch (IllegalLibraryException e) {			
-					errors.add(new LibraryDiagnostic(e));
+					addLibraryError(errors, e);
 				}
 			}
 		}
