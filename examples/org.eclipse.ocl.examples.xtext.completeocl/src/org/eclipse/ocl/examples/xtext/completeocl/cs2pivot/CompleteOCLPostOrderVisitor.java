@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLPostOrderVisitor.java,v 1.7 2011/05/02 09:31:22 ewillink Exp $
+ * $Id: CompleteOCLPostOrderVisitor.java,v 1.8 2011/05/20 15:26:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocu
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextConstraintCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.IncludeCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.ContextConstraintCSImpl;
 import org.eclipse.ocl.examples.xtext.completeocl.util.AbstractExtendingDelegatingCompleteOCLCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLCS2MonikerVisitor;
@@ -189,5 +190,10 @@ public class CompleteOCLPostOrderVisitor
 		else {
 			return null;
 		}
+	}
+
+	@Override
+	public Continuation<?> visitIncludeCS(IncludeCS object) {
+		return null;
 	}
 }

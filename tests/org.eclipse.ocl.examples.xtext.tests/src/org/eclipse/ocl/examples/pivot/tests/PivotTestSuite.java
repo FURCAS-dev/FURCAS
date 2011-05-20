@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: PivotTestSuite.java,v 1.7 2011/05/06 09:05:14 ewillink Exp $
+ * $Id: PivotTestSuite.java,v 1.8 2011/05/20 15:27:16 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -890,7 +890,7 @@ public abstract class PivotTestSuite
 	}
 
 	protected org.eclipse.ocl.examples.pivot.Package createPackage(org.eclipse.ocl.examples.pivot.Package parentPackage, String name) {
-		org.eclipse.ocl.examples.pivot.Package aPackage = typeManager.createPackage(name);
+		org.eclipse.ocl.examples.pivot.Package aPackage = typeManager.createPackage(name, null);
 		if (parentPackage != null) {
 			parentPackage.getNestedPackages().add(aPackage);
 		}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentView.java,v 1.18 2011/05/12 08:48:14 ewillink Exp $
+ * $Id: EnvironmentView.java,v 1.19 2011/05/20 15:27:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -143,7 +143,6 @@ public class EnvironmentView
 			}
 			resolvers.addAll(matchers);
 		}
-		
 		Object value = contentsByName.get(elementName);
 		if (value == element) {
 			;	// Already present

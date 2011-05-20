@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTPackageImpl.java,v 1.16 2011/05/12 08:46:40 ewillink Exp $
+ * $Id: BaseCSTPackageImpl.java,v 1.17 2011/05/20 15:27:24 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -845,7 +845,8 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getImportCS_Uri() {
+	public EAttribute getImportCS_Uri()
+	{
 		return (EAttribute)importCSEClass.getEStructuralFeatures().get(0);
 	}
 

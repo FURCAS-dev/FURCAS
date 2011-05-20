@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibPreOrderVisitor.java,v 1.10 2011/05/15 20:23:35 ewillink Exp $
+ * $Id: OCLstdlibPreOrderVisitor.java,v 1.11 2011/05/20 15:27:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot;
 
@@ -25,14 +25,14 @@ import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Library;
-import org.eclipse.ocl.examples.pivot.Namespace;
+import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasePreOrderVisitor.OperationContinuation;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasicContinuation;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
@@ -42,10 +42,13 @@ import org.eclipse.ocl.examples.xtext.base.cs2pivot.SingleContinuation;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLPreOrderVisitor;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibOperationCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibPropertyCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibRootPackageCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.MetaTypeName;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.PrecedenceCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.util.AbstractExtendingDelegatingOCLstdlibCSVisitor;
+import org.eclipse.xtext.common.types.JvmType;
 
 public class OCLstdlibPreOrderVisitor
 	extends AbstractExtendingDelegatingOCLstdlibCSVisitor<Continuation<?>, CS2PivotConversion, EssentialOCLPreOrderVisitor>
@@ -93,9 +96,9 @@ public class OCLstdlibPreOrderVisitor
 		}
 	}
 	
-	protected static class IterationContinuation extends OperationContinuation<LibIterationCS>
+	protected static class LibIterationContinuation extends OperationContinuation<LibIterationCS>
 	{
-		public IterationContinuation(CS2PivotConversion context, LibIterationCS csElement) {
+		public LibIterationContinuation(CS2PivotConversion context, LibIterationCS csElement) {
 			super(context, csElement);
 		}
 
@@ -109,6 +112,54 @@ public class OCLstdlibPreOrderVisitor
 			refreshParameters(csElement.getOwnedAccumulator(), pivotIteration.getOwnedAccumulators());
 			refreshParameters(csElement.getOwnedParameter(), pivotIteration.getOwnedParameters());
 			context.getOperationsHaveTemplateParametersInterDependency().setSatisfied(this);
+//			pivotElement.setPrecedence(csIteration.getPrecedence());
+//			pivotElement.setIsStatic(csIteration.isStatic());
+			JvmType implementation = csElement.getImplementation();
+			if (implementation != null) {
+				pivotIteration.setImplementationClass(implementation.getIdentifier());
+			}
+			return null;
+		}
+	}
+	
+	protected static class LibOperationContinuation extends OperationContinuation<LibOperationCS>
+	{
+		public LibOperationContinuation(CS2PivotConversion context, LibOperationCS csElement) {
+			super(context, csElement);
+		}
+
+		@Override
+		public BasicContinuation<?> execute() {
+			BasicContinuation<?> continuation = super.execute();
+			Operation pivotElement = PivotUtil.getPivot(Operation.class, csElement);
+			Precedence precedence = csElement.getPrecedence();
+			if ((precedence != null) && precedence.eIsProxy()) {
+				precedence = null;
+			}
+			pivotElement.setPrecedence(precedence);
+			pivotElement.setIsStatic(csElement.isStatic());
+			JvmType implementation = csElement.getImplementation();
+			if (implementation != null) {
+				pivotElement.setImplementationClass(implementation.getIdentifier());
+			}
+			return continuation;
+		}
+	}
+	
+	protected static class LibPropertyContinuation extends SingleContinuation<LibPropertyCS>
+	{
+		public LibPropertyContinuation(CS2PivotConversion context, LibPropertyCS csElement) {
+			super(context, null, null, csElement, context.getTypesHaveSignaturesInterDependency());
+		}
+
+		@Override
+		public BasicContinuation<?> execute() {
+			Property pivotElement = PivotUtil.getPivot(Property.class, csElement);
+			pivotElement.setIsStatic(csElement.isStatic());
+			JvmType implementation = csElement.getImplementation();
+			if (implementation != null) {
+				pivotElement.setImplementationClass(implementation.getIdentifier());
+			}
 			return null;
 		}
 	}
@@ -160,18 +211,24 @@ public class OCLstdlibPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitLibIterationCS(LibIterationCS csIteration) {
-		return new IterationContinuation(context, csIteration);
+		return new LibIterationContinuation(context, csIteration);
+	}
+
+	@Override
+	public Continuation<?> visitLibOperationCS(LibOperationCS csOperation) {
+		return new LibOperationContinuation(context, csOperation);
+	}
+
+	@Override
+	public Continuation<?> visitLibPropertyCS(LibPropertyCS csProperty) {
+		return new LibPropertyContinuation(context, csProperty);
 	}
 
 	@Override
 	public Continuation<?> visitLibRootPackageCS(LibRootPackageCS csLibRootPackage) {
-		for (ImportCS anImport : csLibRootPackage.getOwnedImport()) {
-			@SuppressWarnings("unused")
-			Namespace namespace = anImport.getNamespace();
-		}
 		@SuppressWarnings("unused")
 		Library pivotElement = context.refreshPackage(Library.class, PivotPackage.Literals.LIBRARY, csLibRootPackage);
-		Continuation<?> superContinuation = visitPackageCS(csLibRootPackage);
+		Continuation<?> superContinuation = super.visitLibRootPackageCS(csLibRootPackage);
 		Continuation<?> localContinuation =  new LibraryPrecedenceContinuation(context, csLibRootPackage);
 		return Continuations.combine(superContinuation, localContinuation);
 	}

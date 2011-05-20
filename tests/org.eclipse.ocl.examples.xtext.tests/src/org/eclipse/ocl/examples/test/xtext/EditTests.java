@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EditTests.java,v 1.7 2011/05/12 06:13:30 ewillink Exp $
+ * $Id: EditTests.java,v 1.8 2011/05/20 15:27:16 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -224,8 +224,6 @@ public class EditTests extends XtextTestCase
 		//
 		doRename(xtextResource, pivotResource, "TestClass1", "Testing",
 //			NLS.bind(OCLMessages.Unresolved_ERROR_, "Type", pivotTestClass1.getName()),
-			NLS.bind(OCLMessages.UnresolvedType_ERROR_, pivotTestClass1.getName()),
-			NLS.bind(OCLMessages.UnresolvedType_ERROR_, pivotTestClass1.getName()),
 			NLS.bind(OCLMessages.UnresolvedType_ERROR_, pivotTestClass1.getName()));
 		//
 		//	Changing "Testing" back to "TestClass1" restores the type and the invariant.
@@ -236,7 +234,7 @@ public class EditTests extends XtextTestCase
 		//	Changing "testProperty1" to "tProperty" renames the property and breaks the invariant.
 		//
 		doRename(xtextResource, pivotResource, "testProperty1", "tProperty",
-			NLS.bind(OCLMessages.UnresolvedProperty_ERROR_, "testProperty1", pivotTestClass1 + " value"));
+			NLS.bind(OCLMessages.UnresolvedProperty_ERROR_, "testProperty1", pivotTestClass1 + ""));
 		//
 		//	Changing "tProperty" back to "testProperty" restores the property and the invariant.
 		//
@@ -245,7 +243,7 @@ public class EditTests extends XtextTestCase
 		//	Changing "testOperation" to "tOperation" renames the operation and breaks the invariant.
 		//
 		doRename(xtextResource, pivotResource, "testOperation", "tOperation",
-			NLS.bind(OCLMessages.UnresolvedOperationCall_ERROR_, new Object[]{"testOperation", pivotTestClass1 + " value", "UnlimitedNatural"}));
+			NLS.bind(OCLMessages.UnresolvedOperationCall_ERROR_, new Object[]{"testOperation", pivotTestClass1 + "", "UnlimitedNatural"}));
 		//
 		//	Changing "tOperation" back to "testOperation" restores the operation and the invariant.
 		//
@@ -254,7 +252,7 @@ public class EditTests extends XtextTestCase
 		//	Changing "testOperation(i : Integer)" to "testOperation()" mismatches the operation signature and breaks the invariant.
 		//
 		doRename(xtextResource, pivotResource, "testOperation(i : Integer)", "testOperation()",
-			NLS.bind(OCLMessages.UnresolvedOperationCall_ERROR_, new Object[]{"testOperation", pivotTestClass1 + " value", "UnlimitedNatural"}));
+			NLS.bind(OCLMessages.UnresolvedOperationCall_ERROR_, new Object[]{"testOperation", pivotTestClass1 + "", "UnlimitedNatural"}));
 		//
 		//	Changing "testOperation()" back to "testOperation(i : Integer)" restores the operation and the invariant.
 		//
@@ -263,7 +261,7 @@ public class EditTests extends XtextTestCase
 		//	Changing "testOperation(i : Integer)" to "testOperation(s : String)" mismatches the operation signature and breaks the invariant.
 		//
 		doRename(xtextResource, pivotResource, "testOperation(i : Integer)", "testOperation(s : String)",
-			NLS.bind(OCLMessages.UnresolvedOperationCall_ERROR_, new Object[]{"testOperation", pivotTestClass1 + " value", "UnlimitedNatural"}));
+			NLS.bind(OCLMessages.UnresolvedOperationCall_ERROR_, new Object[]{"testOperation", pivotTestClass1 + "", "UnlimitedNatural"}));
 		//
 		//	Changing "testOperation()" back to "testOperation(i : Integer)" restores the operation and the invariant.
 		//
@@ -304,8 +302,6 @@ public class EditTests extends XtextTestCase
 		//	Changing "TestClass1" to "Testing" renames a type and breaks the referredProperty/referredOperation.
 		//
 		doRename(xtextResource, pivotResource, "TestClass1", "Testing",
-			NLS.bind(OCLMessages.UnresolvedType_ERROR_, pivotTestClass1.getName()),
-			NLS.bind(OCLMessages.UnresolvedType_ERROR_, pivotTestClass1.getName()),
 			NLS.bind(OCLMessages.UnresolvedType_ERROR_, pivotTestClass1.getName()));
 		//
 		//	Changing "Testing" back to "TestClass1" restores the type and the referredProperty/referredOperation.
@@ -316,8 +312,6 @@ public class EditTests extends XtextTestCase
 		//	Changing "TestClass1" to "Testing" renames a type and breaks the referredProperty/referredOperation.
 		//
 		doRename(xtextResource, pivotResource, "TestClass1", "Testing",
-			NLS.bind(OCLMessages.UnresolvedType_ERROR_, pivotTestClass1.getName()),
-			NLS.bind(OCLMessages.UnresolvedType_ERROR_, pivotTestClass1.getName()),
 			NLS.bind(OCLMessages.UnresolvedType_ERROR_, pivotTestClass1.getName()));
 		//
 		//	Changing "Testing" back to "TestClass1" restores the type and the referredProperty/referredOperation.

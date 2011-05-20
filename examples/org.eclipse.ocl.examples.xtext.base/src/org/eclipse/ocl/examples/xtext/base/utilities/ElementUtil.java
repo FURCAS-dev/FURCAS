@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementUtil.java,v 1.8 2011/05/15 20:19:27 ewillink Exp $
+ * $Id: ElementUtil.java,v 1.9 2011/05/20 15:27:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -90,10 +90,19 @@ public class ElementUtil
 	}
 	
 	public static MonikeredElementCS getCsElement(MonikeredElement obj) {
-		String moniker = obj.getMoniker();
 		Resource resource = obj.eResource();
+		if (resource == null) {
+			return null;
+		}
 		ResourceSet resourceSet = resource.getResourceSet();
+		if (resourceSet == null) {
+			return null;
+		}
 		CS2Pivot cs2Pivot = CS2Pivot.findAdapter(resourceSet);
+		if (cs2Pivot == null) {
+			return null;
+		}
+		String moniker = obj.getMoniker();
 		Map<String, MonikeredElementCS> moniker2CSMap = cs2Pivot.computeMoniker2CSMap();
 		MonikeredElementCS csMonikeredElement = moniker2CSMap.get(moniker);
 		return csMonikeredElement;

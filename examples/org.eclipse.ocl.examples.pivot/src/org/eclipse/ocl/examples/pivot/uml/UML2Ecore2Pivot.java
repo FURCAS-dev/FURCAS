@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UML2Ecore2Pivot.java,v 1.3 2011/05/14 06:55:41 ewillink Exp $
+ * $Id: UML2Ecore2Pivot.java,v 1.4 2011/05/20 15:27:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.uml;
 
@@ -33,12 +33,48 @@ import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.UML2EcoreConverter;
 
 public class UML2Ecore2Pivot extends Ecore2Pivot
 {
+	private static final class Factory implements TypeManager.Factory
+	{
+		private Factory() {
+			UMLPackage.eINSTANCE.getClass();
+			TypeManager.addFactory(this);
+		}
+
+		public boolean canHandle(Resource resource) {
+			return isUML(resource);
+		}
+
+		public void configure(ResourceSet resourceSet) {
+			UML2Ecore2Pivot.initialize(resourceSet);
+		}
+
+		public Element importFromResource(TypeManager typeManager, Resource umlResource, String uriFragment) {
+			if (umlResource == null) {
+				return null;
+			}
+			UML2Ecore2Pivot conversion = getAdapter(umlResource, typeManager);
+			org.eclipse.ocl.examples.pivot.Package pivotRoot = conversion.getPivotRoot();
+			if (uriFragment == null) {
+				return pivotRoot;
+			}
+			else {
+				EObject umlObject = umlResource.getEObject(uriFragment);
+				if (umlObject == null) {
+					return null;
+				}
+				return conversion.getPivotOfUML(Element.class, umlObject);
+			}
+		}
+	}
+
+	public static TypeManager.Factory FACTORY = new Factory();
 //	private static final Logger logger = Logger.getLogger(UML2Ecore2Pivot.class);
 
 	// FIXME this is a prehistoric value

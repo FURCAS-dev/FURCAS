@@ -12,28 +12,18 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLinkingService.java,v 1.7 2011/05/12 08:48:50 ewillink Exp $
+ * $Id: EssentialOCLLinkingService.java,v 1.8 2011/05/20 15:27:00 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
-import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.BaseScopeProvider;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.ImportScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2Moniker;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.common.types.TypesPackage;
@@ -59,38 +49,9 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 
 	@Inject
 	private IGlobalScopeProvider globalScopeProvider;
-
-	protected List<EObject> getLinkedImport(ModelElementCS context, INode node) {
-		ScopeAdapter scopeAdapter = ElementUtil.getScopeCSAdapter(context);
-		String text = getText(node);
-		if ((scopeAdapter instanceof ImportScopeAdapter) && (text != null)) {
-			BaseCSResource csResource = (BaseCSResource) context.eResource();
-			URI uri = URI.createURI(text);
-			uri = csResource.resolve(uri);
-			ImportScopeAdapter importScopeAdapter = (ImportScopeAdapter)scopeAdapter;
-			URI oldURI = importScopeAdapter.getURI();
-			Element importedElement;				
-			if (uri.equals(oldURI)) {
-				importedElement = importScopeAdapter.getImportedElement();
-			}
-			else {
-				TypeManagerResourceAdapter adapter = TypeManagerResourceAdapter.getAdapter(csResource, null);
-				TypeManager typeManager = adapter.getTypeManager();
-				importedElement = typeManager.loadResource(uri, ((ImportCS)context).getName());				
-				importScopeAdapter.setImportedElement(uri, importedElement);
-			}
-			if (importedElement != null) {
-				return Collections.<EObject>singletonList(importedElement);
-			}
-		}
-		return Collections.emptyList();
-	}
 	
 	@Override
 	public List<EObject> getLinkedObjects(EObject context, EReference ref, INode node) throws IllegalNodeException {
-		if ((ref == BaseCSTPackage.Literals.IMPORT_CS__NAMESPACE) && (context instanceof ImportCS)) {
-			return getLinkedImport((ModelElementCS)context, node);
-		}
 		try {
 			depth++;
 			String text = getText(node);

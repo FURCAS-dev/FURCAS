@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLPreOrderVisitor.java,v 1.10 2011/05/11 19:30:05 ewillink Exp $
+ * $Id: CompleteOCLPreOrderVisitor.java,v 1.11 2011/05/20 15:26:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
@@ -37,7 +37,9 @@ import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.Continuation;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.SingleContinuation;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.IncludeCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
@@ -265,6 +267,15 @@ public class CompleteOCLPreOrderVisitor
 //		}
 		context.installPivotElement(object, contextClassifier);
 		return null;
+	}
+
+	@Override
+	public Continuation<?> visitCompleteOCLDocumentCS(CompleteOCLDocumentCS object) {
+		Continuation<?> continuation = super.visitCompleteOCLDocumentCS(object);
+		for (IncludeCS csInclude : object.getOwnedInclude()) {
+			csInclude.getNamespace();					// Resolve the proxy to perform the import.
+		}
+		return continuation;
 	}
 
 	@Override

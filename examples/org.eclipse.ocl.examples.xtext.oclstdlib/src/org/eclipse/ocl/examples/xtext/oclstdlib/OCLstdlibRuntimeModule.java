@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibRuntimeModule.java,v 1.5 2011/05/15 20:22:21 ewillink Exp $
+ * $Id: OCLstdlibRuntimeModule.java,v 1.6 2011/05/20 15:27:09 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib;
@@ -20,8 +20,8 @@ package org.eclipse.ocl.examples.xtext.oclstdlib;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseFragmentProvider;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotLinker;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingDiagnosticMessageProvider;
+import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingService;
 import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.OCLstdlibScopeProvider;
-import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibLinkingService;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibValueConverterService;
 import org.eclipse.ocl.examples.xtext.oclstdlib.utilities.OCLstdlibCSResource;
 import org.eclipse.ocl.examples.xtext.oclstdlib.validation.OCLstdlibCompositeEValidator;
@@ -75,7 +75,7 @@ public class OCLstdlibRuntimeModule extends org.eclipse.ocl.examples.xtext.oclst
 	// External reference loading and resolution.
 	@Override
 	public Class<? extends ILinkingService> bindILinkingService() {
-		return OCLstdlibLinkingService.class;
+		return EssentialOCLLinkingService.class;
 	}
 
 	@Override
