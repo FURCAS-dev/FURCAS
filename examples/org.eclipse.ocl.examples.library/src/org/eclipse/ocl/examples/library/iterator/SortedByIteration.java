@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SortedByIteration.java,v 1.8 2011/05/07 16:41:47 ewillink Exp $
+ * $Id: SortedByIteration.java,v 1.9 2011/05/20 15:26:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -206,7 +206,7 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 		type = PivotUtil.getBehavioralType(type);			// FIXME make this a general facility
 		Operation operation = typeManager.resolveOperation(type, PivotConstants.LESS_THAN_OPERATOR, type);
 		if (operation == null) {
-			return new ValidationWarning(OCLMessages.UnresolvedOperation_ERROR_, PivotConstants.LESS_THAN_OPERATOR, String.valueOf(type) + ' ' + OCLMessages.ValueSuffix);
+			return new ValidationWarning(OCLMessages.UnresolvedOperation_ERROR_, PivotConstants.LESS_THAN_OPERATOR, String.valueOf(type));
 		}
 		try {
 			CallableImplementation implementation = typeManager.getImplementation(operation);
