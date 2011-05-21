@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.21 2011/05/20 15:27:01 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.22 2011/05/21 19:03:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -875,7 +875,8 @@ public class EssentialOCLLeft2RightVisitor
 			        for (Parameter parameter : ((Operation)specificationContext).getOwnedParameters()) {
 				        Variable param = PivotFactory.eINSTANCE.createVariable();
 				        param.setName(parameter.getName());
-				        context.setType(param, parameter.getType());
+						Type parameterType = typeManager.getTypeWithMultiplicity(parameter);
+				        context.setType(param, parameterType);
 				        param.setRepresentedParameter(parameter);
 				        pivotElement.getParameterVariables().add(param);
 			        }					
