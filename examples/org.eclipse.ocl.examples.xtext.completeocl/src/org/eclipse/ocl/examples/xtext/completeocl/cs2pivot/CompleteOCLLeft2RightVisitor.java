@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLLeft2RightVisitor.java,v 1.8 2011/05/11 19:30:05 ewillink Exp $
+ * $Id: CompleteOCLLeft2RightVisitor.java,v 1.9 2011/05/21 19:03:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
@@ -32,6 +32,7 @@ import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextConstraintCS;
@@ -48,12 +49,15 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificat
 public class CompleteOCLLeft2RightVisitor
 	extends AbstractExtendingDelegatingCompleteOCLCSVisitor<MonikeredElement, CS2PivotConversion, EssentialOCLLeft2RightVisitor>
 {
+	protected final TypeManager typeManager;
+
 	public CompleteOCLLeft2RightVisitor(CS2PivotConversion context) {
 		super(new EssentialOCLLeft2RightVisitor(context), context);
+		this.typeManager = context.getTypeManager();
 	}
 
 	@Override
-	public MonikeredElement visitContextConstraintCS(ContextConstraintCS csConstraint) {
+	public MonikeredElement visitContextConstraintCS(ContextConstraintCS csConstraint) {		// FIXME Share code with EssentialOCL
 		Constraint pivotConstraint = PivotUtil.getPivot(Constraint.class, csConstraint);
 		ExpSpecificationCS csSpecification = (ExpSpecificationCS) csConstraint.getSpecification();
 		ExpCS csExpression = csSpecification.getOwnedExpression();
@@ -99,9 +103,9 @@ public class CompleteOCLLeft2RightVisitor
 						if ((parameter != null) && !parameter.eIsProxy()) {
 					        Variable param = PivotFactory.eINSTANCE.createVariable();
 					        param.setName(parameter.getName());
-					        Type type = parameter.getType();
-							if ((type != null) && !type.eIsProxy()) {
-								param.setType(type);
+							Type parameterType = typeManager.getTypeWithMultiplicity(parameter);
+					        if ((parameterType != null) && !parameterType.eIsProxy()) {
+								context.setType(param, parameterType);
 							}
 					        param.setRepresentedParameter(parameter);
 					        pivotSpecification.getParameterVariables().add(param);
@@ -115,9 +119,9 @@ public class CompleteOCLLeft2RightVisitor
 					}
 					resultVariable.setName(Environment.RESULT_VARIABLE_NAME);
 					if ((contextOperation != null) && !contextOperation.eIsProxy()) {
-						Type type = contextOperation.getType();
-						if ((type != null) && !type.eIsProxy()) {
-							resultVariable.setType(type);
+						Type returnType = typeManager.getTypeWithMultiplicity(contextOperation);
+						if ((returnType != null) && !returnType.eIsProxy()) {
+							context.setType(resultVariable, (returnType));
 						}
 					}
 					pivotSpecification.setResultVariable(resultVariable);
