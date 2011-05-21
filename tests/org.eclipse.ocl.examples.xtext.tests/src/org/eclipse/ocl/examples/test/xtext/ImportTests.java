@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ImportTests.java,v 1.2 2011/05/20 16:39:13 ewillink Exp $
+ * $Id: ImportTests.java,v 1.3 2011/05/21 14:55:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -164,16 +164,16 @@ public class ImportTests extends XtextTestCase
 		rootLogger.removeAppender(testCaseAppender);
 		String moreCompleteOCL =
 			"package ocl\n" +
-			"context Integer\n" +
+			"context _'Integer'\n" +
 			"def: isPositive() : Boolean = true\n" +
 			"endpackage\n";
 		createFile("more.ocl", moreCompleteOCL);
 		String testFile =
 			"include 'more.ocl'\n" +
 			"package ocl\n" +
-			"context Integer\n" +
+			"context _'Integer'\n" +
 			"def: signum : Integer = 0\n" +
-			"context UnlimitedNatural\n" +
+			"context _'UnlimitedNatural'\n" +
 			"inv CheckIt: isPositive() = signum > 0\n" +
 			"inv unCheckIt: isNegative() = signum < 0\n" +
 			"endpackage\n";

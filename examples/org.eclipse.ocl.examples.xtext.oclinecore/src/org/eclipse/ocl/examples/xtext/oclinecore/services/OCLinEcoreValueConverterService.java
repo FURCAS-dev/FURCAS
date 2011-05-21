@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreValueConverterService.java,v 1.6 2011/05/05 17:53:16 ewillink Exp $
+ * $Id: OCLinEcoreValueConverterService.java,v 1.7 2011/05/21 14:58:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.services;
 
@@ -43,6 +43,19 @@ public class OCLinEcoreValueConverterService extends EssentialOCLValueConverterS
 		@Override
 		public String internalToString(Integer value) {
 			return value.toString();
+		}
+	}
+	
+	protected static class PrimitiveTypeIdentifierConverter extends AbstractNullSafeConverter<String>
+	{
+		@Override
+		public String internalToValue(String string, INode node) {
+			return string;
+		}
+
+		@Override
+		public String internalToString(String value) {
+			return value;
 		}
 	}
 	
@@ -86,6 +99,7 @@ public class OCLinEcoreValueConverterService extends EssentialOCLValueConverterS
 	}
 
 	private static IntegerConverter integerConverter = null;
+	private static PrimitiveTypeIdentifierConverter primitiveTypeIdentifier = null;
 	private static UnquotedStringConverter unquotedStringConverter = null;
 	private static UpperConverter upperConverter = null;
 
@@ -97,6 +111,14 @@ public class OCLinEcoreValueConverterService extends EssentialOCLValueConverterS
 		return integerConverter;
 	}
 
+	@ValueConverter(rule = "PrimitiveTypeIdentifier")
+	public IValueConverter<String> PrimitiveTypeIdentifier() {
+		if (primitiveTypeIdentifier == null) {
+			primitiveTypeIdentifier = new PrimitiveTypeIdentifierConverter();
+		}
+		return primitiveTypeIdentifier;
+	}
+	
 	@ValueConverter(rule = "UNQUOTED_STRING")
 	public IValueConverter<String> UNQUOTED_STRING() {
 		if (unquotedStringConverter == null) {
