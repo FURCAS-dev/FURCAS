@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeCaches.java,v 1.8 2011/05/20 15:27:20 ewillink Exp $
+ * $Id: TypeCaches.java,v 1.9 2011/05/21 14:56:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -1341,13 +1341,13 @@ public abstract class TypeCaches extends PivotStandardLibrary
 	}
 
 	public void installPackageMoniker(org.eclipse.ocl.examples.pivot.Package pivotPackage, boolean installTrackers) {
-		String name = pivotPackage.getName();
+		String name = pivotPackage.getName();		// FIXME rewrite this
 		if (name == null) {
 			name = PivotConstants.NULL_ROOT;
 		}
 		String packageMoniker = name;
 		if (pivotPackage instanceof Library) {
-			pivotPackage.setMoniker(packageMoniker);
+			pivotPackage.setMoniker(PivotConstants.LIBRARY_MONIKER_PREFIX + packageMoniker);	// Keep built-in library distinct from user library-like packages
 			if (installTrackers) {
 				addPackage(pivotPackage);
 			}
