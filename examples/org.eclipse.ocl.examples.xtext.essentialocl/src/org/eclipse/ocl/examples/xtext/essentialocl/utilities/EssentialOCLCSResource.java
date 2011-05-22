@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSResource.java,v 1.13 2011/05/20 18:26:50 ewillink Exp $
+ * $Id: EssentialOCLCSResource.java,v 1.14 2011/05/22 16:42:00 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -145,8 +145,8 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 		if (adapter != null) {
 			TypeManager typeManager = adapter.getTypeManager();
 			if (typeManager != null) {
-				if (typeManager instanceof TypeManager.NoDefaultLibrary) {
-					typeManager.resetLibrary();
+				if (typeManager.getLibraryResource() != org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib.INSTANCE) {
+					typeManager.resetLibrary();		// FIXME is this needed; if so test it
 				}
 				try {
 					typeManager.getOclAnyType();

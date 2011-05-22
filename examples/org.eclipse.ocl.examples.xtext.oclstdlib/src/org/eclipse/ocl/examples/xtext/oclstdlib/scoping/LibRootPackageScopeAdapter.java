@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LibRootPackageScopeAdapter.java,v 1.1 2011/02/15 10:37:09 ewillink Exp $
+ * $Id: LibRootPackageScopeAdapter.java,v 1.2 2011/05/22 16:42:11 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.scoping;
 
@@ -41,24 +41,24 @@ public class LibRootPackageScopeAdapter extends RootPackageCSScopeAdapter
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
-		ScopeView outerScope = super.computeLookup(environmentView, scopeView);
-		if (!environmentView.hasFinalResult()) {
-			if (environmentView.getReference() == OCLstdlibCSTPackage.Literals.LIB_CLASS_CS__META_TYPE_NAME) {
-				if (metaTypeNames == null) {
-					metaTypeNames = new ArrayList<MetaTypeName>();
-					for (EClassifier eClassifier : PivotPackage.eINSTANCE.getEClassifiers()) {
-						if (eClassifier instanceof EClass) {
-							if (PivotPackage.Literals.CLASS.isSuperTypeOf((EClass) eClassifier)) {
-								MetaTypeName metaTypeName = OCLstdlibCSTFactory.eINSTANCE.createMetaTypeName();
-								metaTypeName.setName(eClassifier.getName());
-								metaTypeNames.add(metaTypeName);
-							}
+		if (environmentView.getReference() == OCLstdlibCSTPackage.Literals.LIB_CLASS_CS__META_TYPE_NAME) {
+			if (metaTypeNames == null) {
+				metaTypeNames = new ArrayList<MetaTypeName>();
+				for (EClassifier eClassifier : PivotPackage.eINSTANCE.getEClassifiers()) {
+					if (eClassifier instanceof EClass) {
+						if (PivotPackage.Literals.CLASS.isSuperTypeOf((EClass) eClassifier)) {
+							MetaTypeName metaTypeName = OCLstdlibCSTFactory.eINSTANCE.createMetaTypeName();
+							metaTypeName.setName(eClassifier.getName());
+							metaTypeNames.add(metaTypeName);
 						}
 					}
 				}
-				environmentView.addElements(metaTypeNames);
 			}
+			environmentView.addElements(metaTypeNames);
+			return null;
 		}
-		return outerScope;
+		else {
+			return super.computeLookup(environmentView, scopeView);
+		}
 	}
 }

@@ -30,10 +30,7 @@
           </elements>
           <elements xsi:type="xtext:Keyword" value=";"/>
         </elements>
-        <elements xsi:type="xtext:Alternatives">
-          <elements xsi:type="xtext:Keyword" value="library"/>
-          <elements xsi:type="xtext:Keyword" value="module"/>
-        </elements>
+        <elements xsi:type="xtext:Keyword" value="library"/>
         <elements xsi:type="xtext:Assignment" feature="name" operator="=">
           <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.6"/>
         </elements>
@@ -119,7 +116,6 @@
         <elements xsi:type="xtext:Keyword" value="iteration"/>
         <elements xsi:type="xtext:Keyword" value="left"/>
         <elements xsi:type="xtext:Keyword" value="library"/>
-        <elements xsi:type="xtext:Keyword" value="module"/>
         <elements xsi:type="xtext:Keyword" value="operation"/>
         <elements xsi:type="xtext:Keyword" value="package"/>
         <elements xsi:type="xtext:Keyword" value="post"/>

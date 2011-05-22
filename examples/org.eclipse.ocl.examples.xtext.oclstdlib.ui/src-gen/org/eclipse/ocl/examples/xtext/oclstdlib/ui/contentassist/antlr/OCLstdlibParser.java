@@ -37,7 +37,6 @@ public class OCLstdlibParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getLibraryAccess().getAlternatives_1(), "rule__Library__Alternatives_1");
 					put(grammarAccess.getLibraryAccess().getAlternatives_5(), "rule__Library__Alternatives_5");
 					put(grammarAccess.getUPPERAccess().getAlternatives(), "rule__UPPER__Alternatives");
 					put(grammarAccess.getIdentifierAccess().getAlternatives(), "rule__Identifier__Alternatives");
