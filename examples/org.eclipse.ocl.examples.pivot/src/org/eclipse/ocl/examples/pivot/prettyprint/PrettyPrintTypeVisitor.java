@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrettyPrintTypeVisitor.java,v 1.6 2011/05/13 18:41:43 ewillink Exp $
+ * $Id: PrettyPrintTypeVisitor.java,v 1.7 2011/05/22 21:06:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.prettyprint;
 
@@ -26,7 +26,6 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.LambdaType;
-import org.eclipse.ocl.examples.pivot.MultiplicityElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -40,6 +39,7 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
@@ -110,12 +110,6 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 		safeVisit(element);
 	}
 
-	public void appendMultiplicity(MultiplicityElement object) {
-		int lower = object.getLower().intValue();
-		int upper = object.getUpper().intValue();
-		PivotUtil.appendMultiplicity(s, lower, upper);
-	}
-
 	protected void appendName(NamedElement object) {
 		appendName(object, restrictedNames);
 	}
@@ -144,16 +138,14 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 			Iteration iteration = (Iteration)operation;
 			for (Parameter parameter : iteration.getOwnedIterators()) {
 				s.append(prefix);
-				appendElement(parameter.getType());
-				appendMultiplicity(parameter);
+				appendTypedMultiplicity(parameter);
 				prefix = ",";
 			}
 			if (iteration.getOwnedAccumulators().size() > 0) {
 				prefix = ";";
 				for (Parameter parameter : iteration.getOwnedAccumulators()) {
 					s.append(prefix);
-					appendElement(parameter.getType());
-					appendMultiplicity(parameter);
+					appendTypedMultiplicity(parameter);
 					prefix = ",";
 				}
 			}
@@ -161,8 +153,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 		}
 		for (Parameter parameter : operation.getOwnedParameters()) {
 			append(prefix);
-			appendElement(parameter.getType());
-			appendMultiplicity(parameter);
+			appendTypedMultiplicity(parameter);
 			prefix = ",";
 		}
 		append(")");
@@ -240,6 +231,38 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 		}
 	}
 
+	public void appendTypedMultiplicity(TypedMultiplicityElement object) {
+		int lower = object.getLower().intValue();
+		int upper = object.getUpper().intValue();
+		if (upper != 1) {
+			if (object.isOrdered()) {
+				if (object.isUnique()) {
+					append("OrderedSet<");
+				}
+				else {
+					append("Sequence<");
+				}
+			}
+			else {
+				if (object.isUnique()) {
+					append("Set<");
+				}
+				else {
+					append("Bag<");
+				}
+			}
+			appendElement(object.getType());
+			if ((lower > 0) || (upper >= 0)) {
+				PivotUtil.appendMultiplicity(s, lower, upper);
+			}
+			append(">");
+		}
+		else {
+			appendElement(object.getType());
+			PivotUtil.appendMultiplicity(s, lower, upper);
+		}
+	}
+
 	@Override
 	public String toString() {
 		return s.toString();
@@ -283,14 +306,14 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 			Iteration iteration = (Iteration)operation;
 			for (Parameter parameter : iteration.getOwnedIterators()) {
 				s.append(prefix);
-				appendElement(parameter.getType());
+				appendTypedMultiplicity(parameter);
 				prefix = ",";
 			}
 			if (iteration.getOwnedAccumulators().size() > 0) {
 				prefix = ";";
 				for (Parameter parameter : iteration.getOwnedAccumulators()) {
 					s.append(prefix);
-					appendElement(parameter.getType());
+					appendTypedMultiplicity(parameter);
 					prefix = ",";
 				}
 			}
@@ -298,7 +321,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 		}
 		for (Parameter parameter : operation.getOwnedParameters()) {
 			append(prefix);
-			appendElement(parameter.getType());
+			appendTypedMultiplicity(parameter);
 			prefix = ",";
 		}
 		append(")");
@@ -344,6 +367,13 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 	public Object visitTypedElement(TypedElement object) {
 		appendParent(object.eContainer(), object, "::");
 		appendElement(object.getType());
+		return null;
+	}
+
+	@Override
+	public Object visitTypedMultiplicityElement(TypedMultiplicityElement object) {
+		appendParent(object.eContainer(), object, "::");
+		appendTypedMultiplicity(object);
 		return null;
 	}
 

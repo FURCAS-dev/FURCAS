@@ -1,0 +1,12 @@
+package overloads
+{
+	class Overload
+	{
+		operation add(o : Overload) : Boolean;
+		operation add(bag : Overload[*] { !ordered !unique }) : Boolean;
+		operation add(orderedset : Overload[*] { ordered unique }) : Boolean;
+		operation add(sequence : Overload[*] { ordered !unique }) : Boolean;
+		operation add(set : Overload[*] { !ordered unique }) : Boolean;
+		invariant: self.add(self) = self.add(self->asSet());
+	}
+}
