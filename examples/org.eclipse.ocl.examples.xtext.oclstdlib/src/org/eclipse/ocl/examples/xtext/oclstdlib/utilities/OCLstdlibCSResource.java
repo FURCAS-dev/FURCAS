@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSResource.java,v 1.2 2011/01/24 22:28:26 ewillink Exp $
+ * $Id: OCLstdlibCSResource.java,v 1.3 2011/05/22 16:42:11 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.utilities;
 
@@ -31,10 +31,5 @@ public class OCLstdlibCSResource extends EssentialOCLCSResource
 			Map<? extends Resource, ? extends Resource> cs2pivotResourceMap,
 			TypeManager typeManager) {
 		return new OCLstdlibCS2Pivot(cs2pivotResourceMap, typeManager);
-	}
-
-	@Override
-	public TypeManager createTypeManager() {
-		return new TypeManager.NoDefaultLibrary();
 	}
 }

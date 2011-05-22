@@ -107,6 +107,7 @@ public class OCLstdlibFormatter extends AbstractEssentialOCLFormatter {
 	    }
 	    {
 			LibraryElements a = f.getLibraryAccess();
+			setNoSpaceLineWrap(c, a.getSemicolonKeyword_0_1());
 			setBraces(c, a.getLeftCurlyBracketKeyword_4(), a.getRightCurlyBracketKeyword_6());
 		    c.setIndentation(a.getLeftCurlyBracketKeyword_4(), a.getRightCurlyBracketKeyword_6());
 			setNoSpaceLineWrap(c, a.getSemicolonKeyword_5_1_2());
