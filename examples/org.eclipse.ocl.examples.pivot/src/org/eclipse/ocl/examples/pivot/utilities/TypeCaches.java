@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeCaches.java,v 1.9 2011/05/21 14:56:20 ewillink Exp $
+ * $Id: TypeCaches.java,v 1.10 2011/05/22 16:42:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -512,9 +512,9 @@ public abstract class TypeCaches extends PivotStandardLibrary
 	 * The class used as a container for orphan (specialized) operations
 	 */
 	private org.eclipse.ocl.examples.pivot.Class orphanageClass = null;
-	
-	protected org.eclipse.ocl.examples.pivot.Package pivotMetaModel = null;
 
+	protected org.eclipse.ocl.examples.pivot.Package pivotMetaModel = null;
+	
 	private void addClass(org.eclipse.ocl.examples.pivot.Class pivotClass) {
 		if ((pivotClass instanceof LambdaType) || (pivotClass instanceof TupleType)) {	// FIXME parent not necessarily in place
 			return;
@@ -949,10 +949,16 @@ public abstract class TypeCaches extends PivotStandardLibrary
 	}
 
 	public Iterable<String> getAllPackages() {
+		if (pivotMetaModel == null)  {
+			lazyLoadPivotMetaModel();
+		}
 		return package2packages.keySet();
 	}
 
 	public Iterable<org.eclipse.ocl.examples.pivot.Package> getAllPackages(org.eclipse.ocl.examples.pivot.Package pkg) {
+		if (pivotMetaModel == null)  {
+			lazyLoadPivotMetaModel();
+		}
 		Iterable<org.eclipse.ocl.examples.pivot.Package> iterable = package2packages.get(pkg.getMoniker());
 		assert iterable != null;
 		return iterable;
@@ -1196,24 +1202,6 @@ public abstract class TypeCaches extends PivotStandardLibrary
 	public String getPackageMoniker(String uri) {
 		return uri2package.get(uri);
 	}
-	
-	public org.eclipse.ocl.examples.pivot.Package getPivotMetaModel() {
-		if (pivotMetaModel == null) {
-			OclMetaModel metaModelResource = new OclMetaModel(this);
-			pivotMetaModel = (org.eclipse.ocl.examples.pivot.Package)metaModelResource.getContents().get(0);
-			pivotMetaModel.setName(getOclAnyType().getPackage().getName());		// FIXME JUNO Change name for Juno
-			pivotMetaModel.setMoniker(getOclAnyType().getPackage().getMoniker());
-			addPackage(pivotMetaModel);
-		}
-		return pivotMetaModel;
-	}
-
-	/**
-	 * Return the pivot model class for className with the Pivot Model.
-	 */
-	public Type getPivotType(String className) {
-		return PivotUtil.getNamedElement(getPivotMetaModel().getOwnedTypes(), className);
-	}	
 
 	public org.eclipse.ocl.examples.pivot.Class getPrimaryClass(String moniker) {
 		Iterable<org.eclipse.ocl.examples.pivot.Class> iterable = class2classes.get(moniker);
@@ -1336,10 +1324,6 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		return completeSuperTypes;
 	} */
 
-	public void installPackage(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
-		addPackage(pivotPackage);
-	}
-
 	public void installPackageMoniker(org.eclipse.ocl.examples.pivot.Package pivotPackage, boolean installTrackers) {
 		String name = pivotPackage.getName();		// FIXME rewrite this
 		if (name == null) {
@@ -1427,15 +1411,7 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		thatType.getOwnedAttributes().add(opposite);
 	}
 
-	public void installResource(Resource pivotResource) {
-		for (EObject eObject : pivotResource.getContents()) {
-			if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
-				org.eclipse.ocl.examples.pivot.Package pivotPackage = (org.eclipse.ocl.examples.pivot.Package)eObject;
-				installPackage(pivotPackage);
-//				installPackageContent(pivotPackage);
-			}
-		}
-	}
+	protected abstract void installResource(Resource resource);
 
 	protected boolean isInOrphanage(EObject eObject) {
 		for (EObject eContainer = eObject; eContainer != null; eContainer = eContainer.eContainer()) {
@@ -1444,6 +1420,22 @@ public abstract class TypeCaches extends PivotStandardLibrary
 			}
 		}
 		return false;
+	}
+
+	protected abstract void lazyLoadPivotMetaModel();
+
+	protected void loadPivotMetaModel(Library pivotLibrary) {
+		for (org.eclipse.ocl.examples.pivot.Package libPackage : package2packages.get(pivotLibrary.getMoniker())) {
+			if (PivotUtil.getNamedElement(libPackage.getOwnedTypes(), PivotPackage.Literals.ELEMENT.getName()) != null) {
+				pivotMetaModel = libPackage;	// Custom meta-model
+				return;
+			}
+		}
+		OclMetaModel metaModelResource = new OclMetaModel(this);		// Standard meta-model
+		pivotMetaModel = (org.eclipse.ocl.examples.pivot.Package)metaModelResource.getContents().get(0);
+		pivotMetaModel.setName(pivotLibrary.getName());		// FIXME JUNO Change name for Juno
+		pivotMetaModel.setMoniker(pivotLibrary.getMoniker());
+		addPackage(pivotMetaModel);
 	}
 
 	private void removeClass(org.eclipse.ocl.examples.pivot.Class pivotClass) {
