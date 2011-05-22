@@ -454,7 +454,7 @@ syntax TCS {
         template TCS::Priority
                 :       "priority" value
                         (associativity = #left ?
-                                  "," [[ | "left" ]]
+                                  [[ | "," "left" ]]
                            :
                                   "," "right"
                         )
