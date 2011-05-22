@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoadTests.java,v 1.23 2011/05/20 15:27:16 ewillink Exp $
+ * $Id: LoadTests.java,v 1.24 2011/05/22 17:24:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -297,17 +297,33 @@ public class LoadTests extends XtextTestCase
 //		doLoad_Concrete("Bug7", "ocl");
 //	}
 	
-	public void testLoad_Bug9_ocl() throws IOException, InterruptedException {
-		doLoad_Concrete("Bug9", "ocl");
-	}
+//	public void testLoad_Bug9_ocl() throws IOException, InterruptedException {
+//		doLoad_Concrete("Bug9", "ocl");
+//	}
+	
+//	public void testLoad_TypeConformance_ocl() throws IOException, InterruptedException {
+//		doLoad_Concrete("TypeConformance", "ocl");
+//	}
+	
+//	public void testLoad_MiniTypeWFRs_ocl() throws IOException, InterruptedException {
+//		doLoad_Concrete("MiniTypeWFRs", "ocl");
+//	}
+	
+//	public void testLoad_TypeWFRs_ocl() throws IOException, InterruptedException {
+//		doLoad_Concrete("TypeWFRs", "ocl");
+//	}
+	
+//	public void testLoad_MiniOCLOperations_ocl() throws IOException, InterruptedException {
+//		doLoad_Concrete("MiniOCLOperations", "ocl");
+//	}
 
 //	public void testLoad_Bug11_oclinecore() throws IOException, InterruptedException {
 //		doLoad_Concrete("Bug11", "oclinecore");
 //	}	
 
-	public void testLoad_Bug14_oclstdlib() throws IOException, InterruptedException {
-		doLoad_Concrete("Bug14", "oclstdlib");
-	}	
+//	public void testLoad_Bug14_oclstdlib() throws IOException, InterruptedException {
+//		doLoad_Concrete("Bug14", "oclstdlib");
+//	}	
 	
 	public void testLoad_Bug321171_oclinecore() throws IOException, InterruptedException {
 		doLoad_Concrete("Bug321171", "oclinecore");
