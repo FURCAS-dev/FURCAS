@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<com.sap.furcas.TCS:ConcreteSyntax xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.sap.furcas.TCS="http://www.furcas.org/TCS" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xsi:schemaLocation="http://www.furcas.org/TCS http://www.furcas.org#//TCS" name="TCS" lexer="&#xD;&#xA;%options testLiterals = false;&#xD;&#xA;&#xD;&#xA;NL&#xD;&#xA;        :       (       '\\r' '\\n'&#xD;&#xA;                |       '\\n' '\\r'     //Improbable&#xD;&#xA;                |       '\\r'&#xD;&#xA;                |       '\\n'&#xD;&#xA;                )&#xD;&#xA;        {newline();$channel=HIDDEN;}&#xD;&#xA;        ;&#xD;&#xA;&#xD;&#xA;WS&#xD;&#xA;        :       (       ' '&#xD;&#xA;                |       '\\t'&#xD;&#xA;                ){$channel=HIDDEN;}&#xD;&#xA;        ;&#xD;&#xA;&#xD;&#xA;%protected&#xD;&#xA;DIGIT&#xD;&#xA;        :       '0'..'9'&#xD;&#xA;        ;&#xD;&#xA;&#xD;&#xA;%protected&#xD;&#xA;ALPHA&#xD;&#xA;        :       'a'..'z'&#xD;&#xA;        |       'A'..'Z'&#xD;&#xA;        |       '_'&#xD;&#xA;        //For Unicode compatibility (from 0000 to 00ff)&#xD;&#xA;        |       '\\u00C0' .. '\\u00D6'&#xD;&#xA;        |       '\\u00D8' .. '\\u00F6'&#xD;&#xA;        |       '\\u00F8' .. '\\u00FF'&#xD;&#xA;        ;&#xD;&#xA;        &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;%protected&#xD;&#xA;SNAME&#xD;&#xA;        :       &#xD;&#xA;//      (~ORKEYWORD)=> &#xD;&#xA;        (ALPHA) (ALPHA | DIGIT)* &#xD;&#xA;;&#xD;&#xA;&#xD;&#xA;//QNAME_OR_NAME :&#xD;&#xA;//         ( ORKEYWORD COLON ) => ORKEYWORD { _type = ORKEYWORD; }&#xD;&#xA;//         |    ( SNAME DLCOLON SNAME ) => QNAME { _type = QNAME; }&#xD;&#xA;//         |    (~ORKEYWORD COLON | SNAME COLON ~(COLON) ) => NAME { _type = NAME; }&#xD;&#xA;//         |    ( ~ORKEYWORD | SNAME ~COLON ) => NAME { _type = NAME; }&#xD;&#xA;//         |    ( '\\'' SNAME) => NAME { _type = NAME; }&#xD;&#xA;//;&#xD;&#xA;&#xD;&#xA;//%protected &#xD;&#xA;//ORKEYWORD :&#xD;&#xA;//      'orKeyword'&#xD;&#xA;//;&#xD;&#xA;&#xD;&#xA;//%protected&#xD;&#xA;NAME&#xD;&#xA;        :       (   &#xD;&#xA;                        SNAME&#xD;&#xA;                |       '\\''&#xD;&#xA;                        (       ESC&#xD;&#xA;                        |       '\\n' {newline();}&#xD;&#xA;                        |       ~('\\\\'|'\\''|'\\n') // means any other character&#xD;&#xA;                        )*&#xD;&#xA;                        '\\''&#xD;&#xA;                )&#xD;&#xA;        ;&#xD;&#xA;&#xD;&#xA;//%protected&#xD;&#xA;//QNAME&#xD;&#xA;//        : SNAME DLCOLON SNAME (DLCOLON SNAME )*&#xD;&#xA;//        ;&#xD;&#xA;&#xD;&#xA;INT&#xD;&#xA;        :       (DIGIT)+&#xD;&#xA;        ;&#xD;&#xA;&#xD;&#xA;        FLOAT   :       DIGIT+ '.' DIGIT*       ;&#xD;&#xA;&#xD;&#xA;%protected&#xD;&#xA;ESC&#xD;&#xA;        :       '\\\\'&#xD;&#xA;                (       'n' &#xD;&#xA;                |       'r' &#xD;&#xA;                |       't' &#xD;&#xA;                |       'b' &#xD;&#xA;                |       'f' &#xD;&#xA;                |       '&quot;' &#xD;&#xA;                |       '\\'' &#xD;&#xA;                |       '\\\\' &#xD;&#xA;                |       (&#xD;&#xA;                                ('0'..'3')&#xD;&#xA;                                (&#xD;&#xA;                                :       ('0'..'7')&#xD;&#xA;                                        (&#xD;&#xA;                                        :       '0'..'7'&#xD;&#xA;                                        )?&#xD;&#xA;                                )?&#xD;&#xA;                        |       ('4'..'7')&#xD;&#xA;                                (&#xD;&#xA;                                :       ('0'..'7')&#xD;&#xA;                                )?&#xD;&#xA;                        )&#xD;&#xA;                                {&#xD;&#xA;                                }&#xD;&#xA;                )&#xD;&#xA;        ;&#xD;&#xA;&#xD;&#xA;STRING&#xD;&#xA;        :       '&quot;'&#xD;&#xA;                (       ESC&#xD;&#xA;                |       '\\n' {newline();}&#xD;&#xA;                |       ~('\\\\'|'\\&quot;'|'\\n')  // means any other character&#xD;&#xA;                )*&#xD;&#xA;                '&quot;'&#xD;&#xA;        ;&#xD;&#xA;&#xD;&#xA;        " uuid="_3pDRgIGjEeCb7d5HBRdM8w">
+<com.sap.furcas.TCS:ConcreteSyntax xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.sap.furcas.TCS="http://www.furcas.org/TCS" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xsi:schemaLocation="http://www.furcas.org/TCS http://www.furcas.org#//TCS" name="TCS" lexer="&#xD;&#xA;%options testLiterals = false;&#xD;&#xA;&#xD;&#xA;NL&#xD;&#xA;        :       (       '\\r' '\\n'&#xD;&#xA;                |       '\\n' '\\r'     //Improbable&#xD;&#xA;                |       '\\r'&#xD;&#xA;                |       '\\n'&#xD;&#xA;                )&#xD;&#xA;        {newline();$channel=HIDDEN;}&#xD;&#xA;        ;&#xD;&#xA;&#xD;&#xA;WS&#xD;&#xA;        :       (       ' '&#xD;&#xA;                |       '\\t'&#xD;&#xA;                ){$channel=HIDDEN;}&#xD;&#xA;        ;&#xD;&#xA;&#xD;&#xA;%protected&#xD;&#xA;DIGIT&#xD;&#xA;        :       '0'..'9'&#xD;&#xA;        ;&#xD;&#xA;&#xD;&#xA;%protected&#xD;&#xA;ALPHA&#xD;&#xA;        :       'a'..'z'&#xD;&#xA;        |       'A'..'Z'&#xD;&#xA;        |       '_'&#xD;&#xA;        //For Unicode compatibility (from 0000 to 00ff)&#xD;&#xA;        |       '\\u00C0' .. '\\u00D6'&#xD;&#xA;        |       '\\u00D8' .. '\\u00F6'&#xD;&#xA;        |       '\\u00F8' .. '\\u00FF'&#xD;&#xA;        ;&#xD;&#xA;        &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;%protected&#xD;&#xA;SNAME&#xD;&#xA;        :       &#xD;&#xA;//      (~ORKEYWORD)=> &#xD;&#xA;        (ALPHA) (ALPHA | DIGIT)* &#xD;&#xA;;&#xD;&#xA;&#xD;&#xA;//QNAME_OR_NAME :&#xD;&#xA;//         ( ORKEYWORD COLON ) => ORKEYWORD { _type = ORKEYWORD; }&#xD;&#xA;//         |    ( SNAME DLCOLON SNAME ) => QNAME { _type = QNAME; }&#xD;&#xA;//         |    (~ORKEYWORD COLON | SNAME COLON ~(COLON) ) => NAME { _type = NAME; }&#xD;&#xA;//         |    ( ~ORKEYWORD | SNAME ~COLON ) => NAME { _type = NAME; }&#xD;&#xA;//         |    ( '\\'' SNAME) => NAME { _type = NAME; }&#xD;&#xA;//;&#xD;&#xA;&#xD;&#xA;//%protected &#xD;&#xA;//ORKEYWORD :&#xD;&#xA;//      'orKeyword'&#xD;&#xA;//;&#xD;&#xA;&#xD;&#xA;//%protected&#xD;&#xA;NAME&#xD;&#xA;        :       (   &#xD;&#xA;                        SNAME&#xD;&#xA;                |       '\\''&#xD;&#xA;                        (       ESC&#xD;&#xA;                        |       '\\n' {newline();}&#xD;&#xA;                        |       ~('\\\\'|'\\''|'\\n') // means any other character&#xD;&#xA;                        )*&#xD;&#xA;                        '\\''&#xD;&#xA;                )&#xD;&#xA;        ;&#xD;&#xA;&#xD;&#xA;//%protected&#xD;&#xA;//QNAME&#xD;&#xA;//        : SNAME DLCOLON SNAME (DLCOLON SNAME )*&#xD;&#xA;//        ;&#xD;&#xA;&#xD;&#xA;INT&#xD;&#xA;        :       (DIGIT)+&#xD;&#xA;        ;&#xD;&#xA;&#xD;&#xA;        FLOAT   :       DIGIT+ '.' DIGIT*       ;&#xD;&#xA;&#xD;&#xA;%protected&#xD;&#xA;ESC&#xD;&#xA;        :       '\\\\'&#xD;&#xA;                (       'n' &#xD;&#xA;                |       'r' &#xD;&#xA;                |       't' &#xD;&#xA;                |       'b' &#xD;&#xA;                |       'f' &#xD;&#xA;                |       '&quot;' &#xD;&#xA;                |       '\\'' &#xD;&#xA;                |       '\\\\' &#xD;&#xA;                |       (&#xD;&#xA;                                ('0'..'3')&#xD;&#xA;                                (&#xD;&#xA;                                :       ('0'..'7')&#xD;&#xA;                                        (&#xD;&#xA;                                        :       '0'..'7'&#xD;&#xA;                                        )?&#xD;&#xA;                                )?&#xD;&#xA;                        |       ('4'..'7')&#xD;&#xA;                                (&#xD;&#xA;                                :       ('0'..'7')&#xD;&#xA;                                )?&#xD;&#xA;                        )&#xD;&#xA;                                {&#xD;&#xA;                                }&#xD;&#xA;                )&#xD;&#xA;        ;&#xD;&#xA;&#xD;&#xA;STRING&#xD;&#xA;        :       '&quot;'&#xD;&#xA;                (       ESC&#xD;&#xA;                |       '\\n' {newline();}&#xD;&#xA;                |       ~('\\\\'|'\\&quot;'|'\\n')  // means any other character&#xD;&#xA;                )*&#xD;&#xA;                '&quot;'&#xD;&#xA;        ;&#xD;&#xA;&#xD;&#xA;        " uuid="_EQJkYISjEeCeLs8_T6lcng">
   <templates xsi:type="com.sap.furcas.TCS:PrimitiveTemplate" metaReference="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" templateName="identifier" default="true" tokenName="NAME" value="unescapeString(%token%)"/>
   <templates xsi:type="com.sap.furcas.TCS:PrimitiveTemplate" metaReference="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" templateName="identifierOrKeyword" tokenName="NAME" value="unescapeString(%token%)" orKeyword="true"/>
   <templates xsi:type="com.sap.furcas.TCS:PrimitiveTemplate" metaReference="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" templateName="escapedIdentifierOrKeyword" tokenName="NAME" value="unescapeString(%token%)" serializer="\'%value%\'" orKeyword="true"/>
@@ -80,7 +80,7 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/ConcreteSyntax" isContext="true" isMain="true">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.11" referredLiteral="#//@keywords.61"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.11" referredLiteral="#//@keywords.65"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.11">
         <propertyReference strucfeature="ecore:EAttribute http://www.furcas.org#//TCS/NamedElement/name"/>
       </elements>
@@ -92,7 +92,7 @@
         </condition>
         <thenSequence>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.11" referredLiteral="#//@symbols.6"/>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.11" referredLiteral="#//@keywords.25"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.11" referredLiteral="#//@keywords.13"/>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.11" referredLiteral="#//@symbols.26"/>
           <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.11">
             <propertyReference strucfeature="ecore:EAttribute http://www.furcas.org#//TCS/ConcreteSyntax/k"/>
@@ -113,7 +113,7 @@
               </expressions>
             </condition>
             <thenSequence>
-              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.11" referredLiteral="#//@keywords.28"/>
+              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.11" referredLiteral="#//@keywords.76"/>
               <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.11" referredLiteral="#//@symbols.8"/>
               <elements xsi:type="com.sap.furcas.TCS:Block" parentTemplate="#//@templates.11">
                 <blockSequence>
@@ -133,7 +133,7 @@
               </expressions>
             </condition>
             <thenSequence>
-              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.11" referredLiteral="#//@keywords.38"/>
+              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.11" referredLiteral="#//@keywords.84"/>
               <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.11" referredLiteral="#//@symbols.8"/>
               <elements xsi:type="com.sap.furcas.TCS:Block" parentTemplate="#//@templates.11">
                 <blockSequence>
@@ -158,7 +158,7 @@
               </expressions>
             </condition>
             <thenSequence>
-              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.11" referredLiteral="#//@keywords.39"/>
+              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.11" referredLiteral="#//@keywords.23"/>
               <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.11" referredLiteral="#//@symbols.26"/>
               <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.11">
                 <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" template="#//@templates.3"/>
@@ -209,11 +209,11 @@
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/ContextTemplate" isAbstract="true"/>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/PrimitiveTemplate">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.15" referredLiteral="#//@keywords.69"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.15" referredLiteral="#//@keywords.44"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.15">
         <propertyReference strucfeature="ecore:EAttribute http://www.furcas.org#//TCS/PrimitiveTemplate/templateName"/>
       </elements>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.15" referredLiteral="#//@keywords.53"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.15" referredLiteral="#//@keywords.39"/>
       <elements xsi:type="com.sap.furcas.TCS:FunctionCall" parentTemplate="#//@templates.15" calledFunction="#//@templates.12"/>
       <elements xsi:type="com.sap.furcas.TCS:ConditionalElement" parentTemplate="#//@templates.15">
         <condition xsi:type="com.sap.furcas.TCS:AndExp">
@@ -222,10 +222,10 @@
           </expressions>
         </condition>
         <thenSequence>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.15" referredLiteral="#//@keywords.23"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.15" referredLiteral="#//@keywords.62"/>
         </thenSequence>
       </elements>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.15" referredLiteral="#//@keywords.67"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.15" referredLiteral="#//@keywords.71"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.15">
         <propertyReference strucfeature="ecore:EAttribute http://www.furcas.org#//TCS/PrimitiveTemplate/tokenName"/>
       </elements>
@@ -236,7 +236,7 @@
           </expressions>
         </condition>
         <thenSequence>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.15" referredLiteral="#//@keywords.75"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.15" referredLiteral="#//@keywords.83"/>
         </thenSequence>
       </elements>
       <elements xsi:type="com.sap.furcas.TCS:Block" parentTemplate="#//@templates.15">
@@ -244,7 +244,7 @@
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.15" referredLiteral="#//@symbols.13"/>
           <elements xsi:type="com.sap.furcas.TCS:Block" parentTemplate="#//@templates.15">
             <blockSequence>
-              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.15" referredLiteral="#//@keywords.5"/>
+              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.15" referredLiteral="#//@keywords.63"/>
               <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.15" referredLiteral="#//@symbols.26"/>
               <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.15">
                 <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" template="#//@templates.3"/>
@@ -258,7 +258,7 @@
                 </condition>
                 <thenSequence>
                   <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.15" referredLiteral="#//@symbols.5"/>
-                  <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.15" referredLiteral="#//@keywords.8"/>
+                  <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.15" referredLiteral="#//@keywords.49"/>
                   <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.15" referredLiteral="#//@symbols.26"/>
                   <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.15">
                     <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" template="#//@templates.3"/>
@@ -276,7 +276,7 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/EnumerationTemplate" isContext="true" isAddToContext="true">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.16" referredLiteral="#//@keywords.21"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.16" referredLiteral="#//@keywords.25"/>
       <elements xsi:type="com.sap.furcas.TCS:FunctionCall" parentTemplate="#//@templates.16" calledFunction="#//@templates.12"/>
       <elements xsi:type="com.sap.furcas.TCS:ConditionalElement" parentTemplate="#//@templates.16">
         <condition xsi:type="com.sap.furcas.TCS:AndExp">
@@ -334,7 +334,7 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/ClassTemplate" isContext="true" isAddToContext="true">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@keywords.45"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@keywords.28"/>
       <elements xsi:type="com.sap.furcas.TCS:FunctionCall" parentTemplate="#//@templates.18" calledFunction="#//@templates.12"/>
       <elements xsi:type="com.sap.furcas.TCS:ConditionalElement" parentTemplate="#//@templates.18">
         <condition xsi:type="com.sap.furcas.TCS:AndExp">
@@ -343,7 +343,7 @@
           </expressions>
         </condition>
         <thenSequence>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@keywords.12"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@keywords.78"/>
           <elements xsi:type="com.sap.furcas.TCS:ConditionalElement" parentTemplate="#//@templates.18">
             <condition xsi:type="com.sap.furcas.TCS:AndExp">
               <expressions xsi:type="com.sap.furcas.TCS:IsDefinedExp">
@@ -382,7 +382,7 @@
             </condition>
             <thenSequence>
               <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@symbols.6"/>
-              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@keywords.19"/>
+              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@keywords.1"/>
               <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@symbols.26"/>
               <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.18">
                 <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" template="#//@templates.3"/>
@@ -399,7 +399,7 @@
             </condition>
             <thenSequence>
               <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@symbols.6"/>
-              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@keywords.10"/>
+              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@keywords.53"/>
               <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@symbols.26"/>
               <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.18">
                 <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" template="#//@templates.3"/>
@@ -416,7 +416,7 @@
             </condition>
             <thenSequence>
               <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@symbols.6"/>
-              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@keywords.48"/>
+              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@keywords.57"/>
               <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@symbols.26"/>
               <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.18">
                 <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" template="#//@templates.3"/>
@@ -432,7 +432,7 @@
               </expressions>
             </condition>
             <thenSequence>
-              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@keywords.51"/>
+              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@keywords.27"/>
             </thenSequence>
           </elements>
           <elements xsi:type="com.sap.furcas.TCS:ConditionalElement" parentTemplate="#//@templates.18">
@@ -442,7 +442,7 @@
               </expressions>
             </condition>
             <thenSequence>
-              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@keywords.64"/>
+              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@keywords.72"/>
             </thenSequence>
           </elements>
           <elements xsi:type="com.sap.furcas.TCS:ConditionalElement" parentTemplate="#//@templates.18">
@@ -459,10 +459,10 @@
                   </expressions>
                 </condition>
                 <thenSequence>
-                  <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@keywords.0"/>
+                  <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@keywords.58"/>
                 </thenSequence>
               </elements>
-              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@keywords.36"/>
+              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@keywords.38"/>
             </thenSequence>
           </elements>
           <elements xsi:type="com.sap.furcas.TCS:ConditionalElement" parentTemplate="#//@templates.18">
@@ -472,7 +472,7 @@
               </expressions>
             </condition>
             <thenSequence>
-              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@keywords.83"/>
+              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@keywords.41"/>
               <elements xsi:type="com.sap.furcas.TCS:ConditionalElement" parentTemplate="#//@templates.18">
                 <condition xsi:type="com.sap.furcas.TCS:AndExp">
                   <expressions xsi:type="com.sap.furcas.TCS:IsDefinedExp">
@@ -497,7 +497,7 @@
               </expressions>
             </condition>
             <thenSequence>
-              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@keywords.1"/>
+              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@keywords.79"/>
               <elements xsi:type="com.sap.furcas.TCS:ConditionalElement" parentTemplate="#//@templates.18">
                 <condition xsi:type="com.sap.furcas.TCS:AndExp">
                   <expressions xsi:type="com.sap.furcas.TCS:IsDefinedExp">
@@ -519,7 +519,7 @@
               </expressions>
             </condition>
             <thenSequence>
-              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@keywords.2"/>
+              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@keywords.77"/>
             </thenSequence>
           </elements>
           <elements xsi:type="com.sap.furcas.TCS:ConditionalElement" parentTemplate="#//@templates.18">
@@ -529,7 +529,7 @@
               </expressions>
             </condition>
             <thenSequence>
-              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@keywords.46"/>
+              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.18" referredLiteral="#//@keywords.31"/>
             </thenSequence>
           </elements>
         </elseSequence>
@@ -564,17 +564,17 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/OperatorTemplate" isContext="true" isAddToContext="true">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@keywords.22"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@keywords.43"/>
       <elements xsi:type="com.sap.furcas.TCS:FunctionCall" parentTemplate="#//@templates.19" calledFunction="#//@templates.12"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@symbols.6"/>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@keywords.57"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@keywords.2"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@symbols.26"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.19">
         <propertyArgs xsi:type="com.sap.furcas.TCS:RefersToPArg" propertyName="name"/>
         <propertyReference strucfeature="ecore:EReference http://www.furcas.org#//TCS/OperatorTemplate/operators"/>
       </elements>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@symbols.5"/>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@keywords.3"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@keywords.50"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@symbols.26"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.19">
         <propertyReference strucfeature="ecore:EReference http://www.furcas.org#//TCS/OperatorTemplate/storeLeftSideTo"/>
@@ -587,7 +587,7 @@
         </condition>
         <thenSequence>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@symbols.5"/>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@keywords.33"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@keywords.37"/>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@symbols.26"/>
           <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.19">
             <propertyReference strucfeature="ecore:EReference http://www.furcas.org#//TCS/OperatorTemplate/storeOperatorTo"/>
@@ -602,7 +602,7 @@
         </condition>
         <thenSequence>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@symbols.5"/>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@keywords.37"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@keywords.42"/>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@symbols.26"/>
           <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.19">
             <propertyReference strucfeature="ecore:EReference http://www.furcas.org#//TCS/OperatorTemplate/storeRightSideTo"/>
@@ -617,7 +617,7 @@
         </condition>
         <thenSequence>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@symbols.5"/>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@keywords.19"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@keywords.1"/>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@symbols.26"/>
           <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.19">
             <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" template="#//@templates.3"/>
@@ -633,7 +633,7 @@
         </condition>
         <thenSequence>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@symbols.5"/>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@keywords.10"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@keywords.53"/>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@symbols.26"/>
           <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.19">
             <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" template="#//@templates.3"/>
@@ -649,7 +649,7 @@
         </condition>
         <thenSequence>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@symbols.5"/>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@keywords.48"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@keywords.57"/>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@symbols.26"/>
           <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.19">
             <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" template="#//@templates.3"/>
@@ -665,7 +665,7 @@
           </expressions>
         </condition>
         <thenSequence>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@keywords.12"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@keywords.78"/>
         </thenSequence>
         <elseSequence>
           <elements xsi:type="com.sap.furcas.TCS:ConditionalElement" parentTemplate="#//@templates.19">
@@ -675,7 +675,7 @@
               </expressions>
             </condition>
             <thenSequence>
-              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@keywords.1"/>
+              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.19" referredLiteral="#//@keywords.79"/>
               <elements xsi:type="com.sap.furcas.TCS:ConditionalElement" parentTemplate="#//@templates.19">
                 <condition xsi:type="com.sap.furcas.TCS:AndExp">
                   <expressions xsi:type="com.sap.furcas.TCS:IsDefinedExp">
@@ -722,7 +722,7 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/FunctionTemplate" isContext="true" isAddToContext="true">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.20" referredLiteral="#//@keywords.9"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.20" referredLiteral="#//@keywords.54"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.20">
         <propertyReference strucfeature="ecore:EAttribute http://www.furcas.org#//TCS/FunctionTemplate/functionName"/>
       </elements>
@@ -972,7 +972,7 @@
           </expressions>
         </condition>
         <thenSequence>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.31" referredLiteral="#//@keywords.19"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.31" referredLiteral="#//@keywords.1"/>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.31" referredLiteral="#//@symbols.6"/>
           <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.31">
             <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" template="#//@templates.3"/>
@@ -1071,7 +1071,7 @@
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.37" referredLiteral="#//@symbols.26"/>
         </elseSequence>
       </elements>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.37" referredLiteral="#//@keywords.34"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.37" referredLiteral="#//@keywords.7"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.37" referredLiteral="#//@symbols.6"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.37">
         <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" template="#//@templates.3"/>
@@ -1098,7 +1098,7 @@
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.38" referredLiteral="#//@symbols.26"/>
         </elseSequence>
       </elements>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.38" referredLiteral="#//@keywords.52"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.38" referredLiteral="#//@keywords.18"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.38" referredLiteral="#//@symbols.6"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.38">
         <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" template="#//@templates.3"/>
@@ -1112,7 +1112,7 @@
         </condition>
         <thenSequence>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.38" referredLiteral="#//@symbols.5"/>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.38" referredLiteral="#//@keywords.44"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.38" referredLiteral="#//@keywords.11"/>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.38" referredLiteral="#//@symbols.26"/>
           <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.38">
             <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" template="#//@templates.1"/>
@@ -1154,7 +1154,7 @@
           </expressions>
         </condition>
         <thenSequence>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.39" referredLiteral="#//@keywords.32"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.39" referredLiteral="#//@keywords.16"/>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.39" referredLiteral="#//@symbols.26"/>
           <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.39">
             <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" template="#//@templates.3"/>
@@ -1170,7 +1170,7 @@
           </expressions>
         </condition>
         <thenSequence>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.39" referredLiteral="#//@keywords.44"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.39" referredLiteral="#//@keywords.11"/>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.39" referredLiteral="#//@symbols.26"/>
           <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.39">
             <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" template="#//@templates.1"/>
@@ -1179,7 +1179,7 @@
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.39" referredLiteral="#//@symbols.5"/>
         </thenSequence>
       </elements>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.39" referredLiteral="#//@keywords.78"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.39" referredLiteral="#//@keywords.0"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.39" referredLiteral="#//@symbols.26"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.39">
         <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" template="#//@templates.1"/>
@@ -1192,7 +1192,7 @@
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/PropertyArg" isAbstract="true"/>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/RefersToPArg">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.41" referredLiteral="#//@keywords.20"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.41" referredLiteral="#//@keywords.51"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.41" referredLiteral="#//@symbols.26"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.41">
         <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" template="#//@templates.1"/>
@@ -1202,7 +1202,7 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/LookInPArg">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.42" referredLiteral="#//@keywords.34"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.42" referredLiteral="#//@keywords.7"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.42" referredLiteral="#//@symbols.26"/>
       <elements xsi:type="com.sap.furcas.TCS:ConditionalElement" parentTemplate="#//@templates.42">
         <condition xsi:type="com.sap.furcas.TCS:AndExp">
@@ -1213,7 +1213,7 @@
         </condition>
         <thenSequence>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.42" referredLiteral="#//@symbols.16"/>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.42" referredLiteral="#//@keywords.79"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.42" referredLiteral="#//@keywords.20"/>
         </thenSequence>
         <elseSequence>
           <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.42">
@@ -1231,7 +1231,7 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/CreateInPArg">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.43" referredLiteral="#//@keywords.27"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.43" referredLiteral="#//@keywords.55"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.43" referredLiteral="#//@symbols.26"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.43">
         <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" template="#//@templates.1"/>
@@ -1246,7 +1246,7 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/AsPArg">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.44" referredLiteral="#//@keywords.78"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.44" referredLiteral="#//@keywords.0"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.44" referredLiteral="#//@symbols.26"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.44">
         <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" template="#//@templates.1"/>
@@ -1258,7 +1258,7 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/SeparatorPArg">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.45" referredLiteral="#//@keywords.72"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.45" referredLiteral="#//@keywords.14"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.45" referredLiteral="#//@symbols.26"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.45">
         <propertyReference strucfeature="ecore:EReference http://www.furcas.org#//TCS/SeparatorPArg/separatorSequence"/>
@@ -1267,7 +1267,7 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/DisambiguatePArg">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.46" referredLiteral="#//@keywords.19"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.46" referredLiteral="#//@keywords.1"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.46" referredLiteral="#//@symbols.26"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.46">
         <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" template="#//@templates.3"/>
@@ -1277,7 +1277,7 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/AutoCreatePArg">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.47" referredLiteral="#//@keywords.56"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.47" referredLiteral="#//@keywords.64"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.47" referredLiteral="#//@symbols.26"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.47">
         <propertyReference strucfeature="ecore:EAttribute http://www.furcas.org#//TCS/AutoCreatePArg/value"/>
@@ -1287,20 +1287,20 @@
   <templates xsi:type="com.sap.furcas.TCS:EnumerationTemplate" metaReference="ecore:EEnum http://www.furcas.org#//TCS/AutoCreateKind">
     <mappings>
       <literal name="always"/>
-      <element xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.48" referredLiteral="#//@keywords.26"/>
+      <element xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.48" referredLiteral="#//@keywords.61"/>
     </mappings>
     <mappings>
       <literal name="ifmissing"/>
-      <element xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.48" referredLiteral="#//@keywords.24"/>
+      <element xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.48" referredLiteral="#//@keywords.32"/>
     </mappings>
     <mappings>
       <literal name="never"/>
-      <element xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.48" referredLiteral="#//@keywords.66"/>
+      <element xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.48" referredLiteral="#//@keywords.35"/>
     </mappings>
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/ImportContextPArg">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.49" referredLiteral="#//@keywords.18"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.49" referredLiteral="#//@keywords.26"/>
     </templateSequence>
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/PartialPArg">
@@ -1310,7 +1310,7 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/ForcedLowerPArg">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.51" referredLiteral="#//@keywords.14"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.51" referredLiteral="#//@keywords.70"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.51" referredLiteral="#//@symbols.26"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.51">
         <propertyReference strucfeature="ecore:EAttribute http://www.furcas.org#//TCS/ForcedLowerPArg/value"/>
@@ -1319,7 +1319,7 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/ForcedUpperPArg">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.52" referredLiteral="#//@keywords.73"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.52" referredLiteral="#//@keywords.5"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.52" referredLiteral="#//@symbols.26"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.52">
         <propertyReference strucfeature="ecore:EAttribute http://www.furcas.org#//TCS/ForcedUpperPArg/value"/>
@@ -1328,7 +1328,7 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/CreateAsPArg">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.53" referredLiteral="#//@keywords.80"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.53" referredLiteral="#//@keywords.67"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.53" referredLiteral="#//@symbols.26"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.53">
         <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" template="#//@templates.1"/>
@@ -1343,7 +1343,7 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/LookupScopePArg">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.54" referredLiteral="#//@keywords.62"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.54" referredLiteral="#//@keywords.82"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.54" referredLiteral="#//@symbols.26"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.54">
         <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" template="#//@templates.3"/>
@@ -1353,7 +1353,7 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/ReferenceByPArg">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.55" referredLiteral="#//@keywords.68"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.55" referredLiteral="#//@keywords.22"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.55" referredLiteral="#//@symbols.26"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.55">
         <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" template="#//@templates.3"/>
@@ -1363,7 +1363,7 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/PrefixPArg">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.56" referredLiteral="#//@keywords.42"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.56" referredLiteral="#//@keywords.12"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.56" referredLiteral="#//@symbols.26"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.56">
         <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" template="#//@templates.3"/>
@@ -1373,7 +1373,7 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/PostfixPArg">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.57" referredLiteral="#//@keywords.4"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.57" referredLiteral="#//@keywords.3"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.57" referredLiteral="#//@symbols.26"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.57">
         <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" template="#//@templates.3"/>
@@ -1383,7 +1383,7 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/ModePArg">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.58" referredLiteral="#//@keywords.44"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.58" referredLiteral="#//@keywords.11"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.58" referredLiteral="#//@symbols.26"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.58">
         <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" template="#//@templates.1"/>
@@ -1394,7 +1394,7 @@
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/BlockArg" isAbstract="true"/>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/NbNLBArg">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.60" referredLiteral="#//@keywords.84"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.60" referredLiteral="#//@keywords.9"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.60" referredLiteral="#//@symbols.26"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.60">
         <propertyReference strucfeature="ecore:EAttribute http://www.furcas.org#//TCS/NbNLBArg/value"/>
@@ -1403,7 +1403,7 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/IndentIncrBArg">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.61" referredLiteral="#//@keywords.35"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.61" referredLiteral="#//@keywords.60"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.61" referredLiteral="#//@symbols.26"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.61">
         <propertyReference strucfeature="ecore:EAttribute http://www.furcas.org#//TCS/IndentIncrBArg/value"/>
@@ -1412,7 +1412,7 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/StartNLBArg">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.62" referredLiteral="#//@keywords.82"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.62" referredLiteral="#//@keywords.33"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.62" referredLiteral="#//@symbols.26"/>
       <elements xsi:type="com.sap.furcas.TCS:ConditionalElement" parentTemplate="#//@templates.62">
         <condition xsi:type="com.sap.furcas.TCS:AndExp">
@@ -1421,17 +1421,17 @@
           </expressions>
         </condition>
         <thenSequence>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.62" referredLiteral="#//@keywords.76"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.62" referredLiteral="#//@keywords.29"/>
         </thenSequence>
         <elseSequence>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.62" referredLiteral="#//@keywords.60"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.62" referredLiteral="#//@keywords.75"/>
         </elseSequence>
       </elements>
     </templateSequence>
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/StartNbNLBArg">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.63" referredLiteral="#//@keywords.11"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.63" referredLiteral="#//@keywords.21"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.63" referredLiteral="#//@symbols.26"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.63">
         <propertyReference strucfeature="ecore:EAttribute http://www.furcas.org#//TCS/StartNbNLBArg/value"/>
@@ -1440,7 +1440,7 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/EndNLBArg">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.64" referredLiteral="#//@keywords.59"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.64" referredLiteral="#//@keywords.56"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.64" referredLiteral="#//@symbols.26"/>
       <elements xsi:type="com.sap.furcas.TCS:ConditionalElement" parentTemplate="#//@templates.64">
         <condition xsi:type="com.sap.furcas.TCS:AndExp">
@@ -1449,10 +1449,10 @@
           </expressions>
         </condition>
         <thenSequence>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.64" referredLiteral="#//@keywords.76"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.64" referredLiteral="#//@keywords.29"/>
         </thenSequence>
         <elseSequence>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.64" referredLiteral="#//@keywords.60"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.64" referredLiteral="#//@keywords.75"/>
         </elseSequence>
       </elements>
     </templateSequence>
@@ -1491,19 +1491,19 @@
   <templates xsi:type="com.sap.furcas.TCS:EnumerationTemplate" metaReference="ecore:EEnum http://www.furcas.org#//TCS/SpaceKind">
     <mappings>
       <literal name="leftSpace"/>
-      <element xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.66" referredLiteral="#//@keywords.6"/>
-    </mappings>
-    <mappings>
-      <literal name="leftNone"/>
       <element xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.66" referredLiteral="#//@keywords.47"/>
     </mappings>
     <mappings>
+      <literal name="leftNone"/>
+      <element xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.66" referredLiteral="#//@keywords.80"/>
+    </mappings>
+    <mappings>
       <literal name="rightSpace"/>
-      <element xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.66" referredLiteral="#//@keywords.7"/>
+      <element xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.66" referredLiteral="#//@keywords.15"/>
     </mappings>
     <mappings>
       <literal name="rightNone"/>
-      <element xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.66" referredLiteral="#//@keywords.77"/>
+      <element xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.66" referredLiteral="#//@keywords.30"/>
     </mappings>
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/Keyword" isAddToContext="true">
@@ -1522,7 +1522,7 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/OperatorList" isAddToContext="true">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.68" referredLiteral="#//@keywords.57"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.68" referredLiteral="#//@keywords.2"/>
       <elements xsi:type="com.sap.furcas.TCS:ConditionalElement" parentTemplate="#//@templates.68">
         <condition xsi:type="com.sap.furcas.TCS:AndExp">
           <expressions xsi:type="com.sap.furcas.TCS:IsDefinedExp">
@@ -1548,7 +1548,7 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/Priority">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.69" referredLiteral="#//@keywords.49"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.69" referredLiteral="#//@keywords.17"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.69">
         <propertyReference strucfeature="ecore:EAttribute http://www.furcas.org#//TCS/Priority/value"/>
       </elements>
@@ -1559,12 +1559,18 @@
             <value xsi:type="com.sap.furcas.TCS:EnumLiteralVal" name="left"/>
           </expressions>
         </condition>
-        <thenSequence/>
+        <thenSequence>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.69" referredLiteral="#//@symbols.5"/>
+          <elements xsi:type="com.sap.furcas.TCS:Alternative" parentTemplate="#//@templates.69">
+            <sequences/>
+            <sequences>
+              <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.69" referredLiteral="#//@keywords.69"/>
+            </sequences>
+          </elements>
+        </thenSequence>
         <elseSequence>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.69" referredLiteral="#//@symbols.5"/>
-          <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.69">
-            <propertyReference strucfeature="ecore:EAttribute http://www.furcas.org#//TCS/Priority/associativity"/>
-          </elements>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.69" referredLiteral="#//@keywords.59"/>
         </elseSequence>
       </elements>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.69" referredLiteral="#//@symbols.8"/>
@@ -1587,7 +1593,7 @@
           </expressions>
         </condition>
         <thenSequence>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.70" referredLiteral="#//@keywords.4"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.70" referredLiteral="#//@keywords.3"/>
         </thenSequence>
       </elements>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.70">
@@ -1637,11 +1643,11 @@
   <templates xsi:type="com.sap.furcas.TCS:EnumerationTemplate" metaReference="ecore:EEnum http://www.furcas.org#//TCS/Associativity">
     <mappings>
       <literal name="left"/>
-      <element xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.71" referredLiteral="#//@keywords.13"/>
+      <element xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.71" referredLiteral="#//@keywords.69"/>
     </mappings>
     <mappings>
       <literal name="right"/>
-      <element xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.71" referredLiteral="#//@keywords.71"/>
+      <element xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.71" referredLiteral="#//@keywords.59"/>
     </mappings>
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/Expression" isAbstract="true"/>
@@ -1650,7 +1656,7 @@
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.73">
         <propertyArgs xsi:type="com.sap.furcas.TCS:SeparatorPArg">
           <separatorSequence>
-            <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.73" referredLiteral="#//@keywords.16"/>
+            <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.73" referredLiteral="#//@keywords.48"/>
           </separatorSequence>
         </propertyArgs>
         <propertyReference strucfeature="ecore:EReference http://www.furcas.org#//TCS/AndExp/expressions"/>
@@ -1678,7 +1684,7 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/IsDefinedExp">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.77" referredLiteral="#//@keywords.58"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.77" referredLiteral="#//@keywords.36"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.77" referredLiteral="#//@symbols.6"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.77">
         <propertyReference strucfeature="ecore:EReference http://www.furcas.org#//TCS/AtomExp/propertyReference"/>
@@ -1688,7 +1694,7 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/OneExp">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.78" referredLiteral="#//@keywords.29"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.78" referredLiteral="#//@keywords.52"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.78" referredLiteral="#//@symbols.6"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.78">
         <propertyReference strucfeature="ecore:EReference http://www.furcas.org#//TCS/AtomExp/propertyReference"/>
@@ -1701,7 +1707,7 @@
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.79">
         <propertyReference strucfeature="ecore:EReference http://www.furcas.org#//TCS/AtomExp/propertyReference"/>
       </elements>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.79" referredLiteral="#//@keywords.70"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.79" referredLiteral="#//@keywords.34"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.79">
         <propertyArgs xsi:type="com.sap.furcas.TCS:SeparatorPArg">
           <separatorSequence>
@@ -1754,10 +1760,10 @@
           </expressions>
         </condition>
         <thenSequence>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.85" referredLiteral="#//@keywords.30"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.85" referredLiteral="#//@keywords.68"/>
         </thenSequence>
       </elements>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.85" referredLiteral="#//@keywords.41"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.85" referredLiteral="#//@keywords.74"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.85">
         <propertyReference strucfeature="ecore:EAttribute http://www.furcas.org#//TCS/NamedElement/name"/>
       </elements>
@@ -1791,15 +1797,15 @@
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/Rule" isAbstract="true"/>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/WordRule">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.90" referredLiteral="#//@keywords.17"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.90" referredLiteral="#//@keywords.73"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.90" referredLiteral="#//@symbols.6"/>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.90" referredLiteral="#//@keywords.50"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.90" referredLiteral="#//@keywords.46"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.90" referredLiteral="#//@symbols.26"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.90">
         <propertyReference strucfeature="ecore:EReference http://www.furcas.org#//TCS/WordRule/start"/>
       </elements>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.90" referredLiteral="#//@symbols.5"/>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.90" referredLiteral="#//@keywords.15"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.90" referredLiteral="#//@keywords.4"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.90" referredLiteral="#//@symbols.26"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.90">
         <propertyReference strucfeature="ecore:EReference http://www.furcas.org#//TCS/WordRule/part"/>
@@ -1812,7 +1818,7 @@
         </condition>
         <thenSequence>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.90" referredLiteral="#//@symbols.5"/>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.90" referredLiteral="#//@keywords.54"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.90" referredLiteral="#//@keywords.66"/>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.90" referredLiteral="#//@symbols.26"/>
           <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.90">
             <propertyReference strucfeature="ecore:EReference http://www.furcas.org#//TCS/WordRule/end"/>
@@ -1824,9 +1830,9 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/EndOfLineRule">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.91" referredLiteral="#//@keywords.63"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.91" referredLiteral="#//@keywords.24"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.91" referredLiteral="#//@symbols.6"/>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.91" referredLiteral="#//@keywords.50"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.91" referredLiteral="#//@keywords.46"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.91" referredLiteral="#//@symbols.26"/>
       <elements xsi:type="com.sap.furcas.TCS:ConditionalElement" parentTemplate="#//@templates.91">
         <condition xsi:type="com.sap.furcas.TCS:AndExp">
@@ -1835,7 +1841,7 @@
           </expressions>
         </condition>
         <thenSequence>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.91" referredLiteral="#//@keywords.31"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.91" referredLiteral="#//@keywords.8"/>
         </thenSequence>
       </elements>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.91">
@@ -1846,9 +1852,9 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/MultiLineRule">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.92" referredLiteral="#//@keywords.43"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.92" referredLiteral="#//@keywords.6"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.92" referredLiteral="#//@symbols.6"/>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.92" referredLiteral="#//@keywords.50"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.92" referredLiteral="#//@keywords.46"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.92" referredLiteral="#//@symbols.26"/>
       <elements xsi:type="com.sap.furcas.TCS:ConditionalElement" parentTemplate="#//@templates.92">
         <condition xsi:type="com.sap.furcas.TCS:AndExp">
@@ -1857,14 +1863,14 @@
           </expressions>
         </condition>
         <thenSequence>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.92" referredLiteral="#//@keywords.31"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.92" referredLiteral="#//@keywords.8"/>
         </thenSequence>
       </elements>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.92">
         <propertyReference strucfeature="ecore:EReference http://www.furcas.org#//TCS/MultiLineRule/start"/>
       </elements>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.92" referredLiteral="#//@symbols.5"/>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.92" referredLiteral="#//@keywords.54"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.92" referredLiteral="#//@keywords.66"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.92" referredLiteral="#//@symbols.26"/>
       <elements xsi:type="com.sap.furcas.TCS:ConditionalElement" parentTemplate="#//@templates.92">
         <condition xsi:type="com.sap.furcas.TCS:AndExp">
@@ -1873,7 +1879,7 @@
           </expressions>
         </condition>
         <thenSequence>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.92" referredLiteral="#//@keywords.31"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.92" referredLiteral="#//@keywords.8"/>
         </thenSequence>
       </elements>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.92">
@@ -1887,7 +1893,7 @@
         </condition>
         <thenSequence>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.92" referredLiteral="#//@symbols.5"/>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.92" referredLiteral="#//@keywords.65"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.92" referredLiteral="#//@keywords.10"/>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.92" referredLiteral="#//@symbols.26"/>
           <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.92">
             <propertyReference strucfeature="ecore:EReference http://www.furcas.org#//TCS/MultiLineRule/esc"/>
@@ -1938,12 +1944,12 @@
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/OctalMapping">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.96" referredLiteral="#//@keywords.74"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.96" referredLiteral="#//@keywords.45"/>
     </templateSequence>
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/HexadecimalMapping">
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.97" referredLiteral="#//@keywords.55"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.97" referredLiteral="#//@keywords.19"/>
     </templateSequence>
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.furcas.org#//TCS/StringPattern">
@@ -1963,97 +1969,97 @@
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.99" referredLiteral="#//@symbols.1"/>
     </templateSequence>
   </templates>
-  <keywords literalRefs="#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.6/@thenSequence/@elements.0/@thenSequence/@elements.0" value="deep"/>
-  <keywords literalRefs="#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.8/@thenSequence/@elements.0 #//@templates.19/@templateSequence/@elements.16/@elseSequence/@elements.0/@thenSequence/@elements.0" value="context"/>
-  <keywords literalRefs="#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.9/@thenSequence/@elements.0" value="addToContext"/>
-  <keywords literalRefs="#//@templates.19/@templateSequence/@elements.7" value="source"/>
-  <keywords literalRefs="#//@templates.57/@templateSequence/@elements.0 #//@templates.70/@templateSequence/@elements.0/@thenSequence/@elements.0" value="postfix"/>
-  <keywords literalRefs="#//@templates.15/@templateSequence/@elements.8/@blockSequence/@elements.1/@blockSequence/@elements.0" value="value"/>
-  <keywords literalRefs="#//@templates.66/@mappings.0/@element" value="leftSpace"/>
-  <keywords literalRefs="#//@templates.66/@mappings.2/@element" value="rightSpace"/>
-  <keywords literalRefs="#//@templates.15/@templateSequence/@elements.8/@blockSequence/@elements.1/@blockSequence/@elements.3/@thenSequence/@elements.1" value="serializer"/>
-  <keywords literalRefs="#//@templates.20/@templateSequence/@elements.0" value="function"/>
-  <keywords literalRefs="#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.1 #//@templates.19/@templateSequence/@elements.13/@thenSequence/@elements.1" value="disambiguateV3"/>
-  <keywords literalRefs="#//@templates.63/@templateSequence/@elements.0" value="startNbNL"/>
-  <keywords literalRefs="#//@templates.18/@templateSequence/@elements.2/@thenSequence/@elements.0 #//@templates.19/@templateSequence/@elements.16/@thenSequence/@elements.0" value="referenceOnly"/>
-  <keywords literalRefs="#//@templates.71/@mappings.0/@element" value="left"/>
-  <keywords literalRefs="#//@templates.51/@templateSequence/@elements.0" value="forcedLower"/>
-  <keywords literalRefs="#//@templates.90/@templateSequence/@elements.6" value="part"/>
-  <keywords literalRefs="#//@templates.73/@templateSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0" value="and"/>
-  <keywords literalRefs="#//@templates.90/@templateSequence/@elements.0" value="word"/>
-  <keywords literalRefs="#//@templates.49/@templateSequence/@elements.0" value="importContext"/>
+  <keywords literalRefs="#//@templates.39/@templateSequence/@elements.2 #//@templates.44/@templateSequence/@elements.0" value="as"/>
   <keywords literalRefs="#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.1 #//@templates.19/@templateSequence/@elements.12/@thenSequence/@elements.1 #//@templates.31/@templateSequence/@elements.0/@thenSequence/@elements.0 #//@templates.46/@templateSequence/@elements.0" value="disambiguate"/>
-  <keywords literalRefs="#//@templates.41/@templateSequence/@elements.0" value="refersTo"/>
-  <keywords literalRefs="#//@templates.16/@templateSequence/@elements.0" value="enumerationTemplate"/>
-  <keywords literalRefs="#//@templates.19/@templateSequence/@elements.0" value="operatorTemplate"/>
-  <keywords literalRefs="#//@templates.15/@templateSequence/@elements.4/@thenSequence/@elements.0" value="default"/>
-  <keywords literalRefs="#//@templates.48/@mappings.1/@element" value="ifmissing"/>
-  <keywords literalRefs="#//@templates.11/@templateSequence/@elements.2/@thenSequence/@elements.1" value="k"/>
-  <keywords literalRefs="#//@templates.48/@mappings.0/@element" value="always"/>
-  <keywords literalRefs="#//@templates.43/@templateSequence/@elements.0" value="createIn"/>
-  <keywords literalRefs="#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.0" value="keywords"/>
-  <keywords literalRefs="#//@templates.78/@templateSequence/@elements.0" value="one"/>
-  <keywords literalRefs="#//@templates.85/@templateSequence/@elements.0/@thenSequence/@elements.0" value="omitted"/>
-  <keywords literalRefs="#//@templates.91/@templateSequence/@elements.4/@thenSequence/@elements.0 #//@templates.92/@templateSequence/@elements.4/@thenSequence/@elements.0 #//@templates.92/@templateSequence/@elements.9/@thenSequence/@elements.0" value="drop"/>
-  <keywords literalRefs="#//@templates.39/@templateSequence/@elements.0/@thenSequence/@elements.0" value="when"/>
-  <keywords literalRefs="#//@templates.19/@templateSequence/@elements.10/@thenSequence/@elements.1" value="storeOpTo"/>
-  <keywords literalRefs="#//@templates.37/@templateSequence/@elements.2 #//@templates.42/@templateSequence/@elements.0" value="lookIn"/>
-  <keywords literalRefs="#//@templates.61/@templateSequence/@elements.0" value="indentIncr"/>
-  <keywords literalRefs="#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.6/@thenSequence/@elements.1" value="abstract"/>
-  <keywords literalRefs="#//@templates.19/@templateSequence/@elements.11/@thenSequence/@elements.1" value="storeRightTo"/>
-  <keywords literalRefs="#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.0" value="symbols"/>
-  <keywords literalRefs="#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.5/@thenSequence/@elements.0" value="lexer"/>
-  <keywords literalRefs="#//@templates.50/@templateSequence/@elements.0" value="partial"/>
-  <keywords literalRefs="#//@templates.85/@templateSequence/@elements.1" value="token"/>
-  <keywords literalRefs="#//@templates.56/@templateSequence/@elements.0" value="prefix"/>
-  <keywords literalRefs="#//@templates.92/@templateSequence/@elements.0" value="multiLine"/>
-  <keywords literalRefs="#//@templates.38/@templateSequence/@elements.5/@thenSequence/@elements.1 #//@templates.39/@templateSequence/@elements.1/@thenSequence/@elements.0 #//@templates.58/@templateSequence/@elements.0" value="mode"/>
-  <keywords literalRefs="#//@templates.18/@templateSequence/@elements.0" value="template"/>
-  <keywords literalRefs="#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.10/@thenSequence/@elements.0" value="nonPrimary"/>
-  <keywords literalRefs="#//@templates.66/@mappings.1/@element" value="leftNone"/>
-  <keywords literalRefs="#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.1 #//@templates.19/@templateSequence/@elements.14/@thenSequence/@elements.1" value="semDisambiguate"/>
-  <keywords literalRefs="#//@templates.69/@templateSequence/@elements.0" value="priority"/>
-  <keywords literalRefs="#//@templates.90/@templateSequence/@elements.2 #//@templates.91/@templateSequence/@elements.2 #//@templates.92/@templateSequence/@elements.2" value="start"/>
-  <keywords literalRefs="#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.4/@thenSequence/@elements.0" value="multi"/>
-  <keywords literalRefs="#//@templates.38/@templateSequence/@elements.2" value="foreach"/>
-  <keywords literalRefs="#//@templates.15/@templateSequence/@elements.2" value="for"/>
-  <keywords literalRefs="#//@templates.90/@templateSequence/@elements.9/@thenSequence/@elements.1 #//@templates.92/@templateSequence/@elements.7" value="end"/>
-  <keywords literalRefs="#//@templates.97/@templateSequence/@elements.0" value="hex"/>
-  <keywords literalRefs="#//@templates.47/@templateSequence/@elements.0" value="autoCreate"/>
   <keywords literalRefs="#//@templates.19/@templateSequence/@elements.3 #//@templates.68/@templateSequence/@elements.0" value="operators"/>
-  <keywords literalRefs="#//@templates.77/@templateSequence/@elements.0" value="isDefined"/>
-  <keywords literalRefs="#//@templates.64/@templateSequence/@elements.0" value="endNL"/>
-  <keywords literalRefs="#//@templates.62/@templateSequence/@elements.2/@elseSequence/@elements.0 #//@templates.64/@templateSequence/@elements.2/@elseSequence/@elements.0" value="false"/>
-  <keywords literalRefs="#//@templates.11/@templateSequence/@elements.0" value="syntax"/>
-  <keywords literalRefs="#//@templates.54/@templateSequence/@elements.0" value="lookupScope"/>
-  <keywords literalRefs="#//@templates.91/@templateSequence/@elements.0" value="endOfLine"/>
-  <keywords literalRefs="#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.5/@thenSequence/@elements.0" value="main"/>
-  <keywords literalRefs="#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.1" value="esc"/>
-  <keywords literalRefs="#//@templates.48/@mappings.2/@element" value="never"/>
-  <keywords literalRefs="#//@templates.15/@templateSequence/@elements.5" value="using"/>
-  <keywords literalRefs="#//@templates.55/@templateSequence/@elements.0" value="referenceBy"/>
-  <keywords literalRefs="#//@templates.15/@templateSequence/@elements.0" value="primitiveTemplate"/>
-  <keywords literalRefs="#//@templates.79/@templateSequence/@elements.1" value="instanceOf"/>
-  <keywords literalRefs="#//@templates.71/@mappings.1/@element" value="right"/>
-  <keywords literalRefs="#//@templates.45/@templateSequence/@elements.0" value="separator"/>
+  <keywords literalRefs="#//@templates.57/@templateSequence/@elements.0 #//@templates.70/@templateSequence/@elements.0/@thenSequence/@elements.0" value="postfix"/>
+  <keywords literalRefs="#//@templates.90/@templateSequence/@elements.6" value="part"/>
   <keywords literalRefs="#//@templates.52/@templateSequence/@elements.0" value="forcedUpper"/>
-  <keywords literalRefs="#//@templates.96/@templateSequence/@elements.0" value="octal"/>
-  <keywords literalRefs="#//@templates.15/@templateSequence/@elements.7/@thenSequence/@elements.0" value="orKeyword"/>
+  <keywords literalRefs="#//@templates.92/@templateSequence/@elements.0" value="multiLine"/>
+  <keywords literalRefs="#//@templates.37/@templateSequence/@elements.2 #//@templates.42/@templateSequence/@elements.0" value="lookIn"/>
+  <keywords literalRefs="#//@templates.91/@templateSequence/@elements.4/@thenSequence/@elements.0 #//@templates.92/@templateSequence/@elements.4/@thenSequence/@elements.0 #//@templates.92/@templateSequence/@elements.9/@thenSequence/@elements.0" value="drop"/>
+  <keywords literalRefs="#//@templates.60/@templateSequence/@elements.0" value="nbNL"/>
+  <keywords literalRefs="#//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.1" value="esc"/>
+  <keywords literalRefs="#//@templates.38/@templateSequence/@elements.5/@thenSequence/@elements.1 #//@templates.39/@templateSequence/@elements.1/@thenSequence/@elements.0 #//@templates.58/@templateSequence/@elements.0" value="mode"/>
+  <keywords literalRefs="#//@templates.56/@templateSequence/@elements.0" value="prefix"/>
+  <keywords literalRefs="#//@templates.11/@templateSequence/@elements.2/@thenSequence/@elements.1" value="k"/>
+  <keywords literalRefs="#//@templates.45/@templateSequence/@elements.0" value="separator"/>
+  <keywords literalRefs="#//@templates.66/@mappings.2/@element" value="rightSpace"/>
+  <keywords literalRefs="#//@templates.39/@templateSequence/@elements.0/@thenSequence/@elements.0" value="when"/>
+  <keywords literalRefs="#//@templates.69/@templateSequence/@elements.0" value="priority"/>
+  <keywords literalRefs="#//@templates.38/@templateSequence/@elements.2" value="foreach"/>
+  <keywords literalRefs="#//@templates.97/@templateSequence/@elements.0" value="hex"/>
+  <keywords literalRefs="#//@templates.42/@templateSequence/@elements.2/@thenSequence/@elements.1" value="all"/>
+  <keywords literalRefs="#//@templates.63/@templateSequence/@elements.0" value="startNbNL"/>
+  <keywords literalRefs="#//@templates.55/@templateSequence/@elements.0" value="referenceBy"/>
+  <keywords literalRefs="#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.5/@thenSequence/@elements.0" value="lexer"/>
+  <keywords literalRefs="#//@templates.91/@templateSequence/@elements.0" value="endOfLine"/>
+  <keywords literalRefs="#//@templates.16/@templateSequence/@elements.0" value="enumerationTemplate"/>
+  <keywords literalRefs="#//@templates.49/@templateSequence/@elements.0" value="importContext"/>
+  <keywords literalRefs="#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.4/@thenSequence/@elements.0" value="multi"/>
+  <keywords literalRefs="#//@templates.18/@templateSequence/@elements.0" value="template"/>
   <keywords literalRefs="#//@templates.62/@templateSequence/@elements.2/@thenSequence/@elements.0 #//@templates.64/@templateSequence/@elements.2/@thenSequence/@elements.0" value="true"/>
   <keywords literalRefs="#//@templates.66/@mappings.3/@element" value="rightNone"/>
-  <keywords literalRefs="#//@templates.39/@templateSequence/@elements.2 #//@templates.44/@templateSequence/@elements.0" value="as"/>
-  <keywords literalRefs="#//@templates.42/@templateSequence/@elements.2/@thenSequence/@elements.1" value="all"/>
-  <keywords literalRefs="#//@templates.53/@templateSequence/@elements.0" value="createAs"/>
-  <keywords literalRefs="#//@templates.16/@templateSequence/@elements.2/@thenSequence/@elements.0" value="auto"/>
+  <keywords literalRefs="#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.10/@thenSequence/@elements.0" value="nonPrimary"/>
+  <keywords literalRefs="#//@templates.48/@mappings.1/@element" value="ifmissing"/>
   <keywords literalRefs="#//@templates.62/@templateSequence/@elements.0" value="startNL"/>
+  <keywords literalRefs="#//@templates.79/@templateSequence/@elements.1" value="instanceOf"/>
+  <keywords literalRefs="#//@templates.48/@mappings.2/@element" value="never"/>
+  <keywords literalRefs="#//@templates.77/@templateSequence/@elements.0" value="isDefined"/>
+  <keywords literalRefs="#//@templates.19/@templateSequence/@elements.10/@thenSequence/@elements.1" value="storeOpTo"/>
+  <keywords literalRefs="#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.6/@thenSequence/@elements.1" value="abstract"/>
+  <keywords literalRefs="#//@templates.15/@templateSequence/@elements.2" value="for"/>
+  <keywords literalRefs="#//@templates.50/@templateSequence/@elements.0" value="partial"/>
   <keywords literalRefs="#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.0" value="operatored"/>
-  <keywords literalRefs="#//@templates.60/@templateSequence/@elements.0" value="nbNL"/>
+  <keywords literalRefs="#//@templates.19/@templateSequence/@elements.11/@thenSequence/@elements.1" value="storeRightTo"/>
+  <keywords literalRefs="#//@templates.19/@templateSequence/@elements.0" value="operatorTemplate"/>
+  <keywords literalRefs="#//@templates.15/@templateSequence/@elements.0" value="primitiveTemplate"/>
+  <keywords literalRefs="#//@templates.96/@templateSequence/@elements.0" value="octal"/>
+  <keywords literalRefs="#//@templates.90/@templateSequence/@elements.2 #//@templates.91/@templateSequence/@elements.2 #//@templates.92/@templateSequence/@elements.2" value="start"/>
+  <keywords literalRefs="#//@templates.66/@mappings.0/@element" value="leftSpace"/>
+  <keywords literalRefs="#//@templates.73/@templateSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0" value="and"/>
+  <keywords literalRefs="#//@templates.15/@templateSequence/@elements.8/@blockSequence/@elements.1/@blockSequence/@elements.3/@thenSequence/@elements.1" value="serializer"/>
+  <keywords literalRefs="#//@templates.19/@templateSequence/@elements.7" value="source"/>
+  <keywords literalRefs="#//@templates.41/@templateSequence/@elements.0" value="refersTo"/>
+  <keywords literalRefs="#//@templates.78/@templateSequence/@elements.0" value="one"/>
+  <keywords literalRefs="#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.1 #//@templates.19/@templateSequence/@elements.13/@thenSequence/@elements.1" value="disambiguateV3"/>
+  <keywords literalRefs="#//@templates.20/@templateSequence/@elements.0" value="function"/>
+  <keywords literalRefs="#//@templates.43/@templateSequence/@elements.0" value="createIn"/>
+  <keywords literalRefs="#//@templates.64/@templateSequence/@elements.0" value="endNL"/>
+  <keywords literalRefs="#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.1 #//@templates.19/@templateSequence/@elements.14/@thenSequence/@elements.1" value="semDisambiguate"/>
+  <keywords literalRefs="#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.6/@thenSequence/@elements.0/@thenSequence/@elements.0" value="deep"/>
+  <keywords literalRefs="#//@templates.69/@templateSequence/@elements.2/@elseSequence/@elements.1 #//@templates.71/@mappings.1/@element" value="right"/>
+  <keywords literalRefs="#//@templates.61/@templateSequence/@elements.0" value="indentIncr"/>
+  <keywords literalRefs="#//@templates.48/@mappings.0/@element" value="always"/>
+  <keywords literalRefs="#//@templates.15/@templateSequence/@elements.4/@thenSequence/@elements.0" value="default"/>
+  <keywords literalRefs="#//@templates.15/@templateSequence/@elements.8/@blockSequence/@elements.1/@blockSequence/@elements.0" value="value"/>
+  <keywords literalRefs="#//@templates.47/@templateSequence/@elements.0" value="autoCreate"/>
+  <keywords literalRefs="#//@templates.11/@templateSequence/@elements.0" value="syntax"/>
+  <keywords literalRefs="#//@templates.90/@templateSequence/@elements.9/@thenSequence/@elements.1 #//@templates.92/@templateSequence/@elements.7" value="end"/>
+  <keywords literalRefs="#//@templates.53/@templateSequence/@elements.0" value="createAs"/>
+  <keywords literalRefs="#//@templates.85/@templateSequence/@elements.0/@thenSequence/@elements.0" value="omitted"/>
+  <keywords literalRefs="#//@templates.69/@templateSequence/@elements.2/@thenSequence/@elements.1/@sequences.1/@elements.0 #//@templates.71/@mappings.0/@element" value="left"/>
+  <keywords literalRefs="#//@templates.51/@templateSequence/@elements.0" value="forcedLower"/>
+  <keywords literalRefs="#//@templates.15/@templateSequence/@elements.5" value="using"/>
+  <keywords literalRefs="#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.5/@thenSequence/@elements.0" value="main"/>
+  <keywords literalRefs="#//@templates.90/@templateSequence/@elements.0" value="word"/>
+  <keywords literalRefs="#//@templates.85/@templateSequence/@elements.1" value="token"/>
+  <keywords literalRefs="#//@templates.62/@templateSequence/@elements.2/@elseSequence/@elements.0 #//@templates.64/@templateSequence/@elements.2/@elseSequence/@elements.0" value="false"/>
+  <keywords literalRefs="#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.0" value="keywords"/>
+  <keywords literalRefs="#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.9/@thenSequence/@elements.0" value="addToContext"/>
+  <keywords literalRefs="#//@templates.18/@templateSequence/@elements.2/@thenSequence/@elements.0 #//@templates.19/@templateSequence/@elements.16/@thenSequence/@elements.0" value="referenceOnly"/>
+  <keywords literalRefs="#//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.8/@thenSequence/@elements.0 #//@templates.19/@templateSequence/@elements.16/@elseSequence/@elements.0/@thenSequence/@elements.0" value="context"/>
+  <keywords literalRefs="#//@templates.66/@mappings.1/@element" value="leftNone"/>
+  <keywords literalRefs="#//@templates.16/@templateSequence/@elements.2/@thenSequence/@elements.0" value="auto"/>
+  <keywords literalRefs="#//@templates.54/@templateSequence/@elements.0" value="lookupScope"/>
+  <keywords literalRefs="#//@templates.15/@templateSequence/@elements.7/@thenSequence/@elements.0" value="orKeyword"/>
+  <keywords literalRefs="#//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.0" value="symbols"/>
   <symbols name="lsquare" literalRefs="#//@templates.28/@templateSequence/@elements.0 #//@templates.99/@templateSequence/@elements.0" value="["/>
   <symbols name="rsquare" literalRefs="#//@templates.28/@templateSequence/@elements.2 #//@templates.99/@templateSequence/@elements.2" value="]"/>
   <symbols name="dlsquare" literalRefs="#//@templates.30/@templateSequence/@elements.0" value="[["/>
   <symbols name="drsquare" literalRefs="#//@templates.30/@templateSequence/@elements.2" value="]]"/>
   <symbols name="excl" value="!"/>
-  <symbols name="coma" literalRefs="#//@templates.15/@templateSequence/@elements.8/@blockSequence/@elements.1/@blockSequence/@elements.3/@thenSequence/@elements.0 #//@templates.16/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0 #//@templates.19/@templateSequence/@elements.6 #//@templates.19/@templateSequence/@elements.10/@thenSequence/@elements.0 #//@templates.19/@templateSequence/@elements.11/@thenSequence/@elements.0 #//@templates.19/@templateSequence/@elements.12/@thenSequence/@elements.0 #//@templates.19/@templateSequence/@elements.13/@thenSequence/@elements.0 #//@templates.19/@templateSequence/@elements.14/@thenSequence/@elements.0 #//@templates.21/@templateSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0 #//@templates.26/@templateSequence/@elements.1/@thenSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0 #//@templates.28/@templateSequence/@elements.3/@thenSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0 #//@templates.33/@templateSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0 #//@templates.38/@templateSequence/@elements.5/@thenSequence/@elements.0 #//@templates.38/@templateSequence/@elements.6/@thenSequence/@elements.0 #//@templates.38/@templateSequence/@elements.6/@thenSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0 #//@templates.39/@templateSequence/@elements.0/@thenSequence/@elements.3 #//@templates.39/@templateSequence/@elements.1/@thenSequence/@elements.3 #//@templates.65/@templateSequence/@elements.3/@thenSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0 #//@templates.69/@templateSequence/@elements.2/@elseSequence/@elements.0 #//@templates.70/@templateSequence/@elements.4 #//@templates.90/@templateSequence/@elements.5 #//@templates.90/@templateSequence/@elements.9/@thenSequence/@elements.0 #//@templates.92/@templateSequence/@elements.6 #//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.0 #//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.0 #//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.2/@propertyArgs.0/@separatorSequence/@elements.0" value=","/>
+  <symbols name="coma" literalRefs="#//@templates.15/@templateSequence/@elements.8/@blockSequence/@elements.1/@blockSequence/@elements.3/@thenSequence/@elements.0 #//@templates.16/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0 #//@templates.19/@templateSequence/@elements.6 #//@templates.19/@templateSequence/@elements.10/@thenSequence/@elements.0 #//@templates.19/@templateSequence/@elements.11/@thenSequence/@elements.0 #//@templates.19/@templateSequence/@elements.12/@thenSequence/@elements.0 #//@templates.19/@templateSequence/@elements.13/@thenSequence/@elements.0 #//@templates.19/@templateSequence/@elements.14/@thenSequence/@elements.0 #//@templates.21/@templateSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0 #//@templates.26/@templateSequence/@elements.1/@thenSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0 #//@templates.28/@templateSequence/@elements.3/@thenSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0 #//@templates.33/@templateSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0 #//@templates.38/@templateSequence/@elements.5/@thenSequence/@elements.0 #//@templates.38/@templateSequence/@elements.6/@thenSequence/@elements.0 #//@templates.38/@templateSequence/@elements.6/@thenSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0 #//@templates.39/@templateSequence/@elements.0/@thenSequence/@elements.3 #//@templates.39/@templateSequence/@elements.1/@thenSequence/@elements.3 #//@templates.65/@templateSequence/@elements.3/@thenSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0 #//@templates.69/@templateSequence/@elements.2/@thenSequence/@elements.0 #//@templates.69/@templateSequence/@elements.2/@elseSequence/@elements.0 #//@templates.70/@templateSequence/@elements.4 #//@templates.90/@templateSequence/@elements.5 #//@templates.90/@templateSequence/@elements.9/@thenSequence/@elements.0 #//@templates.92/@templateSequence/@elements.6 #//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.0 #//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.0 #//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.2/@propertyArgs.0/@separatorSequence/@elements.0" value=","/>
   <symbols name="lparen" literalRefs="#//@templates.11/@templateSequence/@elements.2/@thenSequence/@elements.0 #//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.0 #//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.0 #//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.0 #//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.1/@thenSequence/@elements.0 #//@templates.19/@templateSequence/@elements.2 #//@templates.20/@templateSequence/@elements.2 #//@templates.21/@templateSequence/@elements.0 #//@templates.29/@templateSequence/@elements.0 #//@templates.31/@templateSequence/@elements.0/@thenSequence/@elements.1 #//@templates.37/@templateSequence/@elements.3 #//@templates.38/@templateSequence/@elements.3 #//@templates.77/@templateSequence/@elements.1 #//@templates.78/@templateSequence/@elements.1 #//@templates.90/@templateSequence/@elements.1 #//@templates.91/@templateSequence/@elements.1 #//@templates.92/@templateSequence/@elements.1 #//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.1" value="("/>
   <symbols name="rparen" literalRefs="#//@templates.11/@templateSequence/@elements.2/@thenSequence/@elements.4 #//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.4 #//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.4 #//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.4 #//@templates.18/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.1/@thenSequence/@elements.2 #//@templates.19/@templateSequence/@elements.15 #//@templates.20/@templateSequence/@elements.4 #//@templates.21/@templateSequence/@elements.2 #//@templates.29/@templateSequence/@elements.5 #//@templates.31/@templateSequence/@elements.0/@thenSequence/@elements.3 #//@templates.37/@templateSequence/@elements.5 #//@templates.38/@templateSequence/@elements.7 #//@templates.77/@templateSequence/@elements.3 #//@templates.78/@templateSequence/@elements.3 #//@templates.90/@templateSequence/@elements.10 #//@templates.91/@templateSequence/@elements.6 #//@templates.92/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.3 #//@templates.92/@templateSequence/@elements.12" value=")"/>
   <symbols name="lcurly" literalRefs="#//@templates.11/@templateSequence/@elements.3 #//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.1 #//@templates.11/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.1 #//@templates.26/@templateSequence/@elements.1/@thenSequence/@elements.0 #//@templates.28/@templateSequence/@elements.3/@thenSequence/@elements.0 #//@templates.68/@templateSequence/@elements.2 #//@templates.69/@templateSequence/@elements.3" value="{"/>
