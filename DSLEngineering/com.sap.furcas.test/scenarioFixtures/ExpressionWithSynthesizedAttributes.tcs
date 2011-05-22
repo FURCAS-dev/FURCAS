@@ -14,8 +14,13 @@ syntax ExpressionWithSynthesizedAttributes {
 
 -- BEGIN Primitive templates
 		
-	primitiveTemplate integer for EInt default using INT:
-		value = "Integer.valueOf(%token%)";
+	primitiveTemplate integerSymbol for EInt default using INT
+	: value = "Double.valueOf(%token%)"
+	;
+	
+	primitiveTemplate floatSymbol for EDouble default using FLOAT
+	: value = "Double.valueOf(%token%)"
+	;
 		
 -- END Primitive templates
 
@@ -29,71 +34,59 @@ syntax ExpressionWithSynthesizedAttributes {
 	template Expression abstract operatored;
 		
 	template IntegerExpression
-		: value {{calculatedValue=lookIn("OCL:self.value")}}
+		: [[ value{as=integerSymbol} | value{as=floatSymbol} ]]  
+		  {{calculatedValue=lookIn("OCL:self.value")}}
 		;
 		
-	operatorTemplate NegateExpression(operators=opMinus, source='expression')
+	operatorTemplate UnaryExpression(operators=opMinus, source='expression')
 		: {{calculatedValue=lookIn("OCL: -self.expression.calculatedValue")}}
 		;
 			
-	operatorTemplate MultiplicationExpression(operators=opMul, source='leftSide', storeRightTo='rightSide')
+	operatorTemplate BinaryExpression(operators=opMul, source=leftSide, storeRightTo=rightSide)
 		: {{calculatedValue=lookIn("OCL:self.leftSide.calculatedValue * self.rightSide.calculatedValue")}}
 		;
+		
+	operatorTemplate BinaryExpression(operators=opDiv, source=leftSide, storeRightTo=rightSide)
+		: {{calculatedValue=lookIn("OCL:self.leftSide.calculatedValue / self.rightSide.calculatedValue")}}
+		;
 	
-	operatorTemplate AdditionExpression(operators=opPlus, source='leftSide', storeRightTo='rightSide')
+	operatorTemplate BinaryExpression(operators=opPlus, source=leftSide, storeRightTo=rightSide)
 		: {{calculatedValue=lookIn("OCL:self.leftSide.calculatedValue + self.rightSide.calculatedValue")}}
+		;
+		
+	operatorTemplate BinaryExpression(operators=opSub, source=leftSide, storeRightTo=rightSide)
+		: {{calculatedValue=lookIn("OCL:self.leftSide.calculatedValue - self.rightSide.calculatedValue")}}
 		;	
 		
 
 -- BEGIN Special symbols
 -- Possible modifications:
 	symbols {
---		lsquare		= "[";
---		rsquare		= "]"	: rightSpace;
---		excl		= "!";
---		coma		= ","	: leftNone, rightSpace;
 		lparen		= "(";
 		rparen		= ")"	: leftNone, rightSpace;
---		lcurly		= "{"	: leftSpace;
---		rcurly		= "}"	: leftNone, rightSpace;
---		semi		= ";"	: leftNone, rightSpace;
---		colon		= ":"	: leftSpace, rightSpace;
---		pipe		= "|"	: leftSpace, rightSpace;
---		sharp		= "#"	: leftSpace;
---		qmark		= "?";
---		coloncolon	= "::"	: leftNone, rightNone;
 
 		-- operator symbols
---		point		= "."	: leftNone;
---		rarrow		= "->"	: leftNone;
 		minus		= "-"	: leftSpace, rightSpace;
 		star		= "*"	: leftSpace, rightSpace;
---		slash		= "/"	: leftSpace, rightSpace;
+		slash		= "/"	: leftSpace, rightSpace;
 		plus		= "+"	: leftSpace, rightSpace;
---		eq			= "="	: leftSpace, rightSpace;
---		gt			= ">"	: leftSpace, rightSpace;
---		lt			= "<"	: leftSpace, rightSpace;
---		ge			= ">="	: leftSpace, rightSpace;
---		le			= "<="	: leftSpace, rightSpace;
---		ne			= "<>"	: leftSpace, rightSpace;
---		larrow		= "<-"	: leftSpace, rightSpace;
 	}
 -- END Special symbols
 
 -- BEGIN Operator table
 -- Defines all operators with their priority, arity, and associativity.
 -- All defined operators must be used in operator templates.
-
--- Specify operator table(s) here if necessary.
 operators {
-		priority 0 {
+		priority 0, right {
 			opMinus = minus, 1;
 		}
-		priority 1 {
+		priority 1, left {
 			opMul = star, 2;
+			opDiv = slash, 2;
 		}
-		priority 2 {
+		priority 2, left {
 			opPlus = plus, 2;
+			opSub = minus, 2;
 		}
 	}
 -- END Operator table
@@ -103,7 +96,8 @@ operators {
 -- Specifies the lexical entities.
 -- Only needs modification when default lexer is not satisfactory.
 -- Generally modified along with Primitive templates.
-	omitted token COMMENT	: endOfLine(start = "--");
+
+	omitted token COMMENT	: endOfLine(start = "//");
 
 
 }
