@@ -1,12 +1,10 @@
 package com.sap.furcas.parser.tcs.scenario;
 
-import static org.junit.Assert.assertEquals;
-
 import java.io.File;
 
 import org.eclipse.emf.ecore.EObject;
+import org.junit.Assert;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
@@ -27,9 +25,7 @@ import com.sap.furcas.test.fixture.ScenarioFixtureData;
  *
  * The same is realized here with the help of OCL and property-inits.
  * After parsing, the "calculatedValue" property holds the value of
- * an (sub)-expression
- * 
- * TODO: Refactoring required. This class duplicates code (e.g. findPackage)
+ * an (sub)-expression.
  * 
  * @author Stephan Erb
  * 
@@ -59,6 +55,9 @@ public class TestSynthesizedAttributeGrammar extends GeneratedParserBasedTest {
 
         assertEquals(25, calculate("5*5"));
         assertEquals(27, calculate("3*3*3"));
+        
+        assertEquals(4, calculate("8/2"));
+        assertEquals(1, calculate("1/1/1"));
     }
     
     @Test
@@ -83,10 +82,9 @@ public class TestSynthesizedAttributeGrammar extends GeneratedParserBasedTest {
     }
     
     @Test
-    @Ignore("Fails for unknown reasons")
     public void testDoubleNegation() throws Exception {
-        assertEquals(1, calculate("-(-1)"));
         assertEquals(1, calculate("--1"));
+        assertEquals(1, calculate("-(-1)"));
     }
     
     @Test
@@ -107,13 +105,26 @@ public class TestSynthesizedAttributeGrammar extends GeneratedParserBasedTest {
         // Test in total
         assertEquals(0, calculate("2*10+2*-5+-10"));
     }
+    
+    @Test
+    public void testPreceedenceLeftAssociative() throws Exception {
+        // Division is a left-associative operator.
+        // If associativity is mistaken as 8/(4/2),
+        // the result would be 4 which is of course wrong
+        assertEquals(1, calculate("8/4/2"));
+        
+    }
 
-    private int calculate(String expressionToCalculate) throws Exception {
+    private double calculate(String expressionToCalculate) throws Exception {
         ModelParsingResult result = parsingHelper.parseString(expressionToCalculate, /*expected errors*/ 0);
         EObject exprStatement = (EObject) result.getParsedModelElement();
         
         EObject expression = (EObject) exprStatement.eGet(exprStatement.eClass().getEStructuralFeature("expression"));
-        return (Integer) expression.eGet(expression.eClass().getEStructuralFeature("calculatedValue"));
+        return (Double) expression.eGet(expression.eClass().getEStructuralFeature("calculatedValue"));
+    }
+    
+    private void assertEquals(int expected, Double result) {
+        Assert.assertEquals(expected, result, 0.001);
     }
     
 }
