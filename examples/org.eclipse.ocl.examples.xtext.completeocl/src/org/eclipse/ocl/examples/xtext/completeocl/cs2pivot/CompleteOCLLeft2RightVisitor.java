@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLLeft2RightVisitor.java,v 1.9 2011/05/21 19:03:39 ewillink Exp $
+ * $Id: CompleteOCLLeft2RightVisitor.java,v 1.10 2011/05/23 05:51:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
@@ -32,7 +32,6 @@ import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextConstraintCS;
@@ -49,11 +48,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificat
 public class CompleteOCLLeft2RightVisitor
 	extends AbstractExtendingDelegatingCompleteOCLCSVisitor<MonikeredElement, CS2PivotConversion, EssentialOCLLeft2RightVisitor>
 {
-	protected final TypeManager typeManager;
-
 	public CompleteOCLLeft2RightVisitor(CS2PivotConversion context) {
 		super(new EssentialOCLLeft2RightVisitor(context), context);
-		this.typeManager = context.getTypeManager();
 	}
 
 	@Override
@@ -103,10 +99,7 @@ public class CompleteOCLLeft2RightVisitor
 						if ((parameter != null) && !parameter.eIsProxy()) {
 					        Variable param = PivotFactory.eINSTANCE.createVariable();
 					        param.setName(parameter.getName());
-							Type parameterType = typeManager.getTypeWithMultiplicity(parameter);
-					        if ((parameterType != null) && !parameterType.eIsProxy()) {
-								context.setType(param, parameterType);
-							}
+							context.setTypeWithMultiplicity(param, parameter);
 					        param.setRepresentedParameter(parameter);
 					        pivotSpecification.getParameterVariables().add(param);
 						}
@@ -118,12 +111,7 @@ public class CompleteOCLLeft2RightVisitor
 						resultVariable = PivotFactory.eINSTANCE.createVariable();
 					}
 					resultVariable.setName(Environment.RESULT_VARIABLE_NAME);
-					if ((contextOperation != null) && !contextOperation.eIsProxy()) {
-						Type returnType = typeManager.getTypeWithMultiplicity(contextOperation);
-						if ((returnType != null) && !returnType.eIsProxy()) {
-							context.setType(resultVariable, (returnType));
-						}
-					}
+					context.setTypeWithMultiplicity(resultVariable, contextOperation);
 					pivotSpecification.setResultVariable(resultVariable);
 		        }
 			}
