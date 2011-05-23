@@ -34,6 +34,8 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
+import com.sap.furcas.modeladaptation.emf.lookup.QueryBasedEcoreMetaModelLookUp;
+import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
@@ -107,8 +109,9 @@ public class ModelEditorInputLoader {
             // no suitable node found, so create a new one
             try {
                 TextBlockTCSExtractorStream target = new TextBlockTCSExtractorStream(parserFactory);
-                PrettyPrinter prettyPrinter = new PrettyPrinter();
-                prettyPrinter.prettyPrint(rootObject, syntax, target);
+                IMetaModelLookup<EObject> metamodelLookup = new QueryBasedEcoreMetaModelLookUp(resourceSet, parserFactory.getMetamodelURIs());
+                PrettyPrinter prettyPrinter = new PrettyPrinter(syntax, metamodelLookup);
+                prettyPrinter.prettyPrint(rootObject, target);
                 return target.getPrintedResultRootBlock();
            } catch (SyntaxAndModelMismatchException e) {
                 throw new PartInitException("Model does not (fully) conform to syntax " + syntax.getName() + ": \n\n" + e.getCause().getMessage(), e);

@@ -96,7 +96,7 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
      * The document will be usable and completely initialized after this method was called.
      */
     public void completeInit(IncrementalParserFacade parserFacade) throws PartInitException {
-        validateDomainModelCompliesToSyntax();
+        validateDomainModelCompliesToSyntax(parserFacade);
         validateAndMigrateTextBlocksModel(parserFacade);
 
         model = new TextBlocksModel(rootBlock, parserFacade.getModelElementInvestigator());
@@ -144,11 +144,11 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
      * Make sure the model element is still valid according
      * to this concrete syntax (e.g., matching property inits)
      */
-    private void validateDomainModelCompliesToSyntax() throws PartInitException {
-        PrettyPrinter prettyPrinter = new PrettyPrinter();
+    private void validateDomainModelCompliesToSyntax(IncrementalParserFacade parserFacade) throws PartInitException {
+        PrettyPrinter prettyPrinter = new PrettyPrinter(syntax, parserFacade.getParserScope().getMetamodelLookup());
         TCSExtractorPrintStream target = new TCSExtractorPrintStream(new ByteArrayOutputStream());
         try {
-            prettyPrinter.prettyPrint(rootObject, syntax, target);
+            prettyPrinter.prettyPrint(rootObject, target);
             // we don't care about the result. Validation is always performed.
         } catch (SyntaxAndModelMismatchException e) {
             throw new PartInitException("Model does not (fully) conform to syntax " + syntax.getName() + ": \n\n" + e.getCause().getMessage(), e);
@@ -176,7 +176,7 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
             + " defined in this view upon changes to this document.";
             
             String oldTextualView = rootBlock.getCachedString();
-            String newTextualView = prettyPrintModelToString();
+            String newTextualView = prettyPrintModelToString(parserFacade);
             PrettyPrintPreviewDialog previewDialog = new PrettyPrintPreviewDialog(title, error, oldTextualView, newTextualView);
             boolean prettyPrintAccepted = previewDialog.open();
             
@@ -191,12 +191,13 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
         return false;
     }
     
-    private String prettyPrintModelToString() throws PartInitException {
-        IncrementalTextBlockPrettyPrinter prettyPrinter = new IncrementalTextBlockPrettyPrinter();
+    private String prettyPrintModelToString(IncrementalParserFacade parserFacade) throws PartInitException {
+        IncrementalTextBlockPrettyPrinter prettyPrinter = new IncrementalTextBlockPrettyPrinter(syntax,
+                parserFacade.getParserScope().getMetamodelLookup());
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         TCSExtractorPrintStream target = new TCSExtractorPrintStream(stream);
         try {
-            prettyPrinter.prettyPrint(rootObject, rootBlock, syntax, TcsUtil.getMainClassTemplate(syntax), target);
+            prettyPrinter.prettyPrint(rootObject, rootBlock, TcsUtil.getMainClassTemplate(syntax), target);
         } catch (SyntaxAndModelMismatchException e) {
             throw new PartInitException("Model does not (fully) conform to syntax " + syntax.getName() + ": \n\n" + e.getCause().getMessage(), e);
         }
@@ -204,10 +205,11 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
     }
 
     private TextBlock prettyPrintModelToTextBlock(IncrementalParserFacade parserFacade) throws PartInitException {
-        IncrementalTextBlockPrettyPrinter prettyPrinter = new IncrementalTextBlockPrettyPrinter();
+        IncrementalTextBlockPrettyPrinter prettyPrinter = new IncrementalTextBlockPrettyPrinter(syntax,
+                parserFacade.getParserScope().getMetamodelLookup());
         TextBlockTCSExtractorStream target = new TextBlockTCSExtractorStream(parserFacade.getParserFactory());
         try {
-            prettyPrinter.prettyPrint(rootObject, rootBlock, syntax, TcsUtil.getMainClassTemplate(syntax), target);
+            prettyPrinter.prettyPrint(rootObject, rootBlock, TcsUtil.getMainClassTemplate(syntax), target);
         } catch (SyntaxAndModelMismatchException e) {
             throw new PartInitException("Model does not (fully) conform to syntax " + syntax.getName() + ": \n\n" + e.getCause().getMessage(), e);
         }        return target.getPrintedResultRootBlock();
