@@ -54,9 +54,9 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
 import com.sap.furcas.modeladaptation.emf.lookup.QueryBasedEcoreMetaModelLookUp;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
-import com.sap.furcas.runtime.common.interfaces.IRuleName;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
+import com.sap.furcas.runtime.common.util.FileResourceHelper;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.IParsingObserver;
 import com.sap.furcas.runtime.parser.ModelElementCreationException;
@@ -68,6 +68,7 @@ import com.sap.furcas.runtime.parser.impl.ForeachParsingObserver;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.parser.textblocks.TbParsingUtil;
 import com.sap.furcas.runtime.tcs.TcsUtil;
+import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 
 /**
  * Updates a model element property by evaluating a so-called <code>foreach</code> OCL expression. Based on the
@@ -534,20 +535,23 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
      */
     private EObject produceWith(Template template, Object foreachElement, TextBlock textBlock, EObject elementToUpdate,
             OppositeEndFinder oppositeEndFinder) {
-        IRuleName ruleNameFinder = parserFactory.getRuleNameFinder();
-        String mode = null;
+        
+        ResourceSet resourceSet = elementToUpdate.eResource().getResourceSet();
+        Resource transientResource = EcoreHelper.createTransientParsingResource(resourceSet, "http://furcas.org/foreach/reevaluation/");
         try {
-            String ruleName = ruleNameFinder.getRuleName(template, mode);
-            Lexer lexer = parserFactory.createLexer(new ANTLRStringStream(getRootBlock(textBlock).getCachedString()));
+            String ruleName = parserFactory.getRuleNameFinder().getRuleName(template, /*mode*/ null);
+            String content = TbNavigationUtil.getUltraRoot(textBlock).getCachedString();
+            Lexer lexer = parserFactory.createLexer(new ANTLRStringStream(content));
             
-            // TODO: This is soemwhat odd. We don't have the information at hand to accurately parameterize
-            // our parser infrastructure.
-            ResourceSet resourceSet = elementToUpdate.eResource().getResourceSet();
-            IMetaModelLookup<EObject> metamodelLookup = new QueryBasedEcoreMetaModelLookUp(resourceSet, getResourceURIs(resourceSet));
+            // Construct scope that includes the additionalQueryScope as well as all dirty
+            // resources. The latter includes the transient parsing resource used by the incremental parser.
+            HashSet<URI> scope = new HashSet<URI>(parserFactory.getAdditionalQueryScope());
+            scope.addAll(FileResourceHelper.getResourceSetAsScope(resourceSet));
             
-            Resource transientResource = EcoreHelper.createTransientParsingResource(resourceSet, "http://furcas.org/foreach/reevaluation/");
-            IModelAdapter modelAdapter = new DefaultTextAwareModelAdapter(new EMFModelAdapter(elementToUpdate
-                    .eResource().getResourceSet(), transientResource, metamodelLookup, getResourceURIs(resourceSet)));
+            IMetaModelLookup<EObject> metamodelLookup = new QueryBasedEcoreMetaModelLookUp(resourceSet,
+                    parserFactory.getMetamodelURIs());
+            IModelAdapter modelAdapter = new DefaultTextAwareModelAdapter(new EMFModelAdapter(resourceSet,
+                    transientResource, metamodelLookup, scope));
             
             ObservableInjectingParser parser = parserFactory.createParser(new CommonTokenStream(lexer), modelAdapter);
             DelegationParsingObserver delegator = new DelegationParsingObserver();
@@ -576,17 +580,12 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
             return parseReturn;
         } catch (Exception e) {
             throw new RuntimeException(e);
+        } finally {
+            transientResource.getContents().clear();
+            resourceSet.getResources().remove(transientResource);
         }
     }
     
-    private Set<URI> getResourceURIs(ResourceSet resourceSet) {
-        HashSet<URI> uris = new HashSet<URI>();
-        for (Resource resource : resourceSet.getResources()) {
-            uris.add(resource.getURI());
-        }
-        return uris;
-    }
-
     private TextBlock getRootBlock(TextBlock textBlock) {
         TextBlock result = textBlock;
         while (result.eContainer() != null && result.eContainer() instanceof TextBlock) {
