@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreLeft2RightVisitor.java,v 1.8 2011/05/13 19:07:05 ewillink Exp $
+ * $Id: OCLinEcoreLeft2RightVisitor.java,v 1.9 2011/05/23 05:51:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.cs2pivot;
 
@@ -82,7 +82,7 @@ public class OCLinEcoreLeft2RightVisitor
 		        for (Parameter parameter : contextOperation.getOwnedParameters()) {
 			        Variable param = PivotFactory.eINSTANCE.createVariable();
 			        param.setName(parameter.getName());
-			        param.setType(parameter.getType());
+					context.setTypeWithMultiplicity(param, parameter);
 			        param.setRepresentedParameter(parameter);
 			        pivotSpecification.getParameterVariables().add(param);
 		        }
@@ -92,7 +92,7 @@ public class OCLinEcoreLeft2RightVisitor
 						resultVariable = PivotFactory.eINSTANCE.createVariable();
 					}
 					resultVariable.setName(Environment.RESULT_VARIABLE_NAME);
-					resultVariable.setType(contextOperation.getType());
+					context.setTypeWithMultiplicity(resultVariable, contextOperation);
 					pivotSpecification.setResultVariable(resultVariable);
 		        }
 			}
