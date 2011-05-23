@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.22 2011/05/22 21:06:21 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.23 2011/05/23 05:51:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -1552,6 +1552,15 @@ public class CS2PivotConversion extends AbstractConversion
 			pivotElement.setType(type);
 			if (typeManager.isUnderspecified(type)) {
 				addUnderspecifiedTypedElement(pivotElement);
+			}
+		}
+	}
+
+	public void setTypeWithMultiplicity(TypedElement typedElement, TypedMultiplicityElement typedMultiplicityElement) {
+		if ((typedMultiplicityElement != null) && !typedMultiplicityElement.eIsProxy()) {
+			Type type = typeManager.getTypeWithMultiplicity(typedMultiplicityElement);
+			if ((type != null) && !type.eIsProxy()) {
+				setType(typedElement, type);
 			}
 		}
 	}
