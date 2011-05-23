@@ -53,11 +53,10 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
     private static final String LANGUAGE = "NestedScopesTestSyntax";
     private static final File TCS = new File("fixtures/NestedScopes.tcs");
     private static final File METAMODEL = new File("fixtures/NestedScopes.ecore");
-    private static final String MM_PACKAGE_URI = "http://www.furcas.org/TCS/referenceresolving/tests/nestedScopes";
 
     @BeforeClass
     public static void setupParser() throws Exception {
-        setupParser(TCS, LANGUAGE, MM_PACKAGE_URI, METAMODEL);
+        setupParser(TCS, LANGUAGE, METAMODEL);
     }
 
     @After

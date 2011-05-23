@@ -41,7 +41,6 @@ public class TestPropertyInitReEvaluationWithComplexForeach extends AbstractRefe
     private static final String LANGUAGE = "BibtexWithComplexForeachPropertyInits";
     private static final File TCS = new File("fixtures/BibtexWithComplexForeachPropertyInits.tcs");
     private static final File[] METAMODELS = { ScenarioFixtureData.BIBTEXT_METAMODEL, ScenarioFixtureData.BIBTEXT1_METAMODEL };
-    private static final String MM_PACKAGE_URI = ScenarioFixtureData.BIBTEXT_PACKAGE_URI;
 
     private EObject johnDoe;
     private EObject janeDoll;
@@ -51,7 +50,7 @@ public class TestPropertyInitReEvaluationWithComplexForeach extends AbstractRefe
 
     @BeforeClass
     public static void setupParser() throws Exception {
-        setupParser(TCS, LANGUAGE, MM_PACKAGE_URI, METAMODELS);
+        setupParser(TCS, LANGUAGE, METAMODELS);
     }
     
     /**

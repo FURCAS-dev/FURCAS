@@ -11,6 +11,11 @@
 package com.sap.furcas.runtime.parser.incremental.testbase;
 
 import java.io.File;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Set;
+
+import org.eclipse.emf.common.util.URI;
 
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
@@ -24,7 +29,7 @@ import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
  */
 public class GeneratedParserAndFactoryTestConfiguration extends GeneratedParserTestConfiguration {
 
-    private final String metamodelPackageURI;
+    private final Set<URI> additionalQueryScope;
 
     /**
      * A default configuration that dumps everything into the "generated" package in the
@@ -32,13 +37,32 @@ public class GeneratedParserAndFactoryTestConfiguration extends GeneratedParserT
      * 
      * @param languageName the name of the language as specified in the tcs-File
      * @param syntaxDefFile the tcs-File
-     * @param metamodelPackageURI the name of the top-level package within the main metamodel file
      * @param metamodels the metamodels which are referenced/used within the tcs file.
      * 
      * @throws MetaModelLookupException
      */
-    public GeneratedParserAndFactoryTestConfiguration(String languageName, File syntaxDefFile, String metamodelPackageURI, File... metamodels) throws MetaModelLookupException {
-        this(languageName, syntaxDefFile, DEFAULT_GENERATIONDIR, DEFAULT_PACKAGE, metamodelPackageURI, metamodels);
+    public GeneratedParserAndFactoryTestConfiguration(String languageName, File syntaxDefFile, File... metamodels)
+           throws MetaModelLookupException {
+        
+        super(languageName, syntaxDefFile, metamodels);
+        this.additionalQueryScope = Collections.emptySet();
+    }
+    
+    /**
+     * A default configuration that dumps everything into the "generated" package in the
+     * "generationTemp" source folder.
+     * 
+     * @param languageName the name of the language as specified in the tcs-File
+     * @param syntaxDefFile the tcs-File
+     * @param metamodels the metamodels which are referenced/used within the tcs file.
+     * @param additionalQueryScope resources which shall explicitly be added to the lookup scope of the parser.  
+     * 
+     * @throws MetaModelLookupException
+     */
+    public GeneratedParserAndFactoryTestConfiguration(String languageName, File syntaxDefFile, Set<URI> metamodels,
+            Set<URI> additionalQueryScope) throws MetaModelLookupException {
+        
+        this(languageName, syntaxDefFile, DEFAULT_GENERATIONDIR, DEFAULT_PACKAGE, metamodels, additionalQueryScope);
     }
 
     /**
@@ -48,16 +72,18 @@ public class GeneratedParserAndFactoryTestConfiguration extends GeneratedParserT
      * @param syntaxDefFile the tcs-File
      * @param generationDir a relative path to the directoy where all generated files (grammar, lexer, parser) shall be written to
      * @param packageName the Java interpretation generationDir in form of the package name.
-     * @param metamodelPackageURI the name of the top-level package within the main metamodel file
      * @param metamodels the metamodels which are referenced/used within the tcs file.
+     * @param additionalQueryScope resources which shall explicitly be added to the lookup scope of the parser.  
      * 
      * @throws MetaModelLookupException
      */
-    public GeneratedParserAndFactoryTestConfiguration(String languageName, File syntaxDefFile, String generationDir, String packageName, String metamodelPackageURI, File... metamodels) throws MetaModelLookupException {
+    public GeneratedParserAndFactoryTestConfiguration(String languageName, File syntaxDefFile, String generationDir,
+            String packageName, Set<URI> metamodels, Set<URI> additionalQueryScope) throws MetaModelLookupException {
+        
         super(languageName, syntaxDefFile, generationDir, packageName, metamodels);
-        this.metamodelPackageURI = metamodelPackageURI;
+        this.additionalQueryScope = additionalQueryScope;
     }
-    
+        
     public String getRelativePathToGeneratedParserFactoryClass() {
         return generationDir + languageName + "ParserFactory.java";
     }
@@ -69,9 +95,9 @@ public class GeneratedParserAndFactoryTestConfiguration extends GeneratedParserT
     public String getClassNameOfCompiledParserFactory() {
         return packageName + "." + getParserFactoryName();
     }
-
-    public String getMetamodelPackageURI() {
-        return metamodelPackageURI;
+    
+    public Collection<URI> getAdditionalQueryScope() {
+        return additionalQueryScope;
     }
 
 }

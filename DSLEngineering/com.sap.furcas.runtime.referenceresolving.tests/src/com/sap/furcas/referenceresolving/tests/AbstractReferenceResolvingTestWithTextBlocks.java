@@ -1,7 +1,9 @@
 package com.sap.furcas.referenceresolving.tests;
 
 import java.io.File;
+import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
@@ -59,10 +61,11 @@ public abstract class AbstractReferenceResolvingTestWithTextBlocks extends Gener
      *            name of the language; should conform to the name of the language as specified in the mapping
      *            definition file
      */
-    public static void setupParser(File TCS, String LANGUAGE, String MM_PACKAGE_URI, File... METAMODELS) throws Exception {
-        GeneratedParserAndFactoryTestConfiguration testConfig = new GeneratedParserAndFactoryTestConfiguration(LANGUAGE, TCS, MM_PACKAGE_URI, METAMODELS);
+    public static void setupParser(File TCS, String LANGUAGE, File... METAMODELS) throws Exception {
+        GeneratedParserAndFactoryTestConfiguration testConfig = new GeneratedParserAndFactoryTestConfiguration(LANGUAGE, TCS, METAMODELS);
         resourceSet = testConfig.getSourceConfiguration().getResourceSet();
-
+        Set<URI> referenceScope = testConfig.getSourceConfiguration().getReferenceScope();
+        
         TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
         syntax = syntaxBean.getSyntax();
         incrementalParserFacade = generateParserAndParserFactoryForLanguage(syntaxBean, testConfig,
@@ -71,17 +74,17 @@ public abstract class AbstractReferenceResolvingTestWithTextBlocks extends Gener
         resourceSet.eAdapters().add(crossRefAdapter);
         crossRefAdapter.setTarget(resourceSet);
         syntaxRegistry = SyntaxRegistry.getInstance();
-        testMetamodelPackageRegistry = addMetamodelPackagesToLocalRegistry(resourceSet);
+        testMetamodelPackageRegistry = addMetamodelPackagesToLocalRegistry(referenceScope);
         triggerManager = syntaxRegistry.getTriggerManagerForSyntax(syntax, DefaultOppositeEndFinder.getInstance(),
                 /* progress monitor */ null, incrementalParserFacade.getParserFactory());
     }
 
-    private static EPackage.Registry addMetamodelPackagesToLocalRegistry(ResourceSet resourceSet) {
+    private static EPackage.Registry addMetamodelPackagesToLocalRegistry(Set<URI> referenceScope) {
         // delegate to the default registry if something is not found; then it may be found, e.g., in
         // metamodels deployed in the current configuration as OSGi bundles
         EPackageRegistryImpl result = new EPackageRegistryImpl(EPackage.Registry.INSTANCE);
-        for (Resource r : resourceSet.getResources()) {
-            for (EObject e : r.getContents()) {
+        for (URI uri : referenceScope) {
+            for (EObject e : resourceSet.getResource(uri, /*load*/true).getContents()) {
                 if (e instanceof EPackage) {
                     addPackageAndSubpackages((EPackage) e, result);
                 }
