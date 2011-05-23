@@ -1,7 +1,9 @@
 package com.sap.furcas.unparser.template;
 
 import java.io.File;
+import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -30,12 +32,14 @@ public class TestFunctionTemplate extends GeneratedParserBasedTest {
 
     private static EMFParsingHelper parsingHelper;
     private static ConcreteSyntax syntax;
+    private static Set<URI> referenceScope;
 
 
     @BeforeClass
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
         TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
+        referenceScope = testConfig.getSourceConfiguration().getReferenceScope();
         syntax = syntaxBean.getSyntax();
         ParserFacade facade = generateParserForLanguage(syntaxBean, testConfig, new ClassLookupImpl());
         parsingHelper = new EMFParsingHelper(facade, testConfig, PACKAGE_URI);
@@ -46,7 +50,7 @@ public class TestFunctionTemplate extends GeneratedParserBasedTest {
         ModelParsingResult result = parsingHelper.parseFile("FunctionTemplateBibTextSample.sam", DSLSAMPLEDIR, /*expected errors*/ 0);
         
         String expected = PrettyPrintTestHelper.readFile(DSLSAMPLEDIR + "FunctionTemplateBibTextSample.sam");
-        String printed = PrettyPrintTestHelper.prettyPrintString((EObject) result.getParsedModelElement(), syntax);
+        String printed = PrettyPrintTestHelper.prettyPrintString((EObject) result.getParsedModelElement(), syntax, referenceScope);
         
         PrettyPrintAssertionUtil.assertEqualsIgnoreWhitespaces(expected, printed);
     }

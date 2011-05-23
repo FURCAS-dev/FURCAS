@@ -36,7 +36,7 @@ public class TestPrettyPrintSymbolSpaces  {
         ConcreteSyntax modelElement = TCSFactory.eINSTANCE.createConcreteSyntax();
         modelElement.setName("name");
 
-        String output = PrettyPrintTestHelper.prettyPrintString(modelElement, syntax);
+        String output = PrettyPrintTestHelper.prettyPrintString(modelElement, syntax, ResourceTestHelper.createFURCASReferenceScope());
         PrettyPrintAssertionUtil.assertEqualsByLines(output, readFile("fixtureData/SymbolSpaces_Combinations.out"));
     }
 

@@ -1263,6 +1263,10 @@ public class TcsUtil {
     // }
     // return null;
     // }
+    
+    public static Object getPropertyValue(Object target, PropertyReference propRef) {
+        return getPropertyValue(((EObject) target), propRef);
+    }
 
     /**
      * Returns the value of the property identified by propName of the given target EObject.

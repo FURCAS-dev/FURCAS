@@ -16,6 +16,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.unparser.PrettyPrintContext;
@@ -60,14 +61,17 @@ public class IncrementalTextBlockPrettyPrinter {
     }
 
     private final TextBlockIndex sharedTextBlocksIndex;
+    private final ConcreteSyntax syntax;
+    private final IMetaModelLookup<EObject> metamodelLookup;
     
     /**
      * Create a pretty printer that only tries to re-use information
      * from textblocks given in the textblock in the prettyPrint method.
      */
-    public IncrementalTextBlockPrettyPrinter() {
-	// create a new empty index. Serves as a null-object.
-	this(new TextBlockIndex());
+    public IncrementalTextBlockPrettyPrinter(ConcreteSyntax syntax, IMetaModelLookup<EObject> metamodelLookup) {
+        // create a new empty index. Serves as a null-object.
+        this(new TextBlockIndex(), syntax, metamodelLookup);
+
     }
         
     /**
@@ -79,8 +83,10 @@ public class IncrementalTextBlockPrettyPrinter {
      * 
      * @param sharedTextBlocksIndex
      */
-    public IncrementalTextBlockPrettyPrinter(TextBlockIndex sharedTextBlocksIndex) {
+    public IncrementalTextBlockPrettyPrinter(TextBlockIndex sharedTextBlocksIndex, ConcreteSyntax syntax, IMetaModelLookup<EObject> metamodelLookup) {
 	this.sharedTextBlocksIndex = sharedTextBlocksIndex;
+        this.syntax = syntax;
+        this.metamodelLookup = metamodelLookup;
     }
     
     /**
@@ -97,8 +103,8 @@ public class IncrementalTextBlockPrettyPrinter {
      *            
      * @throws SyntaxAndModelMismatchException
      */
-    public void prettyPrint(EObject modelElementToPrint, ConcreteSyntax syntax, Template template, TextBlockTCSExtractorStream targetOutputStream) throws SyntaxAndModelMismatchException {
-	this.prettyPrint(modelElementToPrint, /*oldTextBlock*/ null, syntax, template, targetOutputStream);
+    public void prettyPrint(EObject modelElementToPrint, Template template, TextBlockTCSExtractorStream targetOutputStream) throws SyntaxAndModelMismatchException {
+	this.prettyPrint(modelElementToPrint, /*oldTextBlock*/ null, template, targetOutputStream);
     }
 
     /**
@@ -117,30 +123,25 @@ public class IncrementalTextBlockPrettyPrinter {
      *            
      * @throws SyntaxAndModelMismatchException
      */
-    public void prettyPrint(EObject modelElementToPrint, TextBlock oldTextBlock, ConcreteSyntax syntax, Template template, TCSExtractorStream targetOutputStream) throws SyntaxAndModelMismatchException {
+    public void prettyPrint(EObject modelElementToPrint, TextBlock oldTextBlock,  Template template, TCSExtractorStream targetOutputStream) throws SyntaxAndModelMismatchException {
+        // Incremental mode
+        TextBlockParentContextData parentIntegrationData = extractDataFromTextBlock(oldTextBlock);
+        PrettyPrintContext context = constructContext(oldTextBlock, modelElementToPrint, syntax);
 
-	if (oldTextBlock == null) {
-	    // Progressive mode
-	    PrettyPrinter pp = new PrettyPrinter();
-	    pp.prettyPrint(modelElementToPrint, syntax, targetOutputStream, template);
-	} else {
-	    // Incremental mode
-	    TextBlockParentContextData parentIntegrationData = extractDataFromTextBlock(oldTextBlock);
-	    PrettyPrintContext context = constructContext(oldTextBlock, modelElementToPrint, syntax);
-	    
-	    TextBlockIndex index = new TextBlockIndex(/*backingIndex*/ sharedTextBlocksIndex);
-	    index.index(oldTextBlock);
-	    
-	    TextBlockPrettyPrintingTraverser traverser = new TextBlockPrettyPrintingTraverser(index);
-	    PolicyProvidingPrettyPrintingTracer tracingPolicyProvider = new PolicyProvidingPrettyPrintingTracer(traverser);
-	    
-	    PrettyPrinter pp = new PrettyPrinter(/*as policy*/tracingPolicyProvider, /*as tracer*/tracingPolicyProvider);
-	    pp.prettyPrint(modelElementToPrint, syntax, targetOutputStream, template, context);
-	    
-	    if (targetOutputStream instanceof TextBlockTCSExtractorStream) {
-		completeIncrementalTextBlocksPrinting(((TextBlockTCSExtractorStream) targetOutputStream).getPrintedResultRootBlock(), oldTextBlock, parentIntegrationData);
-	    }
-	}
+        TextBlockIndex index = new TextBlockIndex(/*backingIndex*/ sharedTextBlocksIndex);
+        index.index(oldTextBlock);
+
+        TextBlockPrettyPrintingTraverser traverser = new TextBlockPrettyPrintingTraverser(index);
+        PolicyProvidingPrettyPrintingTracer tracingPolicyProvider = new PolicyProvidingPrettyPrintingTracer(traverser);
+
+        PrettyPrinter pp = new PrettyPrinter(/*as policy*/tracingPolicyProvider, /*as tracer*/tracingPolicyProvider,
+                syntax, metamodelLookup);
+        pp.prettyPrint(modelElementToPrint, targetOutputStream, template, context);
+
+        if (targetOutputStream instanceof TextBlockTCSExtractorStream) {
+            completeIncrementalTextBlocksPrinting(((TextBlockTCSExtractorStream) targetOutputStream).getPrintedResultRootBlock(),
+                    oldTextBlock, parentIntegrationData);
+        }
     }
     
     /**

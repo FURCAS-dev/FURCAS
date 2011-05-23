@@ -15,15 +15,12 @@ import static com.sap.furcas.unparser.PrettyPrintConstants.TYPE_SYMBOL;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
-import com.sap.furcas.runtime.tcs.TcsUtil;
 
 public class PrettyPrintHelper {
 
@@ -31,35 +28,6 @@ public class PrettyPrintHelper {
 	test += TYPE_SYMBOL;
 	return (type & test) == test;
     }
-    
-    public static ClassTemplate findSupertypeTemplate(EClass g, String mode,
-	    Map<List<String>, Map<String, ClassTemplate>> classTemplateMap) {
-	ClassTemplate template = null;
-	for (EClass supertype : g.getESuperTypes()) {
-	    template = TcsUtil.resolveClassTemplate(EcoreHelper.getQualifiedName(supertype), mode, classTemplateMap);
-	    if (template != null && !template.isIsAbstract()) {
-	        return template;
-	    }
-	}
-        for (EClass supertype : g.getESuperTypes()) {
-	    template = findSupertypeTemplate(supertype, mode, classTemplateMap);
-	    if (template != null && !template.isIsAbstract()) {
-		return template;
-	    }
-	}
-	return null;
-    }
-
-    public static ClassTemplate findSupertypeTemplate(EObject r, String mode,
-	    Map<List<String>, Map<String, ClassTemplate>> classTemplateMap) {
-	return findSupertypeTemplate(r.eClass(), mode, classTemplateMap);
-    }
-    
- // FIXME: Structure types not yet supported
-//    public static ClassTemplate findSupertypeTemplate(RefStruct r, String mode,
-//	    Map<List<String>, Map<String, ClassTemplate>> classTemplateMap, Connection conn) {
-//	return findSupertypeTemplate((EClass) conn.getElement(r.refMetaObjectMri()), mode, classTemplateMap);
-//    }
 
     public static boolean isInstanceOf(EObject element, List<String> type) {
 	EClass m = element.eClass();
