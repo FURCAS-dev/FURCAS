@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSResource.java,v 1.14 2011/05/22 16:42:00 ewillink Exp $
+ * $Id: EssentialOCLCSResource.java,v 1.15 2011/05/23 08:45:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -95,6 +95,20 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 		}
 	}
 
+	@Override
+	protected void doLinking() {
+		List<Diagnostic> errors = getErrors();
+		if (errors.size() > 0) {
+			for (int i = errors.size(); --i >= 0; ) {
+				Diagnostic error = errors.get(i);
+				if (error instanceof LibraryDiagnostic) {
+					errors.remove(i);
+				}
+			}
+		}
+		super.doLinking();
+	}
+
 	public PivotEnvironment getEnvironment() {
 		return environment;
 	}
@@ -131,7 +145,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 			for (int i = errors.size(); --i >= 0; ) {
 				Diagnostic error = errors.get(i);
 				if (error instanceof LibraryDiagnostic) {
-					errors.remove(i);
+					hasSyntaxError = true;
 				}
 				else if (error instanceof XtextSyntaxDiagnostic) {
 					hasSyntaxError = true;
@@ -145,9 +159,9 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 		if (adapter != null) {
 			TypeManager typeManager = adapter.getTypeManager();
 			if (typeManager != null) {
-				if (typeManager.getLibraryResource() != org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib.INSTANCE) {
-					typeManager.resetLibrary();		// FIXME is this needed; if so test it
-				}
+//				if (typeManager.getLibraryResource() != org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib.INSTANCE) {
+//					typeManager.resetLibrary();		// FIXME is this needed; if so test it
+//				}
 				try {
 					typeManager.getOclAnyType();
 				} catch (IllegalLibraryException e) {			
