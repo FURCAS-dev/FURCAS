@@ -72,7 +72,7 @@
 	</target>
 	
 	<target name="wikitext2docbook" depends="assemble" description="Generate DocBook from Textile">
-		<wikitext-to-docbook markupLanguage="org.eclipse.xtext.wikitext.XtextTextileDialect"
+		<wikitext-to-docbook markupLanguage="org.eclipse.mylyn.wikitext.textile.core.TextileLanguage"
 			booktitle="OCL Documentation"
 			validate="true">
 			<fileset dir="${build.dir}">
@@ -235,7 +235,7 @@
 	</target>
 	
 	<target name="wikitext2eclipsehelp" depends="assemble" description="Generate Eclipse Help from textile">
-		<wikitext-to-eclipse-help markupLanguage="org.eclipse.xtext.wikitext.XtextTextileDialect"
+		<wikitext-to-eclipse-help markupLanguage="org.eclipse.mylyn.wikitext.textile.core.TextileLanguage"
 			multipleOutputFiles="true"
 			navigationImages="false"
 			formatoutput="true"
