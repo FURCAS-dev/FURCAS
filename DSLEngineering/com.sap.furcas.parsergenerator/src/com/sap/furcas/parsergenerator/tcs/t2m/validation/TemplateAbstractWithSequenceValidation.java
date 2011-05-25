@@ -21,8 +21,6 @@ import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.furcas.runtime.tcs.MetaModelElementResolutionHelper;
 
-
-
 /**
  * The Class UniquenessValidation.
  */
@@ -34,11 +32,10 @@ public class TemplateAbstractWithSequenceValidation implements ISyntaxValidation
     @Override
     public void validate(ConcreteSyntax syntax, IMetaModelLookup metaLookup, SemanticErrorBucket errorBucket) {
         Collection<Template> templates = syntax.getTemplates();
-        MetaModelElementResolutionHelper<?> resolutionHelper = new MetaModelElementResolutionHelper(metaLookup);  
+        MetaModelElementResolutionHelper<?> resolutionHelper = new MetaModelElementResolutionHelper(metaLookup);
         for (Iterator<Template> iterator = templates.iterator(); iterator.hasNext();) {
             Template template = iterator.next();
-            if ( template.getMetaReference() != null ||  (template.getNames() != null ) ) {
-
+            if (template.getMetaReference() != null || (template.getNames() != null)) {
 
                 if (template instanceof ClassTemplate) {
                     ClassTemplate ct = (ClassTemplate) template;
@@ -47,13 +44,14 @@ public class TemplateAbstractWithSequenceValidation implements ISyntaxValidation
                         resolutionBean = resolutionHelper.resolve(template);
                         if (resolutionBean != null && metaLookup.isAbstract(resolutionBean) && ct.getTemplateSequence() != null) {
                             // TODO allow for templates which serve to locate references only
-//                            errorBucket.addError("Abstract ModelElement "+resolutionBean.getNames()+" modeled by Classtemplates with method body.", ct.getTemplateSequence());
+                            // errorBucket.addError("Abstract ModelElement "+resolutionBean.getNames()+" modeled by Classtemplates with method body.", ct.getTemplateSequence());
                         }
                     } catch (NameResolutionFailedException e) {
-                      // ignore
+                        // ignore
                     } catch (MetaModelLookupException e) {
-                     // ignore
-                    }                }
+                        // ignore
+                    }
+                }
             }
         }
     }

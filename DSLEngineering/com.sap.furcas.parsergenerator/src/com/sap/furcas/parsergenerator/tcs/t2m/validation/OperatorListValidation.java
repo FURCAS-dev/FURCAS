@@ -19,33 +19,31 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.SemanticErrorBucket;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 
-
-
 /**
  * The Class UniquenessValidation.
  */
 public class OperatorListValidation implements ISyntaxValidationRule {
 
-	/* (non-Javadoc)
-	 * @see com.sap.mi.textual.grammar.impl.tcs.t2m.validation.ISyntaxValidationRule#validate(TCS.ConcreteSyntax)
-	 */
+    /* (non-Javadoc)
+     * @see com.sap.mi.textual.grammar.impl.tcs.t2m.validation.ISyntaxValidationRule#validate(TCS.ConcreteSyntax)
+     */
     @Override
     public void validate(ConcreteSyntax syntax, IMetaModelLookup<?> metaLookup, SemanticErrorBucket errorBucket) {
         // check priorities includes zero, no gaps, no doubles
         List<OperatorList> opLists = syntax.getOperatorLists();
-        
+
         Set<String> foundNames = new HashSet<String>();
         boolean anonymousListFound = false;
-        
+
         for (Iterator<OperatorList> iterator = opLists.iterator(); iterator.hasNext();) {
             OperatorList operatorList = iterator.next();
             String name = operatorList.getName();
             if (name != null) {
-            if (foundNames.contains(name)) {
-                errorBucket.addError("Duplicate operatorList name '" + name + "'", operatorList);
-            } else {
-                foundNames.add(name);
-            }
+                if (foundNames.contains(name)) {
+                    errorBucket.addError("Duplicate operatorList name '" + name + "'", operatorList);
+                } else {
+                    foundNames.add(name);
+                }
             } else { // name == null
                 if (anonymousListFound == true) {
                     errorBucket.addError("Duplicate anonymous operator list", operatorList);
@@ -53,9 +51,9 @@ public class OperatorListValidation implements ISyntaxValidationRule {
                     anonymousListFound = true;
                 }
             }
-            
+
             List<Priority> prios = operatorList.getPriorities();
-            if (prios != null ) {
+            if (prios != null) {
                 boolean[] covered = new boolean[prios.size()];
                 boolean problemFound = false;
                 for (Iterator<Priority> iterator2 = prios.iterator(); iterator2.hasNext();) {
@@ -68,7 +66,7 @@ public class OperatorListValidation implements ISyntaxValidationRule {
                         } else {
                             covered[priority.getValue()] = true;
                         }
-                    } catch(ArrayIndexOutOfBoundsException aioobe) {
+                    } catch (ArrayIndexOutOfBoundsException aioobe) {
                         if (priority.getValue() < 0) {
                             problemFound = true;
                             errorBucket.addError("Negative priority index " + priority.getValue(), priority);
@@ -80,18 +78,17 @@ public class OperatorListValidation implements ISyntaxValidationRule {
                 } // end for priorities
 
                 // check for missing numbers, which would happen for indexes "0, 1, 2, 4, 5" missing 3. 
-                if (! problemFound) { // previous errors also cause gaps, ignore gap message if already errors have been found
+                if (!problemFound) { // previous errors also cause gaps, ignore gap message if already errors have been found
                     for (int i = 0; i < covered.length; i++) {
                         boolean indexCovered = covered[i];
-                        if (! indexCovered) {
+                        if (!indexCovered) {
                             errorBucket.addError("Missing priority with index " + i, operatorList);
                         }
                     }
                 }
-                
+
             } // end if prios != null
         } // end for operatorLists
-	}
-
+    }
 
 }

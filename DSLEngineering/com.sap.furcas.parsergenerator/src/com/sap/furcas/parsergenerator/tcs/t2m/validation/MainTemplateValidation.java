@@ -17,16 +17,14 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.SemanticErrorBucket;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 
-
-
 /**
  * The Class UniquenessValidation.
  */
 public class MainTemplateValidation implements ISyntaxValidationRule {
 
-	/* (non-Javadoc)
-	 * @see com.sap.mi.textual.grammar.impl.tcs.t2m.validation.ISyntaxValidationRule#validate(TCS.ConcreteSyntax)
-	 */
+    /* (non-Javadoc)
+     * @see com.sap.mi.textual.grammar.impl.tcs.t2m.validation.ISyntaxValidationRule#validate(TCS.ConcreteSyntax)
+     */
     @Override
     public void validate(ConcreteSyntax syntax, IMetaModelLookup<?> metaLookup, SemanticErrorBucket errorBucket) {
         Collection<Template> templates = syntax.getTemplates();

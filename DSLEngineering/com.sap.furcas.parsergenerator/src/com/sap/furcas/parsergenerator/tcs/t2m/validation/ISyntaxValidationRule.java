@@ -12,22 +12,20 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.SemanticErrorBucket;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 
-
-
 /**
  * The Interface ISyntaxValidationRule.
  */
 public interface ISyntaxValidationRule {
 
-	/**
-	 * Validate.
-	 * 
-	 * @param syntax the syntax
-	 * @param metaLookup 
-	 * @param errorBucket 
-	 * 
-	 * @throws SyntaxDefValidationException the syntax def validation exception
-	 */
-	void validate(ConcreteSyntax syntax, IMetaModelLookup<?> metaLookup, SemanticErrorBucket errorBucket);
-	
+    /**
+     * Validate.
+     * 
+     * @param syntax the syntax
+     * @param metaLookup 
+     * @param errorBucket 
+     * 
+     * @throws SyntaxDefValidationException the syntax def validation exception
+     */
+    void validate(ConcreteSyntax syntax, IMetaModelLookup<?> metaLookup, SemanticErrorBucket errorBucket);
+
 }
