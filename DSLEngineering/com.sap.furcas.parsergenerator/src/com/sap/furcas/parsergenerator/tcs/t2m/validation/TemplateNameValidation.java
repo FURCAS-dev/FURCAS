@@ -29,8 +29,6 @@ import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.furcas.runtime.common.util.MessageUtil;
 import com.sap.furcas.runtime.tcs.MetaModelElementResolutionHelper;
 
-
-
 /**
  * The Class UniquenessValidation.
  */
@@ -43,14 +41,13 @@ public class TemplateNameValidation implements ISyntaxValidationRule {
     public void validate(ConcreteSyntax syntax, IMetaModelLookup<?> metaLookup, SemanticErrorBucket errorBucket) {
         Set<Collection<String>> names = new HashSet<Collection<String>>();
         Collection<Template> templates = syntax.getTemplates();
-        MetaModelElementResolutionHelper resolutionHelper = new MetaModelElementResolutionHelper(metaLookup);  
+        MetaModelElementResolutionHelper resolutionHelper = new MetaModelElementResolutionHelper(metaLookup);
         for (Iterator<Template> iterator = templates.iterator(); iterator.hasNext();) {
             Template template = iterator.next();
-            if ( template.getMetaReference() == null 
-                    &&  (template.getNames() == null ||  template.getNames().size() == 0) ) {
+            if (template.getMetaReference() == null && (template.getNames() == null || template.getNames().size() == 0)) {
                 errorBucket.addError("Template has null or empty name reference.", template);
             } else {
-                if (! (template instanceof PrimitiveTemplate) && !(template instanceof FunctionTemplate) ) { // Primitive and function Templates may reference a datatype more than once
+                if (!(template instanceof PrimitiveTemplate) && !(template instanceof FunctionTemplate)) { // Primitive and function Templates may reference a datatype more than once
 
                     ResolvedNameAndReferenceBean resolutionBean;
                     List<String> templatename;
@@ -65,7 +62,7 @@ public class TemplateNameValidation implements ISyntaxValidationRule {
                             continue;
                         }
                     }
-                    
+
                     if (template instanceof ClassTemplate) {
                         ClassTemplate ct = (ClassTemplate) template;
                         if (ct.getMode() != null) {
@@ -73,7 +70,7 @@ public class TemplateNameValidation implements ISyntaxValidationRule {
                             templatename.add(ct.getMode());
                         }
                     }
-                    if(template instanceof OperatorTemplate) {
+                    if (template instanceof OperatorTemplate) {
                         OperatorTemplate ot = (OperatorTemplate) template;
                         for (Operator op : ot.getOperators()) {
                             templatename = new ArrayList<String>(templatename); // clone list before adding!
@@ -82,8 +79,10 @@ public class TemplateNameValidation implements ISyntaxValidationRule {
                     }
 
                     if (names.contains(templatename)) {
-                	// FIXME trying to manage multiple operatorTemplate specifications for distinct operator sets
-                        errorBucket.addError("Duplicate template for same metamodel element " + MessageUtil.asModelName(templatename), template);
+                        // FIXME trying to manage multiple operatorTemplate specifications for distinct operator sets
+                        errorBucket.addError(
+                                "Duplicate template for same metamodel element " + MessageUtil.asModelName(templatename),
+                                template);
                     } else {
 
                         names.add(templatename);
