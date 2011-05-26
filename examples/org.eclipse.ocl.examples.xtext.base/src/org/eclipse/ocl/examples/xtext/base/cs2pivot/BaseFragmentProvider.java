@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseFragmentProvider.java,v 1.4 2011/03/01 08:47:46 ewillink Exp $
+ * $Id: BaseFragmentProvider.java,v 1.5 2011/05/15 20:18:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -26,24 +26,24 @@ public class BaseFragmentProvider extends DefaultFragmentProvider
 {
 	@Override
 	public EObject getEObject(Resource resource, String fragment, Fallback fallback) {
-		if (fragment.startsWith("//@ownedNestedPackage")) {
+		// fragment should be a CS fragment
+		if (fragment.startsWith("/")) {
 			return super.getEObject(resource, fragment, fallback);
 		}
-		try {
-			CS2PivotResourceAdapter converter = CS2PivotResourceAdapter.findAdapter((BaseCSResource)resource);
-			if (converter != null) {
-				Resource pivotResource = converter.getPivotResource(resource);
-				if (pivotResource != null) {
-					EObject eObject = pivotResource.getEObject(fragment);
-					if (eObject != null) {
-						return eObject;
-					}
+		EObject eObject = super.getEObject(resource, fragment, fallback);
+		if (eObject != null) {
+			return eObject;
+		}
+		CS2PivotResourceAdapter converter = CS2PivotResourceAdapter.findAdapter((BaseCSResource)resource);
+		if (converter != null) {
+			Resource pivotResource = converter.getPivotResource(resource);
+			if (pivotResource != null) {
+				eObject = pivotResource.getEObject(fragment);
+				if (eObject != null) {
+					return eObject;
 				}
 			}
 		}
-		catch (IllegalArgumentException e) {
-			// Maybe it's a CS URI after all.
-		}
-		return super.getEObject(resource, fragment, fallback);
+		return null;
 	}
 }

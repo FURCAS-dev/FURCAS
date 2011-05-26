@@ -232,7 +232,7 @@
     </ownedMember>
     <ownedMember xmi:type="cmof:Class" xmi:id="_IPg0mIgHEd-aGOJuUCcZBA" name="MessageExp" superClass="_IPg0HogHEd-aGOJuUCcZBA">
       <ownedAttribute xmi:type="cmof:Property" xmi:id="_zDb70MgYEd-sJIf4tYBt-g" name="target" type="_IPg0HogHEd-aGOJuUCcZBA" isComposite="true"/>
-      <ownedAttribute xmi:type="cmof:Property" xmi:id="_Bh2GIMgZEd-sJIf4tYBt-g" name="argument" type="_IPg0HogHEd-aGOJuUCcZBA" upper="*" lower="0" isComposite="true"/>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_Bh2GIMgZEd-sJIf4tYBt-g" name="argument" type="_IPg0HogHEd-aGOJuUCcZBA" isOrdered="true" upper="*" lower="0" isComposite="true"/>
       <ownedAttribute xmi:type="cmof:Property" xmi:id="_9T9wcMgYEd-sJIf4tYBt-g" name="calledOperation" type="_k-CR8MgZEd-sJIf4tYBt-g" lower="0" isComposite="true"/>
       <ownedAttribute xmi:type="cmof:Property" xmi:id="_r5FYgMgZEd-sJIf4tYBt-g" name="sentSignal" type="_gYqCQMgZEd-sJIf4tYBt-g" lower="0" isComposite="true"/>
     </ownedMember>

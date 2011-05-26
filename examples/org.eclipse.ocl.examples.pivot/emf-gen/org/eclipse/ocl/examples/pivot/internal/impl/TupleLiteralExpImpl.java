@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralExpImpl.java,v 1.2 2011/01/24 20:42:31 ewillink Exp $
+ * $Id: TupleLiteralExpImpl.java,v 1.3 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -87,7 +87,7 @@ public class TupleLiteralExpImpl
 	public EList<TupleLiteralPart> getParts() {
 		if (parts == null)
 		{
-			parts = new EObjectContainmentEList.Resolving<TupleLiteralPart>(TupleLiteralPart.class, this, PivotPackage.TUPLE_LITERAL_EXP__PART);
+			parts = new EObjectContainmentEList<TupleLiteralPart>(TupleLiteralPart.class, this, PivotPackage.TUPLE_LITERAL_EXP__PART);
 		}
 		return parts;
 	}

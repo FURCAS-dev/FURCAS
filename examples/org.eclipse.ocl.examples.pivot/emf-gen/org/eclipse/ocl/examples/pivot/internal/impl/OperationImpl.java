@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationImpl.java,v 1.6 2011/05/02 15:38:53 ewillink Exp $
+ * $Id: OperationImpl.java,v 1.7 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -261,16 +261,6 @@ public class OperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateParameter basicGetOwningTemplateParameter() {
-		if (eContainerFeatureID() != PivotPackage.OPERATION__OWNING_TEMPLATE_PARAMETER) return null;
-		return (TemplateParameter)eInternalContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public NotificationChain basicSetOwningTemplateParameter(
 			TemplateParameter newOwningTemplateParameter, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newOwningTemplateParameter, PivotPackage.OPERATION__OWNING_TEMPLATE_PARAMETER, msgs);
@@ -318,7 +308,7 @@ public class OperationImpl
 	public EList<TemplateBinding> getTemplateBindings() {
 		if (templateBindings == null)
 		{
-			templateBindings = new EObjectContainmentWithInverseEList.Resolving<TemplateBinding>(TemplateBinding.class, this, PivotPackage.OPERATION__TEMPLATE_BINDING, PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT);
+			templateBindings = new EObjectContainmentWithInverseEList<TemplateBinding>(TemplateBinding.class, this, PivotPackage.OPERATION__TEMPLATE_BINDING, PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT);
 		}
 		return templateBindings;
 	}
@@ -340,32 +330,6 @@ public class OperationImpl
 	 * @generated
 	 */
 	public TemplateSignature getOwnedTemplateSignature() {
-		if (ownedTemplateSignature != null && ((EObject)ownedTemplateSignature).eIsProxy())
-		{
-			InternalEObject oldOwnedTemplateSignature = (InternalEObject)ownedTemplateSignature;
-			ownedTemplateSignature = (TemplateSignature)eResolveProxy(oldOwnedTemplateSignature);
-			if (ownedTemplateSignature != oldOwnedTemplateSignature)
-			{
-				InternalEObject newOwnedTemplateSignature = (InternalEObject)ownedTemplateSignature;
-				NotificationChain msgs =  oldOwnedTemplateSignature.eInverseRemove(this, PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE, TemplateSignature.class, null);
-				if (newOwnedTemplateSignature.eInternalContainer() == null)
-				{
-					msgs =  newOwnedTemplateSignature.eInverseAdd(this, PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE, TemplateSignature.class, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.OPERATION__OWNED_TEMPLATE_SIGNATURE, oldOwnedTemplateSignature, ownedTemplateSignature));
-			}
-		}
-		return ownedTemplateSignature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplateSignature basicGetOwnedTemplateSignature() {
 		return ownedTemplateSignature;
 	}
 
@@ -502,7 +466,7 @@ public class OperationImpl
 	public EList<Parameter> getOwnedParameters() {
 		if (ownedParameters == null)
 		{
-			ownedParameters = new EObjectContainmentWithInverseEList.Resolving<Parameter>(Parameter.class, this, PivotPackage.OPERATION__OWNED_PARAMETER, PivotPackage.PARAMETER__OPERATION);
+			ownedParameters = new EObjectContainmentWithInverseEList<Parameter>(Parameter.class, this, PivotPackage.OPERATION__OWNED_PARAMETER, PivotPackage.PARAMETER__OPERATION);
 		}
 		return ownedParameters;
 	}
@@ -526,16 +490,6 @@ public class OperationImpl
 	public org.eclipse.ocl.examples.pivot.Class getClass_() {
 		if (eContainerFeatureID() != PivotPackage.OPERATION__CLASS) return null;
 		return (org.eclipse.ocl.examples.pivot.Class)eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public org.eclipse.ocl.examples.pivot.Class basicGetClass_() {
-		if (eContainerFeatureID() != PivotPackage.OPERATION__CLASS) return null;
-		return (org.eclipse.ocl.examples.pivot.Class)eInternalContainer();
 	}
 
 	/**
@@ -733,13 +687,11 @@ public class OperationImpl
 			case PivotPackage.OPERATION__TEMPLATE_BINDING:
 				return getTemplateBindings();
 			case PivotPackage.OPERATION__OWNED_TEMPLATE_SIGNATURE:
-				if (resolve) return getOwnedTemplateSignature();
-				return basicGetOwnedTemplateSignature();
+				return getOwnedTemplateSignature();
 			case PivotPackage.OPERATION__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
 			case PivotPackage.OPERATION__OWNING_TEMPLATE_PARAMETER:
-				if (resolve) return getOwningTemplateParameter();
-				return basicGetOwningTemplateParameter();
+				return getOwningTemplateParameter();
 			case PivotPackage.OPERATION__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
@@ -751,8 +703,7 @@ public class OperationImpl
 				if (resolve) return getPrecedence();
 				return basicGetPrecedence();
 			case PivotPackage.OPERATION__CLASS:
-				if (resolve) return getClass_();
-				return basicGetClass_();
+				return getClass_();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -964,7 +915,7 @@ public class OperationImpl
 			case PivotPackage.OPERATION__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
 			case PivotPackage.OPERATION__OWNING_TEMPLATE_PARAMETER:
-				return basicGetOwningTemplateParameter() != null;
+				return getOwningTemplateParameter() != null;
 			case PivotPackage.OPERATION__TEMPLATE_PARAMETER:
 				return isSetTemplateParameter();
 			case PivotPackage.OPERATION__RAISED_EXCEPTION:
@@ -974,7 +925,7 @@ public class OperationImpl
 			case PivotPackage.OPERATION__PRECEDENCE:
 				return precedence != null;
 			case PivotPackage.OPERATION__CLASS:
-				return basicGetClass_() != null;
+				return getClass_() != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

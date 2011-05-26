@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UnspecifiedTypeImpl.java,v 1.3 2011/05/02 15:38:53 ewillink Exp $
+ * $Id: UnspecifiedTypeImpl.java,v 1.4 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -208,19 +208,16 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 			case PivotPackage.UNSPECIFIED_TYPE__TEMPLATE_BINDING:
 				return getTemplateBindings();
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_TEMPLATE_SIGNATURE:
-				if (resolve) return getOwnedTemplateSignature();
-				return basicGetOwnedTemplateSignature();
+				return getOwnedTemplateSignature();
 			case PivotPackage.UNSPECIFIED_TYPE__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
 			case PivotPackage.UNSPECIFIED_TYPE__OWNING_TEMPLATE_PARAMETER:
-				if (resolve) return getOwningTemplateParameter();
-				return basicGetOwningTemplateParameter();
+				return getOwningTemplateParameter();
 			case PivotPackage.UNSPECIFIED_TYPE__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
 			case PivotPackage.UNSPECIFIED_TYPE__PACKAGE:
-				if (resolve) return getPackage();
-				return basicGetPackage();
+				return getPackage();
 			case PivotPackage.UNSPECIFIED_TYPE__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.UNSPECIFIED_TYPE__IS_ABSTRACT:
@@ -437,11 +434,11 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 			case PivotPackage.UNSPECIFIED_TYPE__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
 			case PivotPackage.UNSPECIFIED_TYPE__OWNING_TEMPLATE_PARAMETER:
-				return basicGetOwningTemplateParameter() != null;
+				return getOwningTemplateParameter() != null;
 			case PivotPackage.UNSPECIFIED_TYPE__TEMPLATE_PARAMETER:
 				return isSetTemplateParameter();
 			case PivotPackage.UNSPECIFIED_TYPE__PACKAGE:
-				return basicGetPackage() != null;
+				return getPackage() != null;
 			case PivotPackage.UNSPECIFIED_TYPE__INSTANCE_CLASS_NAME:
 				return isSetInstanceClassName();
 			case PivotPackage.UNSPECIFIED_TYPE__IS_ABSTRACT:

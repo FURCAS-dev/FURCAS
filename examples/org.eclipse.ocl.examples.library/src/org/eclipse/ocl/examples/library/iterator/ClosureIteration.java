@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClosureIteration.java,v 1.6 2011/03/08 15:14:50 ewillink Exp $
+ * $Id: ClosureIteration.java,v 1.7 2011/05/07 16:41:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -60,7 +60,8 @@ public class ClosureIteration extends AbstractIteration<CollectionValue.Accumula
 	/**
 	 * Recursively evaluates the iterator body expression.
 	 */
-    protected Value updateAccumulator(IterationManager<CollectionValue.Accumulator> iterationManager) {
+    @Override
+	protected Value updateAccumulator(IterationManager<CollectionValue.Accumulator> iterationManager) {
 		CollectionValue.Accumulator accumulatorValue = iterationManager.getAccumulatorValue();
 		if (!iterationManager.isOuterIteration()) {
 			// If there is the parent is the iterator

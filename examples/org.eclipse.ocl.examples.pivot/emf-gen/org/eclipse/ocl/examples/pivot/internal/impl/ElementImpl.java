@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
+ * $Id: ElementImpl.java,v 1.3 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -87,7 +87,7 @@ public abstract class ElementImpl
 	public EList<Comment> getOwnedComments() {
 		if (ownedComments == null)
 		{
-			ownedComments = new EObjectContainmentEList.Resolving<Comment>(Comment.class, this, PivotPackage.ELEMENT__OWNED_COMMENT);
+			ownedComments = new EObjectContainmentEList<Comment>(Comment.class, this, PivotPackage.ELEMENT__OWNED_COMMENT);
 		}
 		return ownedComments;
 	}

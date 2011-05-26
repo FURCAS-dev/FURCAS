@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TracingEvaluationVisitor.java,v 1.4 2011/02/21 08:37:53 ewillink Exp $
+ * $Id: TracingEvaluationVisitor.java,v 1.5 2011/05/07 16:41:08 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -95,8 +95,8 @@ public class TracingEvaluationVisitor extends EvaluationVisitorDecorator {
         return getDelegate().throwInvalidEvaluation(message);
 	}
 
-	public NullValue throwInvalidEvaluation(String message, Throwable e, OclExpression expression, Object value) {
-	       return getDelegate().throwInvalidEvaluation(message, e, expression, value);
+	public NullValue throwInvalidEvaluation(Throwable e, OclExpression expression, Object value, String message, Object... bindings) {
+	       return getDelegate().throwInvalidEvaluation(e, expression, value, message, bindings);
 	}
     
     private Value trace(Object expression, Value value) {

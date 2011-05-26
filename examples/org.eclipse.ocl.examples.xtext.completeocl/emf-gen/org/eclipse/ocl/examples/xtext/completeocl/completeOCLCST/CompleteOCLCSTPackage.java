@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTPackage.java,v 1.11 2011/03/11 20:23:52 ewillink Exp $
+ * $Id: CompleteOCLCSTPackage.java,v 1.12 2011/05/20 15:26:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
@@ -179,7 +179,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getPackageDeclarationCS()
 	 * @generated
 	 */
-	int PACKAGE_DECLARATION_CS = 13;
+	int PACKAGE_DECLARATION_CS = 14;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.ContextDeclCSImpl <em>Context Decl CS</em>}' class.
@@ -199,7 +199,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getPropertyContextDeclCS()
 	 * @generated
 	 */
-	int PROPERTY_CONTEXT_DECL_CS = 17;
+	int PROPERTY_CONTEXT_DECL_CS = 18;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.InitCSImpl <em>Init CS</em>}' class.
@@ -209,7 +209,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getInitCS()
 	 * @generated
 	 */
-	int INIT_CS = 9;
+	int INIT_CS = 10;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DerCSImpl <em>Der CS</em>}' class.
@@ -239,7 +239,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getInvCS()
 	 * @generated
 	 */
-	int INV_CS = 10;
+	int INV_CS = 11;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DefCSImpl <em>Def CS</em>}' class.
@@ -259,7 +259,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getOperationContextDeclCS()
 	 * @generated
 	 */
-	int OPERATION_CONTEXT_DECL_CS = 12;
+	int OPERATION_CONTEXT_DECL_CS = 13;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PreCSImpl <em>Pre CS</em>}' class.
@@ -269,7 +269,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getPreCS()
 	 * @generated
 	 */
-	int PRE_CS = 15;
+	int PRE_CS = 16;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PostCSImpl <em>Post CS</em>}' class.
@@ -279,7 +279,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getPostCS()
 	 * @generated
 	 */
-	int POST_CS = 14;
+	int POST_CS = 15;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.BodyCSImpl <em>Body CS</em>}' class.
@@ -653,13 +653,22 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int COMPLETE_OCL_DOCUMENT_CS__CONTEXTS = BaseCSTPackage.ROOT_PACKAGE_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Owned Include</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_OCL_DOCUMENT_CS__OWNED_INCLUDE = BaseCSTPackage.ROOT_PACKAGE_CS_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Complete OCL Document CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_OCL_DOCUMENT_CS_FEATURE_COUNT = BaseCSTPackage.ROOT_PACKAGE_CS_FEATURE_COUNT + 2;
+	int COMPLETE_OCL_DOCUMENT_CS_FEATURE_COUNT = BaseCSTPackage.ROOT_PACKAGE_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.ContextSpecificationCSImpl <em>Context Specification CS</em>}' class.
@@ -1051,6 +1060,79 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int FEATURE_CONTEXT_DECL_CS_FEATURE_COUNT = CONTEXT_DECL_CS_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.IncludeCSImpl <em>Include CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.IncludeCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getIncludeCS()
+	 * @generated
+	 */
+	int INCLUDE_CS = 9;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCLUDE_CS__OWNED_ANNOTATION = BaseCSTPackage.NAMESPACE_CS__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Pivot</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCLUDE_CS__PIVOT = BaseCSTPackage.NAMESPACE_CS__PIVOT;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCLUDE_CS__ORIGINAL_XMI_ID = BaseCSTPackage.NAMESPACE_CS__ORIGINAL_XMI_ID;
+
+	/**
+	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCLUDE_CS__MONIKER = BaseCSTPackage.NAMESPACE_CS__MONIKER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCLUDE_CS__NAME = BaseCSTPackage.NAMESPACE_CS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCLUDE_CS__NAMESPACE = BaseCSTPackage.NAMESPACE_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Include CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCLUDE_CS_FEATURE_COUNT = BaseCSTPackage.NAMESPACE_CS_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1238,7 +1320,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getOclMessageArgCS()
 	 * @generated
 	 */
-	int OCL_MESSAGE_ARG_CS = 11;
+	int OCL_MESSAGE_ARG_CS = 12;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -1671,7 +1753,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getPreExpCS()
 	 * @generated
 	 */
-	int PRE_EXP_CS = 16;
+	int PRE_EXP_CS = 17;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -1858,6 +1940,27 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFeatureContextDeclCS_OwnedType();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.IncludeCS <em>Include CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Include CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.IncludeCS
+	 * @generated
+	 */
+	EClass getIncludeCS();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.IncludeCS#getNamespace <em>Namespace</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Namespace</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.IncludeCS#getNamespace()
+	 * @see #getIncludeCS()
+	 * @generated
+	 */
+	EReference getIncludeCS_Namespace();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS <em>Package Declaration CS</em>}'.
@@ -2048,6 +2151,17 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getCompleteOCLDocumentCS_Contexts();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS#getOwnedInclude <em>Owned Include</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Include</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS#getOwnedInclude()
+	 * @see #getCompleteOCLDocumentCS()
+	 * @generated
+	 */
+	EReference getCompleteOCLDocumentCS_OwnedInclude();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextConstraintCS <em>Context Constraint CS</em>}'.
@@ -2298,6 +2412,24 @@ public interface CompleteOCLCSTPackage extends EPackage {
 		EReference FEATURE_CONTEXT_DECL_CS__OWNED_TYPE = eINSTANCE.getFeatureContextDeclCS_OwnedType();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.IncludeCSImpl <em>Include CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.IncludeCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.CompleteOCLCSTPackageImpl#getIncludeCS()
+		 * @generated
+		 */
+		EClass INCLUDE_CS = eINSTANCE.getIncludeCS();
+
+		/**
+		 * The meta object literal for the '<em><b>Namespace</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INCLUDE_CS__NAMESPACE = eINSTANCE.getIncludeCS_Namespace();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PackageDeclarationCSImpl <em>Package Declaration CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2456,6 +2588,14 @@ public interface CompleteOCLCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EReference COMPLETE_OCL_DOCUMENT_CS__CONTEXTS = eINSTANCE.getCompleteOCLDocumentCS_Contexts();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Include</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPLETE_OCL_DOCUMENT_CS__OWNED_INCLUDE = eINSTANCE.getCompleteOCLDocumentCS_OwnedInclude();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.ContextConstraintCSImpl <em>Context Constraint CS</em>}' class.

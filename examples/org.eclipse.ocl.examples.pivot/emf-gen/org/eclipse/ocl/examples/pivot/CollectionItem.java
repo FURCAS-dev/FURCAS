@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionItem.java,v 1.4 2011/03/01 08:47:19 ewillink Exp $
+ * $Id: CollectionItem.java,v 1.5 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -48,7 +48,7 @@ public interface CollectionItem
 	 * @return the value of the '<em>Item</em>' containment reference.
 	 * @see #setItem(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCollectionItem_Item()
-	 * @model containment="true" resolveProxies="true" required="true" ordered="false"
+	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
 	OclExpression getItem();

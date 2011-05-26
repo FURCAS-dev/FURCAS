@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationCallExpImpl.java,v 1.4 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: OperationCallExpImpl.java,v 1.5 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -103,7 +103,7 @@ public class OperationCallExpImpl
 	public EList<OclExpression> getArguments() {
 		if (arguments == null)
 		{
-			arguments = new EObjectContainmentEList.Resolving<OclExpression>(OclExpression.class, this, PivotPackage.OPERATION_CALL_EXP__ARGUMENT);
+			arguments = new EObjectContainmentEList<OclExpression>(OclExpression.class, this, PivotPackage.OPERATION_CALL_EXP__ARGUMENT);
 		}
 		return arguments;
 	}
@@ -208,8 +208,7 @@ public class OperationCallExpImpl
 				if (resolve) return getType();
 				return basicGetType();
 			case PivotPackage.OPERATION_CALL_EXP__SOURCE:
-				if (resolve) return getSource();
-				return basicGetSource();
+				return getSource();
 			case PivotPackage.OPERATION_CALL_EXP__IMPLICIT:
 				return isImplicit();
 			case PivotPackage.OPERATION_CALL_EXP__IS_PRE:

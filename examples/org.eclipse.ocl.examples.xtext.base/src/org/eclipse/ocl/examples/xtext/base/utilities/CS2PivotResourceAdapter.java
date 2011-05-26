@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotResourceAdapter.java,v 1.9 2011/04/20 19:02:26 ewillink Exp $
+ * $Id: CS2PivotResourceAdapter.java,v 1.12 2011/05/15 20:20:22 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -25,12 +25,14 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
+import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
 
 /**
  * A CS2PivotResourceAdapter enhances the Resource for a Concrete Syntax model
@@ -95,10 +97,10 @@ public class CS2PivotResourceAdapter extends TypeManagerResourceAdapter
 				List<EObject> contents = acsResource.getContents();
 	//			if (!"java".equals(uri.scheme())) { //$NON-NLS-1$
 				if ((contents.size() > 0) && (contents.get(0) instanceof ModelElementCS)) { //$NON-NLS-1$
-					URI pivotURI = uri.appendFileExtension("pivot");
+					URI pivotURI = PivotUtil.getPivotURI(uri);
 					Resource pivotResource = pivotResourceSet.getResource(pivotURI, false);
 					if (pivotResource == null) {
-						pivotResource = pivotResourceSet.createResource(pivotURI);
+						pivotResource = pivotResourceSet.createResource(pivotURI, PivotPackage.eCONTENT_TYPE);
 					}
 					cs2pivotResourceMap.put(acsResource, pivotResource);
 				}
@@ -121,9 +123,9 @@ public class CS2PivotResourceAdapter extends TypeManagerResourceAdapter
 		return super.isAdapterForType(type) || (type == CS2PivotResourceAdapter.class);
 	}	
 	
-	public void refreshPivotMappings() throws Exception {
+	public void refreshPivotMappings(IDiagnosticConsumer diagnosticsConsumer) throws Exception {
 		try {
-			converter.update();
+			converter.update(diagnosticsConsumer);
 		}
 		catch (Exception e) {
 			dispose();

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrettyPrintNameVisitor.java,v 1.3 2011/02/15 19:58:28 ewillink Exp $
+ * $Id: PrettyPrintNameVisitor.java,v 1.5 2011/05/22 21:06:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.prettyprint;
 
@@ -111,7 +111,7 @@ public class PrettyPrintNameVisitor extends AbstractExtendingVisitor<Object,Name
 	@Override
 	public String visitNamedElement(NamedElement object) {
 		delegate.appendParent(null, object, "::");
-		delegate.appendName(object);
+		delegate.appendName(object, PrettyPrintTypeVisitor.reservedNames);
 		return null;
 	}
 
@@ -125,8 +125,7 @@ public class PrettyPrintNameVisitor extends AbstractExtendingVisitor<Object,Name
 		Type type = object.getType();
 		if (type != null) {
 			delegate.append(" : ");
-			delegate.appendElement(type);
-			delegate.appendMultiplicity(object);
+			delegate.appendTypedMultiplicity(object);
 		}
 		return null;
 	}
@@ -176,8 +175,10 @@ public class PrettyPrintNameVisitor extends AbstractExtendingVisitor<Object,Name
 
 	@Override
 	public Object visitTypedMultiplicityElement(TypedMultiplicityElement object) {
-		visitTypedElement(object);
-		delegate.appendMultiplicity(object);
+		delegate.appendParent(null, object, "::");
+		delegate.appendName(object);
+		delegate.append(" : ");
+		delegate.appendTypedMultiplicity(object);
 		return null;
 	}
 

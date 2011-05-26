@@ -1,0 +1,29 @@
+import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';
+
+package my : my = 'http://my/1.0'
+{
+    class Model
+    {
+        property bs : BType[*] { composes };
+    }
+    class Entity
+    {
+        attribute name : String[?];
+    }
+    class AType extends Entity
+    {
+        operation referenced() : BType[?] 
+        {
+            body: BType.allInstances()->select(references->includes(self))->asSequence()->first();
+        }
+        attribute referencedAttr : BType[?] { derived,volatile,transient,readonly }
+        {
+            derivation: BType.allInstances()->select(references->includes(self))->asSequence()->first();
+        }
+
+    }
+    class BType extends Entity
+    {
+        property references : AType[*] { composes };
+    }
+}

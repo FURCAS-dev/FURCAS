@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCodeGenerator.java,v 1.5 2011/04/20 19:02:35 ewillink Exp $
+ * $Id: OCLstdlibCodeGenerator.java,v 1.7 2011/05/20 15:27:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.build.utilities;
 
@@ -83,13 +83,13 @@ public class OCLstdlibCodeGenerator extends AbstractWorkflowComponent
 		try {
 			ResourceSet resourceSet = getResourceSet();
 			BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(fileURI, true);
-			String message = PivotUtil.getResourceErrorsString(xtextResource, "OCLstdlib parse failure");
+			String message = PivotUtil.formatResourceDiagnostics(xtextResource.getErrors(), "OCLstdlib parse failure", "\n");
 			if (message != null) {
 				issues.addError(this, message, null, null, null);
 				return;
 			}
 			CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
-			adapter.refreshPivotMappings();
+			adapter.refreshPivotMappings(null);
 			Resource pivotResource = adapter.getPivotResource(xtextResource);
 			List<Object> arguments = new ArrayList<Object>();
 			arguments.add(javaPackageName);

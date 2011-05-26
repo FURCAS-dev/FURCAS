@@ -10,14 +10,12 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.ocl.examples.eventmanager;
   uses:="org.eclipse.emf.ecore.resource,
    org.eclipse.emf.common.util,
-   org.eclipse.emf.common.notify,
-   de.hpi.sam.bp2009.solution.eventManager.filters",
+   org.eclipse.emf.common.notify",
  org.eclipse.ocl.examples.eventmanager.filters;
   x-friends:="org.eclipse.ocl.examples.eventmanager.tests,
    org.eclipse.ocl.examples.impactanalyzer.tests";
   uses:="org.eclipse.emf.ecore,
    org.eclipse.emf.common.util,
-   de.hpi.sam.bp2009.solution.eventManager,
    org.eclipse.emf.common.notify",
  org.eclipse.ocl.examples.eventmanager.framework;x-friends:="org.eclipse.ocl.examples.eventmanager.tests",
  org.eclipse.ocl.examples.eventmanager.util;x-friends:="org.eclipse.ocl.examples.impactanalyzer.tests,org.eclipse.ocl.examples.eventmanager.tests"

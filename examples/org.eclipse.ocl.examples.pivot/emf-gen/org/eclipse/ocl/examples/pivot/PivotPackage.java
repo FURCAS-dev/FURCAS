@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotPackage.java,v 1.12 2011/05/02 15:38:53 ewillink Exp $
+ * $Id: PivotPackage.java,v 1.13 2011/05/12 06:07:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -4752,13 +4752,22 @@ public interface PivotPackage
 	int CONSTRAINT__STEREOTYPE = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Is Callable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__IS_CALLABLE = NAMED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int CONSTRAINT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -17213,6 +17222,17 @@ public interface PivotPackage
 	EAttribute getConstraint_Stereotype();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.Constraint#isCallable <em>Is Callable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Callable</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.Constraint#isCallable()
+	 * @see #getConstraint()
+	 * @generated
+	 */
+	EAttribute getConstraint_IsCallable();
+
+	/**
 	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.Constraint#validateNotApplyToSelf(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Not Apply To Self</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19782,6 +19802,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EAttribute CONSTRAINT__STEREOTYPE = eINSTANCE.getConstraint_Stereotype();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Callable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTRAINT__IS_CALLABLE = eINSTANCE.getConstraint_IsCallable();
 
 		/**
 		 * The meta object literal for the '<em><b>Validate Not Apply To Self</b></em>' operation.

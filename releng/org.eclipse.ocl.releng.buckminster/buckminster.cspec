@@ -3,6 +3,8 @@
     <cs:dependencies>
         <cs:dependency name="lpg.runtime.java" componentType="osgi.bundle"/>
         <cs:dependency name="lpg.runtime.java.source" componentType="osgi.bundle"/>
+        <cs:dependency name="org.apache.xalan" componentType="osgi.bundle"/>
+        <cs:dependency name="org.apache.xml.serializer" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.emf" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.emf.compare" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.pde.core" componentType="osgi.bundle"/>
