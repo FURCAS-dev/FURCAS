@@ -1000,7 +1000,7 @@ public class RevPathComputationTest extends BaseDepartmentTestWithOCL {
         
         noti = NotificationHelper.createReferenceAddNotification(this.dep2, this.employeeRef, this.stud1);
         instances = computeAffectedInstances(this.getNonLinearDerivationAST(), noti);
-        compareInstances(instances, new EObject[] {/*this.dep2 should not be in the impact since the derived property didn't and couldn't change*/});
+        compareInstances(instances, new EObject[] {/*this.dep2 should not be in the impact since the derived property didn't and couldn't change but this can only be determined if unusedChecks are enabled*/});
     }
     
     @Test
@@ -1015,11 +1015,6 @@ public class RevPathComputationTest extends BaseDepartmentTestWithOCL {
         //We add another freelancer to generate an impact for this constraint.
         
         noti = NotificationHelper.createReferenceAddNotification(this.dep2, this.employeeRef, this.e2);
-        //FIXME atm this returns the impact on the derivation expression and not on the constraint.
-        //I guess the self variable in the derivation is taken as a real impact, but it should'nt.
-        //Additionally the unused check that uses partial evaluation eliminates one possible context,
-        //which might be correct because the overall result of the ->first() call does'nt change at all by adding one more freelance.
-        //What changes nevertheless is the outcome of ->first().biggestNumberOfStudentsOrFreelancers so we'd expect to see an impact here.
         instances = computeAffectedInstances(this.getlongNavigationWithDerivationAST(), noti);
         compareInstances(instances, new EObject[] {this.company});
         
