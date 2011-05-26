@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypedTypeRefCSImpl.java,v 1.9 2011/04/20 19:02:27 ewillink Exp $
+ * $Id: TypedTypeRefCSImpl.java,v 1.10 2011/05/05 17:53:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -322,12 +322,5 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 	@Override
 	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
 		return visitor.visitTypedTypeRefCS(this);
-	}
-
-	@Override
-	public void resetPivot() {
-		super.resetPivot();
-//		type = null;
-//		namespace.clear();
 	}
 } //TypedTypeRefCSImpl

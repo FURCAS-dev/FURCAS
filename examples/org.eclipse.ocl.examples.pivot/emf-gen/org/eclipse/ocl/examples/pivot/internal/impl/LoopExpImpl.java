@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoopExpImpl.java,v 1.4 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: LoopExpImpl.java,v 1.5 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -113,32 +113,6 @@ public abstract class LoopExpImpl
 	 * @generated
 	 */
 	public OclExpression getBody() {
-		if (body != null && ((EObject)body).eIsProxy())
-		{
-			InternalEObject oldBody = (InternalEObject)body;
-			body = (OclExpression)eResolveProxy(oldBody);
-			if (body != oldBody)
-			{
-				InternalEObject newBody = (InternalEObject)body;
-				NotificationChain msgs = oldBody.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.LOOP_EXP__BODY, null, null);
-				if (newBody.eInternalContainer() == null)
-				{
-					msgs = newBody.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.LOOP_EXP__BODY, null, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.LOOP_EXP__BODY, oldBody, body));
-			}
-		}
-		return body;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OclExpression basicGetBody() {
 		return body;
 	}
 
@@ -198,7 +172,7 @@ public abstract class LoopExpImpl
 	public EList<Variable> getIterators() {
 		if (iterators == null)
 		{
-			iterators = new EObjectContainmentEList.Resolving<Variable>(Variable.class, this, PivotPackage.LOOP_EXP__ITERATOR);
+			iterators = new EObjectContainmentEList<Variable>(Variable.class, this, PivotPackage.LOOP_EXP__ITERATOR);
 		}
 		return iterators;
 	}
@@ -308,13 +282,11 @@ public abstract class LoopExpImpl
 				if (resolve) return getType();
 				return basicGetType();
 			case PivotPackage.LOOP_EXP__SOURCE:
-				if (resolve) return getSource();
-				return basicGetSource();
+				return getSource();
 			case PivotPackage.LOOP_EXP__IMPLICIT:
 				return isImplicit();
 			case PivotPackage.LOOP_EXP__BODY:
-				if (resolve) return getBody();
-				return basicGetBody();
+				return getBody();
 			case PivotPackage.LOOP_EXP__ITERATOR:
 				return getIterators();
 			case PivotPackage.LOOP_EXP__REFERRED_ITERATION:

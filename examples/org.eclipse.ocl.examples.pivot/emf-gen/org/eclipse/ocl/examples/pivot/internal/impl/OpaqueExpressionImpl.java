@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OpaqueExpressionImpl.java,v 1.3 2011/03/01 08:47:18 ewillink Exp $
+ * $Id: OpaqueExpressionImpl.java,v 1.4 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -237,8 +237,7 @@ public class OpaqueExpressionImpl
 				if (resolve) return getType();
 				return basicGetType();
 			case PivotPackage.OPAQUE_EXPRESSION__OWNING_TEMPLATE_PARAMETER:
-				if (resolve) return getOwningTemplateParameter();
-				return basicGetOwningTemplateParameter();
+				return getOwningTemplateParameter();
 			case PivotPackage.OPAQUE_EXPRESSION__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
@@ -390,7 +389,7 @@ public class OpaqueExpressionImpl
 			case PivotPackage.OPAQUE_EXPRESSION__TYPE:
 				return type != null;
 			case PivotPackage.OPAQUE_EXPRESSION__OWNING_TEMPLATE_PARAMETER:
-				return basicGetOwningTemplateParameter() != null;
+				return getOwningTemplateParameter() != null;
 			case PivotPackage.OPAQUE_EXPRESSION__TEMPLATE_PARAMETER:
 				return templateParameter != null;
 			case PivotPackage.OPAQUE_EXPRESSION__BODY:

@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSResource.java,v 1.9 2011/03/05 05:57:43 ewillink Exp $
+ * $Id: EssentialOCLCSResource.java,v 1.15 2011/05/23 08:45:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -36,13 +37,18 @@ import org.eclipse.ocl.examples.modelregistry.standalone.ModelFileResolver;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationContext;
+import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironment;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.LibraryDiagnostic;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLCS2Pivot;
 import org.eclipse.xtext.linking.lazy.LazyLinkingResource;
+import org.eclipse.xtext.resource.XtextSyntaxDiagnostic;
+import org.eclipse.xtext.util.CancelIndicator;
 
 public class EssentialOCLCSResource extends LazyLinkingResource
 	implements BaseCSResource, EvaluationContext
@@ -55,6 +61,21 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 	
 	public EssentialOCLCSResource() {
 		super();
+	}
+
+	protected void addLibraryError(List<Diagnostic> errors, IllegalLibraryException e) {
+		String message = e.getMessage();
+		for (Resource.Diagnostic diagnostic : errors) {
+			if (diagnostic instanceof LibraryDiagnostic) {
+				Exception exception = ((LibraryDiagnostic)diagnostic).getException();
+				if (exception instanceof IllegalLibraryException) {
+					if (message.equals(exception.getMessage())) {
+						return;
+					}
+				}
+			}
+		}
+		errors.add(new LibraryDiagnostic(e));
 	}
 
 	public CS2Pivot createCS2Pivot(
@@ -72,6 +93,20 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 		else {
 			return new TypeManager();
 		}
+	}
+
+	@Override
+	protected void doLinking() {
+		List<Diagnostic> errors = getErrors();
+		if (errors.size() > 0) {
+			for (int i = errors.size(); --i >= 0; ) {
+				Diagnostic error = errors.get(i);
+				if (error instanceof LibraryDiagnostic) {
+					errors.remove(i);
+				}
+			}
+		}
+		super.doLinking();
 	}
 
 	public PivotEnvironment getEnvironment() {
@@ -100,6 +135,116 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 			logger.warn("Failed to resolve '" + uri + "'", e);
 		}
 		return uri.resolve(getURI());
+	}
+
+	@Override
+	public void resolveLazyCrossReferences(CancelIndicator mon) {	// FIXME move to Validation rules
+		List<Diagnostic> errors = getErrors();
+		if (errors.size() > 0) {
+			boolean hasSyntaxError = false;
+			for (int i = errors.size(); --i >= 0; ) {
+				Diagnostic error = errors.get(i);
+				if (error instanceof LibraryDiagnostic) {
+					hasSyntaxError = true;
+				}
+				else if (error instanceof XtextSyntaxDiagnostic) {
+					hasSyntaxError = true;
+				}
+			}
+			if (hasSyntaxError) {
+				return;
+			}
+		}
+		TypeManagerResourceAdapter adapter = TypeManagerResourceAdapter.findAdapter(this);
+		if (adapter != null) {
+			TypeManager typeManager = adapter.getTypeManager();
+			if (typeManager != null) {
+//				if (typeManager.getLibraryResource() != org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib.INSTANCE) {
+//					typeManager.resetLibrary();		// FIXME is this needed; if so test it
+//				}
+				try {
+					typeManager.getOclAnyType();
+				} catch (IllegalLibraryException e) {			
+					addLibraryError(errors, e);
+				}
+				try {
+					typeManager.getOclVoidType();
+				} catch (IllegalLibraryException e) {			
+					addLibraryError(errors, e);
+				}
+				try {
+					typeManager.getOclInvalidType();
+				} catch (IllegalLibraryException e) {			
+					addLibraryError(errors, e);
+				}
+				try {
+					typeManager.getClassifierType();
+				} catch (IllegalLibraryException e) {			
+					addLibraryError(errors, e);
+				}
+				try {
+					typeManager.getBooleanType();
+				} catch (IllegalLibraryException e) {			
+					addLibraryError(errors, e);
+				}
+				try {
+					typeManager.getRealType();
+				} catch (IllegalLibraryException e) {			
+					addLibraryError(errors, e);
+				}
+				try {
+					typeManager.getIntegerType();
+				} catch (IllegalLibraryException e) {			
+					addLibraryError(errors, e);
+				}
+				try {
+					typeManager.getUnlimitedNaturalType();
+				} catch (IllegalLibraryException e) {			
+					addLibraryError(errors, e);
+				}
+				try {
+					typeManager.getStringType();
+				} catch (IllegalLibraryException e) {			
+					addLibraryError(errors, e);
+				}
+				try {
+					typeManager.getCollectionType();
+				} catch (IllegalLibraryException e) {			
+					addLibraryError(errors, e);
+				}
+				try {
+					typeManager.getBagType();
+				} catch (IllegalLibraryException e) {			
+					addLibraryError(errors, e);
+				}
+				try {
+					typeManager.getSequenceType();
+				} catch (IllegalLibraryException e) {			
+					addLibraryError(errors, e);
+				}
+				try {
+					typeManager.getSetType();
+				} catch (IllegalLibraryException e) {			
+					addLibraryError(errors, e);
+				}
+				try {
+					typeManager.getOrderedSetType();
+				} catch (IllegalLibraryException e) {			
+					addLibraryError(errors, e);
+				}
+				try {
+					typeManager.getEnumerationType();
+				} catch (IllegalLibraryException e) {			
+					addLibraryError(errors, e);
+				}
+				try {
+					typeManager.getTupleType();
+				} catch (IllegalLibraryException e) {			
+					addLibraryError(errors, e);
+				}
+			}
+		}
+		super.resolveLazyCrossReferences(mon);
 	}
 
 	public void setContext(NamedElement pivotContext, Map<String, Type> pivotParameters) {
@@ -164,7 +309,7 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 				else {
 					registryPath = ProjectHandle.DEFAULT_MODEL_REGISTRY_NAME;
 				}
-				if (registryPath != null) {
+				if ((projectFolder != null) && (registryPath != null)) {
 					JavaProjectHandle project = new JavaProjectHandle(projectFolder, registryPath);
 					modelResolver = new ModelFileResolver(project, file);
 				}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2UMLDeclarationVisitor.java,v 1.6 2011/03/04 13:57:13 ewillink Exp $
+ * $Id: Pivot2UMLDeclarationVisitor.java,v 1.7 2011/05/13 18:41:17 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.uml;
 
@@ -204,8 +204,8 @@ public class Pivot2UMLDeclarationVisitor
 //			oclAnnotation.setSource(OCLDelegateDomain.OCL_DELEGATE_URI);
 //			eModelElement.getEAnnotations().add(oclAnnotation);
 //		}
-		String stereotype = pivotConstraint.getStereotype();
-		String name = pivotConstraint.getName();
+//		String stereotype = pivotConstraint.getStereotype();
+//		String name = pivotConstraint.getName();
 /*		if (UMLReflection.INVARIANT.equals(stereotype)) {
 			oclAnnotation.getDetails().put(name, exprString);
 		}
@@ -240,12 +240,6 @@ public class Pivot2UMLDeclarationVisitor
 		copyDataTypeOrEnum(umlDataType, pivotDataType);
 		return umlDataType;
 	}
-
-//	@Override
-//	public EObject visitDetail(Detail object) {
-		// TODO Auto-generated method stub
-//		return super.visitDetail(object);
-//	}
 
 	@Override
 	public org.eclipse.uml2.uml.Enumeration visitEnumeration(Enumeration pivotEnumeration) {

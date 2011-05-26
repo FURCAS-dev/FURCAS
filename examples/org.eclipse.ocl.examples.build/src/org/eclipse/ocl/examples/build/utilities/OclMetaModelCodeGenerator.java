@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclMetaModelCodeGenerator.java,v 1.2 2011/01/24 20:54:27 ewillink Exp $
+ * $Id: OclMetaModelCodeGenerator.java,v 1.3 2011/05/20 15:27:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.build.utilities;
 
@@ -87,7 +87,7 @@ public class OclMetaModelCodeGenerator extends AbstractWorkflowComponent
 			ResourceSet resourceSet = getResourceSet();
 			Resource ecoreResource = resourceSet.getResource(fileURI, true);
 			TypeManagerResourceAdapter adapter = TypeManagerResourceAdapter.getAdapter(ecoreResource, null);
-			String ecoreErrorsString = PivotUtil.getResourceErrorsString(ecoreResource, "Loading " + fileURI);
+			String ecoreErrorsString = PivotUtil.formatResourceDiagnostics(ecoreResource.getErrors(), "Loading " + fileURI, "\n");
 			if (ecoreErrorsString != null) {
 				issues.addError(this, ecoreErrorsString, null, null, null);
 				return;
@@ -97,7 +97,7 @@ public class OclMetaModelCodeGenerator extends AbstractWorkflowComponent
 			org.eclipse.ocl.examples.pivot.Package pivotRoot = ecore2Pivot.getPivotRoot();
 			Package pivotPackage = pivotRoot.getNestedPackages().get(0);
 			Resource pivotResource = pivotRoot.eResource();
-			String pivotErrorsString = PivotUtil.getResourceErrorsString(pivotResource, "Converting " + fileURI);
+			String pivotErrorsString = PivotUtil.formatResourceDiagnostics(pivotResource.getErrors(), "Converting " + fileURI, "\n");
 			if (pivotErrorsString != null) {
 				issues.addError(this, pivotErrorsString, null, null, null);
 				return;

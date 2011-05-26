@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateableElementImpl.java,v 1.3 2011/05/02 15:38:53 ewillink Exp $
+ * $Id: TemplateableElementImpl.java,v 1.4 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -23,7 +23,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
@@ -112,7 +111,7 @@ public abstract class TemplateableElementImpl
 	public EList<TemplateBinding> getTemplateBindings() {
 		if (templateBindings == null)
 		{
-			templateBindings = new EObjectContainmentWithInverseEList.Resolving<TemplateBinding>(TemplateBinding.class, this, PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING, PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT);
+			templateBindings = new EObjectContainmentWithInverseEList<TemplateBinding>(TemplateBinding.class, this, PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING, PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT);
 		}
 		return templateBindings;
 	}
@@ -134,32 +133,6 @@ public abstract class TemplateableElementImpl
 	 * @generated
 	 */
 	public TemplateSignature getOwnedTemplateSignature() {
-		if (ownedTemplateSignature != null && ((EObject)ownedTemplateSignature).eIsProxy())
-		{
-			InternalEObject oldOwnedTemplateSignature = (InternalEObject)ownedTemplateSignature;
-			ownedTemplateSignature = (TemplateSignature)eResolveProxy(oldOwnedTemplateSignature);
-			if (ownedTemplateSignature != oldOwnedTemplateSignature)
-			{
-				InternalEObject newOwnedTemplateSignature = (InternalEObject)ownedTemplateSignature;
-				NotificationChain msgs =  oldOwnedTemplateSignature.eInverseRemove(this, PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE, TemplateSignature.class, null);
-				if (newOwnedTemplateSignature.eInternalContainer() == null)
-				{
-					msgs =  newOwnedTemplateSignature.eInverseAdd(this, PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE, TemplateSignature.class, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE, oldOwnedTemplateSignature, ownedTemplateSignature));
-			}
-		}
-		return ownedTemplateSignature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplateSignature basicGetOwnedTemplateSignature() {
 		return ownedTemplateSignature;
 	}
 
@@ -310,8 +283,7 @@ public abstract class TemplateableElementImpl
 			case PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING:
 				return getTemplateBindings();
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE:
-				if (resolve) return getOwnedTemplateSignature();
-				return basicGetOwnedTemplateSignature();
+				return getOwnedTemplateSignature();
 			case PivotPackage.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
 		}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralPart.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
+ * $Id: TupleLiteralPart.java,v 1.4 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -48,7 +48,7 @@ public interface TupleLiteralPart
 	 * @return the value of the '<em>Init Expression</em>' containment reference.
 	 * @see #setInitExpression(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getTupleLiteralPart_InitExpression()
-	 * @model containment="true" resolveProxies="true" ordered="false"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	OclExpression getInitExpression();

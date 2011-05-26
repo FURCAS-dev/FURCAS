@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PropertyImpl.java,v 1.8 2011/05/02 17:52:12 ewillink Exp $
+ * $Id: PropertyImpl.java,v 1.9 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -387,7 +387,7 @@ public class PropertyImpl
 		}
 		Resource.Internal eInternalResource = eInternalResource();
 		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			TemplateParameter owningTemplateParameter = basicGetOwningTemplateParameter();
+			TemplateParameter owningTemplateParameter = getOwningTemplateParameter();
 			if (owningTemplateParameter != null && owningTemplateParameter != newTemplateParameter)
 			{
 				setOwningTemplateParameter(null);
@@ -424,16 +424,6 @@ public class PropertyImpl
 	public TemplateParameter getOwningTemplateParameter() {
 		if (eContainerFeatureID() != PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER) return null;
 		return (TemplateParameter)eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplateParameter basicGetOwningTemplateParameter() {
-		if (eContainerFeatureID() != PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER) return null;
-		return (TemplateParameter)eInternalContainer();
 	}
 
 	/**
@@ -836,16 +826,6 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.ocl.examples.pivot.Class basicGetClass_() {
-		if (eContainerFeatureID() != PivotPackage.PROPERTY__CLASS) return null;
-		return (org.eclipse.ocl.examples.pivot.Class)eInternalContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public NotificationChain basicSetClass_(
 			org.eclipse.ocl.examples.pivot.Class newClass,
 			NotificationChain msgs) {
@@ -1007,8 +987,7 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__IMPLEMENTATION:
 				return getImplementation();
 			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
-				if (resolve) return getOwningTemplateParameter();
-				return basicGetOwningTemplateParameter();
+				return getOwningTemplateParameter();
 			case PivotPackage.PROPERTY__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
@@ -1041,8 +1020,7 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__IS_VOLATILE:
 				return isVolatile();
 			case PivotPackage.PROPERTY__CLASS:
-				if (resolve) return getClass_();
-				return basicGetClass_();
+				return getClass_();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -1288,7 +1266,7 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__IMPLEMENTATION:
 				return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
 			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
-				return basicGetOwningTemplateParameter() != null;
+				return getOwningTemplateParameter() != null;
 			case PivotPackage.PROPERTY__TEMPLATE_PARAMETER:
 				return templateParameter != null;
 			case PivotPackage.PROPERTY__IS_READ_ONLY:
@@ -1318,7 +1296,7 @@ public class PropertyImpl
 			case PivotPackage.PROPERTY__IS_VOLATILE:
 				return ((eFlags & IS_VOLATILE_EFLAG) != 0) != IS_VOLATILE_EDEFAULT;
 			case PivotPackage.PROPERTY__CLASS:
-				return basicGetClass_() != null;
+				return getClass_() != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

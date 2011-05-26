@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreValueConverterService.java,v 1.5 2011/03/14 17:06:52 ewillink Exp $
+ * $Id: OCLinEcoreValueConverterService.java,v 1.7 2011/05/21 14:58:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.services;
 
@@ -27,76 +27,111 @@ import org.eclipse.xtext.util.Strings;
 
 public class OCLinEcoreValueConverterService extends EssentialOCLValueConverterService
 {
-	@ValueConverter(rule = "LOWER")
-	public IValueConverter<Integer> LOWER() {
-		return new AbstractNullSafeConverter<Integer>() {
-			
-			@Override
-			public Integer internalToValue(String string, INode node) {
-				if (Strings.isEmpty(string))
-					throw new ValueConverterException("Couldn't convert empty string to integer", node, null);
-				try {
-					return Integer.valueOf(string);
-				} catch (NumberFormatException e) {
-					throw new ValueConverterException("Couldn't convert '"+string+"' to integer", node, e);
-				}
+	protected static class IntegerConverter extends AbstractNullSafeConverter<Integer>
+	{
+		@Override
+		public Integer internalToValue(String string, INode node) {
+			if (Strings.isEmpty(string))
+				throw new ValueConverterException("Couldn't convert empty string to integer", node, null);
+			try {
+				return Integer.valueOf(string);
+			} catch (NumberFormatException e) {
+				throw new ValueConverterException("Couldn't convert '"+string+"' to integer", node, e);
 			}
+		}
 
-			@Override
-			public String internalToString(Integer value) {
-				return value.toString();
-			}
-
-		};
-	}
-
-	@ValueConverter(rule = "UNQUOTED_STRING")
-	public IValueConverter<String> UNQUOTED_STRING() {
-		return new AbstractNullSafeConverter<String>() {
-			@Override
-			protected String internalToValue(String string, INode node) {
-				try {
-					return PivotUtil.convertFromOCLString(string.substring(1, string.length() - 1));
-				} catch(IllegalArgumentException e) {
-					throw new ValueConverterException(e.getMessage(), node, e);
-				}
-			}
-
-			@Override
-			protected String internalToString(String value) {
-				return value; //PivotUtil.convertToOCLString(value.replace('\r', '\n'));
-			}
-		};
+		@Override
+		public String internalToString(Integer value) {
+			return value.toString();
+		}
 	}
 	
-	@ValueConverter(rule = "UnrestrictedName")
-	public IValueConverter<String> UnrestrictedName() {
-		return ID();
+	protected static class PrimitiveTypeIdentifierConverter extends AbstractNullSafeConverter<String>
+	{
+		@Override
+		public String internalToValue(String string, INode node) {
+			return string;
+		}
+
+		@Override
+		public String internalToString(String value) {
+			return value;
+		}
+	}
+	
+	protected static class UpperConverter extends AbstractNullSafeConverter<Integer>
+	{	
+		@Override
+		public Integer internalToValue(String string, INode node) {
+			if (Strings.isEmpty(string))
+				throw new ValueConverterException("Couldn't convert empty string to integer", node, null);
+			try {
+				if ("*".equals(string)) {
+					return Integer.valueOf(-1);
+				}
+				return Integer.valueOf(string);
+			} catch (NumberFormatException e) {
+				throw new ValueConverterException("Couldn't convert '"+string+"' to integer", node, e);
+			}
+		}
+		
+		@Override
+		public String internalToString(Integer value) {
+			return value >= 0 ? value.toString() : "*";
+		}
+	}
+
+	protected static class UnquotedStringConverter extends AbstractNullSafeConverter<String>
+	{
+		@Override
+		protected String internalToValue(String string, INode node) {
+			try {
+				return PivotUtil.convertFromOCLString(string.substring(1, string.length() - 1));
+			} catch(IllegalArgumentException e) {
+				throw new ValueConverterException(e.getMessage(), node, e);
+			}
+		}
+		
+		@Override
+		protected String internalToString(String value) {
+			return value; //PivotUtil.convertToOCLString(value.replace('\r', '\n'));
+		}
+	}
+
+	private static IntegerConverter integerConverter = null;
+	private static PrimitiveTypeIdentifierConverter primitiveTypeIdentifier = null;
+	private static UnquotedStringConverter unquotedStringConverter = null;
+	private static UpperConverter upperConverter = null;
+
+	@ValueConverter(rule = "LOWER")
+	public IValueConverter<Integer> LOWER() {
+		if (integerConverter == null) {
+			integerConverter = new IntegerConverter();
+		}
+		return integerConverter;
+	}
+
+	@ValueConverter(rule = "PrimitiveTypeIdentifier")
+	public IValueConverter<String> PrimitiveTypeIdentifier() {
+		if (primitiveTypeIdentifier == null) {
+			primitiveTypeIdentifier = new PrimitiveTypeIdentifierConverter();
+		}
+		return primitiveTypeIdentifier;
+	}
+	
+	@ValueConverter(rule = "UNQUOTED_STRING")
+	public IValueConverter<String> UNQUOTED_STRING() {
+		if (unquotedStringConverter == null) {
+			unquotedStringConverter = new UnquotedStringConverter();
+		}
+		return unquotedStringConverter;
 	}
 	
 	@ValueConverter(rule = "UPPER")
 	public IValueConverter<Integer> UPPER() {
-		return new AbstractNullSafeConverter<Integer>() {
-			
-			@Override
-			public Integer internalToValue(String string, INode node) {
-				if (Strings.isEmpty(string))
-					throw new ValueConverterException("Couldn't convert empty string to integer", node, null);
-				try {
-					if ("*".equals(string)) {
-						return Integer.valueOf(-1);
-					}
-					return Integer.valueOf(string);
-				} catch (NumberFormatException e) {
-					throw new ValueConverterException("Couldn't convert '"+string+"' to integer", node, e);
-				}
-			}
-
-			@Override
-			public String internalToString(Integer value) {
-				return value >= 0 ? value.toString() : "*";
-			}
-
-		};
+		if (upperConverter == null) {
+			upperConverter = new UpperConverter();
+		}
+		return upperConverter;
 	}
 }

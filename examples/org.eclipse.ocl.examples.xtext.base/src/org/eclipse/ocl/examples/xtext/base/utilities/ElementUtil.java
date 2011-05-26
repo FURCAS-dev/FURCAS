@@ -12,16 +12,20 @@
  *
  * </copyright>
  *
- * $Id: ElementUtil.java,v 1.6 2011/04/20 19:02:26 ewillink Exp $
+ * $Id: ElementUtil.java,v 1.10 2011/05/22 21:06:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
@@ -29,6 +33,7 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
@@ -37,6 +42,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitution
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
@@ -82,6 +88,25 @@ public class ElementUtil
 			return isUnique ? "Set" : "Bag"; //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
+	
+	public static MonikeredElementCS getCsElement(MonikeredElement obj) {
+		Resource resource = obj.eResource();
+		if (resource == null) {
+			return null;
+		}
+		ResourceSet resourceSet = resource.getResourceSet();
+		if (resourceSet == null) {
+			return null;
+		}
+		CS2Pivot cs2Pivot = CS2Pivot.findAdapter(resourceSet);
+		if (cs2Pivot == null) {
+			return null;
+		}
+		String moniker = obj.getMoniker();
+		Map<String, MonikeredElementCS> moniker2CSMap = cs2Pivot.computeMoniker2CSMap();
+		MonikeredElementCS csMonikeredElement = moniker2CSMap.get(moniker);
+		return csMonikeredElement;
+	}
 
 	public static TemplateParameter getFormalTemplateParameter(TemplateParameterSubstitutionCS csTemplateParameterSubstitution) {
 		TemplateBindingCS csTemplateBinding = csTemplateParameterSubstitution.getOwningTemplateBinding();
@@ -114,6 +139,25 @@ public class ElementUtil
 		return null;
 	}
 
+	public static int getLower(TypedElementCS csTypedElement) {
+		String multiplicity = csTypedElement.getMultiplicity();
+		if (multiplicity == null) {
+			if (csTypedElement.getOwnedType() == null) {		// This is arbitrary; it makes Ecore default serializations work
+				return 0;
+			}
+		}
+		else if ("*".equals(multiplicity)) {
+			return 0;
+		}
+		else if ("+".equals(multiplicity)) {
+			return 1;
+		}
+		else if ("?".equals(multiplicity)) {
+			return 0;
+		}
+		return csTypedElement.getLower();
+	}
+
 	public static <T extends NamedElementCS> T getNamedElementCS(Collection<T> namedElements, String name) {
 		for (T namedElement : namedElements) {
 			if (name.equals(namedElement.getName())) {
@@ -121,6 +165,18 @@ public class ElementUtil
 			}
 		}
 		return null;
+	}
+
+	public static boolean getQualifier(List<String> qualifiers, String trueString, String falseString, boolean defaultValue) {
+		if (qualifiers.contains(trueString)) {
+			return true;
+		}
+		else if (qualifiers.contains(falseString)) {
+			return false;
+		}
+		else {
+			return defaultValue;
+		}
 	}
 
 	public static ScopeAdapter getScopeAdapter(TypeManager typeManager, Element element) {
@@ -154,6 +210,25 @@ public class ElementUtil
 		}
 	}
 
+	public static int getUpper(TypedElementCS csTypedElement) {
+		String multiplicity = csTypedElement.getMultiplicity();
+		if (multiplicity == null) {
+			if (csTypedElement.getOwnedType() == null) {		// This is arbitrary; it makes Ecore default serializations work
+				return 1;
+			}
+		}
+		else if ("*".equals(multiplicity)) {
+			return -1;
+		}
+		else if ("+".equals(multiplicity)) {
+			return -1;
+		}
+		else if ("?".equals(multiplicity)) {
+			return 1;
+		}
+		return csTypedElement.getUpper();
+	}
+
 	public static boolean isInOperation(ElementCS csElement) {
 		for (EObject eObject = csElement; eObject != null; eObject = eObject.eContainer()) {
 			if (eObject instanceof OperationCS) {
@@ -164,6 +239,14 @@ public class ElementUtil
 			}
 		}
 		return false;
+	}
+
+	public static boolean isOrdered(TypedElementCS csTypedElement) {
+		return csTypedElement.getQualifier().contains("ordered");
+	}
+
+	public static boolean isUnique(TypedElementCS csTypedElement) {
+		return getQualifier(csTypedElement.getQualifier(), "unique", "!unique", true);
 	}
 
 	public static boolean isSpecialization(TemplateBindingCS csTemplateBinding) {
@@ -186,24 +269,5 @@ public class ElementUtil
 			}
 		}
 		return false;
-	}
-	
-	public static boolean isValidIdentifier(String value) {
-		int iMax = value.length();
-		for (int i = 0; i < iMax; i++) {
-			char c = value.charAt(i);
-			if (('A' <= c) && (c <= 'Z')) {					
-			}
-			else if (('a' <= c) && (c <= 'z')) {					
-			}
-			else if (c == '_') {					
-			}
-			else if (('0' <= c) && (c <= '9') && (i > 0)) {					
-			}
-			else {
-				return false;
-			}
-		}
-		return true;
 	}
 }

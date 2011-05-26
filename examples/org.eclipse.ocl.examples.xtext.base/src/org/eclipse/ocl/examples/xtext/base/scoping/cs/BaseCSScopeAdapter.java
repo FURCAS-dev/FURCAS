@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSScopeAdapter.java,v 1.3 2011/02/15 10:36:54 ewillink Exp $
+ * $Id: BaseCSScopeAdapter.java,v 1.4 2011/05/11 19:50:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -206,6 +206,9 @@ public abstract class BaseCSScopeAdapter<CS extends MonikeredElementCS, P extend
 	//		TypeBindingsCS nestedBindings = bindings;
 			TypedTypeRefCS typedTypeRefCS = (TypedTypeRefCS)csElement;
 			Type type = typedTypeRefCS.getType();
+			if (type.eIsProxy()) {
+				return null;
+			}
 	/*		if (type instanceof ClassifierCS) {
 				ClassifierCS classifierCS = (ClassifierCS)type;
 				List<TypeRefCS> typeArguments = typedTypeRefCS.getTypeArguments();

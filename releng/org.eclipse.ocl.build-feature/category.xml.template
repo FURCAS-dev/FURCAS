@@ -9,9 +9,9 @@
    <feature id="org.eclipse.ocl.master" version="0.0.0">
       <category name="mdt.ocl"/>
    </feature>
-   <category-def name="mdt.ocl" label="MDT/OCL${package.qualifier}">
+   <category-def name="mdt.ocl" label="Eclipse OCL${package.qualifier}">
       <description>
-         MDT/OCL features.
+         Eclipse OCL features.
       </description>
    </category-def>
 </site>

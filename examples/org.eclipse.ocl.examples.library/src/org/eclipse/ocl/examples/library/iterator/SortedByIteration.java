@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SortedByIteration.java,v 1.7 2011/04/25 09:48:57 ewillink Exp $
+ * $Id: SortedByIteration.java,v 1.9 2011/05/20 15:26:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -38,6 +38,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -147,7 +148,7 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 //		CompleteType completeStaticValueType = completeManager.getCompleteType(staticValueType);
 		Operation staticLessThanOperation = typeManager.resolveOperation(staticValueType, PivotConstants.LESS_THAN_OPERATOR, staticValueType);
 		if (staticLessThanOperation == null) {
-			return evaluationEnvironment.throwInvalidEvaluation("No '" + PivotConstants.LESS_THAN_OPERATOR + "' operation defined", null, iteratorExp, sourceVal);
+			return evaluationEnvironment.throwInvalidEvaluation(null, iteratorExp, sourceVal, EvaluatorMessages.UndefinedOperation, PivotConstants.LESS_THAN_OPERATOR);
 		}
 //		CompleteOperation staticCompleteOperation = typeManager.getCompleteOperation(staticLessThanOperation);
 //		Type dynamicSourceType = sourceValue.getType(getStandardLibrary(), staticSourceType);
@@ -157,13 +158,13 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 		try {
 			implementation = typeManager.getImplementation(staticLessThanOperation);
 		} catch (Exception e) {
-			evaluationEnvironment.throwInvalidEvaluation("Failed to load '" + staticLessThanOperation.getImplementationClass() + "'", e, iteratorExp, sourceVal);
+			evaluationEnvironment.throwInvalidEvaluation(e, iteratorExp, sourceVal, EvaluatorMessages.ImplementationClassLoadFailure, staticLessThanOperation.getImplementationClass());
 		}
 		if (implementation == null) {
-			evaluationEnvironment.throwInvalidEvaluation("Failed to load '" + staticLessThanOperation.getImplementationClass() + "'", null, iteratorExp, sourceVal);
+			evaluationEnvironment.throwInvalidEvaluation(null, iteratorExp, sourceVal, EvaluatorMessages.ImplementationClassLoadFailure, staticLessThanOperation.getImplementationClass());
 		}
 		if (!(implementation instanceof Value.BinaryOperation)) {
-			evaluationEnvironment.throwInvalidEvaluation("'<' is not a binary operation", null, iteratorExp, sourceVal);
+			evaluationEnvironment.throwInvalidEvaluation(null, iteratorExp, sourceVal, EvaluatorMessages.NonBinaryOperation, staticValueType, PivotConstants.LESS_THAN_OPERATOR);
 		}
 		Value.BinaryOperation binaryImplementation = (BinaryOperation) implementation;
 		SortingValue accumulatorValue = new SortingValue(evaluationEnvironment, sourceVal, iteratorExp, binaryImplementation);
@@ -185,8 +186,8 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 		SortingValue accumulatorValue = iterationManager.getAccumulatorValue();
 		Value bodyVal = iterationManager.getBodyValue();		
 		if (bodyVal.isUndefined()) {
-			iterationManager.throwInvalidEvaluation("null body");//bodyVal.toInvalidValue();				// Null body is invalid
-		}
+			return iterationManager.throwInvalidEvaluation(EvaluatorMessages.UndefinedBody, "sortedBy"); 	// Null body is invalid //$NON-NLS-1$
+	}
 		// must have exactly one iterator
 		Value iterValue = iterationManager.get(0);
 		accumulatorValue.put(iterValue, bodyVal);
@@ -205,21 +206,21 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 		type = PivotUtil.getBehavioralType(type);			// FIXME make this a general facility
 		Operation operation = typeManager.resolveOperation(type, PivotConstants.LESS_THAN_OPERATOR, type);
 		if (operation == null) {
-			return new ValidationWarning(OCLMessages.UnresolvedOperation_ERROR_, PivotConstants.LESS_THAN_OPERATOR, type + " value");
+			return new ValidationWarning(OCLMessages.UnresolvedOperation_ERROR_, PivotConstants.LESS_THAN_OPERATOR, String.valueOf(type));
 		}
 		try {
 			CallableImplementation implementation = typeManager.getImplementation(operation);
 			if (implementation == null) {
-				return new ValidationWarning("Failed to load '" + operation.getImplementationClass() + "'");
+				return new ValidationWarning(EvaluatorMessages.ImplementationClassLoadFailure, operation.getImplementationClass());
 			}
 			else if (!(implementation instanceof Value.BinaryOperation)) {
-				return new ValidationWarning(type.toString() + "::_'" + PivotConstants.LESS_THAN_OPERATOR + "'(" + type.toString() + ") is not a binary operation");
+				return new ValidationWarning(EvaluatorMessages.NonBinaryOperation, type, PivotConstants.LESS_THAN_OPERATOR);
 			}
 			else {
 				return null;
 			}
 		} catch (Exception e) {
-			return new ValidationWarning("Failed to load '" + operation.getImplementationClass() + "'");  //, e);
+			return new ValidationWarning(EvaluatorMessages.ImplementationClassLoadFailure, operation.getImplementationClass());  //, e);
 		}
 	}
 }

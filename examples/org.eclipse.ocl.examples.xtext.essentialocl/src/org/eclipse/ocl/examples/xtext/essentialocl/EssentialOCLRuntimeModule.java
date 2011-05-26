@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLRuntimeModule.java,v 1.5 2011/04/20 19:02:15 ewillink Exp $
+ * $Id: EssentialOCLRuntimeModule.java,v 1.6 2011/05/15 20:22:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl;
 
@@ -57,7 +57,7 @@ public class EssentialOCLRuntimeModule extends org.eclipse.ocl.examples.xtext.es
 		return EssentialOCLCrossReferenceSerializer.class;
 	}
 	
-	// URI remapping from CS to pivot
+	// Potential resolution of Pivot fragments for CST resource
 	@Override
 	public Class<? extends IFragmentProvider> bindIFragmentProvider() {
 		return BaseFragmentProvider.class;

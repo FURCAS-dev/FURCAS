@@ -12,7 +12,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedContent" upperBound="-1"
         eType="#//ModelElementCS" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="reference" upperBound="-1"
-        eType="#//ModelElementCSRef" containment="true" resolveProxies="false"/>
+        eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//MonikeredElement"
+        resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AnnotationElementCS" abstract="true"
       eSuperTypes="#//NamedElementCS">
@@ -20,9 +21,6 @@
         eType="#//DetailCS" containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AttributeCS" eSuperTypes="#//StructuralFeatureCS"/>
-  <eClassifiers xsi:type="ecore:EClass" name="AttributeCSRef" eSuperTypes="#//ElementCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//AttributeCS"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassCS" eSuperTypes="#//ClassifierCS #//NamespaceCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSuperType" upperBound="-1"
         eType="#//TypedRefCS" unsettable="true" containment="true"/>
@@ -106,9 +104,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="originalXmiId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         transient="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ModelElementCSRef" eSuperTypes="#//ElementCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//ModelElementCS"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MonikeredElementCS" abstract="true"
       eSuperTypes="#//ModelElementCS">
     <eOperations name="hasMoniker" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -120,11 +115,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamespaceCS" abstract="true" interface="true"
       eSuperTypes="#//NamedElementCS"/>
-  <eClassifiers xsi:type="ecore:EClass" name="NamespaceRefCS" eSuperTypes="#//ElementCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Namespace"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTemplateBinding" eType="#//TemplateBindingCS"
-        containment="true"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OperationCS" eSuperTypes="#//FeatureCS #//TemplateableElementCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" eType="#//ClassCS"
         eOpposite="#//ClassCS/ownedOperation"/>
@@ -152,13 +142,8 @@
       interface="true" eSuperTypes="#//MonikeredElementCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveTypeRefCS" eSuperTypes="#//TypedRefCS #//NamedElementCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="ReferenceCS" eSuperTypes="#//StructuralFeatureCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="opposite" eType="#//ReferenceCSRef"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="keys" upperBound="-1" eType="#//AttributeCSRef"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ReferenceCSRef" eSuperTypes="#//ElementCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Property"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="opposite" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Property"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="keys" upperBound="-1" eType="ecore:EClass ../../org.eclipse.ocl.examples.pivot/model/pivot.ecore#//Property"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RootCS" abstract="true" interface="true"
       eSuperTypes="#//ModelElementCS">

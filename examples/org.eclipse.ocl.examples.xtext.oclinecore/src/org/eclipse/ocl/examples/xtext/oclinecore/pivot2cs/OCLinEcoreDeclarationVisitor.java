@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDeclarationVisitor.java,v 1.5 2011/03/14 10:19:43 ewillink Exp $
+ * $Id: OCLinEcoreDeclarationVisitor.java,v 1.8 2011/05/14 10:38:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.pivot2cs;
 
@@ -40,12 +40,13 @@ public class OCLinEcoreDeclarationVisitor extends EssentialOCLDeclarationVisitor
 	public ElementCS visitConstraint(Constraint object) {
 		OCLinEcoreConstraintCS csElement = context.refreshNamedElement(OCLinEcoreConstraintCS.class, OCLinEcoreCSTPackage.Literals.OC_LIN_ECORE_CONSTRAINT_CS, object);
 		csElement.setStereotype(object.getStereotype());
+		csElement.setCallable(object.isCallable());
 		ValueSpecification specification = object.getSpecification();
 		csElement.setSpecification(context.visitDeclaration(SpecificationCS.class, specification));
 		if (specification instanceof OpaqueExpression) {		// FIXME ExpressionInOcl too??
 			OpaqueExpression opaqueExpression = (OpaqueExpression)specification;
 			String message = PivotUtil.getMessage(opaqueExpression);
-			if (message != null) {
+			if ((message != null) && (message.length() > 0)) {
 				OCLinEcoreSpecificationCS csMessageElement = context.refreshMonikeredElement(OCLinEcoreSpecificationCS.class, OCLinEcoreCSTPackage.Literals.OC_LIN_ECORE_SPECIFICATION_CS, opaqueExpression);
 				csMessageElement.setExprString(message);
 				csElement.setMessageSpecification(csMessageElement);
@@ -63,8 +64,11 @@ public class OCLinEcoreDeclarationVisitor extends EssentialOCLDeclarationVisitor
 
 	@Override
 	public ElementCS visitOpaqueExpression(OpaqueExpression object) {
-		OCLinEcoreSpecificationCS csElement = context.refreshMonikeredElement(OCLinEcoreSpecificationCS.class, OCLinEcoreCSTPackage.Literals.OC_LIN_ECORE_SPECIFICATION_CS, object);
 		String body = PivotUtil.getBody(object);
+		if (body == null) {
+			return null;
+		}
+		OCLinEcoreSpecificationCS csElement = context.refreshMonikeredElement(OCLinEcoreSpecificationCS.class, OCLinEcoreCSTPackage.Literals.OC_LIN_ECORE_SPECIFICATION_CS, object);
 		csElement.setExprString(body);
 		return csElement;
 	}	

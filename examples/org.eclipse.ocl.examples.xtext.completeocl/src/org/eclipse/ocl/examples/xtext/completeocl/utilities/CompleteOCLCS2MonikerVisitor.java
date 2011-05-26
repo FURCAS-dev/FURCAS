@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCS2MonikerVisitor.java,v 1.9 2011/03/14 10:19:42 ewillink Exp $
+ * $Id: CompleteOCLCS2MonikerVisitor.java,v 1.11 2011/05/11 19:28:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.utilities;
 
 import java.util.List;
 
+import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
@@ -92,6 +93,15 @@ public class CompleteOCLCS2MonikerVisitor
 		super((EssentialOCLCSVisitor<Boolean, CS2Moniker>) context.getVisitor(EssentialOCLCSTPackage.eINSTANCE), context);
 	}
 
+	public void safeAppendMonikerOf(MonikeredElement element) {
+		if (element.eIsProxy()) {
+			context.append(UNRESOLVED_PROXY_MARKER);
+		}
+		else {
+			context.append(element.getMoniker());
+		}
+	}
+
 	protected void appendParametersCS(List<VariableCS> csParameters) {
 		context.append(PARAMETER_PREFIX);
 		String prefix = ""; //$NON-NLS-1$
@@ -105,7 +115,7 @@ public class CompleteOCLCS2MonikerVisitor
 
 	@Override
 	public Boolean visitClassifierContextDeclCS(ClassifierContextDeclCS object) {
-		context.append(object.getClassifier().getMoniker());
+		safeAppendMonikerOf(object.getClassifier());
 		return true;
 	}
 
@@ -121,22 +131,27 @@ public class CompleteOCLCS2MonikerVisitor
 
 	@Override
 	public Boolean visitContextSpecificationCS(ContextSpecificationCS object) {
-		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
-		if (object.eContainer() instanceof InvCS) {
-			InvCS csInv = (InvCS)object.eContainer();
-			if (object == csInv.getMessageSpecification()) {
-//				context.append("message");		// FIXME This and ContextSpecificationCS are a fudge 
-//				context.append(MONIKER_OPERATOR_SEPARATOR);
-//				context.append(MONIKER_SCOPE_SEPARATOR);
-			}
-		}
-		else if (object.eContainer() instanceof DefCS) {
-			context.append(UMLReflection.BODY);		// FIXME This and ContextSpecificationCS are a fudge 
+		if (object.eContainer() instanceof DefCS) {
+			context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
+			context.append(UMLReflection.BODY);		// Emulate the CS-less Constraint in the pivot Feature-Constraint-ExpressionInOcl hierarchy 
 			context.append(MONIKER_OPERATOR_SEPARATOR);
 			context.append(MONIKER_SCOPE_SEPARATOR);
+			context.append(PivotPackage.Literals.CONSTRAINT__SPECIFICATION.getName());
+			return true;
 		}
-		context.append(PivotPackage.Literals.CONSTRAINT__SPECIFICATION.getName());
-		return true;
+		else {
+			context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
+			if (object.eContainer() instanceof InvCS) {
+				InvCS csInv = (InvCS)object.eContainer();
+				if (object == csInv.getMessageSpecification()) {
+	//				context.append("message");		// FIXME This and ContextSpecificationCS are a fudge 
+	//				context.append(MONIKER_OPERATOR_SEPARATOR);
+	//				context.append(MONIKER_SCOPE_SEPARATOR);
+				}
+			}
+			context.append(PivotPackage.Literals.CONSTRAINT__SPECIFICATION.getName());
+			return true;
+		}
 	}
 
 	@Override
@@ -152,19 +167,19 @@ public class CompleteOCLCS2MonikerVisitor
 
 	@Override
 	public Boolean visitOperationContextDeclCS(OperationContextDeclCS object) {
-		context.append(object.getOperation().getMoniker());
+		safeAppendMonikerOf(object.getOperation());
 		return true;
 	}
 
 	@Override
 	public Boolean visitPackageDeclarationCS(PackageDeclarationCS object) {
-		context.append(object.getPackage().getMoniker());
+		safeAppendMonikerOf(object.getPackage());
 		return true;
 	}
 
 	@Override
 	public Boolean visitPropertyContextDeclCS(PropertyContextDeclCS object) {
-		context.append(object.getProperty().getMoniker());
+		safeAppendMonikerOf(object.getProperty());
 		return true;
 	}
 }

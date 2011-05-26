@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTFactoryImpl.java,v 1.6 2011/03/01 08:47:03 ewillink Exp $
+ * $Id: CompleteOCLCSTFactoryImpl.java,v 1.7 2011/05/20 15:26:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -93,6 +93,7 @@ public class CompleteOCLCSTFactoryImpl extends EFactoryImpl implements CompleteO
 			case CompleteOCLCSTPackage.CONTEXT_SPECIFICATION_CS: return createContextSpecificationCS();
 			case CompleteOCLCSTPackage.DEF_CS: return createDefCS();
 			case CompleteOCLCSTPackage.DER_CS: return createDerCS();
+			case CompleteOCLCSTPackage.INCLUDE_CS: return createIncludeCS();
 			case CompleteOCLCSTPackage.INIT_CS: return createInitCS();
 			case CompleteOCLCSTPackage.INV_CS: return createInvCS();
 			case CompleteOCLCSTPackage.OCL_MESSAGE_ARG_CS: return createOclMessageArgCS();
@@ -145,6 +146,17 @@ public class CompleteOCLCSTFactoryImpl extends EFactoryImpl implements CompleteO
 	public DerCS createDerCS() {
 		DerCSImpl derCS = new DerCSImpl();
 		return derCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IncludeCS createIncludeCS()
+	{
+		IncludeCSImpl includeCS = new IncludeCSImpl();
+		return includeCS;
 	}
 
 	/**

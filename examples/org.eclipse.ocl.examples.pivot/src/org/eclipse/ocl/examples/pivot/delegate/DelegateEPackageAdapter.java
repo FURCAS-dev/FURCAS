@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DelegateEPackageAdapter.java,v 1.2 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: DelegateEPackageAdapter.java,v 1.3 2011/05/07 05:53:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -50,8 +50,6 @@ public class DelegateEPackageAdapter extends AdapterImpl
 	/**
 	 *	Return the DelegateEPackageAdapter for ePackage, creating
 	 *	one if necessary.
-	 *
-	 * @since 3.1
 	 */
 	public static DelegateEPackageAdapter getAdapter(EPackage ePackage) {
 		DelegateEPackageAdapter adapter = (DelegateEPackageAdapter) EcoreUtil.getAdapter(ePackage.eAdapters(), DelegateEPackageAdapter.class);

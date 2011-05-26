@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationEnvironment.java,v 1.6 2011/04/25 09:49:15 ewillink Exp $
+ * $Id: AbstractEvaluationEnvironment.java,v 1.7 2011/05/07 16:41:08 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -403,7 +403,8 @@ public abstract class AbstractEvaluationEnvironment
 		throw new InvalidEvaluationException(this, message, null, expression, context);
 	}
 
-	public NullValue throwInvalidEvaluation(String message, Throwable e, OclExpression expression, Object context) throws InvalidEvaluationException {
-		throw new InvalidEvaluationException(this, message, e, expression, context);
+	public NullValue throwInvalidEvaluation(Throwable e, OclExpression expression, Object context, String message, Object... bindings) throws InvalidEvaluationException {
+		String boundMessage = NLS.bind(message, bindings);
+		throw new InvalidEvaluationException(this, boundMessage, e, expression, context);
 	}
 }

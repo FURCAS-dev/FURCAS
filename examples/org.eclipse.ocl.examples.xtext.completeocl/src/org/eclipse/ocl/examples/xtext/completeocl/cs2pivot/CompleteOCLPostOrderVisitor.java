@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLPostOrderVisitor.java,v 1.7 2011/05/02 09:31:22 ewillink Exp $
+ * $Id: CompleteOCLPostOrderVisitor.java,v 1.9 2011/05/20 19:51:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocu
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextConstraintCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.IncludeCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.ContextConstraintCSImpl;
 import org.eclipse.ocl.examples.xtext.completeocl.util.AbstractExtendingDelegatingCompleteOCLCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLCS2MonikerVisitor;
@@ -168,9 +169,9 @@ public class CompleteOCLPostOrderVisitor
 		}
 		String moniker = s.toString();
 		((ContextConstraintCSImpl)csNewConstraint).setMoniker(moniker);
-		Constraint pivotElement = context.refreshMonikeredElement(Constraint.class, PivotPackage.Literals.CONSTRAINT, moniker);
-		context.installPivotElement(csNewConstraint, pivotElement);
-		context.refreshName(pivotElement, csNewConstraint.getName());
+		Constraint pivotElement = context.refreshNamedElement(Constraint.class, PivotPackage.Literals.CONSTRAINT, csNewConstraint);
+//		context.installPivotElement(csNewConstraint, pivotElement);
+//		context.refreshName(pivotElement, csNewConstraint.getName());
 //		context.refreshComments(pivotElement, csNewConstraint);
 		pivotElement.setStereotype(stereotype);
 		if (csNewConstraint.getSpecification() != null) {
@@ -189,5 +190,10 @@ public class CompleteOCLPostOrderVisitor
 		else {
 			return null;
 		}
+	}
+
+	@Override
+	public Continuation<?> visitIncludeCS(IncludeCS object) {
+		return null;
 	}
 }

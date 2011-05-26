@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Value.java,v 1.5 2011/03/12 13:21:47 ewillink Exp $
+ * $Id: Value.java,v 1.6 2011/05/07 16:41:16 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
@@ -34,6 +34,8 @@ public interface Value
 	interface BinaryOperation {
 		Value evaluate(ValueFactory valueFactory, Value result, Value element) throws InvalidValueException;
 	}
+	
+	public static final String INVALID_NAME = "invalid";
 
 	BagValue asBagValue() throws InvalidValueException;
 	boolean asBoolean() throws InvalidValueException;

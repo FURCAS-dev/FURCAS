@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Element.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
+ * $Id: Element.java,v 1.4 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -55,7 +55,7 @@ public interface Element
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Comment</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getElement_OwnedComment()
-	 * @model containment="true" resolveProxies="true" ordered="false"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	EList<Comment> getOwnedComments();

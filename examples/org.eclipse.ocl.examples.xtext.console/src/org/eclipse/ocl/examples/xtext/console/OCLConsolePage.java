@@ -15,15 +15,18 @@
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.7 2011/03/31 16:53:48 ewillink Exp $
+ * $Id: OCLConsolePage.java,v 1.9 2011/05/07 17:18:05 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.console;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
@@ -33,6 +36,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.Document;
@@ -43,24 +47,49 @@ import org.eclipse.jface.text.source.SourceViewer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.ocl.examples.pivot.AssociationClassCallExp;
+import org.eclipse.ocl.examples.pivot.CollectionItem;
+import org.eclipse.ocl.examples.pivot.Environment;
+import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
+import org.eclipse.ocl.examples.pivot.EvaluationHaltedException;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
-import org.eclipse.ocl.examples.pivot.OCL;
+import org.eclipse.ocl.examples.pivot.InvalidEvaluationException;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
+import org.eclipse.ocl.examples.pivot.IterateExp;
+import org.eclipse.ocl.examples.pivot.IteratorExp;
+import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.ParserException;
+import org.eclipse.ocl.examples.pivot.PropertyCallExp;
+import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitorImpl;
+import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
+import org.eclipse.ocl.examples.pivot.evaluation.PivotEvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
+import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironment;
+import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
-import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.IntegerValue;
+import org.eclipse.ocl.examples.pivot.values.RealValue;
+import org.eclipse.ocl.examples.pivot.values.StringValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.pivot.values.impl.InvalidValueImpl;
+import org.eclipse.ocl.examples.pivot.values.impl.ValueFactoryImpl;
 import org.eclipse.ocl.examples.xtext.console.actions.CloseAction;
 import org.eclipse.ocl.examples.xtext.console.actions.LoadExpressionAction;
 import org.eclipse.ocl.examples.xtext.console.actions.LoadResourceAction;
 import org.eclipse.ocl.examples.xtext.console.actions.SaveExpressionAction;
-import org.eclipse.ocl.examples.xtext.console.messages.OCLInterpreterMessages;
+import org.eclipse.ocl.examples.xtext.console.messages.ConsoleMessages;
 import org.eclipse.ocl.examples.xtext.console.xtfo.EmbeddedXtextEditor;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLPlugin;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.custom.StyleRange;
@@ -82,12 +111,14 @@ import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.console.IConsole;
 import org.eclipse.ui.console.IConsoleConstants;
 import org.eclipse.ui.console.IConsoleView;
 import org.eclipse.ui.console.actions.ClearOutputAction;
 import org.eclipse.ui.part.IPageSite;
 import org.eclipse.ui.part.Page;
+import org.eclipse.ui.progress.IProgressService;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
@@ -103,8 +134,7 @@ import com.google.inject.Injector;
  */
 public class OCLConsolePage extends Page
 {
-    private static int BUNDLE_AVAILABLE = Bundle.RESOLVED | Bundle.ACTIVE |
-        Bundle.STARTING;
+    private static int BUNDLE_AVAILABLE = Bundle.RESOLVED | Bundle.ACTIVE | Bundle.STARTING;
 	
     /**
      * Queries whether a bundle is available.
@@ -176,6 +206,247 @@ public class OCLConsolePage extends Page
             return null;
         }
     } */
+
+    protected static class CancelableEvaluationVisitor extends EvaluationVisitorImpl
+    {
+		private final IProgressMonitor monitor;
+		
+		protected CancelableEvaluationVisitor(IProgressMonitor monitor, Environment env, EvaluationEnvironment evalEnv, ModelManager modelManager) {
+			super(env, evalEnv, modelManager);
+			this.monitor = monitor;
+		}
+
+		protected void checkMonitor() {
+			if (monitor.isCanceled()) {
+				throw new EvaluationHaltedException("Manual termination"); //$NON-NLS-1$
+			}
+		}
+		
+		@Override
+		public EvaluationVisitor createNestedVisitor() {
+			EnvironmentFactory factory = environment.getFactory();
+	    	EvaluationEnvironment nestedEvalEnv = factory.createEvaluationEnvironment(evaluationEnvironment);
+			return new CancelableEvaluationVisitor(monitor, environment, nestedEvalEnv, modelManager);
+		}
+
+		@Override
+		public Value visitAssociationClassCallExp(AssociationClassCallExp ae) {
+			checkMonitor();
+			return super.visitAssociationClassCallExp(ae);
+		}
+		
+		@Override
+		public Value visitCollectionItem(CollectionItem item) {
+			checkMonitor();
+			return super.visitCollectionItem(item);
+		}
+		
+		@Override
+		public Value visitIterateExp(IterateExp iterateExp) {
+			checkMonitor();
+			return super.visitIterateExp(iterateExp);
+		}
+		
+		@Override
+		public Value visitIteratorExp(IteratorExp iteratorExp) {
+			checkMonitor();
+			return super.visitIteratorExp(iteratorExp);
+		}
+		
+		@Override
+		public Value visitOperationCallExp(OperationCallExp operationCallExp) {
+			checkMonitor();
+			return super.visitOperationCallExp(operationCallExp);
+		}
+		
+		@Override
+		public Value visitPropertyCallExp(PropertyCallExp propertyCallExp) {
+			checkMonitor();
+			return super.visitPropertyCallExp(propertyCallExp);
+		}
+		
+		@Override
+		public Value visitTupleLiteralPart(TupleLiteralPart tp) {
+			checkMonitor();
+			return super.visitTupleLiteralPart(tp);
+		}
+	}
+    
+    protected static class CancelableTypeManager extends TypeManager
+    {       
+		private IProgressMonitor monitor = null;
+		private final ValueFactory valueFactory;
+
+		public CancelableTypeManager() {
+			this.valueFactory = new ValueFactoryImpl(ConsoleMessages.ValueFactory_Cancelable)
+			{		      	
+	        	@Override
+				public BooleanValue booleanValueOf(boolean value) {
+	        		checkMonitor();
+					return super.booleanValueOf(value);
+				}
+
+				@Override
+				public IntegerValue integerValueOf(BigInteger value) {
+	        		checkMonitor();
+					return super.integerValueOf(value);
+				}
+
+				@Override
+	    		public IntegerValue integerValueOf(long value) {
+	        		checkMonitor();
+	    			return super.integerValueOf(value);
+	    		}
+
+				@Override
+				public IntegerValue integerValueOf(String aValue) throws InvalidValueException {
+	        		checkMonitor();
+					return super.integerValueOf(aValue);
+				}
+
+				@Override
+				public RealValue realValueOf(double value) {
+	        		checkMonitor();
+					return super.realValueOf(value);
+				}
+
+				@Override
+				public RealValue realValueOf(BigDecimal value) {
+	        		checkMonitor();
+					return super.realValueOf(value);
+				}
+
+				@Override
+				public RealValue realValueOf(IntegerValue integerValue) {
+	        		checkMonitor();
+					return super.realValueOf(integerValue);
+				}
+
+				@Override
+				public RealValue realValueOf(String aValue) throws InvalidValueException {
+	        		checkMonitor();
+					return super.realValueOf(aValue);
+				}
+
+				@Override
+				public StringValue stringValueOf(String value) {
+	        		checkMonitor();
+					return super.stringValueOf(value);
+				}
+			};
+		}
+
+		protected void checkMonitor() {
+			if ((monitor != null) && monitor.isCanceled()) {
+				throw new EvaluationHaltedException(ConsoleMessages.Result_EvaluationTerminated);
+			}
+		}
+
+		@Override
+		public ValueFactory getValueFactory() {
+			return valueFactory;
+		}
+
+		public void setMonitor(IProgressMonitor monitor) {
+    		this.monitor = monitor;
+		}
+    }
+
+    protected static class ExceptionValue extends InvalidValueImpl
+	{
+		private final String message;
+    	private final Exception exception;
+    	
+		protected ExceptionValue(ValueFactory valueFactory, String message, Exception exception) {
+			super(valueFactory);
+			this.message = message;
+			this.exception = exception;
+		}
+		
+		public Exception getException() {
+			return exception;
+		}
+    	
+		public String getMessage() {
+			return message;
+		}
+
+		@Override
+		public String toString() {
+			StringBuffer s = new StringBuffer();
+			if (exception != null) {
+//				s.append(" : "); //$NON-NLS-1$
+				s.append(exception.getMessage());
+			}
+			return s.toString();
+		}
+	}
+	
+	private class EvaluationRunnable implements IRunnableWithProgress
+	{
+		private final XtextResource resource;
+		private final String expression;
+		private Value value = null;
+		
+		public EvaluationRunnable(XtextResource resource, String expression) {
+			this.resource = resource;
+			this.expression = expression;
+		}
+
+		public Value getValue() {
+			return value;
+		}
+
+		public void run(final IProgressMonitor monitor) {
+			monitor.beginTask(NLS.bind(ConsoleMessages.Progress_Title, expression), 10);
+			monitor.subTask(ConsoleMessages.Progress_Synchronising);
+			monitor.worked(1);
+//			CS2PivotResourceAdapter csAdapter = CS2PivotResourceAdapter.getAdapter((BaseCSResource)resource, typeManager);
+			ValueFactory valueFactory = typeManager.getValueFactory();
+//			monitor.subTask(ConsoleMessages.Progress_CST);
+//			try {
+//				csAdapter.refreshPivotMappings();
+//			} catch (Exception e) {
+//				value = new ExceptionValue(valueFactory, ConsoleMessages.Result_MappingFailure, e);
+//				return;
+//			}
+//			monitor.worked(2);
+//			monitor.subTask(ConsoleMessages.Progress_AST);
+			ExpressionInOcl expressionInOcl;
+			try {
+				PivotUtil.checkResourceErrors(null, resource);
+				expressionInOcl = PivotUtil.getExpressionInOcl(resource);
+			} catch (ParserException e) {
+				value = new ExceptionValue(valueFactory, ConsoleMessages.Result_ParsingFailure, e);
+				return;
+			}
+//			monitor.worked(2);
+			monitor.subTask(ConsoleMessages.Progress_Extent);
+			PivotEnvironmentFactory envFactory = new PivotEnvironmentFactory(null, typeManager);
+			PivotEnvironment environment = envFactory.createEnvironment();
+			PivotEvaluationEnvironment evaluationEnvironment = envFactory.createEvaluationEnvironment();
+			Value contextValue = valueFactory.valueOf(contextObject);
+			evaluationEnvironment.add(expressionInOcl.getContextVariable(), contextValue);
+//			if (modelManager == null) {
+				// let the evaluation environment create one
+				modelManager = evaluationEnvironment.createModelManager(contextObject);
+//			}
+			monitor.worked(2);
+			monitor.subTask(ConsoleMessages.Progress_Evaluating);
+			try {
+				typeManager.setMonitor(monitor);
+				EvaluationVisitor evaluationVisitor = new CancelableEvaluationVisitor(monitor, environment, evaluationEnvironment, modelManager);
+		        value = evaluationVisitor.visitExpressionInOcl(expressionInOcl);
+			} catch (EvaluationHaltedException e) {
+				value = new ExceptionValue(valueFactory, ConsoleMessages.Result_EvaluationTerminated, null);
+			} catch (InvalidEvaluationException e) {
+				value = new ExceptionValue(valueFactory, ConsoleMessages.Result_EvaluationFailure, e);
+			} finally {
+				typeManager.setMonitor(null);
+			}
+			monitor.worked(4);
+		}
+	}
 	
 	/**
 	 * A key listener that listens for the Enter key to evaluate the OCL
@@ -270,8 +541,8 @@ public class OCLConsolePage extends Page
 	private EObject contextObject;
 	private EClassifier contextClassifier;
 	
-//	private IOCLFactory oclFactory = new PivotFactory();
-	private final OCL ocl;
+	private final CancelableTypeManager typeManager;
+	private ModelManager modelManager = null;
 	
 //	private Map<TargetMetamodel, IAction> metamodelActions =
 //	    new java.util.HashMap<TargetMetamodel, IAction>();
@@ -321,7 +592,7 @@ public class OCLConsolePage extends Page
 	 */
 	OCLConsolePage(OCLConsole console) {
 		super();
-		ocl = OCL.newInstance();
+		this.typeManager = new CancelableTypeManager();
 		this.console = console;
 	}
 
@@ -395,7 +666,7 @@ public class OCLConsolePage extends Page
 				IStatus.ERROR,
 				XtextConsolePlugin.getPluginId(),
 				1,
-				OCLInterpreterMessages.console_outputExc,
+				ConsoleMessages.Output_Exception,
 				e);
 			
 			XtextConsolePlugin.getInstance().getLog().log(status);
@@ -421,6 +692,7 @@ public class OCLConsolePage extends Page
 		createEditor(page);
 		input = editor.getViewer();
 		input.getTextWidget().addKeyListener(new InputKeyListener());
+		input.getTextWidget().setFont(JFaceResources.getFont(JFaceResources.TEXT_FONT));
 		
 		selectionListener = new ISelectionListener() {
             public void selectionChanged(IWorkbenchPart part, ISelection selection) {
@@ -437,12 +709,9 @@ public class OCLConsolePage extends Page
 		selectionService.addPostSelectionListener(selectionListener);
 		
 		// get current selection
-//		ISelection selection1 = selectionService.getSelection();
-		ISelection selection2 = getActiveSelection();
-//		if (selection != null) {
-//			selectionChanged(selection);
-//		}
-		selectionChanged(selection2);
+//		ISelection selection = selectionService.getSelection();			// Doesn't have a value preceding console start
+		ISelection selection = getActiveSelection();
+		selectionChanged(selection);
 		
 		((SashForm) page).setWeights(new int[] {2, 1});
 		
@@ -512,17 +781,10 @@ public class OCLConsolePage extends Page
     private void createEditor(Composite s1) {
 		
 		Composite client = s1; //new Composite(s1, SWT.NULL);
-//		client.setLayout(new GridLayout());
-//		client.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-
 		Injector injector = XtextConsolePlugin.getInstance().getInjector(EssentialOCLPlugin.LANGUAGE_ID);
 		Composite editorComposite = client; //new Composite(client, SWT.NULL);
-		
-//		editorComposite.setLayout(new GridLayout());
-//		editorComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-
 		editor = new EmbeddedXtextEditor(editorComposite, injector, /*SWT.BORDER |*/ SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL);
-		TypeManagerResourceSetAdapter.getAdapter(editor.getResourceSet(), ocl.getTypeManager());
+		TypeManagerResourceSetAdapter.getAdapter(editor.getResourceSet(), typeManager);
 
 /*		editor.getViewer().getTextWidget().addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
@@ -544,19 +806,6 @@ public class OCLConsolePage extends Page
 			}
 		}); */
 		
-/*		// we must deactivate the Cut/Copy/Paste global actions contributed by the EditingDomain action bar
-		editor.getViewer().getTextWidget().addFocusListener(new FocusListener() {
-			public void focusLost(FocusEvent e) {
-				System.out.println("focusLost: ");
-// FIXME				((ActionBarContributor)getEditor().getActionBarContributor()).activateCCPActions();
-			}
-			
-			public void focusGained(FocusEvent e) {
-				System.out.println("focusGained: ");
-// FIXME				((ActionBarContributor)getEditor().getActionBarContributor()).deactivateCCPActions();
-			}
-		}); */
-		
 		editor.getViewer().getTextWidget().addVerifyKeyListener(new VerifyKeyListener() {
 			public void verifyKey(VerifyEvent e) {
 //				System.out.println("verifyKey: " + e.keyCode);
@@ -569,8 +818,6 @@ public class OCLConsolePage extends Page
 		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
 		data.heightHint= convertHeightInCharsToPixels(1);
 		editorComposite.setLayoutData(data);
-		
-//		s1.setClient(client);
 	}
 	
 	/**
@@ -603,13 +850,13 @@ public class OCLConsolePage extends Page
 	 * @return <code>true</code> on successful evaluation; <code>false</code>
 	 *    if the expression failed to parse or evaluate
 	 */
-	boolean evaluate(String expression) {        
-		if (contextObject == null) {
-			error(OCLInterpreterMessages.console_noContext);
-			return false;
-		} 
+	boolean evaluate(final String expression) {        
+//		if (contextObject == null) {
+//			error(OCLInterpreterMessages.console_noContext);
+//			return false;
+//		} 
 		if ((expression == null) || (expression.trim().length() <= 0)) {
-			error(OCLInterpreterMessages.console_noExpression);
+			error(ConsoleMessages.Result_NoExpression);
 			return false;
 		} 
 //		editorDocument.getResource();
@@ -622,41 +869,50 @@ public class OCLConsolePage extends Page
 //	        ConstraintKind kind = modelingLevel.setContext(helper, context, oclFactory);
 				
 			IDocument doc = getDocument();
-			Color outputDefault = colorManager.getColor(ColorManager.DEFAULT);
-            Color outputResults = colorManager.getColor(ColorManager.OUTPUT_RESULTS);
+			Color defaultColor = colorManager.getColor(ColorManager.DEFAULT);
+            Color resultsColor = colorManager.getColor(ColorManager.OUTPUT_RESULTS);
+            Color errorColor = colorManager.getColor(ColorManager.OUTPUT_ERROR);
 				
             if (doc.getLength() > 0) {
 				// separate previous output by a blank line
-				append("", outputDefault, false); //$NON-NLS-1$
+				append("", defaultColor, false); //$NON-NLS-1$
 			}
 			
-			append(OCLInterpreterMessages.console_evaluating, outputDefault, true);
-			append(expression, outputDefault, false);
-			append(OCLInterpreterMessages.console_results, outputDefault, true);
+			append(ConsoleMessages.Heading_Evaluating, defaultColor, true);
+			append(expression, defaultColor, false);
+			append(ConsoleMessages.Heading_Results, defaultColor, true);
             
             switch (modelingLevel) {
                 case M2:
-        			BaseDocument editorDocument = getEditorDocument();
-        			Value value = editorDocument.modify(new IUnitOfWork<Value, XtextResource>()
-        			{
-        				public Value exec(XtextResource resource) throws Exception {
-        					CS2PivotResourceAdapter csAdapter = CS2PivotResourceAdapter.getAdapter((BaseCSResource)resource, null);
-        					csAdapter.refreshPivotMappings();
-        					ExpressionInOcl expressionInOcl = PivotUtil.getExpressionInOcl(resource);
-        			        Value value = ocl.evaluate(contextObject, expressionInOcl);
-        					return value;
-        				}
-        			});
-//                  OclExpression parsed = helper.createQuery(expression);
-//                    print(ocl.evaluate(context, parsed), outputResults, false);
-        			CollectionValue collectionValue = value.isCollectionValue();
-        			if (collectionValue != null) {
-        				for (Value elementValue : collectionValue) {
-        					append(String.valueOf(elementValue), outputResults, false);
+        			final BaseDocument editorDocument = getEditorDocument();
+        			Value value = null;
+        			try {
+        				value = editorDocument.readOnly(new IUnitOfWork<Value, XtextResource>() {
+ 
+						public Value exec(XtextResource state) throws Exception {
+							IProgressService progressService = PlatformUI.getWorkbench().getProgressService();
+							EvaluationRunnable runnable = new EvaluationRunnable(state, expression);
+							progressService.busyCursorWhile(runnable);
+			       			return runnable.getValue();
+						}});
+           			}
+        			catch (Exception e) {
+        				append(e.getMessage(), errorColor, false);
+        			}
+        			if (value instanceof ExceptionValue) {
+        				append(((ExceptionValue)value).getMessage(), errorColor, true);
+        				append(String.valueOf(value), errorColor, false);
+        			}
+        			else if ((value != null) && (value.isCollectionValue() != null)) {
+        				for (Value elementValue : value.isCollectionValue()) {
+        					append(String.valueOf(elementValue), resultsColor, false);
         				}
         			}
+        			else if (value != null) {
+        				append(String.valueOf(value), resultsColor, false);
+        			}
         			else {
-        				append(String.valueOf(value), outputResults, false);
+        				append(String.valueOf(value), errorColor, false);
         			}
                 	scrollText();
                     break;
@@ -664,8 +920,7 @@ public class OCLConsolePage extends Page
 //                    helper.createConstraint(kind, expression);
                     
                     // just report a successful parse
-                	append(OCLInterpreterMessages.console_parsed,
-                        outputResults, false);
+                	append(ConsoleMessages.Result_Parsed, resultsColor, false);
                 	scrollText();
                     break;
             }
