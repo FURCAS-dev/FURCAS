@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.21 2011/05/20 15:27:01 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.23 2011/05/23 05:51:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -582,8 +582,7 @@ public class EssentialOCLLeft2RightVisitor
 				callExp = operationCallExp;
 				expression = resolveNavigationFeature(csNavigatingExp, source, operation, callExp);
 				resolveOperationArguments(csNavigatingExp, source, operation, operationCallExp);
-				Type returnType = typeManager.getTypeWithMultiplicity(operation);
-				context.setType(operationCallExp, returnType);
+				context.setTypeWithMultiplicity(operationCallExp, operation);
 				if (expression instanceof LoopExp) {											// Genuine implicit collect
 					context.resolveIterationSpecialization((LoopExp)expression);
 				}
@@ -662,8 +661,7 @@ public class EssentialOCLLeft2RightVisitor
 		if (size == 1) {
 			Operation operation = (Operation)environmentView.getResolvedContent();
 			context.setReferredOperation(expression, operation);
-			Type returnType = typeManager.getTypeWithMultiplicity(operation);
-			context.setType(expression, returnType);
+			context.setTypeWithMultiplicity(expression, operation);
 		}
 		else {
 			StringBuffer s = new StringBuffer();
@@ -695,7 +693,7 @@ public class EssentialOCLLeft2RightVisitor
 		OclExpression source = resolveNavigationSource(csNameExp, property);
 		PropertyCallExp expression = context.refreshExpression(PropertyCallExp.class, PivotPackage.Literals.PROPERTY_CALL_EXP, csNameExp);
 		expression.setReferredProperty(property);
-		context.setType(expression, typeManager.getTypeWithMultiplicity(property));		// FIXME resolve template parameter		
+		context.setTypeWithMultiplicity(expression, property);		// FIXME resolve template parameter		
 		OclExpression navigationExpression = resolveNavigationFeature(csNameExp, source, property, expression);
 		if (navigationExpression instanceof LoopExp) {					// Implicit collect
 			context.resolveIterationSpecialization((LoopExp)navigationExpression);
@@ -875,7 +873,7 @@ public class EssentialOCLLeft2RightVisitor
 			        for (Parameter parameter : ((Operation)specificationContext).getOwnedParameters()) {
 				        Variable param = PivotFactory.eINSTANCE.createVariable();
 				        param.setName(parameter.getName());
-				        context.setType(param, parameter.getType());
+						context.setTypeWithMultiplicity(param, parameter);
 				        param.setRepresentedParameter(parameter);
 				        pivotElement.getParameterVariables().add(param);
 			        }					

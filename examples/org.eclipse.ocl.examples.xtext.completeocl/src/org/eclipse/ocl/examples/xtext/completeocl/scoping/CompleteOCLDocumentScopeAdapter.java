@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLDocumentScopeAdapter.java,v 1.10 2011/05/20 15:26:50 ewillink Exp $
+ * $Id: CompleteOCLDocumentScopeAdapter.java,v 1.11 2011/05/21 19:04:14 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
@@ -48,9 +48,11 @@ public class CompleteOCLDocumentScopeAdapter extends StandardDocumentScopeAdapte
 				}
 			}
 		}
-		typeManager.getOclAnyType();
-		for (Library library : typeManager.getLibraries()) {
-			environmentView.addNamedElement(library);
+		if (!environmentView.hasFinalResult()) {
+			typeManager.getOclAnyType();
+			for (Library library : typeManager.getLibraries()) {
+				environmentView.addNamedElement(library);
+			}
 		}
 		return null;
 	}

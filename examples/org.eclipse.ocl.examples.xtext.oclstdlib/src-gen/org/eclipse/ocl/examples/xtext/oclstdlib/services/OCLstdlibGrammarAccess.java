@@ -24,9 +24,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedLibraryAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
 		private final RuleCall cOwnedLibraryLibraryCSParserRuleCall_0_0_0 = (RuleCall)cOwnedLibraryAssignment_0_0.eContents().get(0);
 		private final Keyword cSemicolonKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
-		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
-		private final Keyword cLibraryKeyword_1_0 = (Keyword)cAlternatives_1.eContents().get(0);
-		private final Keyword cModuleKeyword_1_1 = (Keyword)cAlternatives_1.eContents().get(1);
+		private final Keyword cLibraryKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNameNameParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
@@ -54,14 +52,14 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		////generate OCLstdlib "http://www.eclipse.org/ocl/examples/xtext/oclstdlib/OCLstdlibCST"
 		//
 		//Library returns LibRootPackageCS:
-		//	(ownedLibrary+=LibraryCS ";")* ("library" | "module") name=Name (":" nsPrefix=Identifier "="
-		//	nsURI=SINGLE_QUOTED_STRING)? "{" (ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" |
-		//	ownedType+=ClassifierCS | ownedAnnotation+=AnnotationElementCS)* "}";
+		//	(ownedLibrary+=LibraryCS ";")* "library" name=Name (":" nsPrefix=Identifier "=" nsURI=SINGLE_QUOTED_STRING)? "{"
+		//	(ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" | ownedType+=ClassifierCS |
+		//	ownedAnnotation+=AnnotationElementCS)* "}";
 		public ParserRule getRule() { return rule; }
 
-		//(ownedLibrary+=LibraryCS ";")* ("library" | "module") name=Name (":" nsPrefix=Identifier "="
-		//nsURI=SINGLE_QUOTED_STRING)? "{" (ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" |
-		//ownedType+=ClassifierCS | ownedAnnotation+=AnnotationElementCS)* "}"
+		//(ownedLibrary+=LibraryCS ";")* "library" name=Name (":" nsPrefix=Identifier "=" nsURI=SINGLE_QUOTED_STRING)? "{"
+		//(ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" | ownedType+=ClassifierCS |
+		//ownedAnnotation+=AnnotationElementCS)* "}"
 		public Group getGroup() { return cGroup; }
 
 		//(ownedLibrary+=LibraryCS ";")*
@@ -76,14 +74,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//";"
 		public Keyword getSemicolonKeyword_0_1() { return cSemicolonKeyword_0_1; }
 
-		//"library" | "module"
-		public Alternatives getAlternatives_1() { return cAlternatives_1; }
-
 		//"library"
-		public Keyword getLibraryKeyword_1_0() { return cLibraryKeyword_1_0; }
-
-		//"module"
-		public Keyword getModuleKeyword_1_1() { return cModuleKeyword_1_1; }
+		public Keyword getLibraryKeyword_1() { return cLibraryKeyword_1; }
 
 		//name=Name
 		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
@@ -224,29 +216,28 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cIterationKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
 		private final Keyword cLeftKeyword_7 = (Keyword)cAlternatives.eContents().get(7);
 		private final Keyword cLibraryKeyword_8 = (Keyword)cAlternatives.eContents().get(8);
-		private final Keyword cModuleKeyword_9 = (Keyword)cAlternatives.eContents().get(9);
-		private final Keyword cOperationKeyword_10 = (Keyword)cAlternatives.eContents().get(10);
-		private final Keyword cPackageKeyword_11 = (Keyword)cAlternatives.eContents().get(11);
-		private final Keyword cPostKeyword_12 = (Keyword)cAlternatives.eContents().get(12);
-		private final Keyword cPreKeyword_13 = (Keyword)cAlternatives.eContents().get(13);
-		private final Keyword cPrecedenceKeyword_14 = (Keyword)cAlternatives.eContents().get(14);
-		private final Keyword cPropertyKeyword_15 = (Keyword)cAlternatives.eContents().get(15);
-		private final Keyword cRightKeyword_16 = (Keyword)cAlternatives.eContents().get(16);
-		private final Keyword cStaticKeyword_17 = (Keyword)cAlternatives.eContents().get(17);
-		private final Keyword cSuperKeyword_18 = (Keyword)cAlternatives.eContents().get(18);
-		private final Keyword cTypeKeyword_19 = (Keyword)cAlternatives.eContents().get(19);
-		private final Keyword cLambdaKeyword_20 = (Keyword)cAlternatives.eContents().get(20);
-		private final Keyword cTupleKeyword_21 = (Keyword)cAlternatives.eContents().get(21);
+		private final Keyword cOperationKeyword_9 = (Keyword)cAlternatives.eContents().get(9);
+		private final Keyword cPackageKeyword_10 = (Keyword)cAlternatives.eContents().get(10);
+		private final Keyword cPostKeyword_11 = (Keyword)cAlternatives.eContents().get(11);
+		private final Keyword cPreKeyword_12 = (Keyword)cAlternatives.eContents().get(12);
+		private final Keyword cPrecedenceKeyword_13 = (Keyword)cAlternatives.eContents().get(13);
+		private final Keyword cPropertyKeyword_14 = (Keyword)cAlternatives.eContents().get(14);
+		private final Keyword cRightKeyword_15 = (Keyword)cAlternatives.eContents().get(15);
+		private final Keyword cStaticKeyword_16 = (Keyword)cAlternatives.eContents().get(16);
+		private final Keyword cSuperKeyword_17 = (Keyword)cAlternatives.eContents().get(17);
+		private final Keyword cTypeKeyword_18 = (Keyword)cAlternatives.eContents().get(18);
+		private final Keyword cLambdaKeyword_19 = (Keyword)cAlternatives.eContents().get(19);
+		private final Keyword cTupleKeyword_20 = (Keyword)cAlternatives.eContents().get(20);
 		
 		//RestrictedKeywords:
 		//	"annotation" | "conformsTo" | "documentation" | "extends" | "import" | "inv" | "iteration" | "left" | "library" |
-		//	"module" | "operation" | "package" | "post" | "pre" | "precedence" | "property" | "right" | "static" | "super" |
-		//	"type" | "Lambda" | "Tuple";
+		//	"operation" | "package" | "post" | "pre" | "precedence" | "property" | "right" | "static" | "super" | "type" |
+		//	"Lambda" | "Tuple";
 		public ParserRule getRule() { return rule; }
 
 		//"annotation" | "conformsTo" | "documentation" | "extends" | "import" | "inv" | "iteration" | "left" | "library" |
-		//"module" | "operation" | "package" | "post" | "pre" | "precedence" | "property" | "right" | "static" | "super" | "type"
-		//| "Lambda" | "Tuple"
+		//"operation" | "package" | "post" | "pre" | "precedence" | "property" | "right" | "static" | "super" | "type" | "Lambda"
+		//| "Tuple"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//"annotation"
@@ -276,44 +267,41 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//"library"
 		public Keyword getLibraryKeyword_8() { return cLibraryKeyword_8; }
 
-		//"module"
-		public Keyword getModuleKeyword_9() { return cModuleKeyword_9; }
-
 		//"operation"
-		public Keyword getOperationKeyword_10() { return cOperationKeyword_10; }
+		public Keyword getOperationKeyword_9() { return cOperationKeyword_9; }
 
 		//"package"
-		public Keyword getPackageKeyword_11() { return cPackageKeyword_11; }
+		public Keyword getPackageKeyword_10() { return cPackageKeyword_10; }
 
 		//"post"
-		public Keyword getPostKeyword_12() { return cPostKeyword_12; }
+		public Keyword getPostKeyword_11() { return cPostKeyword_11; }
 
 		//"pre"
-		public Keyword getPreKeyword_13() { return cPreKeyword_13; }
+		public Keyword getPreKeyword_12() { return cPreKeyword_12; }
 
 		//"precedence"
-		public Keyword getPrecedenceKeyword_14() { return cPrecedenceKeyword_14; }
+		public Keyword getPrecedenceKeyword_13() { return cPrecedenceKeyword_13; }
 
 		//"property"
-		public Keyword getPropertyKeyword_15() { return cPropertyKeyword_15; }
+		public Keyword getPropertyKeyword_14() { return cPropertyKeyword_14; }
 
 		//"right"
-		public Keyword getRightKeyword_16() { return cRightKeyword_16; }
+		public Keyword getRightKeyword_15() { return cRightKeyword_15; }
 
 		//"static"
-		public Keyword getStaticKeyword_17() { return cStaticKeyword_17; }
+		public Keyword getStaticKeyword_16() { return cStaticKeyword_16; }
 
 		//"super"
-		public Keyword getSuperKeyword_18() { return cSuperKeyword_18; }
+		public Keyword getSuperKeyword_17() { return cSuperKeyword_17; }
 
 		//"type"
-		public Keyword getTypeKeyword_19() { return cTypeKeyword_19; }
+		public Keyword getTypeKeyword_18() { return cTypeKeyword_18; }
 
 		//"Lambda"
-		public Keyword getLambdaKeyword_20() { return cLambdaKeyword_20; }
+		public Keyword getLambdaKeyword_19() { return cLambdaKeyword_19; }
 
 		//"Tuple"
-		public Keyword getTupleKeyword_21() { return cTupleKeyword_21; }
+		public Keyword getTupleKeyword_20() { return cTupleKeyword_20; }
 	}
 
 	public class NameElements extends AbstractParserRuleElementFinder {
@@ -2287,9 +2275,9 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	////generate OCLstdlib "http://www.eclipse.org/ocl/examples/xtext/oclstdlib/OCLstdlibCST"
 	//
 	//Library returns LibRootPackageCS:
-	//	(ownedLibrary+=LibraryCS ";")* ("library" | "module") name=Name (":" nsPrefix=Identifier "="
-	//	nsURI=SINGLE_QUOTED_STRING)? "{" (ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" |
-	//	ownedType+=ClassifierCS | ownedAnnotation+=AnnotationElementCS)* "}";
+	//	(ownedLibrary+=LibraryCS ";")* "library" name=Name (":" nsPrefix=Identifier "=" nsURI=SINGLE_QUOTED_STRING)? "{"
+	//	(ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" | ownedType+=ClassifierCS |
+	//	ownedAnnotation+=AnnotationElementCS)* "}";
 	public LibraryElements getLibraryAccess() {
 		return (pLibrary != null) ? pLibrary : (pLibrary = new LibraryElements());
 	}
@@ -2336,8 +2324,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 
 	//RestrictedKeywords:
 	//	"annotation" | "conformsTo" | "documentation" | "extends" | "import" | "inv" | "iteration" | "left" | "library" |
-	//	"module" | "operation" | "package" | "post" | "pre" | "precedence" | "property" | "right" | "static" | "super" |
-	//	"type" | "Lambda" | "Tuple";
+	//	"operation" | "package" | "post" | "pre" | "precedence" | "property" | "right" | "static" | "super" | "type" |
+	//	"Lambda" | "Tuple";
 	public RestrictedKeywordsElements getRestrictedKeywordsAccess() {
 		return (pRestrictedKeywords != null) ? pRestrictedKeywords : (pRestrictedKeywords = new RestrictedKeywordsElements());
 	}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ImportTests.java,v 1.2 2011/05/20 16:39:13 ewillink Exp $
+ * $Id: ImportTests.java,v 1.4 2011/05/22 16:41:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -164,16 +164,16 @@ public class ImportTests extends XtextTestCase
 		rootLogger.removeAppender(testCaseAppender);
 		String moreCompleteOCL =
 			"package ocl\n" +
-			"context Integer\n" +
+			"context _'Integer'\n" +
 			"def: isPositive() : Boolean = true\n" +
 			"endpackage\n";
 		createFile("more.ocl", moreCompleteOCL);
 		String testFile =
 			"include 'more.ocl'\n" +
 			"package ocl\n" +
-			"context Integer\n" +
+			"context _'Integer'\n" +
 			"def: signum : Integer = 0\n" +
-			"context UnlimitedNatural\n" +
+			"context _'UnlimitedNatural'\n" +
 			"inv CheckIt: isPositive() = signum > 0\n" +
 			"inv unCheckIt: isNegative() = signum < 0\n" +
 			"endpackage\n";
@@ -337,7 +337,7 @@ public class ImportTests extends XtextTestCase
 		String testFile =
 			"import 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib';\n" + 
 			"import 'custom.oclstdlib';\n" +
-			"library ocl {\n" +
+			"library ocl : ocl = 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib' {\n" +
 			"type MyType conformsTo OclAny{\n" +
 			"operation mixIn(r : Real, z : Complex, t : MyType) : Boolean;\n" +
 			"operation mixOut(q : WhatsThis) : Boolean;\n" +
@@ -355,13 +355,34 @@ public class ImportTests extends XtextTestCase
 			"import 'NoSuchFile1';\n" + 
 			"import 'NoSuchFile2.oclstdlib';\n" +
 			"import 'NoSuchFile1';\n" +
-			"library anotherOne{}\n";
+			"library anotherOne : xxx = 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib'{}\n";
 		Bag<String> bag = new BagImpl<String>();
 		String template1 = "Cannot create a resource for ''{0}''; a registered resource factory is needed";
 		String template2 = getNoSuchFileMessage();
 		bag.add(NLS.bind(OCLMessages.UnresolvedLibrary_ERROR_, "NoSuchFile1", NLS.bind(template1, getProjectFileURI("NoSuchFile1"))));
 		bag.add(NLS.bind(OCLMessages.UnresolvedLibrary_ERROR_, "NoSuchFile1", NLS.bind(template1, getProjectFileURI("NoSuchFile1"))));
 		bag.add(NLS.bind(OCLMessages.UnresolvedLibrary_ERROR_, "NoSuchFile2.oclstdlib", NLS.bind(template2, getProjectFileURI("NoSuchFile2.oclstdlib").toFileString())));
+		doBadLoadFromString("string.oclstdlib", testFile, bag);
+	}
+	
+	public void testImport_OCLstdlib_NoURI() throws Exception {
+		rootLogger.removeAppender(testCaseAppender);
+		String testFile =
+			"library anotherOne{}\n";
+		Bag<String> bag = new BagImpl<String>();
+		bag.add(OCLMessages.MissingLibraryURI_ERROR_);
+		doBadLoadFromString("string.oclstdlib", testFile, bag);
+	}
+	
+	public void testImport_OCLstdlib_WrongURI() throws Exception {
+		rootLogger.removeAppender(testCaseAppender);
+		String testFile =
+			"import 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib';\n" + 
+			"library anotherOne : xxx = 'http://www.eclipse.org/ocl/3.1/OCL.oclstdlib'{}\n";
+		Bag<String> bag = new BagImpl<String>();
+		bag.add(OCLMessages.EmptyLibrary_ERROR_);
+		bag.add(NLS.bind(OCLMessages.UnresolvedLibrary_ERROR_, "http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib",
+			NLS.bind(OCLMessages.ImportedLibraryURI_ERROR_, "http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib", "http://www.eclipse.org/ocl/3.1/OCL.oclstdlib")));
 		doBadLoadFromString("string.oclstdlib", testFile, bag);
 	}
 }
