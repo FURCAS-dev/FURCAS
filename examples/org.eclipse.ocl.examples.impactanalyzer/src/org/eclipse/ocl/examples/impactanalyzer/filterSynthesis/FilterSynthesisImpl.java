@@ -264,7 +264,7 @@ public class FilterSynthesisImpl
         } else if (!derivedPropertiesStack.isEmpty()
                 && var.getName().equals(Environment.SELF_VARIABLE_NAME)) {
             OCLExpression derivationExpression = derivedPropertiesStack.peek();
-            // FIXME refactor interface naming & description
+            // TODO refactor interface naming & description
             // Since the selfVariablesUsedInBody field is only read
             // from a method of the OperationBodyToCallMapper interface this
             // is kind of an abuse of the data structure.
