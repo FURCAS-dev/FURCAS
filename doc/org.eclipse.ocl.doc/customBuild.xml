@@ -48,9 +48,9 @@
 	<target name="install-wikitext" depends="get-wikitext">
 		<taskdef resource="org/eclipse/mylyn/wikitext/core/util/anttask/tasks.properties">
 			<classpath>
-				<fileset dir="${basedir}/lib/plugins">
+				<!--fileset dir="${basedir}/lib/plugins">
 					<include name="org.eclipse.xtext.wikitext.core*.jar"/>
-				</fileset>
+				</fileset-->
 				<fileset dir="${wikitext.dir}">
 					<include name="org.eclipse.mylyn.wikitext.*core*.jar"/>
 				</fileset>
@@ -150,7 +150,7 @@
 		</condition>
 	</target>
 		
-	<target name="get-docbook-xsl" description="Downloads docbook xsl" ><!--depends="check-docbook" unless="hasDocbook"-->
+	<target name="get-docbook-xsl" description="Downloads docbook xsl" depends="check-docbook" unless="hasDocbook">
 		<echo>Downloading DocBook XSL...</echo>
 		<get dest="${download.dir}${file.separator}docbook.zip" src="${docbookxsl.url}"/>
 		<unzip src="${download.dir}${file.separator}docbook.zip" dest="${download.dir}"/>
@@ -217,7 +217,6 @@
 					location="${docbook.dir}${file.separator}fo${file.separator}docbook.xsl"/>
 			</xmlcatalog>
 			<param name="generate.toc" expression="book toc" />
-			<param name="show.comments" expression="0" />
 			<param name="header.rule" expression="1" />
 			<param name="admon.graphics.extension" expression=".gif"/>
 			<param name="admon.textlabel" expression="0"/>
