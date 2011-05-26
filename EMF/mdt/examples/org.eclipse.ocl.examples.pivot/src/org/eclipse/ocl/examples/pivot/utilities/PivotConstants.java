@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotConstants.java,v 1.10 2011/05/11 19:44:55 ewillink Exp $
+ * $Id: PivotConstants.java,v 1.11 2011/05/21 14:56:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -70,7 +70,8 @@ public interface PivotConstants
 
 	static final String MONIKER_EXP_CHILD_PREFIX = "x";
 	
-	static final String ORPHANAGE_NAME = "$orphanage";
+	static final String LIBRARY_MONIKER_PREFIX = "$";
+	static final String ORPHANAGE_NAME = "$$";
 	static final String ORPHANAGE_PREFIX = "orphanage";
 	static final String ORPHANAGE_URI = "http://www.eclipse.org/ocl/3.1.0/orphanage";
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementUtil.java,v 1.9 2011/05/20 15:27:24 ewillink Exp $
+ * $Id: ElementUtil.java,v 1.10 2011/05/22 21:06:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -139,6 +139,25 @@ public class ElementUtil
 		return null;
 	}
 
+	public static int getLower(TypedElementCS csTypedElement) {
+		String multiplicity = csTypedElement.getMultiplicity();
+		if (multiplicity == null) {
+			if (csTypedElement.getOwnedType() == null) {		// This is arbitrary; it makes Ecore default serializations work
+				return 0;
+			}
+		}
+		else if ("*".equals(multiplicity)) {
+			return 0;
+		}
+		else if ("+".equals(multiplicity)) {
+			return 1;
+		}
+		else if ("?".equals(multiplicity)) {
+			return 0;
+		}
+		return csTypedElement.getLower();
+	}
+
 	public static <T extends NamedElementCS> T getNamedElementCS(Collection<T> namedElements, String name) {
 		for (T namedElement : namedElements) {
 			if (name.equals(namedElement.getName())) {
@@ -146,6 +165,18 @@ public class ElementUtil
 			}
 		}
 		return null;
+	}
+
+	public static boolean getQualifier(List<String> qualifiers, String trueString, String falseString, boolean defaultValue) {
+		if (qualifiers.contains(trueString)) {
+			return true;
+		}
+		else if (qualifiers.contains(falseString)) {
+			return false;
+		}
+		else {
+			return defaultValue;
+		}
 	}
 
 	public static ScopeAdapter getScopeAdapter(TypeManager typeManager, Element element) {
@@ -179,6 +210,25 @@ public class ElementUtil
 		}
 	}
 
+	public static int getUpper(TypedElementCS csTypedElement) {
+		String multiplicity = csTypedElement.getMultiplicity();
+		if (multiplicity == null) {
+			if (csTypedElement.getOwnedType() == null) {		// This is arbitrary; it makes Ecore default serializations work
+				return 1;
+			}
+		}
+		else if ("*".equals(multiplicity)) {
+			return -1;
+		}
+		else if ("+".equals(multiplicity)) {
+			return -1;
+		}
+		else if ("?".equals(multiplicity)) {
+			return 1;
+		}
+		return csTypedElement.getUpper();
+	}
+
 	public static boolean isInOperation(ElementCS csElement) {
 		for (EObject eObject = csElement; eObject != null; eObject = eObject.eContainer()) {
 			if (eObject instanceof OperationCS) {
@@ -189,6 +239,14 @@ public class ElementUtil
 			}
 		}
 		return false;
+	}
+
+	public static boolean isOrdered(TypedElementCS csTypedElement) {
+		return csTypedElement.getQualifier().contains("ordered");
+	}
+
+	public static boolean isUnique(TypedElementCS csTypedElement) {
+		return getQualifier(csTypedElement.getQualifier(), "unique", "!unique", true);
 	}
 
 	public static boolean isSpecialization(TemplateBindingCS csTemplateBinding) {

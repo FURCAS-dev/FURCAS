@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2Moniker.java,v 1.8 2011/05/14 10:35:44 ewillink Exp $
+ * $Id: CS2Moniker.java,v 1.9 2011/05/22 21:06:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -40,6 +40,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateableElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
@@ -146,6 +147,19 @@ public class CS2Moniker
 		assert length() > oldSize;
 	}
 
+	protected void appendMultiplicityCS(TypedElementCS csTypedElement) {
+		int lower = ElementUtil.getLower(csTypedElement);
+		int upper = ElementUtil.getUpper(csTypedElement);
+		if (upper != 1) {
+			append("[");
+			append(lower);
+			append(ElementUtil.isOrdered(csTypedElement) ? "S" : "s");
+			append(ElementUtil.isUnique(csTypedElement) ? "U" : "u");
+			append(upper);
+			append("]");
+		}
+	}
+
 	public void appendNameCS(NamedElementCS csNamedElement) {
 		append(csNamedElement != null
 			? csNamedElement.getName()
@@ -160,6 +174,7 @@ public class CS2Moniker
 			for (ParameterCS csIterator : csIterators) {
 				append(prefix);
 				appendElementCS(csIterator.getOwnedType());
+				appendMultiplicityCS(csIterator);
 				prefix = PARAMETER_SEPARATOR;
 			}
 			prefix = ACCUMULATOR_SEPARATOR;
@@ -169,6 +184,7 @@ public class CS2Moniker
 			for (ParameterCS csAccumulator : csAccumulators) {
 				append(prefix);
 				appendElementCS(csAccumulator.getOwnedType());
+				appendMultiplicityCS(csAccumulator);
 				prefix = PARAMETER_SEPARATOR;
 			}
 			prefix = ACCUMULATOR_SEPARATOR;
@@ -178,6 +194,7 @@ public class CS2Moniker
 			TypedRefCS ownedType = csParameter.getOwnedType();
 			if (ownedType != null) {
 				appendElementCS(ownedType);
+				appendMultiplicityCS(csParameter);
 			}
 			prefix = PARAMETER_SEPARATOR;
 		}
