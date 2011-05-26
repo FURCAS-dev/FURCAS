@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibLeft2RightVisitor.java,v 1.5 2011/04/01 19:57:09 ewillink Exp $
+ * $Id: OCLstdlibLeft2RightVisitor.java,v 1.6 2011/05/23 05:51:22 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot;
 
@@ -93,7 +93,7 @@ public class OCLstdlibLeft2RightVisitor
 			        	param = PivotFactory.eINSTANCE.createVariable();
 				        param.setName(name);
 			        }
-			        param.setType(parameter.getType());
+					context.setTypeWithMultiplicity(param, parameter);
 			        param.setRepresentedParameter(parameter);
 			        newVariables.add(param);
 		        }
@@ -107,7 +107,7 @@ public class OCLstdlibLeft2RightVisitor
 						resultVariable = PivotFactory.eINSTANCE.createVariable();
 					}
 					resultVariable.setName(Environment.RESULT_VARIABLE_NAME);
-					resultVariable.setType(contextOperation.getType());
+					context.setTypeWithMultiplicity(resultVariable, contextOperation);
 					pivotSpecification.setResultVariable(resultVariable);
 					context.putPivotElement(resultVariable);
 		        }

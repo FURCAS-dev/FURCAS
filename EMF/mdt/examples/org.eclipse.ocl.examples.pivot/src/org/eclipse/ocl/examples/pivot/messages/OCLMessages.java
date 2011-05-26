@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.9 2011/05/20 15:27:20 ewillink Exp $
+ * $Id: OCLMessages.java,v 1.10 2011/05/22 16:42:03 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.messages;
@@ -255,7 +255,11 @@ public class OCLMessages
 	// above this line messages migrated from non-Pivot
 	//-----------------------------------------------------------
 	// below this line alphabetical messages known to be used for Pivot
+	public static String EmptyLibrary_ERROR_;
+	public static String ImportedLibraryURI_ERROR_;
 	public static String IncompatibleBodyType_WARNING_;
+	public static String MissingLibraryType_ERROR_;
+	public static String MissingLibraryURI_ERROR_;
 	public static String RedundantIterator_WARNING_;
 	public static String UnresolvedImport_ERROR_;
 	public static String UnresolvedInclude_ERROR_;
