@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Iteration.java,v 1.2 2011/01/24 20:42:34 ewillink Exp $
+ * $Id: Iteration.java,v 1.3 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -48,7 +48,7 @@ public interface Iteration extends Operation
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Iterator</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getIteration_OwnedIterator()
-	 * @model containment="true" resolveProxies="true" ordered="false"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	EList<Parameter> getOwnedIterators();
@@ -74,7 +74,7 @@ public interface Iteration extends Operation
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Accumulator</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getIteration_OwnedAccumulator()
-	 * @model containment="true" resolveProxies="true" ordered="false"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	EList<Parameter> getOwnedAccumulators();

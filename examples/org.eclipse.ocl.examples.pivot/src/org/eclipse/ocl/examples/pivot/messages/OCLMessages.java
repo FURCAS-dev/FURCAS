@@ -15,24 +15,21 @@
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.7 2011/04/25 09:49:15 ewillink Exp $
+ * $Id: OCLMessages.java,v 1.10 2011/05/22 16:42:03 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.messages;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * An accessor class for externalized strings.
- * 
- * @author Christian Vogt (cvogt)
  */
-public class OCLMessages {
-
-	static final String BUNDLE_NAME = "org.eclipse.ocl.examples.pivot.messages.OCLMessages"; //$NON-NLS-1$
+public class OCLMessages
+{
+	static {
+		NLS.initializeMessages(OCLMessages.class.getName(), OCLMessages.class);
+	}
 
 	public static String no_message;
     public static String Input_ERROR_;
@@ -258,78 +255,20 @@ public class OCLMessages {
 	// above this line messages migrated from non-Pivot
 	//-----------------------------------------------------------
 	// below this line alphabetical messages known to be used for Pivot
+	public static String EmptyLibrary_ERROR_;
+	public static String ImportedLibraryURI_ERROR_;
 	public static String IncompatibleBodyType_WARNING_;
+	public static String MissingLibraryType_ERROR_;
+	public static String MissingLibraryURI_ERROR_;
 	public static String RedundantIterator_WARNING_;
+	public static String UnresolvedImport_ERROR_;
+	public static String UnresolvedInclude_ERROR_;
+	public static String UnresolvedLibrary_ERROR_;
 	public static String UnresolvedOperation_ERROR_;
 	public static String UnresolvedOperationCall_ERROR_;
 	public static String UnresolvedProperty_ERROR_;
 	public static String UnresolvedType_ERROR_;
 	public static String Unresolved_ERROR_;
 	
-	//-----------------------------------------------------------
-		
-	private static IMessages messagesImpl;
-	
-//	public static String bind(String message, Object arg) {
-//		return messagesImpl.bind(message, arg);
-//	}
-	
-//	public static String bind(String message, Object arg1, Object arg2) {
-//		return messagesImpl.bind(message, arg1, arg2);
-//	}
-	
-//	public static String bind(String message, Object[] args) {
-//		return messagesImpl.bind(message, args);
-//	}
-
-	static {
-		try {
-			@SuppressWarnings("unchecked")
-			Class<IMessages> nlsClass = (Class<IMessages>) Class
-				.forName("org.eclipse.ocl.examples.pivot.messages.IMessages$NLS"); //$NON-NLS-1$
-			messagesImpl = nlsClass.newInstance();
-		} catch (NoClassDefFoundError e) {
-			// expected in non-Eclipse environment
-		} catch (Exception e) {
-			// expected in non-Eclipse environment
-		}
-		
-		if (messagesImpl == null) {
-			// could not find the NLS class.  Try initializing the messages,
-			//    ourselves
-			initializeMessages();
-			messagesImpl = new IMessages.Default();
-		}
-	}
-	
-	private static void initializeMessages() {
-		ResourceBundle bundle = ResourceBundle.getBundle(BUNDLE_NAME);
-		int publicStatic = Modifier.PUBLIC | Modifier.STATIC;
-		
-		Class<OCLMessages> clazz = OCLMessages.class;
-		
-		if (bundle != null) {
-			Field[] fields = clazz.getDeclaredFields();
-			
-			for (int i = 0; i < fields.length; i++) {
-				Field next = fields[i];
-				
-				if (((next.getModifiers() & publicStatic) == publicStatic)
-						&& (next.getType() == String.class)) {
-					String name = next.getName();
-					
-					try {
-						try {
-							next.set(null, bundle.getString(name));
-						} catch (MissingResourceException e) {
-							// just use its own name, then
-							next.set(null, "Missing message for key: " + name); //$NON-NLS-1$
-						}
-					} catch (Exception e) {
-						// oh, well.  Can't set a value for this one
-					}
-				}
-			}
-		}
-	}
+	public static String Validation;
 }

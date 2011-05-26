@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCrossReferenceSerializer.java,v 1.4 2011/03/01 08:46:48 ewillink Exp $
+ * $Id: EssentialOCLCrossReferenceSerializer.java,v 1.7 2011/05/21 14:55:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -26,14 +26,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
-import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.AliasAnalysis;
@@ -119,6 +116,7 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 		//	Serialize the divergent elements
 		//
 		StringBuffer s = new StringBuffer();
+		String ruleName = "UnrestrictedName";
 		for ( ; i < iSize-1; i++) {
 			PathElement objectPathElement = objectPath.get(i);
 			String objectName = objectPathElement.name;
@@ -130,17 +128,18 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 				//
 				Resource objectResource = objectElement.eResource();
 				TypeManager typeManager = TypeManager.findAdapter(objectResource.getResourceSet());
-				Resource orphanage = typeManager.getOrphanPackage().eResource();
+				Resource orphanage = typeManager != null ? typeManager.getOrphanPackage().eResource() : null;
 				Resource contextResource = contextElement.eResource();
 				if ((objectResource == contextResource) || (contextResource == orphanage)) {
 					objectName = ((NamedElement)objectElement).getName();
 				}
 			}
-			s.append(valueConverter.toString(objectName, "ID"));
+			s.append(valueConverter.toString(objectName, ruleName));
 			s.append("::");
+			ruleName = "UnreservedName";
 		}
 		if (iSize > 0) {
-			s.append(valueConverter.toString(objectPath.get(iSize-1).name, "ID"));
+			s.append(valueConverter.toString(objectPath.get(iSize-1).name, ruleName));
 		}
 //		System.out.println(objectPath + " | " + contextPath + " => " + s.toString());
 		return s.toString();
@@ -177,12 +176,9 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 
 	@Override
 	protected String getUnconvertedLinkText(EObject object, EReference reference, EObject context) {
-		if ((reference == BaseCSTPackage.Literals.IMPORT_CS__NAMESPACE) && (context instanceof ImportCS))
+		if ((reference == BaseCSTPackage.Literals.IMPORT_CS__NAMESPACE) && (context instanceof ImportCS)) {
 			return ((ImportCS) context).getUri();
-		else if ((reference == BaseCSTPackage.Literals.REFERENCE_CS_REF__REF) && (context instanceof ReferenceCSRef))
-			return ((Property) object).getName();
-		else if ((reference == BaseCSTPackage.Literals.MODEL_ELEMENT_CS_REF__REF) && (context instanceof ModelElementCSRef))
-			return ((NamedElementCS) object).getName();
+		}
 		else if (object instanceof NamedElement)
 			return ((NamedElement) object).getName();
 		else {

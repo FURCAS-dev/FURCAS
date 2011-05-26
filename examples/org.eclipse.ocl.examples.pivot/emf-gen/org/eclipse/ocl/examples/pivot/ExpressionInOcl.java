@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExpressionInOcl.java,v 1.4 2011/03/14 07:24:49 ewillink Exp $
+ * $Id: ExpressionInOcl.java,v 1.5 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -53,7 +53,7 @@ public interface ExpressionInOcl
 	 * @return the value of the '<em>Body Expression</em>' containment reference.
 	 * @see #setBodyExpression(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getExpressionInOcl_BodyExpression()
-	 * @model containment="true" resolveProxies="true" required="true" ordered="false"
+	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
 	OclExpression getBodyExpression();
@@ -90,7 +90,7 @@ public interface ExpressionInOcl
 	 * @return the value of the '<em>Context Variable</em>' containment reference.
 	 * @see #setContextVariable(Variable)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getExpressionInOcl_ContextVariable()
-	 * @model containment="true" resolveProxies="true" ordered="false"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	Variable getContextVariable();
@@ -126,7 +126,7 @@ public interface ExpressionInOcl
 	 * @return the value of the '<em>Result Variable</em>' containment reference.
 	 * @see #setResultVariable(Variable)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getExpressionInOcl_ResultVariable()
-	 * @model containment="true" resolveProxies="true" ordered="false"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	Variable getResultVariable();
@@ -162,7 +162,7 @@ public interface ExpressionInOcl
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parameter Variable</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getExpressionInOcl_ParameterVariable()
-	 * @model containment="true" resolveProxies="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Variable> getParameterVariables();
@@ -188,7 +188,7 @@ public interface ExpressionInOcl
 	 * @return the value of the '<em>Message Expression</em>' containment reference.
 	 * @see #setMessageExpression(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getExpressionInOcl_MessageExpression()
-	 * @model containment="true" resolveProxies="true" ordered="false"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	OclExpression getMessageExpression();

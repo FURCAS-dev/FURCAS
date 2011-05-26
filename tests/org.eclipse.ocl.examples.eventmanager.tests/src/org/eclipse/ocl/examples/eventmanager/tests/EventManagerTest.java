@@ -22,7 +22,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -96,7 +95,6 @@ public class EventManagerTest extends TestCase {
 	 */
 	@Override
 	public void tearDown() {
-		EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE.remove("http://de.hpi.sam.bp2009.OCL");
 		setFixture(null);
 		res = null;
 	}

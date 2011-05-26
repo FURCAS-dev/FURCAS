@@ -40,7 +40,7 @@ public class NavigationStepDebugHelper {
         NavigationStepDebugHelperExtension result = debugHelperExtension;
         if (result == null) {
             try {
-                result = (NavigationStepDebugHelperExtension) Class.forName("de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.debug.NavigationStepDebugHelperExtensionImpl").newInstance();
+                result = (NavigationStepDebugHelperExtension) Class.forName("org.eclipse.ocl.examples.impactanalyzer.instanceScope.debug.NavigationStepDebugHelperExtensionImpl").newInstance();
             } catch (Exception e) {
                 logger.throwing(NavigationStepDebugHelper.class.getName(), "getDebugHelperExtension", e);
             }

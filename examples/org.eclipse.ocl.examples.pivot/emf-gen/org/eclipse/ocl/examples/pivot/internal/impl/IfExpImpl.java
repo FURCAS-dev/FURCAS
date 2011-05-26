@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IfExpImpl.java,v 1.3 2011/03/01 08:47:18 ewillink Exp $
+ * $Id: IfExpImpl.java,v 1.4 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -21,7 +21,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -108,32 +107,6 @@ public class IfExpImpl
 	 * @generated
 	 */
 	public OclExpression getCondition() {
-		if (condition != null && ((EObject)condition).eIsProxy())
-		{
-			InternalEObject oldCondition = (InternalEObject)condition;
-			condition = (OclExpression)eResolveProxy(oldCondition);
-			if (condition != oldCondition)
-			{
-				InternalEObject newCondition = (InternalEObject)condition;
-				NotificationChain msgs = oldCondition.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.IF_EXP__CONDITION, null, null);
-				if (newCondition.eInternalContainer() == null)
-				{
-					msgs = newCondition.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.IF_EXP__CONDITION, null, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.IF_EXP__CONDITION, oldCondition, condition));
-			}
-		}
-		return condition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OclExpression basicGetCondition() {
 		return condition;
 	}
 
@@ -191,32 +164,6 @@ public class IfExpImpl
 	 * @generated
 	 */
 	public OclExpression getThenExpression() {
-		if (thenExpression != null && ((EObject)thenExpression).eIsProxy())
-		{
-			InternalEObject oldThenExpression = (InternalEObject)thenExpression;
-			thenExpression = (OclExpression)eResolveProxy(oldThenExpression);
-			if (thenExpression != oldThenExpression)
-			{
-				InternalEObject newThenExpression = (InternalEObject)thenExpression;
-				NotificationChain msgs = oldThenExpression.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.IF_EXP__THEN_EXPRESSION, null, null);
-				if (newThenExpression.eInternalContainer() == null)
-				{
-					msgs = newThenExpression.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.IF_EXP__THEN_EXPRESSION, null, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.IF_EXP__THEN_EXPRESSION, oldThenExpression, thenExpression));
-			}
-		}
-		return thenExpression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OclExpression basicGetThenExpression() {
 		return thenExpression;
 	}
 
@@ -274,32 +221,6 @@ public class IfExpImpl
 	 * @generated
 	 */
 	public OclExpression getElseExpression() {
-		if (elseExpression != null && ((EObject)elseExpression).eIsProxy())
-		{
-			InternalEObject oldElseExpression = (InternalEObject)elseExpression;
-			elseExpression = (OclExpression)eResolveProxy(oldElseExpression);
-			if (elseExpression != oldElseExpression)
-			{
-				InternalEObject newElseExpression = (InternalEObject)elseExpression;
-				NotificationChain msgs = oldElseExpression.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.IF_EXP__ELSE_EXPRESSION, null, null);
-				if (newElseExpression.eInternalContainer() == null)
-				{
-					msgs = newElseExpression.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.IF_EXP__ELSE_EXPRESSION, null, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.IF_EXP__ELSE_EXPRESSION, oldElseExpression, elseExpression));
-			}
-		}
-		return elseExpression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OclExpression basicGetElseExpression() {
 		return elseExpression;
 	}
 
@@ -402,14 +323,11 @@ public class IfExpImpl
 				if (resolve) return getType();
 				return basicGetType();
 			case PivotPackage.IF_EXP__CONDITION:
-				if (resolve) return getCondition();
-				return basicGetCondition();
+				return getCondition();
 			case PivotPackage.IF_EXP__THEN_EXPRESSION:
-				if (resolve) return getThenExpression();
-				return basicGetThenExpression();
+				return getThenExpression();
 			case PivotPackage.IF_EXP__ELSE_EXPRESSION:
-				if (resolve) return getElseExpression();
-				return basicGetElseExpression();
+				return getElseExpression();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}

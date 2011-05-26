@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibTests.java,v 1.5 2011/04/25 09:49:25 ewillink Exp $
+ * $Id: OCLstdlibTests.java,v 1.9 2011/05/22 16:41:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -72,7 +72,7 @@ public class OCLstdlibTests extends XtextTestCase
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(libraryURI, true);
 		assertNoResourceErrors("Load failed", xtextResource);
 		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
-		adapter.refreshPivotMappings();
+		adapter.refreshPivotMappings(null);
 		Resource fileResource = adapter.getPivotResource(xtextResource);
 		assertNoResourceErrors("File Model", fileResource);
 		assertNoUnresolvedProxies("File Model", fileResource);
@@ -272,7 +272,7 @@ public class OCLstdlibTests extends XtextTestCase
 	
 	public void testLoadAsString() throws Exception {
 		String testFile =
-			"library lib {\n"+
+			"library lib : lib = 'http://mylib'{\n"+
 			"    type OclAny : AnyType {\n"+
 			"    	operation a(elem : Boolean) : Integer {\n"+
 			"           post a: elem;\n"+
@@ -280,9 +280,11 @@ public class OCLstdlibTests extends XtextTestCase
 			"    }\n"+
 			"    type Classifier<T> : ClassifierType conformsTo OclAny {}\n"+
 			"    type Boolean : PrimitiveType conformsTo OclAny {}\n"+
+			"    type Enumeration conformsTo OclAny {}\n"+
 			"    type Integer : PrimitiveType conformsTo Real {}\n"+
-			"    type Real : PrimitiveType conformsTo OclAny {}\n"+
 			"    type OclInvalid : InvalidType {}\n"+
+			"    type Real : PrimitiveType conformsTo OclAny {}\n"+
+			"    type String : PrimitiveType conformsTo OclAny {}\n"+
 			"    type UnlimitedNatural : PrimitiveType conformsTo Integer {}\n"+
 			"}\n";		
 		doLoadFromString("string.oclstdlib", testFile);
@@ -290,9 +292,9 @@ public class OCLstdlibTests extends XtextTestCase
 	
 	public void testImport() throws Exception {
 		String testFile =
-			"import 'minimal.oclstdlib'\n"+
-			"import 'minimal.oclstdlib'\n"+
-			"library lib {\n"+
+			"import 'minimal.oclstdlib';\n"+
+			"import 'minimal.oclstdlib';\n"+
+			"library lib : lib = 'http://minimal.oclstdlib'{\n"+
 			"    type OclAny : AnyType {\n"+
 			"    	operation a(elem : Boolean) : Integer {\n"+
 			"           post a: elem;\n"+

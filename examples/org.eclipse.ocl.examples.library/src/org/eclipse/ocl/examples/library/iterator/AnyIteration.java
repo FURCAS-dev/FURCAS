@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AnyIteration.java,v 1.3 2011/02/21 08:37:47 ewillink Exp $
+ * $Id: AnyIteration.java,v 1.4 2011/05/07 16:41:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -20,6 +20,7 @@ import org.eclipse.ocl.examples.library.AbstractIteration;
 import org.eclipse.ocl.examples.library.IterationManager;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue.Accumulator;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -57,7 +58,7 @@ public class AnyIteration extends AbstractIteration<CollectionValue.Accumulator>
 		CollectionValue.Accumulator accumulatorValue = iterationManager.getAccumulatorValue();
 		Value bodyVal = iterationManager.getBodyValue();		
 		if (bodyVal.isUndefined()) {
-			return iterationManager.throwInvalidEvaluation("null body"); 	// Null body is invalid
+			return iterationManager.throwInvalidEvaluation(EvaluatorMessages.UndefinedBody, "any"); 	// Null body is invalid //$NON-NLS-1$
 		}
 		else if (bodyVal.isFalse()) {
 			return null;									// Carry on for nothing found

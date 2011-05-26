@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: OppositeEndFinder.java,v 1.1 2010/12/15 17:32:44 ewillink Exp $
+ * $Id: OppositeEndFinder.java,v 1.2 2011/05/10 21:18:33 auhl Exp $
  */
 package org.eclipse.ocl.ecore.opposites;
 
+import java.lang.reflect.Constructor;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -26,16 +27,22 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.xmi.impl.EMOFExtendedMetaData;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
+import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 
 /**
  * Implementations shall be able to find and navigate "hidden references" on a classifier by name. Such references can be declared
  * by the annotation detail {@link EcoreEnvironment#PROPERTY_OPPOSITE_ROLE_NAME_KEY} on an {@link EAnnotation} with
  * {@link EAnnotation#getSource() source} {@link EMOFExtendedMetaData#EMOF_PACKAGE_NS_URI_2_0} on an {@link EReference}, thus
- * declaring the name for the otherwise non-existing opposite.
+ * declaring the name for the otherwise non-existing opposite.<br>
+ * <b>ATTENTION</b><br>
+ * Per convention each {@link OppositeEndFinder implementation} must offer a {@code public} {@link Constructor constructor} with the 
+ * {@link EPackage.Registry registry} as {@link Constructor#getParameterTypes() parameter} to support loading by the 
+ * {@link OCLDelegateDomain} and therefore link between ecore model and {@link OppositeEndFinder finder}.
  * 
  * @author Axel Uhl
  * @since 3.1

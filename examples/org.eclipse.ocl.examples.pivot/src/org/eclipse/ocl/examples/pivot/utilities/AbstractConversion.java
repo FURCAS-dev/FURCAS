@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractConversion.java,v 1.3 2011/01/27 07:01:08 ewillink Exp $
+ * $Id: AbstractConversion.java,v 1.4 2011/05/11 19:46:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -61,11 +61,11 @@ public abstract class AbstractConversion extends EcoreUtil
 		return true;
 	}
 
-	public <T> void refreshList(List<? super T> oldElements, List<? extends T> newElements) {
+	public <T extends EObject> void refreshList(List<? super T> oldElements, List<? extends T> newElements) {
 		PivotUtil.refreshList(oldElements, newElements);
 	}
 
-	protected <T> void refreshSet(List<? super T> oldElements, Collection<? extends T> newElements) {
+	protected <T extends EObject> void refreshSet(List<? super T> oldElements, Collection<? extends T> newElements) {
 		PivotUtil.refreshSet(oldElements, newElements);
 	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLPreOrderVisitor.java,v 1.6 2011/04/20 19:02:15 ewillink Exp $
+ * $Id: EssentialOCLPreOrderVisitor.java,v 1.7 2011/05/11 19:26:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -99,10 +99,6 @@ public class EssentialOCLPreOrderVisitor
 		@Override
 		public BasicContinuation<?> execute() {
 			context.resolveNamespaces(csElement.getNamespace());
-//			for (Namespace namespace : csElement.getNamespace()) {
-//				@SuppressWarnings("unused")
-//				Namespace dummy = namespace;	// Resolves the proxies from the outside.
-//			}
 			return null;
 		}
 	}
@@ -116,10 +112,6 @@ public class EssentialOCLPreOrderVisitor
 		@Override
 		public BasicContinuation<?> execute() {
 			context.resolveNamespaces(csElement.getNamespace());
-//			for (Namespace namespace : csElement.getNamespace()) {
-//				@SuppressWarnings("unused")
-//				Namespace dummy = namespace;	// Resolves the proxies from the outside.
-//			}
 			Type element = csElement.getElement();
 			if ((element == null) || element.eIsProxy()) {
 				String boundMessage = NLS.bind(OCLMessages.UnresolvedType_ERROR_, csElement.toString());

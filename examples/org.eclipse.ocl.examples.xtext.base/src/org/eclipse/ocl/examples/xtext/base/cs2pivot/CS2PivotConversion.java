@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.17 2011/05/02 15:38:44 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.23 2011/05/23 05:51:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -36,8 +36,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
@@ -51,6 +51,7 @@ import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.LambdaType;
+import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.MultiplicityElement;
@@ -103,8 +104,9 @@ import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasePreOrderVisitor.Template
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot.Factory;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
+import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.xtext.linking.impl.XtextLinkingDiagnostic;
+import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.ILeafNode;
 import org.eclipse.xtext.nodemodel.INode;
@@ -228,9 +230,17 @@ public class CS2PivotConversion extends AbstractConversion
 	 * minimize invalidity.
 	 */
 	private HashSet<TypedElement> underspecifiedTypedElements = null;
+
+	/**
+	 * The handler for any generated diagnostics. If null (which is deprecated) diagnostics are inserted
+	 * directly into the resource errors list.
+	 */
+	@SuppressWarnings("unused")
+	private final IDiagnosticConsumer diagnosticsConsumer;
 	
-	public CS2PivotConversion(CS2Pivot converter, Collection<? extends Resource> csResources) {
+	public CS2PivotConversion(CS2Pivot converter, IDiagnosticConsumer diagnosticsConsumer, Collection<? extends Resource> csResources) {
 		this.converter = converter;
+		this.diagnosticsConsumer = diagnosticsConsumer;
 		this.typeManager = converter.getTypeManager();
 		this.csResources = csResources;
 		List<Resource> mappedResources = new ArrayList<Resource>();
@@ -267,12 +277,6 @@ public class CS2PivotConversion extends AbstractConversion
 	}
 
 	public InvalidType addBadTypeError(ModelElementCS csElement, String message, Object... bindings) {
-		String boundMessage = NLS.bind(message, bindings);
-		INode node = NodeModelUtils.getNode(csElement);
-		Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, boundMessage);
-		csElement.eResource().getErrors().add(resourceDiagnostic);
-		XtextLinkingDiagnostic diagnostic = new XtextLinkingDiagnostic(NodeModelUtils.getNode(csElement), boundMessage, "xyzzy");		// FIXME
-		csElement.eResource().getErrors().add(diagnostic);
 		InvalidType invalidType = typeManager.getOclInvalidType();
 		installPivotElementInternal(csElement, invalidType);
 		return invalidType;
@@ -362,7 +366,7 @@ public class CS2PivotConversion extends AbstractConversion
 	}
 
 	/**
-	 * Return a mapping of moniker to element for every pivot element directly referenced by the
+	 * Return a set of all pivot elements directly referenced by the
 	 * Concrete syntax model. 
 	 */
 	private Set<Element> computeDirectlyReferencedPivotElements() {
@@ -384,6 +388,22 @@ public class CS2PivotConversion extends AbstractConversion
 			}
 		}
 		return referencedElements;
+	}
+	
+	/**
+	 * Return a set of all pivot elements forming part of the library. 
+	 */
+	private Set<Element> computeLibraryPivotElements() {
+		Set<Element> libraryElements = new HashSet<Element>();
+		for (Library library  : typeManager.getLibraries()) {
+			for (Iterator<EObject> tit = library.eAllContents(); tit.hasNext(); ) {
+				EObject eObject = tit.next();
+				if (eObject instanceof Element) {
+					libraryElements.add((Element) eObject);
+				}			
+			}
+		}
+		return libraryElements;
 	}
 	
 	/**
@@ -530,9 +550,8 @@ public class CS2PivotConversion extends AbstractConversion
 		return documentationStrings;
 	} */
 
-	public void garbageCollect() {
+	public void garbageCollect(Collection<? extends Resource> pivotResources) {
 		Resource libraryResource = typeManager.getLibraryResource();
-		Collection<? extends Resource> pivotResources = converter.getPivotResources();
 		Collection<Notifier> allPivotResources = new ArrayList<Notifier>(pivotResources);
 		allPivotResources.add(typeManager.getOrphanPackage());
 		Map<EObject, Collection<EStructuralFeature.Setting>> pivotCrossUsages = computeCrossUsages(allPivotResources);		
@@ -542,6 +561,7 @@ public class CS2PivotConversion extends AbstractConversion
 //			debugObjectUsage("actual ", actualContent);
 //		}
 		Set<Element> directlyReferencedContents = computeDirectlyReferencedPivotElements();
+		Set<Element> libraryElements = computeLibraryPivotElements();
 		Set<Element> referencedContents = computeReferencedPivotElements(directlyReferencedContents, pivotCrossUsages);
 //		for (Element referencedContent : referencedContents) {
 //			debugObjectUsage("refd ", referencedContent);
@@ -563,6 +583,7 @@ public class CS2PivotConversion extends AbstractConversion
 		}
 		Set<Element> unreferencedElements = new HashSet<Element>(actualContents);
 		unreferencedElements.removeAll(referencedElements);
+		unreferencedElements.removeAll(libraryElements);
 		killElements.addAll(unreferencedElements);
 		Set<Element> referencedOrphanElements = new HashSet<Element>();
 		for (Element referencedElement : referencedElements) {
@@ -773,18 +794,6 @@ public class CS2PivotConversion extends AbstractConversion
 		}
 		s.append(name);
 		return s.toString();
-	}
-
-	public boolean getQualifier(List<String> qualifiers, String trueString, String falseString, boolean defaultValue) {
-		if (qualifiers.contains(trueString)) {
-			return true;
-		}
-		else if (qualifiers.contains(falseString)) {
-			return false;
-		}
-		else {
-			return defaultValue;
-		}
 	}
 
 	protected List<TemplateBindingCS> getTemplateBindings(ElementCS csElement) {
@@ -1106,6 +1115,7 @@ public class CS2PivotConversion extends AbstractConversion
 		if (pivotElement == null) {
 			logger.trace("Creating " + pivotEClass.getName() + " : " + moniker); //$NON-NLS-1$ //$NON-NLS-2$
 			pivotElement = (MonikeredElement) PivotFactory.eINSTANCE.create(pivotEClass);
+			pivotElement.setMoniker(moniker);
 			putPivotElement(moniker, pivotElement);
 		}
 		else if (!pivotClass.isAssignableFrom(pivotElement.getClass())) {
@@ -1155,7 +1165,7 @@ public class CS2PivotConversion extends AbstractConversion
 		}
 		T pivotElement;
 		if (pivotObject == null) {
-			pivotElement = typeManager.createPackage(pivotClass, pivotEClass, csElement.getName());
+			pivotElement = typeManager.createPackage(pivotClass, pivotEClass, csElement.getName(), csElement.getNsURI());
 			moniker = pivotElement.getMoniker();
 			logger.trace("Created " + pivotEClass.getName() + " : " + moniker); //$NON-NLS-1$ //$NON-NLS-2$
 			typeManager.installPackage(pivotElement);
@@ -1238,26 +1248,12 @@ public class CS2PivotConversion extends AbstractConversion
 	}
 
 	public <T> void refreshMultiplicity(MultiplicityElement pivotElement, TypedElementCS csTypedElement) {
-		List<String> qualifiers = csTypedElement.getQualifier();
-		pivotElement.setIsOrdered(qualifiers.contains("ordered"));
-		pivotElement.setIsUnique(getQualifier(qualifiers, "unique", "!unique", true));
-		String multiplicity = csTypedElement.getMultiplicity();
-		if (multiplicity == null) {
-			pivotElement.setLower(BigInteger.valueOf(csTypedElement.getLower()));
-			pivotElement.setUpper(BigInteger.valueOf(csTypedElement.getUpper()));
-		}
-		else if ("*".equals(multiplicity)) {
-			pivotElement.setLower(BigInteger.valueOf(0));
-			pivotElement.setUpper(BigInteger.valueOf(-1));
-		}
-		else if ("+".equals(multiplicity)) {
-			pivotElement.setLower(BigInteger.valueOf(1));
-			pivotElement.setUpper(BigInteger.valueOf(-1));
-		}
-		else if ("?".equals(multiplicity)) {
-			pivotElement.setLower(BigInteger.valueOf(0));
-			pivotElement.setUpper(BigInteger.valueOf(1));
-		}
+		pivotElement.setIsOrdered(ElementUtil.isOrdered(csTypedElement));
+		pivotElement.setIsUnique(ElementUtil.isUnique(csTypedElement));
+		int lower = ElementUtil.getLower(csTypedElement);
+		int upper = ElementUtil.getUpper(csTypedElement);
+		pivotElement.setLower(BigInteger.valueOf(lower));
+		pivotElement.setUpper(BigInteger.valueOf(upper));
 	}
 
 	protected void resetPivotMappings(Collection<? extends Resource> csResources) {
@@ -1560,6 +1556,15 @@ public class CS2PivotConversion extends AbstractConversion
 		}
 	}
 
+	public void setTypeWithMultiplicity(TypedElement typedElement, TypedMultiplicityElement typedMultiplicityElement) {
+		if ((typedMultiplicityElement != null) && !typedMultiplicityElement.eIsProxy()) {
+			Type type = typeManager.getTypeWithMultiplicity(typedMultiplicityElement);
+			if ((type != null) && !type.eIsProxy()) {
+				setType(typedElement, type);
+			}
+		}
+	}
+
 	/**
 	 * Update a list of TemplateBinding to match a list of TemplateSignature
 	 * by moving/adding/removing existing entries. Once matched each TemplateBinding.signature
@@ -1693,7 +1698,7 @@ public class CS2PivotConversion extends AbstractConversion
 		TemplateableElement unspecializedPivotElement = csElement.getType();
 		String moniker = csElement.getMoniker();
 		logger.trace("Specializing " + moniker); //$NON-NLS-1$
-		if (unspecializedPivotElement == null) {
+		if ((unspecializedPivotElement == null) || unspecializedPivotElement.eIsProxy()) {
 			logger.error("Nothing to specialize as " + moniker); //$NON-NLS-1$
 			return null;
 		}
@@ -1819,6 +1824,11 @@ public class CS2PivotConversion extends AbstractConversion
 		//
 		//	Load the library by loading external content or exploiting the pre-ordered content. 
 		//
+		if ((typeManager.getLibraryResource() == null) && (typeManager.getDefaultStandardLibraryURI() == null))  {
+			for (Resource resource : converter.cs2pivotResourceMap.values()) {
+				typeManager.loadLibrary(resource);
+			}
+		}
 		AnyType oclAnyType = typeManager.getOclAnyType();
 		if (oclAnyType == null) {
 			return false;				// FIXME throw ??

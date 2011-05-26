@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.13 2011/05/02 15:38:54 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.18 2011/05/20 15:27:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -80,6 +80,8 @@ import org.eclipse.ocl.examples.pivot.util.Pivotable;
 
 public class PivotUtil
 {	
+	public static final String SCHEME_PIVOT = "pivot";
+
 //	public static final URI INTERNAL_URI = URI.createURI("internal.essentialocl");
 
 	private static final AdapterFactory reflectiveAdapterFactory =
@@ -152,13 +154,7 @@ public class PivotUtil
 	public static void checkResourceErrors(String message, Resource resource) throws ParserException {
 		List<Resource.Diagnostic> errors = resource.getErrors();
 		if (errors.size() > 0) {
-			StringBuffer s = new StringBuffer();
-			s.append(message);
-			for (Resource.Diagnostic conversionError : errors) {
-				s.append("\n");
-				s.append(conversionError.getMessage());
-			}
-			throw new SemanticException(s.toString());
+			throw new SemanticException(formatResourceDiagnostics(resource.getErrors(), message, "\n"));
 		}
 	}
 
@@ -381,6 +377,19 @@ public class PivotUtil
 			}
 		}
 		return null;
+	}
+
+	public static String formatResourceDiagnostics(List<Resource.Diagnostic> diagnostics, String messagePrefix, String newLine) {
+		if (diagnostics.size() <= 0) {
+			return null;
+		}
+		StringBuffer s = new StringBuffer();
+		s.append(messagePrefix);
+		for (Resource.Diagnostic diagnostic : diagnostics) {
+			s.append(newLine);
+			s.append(diagnostic.getMessage());
+		}
+		return s.toString();
 	}
 
 	public static <T> T getAdapter(Class<T> adapterClass, List<Adapter> eAdapters) {
@@ -652,6 +661,31 @@ public class PivotUtil
 		return castElement;
 	}
 
+	public static URI getNonPivotURI(URI uri) {
+		assert isPivotURI(uri);
+		String[] oldSegments = uri.segments();
+		String[] newSegments = new String[oldSegments.length - 1];
+		newSegments[0] = uri.scheme();
+		System.arraycopy(oldSegments, 1, newSegments, 0, oldSegments.length-1);
+		URI pivotURI = URI.createHierarchicalURI(oldSegments[0], uri.authority(), uri.device(), newSegments,
+				uri.query(), uri.fragment());
+		return pivotURI;
+	}
+
+	public static URI getPivotURI(URI uri) {
+		String oldScheme = uri.scheme();
+		if (oldScheme == null) {
+			oldScheme = "null";
+		}
+		String[] oldSegments = uri.segments();
+		String[] newSegments = new String[oldSegments.length + 1];
+		newSegments[0] = oldScheme;
+		System.arraycopy(oldSegments, 0, newSegments, 1, oldSegments.length);
+		URI pivotURI = URI.createHierarchicalURI(SCHEME_PIVOT, uri.authority(), uri.device(), newSegments,
+				uri.query(), uri.fragment());
+		return pivotURI;
+	}
+
 	public static Feature getReferredFeature(CallExp callExp) {
 		Feature feature = null;
 		if (callExp instanceof LoopExp) {
@@ -675,20 +709,6 @@ public class PivotUtil
 			operation = ((OperationCallExp)callExp).getReferredOperation();
 		}
 		return operation;
-	}
-
-	public static String getResourceErrorsString(Resource resource, String prefix) {
-		List<Resource.Diagnostic> errors = resource.getErrors();
-		if (errors.size() <= 0) {
-			return null;
-		}
-		StringBuffer s = new StringBuffer();
-		s.append(prefix);
-		for (Resource.Diagnostic conversionError : errors) {
-			s.append("\n");
-			s.append(conversionError.getMessage());
-		}
-		return s.toString();
 	}
 
 	public static List<TemplateParameter> getTemplateParameters(TemplateableElement templateableElement) {
@@ -804,7 +824,39 @@ public class PivotUtil
 		return (T) templateableElement.getUnspecializedElement(); */
 	}
 
-	public static <T> void refreshList(List<? super T> elements, List<? extends T> newElements) {
+	public static boolean isPivotURI(URI uri) {
+		return SCHEME_PIVOT.equals(uri.scheme()) && (uri.segments().length > 0);
+	}
+	
+	public static boolean isValidIdentifier(String value) {
+		if (value == null) {
+			return false;
+		}
+		int iMax = value.length();
+		for (int i = 0; i < iMax; i++) {
+			char c = value.charAt(i);
+			if (('A' <= c) && (c <= 'Z')) {					
+			}
+			else if (('a' <= c) && (c <= 'z')) {					
+			}
+			else if (c == '_') {					
+			}
+			else if (('0' <= c) && (c <= '9') && (i > 0)) {					
+			}
+			else {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public static <T extends EObject> void refreshList(List<? super T> elements, List<? extends T> newElements) {
+		for (int k = newElements.size(); k-- > 0; ) {
+			T newElement = newElements.get(k);
+			if (newElement.eIsProxy()) {
+				elements.remove(k);			// Lose oldContent before adding possible 'duplicates'
+			}
+		}
 		for (int k = elements.size(); k-- > 0; ) {
 			Object oldElement = elements.get(k);
 			if (!newElements.contains(oldElement)) {
@@ -843,7 +895,7 @@ public class PivotUtil
 		assert newElements.size() == elements.size();
 	}
 
-	public static <T> void refreshSet(List<? super T> oldElements, Collection<? extends T> newElements) {
+	public static <T extends EObject> void refreshSet(List<? super T> oldElements, Collection<? extends T> newElements) {
 		for (int i = oldElements.size(); i-- > 0;) {	// Remove any oldElements not in newElements
 			Object oldElement = oldElements.get(i);
 			if (!newElements.contains(oldElement)) {
@@ -851,7 +903,7 @@ public class PivotUtil
 			}
 		}
 		for (T newElement : newElements) {				// Add any newElements not in oldElements
-			if (!oldElements.contains(newElement)) {
+			if (!newElement.eIsProxy() && !oldElements.contains(newElement)) {
 				oldElements.add(newElement);
 			}
 		}

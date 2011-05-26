@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoadResourceAction.java,v 1.1 2011/03/11 20:23:43 ewillink Exp $
+ * $Id: LoadResourceAction.java,v 1.2 2011/05/07 16:41:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.console.actions;
 
@@ -28,7 +28,7 @@ import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ocl.examples.xtext.console.OCLConsolePage;
 import org.eclipse.ocl.examples.xtext.console.XtextConsolePlugin;
-import org.eclipse.ocl.examples.xtext.console.messages.OCLInterpreterMessages;
+import org.eclipse.ocl.examples.xtext.console.messages.ConsoleMessages;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
@@ -50,7 +50,7 @@ public class LoadResourceAction extends org.eclipse.emf.edit.ui.action.LoadResou
 		Path imagePath = new Path("$nl$/icons/elcl16/OCLModelFile.gif"); //$NON-NLS-1$
 		URL imageFile = FileLocator.find(bundle, imagePath, null);
 		setImageDescriptor(ImageDescriptor.createFromURL(imageFile));
-		setToolTipText(OCLInterpreterMessages.console_loadResourceAction_tip);
+		setToolTipText(ConsoleMessages.LoadResourceAction_Tip);
 	}
 
 	@Override

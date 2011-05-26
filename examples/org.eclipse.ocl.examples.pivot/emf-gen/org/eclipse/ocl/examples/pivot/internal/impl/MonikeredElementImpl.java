@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MonikeredElementImpl.java,v 1.4 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: MonikeredElementImpl.java,v 1.6 2011/05/12 06:09:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 

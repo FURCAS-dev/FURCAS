@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AssociationClassImpl.java,v 1.3 2011/05/02 15:38:53 ewillink Exp $
+ * $Id: AssociationClassImpl.java,v 1.4 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -195,19 +195,16 @@ public class AssociationClassImpl
 			case PivotPackage.ASSOCIATION_CLASS__TEMPLATE_BINDING:
 				return getTemplateBindings();
 			case PivotPackage.ASSOCIATION_CLASS__OWNED_TEMPLATE_SIGNATURE:
-				if (resolve) return getOwnedTemplateSignature();
-				return basicGetOwnedTemplateSignature();
+				return getOwnedTemplateSignature();
 			case PivotPackage.ASSOCIATION_CLASS__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
 			case PivotPackage.ASSOCIATION_CLASS__OWNING_TEMPLATE_PARAMETER:
-				if (resolve) return getOwningTemplateParameter();
-				return basicGetOwningTemplateParameter();
+				return getOwningTemplateParameter();
 			case PivotPackage.ASSOCIATION_CLASS__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
 			case PivotPackage.ASSOCIATION_CLASS__PACKAGE:
-				if (resolve) return getPackage();
-				return basicGetPackage();
+				return getPackage();
 			case PivotPackage.ASSOCIATION_CLASS__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.ASSOCIATION_CLASS__IS_ABSTRACT:
@@ -412,11 +409,11 @@ public class AssociationClassImpl
 			case PivotPackage.ASSOCIATION_CLASS__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
 			case PivotPackage.ASSOCIATION_CLASS__OWNING_TEMPLATE_PARAMETER:
-				return basicGetOwningTemplateParameter() != null;
+				return getOwningTemplateParameter() != null;
 			case PivotPackage.ASSOCIATION_CLASS__TEMPLATE_PARAMETER:
 				return isSetTemplateParameter();
 			case PivotPackage.ASSOCIATION_CLASS__PACKAGE:
-				return basicGetPackage() != null;
+				return getPackage() != null;
 			case PivotPackage.ASSOCIATION_CLASS__INSTANCE_CLASS_NAME:
 				return isSetInstanceClassName();
 			case PivotPackage.ASSOCIATION_CLASS__IS_ABSTRACT:

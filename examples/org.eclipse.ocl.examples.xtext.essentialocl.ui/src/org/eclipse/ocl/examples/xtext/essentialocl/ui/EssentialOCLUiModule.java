@@ -12,25 +12,30 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLUiModule.java,v 1.4 2011/03/03 20:05:46 ewillink Exp $
+ * $Id: EssentialOCLUiModule.java,v 1.7 2011/05/15 20:22:16 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui;
 
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.BaseLocationInFileProvider;
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.findrefs.BaseReferenceFinder;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseEObjectTextHover;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseTerminalsTokenTypeToPartitionMapper;
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseURIEditorOpener;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.BaseAntlrTokenToAttributeIdMapper;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLHighlightingConfiguration;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLSemanticHighlightingCalculator;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.resource.ILocationInFileProvider;
+import org.eclipse.xtext.ui.editor.IURIEditorOpener;
+import org.eclipse.xtext.ui.editor.IXtextEditorCallback;
 import org.eclipse.xtext.ui.editor.hover.DispatchingEObjectTextHover;
 import org.eclipse.xtext.ui.editor.model.ITokenTypeToPartitionTypeMapper;
 import org.eclipse.xtext.ui.editor.model.XtextDocument;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
+import org.eclipse.xtext.ui.editor.validation.ValidatingEditorCallback;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -51,6 +56,11 @@ public class EssentialOCLUiModule extends org.eclipse.ocl.examples.xtext.essenti
 	public Class<? extends ILocationInFileProvider> bindILocationInFileProvider() {
 		return BaseLocationInFileProvider.class;
 	}
+	
+	@SuppressWarnings("restriction")
+	public Class<? extends org.eclipse.xtext.ui.editor.findrefs.IReferenceFinder> bindIReferenceFinder() {
+		return BaseReferenceFinder.class;
+	}
 
 	public Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
 		return EssentialOCLSemanticHighlightingCalculator.class;
@@ -62,6 +72,15 @@ public class EssentialOCLUiModule extends org.eclipse.ocl.examples.xtext.essenti
 
 	public Class<? extends ITokenTypeToPartitionTypeMapper> bindITokenTypeToPartitionTypeMapper() {
 		return BaseTerminalsTokenTypeToPartitionMapper.class;
+	}
+
+	public Class<? extends IURIEditorOpener> bindIURIEditorOpener() {
+		return BaseURIEditorOpener.class;
+	}
+
+	@Override
+	public Class<? extends IXtextEditorCallback> bindIXtextEditorCallback() {
+		return ValidatingEditorCallback.class;
 	}
 
 	public Class<? extends XtextDocument> bindXtextDocument() {

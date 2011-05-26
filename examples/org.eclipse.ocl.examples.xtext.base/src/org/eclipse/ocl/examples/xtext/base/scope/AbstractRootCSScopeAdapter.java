@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractRootCSScopeAdapter.java,v 1.5 2011/04/25 19:39:48 ewillink Exp $
+ * $Id: AbstractRootCSScopeAdapter.java,v 1.6 2011/05/11 19:50:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -55,8 +55,11 @@ public abstract class AbstractRootCSScopeAdapter<CS extends RootCS & MonikeredEl
 
 	public String getAlias(PackageCS csPackage) {
 		for (ImportCS csImport : target.getOwnedImport()) {
-			if (csPackage.getPivot() == csImport.getNamespace()) {
-				return csImport.getName();
+			Namespace namespace = csImport.getNamespace();
+			if (!namespace.eIsProxy()) {
+				if (csPackage.getPivot() == namespace) {
+					return csImport.getName();
+				}
 			}
 		}
 		return csPackage.getName();

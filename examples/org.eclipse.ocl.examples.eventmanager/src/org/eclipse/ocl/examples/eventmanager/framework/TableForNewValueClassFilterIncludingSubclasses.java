@@ -19,10 +19,11 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.eventmanager.filters.NewValueClassFilterIncludingSubclasses;
+import org.eclipse.ocl.examples.eventmanager.filters.StructuralFeatureFilter;
 
 /**
  * The AssociationFilterTable manages all Registrations containing
- * {@link de.hpi.sam.bp2009.solution.eventManager.filters.sap.tc.moin.repository.events.filter.AssociationFilter}.
+ * {@link StructuralFeatureFilter}.
  * 
  * @see org.eclipse.ocl.examples.eventmanager.framework.TableForEventFilter.tc.moin.repository.events.framework.EventFilterTable
  * @author Daniel Vocke (D044825)

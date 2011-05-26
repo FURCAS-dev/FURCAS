@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PackageImpl.java,v 1.4 2011/05/02 15:38:53 ewillink Exp $
+ * $Id: PackageImpl.java,v 1.5 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -198,7 +198,7 @@ public class PackageImpl
 	public EList<TemplateBinding> getTemplateBindings() {
 		if (templateBindings == null)
 		{
-			templateBindings = new EObjectContainmentWithInverseEList.Resolving<TemplateBinding>(TemplateBinding.class, this, PivotPackage.PACKAGE__TEMPLATE_BINDING, PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT);
+			templateBindings = new EObjectContainmentWithInverseEList<TemplateBinding>(TemplateBinding.class, this, PivotPackage.PACKAGE__TEMPLATE_BINDING, PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT);
 		}
 		return templateBindings;
 	}
@@ -220,32 +220,6 @@ public class PackageImpl
 	 * @generated
 	 */
 	public TemplateSignature getOwnedTemplateSignature() {
-		if (ownedTemplateSignature != null && ((EObject)ownedTemplateSignature).eIsProxy())
-		{
-			InternalEObject oldOwnedTemplateSignature = (InternalEObject)ownedTemplateSignature;
-			ownedTemplateSignature = (TemplateSignature)eResolveProxy(oldOwnedTemplateSignature);
-			if (ownedTemplateSignature != oldOwnedTemplateSignature)
-			{
-				InternalEObject newOwnedTemplateSignature = (InternalEObject)ownedTemplateSignature;
-				NotificationChain msgs =  oldOwnedTemplateSignature.eInverseRemove(this, PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE, TemplateSignature.class, null);
-				if (newOwnedTemplateSignature.eInternalContainer() == null)
-				{
-					msgs =  newOwnedTemplateSignature.eInverseAdd(this, PivotPackage.TEMPLATE_SIGNATURE__TEMPLATE, TemplateSignature.class, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE, oldOwnedTemplateSignature, ownedTemplateSignature));
-			}
-		}
-		return ownedTemplateSignature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplateSignature basicGetOwnedTemplateSignature() {
 		return ownedTemplateSignature;
 	}
 
@@ -371,7 +345,7 @@ public class PackageImpl
 	public EList<Precedence> getOwnedPrecedences() {
 		if (ownedPrecedences == null)
 		{
-			ownedPrecedences = new EObjectContainmentEList.Resolving<Precedence>(Precedence.class, this, PivotPackage.PACKAGE__OWNED_PRECEDENCE);
+			ownedPrecedences = new EObjectContainmentEList<Precedence>(Precedence.class, this, PivotPackage.PACKAGE__OWNED_PRECEDENCE);
 		}
 		return ownedPrecedences;
 	}
@@ -395,7 +369,7 @@ public class PackageImpl
 	public EList<org.eclipse.ocl.examples.pivot.Package> getNestedPackages() {
 		if (nestedPackages == null)
 		{
-			nestedPackages = new EObjectContainmentWithInverseEList.Resolving<org.eclipse.ocl.examples.pivot.Package>(org.eclipse.ocl.examples.pivot.Package.class, this, PivotPackage.PACKAGE__NESTED_PACKAGE, PivotPackage.PACKAGE__NESTING_PACKAGE);
+			nestedPackages = new EObjectContainmentWithInverseEList<org.eclipse.ocl.examples.pivot.Package>(org.eclipse.ocl.examples.pivot.Package.class, this, PivotPackage.PACKAGE__NESTED_PACKAGE, PivotPackage.PACKAGE__NESTING_PACKAGE);
 		}
 		return nestedPackages;
 	}
@@ -429,16 +403,6 @@ public class PackageImpl
 	public org.eclipse.ocl.examples.pivot.Package getNestingPackage() {
 		if (eContainerFeatureID() != PivotPackage.PACKAGE__NESTING_PACKAGE) return null;
 		return (org.eclipse.ocl.examples.pivot.Package)eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public org.eclipse.ocl.examples.pivot.Package basicGetNestingPackage() {
-		if (eContainerFeatureID() != PivotPackage.PACKAGE__NESTING_PACKAGE) return null;
-		return (org.eclipse.ocl.examples.pivot.Package)eInternalContainer();
 	}
 
 	/**
@@ -484,7 +448,7 @@ public class PackageImpl
 	public EList<Type> getOwnedTypes() {
 		if (ownedTypes == null)
 		{
-			ownedTypes = new EObjectContainmentWithInverseEList.Resolving<Type>(Type.class, this, PivotPackage.PACKAGE__OWNED_TYPE, PivotPackage.TYPE__PACKAGE);
+			ownedTypes = new EObjectContainmentWithInverseEList<Type>(Type.class, this, PivotPackage.PACKAGE__OWNED_TYPE, PivotPackage.TYPE__PACKAGE);
 		}
 		return ownedTypes;
 	}
@@ -629,15 +593,13 @@ public class PackageImpl
 			case PivotPackage.PACKAGE__TEMPLATE_BINDING:
 				return getTemplateBindings();
 			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
-				if (resolve) return getOwnedTemplateSignature();
-				return basicGetOwnedTemplateSignature();
+				return getOwnedTemplateSignature();
 			case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
 			case PivotPackage.PACKAGE__NESTED_PACKAGE:
 				return getNestedPackages();
 			case PivotPackage.PACKAGE__NESTING_PACKAGE:
-				if (resolve) return getNestingPackage();
-				return basicGetNestingPackage();
+				return getNestingPackage();
 			case PivotPackage.PACKAGE__NS_PREFIX:
 				return getNsPrefix();
 			case PivotPackage.PACKAGE__NS_URI:
@@ -804,7 +766,7 @@ public class PackageImpl
 			case PivotPackage.PACKAGE__NESTED_PACKAGE:
 				return nestedPackages != null && !nestedPackages.isEmpty();
 			case PivotPackage.PACKAGE__NESTING_PACKAGE:
-				return basicGetNestingPackage() != null;
+				return getNestingPackage() != null;
 			case PivotPackage.PACKAGE__NS_PREFIX:
 				return NS_PREFIX_EDEFAULT == null ? nsPrefix != null : !NS_PREFIX_EDEFAULT.equals(nsPrefix);
 			case PivotPackage.PACKAGE__NS_URI:

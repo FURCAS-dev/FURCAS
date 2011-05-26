@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: UML2Ecore2Pivot.java,v 1.1 2011/05/02 09:31:29 ewillink Exp $
+ * $Id: UML2Ecore2Pivot.java,v 1.4 2011/05/20 15:27:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.uml;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,15 +28,53 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
+import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.UML2EcoreConverter;
 
 public class UML2Ecore2Pivot extends Ecore2Pivot
 {
+	private static final class Factory implements TypeManager.Factory
+	{
+		private Factory() {
+			UMLPackage.eINSTANCE.getClass();
+			TypeManager.addFactory(this);
+		}
+
+		public boolean canHandle(Resource resource) {
+			return isUML(resource);
+		}
+
+		public void configure(ResourceSet resourceSet) {
+			UML2Ecore2Pivot.initialize(resourceSet);
+		}
+
+		public Element importFromResource(TypeManager typeManager, Resource umlResource, String uriFragment) {
+			if (umlResource == null) {
+				return null;
+			}
+			UML2Ecore2Pivot conversion = getAdapter(umlResource, typeManager);
+			org.eclipse.ocl.examples.pivot.Package pivotRoot = conversion.getPivotRoot();
+			if (uriFragment == null) {
+				return pivotRoot;
+			}
+			else {
+				EObject umlObject = umlResource.getEObject(uriFragment);
+				if (umlObject == null) {
+					return null;
+				}
+				return conversion.getPivotOfUML(Element.class, umlObject);
+			}
+		}
+	}
+
+	public static TypeManager.Factory FACTORY = new Factory();
 //	private static final Logger logger = Logger.getLogger(UML2Ecore2Pivot.class);
 
 	// FIXME this is a prehistoric value
@@ -109,6 +148,7 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 		Map<URI, URI> uriMap = resourceSet != null
 			? resourceSet.getURIConverter().getURIMap()
 			: URIConverter.URI_MAP;		
+// FIXME try something like classpath:/org/eclipse/ocl/examples/xtext/essentialocl/EssentialOCL.xmi
 //		uriMap.put(URI.createURI(OCL_STANDARD_LIBRARY_NS_URI), URI.createFileURI(oclLocation + "/model/oclstdlib.uml")); //$NON-NLS-1$
 		uriMap.put(URI.createURI(UMLResource.PROFILES_PATHMAP), URI.createFileURI(resourcesLocation + "/profiles/")); //$NON-NLS-1$
 		uriMap.put(URI.createURI(UMLResource.METAMODELS_PATHMAP), URI.createFileURI(resourcesLocation + "/metamodels/")); //$NON-NLS-1$
@@ -147,6 +187,8 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 	} */
 	
 	protected final Resource umlResource;					// Set via eAdapters.add()
+	private UML2EcoreConverter uml2EcoreConverter = null;
+	private Map<String, String> options = null;
 
 	public UML2Ecore2Pivot(Resource umlResource, TypeManager typeManager) {
 		super(typeManager.getExternalResourceSet().createResource(umlResource.getURI().appendFileExtension(".ecore")), typeManager);
@@ -155,11 +197,46 @@ public class UML2Ecore2Pivot extends Ecore2Pivot
 	}
 
 	@Override
+	public <T extends Element> T getCreated(Class<T> requiredClass, EObject eObject) {
+		EObject ecoreObject = (EObject) uml2EcoreConverter.doSwitch(eObject);
+		if (ecoreObject == null) {
+			ecoreObject = eObject;
+		}
+		return super.getCreated(requiredClass, ecoreObject);
+	}
+
+	public <T extends Element> T getPivotOfUML(Class<T> requiredClass, EObject eObject) {
+		EObject ecoreObject = (EObject) uml2EcoreConverter.doSwitch(eObject);
+		return getPivotOfEcore(requiredClass, ecoreObject);
+	}
+
+	@Override
 	public Package getPivotRoot() {
 		if (pivotRoot == null) {
 			List<EObject> contents = umlResource.getContents();
-			Collection<? extends EObject> umlContents = new UML2EcoreConverter().convert(contents, null, null, null);
-			ecoreResource.getContents().addAll(umlContents);
+			if (options == null) {
+				options = new HashMap<String, String>();
+				options.put(UML2EcoreConverter.OPTION__ECORE_TAGGED_VALUES, UMLUtil.OPTION__PROCESS);
+				options.put(UML2EcoreConverter.OPTION__REDEFINING_OPERATIONS, UMLUtil.OPTION__PROCESS);
+				options.put(UML2EcoreConverter.OPTION__REDEFINING_PROPERTIES, UMLUtil.OPTION__PROCESS);
+				options.put(UML2EcoreConverter.OPTION__SUBSETTING_PROPERTIES, UMLUtil.OPTION__PROCESS);
+				options.put(UML2EcoreConverter.OPTION__UNION_PROPERTIES, UMLUtil.OPTION__PROCESS);
+				options.put(UML2EcoreConverter.OPTION__DERIVED_FEATURES, UMLUtil.OPTION__PROCESS);
+				options.put(UML2EcoreConverter.OPTION__DUPLICATE_OPERATIONS, UMLUtil.OPTION__PROCESS);
+				options.put(UML2EcoreConverter.OPTION__DUPLICATE_OPERATION_INHERITANCE, UMLUtil.OPTION__PROCESS);
+				options.put(UML2EcoreConverter.OPTION__DUPLICATE_FEATURES, UMLUtil.OPTION__PROCESS);
+				options.put(UML2EcoreConverter.OPTION__DUPLICATE_FEATURE_INHERITANCE, UMLUtil.OPTION__PROCESS);
+				options.put(UML2EcoreConverter.OPTION__SUPER_CLASS_ORDER, UMLUtil.OPTION__PROCESS);
+				options.put(UML2EcoreConverter.OPTION__ANNOTATION_DETAILS, UMLUtil.OPTION__PROCESS);
+				options.put(UML2EcoreConverter.OPTION__INVARIANT_CONSTRAINTS, UMLUtil.OPTION__PROCESS);
+				options.put(UML2EcoreConverter.OPTION__OPERATION_BODIES, UMLUtil.OPTION__PROCESS);
+				options.put(UML2EcoreConverter.OPTION__COMMENTS,  UMLUtil.OPTION__PROCESS);
+			}
+			if (uml2EcoreConverter == null) {
+				uml2EcoreConverter = new UML2EcoreConverter();
+			}
+			Collection<? extends EObject> ecoreContents = uml2EcoreConverter.convert(contents, options, null, null);
+			ecoreResource.getContents().addAll(ecoreContents);
 		}
 		return super.getPivotRoot();
 	}
