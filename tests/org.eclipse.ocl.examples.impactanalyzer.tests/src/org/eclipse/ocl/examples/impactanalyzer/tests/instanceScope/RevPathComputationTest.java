@@ -1181,7 +1181,7 @@ public class RevPathComputationTest extends BaseDepartmentTestWithOCL {
             System.out.println(">> FAILURE\n");
             expected.removeAll(instances);
             for (EObject o : expected) {
-                System.out.print(o + "not in result");
+                System.out.print(o + " not in result");
             }
             System.out.println("");
             fail("Returned instances does not match expected instances!");
