@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOclAsTypeOperation.java,v 1.6 2011/04/25 09:48:57 ewillink Exp $
+ * $Id: OclAnyOclAsTypeOperation.java,v 1.7 2011/05/07 16:41:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
@@ -21,6 +21,7 @@ import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.TypeValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -38,7 +39,7 @@ public class OclAnyOclAsTypeOperation extends AbstractOperation
 		TypeManager typeManager = evaluationVisitor.getTypeManager();
 		Type sourceType = sourceVal.getType(typeManager, operationCall.getSource().getType());
 		if (sourceType == null) {
-			return evaluationVisitor.throwInvalidEvaluation("Missing source type", null, operationCall, sourceType);
+			return evaluationVisitor.throwInvalidEvaluation(null, operationCall, sourceType, EvaluatorMessages.MissingSourceType);
 		}
 		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
 		TypeValue typeVal = argVal.asTypeValue();
@@ -47,7 +48,7 @@ public class OclAnyOclAsTypeOperation extends AbstractOperation
 			return sourceVal;
 		}
 		else {
-			return evaluationVisitor.throwInvalidEvaluation("Incompatible argument type", null, operationCall, argType);
+			return evaluationVisitor.throwInvalidEvaluation(null, operationCall, argType, EvaluatorMessages.IncompatibleArgumentType, argType);
 		}
 	}
 }

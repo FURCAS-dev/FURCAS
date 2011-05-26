@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionRange.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
+ * $Id: CollectionRange.java,v 1.4 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -49,7 +49,7 @@ public interface CollectionRange
 	 * @return the value of the '<em>First</em>' containment reference.
 	 * @see #setFirst(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCollectionRange_First()
-	 * @model containment="true" resolveProxies="true" required="true" ordered="false"
+	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
 	OclExpression getFirst();
@@ -86,7 +86,7 @@ public interface CollectionRange
 	 * @return the value of the '<em>Last</em>' containment reference.
 	 * @see #setLast(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCollectionRange_Last()
-	 * @model containment="true" resolveProxies="true" required="true" ordered="false"
+	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
 	OclExpression getLast();

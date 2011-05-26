@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotTests.java,v 1.6 2011/04/20 19:02:32 ewillink Exp $
+ * $Id: PivotTests.java,v 1.8 2011/05/22 16:41:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -49,6 +49,7 @@ import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.oclinecore.pivot2cs.OCLinEcorePivot2CS;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
+import org.eclipse.xtext.resource.impl.ListBasedDiagnosticConsumer;
 
 /**
  * Tests.
@@ -240,7 +241,7 @@ public class PivotTests extends XtextTestCase
 
 	public BaseCSResource doLoadOCLstdlib(String stem, String extension) throws IOException {
 		resourceSet = new ResourceSetImpl();
-		TypeManager typeManager =  new TypeManager.NoDefaultLibrary();
+		TypeManager typeManager =  new TypeManager();
 //		CS2PivotResourceSetAdapter.getAdapter(resourceSet, typeManager);
 //		long startTime = System.currentTimeMillis();
 //		System.out.println("Start at " + startTime);
@@ -309,7 +310,7 @@ public class PivotTests extends XtextTestCase
 		//	Update Pivot model from unchanged CS
 		//
 		CS2Pivot updater = new CS2Pivot(creator);
-		updater.update();
+		updater.update(new ListBasedDiagnosticConsumer());
 		new Checker(creator).assertSameContents();
 		//
 		// Damage the Pivot model and update to repair.

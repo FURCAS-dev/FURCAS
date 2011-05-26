@@ -2,17 +2,15 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CompanySwitch.java,v 1.2 2011/03/09 14:45:50 auhl Exp $
+ * $Id$
  */
 package company.util;
 
 import company.*;
 
-import java.util.List;
-
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.util.Switch;
 
 /**

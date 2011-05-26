@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractUndefinedValue.java,v 1.5 2011/04/25 09:49:14 ewillink Exp $
+ * $Id: AbstractUndefinedValue.java,v 1.6 2011/05/07 16:41:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -21,6 +21,7 @@ import java.math.BigInteger;
 
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.NullValue;
@@ -168,7 +169,8 @@ public abstract class AbstractUndefinedValue extends AbstractValue implements Nu
 	}
 
 	protected NullValue toInvalidValue() throws InvalidValueException {
-		throw new InvalidValueException("Undefined Value", this);
+		valueFactory.throwInvalidValueException(EvaluatorMessages.ConvertibleValueRequired, "Invalid");
+		return null;
 	}
 
 //	public <T extends NumericValue> T toValue(Class<T> numericClass) {

@@ -55,6 +55,9 @@
       <ownedMember xmi:type="cmof:Class" xmi:id="_qClRsBNLEeCpr6XKiuQP7w" name="Type">
         <ownedAttribute xmi:type="cmof:Property" xmi:id="_U4vxMBNLEeCpr6XKiuQP7w" name="instanceClassName" type="_jh_vABNKEeCpr6XKiuQP7w" lower="0"/>
       </ownedMember>
+      <ownedMember xmi:type="cmof:Class" xmi:id="_tN9O4HwBEeCD_bbcqKnJ_g" name="Constraint">
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="_tN9O4XwBEeCD_bbcqKnJ_g" name="isCallable" type="_rfGIcBNKEeCpr6XKiuQP7w" default="false"/>
+      </ownedMember>
     </ownedMember>
     <ownedMember xmi:type="cmof:Package" xmi:id="_A11esMerEd-sJIf4tYBt-g" name="MDT_OCL_Evaluation">
       <ownedMember xmi:type="cmof:Class" xmi:id="_CJbYcB_aEeCxNNh5B6u04A" name="CallExp" isAbstract="true"/>

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DelegateResourceAdapter.java,v 1.2 2010/04/08 06:27:21 ewillink Exp $
+ * $Id: DelegateResourceAdapter.java,v 1.3 2011/05/07 05:46:49 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.delegate;
 
@@ -93,8 +93,10 @@ public class DelegateResourceAdapter extends AdapterImpl
 		for (EObject eObject : contents) {
 			if (eObject instanceof EPackage) {
 				EPackage ePackage = (EPackage)eObject;
-				DelegateEPackageAdapter adapter = DelegateEPackageAdapter.getAdapter(ePackage);
-				adapter.unloadDelegates();
+				DelegateEPackageAdapter adapter = DelegateEPackageAdapter.findAdapter(ePackage);
+				if (adapter != null) {
+					adapter.unloadDelegates();
+				}
 				unloadDelegates(ePackage.getESubpackages());
 			}
 		}		

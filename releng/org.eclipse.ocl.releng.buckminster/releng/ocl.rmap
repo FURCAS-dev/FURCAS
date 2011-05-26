@@ -131,7 +131,7 @@
   <rm:searchPath name="p2_orbit">
     <rm:provider componentTypes="osgi.bundle" readerType="p2" mutable="false">
       <rm:property key="buckminster.mutable" value="false"/>
-      <rm:uri format="http://download.eclipse.org/tools/orbit/downloads/drops/R20100519200754/repository"/>
+      <rm:uri format="http://download.eclipse.org/tools/orbit/downloads/drops/S20110523182458/repository"/>
     </rm:provider>
   </rm:searchPath>
 </rm:rmap>

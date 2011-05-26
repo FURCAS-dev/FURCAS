@@ -6,12 +6,13 @@
     <extension
             point="org.eclipse.ui.editors">
         <editor
-            class="org.eclipse.ocl.examples.xtext.essentialocl.ui.EssentialOCLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
-            contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
-            default="true"
-            extensions="essentialocl"
-            id="org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL"
-            name="%MF_EssentialOCLEditor">
+              class="org.eclipse.ocl.examples.xtext.essentialocl.ui.EssentialOCLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+              contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
+              default="true"
+              extensions="essentialocl"
+              icon="icons/OCLModelFile.gif"
+              id="org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL"
+              name="%MF_EssentialOCLEditor">
         </editor>
     </extension>
     <extension
@@ -51,6 +52,13 @@
             point="org.eclipse.ui.preferencePages">
         <page
             class="org.eclipse.ocl.examples.xtext.essentialocl.ui.EssentialOCLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+            id="org.eclipse.ocl.examples.xtext.OCL"
+            name="%MF_OCL">
+            <keywordReference id="org.eclipse.ocl.examples.xtext.essentialocl.ui.keyword_OCL"/>
+        </page>
+        <page
+            category="org.eclipse.ocl.examples.xtext.OCL"
+            class="org.eclipse.ocl.examples.xtext.essentialocl.ui.EssentialOCLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
             id="org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL"
             name="%MF_EssentialOCL">
             <keywordReference id="org.eclipse.ocl.examples.xtext.essentialocl.ui.keyword_EssentialOCL"/>
@@ -72,6 +80,9 @@
     </extension>
     <extension
         point="org.eclipse.ui.keywords">
+        <keyword
+            id="org.eclipse.ocl.examples.xtext.essentialocl.ui.keyword_OCL"
+            label="%MF_OCL"/>
         <keyword
             id="org.eclipse.ocl.examples.xtext.essentialocl.ui.keyword_EssentialOCL"
             label="%MF_EssentialOCL"/>

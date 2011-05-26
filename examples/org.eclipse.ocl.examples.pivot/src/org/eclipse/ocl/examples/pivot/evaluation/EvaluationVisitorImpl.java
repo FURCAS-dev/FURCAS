@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.12 2011/04/27 06:19:59 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.13 2011/05/07 16:41:08 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -39,6 +39,7 @@ import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
+import org.eclipse.ocl.examples.pivot.EvaluationException;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
@@ -70,6 +71,7 @@ import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
+import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
@@ -142,23 +144,23 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		} catch (Exception e) {
 			String implementationClass = dynamicOperation.getImplementationClass();
 			if (implementationClass != null) {
-				return evaluationEnvironment.throwInvalidEvaluation("Failed to load '" + implementationClass + "'", e, callExp, null);
+				return evaluationEnvironment.throwInvalidEvaluation(e, callExp, null, EvaluatorMessages.ImplementationClassLoadFailure, implementationClass);
 			}
 			else {
-				return evaluationEnvironment.throwInvalidEvaluation("Failed to load implementation for '" + dynamicOperation + "'", e, callExp, null);
+				return evaluationEnvironment.throwInvalidEvaluation(e, callExp, null, "Failed to load implementation for '" + dynamicOperation + "'");
 			}
 		}
 		Value result = null;
 		try {
 			result = implementation.evaluate(undecoratedVisitor, sourceValue, callExp);
 		}
-		catch (InvalidEvaluationException e) {
+		catch (EvaluationException e) {
 			throw e;
 		}
 		catch (Exception e) {
 			// This is a backstop. Library operations should catch their own exceptions
 			//  and produce a better reason as a result.
-			return evaluationEnvironment.throwInvalidEvaluation("Failed to evaluate '" + dynamicOperation + "'", e, callExp, sourceValue);
+			return evaluationEnvironment.throwInvalidEvaluation(e, callExp, sourceValue, "Failed to evaluate '" + dynamicOperation + "'");
 		}
 		if (result == null) {
 			return evaluationEnvironment.throwInvalidEvaluation("Java-Null result from '" + dynamicOperation + "'", callExp, sourceValue);
@@ -173,10 +175,10 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		}
 		try {
 			return v.accept(this);
-		} catch (InvalidEvaluationException e) {
+		} catch (EvaluationException e) {
 			throw e;
 		} catch (Exception e) {
-			return evaluationEnvironment.throwInvalidEvaluation("Evaluation Failure", e, null, v);
+			return evaluationEnvironment.throwInvalidEvaluation(e, null, v, "Evaluation Failure");
 		}
 	}
 
@@ -249,25 +251,25 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			try {
 				firstInteger = firstVal.asIntegerValue();
 			} catch (InvalidValueException e) {
-				return evaluationEnvironment.throwInvalidEvaluation("Non integer first element", e, cl, firstVal);
+				return evaluationEnvironment.throwInvalidEvaluation(e, cl, firstVal, "Non integer first element");
 			}
 			IntegerValue lastInteger;
 			try {
 				lastInteger = lastVal.asIntegerValue();
 			} catch (InvalidValueException e) {
-				return evaluationEnvironment.throwInvalidEvaluation("Non integer last element", e, cl, lastVal);
+				return evaluationEnvironment.throwInvalidEvaluation(e, cl, lastVal, "Non integer last element");
 			}
 			Integer firstInt;
 			try {
 				firstInt = firstInteger.asInteger();
 			} catch (InvalidValueException e) {
-				return evaluationEnvironment.throwInvalidEvaluation("Out of range first element", e, cl, firstInteger);
+				return evaluationEnvironment.throwInvalidEvaluation(e, cl, firstInteger, "Out of range first element");
 			}
 			Integer lastInt;
 			try {
 				lastInt = lastInteger.asInteger();
 			} catch (InvalidValueException e) {
-				return evaluationEnvironment.throwInvalidEvaluation("Out of range last element", e, cl, lastInteger);
+				return evaluationEnvironment.throwInvalidEvaluation(e, cl, lastInteger, "Out of range last element");
 			}
 //			if (firstInt > lastInt) {
 //                return result;
@@ -308,25 +310,25 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 					try {
 						firstInteger = firstVal.asIntegerValue();
 					} catch (InvalidValueException e) {
-						return evaluationEnvironment.throwInvalidEvaluation("Non integer first element", e, cl, firstVal);
+						return evaluationEnvironment.throwInvalidEvaluation(e, cl, firstVal, "Non integer first element");
 					}
 					IntegerValue lastInteger;
 					try {
 						lastInteger = lastVal.asIntegerValue();
 					} catch (InvalidValueException e) {
-						return evaluationEnvironment.throwInvalidEvaluation("Non integer last element", e, cl, lastVal);
+						return evaluationEnvironment.throwInvalidEvaluation(e, cl, lastVal, "Non integer last element");
 					}
 					Integer firstInt;
 					try {
 						firstInt = firstInteger.asInteger();
 					} catch (InvalidValueException e) {
-						return evaluationEnvironment.throwInvalidEvaluation("Out of range first element", e, cl, firstInteger);
+						return evaluationEnvironment.throwInvalidEvaluation(e, cl, firstInteger, "Out of range first element");
 					}
 					Integer lastInt;
 					try {
 						lastInt = lastInteger.asInteger();
 					} catch (InvalidValueException e) {
-						return evaluationEnvironment.throwInvalidEvaluation("Out of range last element", e, cl, lastInteger);
+						return evaluationEnvironment.throwInvalidEvaluation(e, cl, lastInteger, "Out of range last element");
 					}
 					// TODO: enhance IntegerRangeList to support multiple ranges
 					// add values between first and last inclusive
@@ -487,10 +489,10 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		} catch (Exception e) {
 			String implementationClass = property.getImplementationClass();
 			if (implementationClass != null) {
-				return evaluationEnvironment.throwInvalidEvaluation("Failed to load '" + implementationClass + "'", e, propertyCallExp, null);
+				return evaluationEnvironment.throwInvalidEvaluation(e, propertyCallExp, null, EvaluatorMessages.ImplementationClassLoadFailure, implementationClass);
 			}
 			else {
-				return evaluationEnvironment.throwInvalidEvaluation("Failed to load implementation for '" + property + "'", e, propertyCallExp, null);
+				return evaluationEnvironment.throwInvalidEvaluation(e, propertyCallExp, null, "Failed to load implementation for '" + property + "'");
 			}
 		}
 		OclExpression source = propertyCallExp.getSource();
@@ -499,16 +501,16 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		try {
 			resultValue = implementation.evaluate(getUndecoratedVisitor(), sourceValue, propertyCallExp);
 		}
-		catch (InvalidEvaluationException e) {
+		catch (EvaluationException e) {
 			throw e;
 		}
 		catch (Exception e) {
 			// This is a backstop. Library operations should catch their own exceptions
 			//  and produce a better reason as a result.
-			return evaluationEnvironment.throwInvalidEvaluation("Failed to evaluate '" + property + "'", e, propertyCallExp, sourceValue);
+			return evaluationEnvironment.throwInvalidEvaluation(e, propertyCallExp, sourceValue, "Failed to evaluate '" + property + "'");
 		}
 		if (resultValue == null) {
-			return evaluationEnvironment.throwInvalidEvaluation("Java-Null result from '" + property + "'", propertyCallExp, sourceValue);
+			return evaluationEnvironment.throwInvalidEvaluation(null, propertyCallExp, sourceValue, "Java-Null result from '" + property + "'");
 		}
 		return resultValue;
 	}

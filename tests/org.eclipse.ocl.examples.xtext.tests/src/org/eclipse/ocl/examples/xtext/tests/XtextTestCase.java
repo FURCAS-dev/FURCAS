@@ -141,7 +141,7 @@ public class XtextTestCase extends TestCase
 	}
 
 	public static void assertNoResourceErrors(String prefix, Resource resource) {
-		String message = PivotUtil.getResourceErrorsString(resource, prefix);
+		String message = PivotUtil.formatResourceDiagnostics(resource.getErrors(), prefix, "\n\t");
 		if (message != null)
 			fail(message);
 	}
@@ -459,9 +459,10 @@ public class XtextTestCase extends TestCase
 		//
 		//	CS save and reload
 		//		
-//		pivotResource.setURI(pivotURI);
+		URI savedURI = pivotResource.getURI();
+		pivotResource.setURI(PivotUtil.getNonPivotURI(savedURI).appendFileExtension("pivot"));
 		pivotResource.save(null);
-		
+		pivotResource.setURI(savedURI);
 		
 		assertNoDiagnosticErrors("Concrete Syntax validation failed", xtextResource);
 		try {
@@ -552,7 +553,7 @@ public class XtextTestCase extends TestCase
 		}
 	}
 
-	protected Resource savePivotAsEcore(TypeManager typeManager, Resource pivotResource, URI ecoreURI) throws IOException {
+	protected Resource savePivotAsEcore(TypeManager typeManager, Resource pivotResource, URI ecoreURI, boolean validateSaved) throws IOException {
 		List<? extends EObject> outputObjects = new ArrayList<EObject>(Pivot2Ecore.createResource(typeManager, pivotResource));
 		@SuppressWarnings("unchecked")
 		List<? extends ENamedElement> castOutputObjects = (List<? extends ENamedElement>)outputObjects;
@@ -571,7 +572,9 @@ public class XtextTestCase extends TestCase
 		if (ecoreURI != null) {
 			ecoreResource.save(null);
 		}
-		assertNoValidationErrors("Ecore2Pivot invalid", ecoreResource);
+		if (validateSaved) {
+			assertNoValidationErrors("Ecore2Pivot invalid", ecoreResource);
+		}
 		return ecoreResource;
 	}
 

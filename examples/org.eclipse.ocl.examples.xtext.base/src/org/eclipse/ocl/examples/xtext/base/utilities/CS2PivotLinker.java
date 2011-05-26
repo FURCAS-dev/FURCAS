@@ -12,14 +12,18 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotLinker.java,v 1.7 2011/03/14 07:27:54 ewillink Exp $
+ * $Id: CS2PivotLinker.java,v 1.9 2011/05/20 15:27:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
+import org.eclipse.ocl.examples.xtext.base.cs2pivot.LibraryDiagnostic;
+import org.eclipse.xtext.diagnostics.ExceptionDiagnostic;
 import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
+import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.linking.lazy.LazyLinker;
 
 /**
@@ -63,12 +67,29 @@ public class CS2PivotLinker extends LazyLinker
 			BaseCSResource csResource = (BaseCSResource) eResource;
 			try {
 				CS2PivotResourceAdapter resourceAdapter = CS2PivotResourceAdapter.getAdapter(csResource, null);
-				resourceAdapter.refreshPivotMappings();
+				resourceAdapter.refreshPivotMappings(diagnosticsConsumer);
+/*				Resource pivotResource = resourceAdapter.getPivotResource(csResource);
+				ResourceSet resourceSet = csResource.getResourceSet();
+				if (resourceSet instanceof ResourceSetImpl) {
+					ResourceSetImpl resourceSetImpl = (ResourceSetImpl) resourceSet;
+					Map<URI, Resource> uriResourceMap = resourceSetImpl.getURIResourceMap();
+					if (uriResourceMap == null) {
+						uriResourceMap = new HashMap<URI, Resource>();
+						resourceSetImpl.setURIResourceMap(uriResourceMap);
+					}
+					uriResourceMap.put(pivotResource.getURI(), pivotResource);
+				} */
 			}
 			catch (Exception exception) {	// Never let an Exception leak out to abort Xtext
 			    Exception cause = exception instanceof Resource.IOWrappedException ? (Exception)exception.getCause() : exception;
-			    DiagnosticWrappedException wrappedException = new DiagnosticWrappedException(cause);
-				eResource.getErrors().add(wrappedException);
+//			    DiagnosticWrappedException wrappedException = new DiagnosticWrappedException(cause);
+//				eResource.getErrors().add(wrappedException);
+			    if (cause instanceof IllegalLibraryException) {
+				    diagnosticsConsumer.consume(new LibraryDiagnostic(cause), Severity.ERROR);
+			    }
+			    else {
+			    	diagnosticsConsumer.consume(new ExceptionDiagnostic(cause), Severity.ERROR);
+			    }
 			}
 //			System.out.println("Finished refreshPivotMappings for " + eResource.getURI());
 		}

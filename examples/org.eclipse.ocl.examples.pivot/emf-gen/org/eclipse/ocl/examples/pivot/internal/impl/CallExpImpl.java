@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CallExpImpl.java,v 1.4 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: CallExpImpl.java,v 1.5 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -21,7 +21,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -107,32 +106,6 @@ public abstract class CallExpImpl
 	 * @generated
 	 */
 	public OclExpression getSource() {
-		if (source != null && ((EObject)source).eIsProxy())
-		{
-			InternalEObject oldSource = (InternalEObject)source;
-			source = (OclExpression)eResolveProxy(oldSource);
-			if (source != oldSource)
-			{
-				InternalEObject newSource = (InternalEObject)source;
-				NotificationChain msgs = oldSource.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.CALL_EXP__SOURCE, null, null);
-				if (newSource.eInternalContainer() == null)
-				{
-					msgs = newSource.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.CALL_EXP__SOURCE, null, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.CALL_EXP__SOURCE, oldSource, source));
-			}
-		}
-		return source;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OclExpression basicGetSource() {
 		return source;
 	}
 
@@ -261,8 +234,7 @@ public abstract class CallExpImpl
 				if (resolve) return getType();
 				return basicGetType();
 			case PivotPackage.CALL_EXP__SOURCE:
-				if (resolve) return getSource();
-				return basicGetSource();
+				return getSource();
 			case PivotPackage.CALL_EXP__IMPLICIT:
 				return isImplicit();
 		}

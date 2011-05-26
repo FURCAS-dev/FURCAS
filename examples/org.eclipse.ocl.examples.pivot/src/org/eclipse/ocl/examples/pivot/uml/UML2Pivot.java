@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UML2Pivot.java,v 1.8 2011/04/20 19:02:47 ewillink Exp $
+ * $Id: UML2Pivot.java,v 1.9 2011/05/20 15:27:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.uml;
 
@@ -449,7 +449,7 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 
 	public Resource importObjects(Collection<EObject> ecoreContents, URI ecoreURI) {
 		Resource pivotResource = typeManager.createResource(ecoreURI, PivotPackage.eCONTENT_TYPE);
-		pivotRoot = typeManager.createPackage(ecoreURI.lastSegment());
+		pivotRoot = typeManager.createPackage(ecoreURI.lastSegment(), null);
 		pivotResource.getContents().add(pivotRoot);
 		List<org.eclipse.ocl.examples.pivot.Package> packages = pivotRoot.getNestedPackages();
 		for (EObject eObject : ecoreContents) {

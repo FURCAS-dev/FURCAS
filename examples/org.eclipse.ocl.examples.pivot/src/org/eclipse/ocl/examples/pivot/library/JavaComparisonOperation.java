@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: JavaComparisonOperation.java,v 1.2 2011/02/21 08:37:53 ewillink Exp $
+ * $Id: JavaComparisonOperation.java,v 1.3 2011/05/07 16:41:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.library;
 
@@ -25,9 +25,11 @@ import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.osgi.util.NLS;
 
 public abstract class JavaComparisonOperation implements CallableImplementation, Value.BinaryOperation
 {
@@ -54,7 +56,7 @@ public abstract class JavaComparisonOperation implements CallableImplementation,
 		try {
 			Object result = method.invoke(leftObject, rightObject);
 			if (!(result instanceof Integer)) {
-				throw new InvalidValueException("non-integer return");
+				return throwInvalidValueException(EvaluatorMessages.TypedResultRequired, "Integer");
 			}
 			return valueFactory.booleanValueOf(evaluateComparison((Integer) result));
 		} catch (Exception e) {
@@ -63,6 +65,11 @@ public abstract class JavaComparisonOperation implements CallableImplementation,
 	}
 
 	protected abstract boolean evaluateComparison(Integer result);
+
+	protected Value throwInvalidValueException(String message, Object... bindings) throws InvalidValueException {
+		String boundMessage = NLS.bind(message, bindings);
+		throw new InvalidValueException(boundMessage);
+	}
 
 	public Diagnostic validate(TypeManager typeManager, CallExp callExp) {
 		return null;

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterateIteration.java,v 1.4 2011/03/12 19:16:41 ewillink Exp $
+ * $Id: IterateIteration.java,v 1.5 2011/05/07 16:41:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -23,6 +23,7 @@ import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
@@ -39,7 +40,7 @@ public class IterateIteration extends AbstractIteration<Value>
 		Variable accumulator = ((IterateExp)iterateExp).getResult();
 		Value initValue = accumulator.getInitExpression().accept(evaluationVisitor);
 		if (initValue.isUndefined()) {
-			return evaluationVisitor.throwInvalidEvaluation("undefined initializer", null, iterateExp, initValue);
+			return evaluationVisitor.throwInvalidEvaluation(null, iterateExp, initValue, EvaluatorMessages.UndefinedInitialiser);
 		}
 //		CollectionValue accumulatorValue = initValue.asCollectionValue();
 		return evaluateIteration(new IterationManager<Value>(evaluationVisitor,

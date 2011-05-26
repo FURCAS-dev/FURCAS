@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessageExp.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
+ * $Id: MessageExp.java,v 1.5 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -52,7 +52,7 @@ public interface MessageExp
 	 * @return the value of the '<em>Target</em>' containment reference.
 	 * @see #setTarget(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getMessageExp_Target()
-	 * @model containment="true" resolveProxies="true" required="true" ordered="false"
+	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
 	OclExpression getTarget();
@@ -89,7 +89,7 @@ public interface MessageExp
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Argument</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getMessageExp_Argument()
-	 * @model containment="true" resolveProxies="true" ordered="false"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<OclExpression> getArguments();
@@ -116,7 +116,7 @@ public interface MessageExp
 	 * @return the value of the '<em>Called Operation</em>' containment reference.
 	 * @see #setCalledOperation(CallOperationAction)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getMessageExp_CalledOperation()
-	 * @model containment="true" resolveProxies="true" ordered="false"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	CallOperationAction getCalledOperation();
@@ -152,7 +152,7 @@ public interface MessageExp
 	 * @return the value of the '<em>Sent Signal</em>' containment reference.
 	 * @see #setSentSignal(SendSignalAction)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getMessageExp_SentSignal()
-	 * @model containment="true" resolveProxies="true" ordered="false"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	SendSignalAction getSentSignal();

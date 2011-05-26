@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnumerationLiteralImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
+ * $Id: EnumerationLiteralImpl.java,v 1.3 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -99,16 +99,6 @@ public class EnumerationLiteralImpl
 	public Enumeration getEnumeration() {
 		if (eContainerFeatureID() != PivotPackage.ENUMERATION_LITERAL__ENUMERATION) return null;
 		return (Enumeration)eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Enumeration basicGetEnumeration() {
-		if (eContainerFeatureID() != PivotPackage.ENUMERATION_LITERAL__ENUMERATION) return null;
-		return (Enumeration)eInternalContainer();
 	}
 
 	/**
@@ -245,8 +235,7 @@ public class EnumerationLiteralImpl
 			case PivotPackage.ENUMERATION_LITERAL__OWNED_ANNOTATION:
 				return getOwnedAnnotations();
 			case PivotPackage.ENUMERATION_LITERAL__ENUMERATION:
-				if (resolve) return getEnumeration();
-				return basicGetEnumeration();
+				return getEnumeration();
 			case PivotPackage.ENUMERATION_LITERAL__VALUE:
 				return getValue();
 		}
@@ -353,7 +342,7 @@ public class EnumerationLiteralImpl
 			case PivotPackage.ENUMERATION_LITERAL__OWNED_ANNOTATION:
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
 			case PivotPackage.ENUMERATION_LITERAL__ENUMERATION:
-				return basicGetEnumeration() != null;
+				return getEnumeration() != null;
 			case PivotPackage.ENUMERATION_LITERAL__VALUE:
 				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}

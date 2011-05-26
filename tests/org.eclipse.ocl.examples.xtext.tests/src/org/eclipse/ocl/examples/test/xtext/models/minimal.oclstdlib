@@ -1,10 +1,19 @@
-library lib
+library lib : lib = 'http://minimal.oclstdlib'
 {
-	type OclAny : AnyType {}
-	type Classifier<T> : ClassifierType conformsTo OclAny {}
+	type Bag<T> : BagType conformsTo Collection<T> {}
 	type Boolean : PrimitiveType conformsTo OclAny {}
+	type Classifier<T> : ClassifierType conformsTo OclAny {}
+	type Collection<T> : CollectionType conformsTo OclAny {}
+	type Enumeration conformsTo OclAny {}
 	type Integer : PrimitiveType conformsTo Real {}
+	type OclAny : AnyType {}
+	type OclInvalid : InvalidType conformsTo OclVoid {}
+	type OclVoid : VoidType conformsTo OclAny {}
+	type OrderedSet<T> : OrderedSetType conformsTo Collection<T> {}
 	type Real : PrimitiveType conformsTo OclAny {}
-	type OclInvalid : InvalidType {}
+	type Sequence<T> : SequenceType conformsTo Collection<T> {}
+	type Set<T> : SetType conformsTo Collection<T> {}
+	type String : PrimitiveType conformsTo OclAny {}
+	type Tuple : TupleType conformsTo OclAny {}
 	type UnlimitedNatural : PrimitiveType conformsTo Integer {}
 }
