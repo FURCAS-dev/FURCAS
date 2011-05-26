@@ -941,7 +941,6 @@ public class RevPathComputationTest extends BaseDepartmentTestWithOCL {
         
         // Make e1 the employee of the month of div by making him the employee of the month of dep1.
         // That should influence the derived property Department.employeesOfTheMonth but this feature isn't implemented by default.
-        // TODO implement a derived Property Notifier and apply it here to generate an impact via some sort of follow up notification.
         noti = NotificationHelper.createReferenceAddNotification(this.dep1, this.departmentEmployeeOfTheMonth, this.e1);
         instances = computeAffectedInstances(this.getLimitEmployeesOfTheMonthAST(), noti);
         compareInstances(instances, new EObject[] {this.div});
@@ -954,6 +953,7 @@ public class RevPathComputationTest extends BaseDepartmentTestWithOCL {
         
         // Make e1 the employee of the month of div by directly manipulating the derived property.
         // Since the derived property is unmodifiable, this should return null.
+        System.out.println("The following warning is intended.");
         noti = NotificationHelper.createReferenceAddNotification(this.div, this.divisionEmployeesOfTheMonth, this.e1);
         assertTrue(noti == null);
     }
@@ -965,7 +965,6 @@ public class RevPathComputationTest extends BaseDepartmentTestWithOCL {
         
         // Make e1 the employee of the month of div by making him the employee of the month of dep1.
         // That should influence the derived property Department.employeesOfTheMonth but this feature isn't implemented by default.
-        // TODO implement a derived Property Notifier and apply it here to generate an impact via some sort of follow up notification.
         noti = NotificationHelper.createReferenceAddNotification(this.dep1, this.departmentEmployeeOfTheMonth, this.e1);
         instances = computeAffectedInstances(this.getNestedDerivationAST(), noti);
         compareInstances(instances, new EObject[] {this.div});       
@@ -1001,6 +1000,7 @@ public class RevPathComputationTest extends BaseDepartmentTestWithOCL {
         noti = NotificationHelper.createReferenceAddNotification(this.dep2, this.employeeRef, this.stud1);
         instances = computeAffectedInstances(this.getNonLinearDerivationAST(), noti);
         compareInstances(instances, new EObject[] {/*this.dep2 should not be in the impact since the derived property didn't and couldn't change but this can only be determined if unusedChecks are enabled*/});
+        System.out.println("Enable unusedChecks to get rid of this extra context instance.");
     }
     
     @Test
