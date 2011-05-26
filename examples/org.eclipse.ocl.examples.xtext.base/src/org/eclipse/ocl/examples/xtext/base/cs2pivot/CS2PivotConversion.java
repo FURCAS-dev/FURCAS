@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.21 2011/05/20 15:27:24 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.23 2011/05/23 05:51:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -104,6 +104,7 @@ import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasePreOrderVisitor.Template
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot.Factory;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
+import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
@@ -795,18 +796,6 @@ public class CS2PivotConversion extends AbstractConversion
 		return s.toString();
 	}
 
-	public boolean getQualifier(List<String> qualifiers, String trueString, String falseString, boolean defaultValue) {
-		if (qualifiers.contains(trueString)) {
-			return true;
-		}
-		else if (qualifiers.contains(falseString)) {
-			return false;
-		}
-		else {
-			return defaultValue;
-		}
-	}
-
 	protected List<TemplateBindingCS> getTemplateBindings(ElementCS csElement) {
 		List<TemplateBindingCS> csTemplateBindings;
 //		EObject container = csElement.eContainer();
@@ -1259,32 +1248,12 @@ public class CS2PivotConversion extends AbstractConversion
 	}
 
 	public <T> void refreshMultiplicity(MultiplicityElement pivotElement, TypedElementCS csTypedElement) {
-		List<String> qualifiers = csTypedElement.getQualifier();
-		pivotElement.setIsOrdered(qualifiers.contains("ordered"));
-		pivotElement.setIsUnique(getQualifier(qualifiers, "unique", "!unique", true));
-		String multiplicity = csTypedElement.getMultiplicity();
-		if (multiplicity == null) {
-			if (csTypedElement.getOwnedType() == null) {		// This is arbitrary; it makes Ecore default serializations work
-				pivotElement.setLower(BigInteger.valueOf(0));
-				pivotElement.setUpper(BigInteger.valueOf(1));
-			}
-			else {
-				pivotElement.setLower(BigInteger.valueOf(csTypedElement.getLower()));
-				pivotElement.setUpper(BigInteger.valueOf(csTypedElement.getUpper()));
-			}
-		}
-		else if ("*".equals(multiplicity)) {
-			pivotElement.setLower(BigInteger.valueOf(0));
-			pivotElement.setUpper(BigInteger.valueOf(-1));
-		}
-		else if ("+".equals(multiplicity)) {
-			pivotElement.setLower(BigInteger.valueOf(1));
-			pivotElement.setUpper(BigInteger.valueOf(-1));
-		}
-		else if ("?".equals(multiplicity)) {
-			pivotElement.setLower(BigInteger.valueOf(0));
-			pivotElement.setUpper(BigInteger.valueOf(1));
-		}
+		pivotElement.setIsOrdered(ElementUtil.isOrdered(csTypedElement));
+		pivotElement.setIsUnique(ElementUtil.isUnique(csTypedElement));
+		int lower = ElementUtil.getLower(csTypedElement);
+		int upper = ElementUtil.getUpper(csTypedElement);
+		pivotElement.setLower(BigInteger.valueOf(lower));
+		pivotElement.setUpper(BigInteger.valueOf(upper));
 	}
 
 	protected void resetPivotMappings(Collection<? extends Resource> csResources) {
@@ -1583,6 +1552,15 @@ public class CS2PivotConversion extends AbstractConversion
 			pivotElement.setType(type);
 			if (typeManager.isUnderspecified(type)) {
 				addUnderspecifiedTypedElement(pivotElement);
+			}
+		}
+	}
+
+	public void setTypeWithMultiplicity(TypedElement typedElement, TypedMultiplicityElement typedMultiplicityElement) {
+		if ((typedMultiplicityElement != null) && !typedMultiplicityElement.eIsProxy()) {
+			Type type = typeManager.getTypeWithMultiplicity(typedMultiplicityElement);
+			if ((type != null) && !type.eIsProxy()) {
+				setType(typedElement, type);
 			}
 		}
 	}

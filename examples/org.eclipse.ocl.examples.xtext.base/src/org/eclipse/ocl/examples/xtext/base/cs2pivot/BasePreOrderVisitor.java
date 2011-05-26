@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePreOrderVisitor.java,v 1.12 2011/05/20 15:27:24 ewillink Exp $
+ * $Id: BasePreOrderVisitor.java,v 1.13 2011/05/22 21:06:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -631,7 +631,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		pivotElement.setIsDerived(qualifiers.contains("derived"));
 		pivotElement.setIsID(qualifiers.contains("id"));
 		pivotElement.setIsReadOnly(qualifiers.contains("readonly"));
-		pivotElement.setIsResolveProxies(context.getQualifier(qualifiers, "resolve", "!resolve", true));
+		pivotElement.setIsResolveProxies(ElementUtil.getQualifier(qualifiers, "resolve", "!resolve", true));
 		pivotElement.setIsStatic(qualifiers.contains("static"));
 		pivotElement.setIsTransient(qualifiers.contains("transient"));
 		pivotElement.setIsUnsettable(qualifiers.contains("unsettable"));

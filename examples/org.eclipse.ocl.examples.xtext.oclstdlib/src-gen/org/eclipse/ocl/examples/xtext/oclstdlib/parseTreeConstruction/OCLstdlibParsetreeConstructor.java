@@ -116,15 +116,15 @@ protected class ThisRootNode extends RootToken {
  * //generate OCLstdlib "http://www.eclipse.org/ocl/examples/xtext/oclstdlib/OCLstdlibCST"
  * 
  * Library returns LibRootPackageCS:
- * 	(ownedLibrary+=LibraryCS ";")* ("library" | "module") name=Name (":" nsPrefix=Identifier "="
- * 	nsURI=SINGLE_QUOTED_STRING)? "{" (ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" |
- * 	ownedType+=ClassifierCS | ownedAnnotation+=AnnotationElementCS)* "}";
+ * 	(ownedLibrary+=LibraryCS ";")* "library" name=Name (":" nsPrefix=Identifier "=" nsURI=SINGLE_QUOTED_STRING)? "{"
+ * 	(ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" | ownedType+=ClassifierCS |
+ * 	ownedAnnotation+=AnnotationElementCS)* "}";
  *
  **/
 
-// (ownedLibrary+=LibraryCS ";")* ("library" | "module") name=Name (":" nsPrefix=Identifier "="
-// nsURI=SINGLE_QUOTED_STRING)? "{" (ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" |
-// ownedType+=ClassifierCS | ownedAnnotation+=AnnotationElementCS)* "}"
+// (ownedLibrary+=LibraryCS ";")* "library" name=Name (":" nsPrefix=Identifier "=" nsURI=SINGLE_QUOTED_STRING)? "{"
+// (ownedNestedPackage+=PackageCS | "precedence" ownedPrecedence+=PrecedenceCS+ ";" | ownedType+=ClassifierCS |
+// ownedAnnotation+=AnnotationElementCS)* "}"
 protected class Library_Group extends GroupToken {
 	
 	public Library_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -244,38 +244,16 @@ protected class Library_SemicolonKeyword_0_1 extends KeywordToken  {
 }
 
 
-// "library" | "module"
-protected class Library_Alternatives_1 extends AlternativesToken {
-
-	public Library_Alternatives_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Alternatives getGrammarElement() {
-		return grammarAccess.getLibraryAccess().getAlternatives_1();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new Library_LibraryKeyword_1_0(lastRuleCallOrigin, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-}
-
 // "library"
-protected class Library_LibraryKeyword_1_0 extends KeywordToken  {
+protected class Library_LibraryKeyword_1 extends KeywordToken  {
 	
-	public Library_LibraryKeyword_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Library_LibraryKeyword_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getLibraryAccess().getLibraryKeyword_1_0();
+		return grammarAccess.getLibraryAccess().getLibraryKeyword_1();
 	}
 
     @Override
@@ -287,7 +265,6 @@ protected class Library_LibraryKeyword_1_0 extends KeywordToken  {
 	}
 
 }
-
 
 // name=Name
 protected class Library_NameAssignment_2 extends AssignmentToken  {
@@ -304,7 +281,7 @@ protected class Library_NameAssignment_2 extends AssignmentToken  {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Library_Alternatives_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Library_LibraryKeyword_1(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}

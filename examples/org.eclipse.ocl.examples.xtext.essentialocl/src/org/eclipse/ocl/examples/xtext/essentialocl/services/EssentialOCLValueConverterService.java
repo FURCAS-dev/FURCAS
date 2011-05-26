@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLValueConverterService.java,v 1.13 2011/05/13 18:47:54 ewillink Exp $
+ * $Id: EssentialOCLValueConverterService.java,v 1.14 2011/05/21 14:55:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -100,10 +100,15 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 
 		@Override
 		protected String internalToString(String value) {
-			if (allKeywords.contains(value) || !PivotUtil.isValidIdentifier(value)) {
-				return "_'" + value + "'";
+			if (allKeywords.contains(value)) {
+				return escapeIdentifier(value);
 			}
-			return value;
+			else if (!PivotUtil.isValidIdentifier(value)) {
+				return escapeIdentifier(value);
+			}
+			else {
+				return value;
+			}
 		}
 	}
 
@@ -145,10 +150,15 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 		
 		@Override
 		protected String internalToString(String value) {
-			if (nameKeywords.contains(value) || !PivotUtil.isValidIdentifier(value)) {
-				return "_'" + value + "'";
+			if (nameKeywords.contains(value)) {
+				return escapeIdentifier(value);
 			}
-			return value;
+			else if (!PivotUtil.isValidIdentifier(value)) {
+				return escapeIdentifier(value);
+			}
+			else {
+				return value;
+			}
 		}
 	}
 
@@ -223,10 +233,15 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 		
 		@Override
 		protected String internalToString(String value) {
-			if (reservedKeywords.contains(value) || !PivotUtil.isValidIdentifier(value)) {
-				return "_'" + value + "'";
+			if (reservedKeywords.contains(value)) {
+				return escapeIdentifier(value);
 			}
-			return value;
+			else if (!PivotUtil.isValidIdentifier(value)) {
+				return escapeIdentifier(value);
+			}
+			else {
+				return value;
+			}
 		}
 	}
 
@@ -249,11 +264,20 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 		
 		@Override
 		protected String internalToString(String value) {
-			if (restrictedKeywords.contains(value) || !PivotUtil.isValidIdentifier(value)) {
-				return "_'" + value + "'";
+			if (restrictedKeywords.contains(value)) {
+				return escapeIdentifier(value);
 			}
-			return value;
+			else if (!PivotUtil.isValidIdentifier(value)) {
+				return escapeIdentifier(value);
+			}
+			else {
+				return value;
+			}
 		}
+	}
+
+	public static String escapeIdentifier(String value) {
+		return "_'" + value + "'";
 	}
 
 	public static Set<String> getAllKeywords(Grammar g, String name) {

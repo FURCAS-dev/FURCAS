@@ -1,4 +1,4 @@
-library lib
+library lib : lib = 'http://minimal.oclstdlib'
 {
 	type Bag<T> : BagType conformsTo Collection<T> {}
 	type Boolean : PrimitiveType conformsTo OclAny {}
