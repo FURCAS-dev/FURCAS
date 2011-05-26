@@ -180,6 +180,14 @@ public class BaseDepartmentTestWithOCL extends BaseDepartmentTest {
      */
     public final String nonLinearDerivation = "context Department \n" + "inv nonLinearDerivation: \n"
             + "self.biggestNumberOfStudentsOrFreelancers < 5";
+    
+    /**
+     * Each department of a company must have less than 5 freelancers and less than 5 students.
+     * This constraint is semantically identical to nonLinearDerivation, but the context of the
+     * constraint and the context of the derivation expression differ this time.
+     */
+    public final String longNavigationWithDerivation = "context Company \n" + "inv longNavigationWithDerivation: \n"
+            + "self.division.department->sortedBy(biggestNumberOfStudentsOrFreelancers)->last().biggestNumberOfStudentsOrFreelancers < 5";
 
     /**
      * The delta of the number of employees of the month of all divisions of a company must not be greater than 5 (semantically
@@ -272,6 +280,8 @@ public class BaseDepartmentTestWithOCL extends BaseDepartmentTest {
     public ExpressionInOCL nestedDerivationAST = null;
     
     public ExpressionInOCL nonLinearDerivationAST = null;
+    
+    public ExpressionInOCL longNavigationWithDerivationAST = null;
     
     public ExpressionInOCL eotmDeltaMaxAST = null;
     
@@ -425,6 +435,10 @@ public class BaseDepartmentTestWithOCL extends BaseDepartmentTest {
     
     protected ExpressionInOCL getNonLinearDerivationAST() {
         return getAST("nonLinearDerivation");
+    }
+    
+    protected ExpressionInOCL getlongNavigationWithDerivationAST() {
+        return getAST("longNavigationWithDerivation");
     }
     
     protected ExpressionInOCL getEotmDeltaMaxAST() {

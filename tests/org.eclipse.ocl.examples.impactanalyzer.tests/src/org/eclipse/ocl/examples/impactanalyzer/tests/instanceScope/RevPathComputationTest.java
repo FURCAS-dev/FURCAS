@@ -37,6 +37,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import company.Company;
 import company.CompanyFactory;
 import company.Department;
 import company.Division;
@@ -67,6 +68,7 @@ public class RevPathComputationTest extends BaseDepartmentTestWithOCL {
     private Employee secretary;
     private Student stud1;
     private Student stud2;
+    private Company company;
 
     @Override
     @Before
@@ -954,8 +956,6 @@ public class RevPathComputationTest extends BaseDepartmentTestWithOCL {
         // Since the derived property is unmodifiable, this should return null.
         noti = NotificationHelper.createReferenceAddNotification(this.div, this.divisionEmployeesOfTheMonth, this.e1);
         assertTrue(noti == null);
-        
-        System.out.println("--------------------------------------------------\n");
     }
     
     @Test
@@ -1003,6 +1003,29 @@ public class RevPathComputationTest extends BaseDepartmentTestWithOCL {
         compareInstances(instances, new EObject[] {/*this.dep2 should not be in the impact since the derived property didn't and couldn't change*/});
     }
     
+    @Test
+    public void testlongNavigationWithDerivation() {
+        Notification noti;
+        Collection<EObject> instances;
+        
+        //The tested constraint makes sure, the context of the constraint and of the derivation expression differ.
+        //The constraints sorts all departments of all divisions of a company by their biggestNumberOfStudentsOrFreelancers
+        //attribute and checks if the last one in the collection has less than 5 students and freelancers.
+        //Dep2 initially has 2 freelancers, resulting in the highest value for the biggestNumberOfStudentsOrFreelancers attribute.
+        //We add another freelancer to generate an impact for this constraint.
+        
+        noti = NotificationHelper.createReferenceAddNotification(this.dep2, this.employeeRef, this.e2);
+        //FIXME atm this returns the impact on the derivation expression and not on the constraint.
+        //I guess the self variable in the derivation is taken as a real impact, but it should'nt.
+        //Additionally the unused check that uses partial evaluation eliminates one possible context,
+        //which might be correct because the overall result of the ->first() call does'nt change at all by adding one more freelance.
+        //What changes nevertheless is the outcome of ->first().biggestNumberOfStudentsOrFreelancers so we'd expect to see an impact here.
+        instances = computeAffectedInstances(this.getlongNavigationWithDerivationAST(), noti);
+        compareInstances(instances, new EObject[] {this.company});
+        
+        System.out.println("--------------------------------------------------\n");
+    }
+    
     // @Test
     // public void testDepartmentAlwaysInDivision(){
     //        
@@ -1031,14 +1054,19 @@ public class RevPathComputationTest extends BaseDepartmentTestWithOCL {
      * Creates an instance of the company model ie 2 instances of Department with e employees and one boss each.
      */
     private void createInstances() {
-
-        this.div = CompanyFactory.eINSTANCE.createDivision();
-        this.div.setBudget(1234567);
-        this.div.setName("Div1");
+        
         this.rs = new ResourceSetImpl();
         Resource r = this.rs.createResource(URI.createURI("http://rev/path/computation/test"));
         r.eAdapters().add(new ECrossReferenceAdapter());
         this.rs.getResources().add(r);
+        
+        this.company = CompanyFactory.eINSTANCE.createCompany();
+        r.getContents().add(this.company);
+        
+        this.div = CompanyFactory.eINSTANCE.createDivision();
+        this.div.setBudget(1234567);
+        this.div.setName("Div1");
+        this.div.setCompany(this.company);
         r.getContents().add(this.div);
 
         this.director = CompanyFactory.eINSTANCE.createEmployee();
