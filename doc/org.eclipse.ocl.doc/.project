@@ -25,6 +25,19 @@
 				</dictionary>
 			</arguments>
 		</buildCommand>
+		<!--buildCommand>
+			<name>org.eclipse.buckminster.ant.AntBuilder</name>
+			<arguments>
+				<dictionary>
+					<key>given.name</key>
+					<value>Texilte Documentation Creator</value>
+				</dictionary>
+			<dictionary>
+				<key>script.file</key>
+				<value>textileBuil.xml</value>
+			</dictionary>
+			</arguments>
+		</buildCommand-->
 	</buildSpec>
 	<natures>
 		<nature>org.eclipse.pde.PluginNature</nature>
