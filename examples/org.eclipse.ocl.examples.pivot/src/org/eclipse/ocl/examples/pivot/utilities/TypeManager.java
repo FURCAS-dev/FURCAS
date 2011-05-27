@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeManager.java,v 1.23 2011/05/22 16:42:03 ewillink Exp $
+ * $Id: TypeManager.java,v 1.24 2011/05/27 09:28:06 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -834,12 +834,7 @@ public class TypeManager extends TypeCaches implements Adapter
 	}
 
 	public Resource createResource(URI uri, String contentType) {
-		// FIXME Convert URI to absolute
-		URI pivotURI = uri.appendFileExtension(PivotResource.FILE_EXTENSION);
-		Resource pivotResource = pivotResourceSet.createResource(pivotURI, contentType);
-// Putting this in URIMap redirects save to the mapped URI.
-//		pivotResourceSet.getURIConverter().getURIMap().put(pivotURI, uri);
-		return pivotResource;
+		return pivotResourceSet.createResource(uri, contentType);
 	}
 
 	public UnspecifiedType createUnspecifiedType() {

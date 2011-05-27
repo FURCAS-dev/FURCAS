@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CreateDynamicInstanceHandler.java,v 1.6 2011/05/06 11:17:23 ewillink Exp $
+ * $Id: CreateDynamicInstanceHandler.java,v 1.7 2011/05/27 09:28:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.commands;
 
@@ -27,11 +27,14 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.presentation.DynamicModelWizard;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.ISources;
 import org.eclipse.ui.PlatformUI;
@@ -51,63 +54,43 @@ import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 public class CreateDynamicInstanceHandler extends AbstractHandler
 // Based on org.eclipse.emf.ecore.action.CreateDynamicInstanceAction
 {
-	protected static final URI PLATFORM_RESOURCE = URI
-		.createPlatformResourceURI("/", false);
-	private EClass selectedClass = null;
+	protected static final URI PLATFORM_RESOURCE = URI.createPlatformResourceURI("/", false);
+	private org.eclipse.ocl.examples.pivot.Class selectedClass = null;
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		if (selectedClass != null) {
-			URI uri = selectedClass.eResource().getURI();
-			IStructuredSelection selection = StructuredSelection.EMPTY;
-			if (uri.isHierarchical()) {
-				if (uri.isRelative()
-					|| (uri = uri.deresolve(PLATFORM_RESOURCE)).isRelative()) {
-					IFile file = ResourcesPlugin.getWorkspace().getRoot()
-						.getFile(new Path(uri.toString()));
-					if (file.exists()) {
-						selection = new StructuredSelection(file);
+			EObject eTarget = selectedClass.getETarget();
+			EClass selectedEClass = null;
+			if (eTarget instanceof EClass) {
+				selectedEClass = (EClass) eTarget;
+			}
+			Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+			if (selectedEClass != null) {
+				URI uri = selectedEClass.eResource().getURI();
+				IStructuredSelection selection = StructuredSelection.EMPTY;
+				if (uri.isHierarchical()) {
+					if (uri.isRelative()
+						|| (uri = uri.deresolve(PLATFORM_RESOURCE)).isRelative()) {
+						IFile file = ResourcesPlugin.getWorkspace().getRoot()
+							.getFile(new Path(uri.toString()));
+						if (file.exists()) {
+							selection = new StructuredSelection(file);
+						}
 					}
 				}
+				DynamicModelWizard dynamicModelWizard = new DynamicModelWizard(selectedEClass);
+				dynamicModelWizard.init(PlatformUI.getWorkbench(), selection);
+				WizardDialog wizardDialog = new WizardDialog(shell, dynamicModelWizard);
+				wizardDialog.open();
 			}
-			DynamicModelWizard dynamicModelWizard = new DynamicModelWizard(selectedClass);
-			dynamicModelWizard.init(PlatformUI.getWorkbench(), selection);
-			WizardDialog wizardDialog = new WizardDialog(PlatformUI
-				.getWorkbench().getActiveWorkbenchWindow().getShell(),
-				dynamicModelWizard);
-			wizardDialog.open();
+			else {
+				MessageDialog.openError(shell, "Create Dynamic Instance",
+					"No Ecore prototype found for '" + selectedClass.getName() + 
+					"'\nPlease Save as Ecore and Re-open.");
+			}
 		}
 		return null;
-	} 
-
-/*	private EClassifier findClassifier(Resource resource, ClassifierCS csClass) {
-		EPackage ePackage = findPackage(resource, (PackageCS)csClass.eContainer());
-		return ePackage != null? ePackage.getEClassifier(csClass.getName()) : null;
 	}
-
-
-	private EPackage findPackage(Resource resource, PackageCS csPackage) {
-		String name = csPackage.getName();
-		EObject eContainer = csPackage.eContainer();
-		if (eContainer instanceof RootPackageCS) {
-			for (EObject eObject : resource.getContents()) {
-				if (eObject instanceof EPackage) {
-					EPackage ePackage = (EPackage)eObject;
-					if (name.equals(ePackage.getName())) {
-						return ePackage;
-					}
-				}
-			}
-			return null;
-		}
-		else if (eContainer instanceof PackageCS) {
-			EPackage ePackage = findPackage(resource, (PackageCS)eContainer);
-			if (ePackage == null) {
-				return null;
-			}
-			return EcoreUtils.getNamedElement(ePackage.getESubpackages(), name);
-		}
-		return null;
-	} */
 
 	@Override
 	public boolean isEnabled() {
@@ -121,10 +104,10 @@ public class CreateDynamicInstanceHandler extends AbstractHandler
 			IEvaluationContext evalContext = (IEvaluationContext) evaluationContext;
 			XtextEditor xtextEditor = getActiveXtextEditor(evalContext);
 			if (xtextEditor != null) {
-				final ITextSelection selection = (ITextSelection) xtextEditor.getSelectionProvider().getSelection();
+				final ITextSelection selection = (ITextSelection) xtextEditor.getSelectionProvider().getSelection();	// FIXME this is the 'double-clicked' selection
 				IXtextDocument document = xtextEditor.getDocument();
-				selectedClass = document.readOnly(new IUnitOfWork<EClass, XtextResource>() {
-					public EClass exec(XtextResource xtextResource) {
+				selectedClass = document.readOnly(new IUnitOfWork<org.eclipse.ocl.examples.pivot.Class, XtextResource>() {
+					public org.eclipse.ocl.examples.pivot.Class exec(XtextResource xtextResource) {
 						if (xtextResource == null) {
 							return null;
 						}
@@ -142,22 +125,8 @@ public class CreateDynamicInstanceHandler extends AbstractHandler
 						if (!(currentModel instanceof ClassCS)) {
 							return null; 
 						}		
-/*						ClassCS oclInEcoreClass = (ClassCS) currentModel;
-						TypeManagerResourceAdapter adapter = TypeManagerResourceAdapter.findAdapter(xtextResource);
-						if (adapter == null) {
-							return null;
-						}
-						TypeManager typeManager = adapter.getTypeManager();
-//						typeManager.getEcore();
-						URI resourceURI = oclInEcoreClass.eResource().getURI().trimFragment();
-						ResourceSet localResourceSet = new ResourceSetImpl();
-						Resource ecoreResource = localResourceSet.getResource(resourceURI, true);
-						EClassifier eClassifier = findClassifier(ecoreResource, oclInEcoreClass);
-						if (!(eClassifier instanceof EClass)) {
-							return null;
-						}
-						return (EClass) eClassifier; */
-						return null; 		// BUG 344948 need Class to EClass conversion
+						ClassCS oclInEcoreClass = (ClassCS) currentModel;
+						return PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Class.class, oclInEcoreClass);
 					}					
 				});
 			}

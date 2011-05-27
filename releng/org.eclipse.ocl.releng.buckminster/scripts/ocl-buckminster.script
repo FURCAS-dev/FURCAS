@@ -11,6 +11,9 @@ import --properties "${checkout.location}/buildroot/build.properties" "org.eclip
 
 import --properties "${checkout.location}/buildroot/build.properties" "org.eclipse.mdt/org.eclipse.ocl/releng/org.eclipse.ocl.releng.buckminster/releng/ocl.cquery"
 
+#we launch the textile documentation creation
+launch --launch "org.eclipse.ocl.doc/.externalToolsBuilders/OCL Documentation.launch"
+
 build
 
 perform -DtargetPlatformPath="${checkout.location}/buildroot/target.platform" --properties "${checkout.location}/buildroot/build.properties" "org.eclipse.ocl.releng.buckminster:buckminster#create.javadoc"
