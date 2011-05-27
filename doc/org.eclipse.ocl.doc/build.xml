@@ -79,30 +79,7 @@
 
 	<!-- adolfosbh: Target called by buckminster in order to create textile documentation -->
 	<target name="buckminster.build.textile.doc" description="Create textile documentation creation">	
-			
-		<condition property="target.location" value="${eclipse.home}">
-			<not>
-				<isset property="target.location"/>
-			</not>		
-		</condition>
-		
-		<fail message="workspace.root variable is not defined, can't continue" unless="workspace.root" />
-		<fail message="target.location variable is not defined, can't continue" unless="target.location" />
-		
-		<java classname="org.eclipse.equinox.launcher.Main" fork="true" failonerror="true">
-			<classpath>
-				<pathelement path="${java.class.path}"/>
-				<pathelement path="${target.location}/plugins/org.apache.xalan_2.7.1.v201005080400.jar"/>
-				<pathelement path="${target.location}/plugins/org.apache.xml.serializer_2.7.1.v201005080400.jar"/>
-			</classpath>
-			<arg value="-data" />
-			<arg value="${workspace.root}" />
-			<arg value="-application" />
-			<arg value="org.eclipse.ant.core.antRunner" />
-			<arg value="-buildfile" />
-			<arg value="textileBuild.xml" />
-			<arg value="build-doc" />
-		</java>
+		<ant antfile="textileBuild.xml" target="build-doc" inheritall="true"/>		
 	</target>
 			
 	<target name="build.index" depends="init" description="Builds search index for the plug-in" if="eclipse.running">
