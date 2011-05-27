@@ -11,7 +11,7 @@
       ecorePackage="FURCAS.ecore#/">
     <genClasses ecoreClass="FURCAS.ecore#//EmptyDummyClassToWorkaroundGeneratorBug"/>
     <nestedGenPackages prefix="TCS" basePackage="com.sap.furcas.metamodel.FURCAS"
-        resource="XML" disposableProviderFactory="true" ecorePackage="TCS.ecore#/">
+        resource="XMI" disposableProviderFactory="true" ecorePackage="TCS.ecore#/">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="TCS.ecore#//TemplateModifiers">
         <genEnumLiterals ecoreEnumLiteral="TCS.ecore#//TemplateModifiers/abstract"/>
         <genEnumLiterals ecoreEnumLiteral="TCS.ecore#//TemplateModifiers/operatored"/>

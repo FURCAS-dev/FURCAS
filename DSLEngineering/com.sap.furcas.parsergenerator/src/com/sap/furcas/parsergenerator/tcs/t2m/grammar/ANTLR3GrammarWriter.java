@@ -13,6 +13,8 @@ import static com.sap.furcas.parsergenerator.util.StringConcatUtil.concat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.util.URI;
+
 import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.AbstractAntlr3Rule;
 import com.sap.furcas.parsergenerator.util.VarStringBuffer;
@@ -125,7 +127,7 @@ public class ANTLR3GrammarWriter {
 		+ "import com.sap.furcas.runtime.referenceresolving.SyntaxRegistryFacade;\n"+ "}\n";
 
 	/** The parser members template. */
-	private final String parserMembersTemplate = "@members {\n"
+	private static final String parserMembersTemplate = "@members {\n"
 		+ "   private static final String syntaxUUID = \"%syntaxUUID%\";\r\n"
 		+ "   public String getSyntaxUUID() {\r\n"
 		+ "        return syntaxUUID;\r\n"
@@ -150,7 +152,7 @@ public class ANTLR3GrammarWriter {
 	/** The fixed string for lexer rules. */
 	private String lexerString = "";
 
-	private String syntaxUUID;
+	private URI syntaxUUID;
 
 	/**
 	 * Sets the grammar name.
@@ -226,7 +228,7 @@ public class ANTLR3GrammarWriter {
 		String parserMembers = parserMembersTemplate.replace("%Lexer%",
 			grammarName + "Lexer").replace("%Parser%", grammarName + "Parser");
 
-		parserMembers = parserMembers.replace("%syntaxUUID%", syntaxUUID);
+		parserMembers = parserMembers.replace("%syntaxUUID%", syntaxUUID.toString());
 		
 		int newLinesLength = NEWLINES.length();
 
@@ -310,8 +312,8 @@ public class ANTLR3GrammarWriter {
 		this.parserSuperClass = parserSuperClass;
 	}
 
-	public void setSyntaxUUID(String refMofId) {
-		this.syntaxUUID = refMofId;
+	public void setSyntaxUUID(URI uri) {
+		this.syntaxUUID = uri;
 	}
 
 }
