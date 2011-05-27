@@ -11,6 +11,7 @@ import java.util.TreeMap;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
@@ -19,6 +20,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Block;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.FunctionCall;
 import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
 import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
@@ -58,15 +60,18 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
     }
 
     ConcreteSyntax syntax;
+    private final ResourceSet resourceSet;
 
     /**
      * set to true after an error is found
      */
     private Boolean foundError = false;
 
-    public CtsContentAssistParsingHandler(ConcreteSyntax syntax) {
+
+    public CtsContentAssistParsingHandler(ConcreteSyntax syntax, ResourceSet resourceSet) {
         Assert.isNotNull(syntax);
         this.syntax = syntax;
+        this.resourceSet = resourceSet;
         
         transientPartition = EcoreHelper.createTransientParsingResource(syntax.eResource().getResourceSet(),
                 TCSPackage.eINSTANCE.getNsURI());
@@ -256,28 +261,16 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
     }
 
     @Override
-    public void notifyEnterRule(List<String> createdElement, String mode) {
-        logInfo("notifyEnterRule " + createdElement + " " + mode);
+    public void notifyEnterRule(String templateURI) {
+        logInfo("notifyEnterRule " + templateURI);
 
-        ClassTemplate resolved = TcsUtil.resolveClassTemplate(createdElement,
-                mode, classTemplateMap);
-
-        if (resolved != null) {
+        Template template = (Template) resourceSet.getEObject(URI.createURI(templateURI), true);
+        if (template instanceof ContextTemplate) {
             logInfo("push parentTemplate");
-            currentParentTemplateStack.push(resolved);
-            pushNonEmptySequence(resolved.getTemplateSequence());
+            currentParentTemplateStack.push(template);
+            pushNonEmptySequence(((ContextTemplate) template).getTemplateSequence());
         } else {
-            // check if we have an operatorTemplate
-
-            OperatorTemplate ot = operatorTemplateMap.get(createdElement);
-            if (ot != null) {
-                logInfo("push parentTemplate");
-                currentParentTemplateStack.push(resolved);
-                pushNonEmptySequence(ot.getTemplateSequence());
-            } else {
-
-                logError("resolved null Template " + createdElement);
-            }
+            logError("resolved no Template " + templateURI);
         }
     }
 
@@ -384,16 +377,14 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
     }
 
     @Override
-    public void notifyExitRule(List<String> createdElementType) {
-        logInfo("notifyExitRule " + createdElementType);
-
+    public void notifyExitRule() {
+        logInfo("notifyExitRule");
         try {
             logInfo("pop parentTemplate");
             currentParentTemplateStack.pop();
         } catch (EmptyStackException e) {
             logError("tried to pop empty stack");
         }
-
         // remaining pop of stacks is handled in
         // notifyExitSequenceElement()
     }

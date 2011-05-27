@@ -1438,16 +1438,6 @@ public class TcsUtil {
         return Collections.singleton(((EObject) cs).eResource().getURI());
     }
 
-    public static ClassTemplate resolveClassTemplate(List<String> qualifiedName, String mode,
-            Map<List<String>, Map<String, ClassTemplate>> classTemplateMap) {
-        Map<String, ClassTemplate> templateMap = classTemplateMap.get(qualifiedName);
-        if (templateMap != null) {
-            return templateMap.get(mode);
-        } else {
-            return null;
-        }
-    }
-
     public static boolean isContext(Template template) {
         if (template instanceof ClassTemplate) {
             return ((ClassTemplate) template).isIsContext();

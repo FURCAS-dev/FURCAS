@@ -1,7 +1,5 @@
 package com.sap.furcas.runtime.parser.impl;
 
-import java.util.List;
-
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
 
@@ -59,9 +57,8 @@ public class ForeachParsingObserver implements IParsingObserver {
     }
 
     @Override
-    public void notifyEnterRule(List<String> createdElement, String mode) {
+    public void notifyEnterRule(String templateURI) {
         // TODO Auto-generated method stub
-
     }
 
     @Override
@@ -113,7 +110,7 @@ public class ForeachParsingObserver implements IParsingObserver {
     }
 
     @Override
-    public void notifyExitRule(List<String> createdElementType) {
+    public void notifyExitRule() {
         // TODO Auto-generated method stub
 
     }

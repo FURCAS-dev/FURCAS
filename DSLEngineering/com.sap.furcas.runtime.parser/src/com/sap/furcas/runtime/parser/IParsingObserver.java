@@ -3,8 +3,6 @@
  */
 package com.sap.furcas.runtime.parser;
 
-import java.util.List;
-
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
 import org.eclipse.emf.common.util.URI;
@@ -26,24 +24,24 @@ import com.sap.furcas.runtime.parser.impl.DelayedReference;
 public interface IParsingObserver {
 
     /**
-     * notifies a template rule has completed parsing in ok or error state
+     * Notifies a template rule has completed parsing in ok or error state
      * 
      * The method is called synchronously, so if it makes long running operations, 
      * the whole Injection process will be delayed.
-     * @param createdElementType should match the type on enter (else bug)
      */
-    void notifyExitRule(List<String> createdElementType);
+    void notifyExitRule();
 
     /**
      * notifies a template rule has started parsing in ok or error state. These calls may be called recursively, 
      * but not overlapping. Not: (Enter A, Enter B, Leave A, Leave B).
-     * @param createdElement the qualified name of the type of the element about to be parsed
+     * 
      * The method is called synchronously, so if it makes long running operations, 
      * the whole Injection process will be delayed.
-     * @param mode several templates may exist for a type as long as they have different modes. May be null in the default case.
+     * 
+     * @param templateURI the {@link URI} of the entered class or operator template as string
      */
-    void notifyEnterRule(List<String> createdElement, String mode);
-
+    void notifyEnterRule(String templateURI);
+    
     /**
      * notifies a template rule has encountered an unexpected token
      * @param re

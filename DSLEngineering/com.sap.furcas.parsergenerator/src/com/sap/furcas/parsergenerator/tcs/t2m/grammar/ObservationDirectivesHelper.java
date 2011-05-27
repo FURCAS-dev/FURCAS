@@ -6,8 +6,8 @@ package com.sap.furcas.parsergenerator.tcs.t2m.grammar;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 
 /**
  * inserts calls into Parser that call methods on the parser which allow observation of the parsing process.
@@ -51,31 +51,13 @@ public class ObservationDirectivesHelper {
 //  }
 //  }
 
-    /**
-     * @param initString
-     */
-    public static void appendEnterTemplateNotification(StringBuilder buffer, ClassTemplate template) {
+    public static String getEnterTemplateNotification(Template template) {
         if (doAddObserverParts >= TEXT_BLOCK_ONLY) {
-            buffer.append("onEnterTemplateRule(metaType");
-            String mode = template.getMode();
-            if (mode != null && ! mode.trim().equals("")) {
-                buffer.append(",\"").append(mode).append('"');
-            }
-            buffer.append(");\n");
+            return "onEnterTemplateRule(\"" + getId(template) + "\");\n";
         }
+        return "";
     }
 
-    public static String getEnterTemplateNotification() {
-        if (doAddObserverParts >= TEXT_BLOCK_ONLY) {
-            return "onEnterTemplateRule(metaType);\n";
-        } else {
-            return "";
-        }
-    }
-
-    /**
-     * @param ruleBodyStringBuffer
-     */
     public static String getEnterSequenceElementNotification(SequenceElement se) {
         if (doAddObserverParts >= ALL) {
         	if(doAddObserverParts >= ALL_WITH_MOFIDS && se != null) {
@@ -122,7 +104,7 @@ public class ObservationDirectivesHelper {
      */
     public static String getExitTemplateNotification() {
         if (doAddObserverParts >= TEXT_BLOCK_ONLY) {
-            return "onExitTemplateRule(metaType);";
+            return "onExitTemplateRule();";
         } else {
             return "";
         }
