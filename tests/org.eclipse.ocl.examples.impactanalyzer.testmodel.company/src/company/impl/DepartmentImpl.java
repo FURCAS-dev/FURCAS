@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DepartmentImpl.java,v 1.2 2011/03/09 14:45:49 auhl Exp $
+ * $Id: DepartmentImpl.java,v 1.3 2011/05/27 10:57:35 auhl Exp $
  */
 package company.impl;
 
@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
@@ -42,6 +43,7 @@ import company.Employee;
  *   <li>{@link company.impl.DepartmentImpl#getSubDepartment <em>Sub Department</em>}</li>
  *   <li>{@link company.impl.DepartmentImpl#getParentDepartment <em>Parent Department</em>}</li>
  *   <li>{@link company.impl.DepartmentImpl#getEmployeeOfTheMonth <em>Employee Of The Month</em>}</li>
+ *   <li>{@link company.impl.DepartmentImpl#getBiggestNumberOfStudentsOrFreelancers <em>Biggest Number Of Students Or Freelancers</em>}</li>
  * </ul>
  * </p>
  *
@@ -147,6 +149,16 @@ public class DepartmentImpl extends EObjectImpl implements Department {
 	 * @ordered
 	 */
     protected EList<Employee> employeeOfTheMonth;
+
+                                /**
+     * The cached setting delegate for the '{@link #getBiggestNumberOfStudentsOrFreelancers() <em>Biggest Number Of Students Or Freelancers</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getBiggestNumberOfStudentsOrFreelancers()
+     * @generated
+     * @ordered
+     */
+    protected EStructuralFeature.Internal.SettingDelegate BIGGEST_NUMBER_OF_STUDENTS_OR_FREELANCERS__ESETTING_DELEGATE = ((EStructuralFeature.Internal)CompanyPackage.Literals.DEPARTMENT__BIGGEST_NUMBER_OF_STUDENTS_OR_FREELANCERS).getSettingDelegate();
 
                                 /**
 	 * <!-- begin-user-doc -->
@@ -369,6 +381,15 @@ public class DepartmentImpl extends EObjectImpl implements Department {
 	}
 
 /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public int getBiggestNumberOfStudentsOrFreelancers() {
+        return (Integer)BIGGEST_NUMBER_OF_STUDENTS_OR_FREELANCERS__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+    }
+
+/**
 	 * The cached invocation delegate for the '{@link #calcExpenses() <em>Calc Expenses</em>}' operation.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -499,6 +520,8 @@ public class DepartmentImpl extends EObjectImpl implements Department {
 				return getParentDepartment();
 			case CompanyPackage.DEPARTMENT__EMPLOYEE_OF_THE_MONTH:
 				return getEmployeeOfTheMonth();
+            case CompanyPackage.DEPARTMENT__BIGGEST_NUMBER_OF_STUDENTS_OR_FREELANCERS:
+                return getBiggestNumberOfStudentsOrFreelancers();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -603,6 +626,8 @@ public class DepartmentImpl extends EObjectImpl implements Department {
 				return getParentDepartment() != null;
 			case CompanyPackage.DEPARTMENT__EMPLOYEE_OF_THE_MONTH:
 				return isSetEmployeeOfTheMonth();
+            case CompanyPackage.DEPARTMENT__BIGGEST_NUMBER_OF_STUDENTS_OR_FREELANCERS:
+                return BIGGEST_NUMBER_OF_STUDENTS_OR_FREELANCERS__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}
