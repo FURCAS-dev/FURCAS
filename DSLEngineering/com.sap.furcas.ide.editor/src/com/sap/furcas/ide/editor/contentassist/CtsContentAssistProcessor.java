@@ -375,7 +375,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 
 		// use delegator to monitor exceptions
 		DelegationParsingObserver delegator = new DelegationParsingObserver();
-		parsingHandler = new CtsContentAssistParsingHandler(syntax);
+		parsingHandler = new CtsContentAssistParsingHandler(syntax, connection);
 		delegator.addParsingObserver(parsingHandler);
 
 		facade.parseProductionRule(in, modelHandler, null, null, delegator);

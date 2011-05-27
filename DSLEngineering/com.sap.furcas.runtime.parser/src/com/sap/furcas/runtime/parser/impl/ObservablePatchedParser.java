@@ -3,8 +3,6 @@
  */
 package com.sap.furcas.runtime.parser.impl;
 
-import java.util.List;
-
 import org.antlr.runtime.BitSet;
 import org.antlr.runtime.IntStream;
 import org.antlr.runtime.Parser;
@@ -56,24 +54,15 @@ public abstract class ObservablePatchedParser extends Parser {
     public void setObserver(IParsingObserver newObserver) {
         this.observer = newObserver;
     }
-
-    protected void onEnterTemplateRule(List<String> createdElement) {
+    
+    protected void onEnterTemplateRule(String templateURI) {
         setExceptionThrown(false);
         if (observer == null || getBacktrackingLevel() > 0) {
             return;
         }
         // in observer: create textBlock in TB context (or root) and link to Template using SyntaxLookup
         // enter TB context
-        observer.notifyEnterRule(createdElement, null);
-    }
-
-    protected void onEnterTemplateRule(List<String> createdElement, String mode) {
-        if (observer == null || getBacktrackingLevel() > 0) {
-            return;
-        }
-        // in observer: create textBlock in TB context (or root) and link to Template using SyntaxLookup
-        // enter TB context
-        observer.notifyEnterRule(createdElement, mode);
+        observer.notifyEnterRule(templateURI);
     }
 
     protected void onElementAddedToContext(Object element) {
@@ -150,21 +139,20 @@ public abstract class ObservablePatchedParser extends Parser {
             observer.notifyErrorInRule(re);
         }
     }
-
+    
     /**
      * notifies leaving of current creation /resolution context, symmetrical to EnterTemplateRule
-     * @param createdModelElementOrNull may be null on parsing errors
      */
-    protected void onExitTemplateRule(List<String> createdElement) {
+    protected void onExitTemplateRule() {
         if (observer == null || getBacktrackingLevel() > 0) {
             return;
         }
         if (!isExceptionThrown()) { // if we had an exception, do not call notifyExit to prevent consequent exceptions
             // in Observer: leave TB Context
-            observer.notifyExitRule(createdElement);
+            observer.notifyExitRule();
         }
     }
-
+    
     /**
      * called before parsing any sequence element of a TCS sequence
      */

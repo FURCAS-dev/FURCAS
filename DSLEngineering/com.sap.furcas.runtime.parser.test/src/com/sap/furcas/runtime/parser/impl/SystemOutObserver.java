@@ -3,8 +3,6 @@
  */
 package com.sap.furcas.runtime.parser.impl;
 
-import java.util.List;
-
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
 
@@ -35,9 +33,9 @@ public class SystemOutObserver extends ConsistencyChecksObserver implements IPar
      * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyEnterRule(java.util.List)
      */
     @Override
-    public void notifyEnterRule(List<String> createdElement, String mode) {
-        super.notifyEnterRule(createdElement, mode);
-        outWithPrefix("notifyEnterRule " + createdElement);
+    public void notifyEnterRule(String templateURI) {
+        super.notifyEnterRule(templateURI);
+        outWithPrefix("notifyEnterRule " + templateURI);
         depth++;
     }
 
@@ -64,10 +62,10 @@ public class SystemOutObserver extends ConsistencyChecksObserver implements IPar
      * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyExitRule()
      */
     @Override
-    public void notifyExitRule(List<String> type) {
-        super.notifyExitRule(type);
+    public void notifyExitRule() {
+        super.notifyExitRule();
         depth--;
-        outWithPrefix("notifyExitRule " +type);
+        outWithPrefix("notifyExitRule ");
     }
 
     /* (non-Javadoc)

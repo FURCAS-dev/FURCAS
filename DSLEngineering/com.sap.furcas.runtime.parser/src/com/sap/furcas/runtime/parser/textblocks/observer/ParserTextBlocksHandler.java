@@ -22,12 +22,8 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
-import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
-import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
 import com.sap.furcas.runtime.common.implementation.ResolvedModelElementProxy;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
-import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
-import com.sap.furcas.runtime.common.util.MessageUtil;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.IParsingObserver;
 import com.sap.furcas.runtime.parser.PartitionAssignmentHandler;
@@ -81,8 +77,10 @@ public class ParserTextBlocksHandler implements IParsingObserver {
     private final ITextBlocksTokenStream input;
 
     /**
-     * Flag to indicate whether root rule has been entered yet or not.
-     * initial value "-1" means outside root context
+     * Flag to indicate whether root rule has been entered yet or not.<p>
+     * 
+     * ruleDepth == -1 means we are outside root context of traverser <p>
+     * ruleDepth == 0 means we are in root context of traverser
      */
     private int ruleDepth = -1;
     private static final int EOF = -1;
@@ -129,81 +127,19 @@ public class ParserTextBlocksHandler implements IParsingObserver {
      * becomes available.
      */
     @Override
-    public void notifyEnterRule(List<String> createdElement, String mode) {
-        //		if (textBlocksModel == null) {
-        //			throw new RuntimeException(
-        //					"TextBlocksHandler not initialized correctly (rootBlock == null),"
-        //							+ " use setRootBlock to set the root Textblock");
-        //		}
-
-        // ruleDepth == -1 means we are outside root context of traverser
-        // ruleDepth == 0 means we are in root context of traverser
+    public void notifyEnterRule(String templateURI) {
         if (ruleDepth > -1) {
             traverser.enterNextChild();
         }
-        traverser.getCurrent().setTemplate(findTemplate(createdElement, mode));
-        ruleDepth++;
-
-        // all the relocating and adding to parents happens in onExitRule
-
-        // // if there are still some tokens to be re-located for the former
-        // rule
-        // // do that here
-        // if (currentTextBlock != null && relocationCandidates.size() > 0) {
-        // relocateTokens(relocationCandidates, currentTextBlock);
-        //			
-        // saveAddToParentBlock(currentTextBlock, parentTextBlock);
-        // }
-        //
-        // if (currentTextBlock == null) {
-        // // call of initial rule
-        // currentTextBlock = parentTextBlock;
-        // } else if (currentTextBlock == parentTextBlock) {
-        // // no textblock exists yet, or entered ANY subrule of root
-        // if (parentTextBlock.getSubBlocks().size() == 0) {
-        // currentTextBlock = createTextBlock(textblocksPackage);
-        // } else { // need to select "next" subrule
-        // throw new IllegalStateException("Bug: replacing under root not
-        // implemented yet.");
-        // }
-        // } else {
-        // parentTextBlock = currentTextBlock;
-        // currentTextBlock =
-        // TbNavigationUtil.nextBlockInSubTree(currentTextBlock);
-        // if (currentTextBlock == null) {
-        // // no further textblocks exist
-        // currentTextBlock = createTextBlock(textblocksPackage);
-        // }
-        // }
-        // tbContextStack.add(currentTextBlock);
-    }
-
-    private Template findTemplate(List<String> createdElement, String mode) {
-        if (createdElement == null) {
-            return null;
+        Template template = (Template) parserScope.getResourceSet().getEObject(URI.createURI(templateURI), true);
+        if (template != null) {
+            traverser.getCurrent().setTemplate(template);
+            ruleDepth++;
+        } else {
+            failWithError("Could not resolve TCS template " + templateURI
+                    + ". This indicates that parser and mapping are not in sync.");
         }
-        try {
-            ResolvedNameAndReferenceBean<EObject> resolvedName = parserScope.getMetamodelLookup()
-                    .resolveReference(createdElement);
-            if (resolvedName == null) {
-                failWithError("Could not find metaclass named " + MessageUtil.asModelName(createdElement)
-                        + " within the metamodels  "
-                        + MessageUtil.asMetaModelNames(parserScope.getMetamodelLookup().getMetaModelURIs()) + ".");
-            }
-            Collection<Template> templates = parserScope.getSyntaxLookup().getTCSTemplate(resolvedName, mode);
-
-            if (templates.size() == 1) {
-                return templates.iterator().next();
-            } else {
-                failWithError("Invalid combination of parser and mapping. Expected to find exactly one template for "
-                        + createdElement.toString() + "#" + mode + ".");
-            }
-        } catch (SyntaxElementException e) {
-            failWithError(e, "Failed to find template for " + MessageUtil.asModelName(createdElement) + "#" + mode);
-        } catch (MetaModelLookupException e) {
-            failWithError(e, "Failed to resolve a metaclass named " + MessageUtil.asModelName(createdElement));
-        }
-        return null;
+        
     }
 
     /**
@@ -239,11 +175,10 @@ public class ParserTextBlocksHandler implements IParsingObserver {
      * the current textblock as new current textblock.
      */
     @Override
-    public void notifyExitRule(List<String> createdElementType) {
+    public void notifyExitRule() {
         if (ruleDepth < 0) { // cannot leave root context depth
             throw new IllegalStateException("Attempt to leave root context more than once");
         }
-
         try {
             /*
              * complete filling and setting of textblock that was started on
@@ -277,25 +212,14 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                 }
             }
         } catch (RuntimeException jmie) {
-            // should never happen, but happens.
-            // Exceptions get swallowed in the call trace else, due to
-            // consequent Exceptions
+            // should never happen, but happens. Exceptions get swallowed in the call trace else,
+            // due to consequent Exceptions
             jmie.printStackTrace();
             throw jmie;
         } finally {
             // (-1 is still allowed, we assign tokens to rootblock then)
             ruleDepth--; // needs to be called even on exceptions to prevent trying to leave root.
         }
-
-        // // set the parent's parent as parent context and remove tb from
-        // context
-        // // stack
-        // tbContextStack.remove(tbContextStack.size() - 1);
-        // if (tbContextStack.size() > 1) {
-        // TextBlock parentsParentBlock = tbContextStack.get(tbContextStack
-        // .size() - 2);
-        // parentTextBlock = parentsParentBlock;
-        // }
     }
 
     @Override

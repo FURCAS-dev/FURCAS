@@ -3,7 +3,6 @@
  */
 package com.sap.furcas.runtime.parser.impl;
 
-import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ import com.sap.furcas.runtime.parser.IParsingObserver;
  */
 public class ConsistencyChecksObserver implements IParsingObserver {
 
-    public Stack<List<String>> ruleContextStack = new Stack<List<String>>();
+    public Stack<String> ruleContextStack = new Stack<String>();
     public Stack<Integer> sequenceContextStack = new Stack<Integer>();
     public List<RecognitionException> errorsInRule = new ArrayList<RecognitionException>();
     public List<Object> elementsResolved = new ArrayList<Object>();
@@ -45,9 +44,9 @@ public class ConsistencyChecksObserver implements IParsingObserver {
      * .util.List)
      */
     @Override
-    public void notifyEnterRule(List<String> createdElement, String mode) {
-        assertNotNull(createdElement);
-        ruleContextStack.push(createdElement);
+    public void notifyEnterRule(String templateURI) {
+        assertNotNull(templateURI);
+        ruleContextStack.push(templateURI);
     }
 
     /*
@@ -80,11 +79,9 @@ public class ConsistencyChecksObserver implements IParsingObserver {
      * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyExitRule()
      */
     @Override
-    public void notifyExitRule(List<String> type) {
-        List<String> top = ruleContextStack.pop();
-        assertNotNull(type);
+    public void notifyExitRule() {
+        String top = ruleContextStack.pop();
         assertNotNull(top);
-        assertEquals(type, top);
     }
 
     /*
@@ -296,7 +293,7 @@ public class ConsistencyChecksObserver implements IParsingObserver {
 
     @Override
     public void reset() {
-        ruleContextStack = new Stack<List<String>>();
+        ruleContextStack = new Stack<String>();
         sequenceContextStack = new Stack<Integer>();
         errorsInRule = new ArrayList<RecognitionException>();
         elementsResolved = new ArrayList<Object>();

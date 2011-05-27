@@ -101,11 +101,11 @@ public class OperatorTemplateHandler<Type extends Object> {
             StringBuilder initString = new StringBuilder(); // TODO cleanup string construction
             if (template.isIsReferenceOnly()) {
                 initString.append(concat("List<String> metaType=", metaObjectListParam, ";\n",
-                        ObservationDirectivesHelper.getEnterTemplateNotification(),
+                        ObservationDirectivesHelper.getEnterTemplateNotification(template),
                         "IModelElementProxy ret=(getBacktrackingLevel()==0) ?  createReferenceProxy(metaType) : null;\n\n"));
             } else {
                 initString.append(concat("List<String> metaType=", metaObjectListParam, ";\n",
-                        ObservationDirectivesHelper.getEnterTemplateNotification(),
+                        ObservationDirectivesHelper.getEnterTemplateNotification(template),
                         "IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, ",
                         template.isIsContext(), ", false"));
                 ContextTags tags = template.getContextTags();
