@@ -175,6 +175,21 @@ public class BaseDepartmentTestWithOCL extends BaseDepartmentTest {
             + "self.numberEmployeesOfTheMonth <= self.department->size()";
 
     /**
+     * A department must have less than 5 freelancers and less than 5 students. 
+     * Department.biggestNumberOfStudentsOrFreelancers holds the size of the bigger group (it contains an if-expression, thats why we call it nonlinear).
+     */
+    public final String nonLinearDerivation = "context Department \n" + "inv nonLinearDerivation: \n"
+            + "self.biggestNumberOfStudentsOrFreelancers < 5";
+    
+    /**
+     * Each department of a company must have less than 5 freelancers and less than 5 students.
+     * This constraint is semantically identical to nonLinearDerivation, but the context of the
+     * constraint and the context of the derivation expression differ this time.
+     */
+    public final String longNavigationWithDerivation = "context Company \n" + "inv longNavigationWithDerivation: \n"
+            + "self.division.department->sortedBy(biggestNumberOfStudentsOrFreelancers)->last().biggestNumberOfStudentsOrFreelancers < 5";
+
+    /**
      * The delta of the number of employees of the month of all divisions of a company must not be greater than 5 (semantically
      * questionable, but uses the same derived property twice, which is what we need to test if the collecting of them works).
      */
@@ -264,6 +279,10 @@ public class BaseDepartmentTestWithOCL extends BaseDepartmentTest {
 
     public ExpressionInOCL nestedDerivationAST = null;
     
+    public ExpressionInOCL nonLinearDerivationAST = null;
+    
+    public ExpressionInOCL longNavigationWithDerivationAST = null;
+    
     public ExpressionInOCL eotmDeltaMaxAST = null;
     
     public ExpressionInOCL divisionBossSecretaryAST = null;
@@ -326,6 +345,8 @@ public class BaseDepartmentTestWithOCL extends BaseDepartmentTest {
     protected EReference divisionEmployeesOfTheMonth = null;
 
     protected EAttribute numberEmployeesOfTheMonth = null;
+    
+    protected EAttribute biggestNumberOfStudentsOrFreelancers = null;
     
     protected EAttribute eotmDelta = null;
 
@@ -410,6 +431,14 @@ public class BaseDepartmentTestWithOCL extends BaseDepartmentTest {
 
     protected ExpressionInOCL getNestedDerivationAST() {
         return getAST("nestedDerivation");
+    }
+    
+    protected ExpressionInOCL getNonLinearDerivationAST() {
+        return getAST("nonLinearDerivation");
+    }
+    
+    protected ExpressionInOCL getlongNavigationWithDerivationAST() {
+        return getAST("longNavigationWithDerivation");
     }
     
     protected ExpressionInOCL getEotmDeltaMaxAST() {
@@ -521,6 +550,7 @@ public class BaseDepartmentTestWithOCL extends BaseDepartmentTest {
         this.departmentEmployeeOfTheMonth = (EReference) this.department.getEStructuralFeature("employeeOfTheMonth");
         this.divisionEmployeesOfTheMonth = (EReference) this.division.getEStructuralFeature("employeesOfTheMonth");
         this.numberEmployeesOfTheMonth = (EAttribute) this.division.getEStructuralFeature("numberEmployeesOfTheMonth");
+        this.biggestNumberOfStudentsOrFreelancers = (EAttribute) this.department.getEStructuralFeature("biggestNumberOfStudentsOrFreelancers");
         this.eotmDelta = (EAttribute) this.companyClass.getEStructuralFeature("eotmDelta");
         this.employee = this.comp.getEmployee();
         this.employeeName = (EAttribute) this.employee.getEStructuralFeature("name");
@@ -665,6 +695,7 @@ public class BaseDepartmentTestWithOCL extends BaseDepartmentTest {
         this.departmentEmployeeOfTheMonth = null;
         this.divisionEmployeesOfTheMonth = null;
         this.numberEmployeesOfTheMonth = null;
+        this.biggestNumberOfStudentsOrFreelancers = null;
         this.eotmDelta = null;
         this.bossRef = null;
         this.managedRef = null;
