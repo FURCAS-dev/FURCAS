@@ -27,6 +27,8 @@
 	<property name="wikitext.url" value="http://download.eclipse.org/tools/mylyn/update/weekly/mylyn-wikitext-standalone-latest.zip"/>
 	<property name="wikitext.dir" value="${download.dir}${file.separator}wikitext"/>
 
+	<!-- adolfosbh: We expect to receive a target.location to provide some jars to the xslt ant tasks 
+	in the said target.location is not provided, we try to use the tipical ${eclipse.home} variable -->
 	<condition property="target.location" value="${eclipse.home}">
 		<not>
 			<isset property="target.location"/>
