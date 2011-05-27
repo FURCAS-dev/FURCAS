@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotTests.java,v 1.7 2011/05/12 08:54:39 ewillink Exp $
+ * $Id: PivotTests.java,v 1.8 2011/05/22 16:41:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -241,7 +241,7 @@ public class PivotTests extends XtextTestCase
 
 	public BaseCSResource doLoadOCLstdlib(String stem, String extension) throws IOException {
 		resourceSet = new ResourceSetImpl();
-		TypeManager typeManager =  new TypeManager.NoDefaultLibrary();
+		TypeManager typeManager =  new TypeManager();
 //		CS2PivotResourceSetAdapter.getAdapter(resourceSet, typeManager);
 //		long startTime = System.currentTimeMillis();
 //		System.out.println("Start at " + startTime);
