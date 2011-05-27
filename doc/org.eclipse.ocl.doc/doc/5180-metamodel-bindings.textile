@@ -1,0 +1,48 @@
+h2(#AdvancedMetamodelBindings). Creating Metamodel Bindings
+
+The Eclipse OCL component provides a generic specification of the OCL Abstract Syntax Model
+plus bindings for two popular Eclipse metamodels:  Ecore and UML.  Users of the OCL API
+can likewise create bindings for their metamodels, to integrate OCL with their modeling
+languages.
+
+The "@Environment@":http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/Environment.html interface has a generic type signature with several parameters, representing the metamodeling
+constructs required by OCL, that it borrows from UML, EMOF, and the other metamodels that
+it targets.  The Javadoc for that interface defines the mappings, and the same type parameter
+names are used consistently throughout the OCL API.
+
+!{width:70%}images/5180-bindings.png(Metamodel Bindings API)!
+
+To provide a metamodel binding, a client must provide implementations of the following interfaces:
+
+* @Environment@ and @EnvironmentFactory@, supplying suitable substitutions for the generic type parameters.  Note that not all of these are actually required; for example, Ecore does not have the concept of @State@, so it just substitutes @EObject@
+* @EvaluationEnvironment@ for accessing properties of run-time instances of models
+* @UMLReflection@ for introspecting models (instances of thetarget metamodel)
+* @OCLStandardLibrary@, providing the instances of the metamodel's @Classifier@ metaclass that implement the OCL Standard Library types
+* @OCLFactory@, providing a factory for all of the metaclasses of the Abstract Syntax Model
+
+This last item, above, necessitates furthermore that the metamodel binding provide a
+concrete specialization of the Abstract Syntax Model (in its entirety) that mixes in the
+target metamodel's correspondents of the UML @Classifier@ and
+@TypedElement@ metaclasses.  The former is required to provide
+compatibility of the metaclasses in the OCL @Types@ with the
+target metamodel's type system.  The latter is required for compatibility of the metaclasses
+in the OCL @Expressions@ package with the target metamodel's
+typed elements.
+
+h3. The OCL Abstract Syntax Model
+
+The following diagram summarizes the metaclasses of the OCL @Types@ package:
+
+!{width:70%}images/5180-ocltypes.png(OCL Types Package)!
+
+The following diagram summarizes the call expression metaclasses of the OCL @Expressions@ package:
+
+!{width:70%}images/5180-callexp.png(OCL Expressions Package)!
+
+The following diagram summarizes the literal expression metaclasses of the OCL @Expressions@ package:
+
+!{width:40%}images/5180-literalexp.png(OCL Expressions Package - the Literal Expressions)!
+
+The following diagram summarizes the remaining metaclasses of the OCL @Expressions@ package:
+
+!{width:50%}images/5180-miscexp.png(OCL Expressions Package - the Remainder)!
