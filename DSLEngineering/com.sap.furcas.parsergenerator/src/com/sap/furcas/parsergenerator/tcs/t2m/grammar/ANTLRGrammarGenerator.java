@@ -185,8 +185,7 @@ public class ANTLRGrammarGenerator {
         // until TCS elements will all be identified by their UUIDs we will use the
         // special UUID attribute to store a randomly generated UUID. See documentation
         // of ConcreteSyntax:getUuid()
-        syntax.setUuid(EcoreUtil.generateUUID());
-        writer.setSyntaxUUID(syntax.getUuid());
+        writer.setSyntaxUUID(EcoreUtil.getURI(syntax));
 
         String lexerString = syntax.getLexer();
         if (lexerString == null) {
