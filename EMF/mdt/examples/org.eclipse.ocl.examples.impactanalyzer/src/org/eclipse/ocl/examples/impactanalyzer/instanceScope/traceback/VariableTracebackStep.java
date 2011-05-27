@@ -29,10 +29,12 @@ import org.eclipse.ocl.ecore.LetExp;
 import org.eclipse.ocl.ecore.LoopExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
 import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+import org.eclipse.ocl.examples.impactanalyzer.filterSynthesis.FilterSynthesisImpl;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OperationBodyToCallMapper;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestFactory;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
@@ -242,6 +244,7 @@ public class VariableTracebackStep extends BranchingTracebackStep<VariableExp> {
         Set<TracebackStepAndScopeChange> result;
         OCLExpression rootExpression = getRootExpression(variableExp);
         EOperation op = getOperationOfWhichRootExpressionIsTheBody(rootExpression, operationBodyToCallMapper);
+        Collection<PropertyCallExp> derivedPropertyCalls = ((FilterSynthesisImpl)operationBodyToCallMapper).getDerivedProperties().get(rootExpression);
         if (op != null) {
             result = new HashSet<TracebackStepAndScopeChange>();
             // in an operation, self needs to be traced back to all source expressions of
@@ -257,8 +260,17 @@ public class VariableTracebackStep extends BranchingTracebackStep<VariableExp> {
                         callSource, call, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, tracebackStepCache);
                 result.add(stepForCall);
             }
+        } 
+        else if (derivedPropertyCalls != null){
+            result = new HashSet<TracebackStepAndScopeChange>();
+            for (PropertyCallExp call : derivedPropertyCalls) {
+                OCLExpression callSource = (OCLExpression) call.getSource();
+                TracebackStepAndScopeChange stepForCall = createTracebackStepAndScopeChange(variableExp,
+                        callSource, /*call, */context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, tracebackStepCache);
+                result.add(stepForCall);
+            }
         } else {
-            // self occurred outside of an operation; it evaluates to s for s being the context
+            // self occurred outside of an operation & derivation expression; it evaluates to s for s being the context
             identity = true;
             result = Collections.emptySet();
         }

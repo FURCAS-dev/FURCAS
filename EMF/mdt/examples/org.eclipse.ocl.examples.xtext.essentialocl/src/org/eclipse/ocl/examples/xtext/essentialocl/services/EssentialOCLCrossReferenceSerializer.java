@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCrossReferenceSerializer.java,v 1.6 2011/05/20 15:27:00 ewillink Exp $
+ * $Id: EssentialOCLCrossReferenceSerializer.java,v 1.7 2011/05/21 14:55:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -116,6 +116,7 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 		//	Serialize the divergent elements
 		//
 		StringBuffer s = new StringBuffer();
+		String ruleName = "UnrestrictedName";
 		for ( ; i < iSize-1; i++) {
 			PathElement objectPathElement = objectPath.get(i);
 			String objectName = objectPathElement.name;
@@ -133,11 +134,12 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 					objectName = ((NamedElement)objectElement).getName();
 				}
 			}
-			s.append(valueConverter.toString(objectName, "ID"));
+			s.append(valueConverter.toString(objectName, ruleName));
 			s.append("::");
+			ruleName = "UnreservedName";
 		}
 		if (iSize > 0) {
-			s.append(valueConverter.toString(objectPath.get(iSize-1).name, "ID"));
+			s.append(valueConverter.toString(objectPath.get(iSize-1).name, ruleName));
 		}
 //		System.out.println(objectPath + " | " + contextPath + " => " + s.toString());
 		return s.toString();

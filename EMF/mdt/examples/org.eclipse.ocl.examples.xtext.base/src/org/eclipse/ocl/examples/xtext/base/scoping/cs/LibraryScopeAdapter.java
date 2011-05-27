@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LibraryScopeAdapter.java,v 1.1 2011/05/20 15:27:24 ewillink Exp $
+ * $Id: LibraryScopeAdapter.java,v 1.2 2011/05/22 16:42:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
+import org.eclipse.ocl.examples.pivot.utilities.IllegalLibraryException;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
@@ -93,8 +94,12 @@ public class LibraryScopeAdapter extends MonikeredElementCSScopeAdapter<LibraryC
 		StandardLibraryContribution contribution = StandardLibraryContribution.REGISTRY.get(name);
 		if (contribution != null) {
 			Resource resource = contribution.getResource();
-			typeManager.loadLibrary(resource);
-			environmentView.addElement(name, resource.getContents().get(0));
+			try {
+				typeManager.loadLibrary(resource);
+				environmentView.addElement(name, resource.getContents().get(0));
+			} catch (IllegalLibraryException e) {
+				throwable = e;
+			}
 			return;
 		}
 		BaseCSResource csResource = (BaseCSResource) target.eResource();
@@ -115,7 +120,6 @@ public class LibraryScopeAdapter extends MonikeredElementCSScopeAdapter<LibraryC
 			return;
 		}
 		List<EObject> importedElements = new ArrayList<EObject>();
-		typeManager.setDefaultStandardLibraryURI(null);
 		ResourceSet csResourceSet = csResource.getResourceSet();
 		TypeManagerResourceSetAdapter.getAdapter(csResourceSet, typeManager);
 		try {

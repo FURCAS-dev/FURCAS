@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Abstract2Moniker.java,v 1.11 2011/05/11 19:46:40 ewillink Exp $
+ * $Id: Abstract2Moniker.java,v 1.12 2011/05/22 21:06:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -31,6 +31,7 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.MultiplicityElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -160,6 +161,19 @@ public abstract class Abstract2Moniker implements PivotConstants
 		}
 	}
 
+	protected void appendMultiplicity(MultiplicityElement multiplicityElement) {
+		int lower = multiplicityElement.getLower().intValue();
+		int upper = multiplicityElement.getUpper().intValue();
+		if (upper != 1) {
+			append("[");
+			append(lower);
+			append(multiplicityElement.isOrdered() ? "S" : "s");
+			append(multiplicityElement.isUnique() ? "U" : "u");
+			append(upper);
+			append("]");
+		}
+	}
+
 	public void appendName(MonikeredElement monikeredElement) {
 		if (monikeredElement instanceof TemplateableElement) {
 			TemplateableElement unspecializedElement = ((TemplateableElement)monikeredElement).getUnspecializedElement();
@@ -189,6 +203,7 @@ public abstract class Abstract2Moniker implements PivotConstants
 			for (Parameter parameter : iteration.getOwnedIterators()) {
 				s.append(prefix);
 				appendElement(parameter.getType(), templateBindings);
+				appendMultiplicity(parameter);
 				prefix = PARAMETER_SEPARATOR;
 			}
 			if (iteration.getOwnedAccumulators().size() > 0) {
@@ -196,6 +211,7 @@ public abstract class Abstract2Moniker implements PivotConstants
 				for (Parameter parameter : iteration.getOwnedAccumulators()) {
 					s.append(prefix);
 					appendElement(parameter.getType(), templateBindings);
+					appendMultiplicity(parameter);
 					prefix = PARAMETER_SEPARATOR;
 				}
 			}
@@ -204,6 +220,7 @@ public abstract class Abstract2Moniker implements PivotConstants
 		for (Parameter parameter : operation.getOwnedParameters()) {
 			s.append(prefix);
 			appendElement(parameter.getType(), templateBindings);
+			appendMultiplicity(parameter);
 			prefix = PARAMETER_SEPARATOR;
 		}
 		s.append(PARAMETER_SUFFIX);

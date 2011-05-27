@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseReferenceVisitor.java,v 1.3 2011/03/01 08:47:48 ewillink Exp $
+ * $Id: BaseReferenceVisitor.java,v 1.4 2011/05/21 14:56:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -31,6 +31,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
@@ -100,6 +101,16 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, Pi
 		qRef.setPivot(object);
 		return qRef;
 */	}
+
+	@Override
+	public ElementCS visitPrimitiveType(PrimitiveType object) {
+		PrimitiveTypeRefCS csRef = BaseCSTFactory.eINSTANCE.createPrimitiveTypeRefCS();
+//		Type type = PivotUtil.getUnspecializedTemplateableElement(object);
+//		csRef.setType(type);
+		csRef.setPivot(object);		// FIXME object ??
+		csRef.setName(object.getName());		// FIXME object ??
+		return csRef;
+	}
 
 	public ElementCS visiting(Visitable visitable) {
 		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for Pivot2CS Reference pass");

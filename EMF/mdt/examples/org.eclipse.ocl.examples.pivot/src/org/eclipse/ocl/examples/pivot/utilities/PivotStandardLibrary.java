@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotStandardLibrary.java,v 1.13 2011/05/15 20:15:04 ewillink Exp $
+ * $Id: PivotStandardLibrary.java,v 1.14 2011/05/22 16:42:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -34,6 +34,8 @@ import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VoidType;
+import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.osgi.util.NLS;
 
 public abstract class PivotStandardLibrary implements StandardLibrary
 {
@@ -269,10 +271,10 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 			nameToLibraryTypeMap = null;
 			type = getLibraryType(typeName);	// FIXME just a debug retry
 			if ((nameToLibraryTypeMap == null) || nameToLibraryTypeMap.isEmpty()) {
-				throw new IllegalLibraryException("No OCL Standard Library content available");
+				throw new IllegalLibraryException(OCLMessages.EmptyLibrary_ERROR_);
 			}
 			else {
-				throw new IllegalLibraryException("No '" + typeName + "' type in the OCL Standard Library");
+				throw new IllegalLibraryException(NLS.bind(OCLMessages.MissingLibraryType_ERROR_, typeName));
 			}
 		}
 		return type;

@@ -1,0 +1,18 @@
+h2. The Essential OCL 
+
+The core functionality of OCL that supports expressions over models is called the Essential OCL. This language is of very limited use by itself since there is no way in whuich the models can be provided.
+
+Essential OCL is extended in various ways to provide this missing context.
+
+The Complete OCL provides a language for a document in which OCL complements an existing meta-model with invariants, and additional features.
+
+"OCLinEcore":#OCLinEcore embeds OCL within the annotations of an Ecore model to enrich that model.
+
+UML supports the use of OCL constraints as a form of OpaqueExpression, and UML tools such as Papyrus support those constraints for UML models.
+
+h3. Syntax
+
+The exposition of the OCL grammar in the OCL 2.3 specification requires tool implementers to provide their own interpretation. The approach taken in Eclipse OCL is to provide a rather generous initial parse using the syntax shown below.
+!images/EssentialOCLSyntaxGraph.png!
+
+Subsequent semantic checking then enforces rules appropriate to the extended language within which EseentialOCL is embedded.
