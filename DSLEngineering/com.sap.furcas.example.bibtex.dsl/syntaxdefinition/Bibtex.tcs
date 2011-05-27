@@ -12,7 +12,7 @@ syntax Bibtex {
   : name <newline>
   	"Entries:" "{" [entries] "}" <newline>
   	"Authors:"	"{" author "}" <newline>
-  ;    
+  ;  
   
   template Entry  
   : "@article" "{"      
