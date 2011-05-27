@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CompanyPackage.java,v 1.3 2011/03/23 05:36:08 auhl Exp $
+ * $Id: CompanyPackage.java,v 1.4 2011/05/27 10:57:35 auhl Exp $
  */
 package company;
 
@@ -234,13 +234,22 @@ public interface CompanyPackage extends EPackage {
     int DEPARTMENT__EMPLOYEE_OF_THE_MONTH = 7;
 
 /**
+     * The feature id for the '<em><b>Biggest Number Of Students Or Freelancers</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DEPARTMENT__BIGGEST_NUMBER_OF_STUDENTS_OR_FREELANCERS = 8;
+
+/**
 	 * The number of structural features of the '<em>Department</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-    int DEPARTMENT_FEATURE_COUNT = 8;
+    int DEPARTMENT_FEATURE_COUNT = 9;
 
     /**
 	 * The meta object id for the '{@link company.impl.FreelanceImpl <em>Freelance</em>}' class.
@@ -769,6 +778,17 @@ public interface CompanyPackage extends EPackage {
     EReference getDepartment_EmployeeOfTheMonth();
 
 /**
+     * Returns the meta object for the attribute '{@link company.Department#getBiggestNumberOfStudentsOrFreelancers <em>Biggest Number Of Students Or Freelancers</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Biggest Number Of Students Or Freelancers</em>'.
+     * @see company.Department#getBiggestNumberOfStudentsOrFreelancers()
+     * @see #getDepartment()
+     * @generated
+     */
+    EAttribute getDepartment_BiggestNumberOfStudentsOrFreelancers();
+
+/**
 	 * Returns the meta object for class '{@link company.Freelance <em>Freelance</em>}'.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1109,6 +1129,14 @@ public interface CompanyPackage extends EPackage {
 		 * @generated
 		 */
         EReference DEPARTMENT__EMPLOYEE_OF_THE_MONTH = eINSTANCE.getDepartment_EmployeeOfTheMonth();
+
+        /**
+         * The meta object literal for the '<em><b>Biggest Number Of Students Or Freelancers</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DEPARTMENT__BIGGEST_NUMBER_OF_STUDENTS_OR_FREELANCERS = eINSTANCE.getDepartment_BiggestNumberOfStudentsOrFreelancers();
 
         /**
 		 * The meta object literal for the '{@link company.impl.FreelanceImpl <em>Freelance</em>}' class.
