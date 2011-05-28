@@ -57,3 +57,4 @@ stored, by choosing different packages or using some other strategy altogether. 
 the default @TypeResolver@ implementation, a client of the OCL
 parser can find the demand-created objects in the resolver's resource and relocate them
 as needed.
+

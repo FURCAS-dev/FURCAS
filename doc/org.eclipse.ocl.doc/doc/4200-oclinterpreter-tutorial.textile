@@ -390,4 +390,3 @@ To illustrate how to work with the OCL API, we
 * Transformed an OCL expression AST using the _Visitor_ pattern.
 * Saved and loaded OCL expressions to/from XMI resources.
 
-"Copyright (c) 2000, 2011 IBM Corporation and others. All Rights Reserved.":http://www.eclipse.org/legal/epl-v10.html 

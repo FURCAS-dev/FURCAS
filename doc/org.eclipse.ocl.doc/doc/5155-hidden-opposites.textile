@@ -42,3 +42,4 @@ an @environmentFactoryClass@ detail with the fully qualified
 name of a derived @EcoreEnvironmentFactory@ that
 provides a constructor taking an @EPackage.Registry@ argument.
 Note, that the class specified must be visible by your Ecore model's bundle.
+

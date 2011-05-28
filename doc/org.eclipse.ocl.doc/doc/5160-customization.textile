@@ -356,3 +356,4 @@ p.
 With this, when the use of a property in an OCL expression cannot be resolved to an attribute
 or reference, the opposite end finder is asked to look for a correspondingly-named "hidden"
 opposite. Navigation across this "hidden" opposite will then call the @navigateOppositeProperty@ method on @MyOppositeEndFinder@.
+

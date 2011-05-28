@@ -133,3 +133,4 @@ metamodel.  These can be constrained as follows:
 
 !images/5110-define.png(DEfining a constraint)!
 "[Text for cut and paste]":../references/5110-define.txt
+

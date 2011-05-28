@@ -7,3 +7,4 @@ h3(#InvocationDelegate). Invocation Delegates
 h3(#SettingDelegate). Setting Delegates 
 
 h3(#QueryDelegate). Query Delegates 
+

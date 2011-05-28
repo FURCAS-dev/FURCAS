@@ -5,3 +5,4 @@ The Pivot evaluator operates on @Value@ s that represent @Element@ s.
 The @StringValue@ class realises UML's @String@ abstraction observing behaviour defined for the @String@ class in the OCL Standard Library model. Note that in UML @String@ is a PrimitveType with undefined representation, @StringValue@ is the reification of that abstraction for evaluation purposes.
 
 In Java, it is convenient to use @java.lang.String@ to realise @StringValue@, but that is an implementation convenience. For @IntegerValue@ there is currently a re-use of @java.lang.BigInteger@; this will be changed so that @IntegerValue@ is a @java.lang.int@ unless a higher precision is necessary; the wrapping of @java.lang.int@ as @IntegerValue@ will therefore have very similar costs and overheads to the conventional boxing of @java.lang.int@ as @java.lang.Integer@.
+

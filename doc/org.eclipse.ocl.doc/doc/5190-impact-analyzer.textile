@@ -139,3 +139,4 @@ Other configuration options (see "@ActivationOption@":http://download.eclipse.or
 may have changed its value. The default selection has proven to be the fastest for a set
 of benchmarks. However, mileage may vary, and we'd like to encourage users to experiment
 also with the non-default configurations.
+
