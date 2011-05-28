@@ -146,40 +146,8 @@ An almost empty text file appears showing the module, the package keyword and an
 
 Now type (or cut and paste) the following text into the editor and save the file.
 
-bc.. 
-import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';
-
-package tutorial : tut = 'http://www.eclipse.org/mdt/ocl/oclinecore/tutorial'
-{
-  class Library
-  {
-    attribute name : String;
-    property books#_'library' : Book[*] { composes };
-    property loans : Loan[*] { composes };
-    property members#_'library' : Member[*] { composes };
-  }
-  
-  class Book
-  {
-    attribute name : String;
-    attribute copies : Integer;
-    property _'library'#books : Library;
-  }
-  
-  class Member
-  {
-    attribute name : String;
-    property _'library'#members : Library;
-  }
-  
-  class Loan
-  {
-    property book : Book;
-    property member : Member;
-    attribute date : ecore::EDate;
-  }
-}
-p. 
+!images/4100-metamodel.png(Example Metamodel)!
+"[Text for cut and paste]":../references/4100-metamodel.oclinecore
 
 The syntax is defined in "OCLinEcore":#OCLinEcore. It emulates OMG specifications with
 'name : type[multiplicity] { properties }'.
@@ -247,11 +215,9 @@ be seen in the Properties View.
 (If the Properties View is not visible, right-click within the editor and left-click on
 *Show Properties View*.)
 
-
 From the right-button menu for @Library@ use *New Child->Books Book* twice,
 use *New Child->Loans Loan* once and *New Child->Members Member* three times
 to populate the model with two books, one loan and three members. 
-
 
 Left-click to select each of the Books and Members in turn and enter a name
 such as @b1@ or @m2@ using the Properties View. Specify that b1
@@ -325,20 +291,11 @@ the model is loaded.)
 
 Add the invariant shown below to the meta-model.
 
-bc.. 
-  class Book
-  {
-    invariant SufficientCopies:
-      library.loans->select(book=self)->size() <= copies;
-    attribute name : String;
-    attribute copies : Integer;
-    property library#books : Library;
-  }
-p. 
+!images/4100-metamodel2.png(Example Metamodel with Invariant)!
+"[Text for cut and paste]":../references/4100-metamodel2.oclinecore
 
 The required semantic is expressed by the @SufficientCopies@ invariant constraint for a Book.
 For a valid model the SufficientCopies invariant must always be true.
-
 
 If you reopen the *Tutorial.xmi* editor and invoke *Validate* for the @Library@,
 you will now get a validation error. Left click *Details* for details.
@@ -348,11 +305,9 @@ you will now get a validation error. Left click *Details* for details.
 The *Details* identifies that the @SufficientCopies@ invariant is not
 satisfied for the @b2@ book. 
 
-
 If you now change the first loan so that @b1@ is borrowed and then validate
 again, the problem is resolved. It is alright for @m3@ to borrow
 the one copy of @b1@ and the two copies of @b2@.
-
 
 Before introducing a further constraint of no duplicate loans, we will show
 how OCL expressions can be exercised. OCL is a very powerful compact language;
@@ -383,7 +338,6 @@ Left-click to select the @Library@ in the *Tutorial.xmi* as the context
 for a query, and then type @books@ followed by a new line into the lower
 pane of the console. 
 
-
 The result of evaluating this query for the Library is shown.
 
 !{width:50%}images/4100-books_query.png(Books Query)!
@@ -404,28 +358,11 @@ Close the *Tutorial.xmi* editor and modify the meta-model to include
 the derived @loans@ property and the helper operation @isAvailable()@.
 Simplify the invariant to use the derived property.
 
-bc.. 
-  class Book
-  {
-    invariant SufficientCopies: 
-      loans->size() <= copies;
-    attribute name : String[?];
-    attribute copies : Integer[?];
-    property loans : Loan[*] { derived,volatile }
-    {
-      derivation: library.loans->select(book=self);
-    }
-    property _'library'#books : Library[?];
-    operation isAvailable() : Boolean[?]
-    {
-      body: loans->size() < copies;
-    }
-  }
-p. 
+!images/4100-metamodel3.png(Example Metamodel with Features)!
+"[Text for cut and paste]":../references/4100-metamodel3.oclinecore
 
 Note that the derived property must also be volatile to avoid problems when
 a model is loaded but has no content.
-
 
 The derived property is visible in the *Properties* view.
 
@@ -435,31 +372,13 @@ The helper operation can be evaluated in the *Console* view by selecting book @b
 
 !{width:50%}images/4100-helper_operation.png(Helper Operation)!
 
-
 We will now add further helpers and constraints to enforce an
 at most two loans per member policy and to require loans to be unique.
 
 (Don't forget to close *Tutorial.xmi* while changing its meta-model.)
 
-bc.. 
-  class Member
-  {
-    invariant AtMostTwoLoans: 
-      loans->size() <= 2;
-    invariant UniqueLoans: 
-      loans->isUnique(book);
-    attribute name : String[?];
-    property _'library'#members : Library[?];
-    property loans : Loan[*] { derived,volatile }
-    {
-      derivation: library.loans->select(member=self);
-    }
-    property books : Book[*] { derived,volatile,!unique }
-    {
-      derivation: loans->collect(book);
-    }
-  }
-p. 
+!images/4100-metamodel4.png(Example Metamodel with More Features)!
+"[Text for cut and paste]":../references/4100-metamodel4.oclinecore
 
 The additional @books@ property may be evaluated in the OCL
 Console to show which books each member has on loan. The property may also be seen in the *Properties* view. 
@@ -614,6 +533,4 @@ To illustrate how to work with the OCL and Ecore as models we have
 To use OCL and Ecore as generated Java models we have
 
 * Generated Java that exploits the embedded OCL.
-
-"Copyright (c) 2010,2011 E.D.Willink and others. All Rights Reserved.":http://www.eclipse.org/legal/epl-v10.html
 
