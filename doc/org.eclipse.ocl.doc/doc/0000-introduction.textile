@@ -24,7 +24,7 @@ Eclipse OCL supports entry of semantically checked OCL expressions
 * embedded within Ecore using the "OCLinEcore":#OCLinEcore editor
 * as complementary documents using the "Complete OCL":#CompleteOCL editor
 * interactive entry and evaluation using the "Interactive OCL":#InteractiveOCL console.
-* programmatic entry and evaluation using the "Java API":#JavaAPI
+* programmatic entry and evaluation using the "Java API":#ProgrammersGuide
 
 EMF supports entry of unchecked OCL
 * embedded within Ecore using the Sample Ecore Editor properties view
@@ -36,10 +36,10 @@ h3. Execution
 
 Eclipse OCL supports OCL execution
 * interactive entry and evaluation using the "Interactive OCL":#InteractiveOCL console.
-* programmatic entry and evaluation using the "Java API":#JavaAPI
+* programmatic entry and evaluation using the "Java API":#ProgrammersGuide
 
 EMF support for generated models enables OCL execution of
-* constraints, operation bodies and property initializers using the "Java API":#JavaAPI
+* constraints, operation bodies and property initializers using the "Java API":#ProgrammersGuide
 
 EMF support for dynamic models enables OCL execution of
 * constraints using the "Validation Delegate":#ValidationDelegate API 

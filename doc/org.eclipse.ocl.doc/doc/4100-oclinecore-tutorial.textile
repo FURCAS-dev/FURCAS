@@ -1,8 +1,7 @@
 h2(#OCLinEcoreTutorial). OCLinEcore tutorial
 
 This tutorial was updated for Eclipse Indigo; Eclipse 3.7, EMF 2.7, OCL 3.1.
-
-fn1. Since it was prepared before release, the precise 3.1.0.v20110nnnn qualification in screenshots is earlier than final release.
+* Since it was prepared before release, the precise 3.1.0.v20110nnnn qualification in screenshots is earlier than final release.
 
 h3. Overview 
 

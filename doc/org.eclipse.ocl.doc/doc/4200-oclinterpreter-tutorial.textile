@@ -1,0 +1,393 @@
+h2(#OCLInterpreterTutorial). Tutorial: Working with OCL
+
+h3(overview). Overview
+
+This tutorial illustrates the various services provided by the Eclipse OCL
+implementation.
+
+h3(refs). References
+
+This tutorial assumes that the reader is familiar with the Eclipse extension point
+architecture.  There is an abundance of on-line help in Eclipse for those
+unfamiliar with extension points.
+
+To see the complete source code for the examples shown in this tutorial, install
+the "OCL Interpreter Example":#OCLInterpreterExample 
+plug-in into your workspace.
+
+Other references:
+
+* For an environment in which to test the OCL expressions that you will create in this tutorial, install the "Library Metamodel":../references/examples/exampleOverview.html example.
+* "OCL 2.0":http://www.omg.org/technology/documents/modeling_spec_catalog.htm#OCL specification.
+
+h3(parsing). Parsing OCL Expressions
+
+The first responsibility of the OCL interpreter is to parse OCL expressions.
+One of the purposes of parsing an expression is to validate it:  if it can be
+parsed, it is well-formed (the parser automatically validates the expression
+against the semantic well-formedness rules).
+
+The main entrypoint into the OCL API is the "OCL":http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/OCL.html class. An @OCL@ provides an autonomous OCL parsing environment.  It tracks all constraints that are parsed in this environment, including the definitions of additional operations and attributes. The @OCL.newInstance()@ factory method is used to create a new OCL with an @EnvironmentFactory@ that provides the binding to a particular metamodel (Ecore or UML).  In this tutorial, we will use the Ecore binding.
+
+To parse a query expression, we will use the "@OCLHelper@":http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/helper/OCLHelper.html object, which provides convenient operations for parsing queries and constraints
+(intended for processing constraints embedded in models).
+
+bc.. 
+boolean valid;
+OCLExpression<EClassifier> query = null;
+
+try {
+    // create an OCL instance for Ecore
+    OCL<?, EClassifier, ?, ?, ?, ?, ?, ?, ?, Constraint, EClass, EObject> ocl;
+    ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
+    
+    // create an OCL helper object
+    OCLHelper<EClassifier, ?, ?, Constraint> helper = ocl.createOCLHelper();
+    
+    // set the OCL context classifier
+    helper.setContext(EXTLibraryPackage.Literals.WRITER);
+    
+    query = helper.createQuery("self.books->collect(b : Book | b.category)->asSet()");
+    
+    // record success
+    valid = true;
+} catch (ParserException e) {
+    // record failure to parse
+    valid = false;
+    System.err.println(e.getLocalizedMessage());
+}
+p. 
+
+The example above parses an expression that computes the distinct categories
+of @Book@ s associated with a @Writer@.  The possible
+reasons why it would fail to parse (in which case a
+@ParserException@ is thrown) include:
+
+* syntactical problems:  misplaced or missing constructs such as closing
+		parentheses, variable declarations, type expressions, etc.
+* semantic problems:  unknown attributes or operations of the context
+		type or referenced types, unknown packages, classes, etc.
+
+h3(constraints). Parsing OCL Constraints
+
+OCL is primarily intended for the specification of _constraint_ s.  Unlike
+queries, there are a variety of different kinds of constraints used in different
+places in a model.  These include classifier invariants, operation constraints,
+and attribute derivation constraints.  The @OCLHelper@
+can parse these for us.
+
+Let's imagine the confusion that arises from a library that has more than
+one book of the same title (we are not intending to model copies).  We will
+create an invariant constraint for @Book@s stipulating
+that this is not permitted:
+
+bc.. 
+Constraint invariant = null;
+
+try {
+    // set the OCL context classifier
+    helper.setContext(EXTLibraryPackage.Literals.LIBRARY);
+    
+    invariant = helper.createInvariant(
+        "Library.allInstances()->forAll(b1, b2 | b1 <> b2 implies b1.title <> b2.title)");
+} catch (ParserException e) {
+    // record failure to parse
+    System.err.println(e.getLocalizedMessage());
+}
+p. 
+
+Parsing constraints differs from parsing query expressions because they have
+additional well-formedness rules that the parser checks.  For example, an
+invariant constraint must be boolean-valued, an attribute derivation constraint
+must conform to the type of the attribute, and such constructs as @pre 
+and @oclIsNew()@ may only be used in operation post-condition constraints.
+
+h3(evaluating). Evaluating OCL Expressions and Constraints
+
+More interesting than parsing an OCL expression or constraint is evaluating it
+on some object.  The "@Query@":http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/Query.html 
+interface provides two methods for evaluating expressions. Queries are
+constructed by factory methods on the @OCL@ class.
+
+* "@Object evaluate(Object)@":http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/Query.html#evaluate(org.eclipse.emf.ecore.EObject) 
+		evaluates the expression on the specified object, returning the result.
+		The caller is expected to know the result type, which could be a
+		primitive, @EObject@, or a collection.  There
+		are variants of this method for evaluation of the query on multiple
+		objects and on no object at all (for queries that require no "self"
+		context).
+* "@boolean evaluate(Object)@":http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/Query.html#check(org.eclipse.emf.ecore.EObject) 
+		This method evaluates a special kind of OCL expression called a
+		_constraint_.  Constraints are distinguished from other OCL queries
+		by having a boolean value; thus, they can be used to implement invariant
+		or pre/post-condition constraints.  There are variants for checking
+		multiple objects and for selecting/rejecting elements of a list that
+		satisfy the constraint.
+
+In order to support the @allInstances()@ operation on OCL types,
+the @OCL@ API provides the
+
+"@setExtentMap(Map<CLS, ? extends Set<? extends E>> extentMap)@":http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/OCL.html#setExtentMap(java.util.Map) 
+method.  This assigns a mapping of classes (in the Ecore binding,
+@EClass@ es) to the sets of their instances.  By default,
+the @OCL@ provides a dynamic map that computes the
+extents on demand from the contents of a @Resource@.
+An alternative extent map can be
+found in "@org.eclipse.ocl.ecore.opposites.ExtentMap@":http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/ecore/opposites/ExtentMap.html .
+We will use a custom extent map in evaluating a query expression that finds
+books that have the same title as a designated book:
+
+bc.. 
+// create an extent map
+Map<EClass, Set<? extends EObject>> extents = new HashMap<EClass, Set<? extends EObject>>();
+Set<Book> books = new HashSet<Book>();
+extents.put(EXTLibraryPackage.Literals.BOOK, books);
+
+// tell the OCL environment what our classifier extents are
+ocl.setExtentMap(extents);
+
+Library library = EXTLibraryFactory.eINSTANCE.createLibrary();
+
+Book myBook = EXTLibraryFactory.eINSTANCE.createBook();
+myBook.setTitle("David Copperfield");
+books.add(myBook);
+
+// this book is in our library
+library.add(myBook);
+
+Writer dickens = EXTLibraryFactory.eINSTANCE.createWriter();
+dickens.setName("Charles Dickens");
+
+Book aBook = EXTLibraryFactory.eINSTANCE.createBook();
+aBook.setTitle("The Pickwick Papers");
+aBook.setCategory(BookCategory.MYSTERY_LITERAL);
+books.add(aBook);
+aBook = EXTLibraryFactory.eINSTANCE.createBook();
+aBook.setTitle("David Copperfield");
+aBook.setCategory(BookCategory.BIOGRAPHY_LITERAL);  // not actually, of course!
+books.add(aBook);
+aBook = EXTLibraryFactory.eINSTANCE.createBook();
+aBook.setTitle("Nicholas Nickleby");
+aBook.setCategory(BookCategory.BIOGRAPHY_LITERAL);  // not really
+books.add(aBook);
+
+dickens.addAll(books);  // Dickens wrote these books
+library.addAll(books);  // and they are all in our library
+
+// use the query expression parsed before to create a Query
+Query<EClassifier, EClass, EObject> eval = ocl.createQuery(query);
+
+Collection<?> result = (Collection<?>) eval.evaluate(dickens);
+System.out.println(result);
+p. 
+
+The same @Query@ API is used to check constraints.
+Using the @library@ and @extents@ map from above and the
+constraint parsed previously:
+
+bc.. 
+eval = ocl.createQuery(constraint);
+
+boolean ok = eval.check(library);
+
+System.out.println(ok);
+p. 
+
+h3(contentassist). Implementing Content Assist
+
+The @OCLHelper@ interface provides an operation that
+computes content-assist proposals in an abstract form, as
+"@Choice@":http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/helper/Choice.html s.
+An application's UI can then convert these to JFace's
+@ICompletionProposal@ type.
+
+Obtaining completion choices consists of supplying a partial OCL expression
+(up to the cursor location in the UI editor) to the
+"@OCLHelper::getSyntaxHelp(ConstraintKind, String)@":http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/helper/OCLHelper.html#getSyntaxHelp(org.eclipse.ocl.helper.ConstraintKind, java.lang.String) 
+method.  This method requires a @ConstraintKind@
+enumeration indicating the type of constraint that is to be parsed (some OCL
+constructs are restricted in the kinds of constraints in which they may be used).
+
+bc.. 
+helper.setContext(EXTLibraryPackage.Literals.BOOK);
+
+List<Choice> choices = helper.getSyntaxHelp(
+    ConstraintKind.INVARIANT,
+    "Book.allInstances()->excluding(self).");
+
+for (Choice next : choices) {
+    switch (next.getKind()) {
+    case OPERATION:
+    case SIGNAL:
+        // the description is already complete
+        System.out.println(next.getDescription());
+    case PROPERTY:
+    case ENUMERATION_LITERAL:
+    case VARIABLE:
+        System.out.println(next.getName() + " : " + next.getDescription();
+        break;
+    default:
+        System.out.println(next.getName());
+        break;
+    }
+}
+p. 
+
+A sample of the output looks like:
+
+bc.. 
+author : Writer
+title : String
+oclIsKindOf(typespec : OclType)
+oclAsType(typespec : OclType) : T
+...
+p. 
+
+The choices also provide the model element that they represent, from which a
+more sophisticated application can construct appropriate JFace completions,
+including context information, documentation, etc.
+
+h3(ast). Working with the AST
+
+The OCL Interpreter models the OCL language using EMF's Ecore with support for
+Java-style generic types.  The bindings of this generic Abstract Syntax Model
+for Ecore and for UML substitutes these metamodels' constructs for the generic
+type parameters, plugging in the definitions of the "classifier", "operation",
+"constraint", etc. constructs of the OCL vocabulary.  These bindings, then,
+support persistence in or as an adjunct to Ecore and UML models.
+
+For processing the abstract syntax tree (AST) parsed from OCL text, the API
+supplies a 
+"@Visitor@":http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/utilities/Visitor.html 
+interface.  By implementing this interface (or extending the
+"@AbstractVisitor@":http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/utilities/AbstractVisitor.html 
+class, which is recommended), we can walk the AST of an OCL expression to
+transform it in some way.
+This is exactly what the interpreter, itself, does to evaluate an
+expression:  it just walks the expression using an evaluation visitor.  For
+example, we can count the number times that a specific attribute is
+referenced in an expression:
+
+bc.. 
+helper.setContext(EXTLibraryPackage.Literals.BOOK);
+
+OCLExpression<EClassifier> query = helper.parseQuery(
+    "Book.allInstances()->select(b : Book | b <> self and b.title = self.title)");
+
+AttributeCounter visitor = new AttributeCounter(
+    EXTLibraryPackage.Literals.BOOK__TITLE);
+
+System.out.println(
+    "Number of accesses to the 'Book::title' attribute: " + query.accept(visitor));
+p. 
+
+where the visitor is defined thus:
+
+bc.. 
+class AttributeCounter extends AbstractVisitor<Integer,
+		EClassifier, EOperation, EStructuralFeature, EEnumLiteral,
+		EParameter, EObject, EObject, EObject, Constraint> {
+    private final EAttribute attribute;
+    
+    AttributeCounter(EAttribute attribute) {
+        super(0);  // initialize the result of the AST visitiation to zero
+        this.attribute = attribute;
+    }
+    
+    protected Integer handlePropertyCallExp(PropertyCallExp<EClassifier, EStructuralFeature> callExp,
+    		Integer sourceResult, List<Integer> sourceResults) {
+        if (callExp.getReferredProperty() == attribute) {
+            // count one
+            result++;
+        }
+        
+        return result;
+    }
+}
+p. 
+
+h3(serialize). Serialization
+
+Because the OCL expression AST is a graph of EMF objects, we can serialize it
+to an XMI file and deserialize it again later.  To save our example expression,
+we start over by initializing our @OCL@ instance with
+a resource in which it will persist the environment and in which we will
+persist the parsed expression.  The key is in the persistence of the
+environment:  OCL defines a variety of classes on the fly by template
+instantiation.  These include collection types, tuple types, and message types.
+Other elements needing to be persisted are additional operations and attributes
+that may be defined in the local environment.
+
+bc.. 
+// create a resource in which to store our parsed OCL expressions and constraints
+Resource res = resourceSet.createResource(
+    URI.createPlatformResourceURI("/MyProject/myOcl.xmi", true);
+
+// initialize a new OCL environment, persisted in this resource
+ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE, res);
+
+// for the new OCL environment, create a new helper
+helper = OCL.createOCLHelper();
+
+helper.setContext(EXTLibraryPackage.Literals.BOOK);
+
+// try a very simple expression
+OCLExpression<EClassifier> query = helper.createQuery("self.title");
+
+// store our query in this resource.  All of its necessary environment has
+// already been stored, so we insert the query as the first resource root
+res.getContents().add(0, query);
+
+res.save(Collections.emptyMap());
+res.unload();
+p. 
+
+To load a saved OCL expression is just as easy:
+
+bc.. 
+Resource res = resourceSet.getResource(
+    URI.createPlatformResourceURI("/MyProject/myOcl.xmi", true),
+    true;
+
+@SuppressWarnings("unchecked")
+OCLExpression<EClassifier> query = (OCLExpression<EClassifier>) res.getContents().get(0);
+
+System.out.println(ocl.evaluate(myBook, query));
+p. 
+
+In the snippet above, we used the @OCL@'s convenience
+method for a one-shot evaluation of a query.  Looking at the contents of the
+XMI document that we saved, we see that the @self@
+variable declaration is not owned by the query expression, but is, rather,
+free-standing.  The @ExpressionInOCL@ metaclass solves
+this problem by providing properties that contain context variable declarations,
+including @self@ and (in the context of operations)
+operation parameters. 
+
+bc.. 
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore">
+  <ocl.ecore:PropertyCallExp xmi:id="_897fVPfmEduCQ48h829a5g">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+    <source xsi:type="ocl.ecore:VariableExp" xmi:id="_897fVvfmEduCQ48h829a5g" name="self" referredVariable="_897fUvfmEduCQ48h829a5g">
+      <eType xsi:type="ecore:EClass" href="http:///org/eclipse/emf/examples/library/extlibrary.ecore/1.0.0#//Book"/>
+    </source>
+    <referredProperty xsi:type="ecore:EAttribute" href="http:///org/eclipse/emf/examples/library/extlibrary.ecore/1.0.0#//Book/title"/>
+  </ocl.ecore:PropertyCallExp>
+  <ocl.ecore:Variable xmi:id="_897fUvfmEduCQ48h829a5g" name="self">
+    <eType xsi:type="ecore:EClass" href="http:///org/eclipse/emf/examples/library/extlibrary.ecore/1.0.0#//Book"/>
+  </ocl.ecore:Variable>
+</xmi:XMI>
+p. 
+
+h3(summary). Summary
+
+To illustrate how to work with the OCL API, we
+
+* Parsed and validated OCL expressions and constraints.
+* Evaluated OCL query expressions and constraints.
+* Obtained content-assist suggestions for the completion of OCL expressions.
+* Transformed an OCL expression AST using the _Visitor_ pattern.
+* Saved and loaded OCL expressions to/from XMI resources.
+
+"Copyright (c) 2000, 2011 IBM Corporation and others. All Rights Reserved.":http://www.eclipse.org/legal/epl-v10.html 
