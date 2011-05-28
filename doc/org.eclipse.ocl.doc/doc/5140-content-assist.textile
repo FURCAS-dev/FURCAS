@@ -68,3 +68,4 @@ bc..
 choices = helper.getSyntaxHelp(ConstraintKind.POSTCONDITION,
     "self.author.oclIs");
 p. 
+
