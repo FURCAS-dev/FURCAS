@@ -1,0 +1,53 @@
+h1(#ProgrammersGuide). Programmers Guide
+
+The Programmers Guide describes the ways in which Eclipse OCL can be used from Java programs.
+
+The OCL Parser/Interpreter provides an implementation of the "Object Constraint Language 2.3":http://www.omg.org/spec/OCL/2.3 specification for EMF-based metamodels and models.  It offers OCL
+constraint and query parsing and evaluation, model-based validation, and
+provides an infrastructure for content assist in textual editors.
+
+The following features are supported in the current version:
+
+* Classifier invariant constraints
+* Operation precondition and postcondition constraints and body conditions
+* Property constraints (initial-value and derivation)
+* Attribute and operation definitions (def: expressions)
+* Package context declaration
+* Basic values and types
+* Collection types
+* Navigation of attributes and association ends
+* Operation invocation
+* Iteration expressions (all standard iterators)
+* Let expressions
+* If expressions
+* Tuples
+* Message expressions, including unspecified values
+* Operations predefined by OCL:  allInstances(), oclIsKindOf(), oclIsTypeOf(), oclAsType(), oclIsNew()
+* Escape syntax for illegal names:  type, operation, attribute, etc. names that correspond to OCL reserved words can be escaped in the standard fashion using a leading underscore ('_').  In addition, names that contain spaces or tabs can be escaped by enclosing them in double-quotes ('"'; this is non-standard).  e.g., @self.ownedRule->forAll(c : Constraint | c._context = self)@
+
+The above constructs are supported by the parser for parsing and
+for evaluation, with the exception of the oclIsNew() operation and
+message expressions.  All of the above are supported for both Ecore
+and UML models.  The following are supported by default for UML
+(both in parsing and evaluation):
+* Navigation of non-navigable association ends (including those that are owned by the association)
+* Qualified association end navigation
+* Navigation to association classes, including source qualifiers
+* Operations predefined by OCL: oclIsInState()
+
+The following features are provided in addition to the OCL specification:
+
+* String case conversion operations:  toUpper(), toLower()
+* Support for comparison (<, <=, etc.) and sorting of any java @Comparable@ s of conformant types
+* Transitive closure of associations:  closure(expr : OCLExpression) iterator
+* Navigation of "hidden" opposites of references specified in Ecore models using a @Property.oppositeRoleName@ annotation with source @http://schema.omg.org/spec/MOF/2.0/emof.xml@ on the forward reference, producing an @OppositePropertyCallExp@ expression
+
+The OCL implementation is defined in plug-ins for convenient deployment in
+Eclipse, but as is the case for EMF, it can also be used stand-alone.  The
+plug-ins are partitioned thus:
+
+* @org.eclipse.ocl@:  the core parsing, evaluation, and content assist services.  Definition of the OCL Abstract Syntax Model and Environment API.  These APIs are generic, independent of any particular metamodel (though using Ecore/EMF as the meta-meta-model).
+* @org.eclipse.ocl.ecore@:  implementation of the Ecore metamodel environment, binding the generic Environment and AST APIs to the Ecore language.  Provides support for working with OCL constraints and queries targeting Ecore models.
+* @org.eclipse.ocl.uml@:  implementation of the UML metamodel environment, binding the generic Environment and AST APIs to the UML language.  Provides support for working with OCL targeting UML models.
+
+Please refer to the "OCL Interpreter Tutorial":#OCLInterpreterTutorial for review of the code samples.

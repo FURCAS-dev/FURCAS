@@ -1,0 +1,4 @@
+// Copied from org.eclipse.ocl.ecore.tests.DocumentationExamples.java
+
+		// create an OCL instance for Ecore
+		OCL ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);

@@ -1,0 +1,23 @@
+// Copied from org.eclipse.ocl.ecore.tests.DocumentationExamples.java
+
+		EOperation oper = null;
+		for (EOperation next : EcorePackage.Literals.EMODEL_ELEMENT.getEOperations()) {
+		    if ("getEAnnotation".equals(next.getName())) {
+		        oper = next;
+		        break;
+		    }
+		}
+
+		// define a post-condition specifying the value of EModelElement::getEAnnotation(EString).
+		// This operation environment includes variables representing the operation
+		// parameters (in this case, only "source : String") and the operation result
+		helper.setOperationContext(EcorePackage.Literals.ECLASS, oper);
+		Constraint body = helper.createPostcondition(
+		    "result = self.eAnnotations->any(ann | ann.source = source)");
+
+		// define a derivation constraint for the EReference::eReferenceType property
+		helper.setAttributeContext(
+		    EcorePackage.Literals.EREFERENCE,
+		    EcorePackage.Literals.EREFERENCE__EREFERENCE_TYPE);
+		Constraint derive = helper.createDerivedValueExpression(
+		    "self.eType->any(true).oclAsType(EClass)");

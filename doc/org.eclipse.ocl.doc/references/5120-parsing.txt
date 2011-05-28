@@ -1,0 +1,26 @@
+// Copied from org.eclipse.ocl.ecore.tests.DocumentationExamples.java
+
+		EPackage.Registry registry = new EPackageRegistryImpl();
+		registry.put(EXTLibraryPackage.eNS_URI, EXTLibraryPackage.eINSTANCE);
+		EcoreEnvironmentFactory environmentFactory = new EcoreEnvironmentFactory(registry);
+		OCL ocl = OCL.newInstance(environmentFactory);
+
+		// get an OCL text file via some hypothetical API
+		InputStream in = getInputStream("/model/parsingDocumentsExample.ocl");
+
+		Map<String, Constraint> constraintMap = new HashMap<String, Constraint>();
+
+		// parse the contents as an OCL document
+		try {
+		    OCLInput document = new OCLInput(in);
+		    
+		    List<Constraint> constraints = ocl.parse(document);
+		    for (Constraint next : constraints) {
+		        constraintMap.put(next.getName(), next);
+		        
+		        OCLExpression<EClassifier> body = next.getSpecification().getBodyExpression();
+		        System.out.printf("%s: %s%n", next.getName(), body);
+		    }
+		} finally {
+		    in.close();
+		}

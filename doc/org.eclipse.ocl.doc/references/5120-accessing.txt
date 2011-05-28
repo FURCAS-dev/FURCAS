@@ -1,0 +1,19 @@
+// Copied from org.eclipse.ocl.ecore.tests.DocumentationExamples.java
+
+		Library library = getLibrary();  // get library from a hypothetical source
+
+		OCLHelper<EClassifier, ?, ?, Constraint> helper = ocl.createOCLHelper();
+
+		// use the constraints defined in the OCL document
+
+		// use the getBooks() additional operation to find a book
+		helper.setContext(EXTLibraryPackage.Literals.LIBRARY);
+		OCLExpression<EClassifier> query = helper.createQuery(
+		    "getBooks('Bleak House')->asSequence()->first()");
+
+		Book book = (Book) ocl.evaluate(library, query);
+		System.out.printf("Got book: %s%n", book);
+
+		// use the unique_title constraint to validate the book
+		System.out.printf("Validate book: %b%n",
+		    ocl.check(book, constraintMap.get("unique_title")));	

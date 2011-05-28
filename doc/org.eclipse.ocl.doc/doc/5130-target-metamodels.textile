@@ -1,0 +1,168 @@
+h2(#TargetMetamodels). OCL Relationship to Metamodels
+
+The OCL implementation provides support for models defined using either the
+Ecore or the UML metamodel (as implemented by the Eclipse EMF and UML2 projects),
+and an "extensibility API":#AdvancedMetamodelBindings that allows
+additional EMF-based metamodels to be plugged in.
+
+bq.. 
+The direct and indirect coupling of the Ecore and UML2 meta-models to Ecore makes exact compliance with the OMG specification very difficult, particularly in the area of reflection. Eclipse OCL is therefore migrating to a new potentially 100% OMG compliant Pivot metamodel that hides the differencess between OMG's UML and EMOF and Eclipse's UML and Ecore. The Indigo release provides a preview of the new metamodel which is used by the Xtext editors and Xtext OCL Console.
+p. 
+The OCL API implements support for different target metamodels via the "@EnvironmentFactory@":http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/EnvironmentFactory.html interface. An implementation of this interface binds the metamodel's metaclasses to the generic type parameters of the "@OCL@":http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/OCL.html class. The metamodel-specific "@Environment@":http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/Environment.html implementation constructed by this factory implements the reflection capability required by OCL to discover the elements of the model being constrained and the relationships between them.
+
+h3. The Ecore Metamodel Binding
+
+An OCL binding for the Ecore metamodel is provided by the @org.eclipse.ocl.ecore@ plug-in.  It is best suited to parsing and evaluating OCL constraints on Ecore models.  Evaluation of constraints is supported on instances of the EMF-generated Java API (Ecore as the source for the genmodel) and on dynamic EObjects.
+
+As is illustrated by most of the examples in this documentation, the Ecore binding is provided by the
+"@EcoreEnvironmentFactory@":http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/ecore/EcoreEnvironmentFactory.html class.  By default, the Ecore environment uses the static @EPackage@ registry to look up package names.  It can also be supplied with an alternative package registry (for example, one local to a @ResourceSet@) but it will always use the static registry as a backup.  Aside from the package registry, the Ecore environment factory maintains no state.  So, when the shared registry is to be used, the static @EcoreEnvironmentFactory.INSTANCE@ is most practical.
+
+The Ecore binding for OCL provides the following capabilities, reflecting the subset of Ecore's modeling constructs with respect to UML:
+
+table{border:1px solid black}. 
+|_. Capability|_. Parse|_. Evaluate|
+|Classifier invariant constraints|Y|Y|
+|Operation precondition and postcondition constraints and body conditions|Y|N|
+|Property constraints (initial-value and derivation)|Y|Y*|
+|Attribute and operation definitions (def: expressions)|Y|Y|
+|Package context declaration|Y|n/a|
+|Basic values and types, mapped from the standard EDataTypes to OCL's primitive types|Y|Y|
+|Collection types|Y|Y|
+|Navigation of attributes and references|Y|Y|
+|Operation invocation|Y|Y|
+|Iteration expressions (all standard iterators)|Y|Y|
+|Let expressions|Y|Y|
+|If expressions|Y|Y|
+|Tuples|Y|Y|
+|Message expressions, including unspecified values|Y|N|
+|Operations predefined by OCL:  allInstances()|Y|Y|
+|Operations predefined by OCL:  oclIsKindOf(), oclIsTypeOf(), oclAsType()|Y|Y|
+|Operations predefined by OCL:  oclIsNew()|Y|N|
+|@pre expressions|Y|N|
+|\3. * derivation only|
+*Ecore metamodel capability matrix*
+
+Because Ecore does not define analogues of some of the UML metaclasses required by the OCL Abstract Syntax Model, the Ecore binding defines these on its behalf, in the @platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.ecore@ metamodel.  These include:
+
+* @Constraint@: the model of an OCL constraint (when the @language@ is OCL)
+* @CallOperationAction@:  used in the model of message expressions
+* @SendSignalAction@: used in the model of message expressions
+* @ExpressionInOcl@:  it is this metaclass's general class @OpaqueExpression@ that Ecore does not define.  It is elided in the Ecore binding
+* @State@:  Ecore provides no behaviour modeling capabilities.  The Ecore binding simply substitutes @EObject@
+
+For applications that work exclusively with the Ecore binding for OCL, the @org.eclipse.ocl.ecore@ package defines a subclass of the @OCL@ class that supplies all of the generic type parameter bindings to simplify typing (in the absence of type aliasing in Java). It also provides Ecore-specific convenience factory methods for the @OCL@, itself, and narrows the return type of the factory methods for the @OCLHelper@ and @Query@ interfaces.  These specialized interfaces likewise supply the generic type parameter bindings for Ecore.
+
+h3. The UML Metamodel Binding
+
+An OCL binding for the UML metamodel is provided by the @org.eclipse.ocl.uml@ plug-in.  It is best suited to parsing and evaluating OCL constraints on UML models.  Evaluation of constraints is supported on instances of the UML2-generated Java API (UML as the source for the genmodel), on dynamic EObjects (using an Ecore model created by the UML-to-Ecore converter), and on @InstanceSpecification@ elements in the UML model.
+
+The UML binding is provided by the "@UMLEnvironmentFactory@":http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/uml/UMLEnvironmentFactory.html class.  By default, the UML environment factory and all of the environment contexts that it creates use a private @ResourceSet@ to look up the corresponding UML model(s) against which OCL constraints are parsed.
+
+* It is the client's responsibility to ensure that the UML model is loaded in the resource set used by the UML environment factory instance.
+
+The UML environment factory can alternatively be initialized with a resource set of the client's choosing.  Ordinarily, the UML environment uses its resource set's local @EPackage@ registry to look up EMF-generated @EPackage@ names corresponding to UML models.  A custom package registry may be provided by the client if necessary.
+
+The UML binding for OCL provides the following capabilities:
+
+table{border:1px solid black}. 
+|_. Capability|_. Parse|_. Evaluate|
+|Classifier invariant constraints|Y|Y|
+|Operation precondition and postcondition constraints and body conditions|Y|N|
+|Property constraints (initial-value and derivation)|Y|Y*|
+|Attribute and operation definitions (def: expressions)|Y|Y|
+|Package context declaration|Y|n/a|
+|Basic values and types|Y|Y+|
+|Collection types|Y|Y|
+|Operation invocation|Y|Y-|
+|Navigation of attributes and references|Y|Y|
+|Navigation of non-navigable association ends (including those that are owned by the association)|Y|Y|
+|Qualified association end navigation|Y|Y=|
+|Navigation to association classes, including source qualifiers|Y|Y=|
+|Iteration expressions (all standard iterators)|Y|Y|
+|Let expressions|Y|Y|
+|If expressions|Y|Y|
+|Tuples|Y|Y|
+|Message expressions, including unspecified values|Y|N|
+|Operations predefined by OCL:  allInstances()|Y|Y|
+|Operations predefined by OCL:  oclIsKindOf(), oclIsTypeOf(), oclAsType()|Y|Y|
+|Operations predefined by OCL:  oclIsInState()|Y|N|
+|Operations predefined by OCL:  oclIsNew()|Y|N|
+|@pre expressions|Y|N|
+|\3. * derivation only|
+|\3. + OCL defines the Real primitive type that is missing from UML, but not a LiteralReal|
+|\3. - with InstanceSpecifications, only where body constraints are defined|
+|\3. = only with InstanceSpecifications|
+*UML metamodel capability matrix*
+
+A special case of the UML environment's support for dynamic EObjects, mentioned
+above, is stereotype applications.  The Eclipse UML2 component uses dynamic
+EMF in the implementation of stereotype applications, by converting UML
+@Profile@ s to @EPackage@ s.
+Constraints parsed in the context of a UML @Stereotype@
+can be evaluated on applications (instances) of that stereotype or on model
+elements to which the stereotype is applied.  This applies only to UML models,
+themselves, as instances of the UML metamodel (stereotyping is only available
+in the UML metamodel).
+
+For applications that work exclusively with the UML binding for OCL, the
+@org.eclipse.ocl.uml@ package defines a subclass of
+the @OCL@ class that supplies all of the generic type
+parameter bindings to simplify typing (in the absence of type aliasing in Java).
+It also provides UML-specific convenience factory methods for the
+@OCL@, itself, and narrows the return type of the factory
+methods for the @OCLHelper@ and
+@Query@ interfaces.  These specialized interfaces likewise
+supply the generic type parameter bindings for UML.
+
+
+h3. The Pivot Metamodel Binding
+
+A preliminary OCL binding for the Pivot metamodel is provided in the Indigo release by the @org.eclipse.ocl.examples.pivot@ plug-in. It is planned to promote this to @org.eclipse.ocl.pivot@ in the Juno release.
+
+The pivot metamodel prototypes resolutions of the following problems in the OCL 2.3 specification
+* UML-alignment
+* OCL Standard Library model
+* XMI interchange
+* Complete OCL implementability
+
+The support for an OCL Standard Library model enables large parts of the OCL specification to be captured by models. This makes the behaviour mutable and extensible through definition of alternate or extended library models. (The corresponding Ecore and UML bindings have an Ecore representation of the library but much of its functionality is directly implemented and so immutable.)  
+
+The pivot metamodel is auto-generated by a package merge of
+* selected parts of the UML metamodel
+* additional OCL packages
+* implementation-specific packages
+
+The implementation-specific packages provide
+* Visitors throughout the entire metamodel (OCL *and* MOF)
+* Ecore extensions
+
+It is anticipated that the performance advantages of a uniform compliant metamodel, without the complexities of the templates from the @org.eclipse.ocl@ plugin, will outweigh the initial overhead of converting an Ecore or UML metamodel to Pivot form. Once this has been demonstrated, the direct Ecore and UML metamodels will be deprecated.
+
+The Pivot binding is provided by the
+"@PivotEnvironmentFactory@":http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/examples/pivot/utilities/PivotEnvironmentFactory.html class.  For compatibility, as a default, the Pivot environment uses the static @EPackage@ registry to look up package names. This default is deprecated since the domain of @allInstances()@ may be very large when many models are registered.  It should therefore be supplied with an alternative package registry (for example, one local to a @ResourceSet@) for relevant metamodels. The static registry is then used as a backup for package lookups, but not for @allInstances()@.  The Pivot environment factory maintains the Pivot models associated with
+* Ecore metamodels in use
+* UML metamodels in use
+* Library models in use
+* Concrete Syntax source models
+** OCLinEcore (rather than Ecore)
+** Complete OCL
+** OCL Standard Library
+
+The Pivot binding for OCL will provide the full capabilities of the UML binding, but at present only the Ecore facilities have been tested. The Pivot binding has the additional ability to support extensions to the library.
+
+For applications that work exclusively with the Pivot binding for OCL, the @org.eclipse.ocl.examples.pivot@ package defines an @OCL@ class that provides similar facilities to the corresponding Ecore and UML binding equivalents.
+
+The Pivot metamodel is used by Eclipse OCL for:
+* all Xtext editors; editing, parsing, analysis and validation
+* the Xtext OCL console; editor and evaluation
+* EMF delegates using the http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot URI
+* explicit use of the Pivot metamodel from Java
+
+The Pivot metamodel is not used by Eclipse OCL for:
+* OCL console editing and evaluation
+* EMF delegates using the http://www.eclipse.org/emf/2002/Ecore/OCL URI
+* "Impact Analyzer":#ImpactAnalyzer.
+* explicit use of the Ecore or UML bindings from Java
+
+Note that the Indigo OCLinEcore editor uses the http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot URI and so uses the "Pivot Evaluator":#PivotEvaluator, whereas the Helios OCLinEcore editor used the http://www.eclipse.org/emf/2002/Ecore/OCL URI and so the Ecore evaluator. A file using the http://www.eclipse.org/emf/2002/Ecore/OCL URI will automatically be upgraded to the http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot URI when edited using the Indigo OCLinEcore editor.
+
