@@ -4,7 +4,7 @@ h2. Languages
 
 h3(#EssentialOCL). The Essential OCL 
 
-The core functionality of OCL that supports expressions over models is called the Essential OCL. This language is of very limited use by itself since there is no way in whuich the models can be provided.
+The core functionality of OCL that supports expressions over models is called the Essential OCL. This language is of very limited use by itself since there is no way in which the models can be provided.
 
 Essential OCL is extended in various ways to provide this missing context.
 
@@ -29,13 +29,11 @@ h3(#CompleteOCL). The Complete OCL
 
 The Complete OCL provides a language for a document in which OCL complements an existing meta-model with invariants, and additional features.
 
-h3(#OCLstdlib). The Standrad Library
+h3(#OCLstdlib). The Standard Library
 
 h3(#Extension). Eclipse OCL Extensions
 
 Imports
-
-h2(#OCLlib). The OCL Standard Library
 
 h2(#Tools). Tools
 

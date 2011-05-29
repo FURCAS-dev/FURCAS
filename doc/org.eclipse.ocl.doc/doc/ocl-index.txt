@@ -2,6 +2,7 @@
 
 1000-users-guide.textile
 
+2000-ocl-standard-library.textile
 
 3000-examples.textile
 3200-oclInterpreterExample.textile
