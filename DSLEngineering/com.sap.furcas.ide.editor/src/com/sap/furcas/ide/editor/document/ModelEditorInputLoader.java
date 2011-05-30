@@ -13,10 +13,10 @@ package com.sap.furcas.ide.editor.document;
 import java.util.Collection;
 import java.util.HashSet;
 
-import org.antlr.runtime.Lexer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -28,24 +28,19 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.FileEditorInput;
 
 import com.sap.furcas.ide.editor.CtsActivator;
-import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
-import com.sap.furcas.modeladaptation.emf.lookup.QueryBasedEcoreMetaModelLookUp;
-import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
-import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
-import com.sap.furcas.unparser.PrettyPrinter;
-import com.sap.furcas.unparser.SyntaxAndModelMismatchException;
-import com.sap.furcas.unparser.extraction.textblocks.TextBlockTCSExtractorStream;
+import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
 /**
  * Helper class that transforms a {@link IEditorInput} into a {@link ModelEditorInput}
+ * by selecting and loading the correct root object and its corresponding root textblock.
  * 
  * @author Stephan Erb
  *
@@ -54,36 +49,39 @@ public class ModelEditorInputLoader {
 
     private final ResourceSet resourceSet;
     private final OppositeEndFinder oppositeEndFinder;
-    private final AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory;
     private final ConcreteSyntax syntax;
 
-    public ModelEditorInputLoader(ConcreteSyntax syntax, ResourceSet resourceSet, OppositeEndFinder oppositeEndFinder, AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) {
+    public ModelEditorInputLoader(ConcreteSyntax syntax, ResourceSet resourceSet) {
         this.syntax = syntax;
         this.resourceSet = resourceSet;
-        this.oppositeEndFinder = oppositeEndFinder;
-        this.parserFactory = parserFactory;
+        
+        // create an opposite end finder that knows about the static resources in the workspace
+        // It is required to find potential textblocks
+        this.oppositeEndFinder = Query2OppositeEndFinder.getInstance();
     }
 
     /**
      * Transform the given editor input to a {@link ModelEditorInput}.
      */
     public ModelEditorInput loadEditorInput(IEditorInput input) throws PartInitException {
-        if (!(input instanceof FileEditorInput)) {
+        URI uri = null;
+        if (input instanceof FileEditorInput) {
+            IFile file = ((FileEditorInput) input).getFile();
+            uri = URI.createPlatformResourceURI(file.getFullPath().toString(), /*encode*/ true);
+        } else if (input instanceof URIEditorInput){
+            uri = ((URIEditorInput) input).getURI();
+        } else {
             throw new PartInitException("Cannot load editor input " + input.getName() + ". Unsupported input format "
                     + input.getClass().getCanonicalName() + ".");
         }
-
-        IFile file = ((FileEditorInput) input).getFile();
-        URI uri = URI.createPlatformResourceURI(file.getFullPath().toString(), /*encode*/ true);
         
         Resource resource = resourceSet.getResource(uri, /*load*/ true);
         validateResource(resource);
 
         EObject root = resource.getContents().iterator().next();
-        TextBlock rootBlock = findOrCreateRootBlockForRootObject(root);
-        ModelEditorInput modelInput = new ModelEditorInput(file, root, rootBlock);
-                
-        return modelInput;
+        TextBlock rootBlock = findRootBlockForRootObject(root, TcsUtil.getMainClassTemplate(syntax));
+        
+        return new ModelEditorInput(root, rootBlock);
     }
 
     private void validateResource(Resource resource) throws PartInitException {
@@ -95,29 +93,6 @@ public class ModelEditorInputLoader {
             }
             throw new PartInitException(message.toString());
         }
-    }
-
-    /**
-     * Get a corresponding root TextBlock for the given rootObject.
-     * If no TextBlock does exist yet, a new one is created.
-     */
-    private TextBlock findOrCreateRootBlockForRootObject(EObject rootObject) throws PartInitException {
-        ClassTemplate rootTemplate = TcsUtil.getMainClassTemplate(syntax);
-
-        TextBlock rootBlock = findRootBlockForRootObject(rootObject, rootTemplate);
-        if (rootBlock == null) {
-            // no suitable node found, so create a new one
-            try {
-                TextBlockTCSExtractorStream target = new TextBlockTCSExtractorStream(parserFactory);
-                IMetaModelLookup<EObject> metamodelLookup = new QueryBasedEcoreMetaModelLookUp(resourceSet, parserFactory.getMetamodelURIs());
-                PrettyPrinter prettyPrinter = new PrettyPrinter(syntax, metamodelLookup);
-                prettyPrinter.prettyPrint(rootObject, target);
-                return target.getPrintedResultRootBlock();
-           } catch (SyntaxAndModelMismatchException e) {
-                throw new PartInitException("Model does not (fully) conform to syntax " + syntax.getName() + ": \n\n" + e.getCause().getMessage(), e);
-            }
-        }
-        return rootBlock;
     }
 
     private TextBlock findRootBlockForRootObject(EObject rootObject, ClassTemplate rootTemplate) throws PartInitException {

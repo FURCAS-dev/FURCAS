@@ -4,8 +4,8 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
-import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CharStream;
+import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.TokenStream;
 
@@ -81,7 +81,7 @@ public abstract class AbstractParserFactory<P extends ObservableInjectingParser,
         Class<P> parserClass = getParserClass();
         try {
             Constructor<P> c = parserClass.getConstructor(TokenStream.class);
-            P parser = c.newInstance(new ANTLRStringStream());
+            P parser = c.newInstance(new CommonTokenStream());
             return parser.getSyntaxUUID();
         } catch (Exception e) {
             return null;

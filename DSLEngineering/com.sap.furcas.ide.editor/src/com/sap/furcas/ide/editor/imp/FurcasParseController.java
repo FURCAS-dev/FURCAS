@@ -8,14 +8,14 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package com.sap.furcas.ide.editor.imp.parsing;
+package com.sap.furcas.ide.editor.imp;
 
 import java.util.Collections;
 import java.util.Iterator;
 
 import org.antlr.runtime.Lexer;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.parser.ISourcePositionLocator;
 import org.eclipse.imp.parser.ParseControllerBase;
@@ -24,24 +24,17 @@ import org.eclipse.imp.services.IAnnotationTypeInfo;
 import org.eclipse.imp.services.ILanguageSyntaxProperties;
 import org.eclipse.jface.text.IRegion;
 
-import com.sap.furcas.ide.editor.CtsActivator;
-import com.sap.furcas.ide.editor.document.CtsDocument;
-import com.sap.furcas.ide.editor.imp.AbstractFurcasEditor;
+import com.sap.furcas.ide.editor.commands.ParseCommand;
 import com.sap.furcas.ide.editor.imp.AbstractFurcasEditor.ContentProvider;
 import com.sap.furcas.ide.editor.imp.services.FurcasSourcePositionLocator;
 import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
-import com.sap.furcas.runtime.parser.ParsingError;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 import com.sap.furcas.runtime.textblocks.model.VersionedTextBlockNavigator;
-import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
-import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
-import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
-import com.sap.ide.cts.parser.errorhandling.SemanticParserException.Component;
 import com.sap.ide.cts.parser.incremental.IncrementalParserFacade;
 
 /**
@@ -55,53 +48,35 @@ import com.sap.ide.cts.parser.incremental.IncrementalParserFacade;
  */
 public abstract class FurcasParseController extends ParseControllerBase {
     
-    /* Implementation note:
-     * 
-     * This class is called from at least the UI and the parsing thread.
-     * 
-     * It may happen that the UI thread is still using an old parsing result
-     * (e.g. iterating over the tokens to refresh the coloring, or traversing
-     * the subblocks to update the outline view) while while this thread creates
-     * a new TextBlocks model.
-     * 
-     * This does work because a parser run will always create a new version without
-     * altering an existing REFERENCE or CURRENT version of the TextBlocks model.
-     *
-     */
-    
-    protected EditingDomain editingDomain;
+    protected TransactionalEditingDomain editingDomain;
     protected ContentProvider contentProvider;
     protected IncrementalParserFacade parserFacade;
     protected final AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory;
     
     protected final IAnnotationTypeInfo annotationTypeInfo;
-    protected FurcasSourcePositionLocator sourcePositionLocator;
-    protected ILanguageSyntaxProperties languageSyntaxProperties;
+    protected final FurcasSourcePositionLocator sourcePositionLocator;
+    protected final ILanguageSyntaxProperties languageSyntaxProperties;
     
     protected boolean completelyItitialized = false;
-    
-    protected String EMF_VALDIATION_MARKER_TYPE = "org.eclipse.emf.ecore.diagnostic";
-        
 
     public FurcasParseController(AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>  parserFactory, ILanguageSyntaxProperties languageSyntaxProperties) {
         super(parserFactory.getLanguageId());
         this.parserFactory = parserFactory;
         this.sourcePositionLocator = new FurcasSourcePositionLocator();
         this.annotationTypeInfo = new SimpleAnnotationTypeInfo();
-        this.annotationTypeInfo.addProblemMarkerType(EMF_VALDIATION_MARKER_TYPE);
         this.languageSyntaxProperties = languageSyntaxProperties;
     }
     
     @SuppressWarnings("hiding")
-    public void completeInit(EditingDomain editingDomain, ContentProvider contentProvider, IncrementalParserFacade parserFacade) {
+    public void completeInit(TransactionalEditingDomain editingDomain, ContentProvider contentProvider, IncrementalParserFacade parserFacade) {
         this.editingDomain = editingDomain;
         this.contentProvider = contentProvider;
         this.parserFacade = parserFacade;
         
-        setParsingResult(contentProvider.getDocument().getRootBlock());
+        setCurrentAst(contentProvider.getDocument().getRootBlock());
         completelyItitialized = true;
     }
-    
+
     /**
      * Incrementally parse the content of the linked {@link AbstractFurcasEditor}. The given input argument,
      * representing the entire document content, is always ignored. The content for incremental parsing
@@ -115,86 +90,13 @@ public abstract class FurcasParseController extends ParseControllerBase {
             monitor.setCanceled(true);
             return null; // IMP will call us before we are done initializing
         }
-        CtsDocument document = contentProvider.getDocument();
+        ParseCommand command = new ParseCommand(editingDomain, contentProvider.getDocument(), parserFacade, handler);
+        editingDomain.getCommandStack().execute(command);
         
-        // 1) Write all buffered user edits to the underlying 
-        //    textblocks model. Synchronize to prevent concurrent
-        //    editing from within the UI thread.
-        synchronized (document.getLockObject()) {
-            document.flushUserEditsToTextBlocskModel();
-        }
-
-        // 2) Run the parser. This creates a new TextBlocks model
-        //    Parsing runs in the background only.
-        TextBlock blockWithUnparsedEdits = TbVersionUtil.getOtherVersion(document.getRootBlock(), Version.PREVIOUS);
-        if (blockWithUnparsedEdits == null) {
-            return getCurrentAst(); // parser was triggered by IMP, but there are no changes that require reparsing.
-        }
-        try {
-            parse(blockWithUnparsedEdits);
-        } catch (SemanticParserException e) {
-            handleParseException(e);
-        }
-        
-        if (getCurrentAst() == null || Version.REFERENCE != getCurrentAst().getVersion()) {
-            return null;
-        }
-        // 3) Merge all user edits that happened while step 2 was running.
-        //    Afterwards, run the short pretty printer to update all tokens according
-        //    to domain model changes. The order is essential here, because otherwise 
-        //    the offsets of the user's text edits are already invalid. 
-        synchronized (document.getLockObject()) {
-            document.setModelContent(getCurrentAst());
-            document.flushUserEditsToTextBlocskModel();
-            // FIXME: For now, disable the refresh of all tokens. It invalidates our curser position
-            //        This will be easier once we have implemented the TokenValueChanger
-            //        Stephan Erb, 19.05.2011
-            //document.expandToEditableVersion();
-            //document.refreshContentFromTextBlocksModel();
-        }
+        setCurrentAst(command.getParsingResult());
         return getCurrentAst();
     }
 
-    /**
-     * Run the parser. Whenever this method returns (normally or with exception)
-     * {@link #getCurrentAst()} is guranteed to return a valid TextBlock.  
-     */
-    private void parse(TextBlock oldBlock) throws SemanticParserException {
-        TextBlock newBlock = null;
-        try {
-            newBlock = parserFacade.parseIncrementally(oldBlock);
-            
-        } catch (SemanticParserException e) {
-            if (e.getComponentThatFailed() == Component.LEXICAL_ANALYSIS) {
-                setParsingResult(null);
-            } else {
-                // Lexing phase succeeded. We can use the created textblock as an intermediate result, as
-                // it is sufficient for services such as the token colorer.
-                TextBlock newlyLexedBlock = TbVersionUtil.getOtherVersion(oldBlock, Version.CURRENT);
-                setParsingResult(newlyLexedBlock);
-            }
-            throw e;
-        } catch (RuntimeException e) {
-            CtsActivator.logger.logError("Parser failed with internal error.", e);
-            throw e;
-        }
-        
-        // Both lexing and parsing were successfull. Make a new REFERENCE version. 
-        newBlock = (TextBlock) TbChangeUtil.cleanUp(newBlock);
-        setParsingResult(newBlock);
-    }
-
-    private void setParsingResult(TextBlock newlyLexedBlock) {
-        fCurrentAst = newlyLexedBlock;
-    }
-    
-    private void handleParseException(SemanticParserException parserException) {
-        for (ParsingError ex : parserException.getIssuesList()) {
-            handler.handleSimpleMessage(ex.getMessage(), ex.getIndex(), ex.getStopIndex(), ex.getPosition(), ex.getEndPosition(),
-                    ex.getLine(), ex.getEndLine());
-        }
-    }
-    
     @Override
     public Iterator<AbstractToken> getTokenIterator(final IRegion region) {
         if (!completelyItitialized || getCurrentAst() == null) {
@@ -241,6 +143,10 @@ public abstract class FurcasParseController extends ParseControllerBase {
             return null; // IMP will call us before we are done initializing
         }
         return (TextBlock) fCurrentAst;
+    }
+    
+    private void setCurrentAst(TextBlock rootBlock) {
+        fCurrentAst = rootBlock;
     }
 
     @Override
