@@ -16,7 +16,7 @@ package tutorial : tut = 'http://www.eclipse.org/mdt/ocl/oclinecore/tutorial'
       library.loans->select(book=self)->size() <= copies;
     attribute name : String;
     attribute copies : Integer;
-    property library#books : Library;
+    property library#books : Library[?];
     property loans : Loan[*] { derived,volatile }
     {
       derivation: library.loans->select(book=self);
@@ -30,14 +30,14 @@ package tutorial : tut = 'http://www.eclipse.org/mdt/ocl/oclinecore/tutorial'
   class Member
   {
     attribute name : String;
-    property library#members : Library;
+    property library#members : Library[?];
   }
   
   class Loan
   {
     property book : Book;
     property member : Member;
-    attribute date : ecore::EDate;
+    attribute date : ecore::EDate[?];
   }
 }
 
