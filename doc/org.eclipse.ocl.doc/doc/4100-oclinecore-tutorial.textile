@@ -22,7 +22,7 @@ You may then
 h3. References
 
 This tutorial assumes that the reader is familiar with generating models using EMF.
-The reader is referred to "Generating an EMF Model":../../../org.eclipse.emf.doc/tutorials/clibmod/clibmod.html.
+The reader is referred to "Generating an EMF Model":../../org.eclipse.emf.doc/tutorials/clibmod/clibmod.html.
 
 Other references:
 * The Object Constraint Language: Getting Your Models Ready for MDA. Jos Warmer and Anneke Kleppe. (Addison-Wesley Object Technology) 
@@ -113,9 +113,16 @@ Left-click on *Finish*.
 
 h4. Create a New Ecore Model
 
-We will now create a new model for this example; so right-click on the *model* folder
-in the *Tutorial* project to define the target folder and pop-up the context-sensitive menu
-and select *New->Other...*.
+We will now create a new model for this example.
+
+With many alternative editors for *.ecore files, the Eclipse platform is not always sure which to use; it seems to prefer the OCLinEcore editor over the Sample Ecore Editor, so there is an easy and harder way to create a new file.
+
+For either approach, first right-click on the *model* folder
+in the *Tutorial* project to define the target folder and pop-up the context-sensitive menu.
+
+The easy was is to select *New->File...* and enter *Tutorial.ecore*. If this opens up a text editor showing "package Tutorial" ... then the easy way works. You may skip the 'harder way' since you have already successfully opened your Ecore file with the OCLinEcore editor. 
+
+The harder way is to select *New->Other...*.
 
 In the *New* dialog left-click to expand *Eclipse Modeling Framework*, then left-click to select
 *Ecore Model*.
@@ -181,16 +188,24 @@ and loans of books to members. It may be viewed graphically using the Ecore Tool
 
 !{width:50%}images/4100-ecore_diagram.png(Ecore Diagram)!
 
-The OCL types @String@ and @Integer@ map
+Note that this diagram is an Ecore Diagram rather than a UML Diagram and so the default multiplicities for attributes is Ecore's [0..1] rather than OCLinEcore's and UML's [1..1].
+
+Note also that the OCL types @String@ and @Integer@ map
 to @EString@ and @EBigInteger@ in Ecore.
 
 h3. Create a Dynamic Model Instance
 
 At this point a corresponding EMF tutorial would show how to generate Java code for
-the meta-model and for an editor for the meta-model. Here we are concerned with modeling, so we will 
+the meta-model and an editor for the meta-model. Here we are concerned with modeling, so we will 
 continue with the models alone.
 
-In the outline, right-click on *Library* to show the context-sensitive menu
+In order to create a model from the meta-model, we require the meta-model to exist as a file so that both meta-model and model editors can reference it. Therefore  save the meta-model to a file  by clicking the close cross on the editor tab and answering *Yes* when prompted to save changes. Now reopen the metamodel by selecting *Tutorial.ecore* and selecting *Open With->OCLinEcore (Ecore) editor*.
+
+bq.. 
+It is necessary to explicitly specify *Open With->OCLinEcore (Ecore) editor* once to ensure that the Eclipse platform registers your preference for the OCLinEcore rather than Sample Ecore Editor.
+p. 
+
+In the outline, double-click on *Library* to select it and then right-click to show the context-sensitive menu
 and then left-click on *Create Dynamic Instance...* to start to create a
 new Dynamic Model with @Library@ at its root.
 
