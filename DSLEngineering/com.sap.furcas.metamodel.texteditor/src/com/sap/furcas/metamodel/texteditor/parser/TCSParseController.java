@@ -11,7 +11,7 @@
 package com.sap.furcas.metamodel.texteditor.parser;
 
 
-import com.sap.furcas.ide.editor.imp.parsing.FurcasParseController;
+import com.sap.furcas.ide.editor.imp.FurcasParseController;
 import com.sap.furcas.ide.editor.imp.services.DefaultLanguageSyntaxProperties;
 import com.sap.furcas.parser.tcs.TCSParserFactory;
 
