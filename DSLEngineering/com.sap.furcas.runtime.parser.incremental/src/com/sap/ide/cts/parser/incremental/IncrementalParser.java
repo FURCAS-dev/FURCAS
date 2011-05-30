@@ -17,7 +17,6 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
@@ -126,7 +125,6 @@ public class IncrementalParser extends IncrementalRecognizer {
      */
     public TextBlock incrementalParse(TextBlock root, boolean errorMode) throws SemanticParserException {
         reset();
-        setDefaultPartitionFromRoot(root);
         // get EOS and BOS from root block
         setEOSFromRoot(root);
         setBOSFromRoot(root);
@@ -313,25 +311,6 @@ public class IncrementalParser extends IncrementalRecognizer {
                 .getTokenStream()).getLastConsumedToken().equals(
                 TbNavigationUtil.lastToken(commonAncestor));
         return lastTokenOfBlockConsumed;
-    }
-
-    /**
-     * Sets the default partition that is used to assign all created model
-     * elements. In this case the same partition as the one from the root blocks
-     * corresponding model element is used.
-     * 
-     * 
-     * @param root
-     */
-    private void setDefaultPartitionFromRoot(TextBlock root) {
-        Resource defaultPartition = null;
-        if (root.getCorrespondingModelElements().size() != 0) {
-            defaultPartition = (root.getCorrespondingModelElements().iterator()
-                    .next()).eResource();
-        } else {
-            defaultPartition = ((EObject) root).eResource();
-        }
-        partitionHandler.setDefaultPartition(defaultPartition);
     }
 
     public List<ParsingError> getErrorList() {
