@@ -8,7 +8,7 @@
  *******************************************************************************/
 package com.sap.furcas.runtime.parser.impl;
 
-import org.antlr.runtime.ANTLRStringStream;
+import org.antlr.runtime.CharStream;
 import org.antlr.runtime.EarlyExitException;
 import org.antlr.runtime.FailedPredicateException;
 import org.antlr.runtime.MismatchedNotSetException;
@@ -51,7 +51,7 @@ public class ErrorMessageGenerator {
 		if (e.token instanceof ANTLR3LocationToken) {
             token = (ANTLR3LocationToken) e.token;
         }
-		if (e.input instanceof ANTLRStringStream) { // Lexer Exception
+		if (e.input instanceof CharStream) { // Lexer Exception
 			if (e instanceof MismatchedTokenException) {
 				MismatchedTokenException mte = (MismatchedTokenException) e;
 				msg = "Mismatched character " + getCharErrorDisplay(e.c)
@@ -151,7 +151,7 @@ public class ErrorMessageGenerator {
 //		    System.out.println(token);
 		    return new ParsingError(msg, token);
 		} else {
-		    TextLocation location = new TextLocation(e.index, -1 , e.line, e.charPositionInLine, e.line, e.charPositionInLine);
+		    TextLocation location = new TextLocation(e.index, e.index , e.line, e.charPositionInLine, e.line, e.charPositionInLine);
 		    return new ParsingError(msg, location );
 		}
 	}
