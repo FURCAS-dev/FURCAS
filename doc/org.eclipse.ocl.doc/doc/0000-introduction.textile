@@ -1,5 +1,7 @@
 h1. Overview
 
+For a quick demonstration of OCL, you may follow the "OCLinEcore tutorial":#OCLinEcoreTutorial, which also provides "Installation":#Installation instructions.
+
 h2. What is OCL?
 
 * _EMF is Modeled Structure_
@@ -10,9 +12,9 @@ The Eclipse Modeling Framework (EMF(Eclipse Modeling Framework)) supports the de
 
 OCL(Object Constraint Language) provides a modeling language that allows the behavior to be embedded within the structural meta-models or provided as a complement to those meta-models. As a modeling language, OCL understands the models and so OCL code is much more compact than the equivalent Java. OCL code can be statically checked, where as the corresponding Java code often uses reflection and so cannot.  
 
-h2. Getting Started?
+h2. Getting Started
 
-For a quick demonstration of the utility of OCL, you may create the "Simple Example project":#SimpleExample ........ or follow the "OCLinEcore tutorial":#OCLinEcoreTutorial, which also provides "Installation":#Installation instructions.
+For a quick demonstration of OCL, you may follow the "OCLinEcore tutorial":#OCLinEcoreTutorial, which also provides "Installation":#Installation instructions.
 
 h2. How Does It Work?
 
@@ -97,7 +99,7 @@ Within the OMG context, OCL has been re-used as the foundation for the MOFM2T(Mo
 
 Eclipse OCL is an implementation of the OCL specification for use in conjunction with EMF and in particular Ecore and UML2 meta-models. As the behavioral extension for EMF, Eclipse OCL can be used wherever EMF can.
 
-As a specification language, OCL is frequently used when the behaviour of models is formally specified.
+As a specification language, OCL is frequently used when the behavior of models is formally specified.
 
 The use of OCL as an execution language has been hindered by the quality of tool support. Beyond the research domain, many usages have been proprietary. One advanced proprietary usage at SAP has been contributed to Eclipse OCL and is available as the "Impact Analyzer":#ImpactAnalyzer. This supports strategic planning of run-time notifications so that derived model properties can be updated efficiently in response to a change to a model. Thousand-fold speed improvements are achievable on large models using OCL rather than Java because OCL has a formal model-based semantics that is amenable to analysis.
 

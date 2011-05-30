@@ -1,4 +1,15 @@
 h1. Tutorials
 
-The "OCLinEcore tutorial":#OCLinEcoreTutorial shows how to embed and exploit OCL to enrich Ecore meta-models.
+The "OCLinEcore tutorial":#OCLinEcoreTutorial shows how 
+* to install OCL and the additional Editors and Examples
+* to use the OCLinEcore editor
+** to edit Ecore meta-models
+** to enrich Ecore meta-models with OCL invariants, bodies and values
+* to use embedded OCL for validation of models
+* to use the OCL Console to practice evaluation of OCL
+* to generate Java code for Ecore that uses the embedded OCL
+
+The "Working with OCL tutorial":#OCLInterpreterTutorial shows how
+* the OCL Parser may be invoked from Java
+* the OCL evaluator may be invoked from Java
 

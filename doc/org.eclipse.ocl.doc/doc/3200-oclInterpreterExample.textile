@@ -54,3 +54,4 @@ Refer to the code in this example if you need to:
 * implement content-assist for OCL constraints in your model editor
 
 "Copyright (c) 2000, 2007 IBM Corporation and others. All Rights Reserved.":http://www.eclipse.org/legal/epl-v10.html
+
