@@ -14,7 +14,7 @@
  * 
  * </copyright>
  *
- * $Id: DelegatesTest.java,v 1.11 2011/05/20 15:27:16 ewillink Exp $
+ * $Id: DelegatesTest.java,v 1.12 2011/05/30 16:09:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.tests;
 
@@ -80,6 +80,7 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitorImpl;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
@@ -1008,6 +1009,42 @@ public class DelegatesTest extends PivotTestSuite
 		EObject badClassInstance = create(acme, companyDetritus, eClassifier, null);
 		validateWithWarning("CompleteOCLInvariant", badClassInstance, 
 			"Failure on " + eClassifier.getName());
+	}
+	
+	public void test_tutorialValidationMessage() {
+		validateTutorial("model/Tutorial1.ecore", "There are 3 loans for the 2 copies of b2");
+		validateTutorial("model/Tutorial2.ecore", "There are 3 loans for the 2 copies of ''b2''");		// Doubled quotes for NLS.bind
+		validateTutorial("model/Tutorial1.ecore", "There are 3 loans for the 2 copies of b2");
+	}
+
+	public void validateTutorial(String ecoreURI, String message) {
+		typeManager = new TypeManager();
+		TypeManagerResourceSetAdapter adapter = TypeManagerResourceSetAdapter.getAdapter(resourceSet, typeManager);
+		URI xmiURI = getTestModelURI("model/Tutorial.xmi");
+		Resource ecoreResource = resourceSet.getResource(getTestModelURI(ecoreURI), true);
+		EPackage ePackage = (EPackage) ecoreResource.getContents().get(0);
+		resourceSet.getPackageRegistry().put(ePackage.getNsURI(), ePackage);
+		Resource xmiResource = resourceSet.getResource(xmiURI, true);
+		EObject rootContent = xmiResource.getContents().get(0);
+		EObject book = null;
+		for (EObject eObject : rootContent.eContents()) {
+			EClass eClass = eObject.eClass();
+			if ("Book".equals(eClass.getName())) {
+				for (EStructuralFeature eFeature : eClass.getEAllStructuralFeatures()) {
+					if ("name".equals(eFeature.getName())) {
+						String name = (String) eObject.eGet(eFeature);
+						if ("b2".equals(name)) {
+							book = eObject;
+							break;
+						}
+					}
+				}
+			}
+		}
+		validateWithWarning("ValidationWithMessage", book,  message);
+		resourceSet.getResources().remove(xmiResource);
+		resourceSet.getResources().remove(ecoreResource);
+		resourceSet.eAdapters().remove(adapter);
 	}
 	
 	void add(EObject owner, EStructuralFeature feature, Object value) {

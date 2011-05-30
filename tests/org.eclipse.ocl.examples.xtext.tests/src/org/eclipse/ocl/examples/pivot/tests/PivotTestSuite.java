@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: PivotTestSuite.java,v 1.8 2011/05/20 15:27:16 ewillink Exp $
+ * $Id: PivotTestSuite.java,v 1.9 2011/05/30 16:09:59 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -83,6 +83,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedSetValue;
@@ -1323,6 +1324,10 @@ public abstract class PivotTestSuite
 	@Override
     protected void tearDown()
 		throws Exception {
+		TypeManagerResourceSetAdapter rsAdapter = TypeManagerResourceSetAdapter.findAdapter(resourceSet);
+		if (rsAdapter != null) {
+			resourceSet.eAdapters().remove(rsAdapter);
+		}
 		//
 		//	Unload any resources that a test may have loaded.
 		//
