@@ -10,7 +10,7 @@ import org.osgi.framework.BundleContext;
 
 
 import com.sap.emf.ocl.trigger.TriggerManager;
-import com.sap.furcas.example.bibtex.dsl.parser.BibtexParserFactory;
+import com.sap.furcas.example.bibtex.dsl.parser.BibtexLibraryViewParserFactory;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
 import com.sap.furcas.runtime.syntaxprovider.SyntaxProvider;
@@ -26,7 +26,9 @@ public class Activator extends AbstractUIPlugin implements SyntaxProvider {
     private static Activator plugin;
 
     public Activator() {
-        delegate = new SyntaxProviderImpl(new BibtexParserFactory(),
+    	// FIXME SyntaxProviderImpl does not support more than one syntax
+    	// per project?
+        delegate = new SyntaxProviderImpl(new BibtexLibraryViewParserFactory(),
                 DefaultOppositeEndFinder.getInstance());
     }
 

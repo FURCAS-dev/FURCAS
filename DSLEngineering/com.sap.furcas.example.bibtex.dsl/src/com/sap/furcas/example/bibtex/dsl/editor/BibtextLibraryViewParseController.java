@@ -10,16 +10,14 @@
  ******************************************************************************/
 package com.sap.furcas.example.bibtex.dsl.editor;
 
-
-
-import com.sap.furcas.example.bibtex.dsl.parser.BibtexParserFactory;
-import com.sap.furcas.ide.editor.imp.parsing.FurcasParseController;
+import com.sap.furcas.example.bibtex.dsl.parser.BibtexLibraryViewParserFactory;
+import com.sap.furcas.ide.editor.imp.FurcasParseController;
 import com.sap.furcas.ide.editor.imp.services.DefaultLanguageSyntaxProperties;
 
-public class BibtextParseController extends FurcasParseController {
+public class BibtextLibraryViewParseController extends FurcasParseController {
 
-    public BibtextParseController() {
-        super(new BibtexParserFactory(), new DefaultLanguageSyntaxProperties(new BibtexParserFactory()) {
+    public BibtextLibraryViewParseController() {
+        super(new BibtexLibraryViewParserFactory(), new DefaultLanguageSyntaxProperties(new BibtexLibraryViewParserFactory()) {
             
             @Override
             public String[][] getFences() {

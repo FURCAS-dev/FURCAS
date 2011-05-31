@@ -5,81 +5,120 @@
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            name="Bibtex Text Editor"
+            name="Bibtex Library View Text Editor"
             extensions="bib"
-            class="com.sap.furcas.example.bibtex.dsl.editor.BibtexEditor"
-            id="bibtex.dsl.editor.BibtexEditor">
+            class="com.sap.furcas.example.bibtex.dsl.editor.BibtexLibraryViewEditor"
+            id="bibtex.dsl.editor.BibtexLibraryViewEditor">
       </editor>
    </extension>
    <extension
          point="com.sap.ide.cts.parser.parserFactory">
       <configuration
-            languageID="Bibtex"
-            dynamicParserFactoryClass="com.sap.furcas.example.bibtex.dsl.parser.BibtexParserFactory">
-      </configuration>
-   </extension>
-   <extension
-         point="com.sap.furcas.ide.editor.autoEditing">
-      <configuration
-            autoIndentBraces="{,}"
-            autoEditingType="static (configurable)">
-      </configuration>
-   </extension>
-   <extension
-         point="com.sap.furcas.ide.editor.bracketMatching">
-      <configuration
-            matchingType="configurable"
-            matchingBrackets="{}[]()">
-      </configuration>
-   </extension>
-   <extension
-         point="com.sap.furcas.ide.editor.folding">
-      <configuration
-            foldingType="static (configurable)"
-            staticFoldingBrackets="{,}">
+            languageID="BibtexLibraryView"
+            dynamicParserFactoryClass="com.sap.furcas.example.bibtex.dsl.parser.BibtexLibraryViewParserFactory">
       </configuration>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.parser">
       <parser
-            class="com.sap.furcas.example.bibtex.dsl.editor.BibtextParseController"
-            language="Bibtex">
+            class="com.sap.furcas.example.bibtex.dsl.editor.BibtextLibraryViewParseController"
+            language="BibtexLibraryView">
       </parser>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.languageDescription">
       <language
             extensions="bib"
-            description="some thing"
-            language="Bibtex">
+            description=""
+            language="BibtexLibraryView">
       </language>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.tokenColorer">
       <tokenColorer
-            class="com.sap.furcas.example.bibtex.dsl.imp.tokenColorer.BibtexTokenColorer"
-            language="Bibtex">
+            class="com.sap.furcas.example.bibtex.dsl.imp.tokenColorer.BibtexLibraryViewTokenColorer"
+            language="BibtexLibraryView">
       </tokenColorer>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.contentProposer">
       <proposer
-            class="com.sap.furcas.example.bibtex.dsl.editor.BibtexContentProposer"
-            language="Bibtex">
+            class="com.sap.furcas.example.bibtex.dsl.editor.BibtexLibraryViewContentProposer"
+            language="BibtexLibraryView">
       </proposer>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.modelTreeBuilder">
       <treeBuilder
             class="com.sap.furcas.ide.editor.imp.services.FurcasTreeModelBuilder"
-            language="Bibtex">
+            language="BibtexLibraryView">
       </treeBuilder>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.labelProvider">
       <labelProvider
             class="com.sap.furcas.example.bibtex.dsl.imp.treeModelBuilder.BibtexLabelProvider"
-            language="Bibtex">
+            language="BibtexLibraryView">
+      </labelProvider>
+   </extension>
+   
+      <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="Bibtex Author View Text Editor"
+            extensions="bib"
+            class="com.sap.furcas.example.bibtex.dsl.editor.BibtexAuthorViewEditor"
+            id="bibtex.dsl.editor.BibtexAuthorViewEditor">
+      </editor>
+   </extension>
+   <extension
+         point="com.sap.ide.cts.parser.parserFactory">
+      <configuration
+            languageID="BibtexAuthorView"
+            dynamicParserFactoryClass="com.sap.furcas.example.bibtex.dsl.parser.BibtexAuthorViewParserFactory">
+      </configuration>
+   </extension>
+   <extension
+         point="org.eclipse.imp.runtime.parser">
+      <parser
+            class="com.sap.furcas.example.bibtex.dsl.editor.BibtextAuthorViewParseController"
+            language="BibtexAuthorView">
+      </parser>
+   </extension>
+   <extension
+         point="org.eclipse.imp.runtime.languageDescription">
+      <language
+            extensions="bib"
+            description=""
+            language="BibtexAuthorView">
+      </language>
+   </extension>
+   <extension
+         point="org.eclipse.imp.runtime.tokenColorer">
+      <tokenColorer
+            class="com.sap.furcas.example.bibtex.dsl.imp.tokenColorer.BibtexAuthorViewTokenColorer"
+            language="BibtexAuthorView">
+      </tokenColorer>
+   </extension>
+   <extension
+         point="org.eclipse.imp.runtime.contentProposer">
+      <proposer
+            class="com.sap.furcas.example.bibtex.dsl.editor.BibtexAuthorViewContentProposer"
+            language="BibtexAuthorView">
+      </proposer>
+   </extension>
+   <extension
+         point="org.eclipse.imp.runtime.modelTreeBuilder">
+      <treeBuilder
+            class="com.sap.furcas.ide.editor.imp.services.FurcasTreeModelBuilder"
+            language="BibtexAuthorView">
+      </treeBuilder>
+   </extension>
+   <extension
+         point="org.eclipse.imp.runtime.labelProvider">
+      <labelProvider
+            class="com.sap.furcas.example.bibtex.dsl.imp.treeModelBuilder.BibtexLabelProvider"
+            language="BibtexAuthorView">
       </labelProvider>
    </extension>
    

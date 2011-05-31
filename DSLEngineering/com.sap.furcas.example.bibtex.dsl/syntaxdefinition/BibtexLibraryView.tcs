@@ -1,34 +1,40 @@
-syntax Bibtex {
+/**
+ * A view on the Bibtex Model which presents
+ * the library an all its entries
+ */ 
+syntax BibtexLibraryView {
  
   primitiveTemplate identifier for EString default using NAME
   : value = "%token%"
+  ;
+  
+  primitiveTemplate stringSymbol for EString using STRING
+  : value = "unescapeString(%token%)",
+    serializer="\'%value%\'"
   ;
         
   primitiveTemplate integerSymbol for EInt default using INT
   : value = "Integer.valueOf(%token%)"
   ;
          
-  template LiteratureDb main context
-  : name <newline>
+  template LiteratureDb main
+  : "Library:" name <newline>
   	"Entries:" "{" [entries] "}" <newline>
   	"Authors:"	"{" author "}" <newline>
-  ;  
+  ; 
   
-  template Entry  
+  template Entry
   : "@article" "{"      
   		id ","
-  		"title" "=" "{" title "}" ","   
+  		"title" "=" "{" title{as=stringSymbol} "}" ","   
   		"author" "=" "{" author{referenceBy="name", separator="and",
   			 					lookupScope="OCL:self.literaturedb.author"}
   			 		 "}"
-  		
   	"}" 
-  	{{literaturedb = lookIn("OCL:#context")}}
   ;
   
   template Author
   : name
-  	{{literaturedb = lookIn("OCL:#context")}}
   ;
  
   -- place keywords here (optional, seldom used)
@@ -44,7 +50,7 @@ syntax Bibtex {
 
   -- place tokens here (optional, except for COMMENT)
 
-  omitted token COMMENT : endOfLine(start = "--");
+  omitted token COMMENT : endOfLine(start = "//");
 
   -- place lexer here (optional)
 

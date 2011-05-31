@@ -1,6 +1,6 @@
 package com.sap.furcas.example.bibtex.dsl.imp.tokenColorer;
 
-import generated.BibtexLexer;
+import generated.BibtexAuthorViewLexer;
 
 import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.swt.SWT;
@@ -9,11 +9,11 @@ import org.eclipse.swt.widgets.Display;
 import com.sap.furcas.ide.editor.imp.services.FurcasTokenColorer;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 
-public class BibtexTokenColorer extends FurcasTokenColorer {
+public class BibtexAuthorViewTokenColorer extends FurcasTokenColorer {
 
     protected final TextAttribute identifierAttribute, keywordAttribute, numberAttribute, commentAttribute, stringAttribute;
 
-    public BibtexTokenColorer() {
+    public BibtexAuthorViewTokenColorer() {
         super();
 
         Display display = Display.getDefault();
@@ -29,15 +29,15 @@ public class BibtexTokenColorer extends FurcasTokenColorer {
     @Override
     public TextAttribute getColoring(AbstractToken token) {
         switch (token.getType()) {
-        case BibtexLexer.EOF:
+        case BibtexAuthorViewLexer.EOF:
             return null;
-        case BibtexLexer.WS:
+        case BibtexAuthorViewLexer.WS:
             return null;
-        case BibtexLexer.STRING:
+        case BibtexAuthorViewLexer.STRING:
             return stringAttribute;
-        case BibtexLexer.COMMENT:
+        case BibtexAuthorViewLexer.COMMENT:
             return commentAttribute;
-        case BibtexLexer.NAME:
+        case BibtexAuthorViewLexer.NAME:
             return identifierAttribute;
         default:
             return keywordAttribute;

@@ -18,8 +18,9 @@ public class DialogsImages {
 	public static final String ERROR = "error";
 	public static final String WARNING = "warning";
 	public static final String CREATE_TEST = "create_test";
+	public static final String FURCAS_LOGO_SMALL = "furcas-logo-small";
 
-	public static ImageRegistry imageRegistry = new ImageRegistry();
+	public static final ImageRegistry imageRegistry = new ImageRegistry();
 
 	/**
 	 * Note: An image registry owns all of the image objects registered with it,
@@ -41,6 +42,8 @@ public class DialogsImages {
 				 getImageDescriptor(iconPath + WARNING + ".gif"));
 		imageRegistry.put(CREATE_TEST,
 				 getImageDescriptor(iconPath + CREATE_TEST + ".gif"));
+		imageRegistry.put(FURCAS_LOGO_SMALL,
+		        getImageDescriptor(iconPath + FURCAS_LOGO_SMALL + ".png"));
 	}
 
 	/**

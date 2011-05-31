@@ -25,67 +25,71 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see Bibtex.BibtexPackage#getLiteratureDb()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL uniqueName='LiteratureDb.allInstances().name.entries->select(db | db.name = self.name)->size() = 1'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL uniqueName='LiteratureDb.allInstances()->select(db | db.name = self.name)->size() = 1'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='uniqueName'"
  * @generated
  */
 public interface LiteratureDb extends EObject {
     /**
-     * Returns the value of the '<em><b>Author</b></em>' containment reference list.
-     * The list contents are of type {@link Bibtex.Author}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Author</b></em>' containment reference list.
+	 * The list contents are of type {@link Bibtex.Author}.
+	 * It is bidirectional and its opposite is '{@link Bibtex.Author#getLiteraturedb <em>Literaturedb</em>}'.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Author</em>' containment reference list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Author</em>' containment reference list.
-     * @see Bibtex.BibtexPackage#getLiteratureDb_Author()
-     * @model containment="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Author</em>' containment reference list.
+	 * @see Bibtex.BibtexPackage#getLiteratureDb_Author()
+	 * @see Bibtex.Author#getLiteraturedb
+	 * @model opposite="literaturedb" containment="true"
+	 * @generated
+	 */
     EList<Author> getAuthor();
 
     /**
-     * Returns the value of the '<em><b>Entries</b></em>' containment reference list.
-     * The list contents are of type {@link Bibtex.Entry}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Entries</b></em>' containment reference list.
+	 * The list contents are of type {@link Bibtex.Entry}.
+	 * It is bidirectional and its opposite is '{@link Bibtex.Entry#getLiteraturedb <em>Literaturedb</em>}'.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Entries</em>' containment reference list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Entries</em>' containment reference list.
-     * @see Bibtex.BibtexPackage#getLiteratureDb_Entries()
-     * @model containment="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Entries</em>' containment reference list.
+	 * @see Bibtex.BibtexPackage#getLiteratureDb_Entries()
+	 * @see Bibtex.Entry#getLiteraturedb
+	 * @model opposite="literaturedb" containment="true"
+	 * @generated
+	 */
     EList<Entry> getEntries();
 
     /**
-     * Returns the value of the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Name</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Name</em>' attribute.
-     * @see #setName(String)
-     * @see Bibtex.BibtexPackage#getLiteratureDb_Name()
-     * @model required="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see Bibtex.BibtexPackage#getLiteratureDb_Name()
+	 * @model required="true"
+	 * @generated
+	 */
     String getName();
 
     /**
-     * Sets the value of the '{@link Bibtex.LiteratureDb#getName <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link Bibtex.LiteratureDb#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Name</em>' attribute.
-     * @see #getName()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
     void setName(String value);
 
 } // LiteratureDb
