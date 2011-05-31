@@ -10,8 +10,8 @@
  ******************************************************************************/
 package com.sap.furcas.example.bibtex.dsl.parser;
 
-import generated.BibtexLexer;
-import generated.BibtexParser;
+import generated.BibtexAuthorViewLexer;
+import generated.BibtexAuthorViewParser;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -24,18 +24,18 @@ import Bibtex.BibtexPackage;
 
 import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 
-public class BibtexParserFactory extends AbstractParserFactory<BibtexParser, BibtexLexer> {
+public class BibtexAuthorViewParserFactory extends AbstractParserFactory<BibtexAuthorViewParser, BibtexAuthorViewLexer> {
 
-    public static final String LANGUAGE_ID = "Bibtex";
+    public static final String LANGUAGE_ID = "BibtexAuthorView";
 
     @Override
-    public Class<BibtexLexer> getLexerClass() {
-        return BibtexLexer.class;
+    public Class<BibtexAuthorViewLexer> getLexerClass() {
+        return BibtexAuthorViewLexer.class;
     }
 
     @Override
-    public Class<BibtexParser> getParserClass() {
-        return BibtexParser.class;
+    public Class<BibtexAuthorViewParser> getParserClass() {
+        return BibtexAuthorViewParser.class;
     }
 
     @Override
@@ -53,7 +53,7 @@ public class BibtexParserFactory extends AbstractParserFactory<BibtexParser, Bib
 
     @Override
     public URI getSyntaxResourceURI() {
-        return URI.createPlatformPluginURI("/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs", /*encode*/ false);
+        return URI.createPlatformPluginURI("/com.sap.furcas.example.bibtex.dsl/mapping/BibtexAuthorView.tcs", /*encode*/ false);
     }
 
     @Override

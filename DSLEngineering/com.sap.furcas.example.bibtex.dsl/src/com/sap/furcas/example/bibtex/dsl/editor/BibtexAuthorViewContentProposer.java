@@ -11,12 +11,12 @@
 package com.sap.furcas.example.bibtex.dsl.editor;
 
 
-import com.sap.furcas.example.bibtex.dsl.parser.BibtexParserFactory;
+import com.sap.furcas.example.bibtex.dsl.parser.BibtexAuthorViewParserFactory;
 import com.sap.furcas.ide.editor.imp.services.FurcasContentProposer;
 
-public class BibtexContentProposer extends FurcasContentProposer {
+public class BibtexAuthorViewContentProposer extends FurcasContentProposer {
     
-    public BibtexContentProposer() {
-        super(new BibtexParserFactory());
+    public BibtexAuthorViewContentProposer() {
+        super(new BibtexAuthorViewParserFactory());
     }
 }
