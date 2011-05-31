@@ -43,7 +43,7 @@ COMPACT_BUILD_ID="${COMPACT_BUILD_ID:0:12}"
 
 	echo
 	echo "# Sign the jars (added by Hudson job definition)"
-	echo "site.signing=true"
+	echo "site.signing=${SITE_SIGNING}"
 
 	echo
 	echo "# Eclipse local download area (added by Hudson job definition"
