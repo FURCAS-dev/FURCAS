@@ -15,6 +15,9 @@ import org.antlr.runtime.Lexer;
 import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
+import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -99,6 +102,8 @@ public class AbstractFurcasEditor extends UniversalEditor {
     
     private final TransactionalEditingDomain editingDomain;
     private final ConcreteSyntax syntax;
+    private final ComposedAdapterFactory adapterFactory;
+    
     private CtsDocumentProvider documentProvoider;
 
     private final AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory;
@@ -110,7 +115,9 @@ public class AbstractFurcasEditor extends UniversalEditor {
         this.editingDomain = createEditingDomain();
         configureEditingDomain(editingDomain);
         
-        syntax = (ConcreteSyntax) editingDomain.getResourceSet().getEObject(URI.createURI(parserFactory.getSyntaxUUID()), true);
+        this.adapterFactory = createAdapterFactory();
+        
+        this.syntax = (ConcreteSyntax) editingDomain.getResourceSet().getEObject(URI.createURI(parserFactory.getSyntaxUUID()), true);
         validateEditorState(syntax, parserFactory);
     }
     
@@ -122,7 +129,7 @@ public class AbstractFurcasEditor extends UniversalEditor {
      */
     @Override
     public void init(IEditorSite site, IEditorInput input) throws PartInitException {
-        ModelEditorInputLoader loader = new ModelEditorInputLoader(syntax, editingDomain.getResourceSet());
+        ModelEditorInputLoader loader = new ModelEditorInputLoader(syntax, editingDomain.getResourceSet(), adapterFactory);
         ModelEditorInput modelEditorInput = loader.loadEditorInput(input);
         
         PartitionAssignmentHandler partitionHandler = createPartititionAssignmentHandler(modelEditorInput);
@@ -175,6 +182,17 @@ public class AbstractFurcasEditor extends UniversalEditor {
         // re-run IMP setup procedure with our fully configured services
         fParserScheduler.cancel();
         fParserScheduler.schedule();
+    }
+    
+    /**
+     * Can be overwritten by subclasses if needed.
+     */
+    protected ComposedAdapterFactory createAdapterFactory() {
+        @SuppressWarnings("hiding")
+        ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory();
+        adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
+        adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+        return adapterFactory;
     }
     
     /**
