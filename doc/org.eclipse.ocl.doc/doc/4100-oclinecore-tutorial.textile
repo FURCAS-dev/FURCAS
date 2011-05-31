@@ -139,7 +139,7 @@ Left-click on *Finish*; The *Sample Ecore* editor for *Tutorial.ecore* may open 
 
 Close the editor by left-clicking the cross on the editor tab.
 
-h4. Edit Ecore Model as OCLinEcore
+h4(#OCLinEcoreMetamodel). Edit Ecore Model as OCLinEcore
 
 We will now open the Ecore model using the OCLinEcore text editor and provide some
 initial content.
@@ -365,7 +365,7 @@ You can examine the execution of the earlier query by selecting each of the book
 in turn and executing @library.loans->select(book=self)@, to see that @b1@
 has one Loan and @b2@ two.
 
-h3. Helper Features and Operations
+h3(#OCLinEcoreTutorialHelpers). Helper Features and Operations
 
 We will now introduce some helper attributes and operations to make
 the OCL clearer and provide a richer meta-model API.

@@ -21,9 +21,6 @@ The exposition of the OCL grammar in the OCL 2.3 specification requires tool imp
 
 Subsequent semantic checking then enforces rules appropriate to the extended language within which EseentialOCL is embedded.
 
-h3(#OCLinEcore). The OCLinEcore Language
-
-OCLinEcore embeds OCL within the annotations of an Ecore model to enrich that model.
 
 h3(#CompleteOCL). The Complete OCL 
 

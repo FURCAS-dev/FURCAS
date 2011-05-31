@@ -1,4 +1,408 @@
 h2(#OCLinEcore). The OCLinEcore Language
 
-OCLinEcore embeds OCL within the annotations of an Ecore model to enrich that model.
+Ecore Abstract Syntax supports the use of OCL embedded within EAnnotations.
+
+The OCLinEcore language provides a textual Concrete Syntax that makes both Ecore and OCL accessible to users. Examples may be found in  "OCLinEcore Library Metamodel":#OCLinEcoreMetamodel and "OCLinEcore Helpers"#OCLinEcoreTutorialHelpers.
+
+The OCLinEcore tooling provides a rich editing environment based on Xtext with strong semantic checking.
+
+OCLinEcore is more than just an editor for OCL in Ecore, it is useful for
+* providing a coherent textual view of an Ecore meta-model
+* providing syntax sugar for some Ecore conventions
+* editing and validating OCL
+* integrating OCL into Ecore
+
+It is planned to take the syntax sugar further and provide full support for all class-related UML concepts. The language therefore uses UML as its point of reference wherever possible.
+
+h3. Syntax
+
+The OCLinEcore syntax has a consistent structure influence by the informal definitions in OMG specifications and by the Ecore hierarchy. Most Ecore concepts are represented by a syntax of the form:
+
+* optional primary adjectives
+* mandatory keyword
+* mandatory name property
+* further properties
+* an optional braced clause of secondary adjectives
+* an optional braced clause of elements
+** composed elements
+** annotations
+** constraints
+
+Thus in:
+
+bc.. 
+abstract class Example extends Base { interface } { ... }
+p. 
+
+* @abstract@ is a primary adjective
+* @class@ is a keyword
+* @Example@ is the name property
+* @extends Base@ is a further 'property'
+* @{ interface }@ supports the secondary interface adjective.
+* @{ ... }@ provides a nested context for class content.
+
+h4. Module
+
+The Module syntax supports the overall structure of an Ecore file
+
+!{width:50%}images/1200-rootpackage.png(OCLinEcore Root Package Syntax)!
+
+The definition of the module comprises
+* optional module declaration
+* optional specification of the OCL Standard libraries
+* optional import of referenced Ecore or UML or OCLinEcore resources
+* a hierarchy of "Packages":#OCLinEcore-Package
+
+
+!{width:50%}images/1200-library.png(OCLinEcore Library Import Syntax)!
+
+Zero or more external libraries may be imported so that their definitions are merged to form a composite
+library of basic and extended evaluation capability.
+
+The implicit import of the default OCL Standard Library is suppressed, if any library is imported. The default library
+may be extended by specifying it as the first library import.
+
+bc.. 
+library ocl : 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib'
+p. 
+
+The namespace URI of the first library package defines the namespace URI of the composite library. The namespace URI of subsequent library imports may not conflict, but may be null.
+
+!{width:50%}images/1200-import.png(OCLinEcore Metamodel Import Syntax)!
+
+Zero or more external metamodels may be imported.
+
+h4(#OCLinEcore-Package). Package
+
+The Package syntax supports a nested hierarchy of packages and classifiers 
+
+!{width:50%}images/1200-package1.png(OCLinEcore Package Syntax Part 1)!
+
+A Package has a name and optionally a namespace prefix and namespace URI.
+
+!{width:50%}images/1200-package2.png(OCLinEcore Package Syntax Part 2)!
+
+The content of a Package may comprise "Packages":#OCLinEcore-Package, "Classifiers":#OCLinEcore-Classifier and "Annotations":#OCLinEcore-Annotation.
+
+h4(#OCLinEcore-Classifier). Classifier
+
+The Classifier syntax supports the definition of types within a "Package":#OCLinEcore-Package.
+
+!{width:50%}images/1200-classifiers.png(OCLinEcore Classifier Syntax)!
+
+A Classifier may be
+* a "Class":#OCLinEcore-Class
+* a "DataType":#OCLinEcore-DataType
+* an "Enumeration":#OCLinEcore-Enumeration with associated "EnumerationLiterals":#OCLinEcore-EnumerationLiteral
+
+h4(#OCLinEcore-DataType). DataType
+
+The DataType syntax supports the definition of an EDataType.
+
+!{width:50%}images/1200-datatype1.png(OCLinEcore DataType Syntax Part 1)!
+
+A DataType has a name and optionally template parameters and an instance class name.
+
+!{width:50%}images/1200-datatype2.png(OCLinEcore DataType Syntax Part 2)!
+
+A DataType may be serializable; by default it is not.
+
+The content of a DataType may comprise "invariants":#OCLinEcore-Constraint and "Annotations":#OCLinEcore-Annotation.
+
+h4(#OCLinEcore-Enumeration). Enumeration
+
+The Enumeration syntax supports the definition of an EEnum.
+
+!{width:50%}images/1200-enumeration1.png(OCLinEcore Enumeration Syntax Part 1)!
+
+An Enumeration has a name and optionally template parameters and an instance class name.
+
+!{width:50%}images/1200-enumeration2.png(OCLinEcore Enumeration Syntax Part 2)!
+
+An Enumeration may be serializable; by default it is not.
+
+The content of an Enumeration may comprise enumeration literals, "invariants":#OCLinEcore-Constraint and "Annotations":#OCLinEcore-Annotation.
+
+h4(#OCLinEcore-EnumerationLiteral). EnumerationLiteral
+
+The EnumerationLiteral syntax supports the definition of an EEnumLiteral.
+
+!{width:50%}images/1200-enumerationliteral.png(OCLinEcore EnumerationLiteral Syntax)!
+
+An EnumerationLiteral has a name and optionally a value.
+
+The content of an EnumerationLiteral may comprise "Annotations":#OCLinEcore-Annotation.
+
+h4(#OCLinEcore-Class). Class
+
+The Class syntax supports the definition of an EClass.
+* optional abstract prefix
+* optional extension of other classifiers
+* optional invariants, annotations, features and operations
+
+!{width:50%}images/1200-class1.png(OCLinEcore Class Syntax Part 1)!
+
+A Class may be abstract has a name and optionally template parameters.
+
+(NB, the 'abstract' prefix is optional, even though the figure indicates that it is mandatory.)
+
+!{width:50%}images/1200-class2.png(OCLinEcore Class Syntax Part 2)!
+
+A Class may extend one or more other "Classes":#OCLinEcore-TypeRef that may be specialized using the template parameters.
+
+!{width:50%}images/1200-class3.png(OCLinEcore Class Syntax Part 3)!
+
+A Class may have an instance class name, and may also be declared to be an interface.
+
+!{width:50%}images/1200-class4.png(OCLinEcore Class Syntax Part 4)!
+
+The content of a Class may comprise "Annotations":#OCLinEcore-Annotation, "Operations":#OCLinEcore-Operation, "StructuralFeatures":#OCLinEcore-StructuralFeature and "invariants":#OCLinEcore-Constraint.
+
+h4(#OCLinEcore-StructuralFeature). StructuralFeature
+
+The StructuralFeature syntax supports the definition of the StructuralFeatures.
+
+!{width:50%}images/1200-features.png(OCLinEcore Feature Syntax)!
+
+A StructuralFeature may be
+* an "Attribute":#OCLinEcore-Attribute
+* a "Reference":#OCLinEcore-Reference
+
+h4(#OCLinEcore-Attribute). Attribute
+
+The Attribute syntax supports the definition of an EAttribute; a Property with a DataType value.
+
+!{width:50%}images/1200-attribute1.png(OCLinEcore Attribute Syntax Part 1)!
+
+An Attribute may be static and has a name.
+
+The @static@ qualifier supports declaration of static properties which are supported by UML and OCL. Note that Ecore does not support static properties.
+
+The @definition@ qualifier is an obsolete experimental syntax for Complete OCL definitions.
+
+!{width:50%}images/1200-attribute2.png(OCLinEcore Attribute Syntax Part 2)!
+
+An Attribute may may have a "Type":#OCLinEcore-TypeRef and multiplicity.
+
+!{width:50%}images/1200-attribute3.png(OCLinEcore Attribute Syntax Part 3)!
+
+An Attribute may a simple initializer and a variety of qualifiers:
+* @derived@ specifies a derived attribute (default @!derived@)
+* @id@ specifies that the attribute provides the identifier if its class (default @!id@)
+* @ordered@ specifies that the attribute elements are ordered (default @!ordered@)
+* @readonly@ specifies that the attribute elements are readonly (not changeable) (default @!readonly@)
+* @transient@ specifies that the attribute elements are computed on the fly (default @!transient@)
+* @unique@ specifies that there are no duplicate attribute elements (default @unique@)
+* @unsettable@ specifies that attribute element may have no value (default @!unsettable@)
+* @volatile@ specifies that the attribute elements are not persisted (default @!volatile@)
+
+!{width:50%}images/1200-attribute4.png(OCLinEcore Attribute Syntax Part 4)!
+
+The content of an Attribute may comprise "Annotations":#OCLinEcore-Annotation, initial and derived "constraints":#OCLinEcore-Constraint.
+
+A simple constant value may be defined using the initializer. A computed value requires the use of a constraint. If both initial and derived constraints are present, the initial constraint is ignored.
+
+The defaults for multiplicity lower and upper bound and for @ordered@ and @unique@ follow the UML specification and so corresponds to a single element Set that is @[1] {unique,!ordered}@.
+Note that UML defaults differ from the Ecore defaults which correspond to an optional element OrderedSet, that is @[?] {ordered,unique}@.
+
+h4(#OCLinEcore-Reference). Reference
+
+The Reference syntax supports the definition of an EReference; a Property with a Class value.
+
+!{width:50%}images/1200-reference1.png(OCLinEcore Reference Syntax Part 1)!
+
+An Reference may be static and has a name and optionally an opposite name.
+
+The @static@ qualifier supports declaration of static properties which are supported by UML and OCL. Note that Ecore does not support static properties.
+
+The @definition@ qualifier is an obsolete experimental syntax for Complete OCL definitions.
+
+!{width:50%}images/1200-reference2.png(OCLinEcore Reference Syntax Part 2)!
+
+A Reference may may have a "Type":#OCLinEcore-TypeRef and multiplicity.
+
+!{width:50%}images/1200-reference3.png(OCLinEcore Reference Syntax Part 3)!
+
+A Reference may a simple initializer and a variety of qualifiers:
+* @composes@ specifies a composed (containing) reference (default @!composes@)
+* @derived@ specifies a derived reference (default @!derived@)
+* @ordered@ specifies that the reference elements are ordered (default @!ordered@)
+* @readonly@ specifies that the reference elements are readonly (not changeable) (default @!readonly@)
+* @resolve@ specifies that the reference elements proxies may need resolution (default @!resolve@)
+* @transient@ specifies that the reference elements are computed on the fly (default @!transient@)
+* @unique@ specifies that there are no duplicate reference elements (default @unique@)
+* @unsettable@ specifies that reference element may have no value (default @!unsettable@)
+* @volatile@ specifies that the reference elements are not persisted (default @!volatile@)
+
+!{width:50%}images/1200-reference4.png(OCLinEcore Reference Syntax Part 4)!
+
+The content of a Reference may comprise keys, "Annotations":#OCLinEcore-Annotation, initial and derived "constraints":#OCLinEcore-Constraint.
+
+A simple constant value may be defined using the initializer. A computed value requires the use of a constraint. If both initial and derived constraints are present, the initial constraint is ignored.
+
+The defaults for multiplicity lower and upper bound and for @ordered@ and @unique@ follow the UML specification and so corresponds to a single element Set that is @[1] {unique,!ordered}@.
+Note that UML defaults differ from the Ecore defaults which correspond to an optional element OrderedSet, that is @[?] {ordered,unique}@.
+
+h4(#OCLinEcore-Operation). Operation
+
+The Operation syntax supports the definition of an EOperation.
+
+!{width:50%}images/1200-operation1.png(OCLinEcore Operation Syntax Part 1)!
+
+An Operation may be static and has a name and optionally template parameters.
+
+The @static@ qualifier supports declaration of static properties which are supported by UML and OCL. Note that Ecore does not support static properties.
+
+The @definition@ qualifier is an obsolete experimental syntax for Complete OCL definitions.
+
+!{width:50%}images/1200-operation2.png(OCLinEcore Operation Syntax Part 2)!
+
+An Operation has zero of more "Parameters":#OCLinEcore-Parameter.
+
+!{width:50%}images/1200-operation3.png(OCLinEcore Operation Syntax Part 3)!
+
+An Operation may may have a return "Type":#OCLinEcore-TypeRef and multiplicity.
+
+!{width:50%}images/1200-operation4.png(OCLinEcore Operation Syntax Part 4)!
+
+An Operation may declare zero or more throw "Exceptions":#OCLinEcore-TypeRef.
+
+!{width:50%}images/1200-operation5.png(OCLinEcore Operation Syntax Part 5)!
+
+An Operation may have a variety of qualifiers:
+* @derived@ specifies a derived operation (default @!derived@)
+* @ordered@ specifies that the returned elements are ordered (default @!ordered@)
+* @unique@ specifies that there are no duplicate returned elements (default @unique@)
+
+!{width:50%}images/1200-operation6.png(OCLinEcore Operation Syntax Part 6)!
+
+The content of an Operation may comprise "Annotations":#OCLinEcore-Annotation, precondition, postcondition and body "constraints":#OCLinEcore-Constraint.
+
+The @static@ qualifier supports declaration of static operations which are supported by UML and OCL. Note that Ecore does not support static operations.
+
+The @definition@ qualifier is an obsolete experimental syntax for Complete OCL definitions.
+
+The defaults for multiplicity lower and upper bound and for @ordered@ and @unique@ follow the UML specification and so corresponds to a single element Set that is @[1] {unique,!ordered}@.
+Note that UML defaults differ from the Ecore defaults which correspond to an optional element OrderedSet, that is @[?] {ordered,unique}@.
+
+h4(#OCLinEcore-Parameter). Parameter
+
+The Parameter syntax supports the definition of an EParameter.
+
+!{width:50%}images/1200-parameter1.png(OCLinEcore Parameter Syntax Part 1)!
+
+A Parameter has a name, optional "Type:#OCLinEcore-TypeRef and multiplicity
+
+!{width:50%}images/1200-parameter2.png(OCLinEcore Parameter Syntax Part 2)!
+
+A Parameter may have a variety of qualifiers:
+* @ordered@ specifies that the returned elements are ordered (default @!ordered@)
+* @unique@ specifies that there are no duplicate returned elements (default @unique@)
+
+The content of a Parameter may comprise "Annotations":#OCLinEcore-Annotation.
+
+The defaults for multiplicity lower and upper bound and for @ordered@ and @unique@ follow the UML specification and so corresponds to a single element Set that is @[1] {unique,!ordered}@.
+Note that UML defaults differ from the Ecore defaults which correspond to an optional element OrderedSet, that is @[?] {ordered,unique}@.
+
+h4(#OCLinEcore-TypeRef). Types
+
+The Type syntax supports the definition of EType and EGenericType in conjunction with an ETypedElement. The syntax is very similar to Java.
+
+!{width:50%}images/1200-types.png(OCLinEcore Type Syntax)!
+
+_PrimitiveTypeRefCS_ provides access to the built-in OCL types and their corrersponding Ecore counterparts
+
+|_. OCL type|_.Ecore type|
+|Boolean|EBoolean|
+|Integer|EBigInteger|
+|Real|EBigDecimal|
+|String|EString|
+|UnlimitedNatural|EBigInteger|
+
+_TypedTypeRefCS_ provides for user defined types and their template parameterisation.
+
+h4(#OCLinEcore-Annotations). AnnotationElement
+
+The AnnotationElement syntax supports the definition of an EAnnotation hierarchy with details, references and contents.
+
+!{width:50%}images/1200-annotations.png(OCLinEcore Annotations Syntax)!
+
+An AnnotationElement may be "Annotation":#OCLinEcore-Annotation or "Documentation":#OCLinEcore-Documentation.  
+
+h4(#OCLinEcore-Annotation). Annotation
+
+The Annotation syntax supports the definition of an EAnnotation hierarchy with details, references and contents.
+
+!{width:50%}images/1200-annotation1.png(OCLinEcore Annotations Syntax Part 1)!
+
+An Annotation has a source URI, which may be specified without quotes if the URI is just a name.
+
+!{width:50%}images/1200-annotation2.png(OCLinEcore Annotations Syntax Part 2)!
+
+An Annotation may have "Details":#OCLinEcore-Detail.
+
+!{width:50%}images/1200-annotation3.png(OCLinEcore Annotations Syntax Part 3)!
+
+The content of an Annotation may comprise
+* "Annotations":#OCLinEcore-Annotation
+* content elements
+* names that reference other elements
+
+h4(#OCLinEcore-Detail). Detail
+
+The Detail syntax supports the definition of a detail of an EAnnotation.
+
+!{width:50%}images/1200-detail.png(OCLinEcore Detail Syntax)!
+
+A detail comprises a detail key and optional value.
+
+h4(#OCLinEcore-Documentation). Documentation
+
+The Documentation syntax is an experimental syntactic sugar for a genmodel annotation.
+
+!{width:50%}images/1200-annotations.png(OCLinEcore Annotations Syntax)!
+
+It is likely to be replaced by a Javadoc-style comment that will be persisted in Ecore.
+
+h4(#OCLinEcore-Constraint). Constraints
+
+The Constraints syntax supports the embedding of OCL expressions as invariants for classes, as preconditions, postconditions or bodies for operations and initial or derived values for properties.
+
+!{width:50%}images/1200-constraints.png(OCLinEcore Constraints Syntax)!
+
+The integration occurs through the _SpecificationCS_ rule that invokes an _ExpCS_. (The alternative _UnquotedString_ is an implementation detail that supports the import from Ecore where the OCL is in unparsed textual form rather than an analyzed syntax tree.)
+
+A class invariant may be @callable@ to specify that the Ecore representation is to use the EOperation rather than EAnnotation representation.
+
+A class invariant optionally supports a second OCL expression as a parenthesis on the invariant name. This parenthesized expression is invoked when an invariant fails in order to provide a user-defined failure message. Whether this message is an error or a warning is determined by the evaluation of the invariant:
+
+
+
+h4. Terminals
+
+The OCLinEcore grammar extens the Esstial OCL grammar which should be consulted for definition of INT, and ExpCS.
+
+!{width:50%}images/1200-terminals.png(OCLinEcore Terminal Syntax)!
+
+h4. Names
+
+An Unrestricted name is any name other than the OCL reserved keywords which are @and@, @endif@, @else@, @false@, @if@, @implies@, @in@, @invalid@, @let@, @not@, @null@, @or@, @self@, @then@, @true@, @xor@.
+
+An Unreserved name is any name other than the OCL reserved keywords above or the OCL reserved types which are @Bag@, @Boolean@, @Collection@, @Integer@, @Lambda@, @OclAny@, @OclInvalid@, @OclMessage@, @OclSelf@, @OclVoid@, @OrderedSet@, @Real@, @Sequence@, @Set@, @String@, @Tuple@, @UnlimitedNatural@.
+
+If you need to use any of these names or non-alphanumeric names, you must use the escaped string syntax for a name: e.g. @_'true'@. The usual Java backslash escapes, with the exception of octal are supported: @_'new-lines\n\x0a\u000a'@
+
+h4. Comments
+
+Single line comments are supported by ignoring all text following @--@.
+
+Multi line comments are supported by ignoring all text within @/* ... */@.
+
+Documentation comments are supported for all text within @/** ... */@. Unfortunately no documentation EAnnotation is currently created.
+
+h3. Limitations
+
+OCLinEcore supports the full capabilities of Ecore, however the support for upper abd lower bounds on generic types has not been adequately tested.
+
+OCLinEcore provides primary syntaxes for some Ecore conventions such as genmodel annotations and constraints; much more support is needed for feature maps.
 
