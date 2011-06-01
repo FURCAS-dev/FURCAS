@@ -26,5 +26,6 @@ syntax NestedScopesTestSyntax {
   	;
 
   omitted token COMMENT : endOfLine(start = "//");
+  omitted token MULTI_LINE_COMMENT : multiLine(start = "/*", end = "*/");
 
 }
