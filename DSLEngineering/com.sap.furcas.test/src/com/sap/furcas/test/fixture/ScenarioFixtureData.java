@@ -33,6 +33,7 @@ public class ScenarioFixtureData {
     public static final String MINI_JAVA_PACKAGE_URI = "http://www.furcas.org/example/minijava";
     public static final File EXPRESSION_WITH_SYNTHESIZED_ATTRIBUTE_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/ExpressionWithSynthesizedAttributes.ecore");
     public static final String EXPRESSION_WITH_SYNTHESIZED_ATTRIBUTE_METAMODEL_PACKAGE_URI = "http://www.furcas.org/TCS/scenariotests/ExpressionWithSynthesizedAttributeGrammar";
+    public static final File NESTED_SCOPE_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/NestedScopes.ecore");
 
     public static final File ATL_TCS = new File("../com.sap.furcas.test/scenarioFixtures/ATL.tcs");
     public static final File BIBTEXT_TCS = new File("../com.sap.furcas.test/scenarioFixtures/Bibtext.tcs");
@@ -65,6 +66,7 @@ public class ScenarioFixtureData {
     public static final File XPATH_REDUCED_TCS = new File("../com.sap.furcas.test/scenarioFixtures/XPathReduced.tcs");
     public static final File MINI_JAVA_TCS = new File("../com.sap.furcas.test/scenarioFixtures/MiniJava.tcs");
     public static final File EXPRESSION_WITH_SYNTHESIZED_ATTRIBUTE_TCS = new File("../com.sap.furcas.test/scenarioFixtures/ExpressionWithSynthesizedAttributes.tcs");
+    public static final File NESTED_SCOPE_TCS = new File("../com.sap.furcas.test/scenarioFixtures/NestedScopes.tcs");
     
 
 }

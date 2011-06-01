@@ -35,6 +35,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Block" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="statementsInBlock" upperBound="-1"
-        eType="#//Statement" eOpposite="#//Statement/block"/>
+        eType="#//Statement" containment="true" eOpposite="#//Statement/block"/>
   </eClassifiers>
 </ecore:EPackage>
