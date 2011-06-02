@@ -463,3 +463,4 @@ h4(#EssentialOCL-UnrestrictedName). UnrestrictedName
 The Essential OCL restricted words are the reserved words above and the OCL reserved type names which are @Bag@, @Boolean@, @Collection@, @Integer@, @Lambda@, @OclAny@, @OclInvalid@, @OclMessage@, @OclSelf@, @OclVoid@, @OrderedSet@, @Real@, @Sequence@, @Set@, @String@, @Tuple@, @UnlimitedNatural@. An UnrestrictedName can be used in any context. The reserved type names can be used following a @::@ qualification, Without qualification unrestricted names must be escaped as @_'Boolean'@.
 
 @Lambda@ is used in experimental syntax that realizes iterator bodies as lambda-expressions.
+
