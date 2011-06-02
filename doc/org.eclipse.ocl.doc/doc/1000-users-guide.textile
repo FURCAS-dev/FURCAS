@@ -1,64 +1,21 @@
 h1. Users Guide
 
-h2. Languages
-
-h3(#EssentialOCL). The Essential OCL 
-
 The core functionality of OCL that supports expressions over models is called the Essential OCL. This language is of very limited use by itself since there is no way in which the models can be provided.
+Essential OCL is therefore extended in various ways to provide this missing context.
 
-Essential OCL is extended in various ways to provide this missing context.
-
-The Complete OCL provides a language for a document in which OCL complements an existing meta-model with invariants, and additional features.
+The "Complete OCL":#CompleteOCL provides a language for a document in which OCL complements an existing meta-model with invariants, and additional features.
 
 "OCLinEcore":#OCLinEcore embeds OCL within the annotations of an Ecore model to enrich that model.
 
 UML supports the use of OCL constraints as a form of OpaqueExpression, and UML tools such as Papyrus support those constraints for UML models.
 
-h4. Syntax
+The Eclipse OCL project provides four OCL languages to support these usages.
 
-The exposition of the OCL grammar in the OCL 2.3 specification requires tool implementers to provide their own interpretation. The approach taken in Eclipse OCL is to provide a rather generous initial parse using the syntax shown below.
-!images/EssentialOCLSyntaxGraph.png!
+* "Essential OCL":#EssentialOCL provides the core extensible capability of specifying expressions for models.
 
-Subsequent semantic checking then enforces rules appropriate to the extended language within which EseentialOCL is embedded.
+* "Complete OCL":#CompleteOCL provides the ability to use OCL in a self-standing document to complement an existing meta-model with invariants, and additional features.
 
+* "OCLinEcore":#OCLinEcore enables OCL to be embedded within an Ecore meta-model to add invariants for classifiers, bodies for operations and computed values for properties.
 
-h3(#CompleteOCL). The Complete OCL 
-
-The Complete OCL provides a language for a document in which OCL complements an existing meta-model with invariants, and additional features.
-
-h3(#OCLstdlib). The Standard Library
-
-h3(#Extension). Eclipse OCL Extensions
-
-Imports
-
-h2(#Tools). Tools
-
-h3(#Editors). Editors
-
-h3(#InteractiveOCL). Console
-
-h3(#ModelRegistry). Model Registry
-
-h3(#ImpactAnalyzer). Impact Analyzer
-
-h2(#Processing). Processing
-
-h3(#Parsing). Parsing
-
-h3(#Validation). Validation
-
-h3(#Evaluation). Evaluation
-
-h2(#Models). Models
-
-h3(#Ecore). Ecore
-
-h3(#UML). UML
-
-h3(#Java). Java
-
-h3(#Pivot). Pivot
-
-
+* "OCLstdlib":#OCLstdlib supports the definition of the standard and custom OCL Standard Libraries.
 

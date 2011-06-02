@@ -1,19 +1,465 @@
-h2. The Essential OCL 
+h2(#EssentialOCL). The Essential OCL Language
 
-The core functionality of OCL that supports expressions over models is called the Essential OCL. This language is of very limited use by itself since there is no way in whuich the models can be provided.
+The core functionality of OCL that supports expressions over models is called the Essential OCL. This language is of very limited use by itself since there is no way in which the models can be provided.
 
 Essential OCL is extended in various ways to provide this missing context.
 
-The Complete OCL provides a language for a document in which OCL complements an existing meta-model with invariants, and additional features.
+The "Complete OCL":#CompleteOCL provides a language for a document in which OCL complements an existing meta-model with invariants, and additional features. Complete OCL is part of the OMG OCL specification.
 
-"OCLinEcore":#OCLinEcore embeds OCL within the annotations of an Ecore model to enrich that model.
+"OCLinEcore":#OCLinEcore embeds OCL within the annotations of an Ecore model to enrich that model. OCLinEcore is defined an Eclipse OCL. It is not part of the OMG OCL specification.
 
 UML supports the use of OCL constraints as a form of OpaqueExpression, and UML tools such as Papyrus support those constraints for UML models.
 
 h3. Syntax
 
-The exposition of the OCL grammar in the OCL 2.3 specification requires tool implementers to provide their own interpretation. The approach taken in Eclipse OCL is to provide a rather generous initial parse using the syntax shown below.
-!images/EssentialOCLSyntaxGraph.png!
+The Eclipse OCL realization of the Essential OCL grammar is provided in the following subsections, starting with the expression terms and then elaborating the operators.
 
-Subsequent semantic checking then enforces rules appropriate to the extended language within which EseentialOCL is embedded.
+h4. Grammar Implementation
 
+The grammar used by the Xtext editors may be found at:
+
+/src/org/eclipse/ocl/examples/xtext/essentialocl/EssentialOCL.xtext
+
+in the org.eclipse.ocl.examples.xtext.essentialocl plugin.
+
+h4. Grammar Approach
+
+The grammar in the OCL 2.3 is ambiguous and consequently has disambigating rules. How those disambiguating rules are applied is an implementation detail.
+
+The disambiguating approach taken in Eclipse OCL is to parse an unambiguous larger language that unifies all the ambiguities. Subsequent semantic validation distinguishes between the ambiguities and diagnoses expressions from the larger language that are not valid OCL expressions.
+
+From a technical point of view this makes the grammar simpler and more regular, and the implementation more modular and configurable by the library model.
+
+From a user's point of view, slightly wrong expressions may be syntactically valid and so semantic validation may produce a more helpful diagnostic. However completion assist may offer illegal expressions from the larger language.
+
+h4(#EssentialOCL-Exp). OCL Expression
+
+The Exp syntax defines an OCL expression.
+
+!{width:60%}images/1100-exp.png(Exp Syntax)!
+
+Expressions consist of a variety of operators and expression terms that are defined at the top level by an "InfixedExp":#EssentialOCL-InfixedExp. We will first define the terms of an expression and then define the various forms of operators that bind expression terms together.  
+
+h4(#EssentialOCL-PrimaryExp). PrimaryExp
+
+The PrimaryExp syntax identifies the basic building blocks of an OCL expression.
+
+!{width:60%}images/1100-primaryexp.png(PrimaryExp Syntax)!
+
+Literals such as
+* "PrimitiveLiteralExpCS":#EssentialOCL-PrimitiveLiteralExp - @true@ or @3.14159@
+* "CollectionLiteralExpCS":#EssentialOCL-CollectionLiteralExp - @Set{1..5}@
+* "TupleLiteralExpCS":#EssentialOCL-TupleLiteralExp - @Tuple{name:String='me',at:String='here')@
+* "TypeLiteralExpCS":#EssentialOCL-TypeLiteralExp - @Integer@ or @Set<Integer>@
+
+The context object
+* "SelfExpCS":#EssentialOCL-SelfExp - @self@
+
+Compound expressions such as
+* "NestedExpCS":#EssentialOCL-NestedExp - @(x)@
+* "IfExpCS":#EssentialOCL-IfExp - @if x then y else z endif@
+* "LetExpCS":#EssentialOCL-LetExp - @let x : Integer in x + x@
+
+Navigation expressions such as
+* "NavigatingExpCS":#EssentialOCL-NavigatingExp - @x@ or @x.Y::z->iterate(a:Integer;acc:Integer|acc+a)@
+
+h4(#EssentialOCL-SelfExp). SelfExp
+
+The SelfExp syntax supports the use of the prevailing context object in an expression.
+
+!{width:60%}images/1100-selfexp.png(SelfExp Syntax)!
+
+h4(#EssentialOCL-PrimitiveLiteralExp). PrimitiveLiteralExp
+
+The PrimitiveLiteralExp syntax supports the use of a known value in an expression.
+
+!{width:60%}images/1100-primitiveliteralexp.png(PrimitiveLiteralExp Syntax)!
+
+The value may be 
+* "NumberLiteralExpCS":#EssentialOCL-NumberLiteralExp - @4@ or @3.14159@
+* "StringLiteralExpCS":#EssentialOCL-StringLiteralExp - @'a string'@
+* "BooleanLiteralExpCS":#EssentialOCL-BooleanLiteralExp - @true@ or @false@
+* "UnlimitedNaturalLiteralExpCS":#EssentialOCL-UnlimitedNaturalLiteralExp - @*@
+* "InvalidLiteralExpCS":#EssentialOCL-InvalidLiteralExp - @invalid@
+* "NullLiteralExpCS":#EssentialOCL-NullLiteralExp - @null@
+
+h4(#EssentialOCL-NumberLiteralExp). NumberLiteralExp
+
+The NumberLiteralExp syntax supports the use of a numeric value in an expression.
+
+!{width:60%}images/1100-numberliteralexp.png(NumberLiteralExp Syntax)!
+
+!{width:60%}images/1100-numberliteral.png(NumberLiteral Syntax)!
+
+A numeric value is
+* an integer such as @4@
+* fixed point number such as @3.1@
+* floating point number such as @12.8e-5@. 
+
+A numeric value does not have a leading @-@; negative numbers are parsed as the application of a unary negate operator to a positive number.
+
+A numeric value may not have a trailing decimal point.
+
+A numeric value may not have a redundant leading zero.
+
+h4(#EssentialOCL-StringLiteralExp). StringLiteralExp
+
+The StringLiteralExp syntax supports the use of a string value in an expression.
+
+!{width:60%}images/1100-stringliteralexp.png(StringLiteralExp Syntax)!
+
+A string is specified as a character sequence between single quotes.
+
+e.g. @'This is a string'@
+
+The standard Java and C backslash escapes can be used for awkward characters such as a single quote.
+
+@\b@ -- #x08: backspace BS
+
+@\t@ -- #x09: horizontal tab HT
+
+@\n@ -- #x0a: linefeed LF
+
+@\f@ -- #x0c: form feed FF
+
+@\r@ -- #x0d: carriage return CR
+
+@\"@ -- #x22: double quote "
+
+@\'@ -- #x27: single quote '
+
+@\\@ -- #x5c: backslash \
+
+@\x@ Hex Hex -- #x00 to #xFF
+
+@\u@ Hex Hex Hex Hex -- #x0000 to #xFFFF
+
+h4(#EssentialOCL-BooleanLiteralExp). BooleanLiteralExp
+
+The BooleanLiteralExp syntax supports the use of boolean values in an expression.
+
+!{width:60%}images/1100-booleanliteralexp.png(BooleanLiteralExp Syntax)!
+
+The Boolean values are @true@ and @false@.
+
+h4(#EssentialOCL-UnlimitedNaturalLiteralExp). UnlimitedNaturalLiteralExp
+
+The UnlimitedNaturalLiteralExp syntax supports the use of the non-numeric unlimited value in an expression.
+
+!{width:60%}images/1100-unlimitednaturalliteralexp.png(UnlimitedNaturalLiteralExp Syntax)!
+
+The Non-numeric unlimited value is @*@. Other UnlimitedNatural values are "NumberLiteralExpCS":#EssentialOCL-NumberLiteralExp.
+
+h4(#EssentialOCL-InvalidLiteralExp). InvalidLiteralExp
+
+The InvalidLiteralExp syntax supports the use of an invalid value in an expression.
+
+!{width:60%}images/1100-invalidliteralexp.png(InvalidLiteralExp Syntax)!
+
+The invalid value is @invalid@.
+
+h4(#EssentialOCL-NullLiteralExp). NullLiteralExp
+
+The NullLiteralExp syntax supports the use of a null or unspecified value in an expression.
+
+!{width:60%}images/1100-nullliteralexp.png(NullLiteralExp Syntax)!
+
+The null value is @null@.
+
+h4(#EssentialOCL-CollectionLiteralExp). CollectionLiteralExp
+
+The CollectionLiteralExp syntax supports the creation of a collection of values for use in an expression.
+
+!{width:60%}images/1100-collectionliteralexp.png(CollectionLiteralExp Syntax)!
+
+A collection literal comprises the "CollectionType":#EssentialOCL-CollectionType followed by braces enclosing a comma-separated list of zero or more "CollectionLiteralParts":#EssentialOCL-CollectionLiteralPart.
+
+e.g. @Sequence{1,2,4..6}@
+
+Note that null, collection and tuple values are permitted in collections but that invalid values are not.
+A collection 'containing' an invalid value is flattened to the invalid value.
+
+h4(#EssentialOCL-CollectionLiteralPart). CollectionLiteralPart
+
+The CollectionLiteralPart syntax supports the use of a value or range of values in a collection of values.
+
+!{width:60%}images/1100-collectionliteralpart.png(CollectionLiteralPart Syntax)!
+
+A single item collection literal part may be any expression (except invalid). e.g. @1+2@
+
+A multi-item collection literal part comprises the inclusive range of values between two integer limits.
+
+@1..3@ is the three values @1@, @2@, @3@.
+
+@1..-1@ is the three values @1@, @0@, @-1@.
+
+h4(#EssentialOCL-TupleLiteralExp). TupleLiteralExp
+
+The TupleLiteralExp syntax supports the use of a tuple of named expression values in an expression.
+
+!{width:60%}images/1100-tupleliteralexp.png(TupleLiteralExp Syntax)!
+
+A tuple literal comprises the @Tuple@ keyword followed by braces enclosing
+a comma-separated list of one or more "TupleLiteralParts":#EssentialOCL-TupleLiteralPart.
+
+@Tuple{year:Integer='2000',month:String='January',day:Integer='1'}@
+
+h4(#EssentialOCL-TupleLiteralPart). TupleLiteralPart
+
+The TupleLiteralPart syntax supports the use of a named expression value in a tuple of such values.
+
+!{width:60%}images/1100-tupleliteralpart.png(TupleLiteralPart Syntax)!
+
+The part comprises the name, an optional type and a value. If the type is omitted, it is inferred from the value.
+
+@leapyear : Boolean = true@
+
+h4(#EssentialOCL-TypeLiteralExp). TypeLiteralExp
+
+The TypeLiteralExp syntax supports the use of types as values in an expression. This is useful for expressions such as @myCollection.oclAsType(Set<MyType>)@.
+
+!{width:60%}images/1100-typeliteralexp.png(TypeLiteralExp Syntax)!
+
+A TypeLiteralExp comprises a "TypeLiteral":#EssentialOCL-TypeLiteral.
+
+
+h4(#EssentialOCL-NestedExp). NestedExp
+
+The NestedExp syntax supports the use of an inner expression as a term in an outer expression ensuring that
+the operator precedence of the inner expression is not affected by the outer expression,
+
+!{width:60%}images/1100-nestedexp.png(NestedExp Syntax)!
+
+A nested expression is just an expression surrounded by parentheses.
+
+h4(#EssentialOCL-IfExp). IfExp
+
+The IfExp syntax supports the use of a conditional choice of expression value in an expression.
+
+!{width:60%}images/1100-ifexp.png(IfExp Syntax)!
+
+An if expression comprises a condition expression to be tested followed by a then-expression
+to be evaluated if the condition is true and an else-expression for evaluation if the expression is false.
+
+@if this.size > that.size then this else that endif@
+
+Note that the else-expression is required and so there is no ambiguity when multiple if expressions are nested.
+
+h4(#EssentialOCL-LetExp). LetExp
+
+The LetExp syntax supports the introduction of local variables to facilitate re-use of intermediate results within an expression.
+
+!{width:60%}images/1100-letexp.png(LetExp Syntax)!
+
+A let expression comprises the let keyword followed by one or more comma-separated let variables and then the in keyword and
+the in-expression to be evaluated with the help of the extra variables.
+
+Each let variable comprises a name, an optional type and an expression to initialize the variable. If the type is omitted, it is inferred from the initializer.
+
+bc.. 
+let test : String = 'prefix[contents]suffix',
+    start : Integer = test.indexOf('['),
+    finish : Integer = test.indexOf(']')
+in test.substring(start,finish)
+p. 
+
+The let syntax has no terminating keyword such as endlet and so there is an ambiguity for for instance @1 + let b : Integer = 2 in b + 4@. The ambiguity is resolved as @1 + let b : Integer = 2 in (b + 4)@ by selecting the longest possible in-expression.
+
+h4(#EssentialOCL-NameExp). NameExp
+
+The NameExp syntax supports the use of the name of a model  element such as a property, operation or type in an expression.
+
+!{width:60%}images/1100-nameexp.png(NameExp Syntax)!
+
+A name expression comprises a name optionally prefixed by double-colon separate path names.
+
+The first name is an "UnrestrictedName":#EssentialOCL-UnrestrictedName, that is a name that does not clash with any OCL reserved words such as @else@ or built-in types such as @String@. Subsequent names are "UnreservedName":#EssentialOCL-UnreservedName allowing the re-use of built-in type names but not reserved words.  
+
+h4(#EssentialOCL-IndexExp). IndexExp
+
+The IndexExp syntax supports the application of qualifiers to a model property to distinguish the source or select a particular association.
+
+!{width:60%}images/1100-indexexp1.png(IndexExp Syntax Part 1)!
+
+!{width:60%}images/1100-indexexp2.png(IndexExp Syntax Part 2)!
+
+A "NameExp":#EssentialOCL-NameExp identifying a model property is optionally qualified by a first list of qualifiers and a second list of qualifiers.
+
+This syntax is experimental and the qualifiers are not yet supported for evaluation.
+
+h4(#EssentialOCL-NavigatingExp). NavigatingExp
+
+The NavigatingExp syntax supports the navigation of models using model properties, operations and iterations.
+
+!{width:60%}images/1100-navigatingexp1.png(NavigatingExp Syntax Part 1)!
+
+!{width:60%}images/1100-navigatingexp2.png(NavigatingExp Syntax Part 2)!
+
+!{width:60%}images/1100-navigatingexp3.png(NavigatingExp Syntax Part 3)!
+
+An "IndexExp":#EssentialOCL-IndexExp identifying a potentially qualified model feature is optionally followed by a parenthesized arguments. If the parenthesized arguments are omitted the model feature should be a Property. If the arguments are present the model feature should be an iteration or operation.
+
+The diverse syntaxes specified by OCL 2.3 for OperationCallExpCS and IteratorExpCS create ambiguities that are difficult to parse. The merged grammar used by Eclipse OCL gathers argument
+contributions without imposing premature validation.
+
+The parenthesized arguments may be empty, or may comprise one or more parameters, optional accumulators and optional bodies.
+
+The comma-separated list of parameters starts with a NavigatingArgCS, followed by any number of 
+NavigatingCommaArgCS.
+
+@simpleCall(simpleArgument)@
+
+The optional comma-separated list of accumulators are introduced by a semi-colon-prefixed NavigatingSemiArgCS, followed by any number of  NavigatingCommaArgCS. 
+
+@some->iterate(p; anAccumulator : Integer = 0 | p.size())@
+
+The optional comma-separated list of bodies are introduced by a vertical-bar-prefixed NavigatingBarArgCS, followed by any number of  NavigatingCommaArgCS. 
+
+@some->exists(p | p.size())@
+
+h4(#EssentialOCL-NavigatingArg). NavigatingArg
+
+The NavigatingArg syntaxes supports the parsing of potential parameters, accumulators and bodies for use in NavigatingExps.
+
+!{width:60%}images/1100-navigatingarg.png(NavigatingArg Syntax)!
+
+Each syntax supports an optional type and an optional initializer for an expression.
+
+h4(#EssentialOCL-PrefixedExp). PrefixedExp
+
+The PrefixedExp syntax supports the application of zero or more prefix unary operators to an expression.
+
+!{width:60%}images/1100-prefixedexp.png(PrefixedExp Syntax)!
+
+The prefix operator precedes an expression: @-4@ or @not(this or that)@
+
+The unary operators are
+* @-@ negate
+* @not@ logical complement
+
+h4(#EssentialOCL-InfixedExp). InfixedExp
+
+The InfixedExp syntax supports the application of zero or more infix binary operators between expression terms.
+
+!{width:60%}images/1100-infixedexp.png(InfixedExp Syntax)!
+
+The infix operators separate expression terms: @1 + 2 / 3 * 4 / 5 + 6@.
+
+The infix operators are
+* The "NavigationOperators":#EssentialOCL-NavigationOperators
+* @*@, @/@ multiply and divide
+* @+@, @-@ add and subtract
+* @<@, @<=@, @>=@, @>@ relational comparisons
+* @=@, @<>@ equality and inequality
+* @and@ logical and
+* @or@ inclusive or
+* @xor@ exclusive or
+* @implies@ logical implication
+
+The precedence and associativity of the operators is defined by the OCL Standard Library model, not by the grammar. The OCL 2.3 library precedence is as presented above with all operators left associative. The example above is therefore interpreted as @(1 + (((2 / 3) * 4) / 5)) + 6@.
+
+h4(#EssentialOCL-NavigationOperators). NavigationOperators
+
+The NavigationOperators operators are
+* @.@ for object navigation
+* @->@ for collection navigation
+
+h4(#EssentialOCL-TypeExp). TypeExp
+
+The TypeExp syntax supports the use of types as expressions.
+
+!{width:60%}images/1100-typeexp.png(TypeExp Syntax)!
+
+A type expression may be a
+* "TypeNameExpCS":#EssentialOCL-TypeNameExp - a user-defined type
+* "TypeLiteralCS":#EssentialOCL-TypeLiteral - a built-in or aggregate type
+
+h4(#EssentialOCL-TypeNameExp). TypeNameExp
+
+The TypeNameExp syntax supports the use of a user-defined types as a declaration or expression.
+
+!{width:60%}images/1100-typenameexp.png(TypeNameExp Syntax)!
+
+A name expression comprises the name of a type optionally prefixed by double-colon separate path names.
+
+The first name is an "UnrestrictedName":#EssentialOCL-UnrestrictedName, that is a name that does not clash with any OCL reserved words such as @else@ or built-in types such as @String@. Subsequent names are "UnreservedName":#EssentialOCL-UnreservedName allowing the re-use of built-in type names but not reserved words.  
+
+h4(#EssentialOCL-TypeLiteral). TypeLiteral
+
+The TypeLiteral syntax supports the use of built-in or aggregate types as declarations or expressions.
+
+!{width:60%}images/1100-typeliteral.png(TypeLiteral Syntax)!
+
+A Type literal may be a
+* "PrimitiveTypeCS":#EssentialOCL-PrimitiveType
+* "CollectionTypeCS":#EssentialOCL-CollectionType
+* "TupleTypeCS":#EssentialOCL-TupleType
+
+h4(#EssentialOCL-PrimitiveType). PrimitiveType
+
+The PrimitiveType syntax supports the definition of a built-in type for use in a declaration or expression.
+
+!{width:60%}images/1100-primitivetype.png(PrimitiveType Syntax)!
+
+The built-in types are
+* Boolean
+* Integer
+* Real
+* String
+* UnlimitedNatural
+* OclAny
+* OclInvalid
+* OclVoid
+
+h4(#EssentialOCL-CollectionType). CollectionType
+
+The CollectionType syntax supports the definition of a collection type for use in a declaration or expression.
+
+!{width:60%}images/1100-collectiontype.png(CollectionType Syntax)!
+
+A collection type comprises the CollectionTypeIdentifier followed by a "Type Expression":#EssentialOCL-TypeExp defining the type of the collection elements.
+
+@Set(String)@ or @Sequence<Bag<Integer>>@
+
+The built-in CollectionTypeIdentifiers are
+* Collection
+* Bag
+* OrderedSet
+* Sequence
+* Set
+
+OCL 2.3 specifies the use of parentheses to surround the element type. Eclipse OCL additionally allows angle brackets as specified by UML and as may be required to support more general templated types.
+
+h4(#EssentialOCL-TupleType). TupleType
+
+The TupleType syntax supports the definition of a tuple type for use in a declaration or expression.
+
+!{width:60%}images/1100-tupletype.png(TupleType Syntax)!
+
+A tuple type comprises the @Tuple@ keyword followed by
+a comma-separated list of one or more "TupleParts":#EssentialOCL-TuplePart.
+
+OCL 2.3 specifies the use of parentheses to surround the parts. Eclipse OCL additionally allows angle brackets as specified by UML and as may be required to support more general templated types.
+
+@Tuple<year:Integer,month:String,day:Integer>@
+
+h4(#EssentialOCL-TuplePart). TuplePart
+
+The TuplePart syntax supports the definition of an element of a TupleType.
+
+!{width:60%}images/1100-tuplepart.png(TuplePart Syntax)!
+
+The part comprises the name and a type and a value. 
+
+@leapyear : Boolean@
+
+h4(#EssentialOCL-UnreservedName). UnreservedName
+
+The Essential OCL reserved words are @and@, @else@, @endif@, @false@, @if@, @implies@, @in@, @invalid@, @let@, @not@, @null@, @or@, @self@, @then@, @true@, @xor@. These
+can only be used as names when escaped as in @_'self'@.
+
+h4(#EssentialOCL-UnrestrictedName). UnrestrictedName
+
+The Essential OCL restricted words are the reserved words above and the OCL reserved type names which are @Bag@, @Boolean@, @Collection@, @Integer@, @Lambda@, @OclAny@, @OclInvalid@, @OclMessage@, @OclSelf@, @OclVoid@, @OrderedSet@, @Real@, @Sequence@, @Set@, @String@, @Tuple@, @UnlimitedNatural@. An UnrestrictedName can be used in any context. The reserved type names can be used following a @::@ qualification, Without qualification unrestricted names must be escaped as @_'Boolean'@.
+
+@Lambda@ is used in experimental syntax that realizes iterator bodies as lambda-expressions.

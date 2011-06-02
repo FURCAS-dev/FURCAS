@@ -28,3 +28,9 @@ It is not necessary for a project to have a Java nature.
 
 It is not necessary for a project to have an Xtext nature. If you add an Xtext nature, your OCL files will be built automatically when other files in the project or its dependencies change. This can significantly clutter the Problems View if you have problems with your OCL, and may significantly increase build times.
 
+h2(#OCLinEcoreTutorialExampleProject). OCLinEcore Tutorial Example Project
+
+The OCLinEcore Tutorial project provides the conclusion of the "OCLinEcore Tutorial":OCLinEcoreTutorial and the material for the "Getting Started":GettingStarted quick introduction.
+
+The project provides an example of OCL embedded in Ecore.
+

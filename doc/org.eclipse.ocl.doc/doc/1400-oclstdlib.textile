@@ -1,0 +1,6 @@
+h2(#OCLstdlib). The OCL Standard Library Language
+
+The OCL Standard Library Language is used to define the OCL Standard Library, for which *.oclstdlib is the default extension.
+
+The standard library can be replaced or extended.
+
