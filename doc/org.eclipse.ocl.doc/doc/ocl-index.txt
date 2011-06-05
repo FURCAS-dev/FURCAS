@@ -1,11 +1,16 @@
 0000-introduction.textile
 
 1000-users-guide.textile
+1010-eclipse-ocls.textile
 1100-essential-ocl.textile
 1200-oclinecore.textile
 1300-complete-ocl.textile
 1400-oclstdlib.textile
-1500-tools.textile
+
+1510-editors.textile
+1520-console.textile
+
+1600-ocl-integration.textile
 
 2000-ocl-standard-library.textile
 
@@ -29,6 +34,7 @@
 5180-metamodel-bindings.textile
 5190-impact-analyzer.textile
 5200-delegates.textile
+5210-standalone.textile
 
 6200-pivot-evaluator.textile
 

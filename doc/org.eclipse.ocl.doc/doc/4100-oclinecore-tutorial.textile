@@ -332,7 +332,7 @@ easily have simple errors. It is therefore helpful to simplify expressions
 and use helper operations and properties to modularise them. These may then be
 exercised using the OCL Console.
 
-h3. The OCL Console
+h3(#OCLinEcoreTutorial-Console). The OCL Console
 
 The OCL Console supports interactive execution of an OCL expression in the
 context of a model instance.

@@ -1,4 +1,4 @@
-h2. Incrementally Re-Evaluating OCL Expressions Using the Impact Analyzer
+h2(#ImpactAnalyzer). Incrementally Re-Evaluating OCL Expressions Using the Impact Analyzer
 
 When Ecore metamodels use many OCL invariants and the models constrained by these invariants
 grow large, re-evaluating the invariants becomes a performance challenge. As OCL expressions
