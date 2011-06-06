@@ -81,9 +81,11 @@ public class TextblocksTestHelper {
 	assertNodeOffset(block);
 
 	for (DocumentNode node : block.getSubNodes()) {
-	    if (node instanceof AbstractToken && !(node instanceof Bostoken) && !(node instanceof Eostoken)) {
-		assertNodeLength(node);
-		assertNodeOffset(node);
+	    if (node instanceof AbstractToken) {
+	        if (!(node instanceof Bostoken) && !(node instanceof Eostoken)) {
+	            assertNodeLength(node);
+	            assertNodeOffset(node);
+	        }
 	    } else {
 	        assertTextBlockAndChildren((TextBlock) node);
 	    }

@@ -16,13 +16,14 @@ import org.eclipse.ui.PlatformUI;
 import com.sap.furcas.ide.editor.imp.AbstractFurcasEditor;
 import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.runtime.parser.ParserFactory;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 
 
 public class EditorUtil {
     
-    public static ConcreteSyntax loadConcreteSyntax(AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) {
+    public static ConcreteSyntax loadConcreteSyntax(ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) {
         ResourceSet resourceSet = new ResourceSetImpl();
         resourceSet.getResource(parserFactory.getSyntaxResourceURI(), /*load*/ true);
         return TcsUtil.getSyntaxByName(resourceSet, parserFactory.getLanguageId());

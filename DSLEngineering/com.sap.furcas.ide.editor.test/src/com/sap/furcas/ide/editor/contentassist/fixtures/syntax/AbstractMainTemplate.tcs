@@ -1,0 +1,32 @@
+syntax AbstractMainTemplate {
+
+	template test::expression::Expression main abstract;
+	
+	template test::expression::IntegerExpression
+		:	value
+	;
+	
+	
+	
+	---------------------- BELOW IS A MINIMAL SYNTAX -------------------------------
+		
+	primitiveTemplate identifier for ecore::EString default using NAME
+	: value = "unescapeString(%token%)"
+	;
+	primitiveTemplate identifierOrKeyword for ecore::EString using NAME orKeyword
+	: value = "unescapeString(%token%)"
+	;
+	primitiveTemplate stringSymbol for ecore::EString using STRING
+	: value = "unescapeString(%token%)",
+      serializer = "\'%value%\'"
+    ;
+	primitiveTemplate integerSymbol for ecore::EIntegerObject default using INT
+	: value = "Integer.valueOf(%token%)"
+	;
+	primitiveTemplate floatSymbol for ecore::EDoubleObject default using FLOAT
+	: value = "Double.valueOf(%token%)"
+	;
+
+	omitted token COMMENT	: endOfLine(start = "--");
+	
+}

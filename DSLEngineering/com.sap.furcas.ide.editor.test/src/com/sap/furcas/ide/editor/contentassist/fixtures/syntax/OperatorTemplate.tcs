@@ -1,0 +1,97 @@
+syntax OperatorTemplate {
+
+	template test::expression::ExpressionContainer main
+		:	expression
+	;
+	
+	template test::expression::Expression abstract operatored;
+	
+	operatorTemplate test::expression::UnaryExpression
+		(
+			operators = opNegation opSqrt,
+			source = 'left',
+			storeOpTo = 'operator'
+		)
+	;
+	
+	-- using storeRightTo
+	operatorTemplate test::expression::BinaryExpression
+		(
+			operators = opExponent opMultiply opDivide opPlus opMinus,
+			source = 'left',
+			storeOpTo = 'operator',
+			storeRightTo = 'right'
+		)
+	;
+	
+	-- using sequence instead of storeRightTo
+	operatorTemplate test::expression::BracketExpression
+		(
+			operators = opBracket,
+			source = 'left',
+			storeOpTo = 'operator'
+		)
+		: "bracket" right "]"
+	;
+	
+	template test::expression::IntegerExpression
+		:	value
+	;
+	
+	
+	
+	---------------------- BELOW IS A MINIMAL SYNTAX -------------------------------
+		
+	primitiveTemplate identifier for ecore::EString default using NAME
+	: value = "unescapeString(%token%)"
+	;
+	primitiveTemplate identifierOrKeyword for ecore::EString using NAME orKeyword
+	: value = "unescapeString(%token%)"
+	;
+	primitiveTemplate stringSymbol for ecore::EString using STRING
+	: value = "unescapeString(%token%)",
+      serializer = "\'%value%\'"
+    ;
+	primitiveTemplate integerSymbol for ecore::EIntegerObject default using INT
+	: value = "Integer.valueOf(%token%)"
+	;
+	primitiveTemplate floatSymbol for ecore::EDoubleObject default using FLOAT
+	: value = "Double.valueOf(%token%)"
+	;
+
+	---------------------- BREAK MINIMAL SYNTAX ------------------------------------
+	
+	operators {
+		
+		priority 0 { -- 0 is highest, left associativity (default)
+			opNegation 	= "-", 1;
+		}
+		
+		priority 1 { -- unary postfix
+			postfix opSqrt 	= "sqrt", 1;
+		}
+		
+		priority 2 {
+			opBracket 	= "[", 2;
+		}
+
+		priority 3, right {	-- right associativity
+			opExponent 	= "^^", 2;
+		}
+
+		priority 4 {
+			opMultiply 	= "*", 2;
+			opDivide 	= "/", 2;
+		}
+
+		priority 5 {
+			opPlus 		= "+", 2;
+			opMinus 	= "-", 2;
+		}
+	}
+	
+	---------------------- CONTINUE MINIMAL SYNTAX ---------------------------------
+
+	omitted token COMMENT	: endOfLine(start = "--");
+	
+}

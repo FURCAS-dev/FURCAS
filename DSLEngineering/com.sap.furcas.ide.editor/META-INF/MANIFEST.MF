@@ -33,6 +33,8 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.furcas.ide.editor,
  com.sap.furcas.ide.editor.action,
+ com.sap.furcas.ide.editor.contentassist,
+ com.sap.furcas.ide.editor.contentassist.modeladapter,
  com.sap.furcas.ide.editor.deepcopy,
  com.sap.furcas.ide.editor.dialogs,
  com.sap.furcas.ide.editor.document,
