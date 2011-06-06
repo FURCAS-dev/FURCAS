@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
@@ -118,7 +119,7 @@ public class IncrementalParserFacade {
         
         if (lexAndPrepareParsing(rootBlock)) {
             TextBlock preparedTextBlock = getCurrentVersion(rootBlock);
-            incrementalLexer.setCurrentTokenForParser(preparedTextBlock.getTokens().get(0));
+            incrementalLexer.setCurrentTokenForParser((AbstractToken) preparedTextBlock.getSubNodes().get(0));
             observer.setRootBlock(preparedTextBlock);
             TextBlock newRoot = incrementalParser.incrementalParse(preparedTextBlock);
             return newRoot;
@@ -178,7 +179,7 @@ public class IncrementalParserFacade {
         // go back to beginning of stream
         tbTokenStream.reset();
         TextBlock previousVersionTb = TbVersionUtil.getOtherVersion(rootBlock, Version.PREVIOUS);
-        incrementalLexer.setSource(previousVersionTb.getTokens().get(0));
+        incrementalLexer.setSource((AbstractToken) previousVersionTb.getSubNodes().get(0));
         boolean lexingSuccessful = incrementalLexer.lex(previousVersionTb);
 
         return lexingSuccessful;
