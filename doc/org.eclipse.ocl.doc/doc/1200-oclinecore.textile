@@ -261,7 +261,7 @@ The Operation syntax supports the definition of an EOperation.
 
 An Operation may be static and has a name and optionally template parameters.
 
-The @static@ qualifier supports declaration of static properties which are supported by UML and OCL. Note that Ecore does not support static properties.
+The @static@ qualifier supports declaration of static operations which are supported by UML and OCL. Note that Ecore does not support static operations.
 
 The @definition@ qualifier is an obsolete experimental syntax for Complete OCL definitions.
 
@@ -271,7 +271,7 @@ An Operation has zero of more "Parameters":#OCLinEcore-Parameter.
 
 !{width:60%}images/1200-operation3.png(OCLinEcore Operation Syntax Part 3)!
 
-An Operation may may have a return "Type":#OCLinEcore-TypeRef and multiplicity.
+An Operation may have a return "Type":#OCLinEcore-TypeRef and multiplicity.
 
 !{width:60%}images/1200-operation4.png(OCLinEcore Operation Syntax Part 4)!
 

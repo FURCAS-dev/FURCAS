@@ -276,3 +276,4 @@ The Complete OCL reserved words are unchanged from Essential OCL, consequently a
 h4(#CompleteOCL-UnrestrictedName). UnrestrictedName
 
 The Complete OCL has two additional built-in types: @OclMessage@ and @OclState@. These names and the "Essential OCL RestrictedNames":#EssentialOCL-UnrestrictedName are not available without qualification or escaping. 
+

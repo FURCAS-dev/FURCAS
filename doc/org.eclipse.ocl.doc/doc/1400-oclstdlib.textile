@@ -12,17 +12,56 @@ The Library syntax defines an OCL Standard Library document, for which *.oclstdl
 
 !{width:60%}images/1400-library1.png(OCL Standard Library Document Syntax Part 1)!
 
+Zero or more library documents may be imported for use within the composite library whose name must be specified.
+
 !{width:60%}images/1400-library2.png(OCL Standard Library Document Syntax Part 2)!
+
+A namespace prefix and namespace URI may optionally be specified.
 
 !{width:60%}images/1400-library3.png(OCL Standard Library Document Syntax Part 3)!
 
+The body of the document comprises
+* optional module declaration
+* optional specification of the OCL Standard libraries
+* optional import of referenced Ecore or UML or OCLinEcore resources
+* "Precedences":#OCLstdlib-Precedence
+* a hierarchy of "Packages":#OCLstdlib-Package
+* a hierarchy of "Classifiers":#OCLstdlib-Classifier
+* Annotations
+
+!{width:60%}images/1400-library.png(OCL Standard Library Document Library Import Syntax)!
+
+Zero or more external libraries may be imported so that their definitions are merged to form a composite library of basic and extended evaluation capability.
+
+The default library may be extended by specifying it as the first library import.
+
+bc.. 
+library 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib'
+p. 
+
+The namespace URI of the first library package defines the namespace URI of the composite library. The namespace URI of subsequent library imports may not conflict, but may be null.
+
+h4(#OCLstdlib-Precedence). Precedence
+
+The Precedence syntax defines the precedence and associativity of infix operators.
+
+!{width:60%}images/1400-precedence.png(OCL Standard Library Precedence Syntax)!
+
+Each entry in a list of precedences names a precedence level taht can then be used by an infix operator. Each level can be either left or right associative.
+
+Multiple lists of precedence levels can be merged from imported libraries provided the lists are interleaveable with conflict or ambiguity.
+
 h4(#OCLstdlib-Package). Package
 
-The Package syntax defines a hierarchy of packages.
+The Package syntax defines a nested hierarchy of packages and classifiers .
 
 !{width:60%}images/1400-package1.png(OCL Standard Library Package Syntax Part 1)!
 
+A Package has a name and optionally a namespace prefix and namespace URI.
+
 !{width:60%}images/1400-package2.png(OCL Standard Library Package Syntax Part 2)!
+
+The content of a Package may comprise "Packages":#OCLstdlib-Package, "Classifiers":#OCLstdlib-Classifier and Annotations.
 
 h4(#OCLstdlib-Classifier). Class and Classifier
 
@@ -32,33 +71,49 @@ The Class and Classifier syntax define a type within a Package.
 
 !{width:60%}images/1400-class1.png(OCL Standard Library Class Syntax Part 1)!
 
+A Class has a name and optionally template parameters. A class may also name the metatype such as @PrimitiveType@ that the Class is an instance of.
+
 !{width:60%}images/1400-class2.png(OCL Standard Library Class Syntax Part 2)!
+
+A Class may extend one or more other Classes that may be specialized using the template parameters.
 
 !{width:60%}images/1400-class3.png(OCL Standard Library Class Syntax Part 3)!
 
+The content of a Class may comprise "Operations":#OCLstdlib-Operation, "Properties":#OCLstdlib-Property, "Invariants":#OCLstdlib-Inv and Annotations.
+
 h4(#OCLstdlib-Inv). Inv
 
-The Pre syntax defines an invariant constraint.
+The Inv syntax defines an invariant constraint.
 
 !{width:60%}images/1400-inv.png(OCL Standard Library Inv Syntax)!
 
 h4(#OCLstdlib-Operation). Operation
 
-The Operation syntax defines an Operation or Iteration.
+The general Operation syntax defines a conventional Operation or Iteration.
 
 !{width:60%}images/1400-operation.png(OCL Standard Library Operation Syntax)!
 
 h4(#OCLstdlib-LibOperation). LibOperation
 
-The LibOperation syntax defines an Operation.
+The LibOperation syntax defines a conventional Operation.
 
 !{width:60%}images/1400-operation1.png(OCL Standard Library LibOperation Syntax Part 1)!
 
+An Operation may be static and has a name and optionally template parameters.
+
 !{width:60%}images/1400-operation2.png(OCL Standard Library LibOperation Syntax Part 2)!
+
+An Operation has zero of more "Parameters":#OCLstdlib-Parameter.
 
 !{width:60%}images/1400-operation3.png(OCL Standard Library LibOperation Syntax Part 3)!
 
+An Operation has a return Type. An infix operation may specify a precedence level. An operation may specify the name of a Java class implementing the org.eclipse.ocl.examples.library.LibraryOperation interface. This class is used when evaluating the operation.
+
 !{width:60%}images/1400-operation4.png(OCL Standard Library LibOperation Syntax Part 4)!
+
+The content of an Operation may comprise "Preconditions":#OCLstdlib-Pre, "Postconditions":#OCLstdlib-Post and Annotations.
+
+The @static@ qualifier supports declaration of static library operations such as @allInstances()@ that are invoked on types rather than objects.
 
 h4(#OCLstdlib-LibIteration). LibIteration
 
@@ -66,15 +121,27 @@ The LibIteration syntax defines an Iteration.
 
 !{width:60%}images/1400-iteration1.png(OCL Standard Library LibIteration Syntax Part 1)!
 
+An Iteration has a name and optionally template parameters.
+
 !{width:60%}images/1400-iteration2.png(OCL Standard Library LibIteration Syntax Part 2)!
+
+An Iteration has one or more comma-separated "Iterators":#OCLstdlib-Iterator.
 
 !{width:60%}images/1400-iteration3.png(OCL Standard Library LibIteration Syntax Part 3)!
 
+Optionally following a semicolon, an Iteration has one or more comma-separated "Accumulators":#OCLstdlib-Accumulator.
+
 !{width:60%}images/1400-iteration4.png(OCL Standard Library LibIteration Syntax Part 4)!
+
+Optionally following a bar, an Iteration has one or more comma-separated "Parameters":#OCLstdlib-Parameter.
 
 !{width:60%}images/1400-iteration5.png(OCL Standard Library LibIteration Syntax Part 5)!
 
+An Iteration has a return Type. An Iteration may specify the name of a Java class implementing the org.eclipse.ocl.examples.library.LibraryIteration interface. This class is used when evaluating the iteration.
+
 !{width:60%}images/1400-iteration6.png(OCL Standard Library LibIteration Syntax Part 6)!
+
+The content of an Iteration may comprise "Preconditions":#OCLstdlib-Pre, "Postconditions":#OCLstdlib-Post and Annotations.
 
 h4(#OCLstdlib-Iterator). Iterator
 
@@ -88,7 +155,7 @@ The Accumulator syntax defines an Accumulator.
 
 !{width:60%}images/1400-accumulator.png(OCL Standard Library Accumulator Syntax)!
 
-h4(#OCLstdlib-Precedence). Parameter
+h4(#OCLstdlib-Parameter). Parameter
 
 The Parameter syntax defines a Parameter.
 
@@ -106,13 +173,19 @@ The Post syntax defines a postcondition constraint.
 
 !{width:60%}images/1400-post.png(OCL Standard Library Post Syntax)!
 
-h4(#OCLstdlib-LibProperty). LibProperty
+h4(#OCLstdlib-Property). LibProperty
 
 The LibProperty syntax defines an Property.
 
 !{width:60%}images/1400-property1.png(OCL Standard Library LibProperty Syntax Part 1)!
 
+An Property may be static and has a name and a Type.
+
 !{width:60%}images/1400-property2.png(OCL Standard Library LibProperty Syntax Part 2)!
+
+A Property may specify the name of a Java class implementing the org.eclipse.ocl.examples.library.LibraryProperty interface. This class is used when evaluating the iteration.
+
+The content of a Property may comprise Annotations.
 
 h4(#OCLstdlib-Specification). Specification
 
