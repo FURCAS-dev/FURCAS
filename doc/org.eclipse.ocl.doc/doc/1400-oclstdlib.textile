@@ -4,3 +4,119 @@ The OCL Standard Library Language is used to define the OCL Standard Library, fo
 
 The standard library can be replaced or extended.
 
+h3. Syntax
+
+h4(#OCLstdlib-Library). OCL Standard Library Document
+
+The Library syntax defines an OCL Standard Library document, for which *.oclstdlib is the default extension.
+
+!{width:60%}images/1400-library1.png(OCL Standard Library Document Syntax Part 1)!
+
+!{width:60%}images/1400-library2.png(OCL Standard Library Document Syntax Part 2)!
+
+!{width:60%}images/1400-library3.png(OCL Standard Library Document Syntax Part 3)!
+
+h4(#OCLstdlib-Package). Package
+
+The Package syntax defines a hierarchy of packages.
+
+!{width:60%}images/1400-package1.png(OCL Standard Library Package Syntax Part 1)!
+
+!{width:60%}images/1400-package2.png(OCL Standard Library Package Syntax Part 2)!
+
+h4(#OCLstdlib-Classifier). Class and Classifier
+
+The Class and Classifier syntax define a type within a Package.
+
+!{width:60%}images/1400-classifier.png(OCL Standard Library Classifier Syntax)!
+
+!{width:60%}images/1400-class1.png(OCL Standard Library Class Syntax Part 1)!
+
+!{width:60%}images/1400-class2.png(OCL Standard Library Class Syntax Part 2)!
+
+!{width:60%}images/1400-class3.png(OCL Standard Library Class Syntax Part 3)!
+
+h4(#OCLstdlib-Inv). Inv
+
+The Pre syntax defines an invariant constraint.
+
+!{width:60%}images/1400-inv.png(OCL Standard Library Inv Syntax)!
+
+h4(#OCLstdlib-Operation). Operation
+
+The Operation syntax defines an Operation or Iteration.
+
+!{width:60%}images/1400-operation.png(OCL Standard Library Operation Syntax)!
+
+h4(#OCLstdlib-LibOperation). LibOperation
+
+The LibOperation syntax defines an Operation.
+
+!{width:60%}images/1400-operation1.png(OCL Standard Library LibOperation Syntax Part 1)!
+
+!{width:60%}images/1400-operation2.png(OCL Standard Library LibOperation Syntax Part 2)!
+
+!{width:60%}images/1400-operation3.png(OCL Standard Library LibOperation Syntax Part 3)!
+
+!{width:60%}images/1400-operation4.png(OCL Standard Library LibOperation Syntax Part 4)!
+
+h4(#OCLstdlib-LibIteration). LibIteration
+
+The LibIteration syntax defines an Iteration.
+
+!{width:60%}images/1400-iteration1.png(OCL Standard Library LibIteration Syntax Part 1)!
+
+!{width:60%}images/1400-iteration2.png(OCL Standard Library LibIteration Syntax Part 2)!
+
+!{width:60%}images/1400-iteration3.png(OCL Standard Library LibIteration Syntax Part 3)!
+
+!{width:60%}images/1400-iteration4.png(OCL Standard Library LibIteration Syntax Part 4)!
+
+!{width:60%}images/1400-iteration5.png(OCL Standard Library LibIteration Syntax Part 5)!
+
+!{width:60%}images/1400-iteration6.png(OCL Standard Library LibIteration Syntax Part 6)!
+
+h4(#OCLstdlib-Iterator). Iterator
+
+The Iterator syntax defines an Iterator.
+
+!{width:60%}images/1400-iterator.png(OCL Standard Library Iterator Syntax)!
+
+h4(#OCLstdlib-Accumulator). Accumulator
+
+The Accumulator syntax defines an Accumulator.
+
+!{width:60%}images/1400-accumulator.png(OCL Standard Library Accumulator Syntax)!
+
+h4(#OCLstdlib-Precedence). Parameter
+
+The Parameter syntax defines a Parameter.
+
+!{width:60%}images/1400-parameter.png(OCL Standard Library Parameter Syntax)!
+
+h4(#OCLstdlib-Pre). Pre
+
+The Pre syntax defines a precondition constraint.
+
+!{width:60%}images/1400-pre.png(OCL Standard Library Pre Syntax)!
+
+h4(#OCLstdlib-Post). Post
+
+The Post syntax defines a postcondition constraint.
+
+!{width:60%}images/1400-post.png(OCL Standard Library Post Syntax)!
+
+h4(#OCLstdlib-LibProperty). LibProperty
+
+The LibProperty syntax defines an Property.
+
+!{width:60%}images/1400-property1.png(OCL Standard Library LibProperty Syntax Part 1)!
+
+!{width:60%}images/1400-property2.png(OCL Standard Library LibProperty Syntax Part 2)!
+
+h4(#OCLstdlib-Specification). Specification
+
+The Specification syntax integrates an OCL Expression as the specification of a constraint.
+
+!{width:60%}images/1400-specification.png(OCL Standard Library Specification Syntax)!
+

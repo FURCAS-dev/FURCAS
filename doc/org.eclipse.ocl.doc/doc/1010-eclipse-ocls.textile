@@ -1,4 +1,4 @@
-h2. The two Eclipse OCLs
+h2(#EclipseOCLs). The two Eclipse OCLs
 
 The Eclipse OCL project is making a transition to a new underlying infrastructure.
 

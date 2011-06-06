@@ -36,6 +36,7 @@
 5200-delegates.textile
 5210-standalone.textile
 
+6110-pivot-validators.textile
 6200-pivot-evaluator.textile
 
 7000-API.textile
