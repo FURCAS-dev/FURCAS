@@ -83,7 +83,7 @@ public class PropertyImpl extends SequenceElementImpl implements Property {
      */
         public EList<PropertyArg> getPropertyArgs() {
         if (propertyArgs == null) {
-            propertyArgs = new EObjectContainmentWithInverseEList.Resolving<PropertyArg>(PropertyArg.class, this, TCSPackage.PROPERTY__PROPERTY_ARGS, TCSPackage.PROPERTY_ARG__PROPERTY);
+            propertyArgs = new EObjectContainmentWithInverseEList<PropertyArg>(PropertyArg.class, this, TCSPackage.PROPERTY__PROPERTY_ARGS, TCSPackage.PROPERTY_ARG__PROPERTY);
         }
         return propertyArgs;
     }
@@ -94,29 +94,6 @@ public class PropertyImpl extends SequenceElementImpl implements Property {
      * @generated
      */
         public PropertyReference getPropertyReference() {
-        if (propertyReference != null && propertyReference.eIsProxy()) {
-            InternalEObject oldPropertyReference = (InternalEObject)propertyReference;
-            propertyReference = (PropertyReference)eResolveProxy(oldPropertyReference);
-            if (propertyReference != oldPropertyReference) {
-                InternalEObject newPropertyReference = (InternalEObject)propertyReference;
-                NotificationChain msgs = oldPropertyReference.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TCSPackage.PROPERTY__PROPERTY_REFERENCE, null, null);
-                if (newPropertyReference.eInternalContainer() == null) {
-                    msgs = newPropertyReference.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TCSPackage.PROPERTY__PROPERTY_REFERENCE, null, msgs);
-                }
-                if (msgs != null) msgs.dispatch();
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.PROPERTY__PROPERTY_REFERENCE, oldPropertyReference, propertyReference));
-            }
-        }
-        return propertyReference;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public PropertyReference basicGetPropertyReference() {
         return propertyReference;
     }
 
@@ -196,8 +173,7 @@ public class PropertyImpl extends SequenceElementImpl implements Property {
             case TCSPackage.PROPERTY__PROPERTY_ARGS:
                 return getPropertyArgs();
             case TCSPackage.PROPERTY__PROPERTY_REFERENCE:
-                if (resolve) return getPropertyReference();
-                return basicGetPropertyReference();
+                return getPropertyReference();
         }
         return super.eGet(featureID, resolve, coreType);
     }

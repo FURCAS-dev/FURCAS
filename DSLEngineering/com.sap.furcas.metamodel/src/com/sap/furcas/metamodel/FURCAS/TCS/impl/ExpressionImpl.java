@@ -62,16 +62,6 @@ public abstract class ExpressionImpl extends LocatedElementImpl implements Expre
 
         /**
      * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public ConditionalElement basicGetConditionalElement() {
-        if (eContainerFeatureID() != TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT) return null;
-        return (ConditionalElement)eInternalContainer();
-    }
-
-        /**
-     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -154,8 +144,7 @@ public abstract class ExpressionImpl extends LocatedElementImpl implements Expre
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT:
-                if (resolve) return getConditionalElement();
-                return basicGetConditionalElement();
+                return getConditionalElement();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -199,7 +188,7 @@ public abstract class ExpressionImpl extends LocatedElementImpl implements Expre
         public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT:
-                return basicGetConditionalElement() != null;
+                return getConditionalElement() != null;
         }
         return super.eIsSet(featureID);
     }

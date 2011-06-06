@@ -92,7 +92,7 @@ public class ForeachPredicatePropertyInitImpl extends PropertyInitImpl implement
      */
         public EList<PredicateSemantic> getPredicateSemantic() {
         if (predicateSemantic == null) {
-            predicateSemantic = new EObjectContainmentWithInverseEList.Resolving<PredicateSemantic>(PredicateSemantic.class, this, TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__PREDICATE_SEMANTIC, TCSPackage.PREDICATE_SEMANTIC__FOREACH_PARENT);
+            predicateSemantic = new EObjectContainmentWithInverseEList<PredicateSemantic>(PredicateSemantic.class, this, TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__PREDICATE_SEMANTIC, TCSPackage.PREDICATE_SEMANTIC__FOREACH_PARENT);
         }
         return predicateSemantic;
     }

@@ -253,29 +253,6 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
      * @generated
      */
         public ScopeArg getScope() {
-        if (scope != null && scope.eIsProxy()) {
-            InternalEObject oldScope = (InternalEObject)scope;
-            scope = (ScopeArg)eResolveProxy(oldScope);
-            if (scope != oldScope) {
-                InternalEObject newScope = (InternalEObject)scope;
-                NotificationChain msgs = oldScope.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TCSPackage.CONTEXT_TEMPLATE__SCOPE, null, null);
-                if (newScope.eInternalContainer() == null) {
-                    msgs = newScope.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TCSPackage.CONTEXT_TEMPLATE__SCOPE, null, msgs);
-                }
-                if (msgs != null) msgs.dispatch();
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.CONTEXT_TEMPLATE__SCOPE, oldScope, scope));
-            }
-        }
-        return scope;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public ScopeArg basicGetScope() {
         return scope;
     }
 
@@ -319,29 +296,6 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
      * @generated
      */
     public Sequence getTemplateSequence() {
-        if (templateSequence != null && templateSequence.eIsProxy()) {
-            InternalEObject oldTemplateSequence = (InternalEObject)templateSequence;
-            templateSequence = (Sequence)eResolveProxy(oldTemplateSequence);
-            if (templateSequence != oldTemplateSequence) {
-                InternalEObject newTemplateSequence = (InternalEObject)templateSequence;
-                NotificationChain msgs = oldTemplateSequence.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TCSPackage.CONTEXT_TEMPLATE__TEMPLATE_SEQUENCE, null, null);
-                if (newTemplateSequence.eInternalContainer() == null) {
-                    msgs = newTemplateSequence.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TCSPackage.CONTEXT_TEMPLATE__TEMPLATE_SEQUENCE, null, msgs);
-                }
-                if (msgs != null) msgs.dispatch();
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.CONTEXT_TEMPLATE__TEMPLATE_SEQUENCE, oldTemplateSequence, templateSequence));
-            }
-        }
-        return templateSequence;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Sequence basicGetTemplateSequence() {
         return templateSequence;
     }
 
@@ -413,11 +367,9 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
                 if (resolve) return getContextTags();
                 return basicGetContextTags();
             case TCSPackage.CONTEXT_TEMPLATE__SCOPE:
-                if (resolve) return getScope();
-                return basicGetScope();
+                return getScope();
             case TCSPackage.CONTEXT_TEMPLATE__TEMPLATE_SEQUENCE:
-                if (resolve) return getTemplateSequence();
-                return basicGetTemplateSequence();
+                return getTemplateSequence();
         }
         return super.eGet(featureID, resolve, coreType);
     }

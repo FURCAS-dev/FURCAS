@@ -242,29 +242,6 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
      * @generated
      */
         public PropertyReference getStoreOperatorTo() {
-        if (storeOperatorTo != null && storeOperatorTo.eIsProxy()) {
-            InternalEObject oldStoreOperatorTo = (InternalEObject)storeOperatorTo;
-            storeOperatorTo = (PropertyReference)eResolveProxy(oldStoreOperatorTo);
-            if (storeOperatorTo != oldStoreOperatorTo) {
-                InternalEObject newStoreOperatorTo = (InternalEObject)storeOperatorTo;
-                NotificationChain msgs = oldStoreOperatorTo.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TCSPackage.OPERATOR_TEMPLATE__STORE_OPERATOR_TO, null, null);
-                if (newStoreOperatorTo.eInternalContainer() == null) {
-                    msgs = newStoreOperatorTo.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TCSPackage.OPERATOR_TEMPLATE__STORE_OPERATOR_TO, null, msgs);
-                }
-                if (msgs != null) msgs.dispatch();
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.OPERATOR_TEMPLATE__STORE_OPERATOR_TO, oldStoreOperatorTo, storeOperatorTo));
-            }
-        }
-        return storeOperatorTo;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public PropertyReference basicGetStoreOperatorTo() {
         return storeOperatorTo;
     }
 
@@ -308,29 +285,6 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
      * @generated
      */
         public PropertyReference getStoreLeftSideTo() {
-        if (storeLeftSideTo != null && storeLeftSideTo.eIsProxy()) {
-            InternalEObject oldStoreLeftSideTo = (InternalEObject)storeLeftSideTo;
-            storeLeftSideTo = (PropertyReference)eResolveProxy(oldStoreLeftSideTo);
-            if (storeLeftSideTo != oldStoreLeftSideTo) {
-                InternalEObject newStoreLeftSideTo = (InternalEObject)storeLeftSideTo;
-                NotificationChain msgs = oldStoreLeftSideTo.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TCSPackage.OPERATOR_TEMPLATE__STORE_LEFT_SIDE_TO, null, null);
-                if (newStoreLeftSideTo.eInternalContainer() == null) {
-                    msgs = newStoreLeftSideTo.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TCSPackage.OPERATOR_TEMPLATE__STORE_LEFT_SIDE_TO, null, msgs);
-                }
-                if (msgs != null) msgs.dispatch();
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.OPERATOR_TEMPLATE__STORE_LEFT_SIDE_TO, oldStoreLeftSideTo, storeLeftSideTo));
-            }
-        }
-        return storeLeftSideTo;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public PropertyReference basicGetStoreLeftSideTo() {
         return storeLeftSideTo;
     }
 
@@ -374,29 +328,6 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
      * @generated
      */
         public PropertyReference getStoreRightSideTo() {
-        if (storeRightSideTo != null && storeRightSideTo.eIsProxy()) {
-            InternalEObject oldStoreRightSideTo = (InternalEObject)storeRightSideTo;
-            storeRightSideTo = (PropertyReference)eResolveProxy(oldStoreRightSideTo);
-            if (storeRightSideTo != oldStoreRightSideTo) {
-                InternalEObject newStoreRightSideTo = (InternalEObject)storeRightSideTo;
-                NotificationChain msgs = oldStoreRightSideTo.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TCSPackage.OPERATOR_TEMPLATE__STORE_RIGHT_SIDE_TO, null, null);
-                if (newStoreRightSideTo.eInternalContainer() == null) {
-                    msgs = newStoreRightSideTo.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TCSPackage.OPERATOR_TEMPLATE__STORE_RIGHT_SIDE_TO, null, msgs);
-                }
-                if (msgs != null) msgs.dispatch();
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.OPERATOR_TEMPLATE__STORE_RIGHT_SIDE_TO, oldStoreRightSideTo, storeRightSideTo));
-            }
-        }
-        return storeRightSideTo;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public PropertyReference basicGetStoreRightSideTo() {
         return storeRightSideTo;
     }
 
@@ -486,14 +417,11 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
             case TCSPackage.OPERATOR_TEMPLATE__STORE_RIGHT_TO:
                 return getStoreRightTo();
             case TCSPackage.OPERATOR_TEMPLATE__STORE_OPERATOR_TO:
-                if (resolve) return getStoreOperatorTo();
-                return basicGetStoreOperatorTo();
+                return getStoreOperatorTo();
             case TCSPackage.OPERATOR_TEMPLATE__STORE_LEFT_SIDE_TO:
-                if (resolve) return getStoreLeftSideTo();
-                return basicGetStoreLeftSideTo();
+                return getStoreLeftSideTo();
             case TCSPackage.OPERATOR_TEMPLATE__STORE_RIGHT_SIDE_TO:
-                if (resolve) return getStoreRightSideTo();
-                return basicGetStoreRightSideTo();
+                return getStoreRightSideTo();
         }
         return super.eGet(featureID, resolve, coreType);
     }

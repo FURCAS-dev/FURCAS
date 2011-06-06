@@ -62,16 +62,6 @@ public abstract class BlockArgImpl extends LocatedElementImpl implements BlockAr
 
         /**
      * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Block basicGetBlock() {
-        if (eContainerFeatureID() != TCSPackage.BLOCK_ARG__BLOCK) return null;
-        return (Block)eInternalContainer();
-    }
-
-        /**
-     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -154,8 +144,7 @@ public abstract class BlockArgImpl extends LocatedElementImpl implements BlockAr
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.BLOCK_ARG__BLOCK:
-                if (resolve) return getBlock();
-                return basicGetBlock();
+                return getBlock();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -199,7 +188,7 @@ public abstract class BlockArgImpl extends LocatedElementImpl implements BlockAr
         public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.BLOCK_ARG__BLOCK:
-                return basicGetBlock() != null;
+                return getBlock() != null;
         }
         return super.eIsSet(featureID);
     }

@@ -230,7 +230,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
         @Override
         public EList<DocumentNode> getSubNodes() {
         if (subNodes == null) {
-            subNodes = new EObjectContainmentWithInverseEList.Resolving<DocumentNode>(DocumentNode.class, this, TextblocksPackage.TEXT_BLOCK__SUB_NODES, TextblocksPackage.DOCUMENT_NODE__PARENT);
+            subNodes = new EObjectContainmentWithInverseEList<DocumentNode>(DocumentNode.class, this, TextblocksPackage.TEXT_BLOCK__SUB_NODES, TextblocksPackage.DOCUMENT_NODE__PARENT);
         }
         return subNodes;
     }
@@ -269,7 +269,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
         @Override
         public EList<ForEachExecution> getForEachExecutions() {
         if (forEachExecutions == null) {
-            forEachExecutions = new EObjectContainmentEList.Resolving<ForEachExecution>(ForEachExecution.class, this, TextblocksPackage.TEXT_BLOCK__FOR_EACH_EXECUTIONS);
+            forEachExecutions = new EObjectContainmentEList<ForEachExecution>(ForEachExecution.class, this, TextblocksPackage.TEXT_BLOCK__FOR_EACH_EXECUTIONS);
         }
         return forEachExecutions;
     }
