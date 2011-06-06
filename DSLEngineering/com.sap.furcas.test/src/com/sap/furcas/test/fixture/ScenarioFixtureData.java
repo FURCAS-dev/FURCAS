@@ -25,7 +25,7 @@ public class ScenarioFixtureData {
     public static final File PROBLEM_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/Problem.ecore");
     public static final File SPL_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/SPL.ecore");
     public static final File SQLDDL_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/SQLDDL.ecore");
-    public static final File TCS_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/TCS.ecore");
+    public static final File TCS_OBSOLETE_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/TCSObsolete.ecore");
     public static final File XPATH_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/XPath.ecore");
     public static final File XPATH1_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/XPath1.ecore");
     public static final File XPATH_REDUCED_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/XPathReduced.ecore");
@@ -67,6 +67,5 @@ public class ScenarioFixtureData {
     public static final File MINI_JAVA_TCS = new File("../com.sap.furcas.test/scenarioFixtures/MiniJava.tcs");
     public static final File EXPRESSION_WITH_SYNTHESIZED_ATTRIBUTE_TCS = new File("../com.sap.furcas.test/scenarioFixtures/ExpressionWithSynthesizedAttributes.tcs");
     public static final File NESTED_SCOPE_TCS = new File("../com.sap.furcas.test/scenarioFixtures/NestedScopes.tcs");
-    
 
 }

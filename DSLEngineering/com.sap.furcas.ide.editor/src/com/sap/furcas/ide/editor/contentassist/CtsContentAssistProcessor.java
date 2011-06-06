@@ -23,13 +23,13 @@ import org.eclipse.jface.text.contentassist.IContextInformationValidator;
 
 import com.sap.furcas.ide.editor.contentassist.modeladapter.StubModelAdapter;
 import com.sap.furcas.ide.editor.document.CtsDocument;
-import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ParserFacade;
+import com.sap.furcas.runtime.parser.ParserFactory;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.impl.DelegationParsingObserver;
@@ -57,7 +57,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
      * It will lead to dataloss due to reverting of the connection!
      */
     public CtsContentAssistProcessor(ResourceSet connection,
-            AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory, String language) {
+            ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory, String language) {
         this.language = language;
         Assert.isNotNull(connection, "moin connection is null");
         this.lexerClass = parserFactory.getLexerClass();
@@ -82,7 +82,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
      * It will lead to dataloss due to reverting of the connection!
      */
     public CtsContentAssistProcessor(ConcreteSyntax syntax,
-            AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory, String language) {
+            ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory, String language) {
         this.language = language;
         this.lexerClass = parserFactory.getLexerClass();
         this.parserClass = parserFactory.getParserClass();
@@ -263,7 +263,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
         finally {
             // clear transient partitions used by content assist
             //TcsUtil.clearTransientPartition(connection);
-            CtsContentAssistParsingHandler.clearTransientPartition(connection);
+//            CtsContentAssistParsingHandler.clearTransientPartition(connection);
         }
 
         return null;

@@ -88,7 +88,7 @@ public class TestParsingObserverWithTcsSyntax {
 
     @Test
     public void testParseTcsItself() throws Exception {
-        File[] metamodels = { ScenarioFixtureData.TCS_METAMODEL };
+        File[] metamodels = { ScenarioFixtureData.TCS_OBSOLETE_METAMODEL };
         ResourceSet metamodelResources = loadResourceSet(metamodels);
         setupParserFor(getResourceSetAsScope(metamodelResources));
         

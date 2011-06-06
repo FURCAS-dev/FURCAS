@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="test"
+    nsURI="http://www.furcas.org/test/EditorTest" nsPrefix="EditorTest">
+  <eSubpackages name="enumeration">
+    <eClassifiers xsi:type="ecore:EClass" name="Student">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="nicknames" upperBound="-1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1"
+          eType="#//enumeration/StudentType"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="StudentType">
+      <eLiterals name="lazy" literal="lazy"/>
+      <eLiterals name="workaholic" value="1" literal="workaholic"/>
+      <eLiterals name="studious" value="2"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="expression" nsPrefix="">
+    <eClassifiers xsi:type="ecore:EClass" name="Expression" abstract="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="UnaryExpression" eSuperTypes="#//expression/Expression">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1"
+          eType="#//expression/Expression"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BinaryExpression" abstract="true"
+        eSuperTypes="#//expression/UnaryExpression">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="right" lowerBound="1"
+          eType="#//expression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="IntegerExpression" eSuperTypes="#//expression/Expression">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BracketExpression" eSuperTypes="#//expression/BinaryExpression"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ExpressionContainer">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isEvaluated" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="1"
+          eType="#//expression/Expression"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="inheritance" nsURI="" nsPrefix="">
+    <eClassifiers xsi:type="ecore:EClass" name="Person" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Addressable" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="address" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AddressablePerson" abstract="true"
+        eSuperTypes="#//inheritance/Addressable #//inheritance/Person"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Employee" eSuperTypes="#//inheritance/AddressablePerson">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="nickname" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Manager" eSuperTypes="#//inheritance/AddressablePerson">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="num_employees" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AddressBook">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="entries" upperBound="-1"
+          eType="#//inheritance/AddressablePerson" containment="true"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="reference">
+    <eClassifiers xsi:type="ecore:EClass" name="Author">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Book">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="author" ordered="false"
+          upperBound="-1" eType="#//reference/Author"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Library">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="books" upperBound="-1"
+          eType="#//reference/Book" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="authors" upperBound="-1"
+          eType="#//reference/Author" containment="true"/>
+    </eClassifiers>
+  </eSubpackages>
+</ecore:EPackage>
