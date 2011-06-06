@@ -50,7 +50,7 @@ public class MappingRecoveringTextBlocksValidator {
      * possible, this routing will mark the effect region for later reparsing.
      */
     public void checkAndMigrateTokenIds(TextBlock rootBlock) {
-        AbstractToken tok = rootBlock.getTokens().get(0);
+        AbstractToken tok = (AbstractToken) rootBlock.getSubNodes().get(0);
         // BOS token does not have to be checked. It also is not necessary to
         // check if the tb model is in its empty initial state
         // this is indicated by the only token having an id of -1
