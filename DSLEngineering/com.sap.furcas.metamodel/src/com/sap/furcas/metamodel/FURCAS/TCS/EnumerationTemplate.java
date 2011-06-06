@@ -63,7 +63,7 @@ public interface EnumerationTemplate extends Template {
          * <!-- end-user-doc -->
      * @return the value of the '<em>Mappings</em>' containment reference list.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getEnumerationTemplate_Mappings()
-     * @model containment="true" resolveProxies="true"
+     * @model containment="true"
      * @generated
      */
         EList<EnumLiteralMapping> getMappings();

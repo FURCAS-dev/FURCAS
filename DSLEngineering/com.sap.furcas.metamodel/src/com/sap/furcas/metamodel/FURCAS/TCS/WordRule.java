@@ -39,7 +39,7 @@ public interface WordRule extends Rule {
      * @return the value of the '<em>Start</em>' containment reference.
      * @see #setStart(OrPattern)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getWordRule_Start()
-     * @model containment="true" resolveProxies="true" required="true" ordered="false"
+     * @model containment="true" required="true" ordered="false"
      * @generated
      */
         OrPattern getStart();
@@ -65,7 +65,7 @@ public interface WordRule extends Rule {
      * @return the value of the '<em>Part</em>' containment reference.
      * @see #setPart(OrPattern)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getWordRule_Part()
-     * @model containment="true" resolveProxies="true" required="true" ordered="false"
+     * @model containment="true" required="true" ordered="false"
      * @generated
      */
         OrPattern getPart();
@@ -91,7 +91,7 @@ public interface WordRule extends Rule {
      * @return the value of the '<em>End</em>' containment reference.
      * @see #setEnd(OrPattern)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getWordRule_End()
-     * @model containment="true" resolveProxies="true" ordered="false"
+     * @model containment="true" ordered="false"
      * @generated
      */
         OrPattern getEnd();
@@ -117,7 +117,7 @@ public interface WordRule extends Rule {
          * <!-- end-user-doc -->
      * @return the value of the '<em>Words</em>' containment reference list.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getWordRule_Words()
-     * @model containment="true" resolveProxies="true" ordered="false"
+     * @model containment="true" ordered="false"
      * @generated
      */
         EList<Word> getWords();

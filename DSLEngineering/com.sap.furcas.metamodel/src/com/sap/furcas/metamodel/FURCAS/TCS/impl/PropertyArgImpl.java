@@ -62,16 +62,6 @@ public abstract class PropertyArgImpl extends LocatedElementImpl implements Prop
 
         /**
      * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Property basicGetProperty() {
-        if (eContainerFeatureID() != TCSPackage.PROPERTY_ARG__PROPERTY) return null;
-        return (Property)eInternalContainer();
-    }
-
-        /**
-     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -154,8 +144,7 @@ public abstract class PropertyArgImpl extends LocatedElementImpl implements Prop
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.PROPERTY_ARG__PROPERTY:
-                if (resolve) return getProperty();
-                return basicGetProperty();
+                return getProperty();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -199,7 +188,7 @@ public abstract class PropertyArgImpl extends LocatedElementImpl implements Prop
         public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.PROPERTY_ARG__PROPERTY:
-                return basicGetProperty() != null;
+                return getProperty() != null;
         }
         return super.eIsSet(featureID);
     }

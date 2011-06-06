@@ -36,7 +36,7 @@ public interface OrPattern extends LocatedElement {
          * <!-- end-user-doc -->
      * @return the value of the '<em>Simple Patterns</em>' containment reference list.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getOrPattern_SimplePatterns()
-     * @model containment="true" resolveProxies="true" required="true"
+     * @model containment="true" required="true"
      * @generated
      */
         EList<SimplePattern> getSimplePatterns();

@@ -98,7 +98,7 @@ public interface ConcreteSyntax extends NamedElement {
      * @return the value of the '<em>Templates</em>' containment reference list.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getConcreteSyntax_Templates()
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Template#getConcreteSyntax
-     * @model opposite="concreteSyntax" containment="true" resolveProxies="true"
+     * @model opposite="concreteSyntax" containment="true"
      * @generated
      */
         EList<Template> getTemplates();
@@ -114,7 +114,7 @@ public interface ConcreteSyntax extends NamedElement {
          * <!-- end-user-doc -->
      * @return the value of the '<em>Keywords</em>' containment reference list.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getConcreteSyntax_Keywords()
-     * @model containment="true" resolveProxies="true"
+     * @model containment="true"
      * @generated
      */
         EList<Keyword> getKeywords();
@@ -130,7 +130,7 @@ public interface ConcreteSyntax extends NamedElement {
          * <!-- end-user-doc -->
      * @return the value of the '<em>Symbols</em>' containment reference list.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getConcreteSyntax_Symbols()
-     * @model containment="true" resolveProxies="true"
+     * @model containment="true"
      * @generated
      */
         EList<Symbol> getSymbols();
@@ -146,7 +146,7 @@ public interface ConcreteSyntax extends NamedElement {
          * <!-- end-user-doc -->
      * @return the value of the '<em>Operator Lists</em>' containment reference list.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getConcreteSyntax_OperatorLists()
-     * @model containment="true" resolveProxies="true"
+     * @model containment="true"
      * @generated
      */
         EList<OperatorList> getOperatorLists();
@@ -162,7 +162,7 @@ public interface ConcreteSyntax extends NamedElement {
          * <!-- end-user-doc -->
      * @return the value of the '<em>Tokens</em>' containment reference list.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getConcreteSyntax_Tokens()
-     * @model containment="true" resolveProxies="true"
+     * @model containment="true"
      * @generated
      */
         EList<Token> getTokens();

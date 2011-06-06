@@ -86,29 +86,6 @@ public class EndOfLineRuleImpl extends RuleImpl implements EndOfLineRule {
      * @generated
      */
         public StringPattern getStart() {
-        if (start != null && start.eIsProxy()) {
-            InternalEObject oldStart = (InternalEObject)start;
-            start = (StringPattern)eResolveProxy(oldStart);
-            if (start != oldStart) {
-                InternalEObject newStart = (InternalEObject)start;
-                NotificationChain msgs = oldStart.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TCSPackage.END_OF_LINE_RULE__START, null, null);
-                if (newStart.eInternalContainer() == null) {
-                    msgs = newStart.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TCSPackage.END_OF_LINE_RULE__START, null, msgs);
-                }
-                if (msgs != null) msgs.dispatch();
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.END_OF_LINE_RULE__START, oldStart, start));
-            }
-        }
-        return start;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public StringPattern basicGetStart() {
         return start;
     }
 
@@ -190,8 +167,7 @@ public class EndOfLineRuleImpl extends RuleImpl implements EndOfLineRule {
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.END_OF_LINE_RULE__START:
-                if (resolve) return getStart();
-                return basicGetStart();
+                return getStart();
             case TCSPackage.END_OF_LINE_RULE__DROP_START:
                 return isDropStart();
         }

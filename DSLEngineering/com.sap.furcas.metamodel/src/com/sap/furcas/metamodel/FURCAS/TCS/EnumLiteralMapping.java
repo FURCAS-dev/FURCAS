@@ -36,7 +36,7 @@ public interface EnumLiteralMapping extends LocatedElement {
      * @return the value of the '<em>Literal</em>' containment reference.
      * @see #setLiteral(EnumLiteralVal)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getEnumLiteralMapping_Literal()
-     * @model containment="true" resolveProxies="true" required="true" ordered="false"
+     * @model containment="true" required="true" ordered="false"
      * @generated
      */
         EnumLiteralVal getLiteral();
@@ -62,7 +62,7 @@ public interface EnumLiteralMapping extends LocatedElement {
      * @return the value of the '<em>Element</em>' containment reference.
      * @see #setElement(SequenceElement)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getEnumLiteralMapping_Element()
-     * @model containment="true" resolveProxies="true" ordered="false"
+     * @model containment="true" ordered="false"
      * @generated
      */
         SequenceElement getElement();
