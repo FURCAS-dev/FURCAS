@@ -446,7 +446,8 @@
         unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isReferenceOnly" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contextTags" eType="#//ContextTags"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contextTags" eType="#//ContextTags"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="scope" eType="#//ScopeArg"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="templateSequence" ordered="false"
