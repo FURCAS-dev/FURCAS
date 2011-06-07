@@ -31,11 +31,6 @@
         eType="#//Token" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lexer" ordered="false"
         unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uuid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="This attribute is used to uniquely identify a snapshot of a syntax. It should be set/re-set when generating a parser from the syntax. As there is some indeterminism in the ANTLR parser generator we cannot rely that even an unmodified syntax will produce the same parser. To handle migration of existing TextBlocks models we need to detect if a parser was generated from exactly one specific syntax snapshot."/>
-      </eAnnotations>
-    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Template" abstract="true" eSuperTypes="#//QualifiedNamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="concreteSyntax" ordered="false"
@@ -98,10 +93,6 @@
         upperBound="-1" eType="#//Operator" eOpposite="#//Operator/templates"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" ordered="false"
         unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="storeOpTo" ordered="false"
-        unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="storeRightTo" ordered="false"
-        unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="storeOperatorTo" eType="#//PropertyReference"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="storeLeftSideTo" eType="#//PropertyReference"
@@ -426,10 +417,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="postfix" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OclPArg" abstract="true" eSuperTypes="#//PropertyArg">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="queryExpression" eType="ecore:EClass platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.ecore#//ecore/OCLExpression"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="query" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyReference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="strucfeature" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EStructuralFeature">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
@@ -465,9 +452,6 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="default" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OclPropertyInit" eSuperTypes="#//PropertyInit">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="oclExpression" eType="ecore:EClass platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.ecore#//ecore/OCLExpression"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ScopeArg">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="scope" lowerBound="1" eType="#//ScopeKind"/>
