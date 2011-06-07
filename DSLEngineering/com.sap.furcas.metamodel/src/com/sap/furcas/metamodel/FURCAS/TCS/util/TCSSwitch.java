@@ -786,14 +786,6 @@ public class TCSSwitch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case TCSPackage.OCL_PARG: {
-                OclPArg oclPArg = (OclPArg)theEObject;
-                T result = caseOclPArg(oclPArg);
-                if (result == null) result = casePropertyArg(oclPArg);
-                if (result == null) result = caseLocatedElement(oclPArg);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
             case TCSPackage.PROPERTY_REFERENCE: {
                 PropertyReference propertyReference = (PropertyReference)theEObject;
                 T result = casePropertyReference(propertyReference);
@@ -825,14 +817,6 @@ public class TCSSwitch<T> {
                 PropertyInit propertyInit = (PropertyInit)theEObject;
                 T result = casePropertyInit(propertyInit);
                 if (result == null) result = caseInjectorAction(propertyInit);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case TCSPackage.OCL_PROPERTY_INIT: {
-                OclPropertyInit oclPropertyInit = (OclPropertyInit)theEObject;
-                T result = caseOclPropertyInit(oclPropertyInit);
-                if (result == null) result = casePropertyInit(oclPropertyInit);
-                if (result == null) result = caseInjectorAction(oclPropertyInit);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -2073,21 +2057,6 @@ public class TCSSwitch<T> {
     }
 
         /**
-     * Returns the result of interpreting the object as an instance of '<em>Ocl PArg</em>'.
-     * <!-- begin-user-doc -->
-         * This implementation returns null;
-         * returning a non-null result will terminate the switch.
-         * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Ocl PArg</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-        public T caseOclPArg(OclPArg object) {
-        return null;
-    }
-
-        /**
      * Returns the result of interpreting the object as an instance of '<em>Property Reference</em>'.
      * <!-- begin-user-doc -->
          * This implementation returns null;
@@ -2159,21 +2128,6 @@ public class TCSSwitch<T> {
      * @generated
      */
         public T casePropertyInit(PropertyInit object) {
-        return null;
-    }
-
-        /**
-     * Returns the result of interpreting the object as an instance of '<em>Ocl Property Init</em>'.
-     * <!-- begin-user-doc -->
-         * This implementation returns null;
-         * returning a non-null result will terminate the switch.
-         * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Ocl Property Init</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-        public T caseOclPropertyInit(OclPropertyInit object) {
         return null;
     }
 

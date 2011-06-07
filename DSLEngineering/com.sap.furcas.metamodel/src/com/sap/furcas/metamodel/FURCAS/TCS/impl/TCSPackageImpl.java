@@ -667,13 +667,6 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
          * <!-- end-user-doc -->
      * @generated
      */
-        private EClass oclPArgEClass = null;
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
         private EClass propertyReferenceEClass = null;
 
         /**
@@ -703,13 +696,6 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * @generated
      */
         private EClass propertyInitEClass = null;
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        private EClass oclPropertyInitEClass = null;
 
         /**
      * <!-- begin-user-doc -->
@@ -1044,16 +1030,6 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
         /**
      * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public EAttribute getConcreteSyntax_Uuid() {
-        return (EAttribute)concreteSyntaxEClass.getEStructuralFeatures().get(7);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -1338,28 +1314,8 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * @generated
      */
         @Override
-	public EAttribute getOperatorTemplate_StoreOpTo() {
-        return (EAttribute)operatorTemplateEClass.getEStructuralFeatures().get(2);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getOperatorTemplate_StoreRightTo() {
-        return (EAttribute)operatorTemplateEClass.getEStructuralFeatures().get(3);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
 	public EReference getOperatorTemplate_StoreOperatorTo() {
-        return (EReference)operatorTemplateEClass.getEStructuralFeatures().get(4);
+        return (EReference)operatorTemplateEClass.getEStructuralFeatures().get(2);
     }
 
         /**
@@ -1369,7 +1325,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      */
         @Override
 	public EReference getOperatorTemplate_StoreLeftSideTo() {
-        return (EReference)operatorTemplateEClass.getEStructuralFeatures().get(5);
+        return (EReference)operatorTemplateEClass.getEStructuralFeatures().get(3);
     }
 
         /**
@@ -1379,7 +1335,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      */
         @Override
 	public EReference getOperatorTemplate_StoreRightSideTo() {
-        return (EReference)operatorTemplateEClass.getEStructuralFeatures().get(6);
+        return (EReference)operatorTemplateEClass.getEStructuralFeatures().get(4);
     }
 
         /**
@@ -3008,36 +2964,6 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * @generated
      */
         @Override
-        public EClass getOclPArg() {
-        return oclPArgEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getOclPArg_QueryExpression() {
-        return (EReference)oclPArgEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getOclPArg_Query() {
-        return (EAttribute)oclPArgEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
         public EClass getPropertyReference() {
         return propertyReferenceEClass;
     }
@@ -3210,26 +3136,6 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
     @Override
     public EAttribute getPropertyInit_Default() {
         return (EAttribute)propertyInitEClass.getEStructuralFeatures().get(2);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getOclPropertyInit() {
-        return oclPropertyInitEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getOclPropertyInit_OclExpression() {
-        return (EReference)oclPropertyInitEClass.getEStructuralFeatures().get(0);
     }
 
         /**
@@ -3587,7 +3493,6 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         createEReference(concreteSyntaxEClass, CONCRETE_SYNTAX__OPERATOR_LISTS);
         createEReference(concreteSyntaxEClass, CONCRETE_SYNTAX__TOKENS);
         createEAttribute(concreteSyntaxEClass, CONCRETE_SYNTAX__LEXER);
-        createEAttribute(concreteSyntaxEClass, CONCRETE_SYNTAX__UUID);
 
         templateEClass = createEClass(TEMPLATE);
         createEReference(templateEClass, TEMPLATE__CONCRETE_SYNTAX);
@@ -3621,8 +3526,6 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         operatorTemplateEClass = createEClass(OPERATOR_TEMPLATE);
         createEReference(operatorTemplateEClass, OPERATOR_TEMPLATE__OPERATORS);
         createEAttribute(operatorTemplateEClass, OPERATOR_TEMPLATE__SOURCE);
-        createEAttribute(operatorTemplateEClass, OPERATOR_TEMPLATE__STORE_OP_TO);
-        createEAttribute(operatorTemplateEClass, OPERATOR_TEMPLATE__STORE_RIGHT_TO);
         createEReference(operatorTemplateEClass, OPERATOR_TEMPLATE__STORE_OPERATOR_TO);
         createEReference(operatorTemplateEClass, OPERATOR_TEMPLATE__STORE_LEFT_SIDE_TO);
         createEReference(operatorTemplateEClass, OPERATOR_TEMPLATE__STORE_RIGHT_SIDE_TO);
@@ -3857,10 +3760,6 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         postfixPArgEClass = createEClass(POSTFIX_PARG);
         createEAttribute(postfixPArgEClass, POSTFIX_PARG__POSTFIX);
 
-        oclPArgEClass = createEClass(OCL_PARG);
-        createEReference(oclPArgEClass, OCL_PARG__QUERY_EXPRESSION);
-        createEAttribute(oclPArgEClass, OCL_PARG__QUERY);
-
         propertyReferenceEClass = createEClass(PROPERTY_REFERENCE);
         createEReference(propertyReferenceEClass, PROPERTY_REFERENCE__STRUCFEATURE);
         createEAttribute(propertyReferenceEClass, PROPERTY_REFERENCE__NAME);
@@ -3883,9 +3782,6 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         createEReference(propertyInitEClass, PROPERTY_INIT__PROPERTY_REFERENCE);
         createEAttribute(propertyInitEClass, PROPERTY_INIT__VALUE);
         createEAttribute(propertyInitEClass, PROPERTY_INIT__DEFAULT);
-
-        oclPropertyInitEClass = createEClass(OCL_PROPERTY_INIT);
-        createEReference(oclPropertyInitEClass, OCL_PROPERTY_INIT__OCL_EXPRESSION);
 
         scopeArgEClass = createEClass(SCOPE_ARG);
         createEAttribute(scopeArgEClass, SCOPE_ARG__SCOPE);
@@ -3958,7 +3854,6 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
         // Obtain other dependent packages
         org.eclipse.emf.ecore.EcorePackage theEcorePackage_1 = (org.eclipse.emf.ecore.EcorePackage)EPackage.Registry.INSTANCE.getEPackage(org.eclipse.emf.ecore.EcorePackage.eNS_URI);
-        EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
         // Create type parameters
 
@@ -4040,10 +3935,8 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         referenceByPArgEClass.getESuperTypes().add(this.getPropertyArg());
         prefixPArgEClass.getESuperTypes().add(this.getPropertyArg());
         postfixPArgEClass.getESuperTypes().add(this.getPropertyArg());
-        oclPArgEClass.getESuperTypes().add(this.getPropertyArg());
         contextTemplateEClass.getESuperTypes().add(this.getTemplate());
         propertyInitEClass.getESuperTypes().add(this.getInjectorAction());
-        oclPropertyInitEClass.getESuperTypes().add(this.getPropertyInit());
         foreachPredicatePropertyInitEClass.getESuperTypes().add(this.getPropertyInit());
         sequenceInAlternativeEClass.getESuperTypes().add(this.getSequence());
         partialPArgEClass.getESuperTypes().add(this.getPropertyArg());
@@ -4072,7 +3965,6 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEReference(getConcreteSyntax_OperatorLists(), this.getOperatorList(), null, "operatorLists", null, 0, -1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getConcreteSyntax_Tokens(), this.getToken(), null, "tokens", null, 0, -1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getConcreteSyntax_Lexer(), ecorePackage.getEString(), "lexer", null, 1, 1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEAttribute(getConcreteSyntax_Uuid(), ecorePackage.getEString(), "uuid", null, 0, 1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(templateEClass, Template.class, "Template", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getTemplate_ConcreteSyntax(), this.getConcreteSyntax(), this.getConcreteSyntax_Templates(), "concreteSyntax", null, 1, 1, Template.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -4106,8 +3998,6 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEClass(operatorTemplateEClass, OperatorTemplate.class, "OperatorTemplate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getOperatorTemplate_Operators(), this.getOperator(), this.getOperator_Templates(), "operators", null, 0, -1, OperatorTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getOperatorTemplate_Source(), ecorePackage.getEString(), "source", null, 1, 1, OperatorTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEAttribute(getOperatorTemplate_StoreOpTo(), ecorePackage.getEString(), "storeOpTo", null, 0, 1, OperatorTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEAttribute(getOperatorTemplate_StoreRightTo(), ecorePackage.getEString(), "storeRightTo", null, 0, 1, OperatorTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEReference(getOperatorTemplate_StoreOperatorTo(), this.getPropertyReference(), null, "storeOperatorTo", null, 0, 1, OperatorTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getOperatorTemplate_StoreLeftSideTo(), this.getPropertyReference(), null, "storeLeftSideTo", null, 0, 1, OperatorTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getOperatorTemplate_StoreRightSideTo(), this.getPropertyReference(), null, "storeRightSideTo", null, 0, 1, OperatorTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4342,10 +4232,6 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEClass(postfixPArgEClass, PostfixPArg.class, "PostfixPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getPostfixPArg_Postfix(), ecorePackage.getEString(), "postfix", null, 1, 1, PostfixPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(oclPArgEClass, OclPArg.class, "OclPArg", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getOclPArg_QueryExpression(), theEcorePackage.getOCLExpression(), null, "queryExpression", null, 0, 1, OclPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getOclPArg_Query(), ecorePackage.getEString(), "query", null, 1, 1, OclPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
         initEClass(propertyReferenceEClass, PropertyReference.class, "PropertyReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getPropertyReference_Strucfeature(), theEcorePackage_1.getEStructuralFeature(), null, "strucfeature", null, 0, 1, PropertyReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getPropertyReference_Name(), ecorePackage.getEString(), "name", null, 1, 1, PropertyReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -4354,7 +4240,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEAttribute(getContextTemplate_IsContext(), ecorePackage.getEBoolean(), "isContext", null, 1, 1, ContextTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getContextTemplate_IsAddToContext(), ecorePackage.getEBoolean(), "isAddToContext", null, 1, 1, ContextTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getContextTemplate_IsReferenceOnly(), ecorePackage.getEBoolean(), "isReferenceOnly", null, 1, 1, ContextTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getContextTemplate_ContextTags(), this.getContextTags(), null, "contextTags", null, 0, 1, ContextTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getContextTemplate_ContextTags(), this.getContextTags(), null, "contextTags", null, 0, 1, ContextTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getContextTemplate_Scope(), this.getScopeArg(), null, "scope", null, 0, 1, ContextTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getContextTemplate_TemplateSequence(), this.getSequence(), null, "templateSequence", null, 1, 1, ContextTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
@@ -4368,9 +4254,6 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEReference(getPropertyInit_PropertyReference(), this.getPropertyReference(), null, "propertyReference", null, 0, 1, PropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getPropertyInit_Value(), theEcorePackage_1.getEString(), "value", null, 0, 1, PropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getPropertyInit_Default(), ecorePackage.getEBoolean(), "default", null, 0, 1, PropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(oclPropertyInitEClass, OclPropertyInit.class, "OclPropertyInit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getOclPropertyInit_OclExpression(), theEcorePackage.getOCLExpression(), null, "oclExpression", null, 0, 1, OclPropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(scopeArgEClass, ScopeArg.class, "ScopeArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getScopeArg_Scope(), this.getScopeKind(), "scope", null, 1, 1, ScopeArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4452,7 +4335,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * @generated
      */
     protected void createEmofAnnotations() {
-        String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml";			
+        String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml";		
         addAnnotation
           (getQualifiedNamedElement_MetaReference(), 
            source, 

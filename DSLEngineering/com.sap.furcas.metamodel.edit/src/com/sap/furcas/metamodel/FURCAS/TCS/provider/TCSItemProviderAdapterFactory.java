@@ -1593,29 +1593,6 @@ public class TCSItemProviderAdapterFactory extends TCSAdapterFactory implements 
     }
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.OclPropertyInit} instances.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        protected OclPropertyInitItemProvider oclPropertyInitItemProvider;
-
-        /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.OclPropertyInit}.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public Adapter createOclPropertyInitAdapter() {
-        if (oclPropertyInitItemProvider == null) {
-            oclPropertyInitItemProvider = new OclPropertyInitItemProvider(this);
-        }
-
-        return oclPropertyInitItemProvider;
-    }
-
-        /**
      * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.ScopeArg} instances.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -2062,7 +2039,6 @@ public class TCSItemProviderAdapterFactory extends TCSAdapterFactory implements 
         if (propertyReferenceItemProvider != null) propertyReferenceItemProvider.dispose();
         if (contextTemplateItemProvider != null) contextTemplateItemProvider.dispose();
         if (contextTagsItemProvider != null) contextTagsItemProvider.dispose();
-        if (oclPropertyInitItemProvider != null) oclPropertyInitItemProvider.dispose();
         if (scopeArgItemProvider != null) scopeArgItemProvider.dispose();
         if (foreachPredicatePropertyInitItemProvider != null) foreachPredicatePropertyInitItemProvider.dispose();
         if (predicateSemanticItemProvider != null) predicateSemanticItemProvider.dispose();
