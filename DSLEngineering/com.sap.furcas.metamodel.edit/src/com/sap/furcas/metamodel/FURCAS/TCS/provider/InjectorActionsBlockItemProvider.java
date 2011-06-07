@@ -181,11 +181,6 @@ public class InjectorActionsBlockItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (TCSPackage.Literals.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS,
-                 TCSFactory.eINSTANCE.createOclPropertyInit()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (TCSPackage.Literals.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS,
                  TCSFactory.eINSTANCE.createForeachPredicatePropertyInit()));
 
         newChildDescriptors.add

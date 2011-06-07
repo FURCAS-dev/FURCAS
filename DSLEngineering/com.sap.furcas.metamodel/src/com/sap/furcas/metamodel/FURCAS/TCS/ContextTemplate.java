@@ -108,26 +108,26 @@ public interface ContextTemplate extends Template {
         void setIsReferenceOnly(boolean value);
 
         /**
-     * Returns the value of the '<em><b>Context Tags</b></em>' reference.
+     * Returns the value of the '<em><b>Context Tags</b></em>' containment reference.
      * <!-- begin-user-doc -->
          * <p>
          * If the meaning of the '<em>Context Tags</em>' reference isn't clear,
          * there really should be more of a description here...
          * </p>
          * <!-- end-user-doc -->
-     * @return the value of the '<em>Context Tags</em>' reference.
+     * @return the value of the '<em>Context Tags</em>' containment reference.
      * @see #setContextTags(ContextTags)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getContextTemplate_ContextTags()
-     * @model
+     * @model containment="true"
      * @generated
      */
         ContextTags getContextTags();
 
         /**
-     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate#getContextTags <em>Context Tags</em>}' reference.
+     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate#getContextTags <em>Context Tags</em>}' containment reference.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Context Tags</em>' reference.
+     * @param value the new value of the '<em>Context Tags</em>' containment reference.
      * @see #getContextTags()
      * @generated
      */

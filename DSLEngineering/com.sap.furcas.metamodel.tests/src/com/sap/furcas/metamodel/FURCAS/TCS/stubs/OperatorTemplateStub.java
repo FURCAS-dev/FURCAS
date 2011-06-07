@@ -197,30 +197,6 @@ public class OperatorTemplateStub extends TemplateStub implements OperatorTempla
 	
     }
 
-    @Override
-    public String getStoreOpTo() {
-	// TODO Auto-generated method stub
-	return null;
-    }
-
-    @Override
-    public void setStoreOpTo(String value) {
-	// TODO Auto-generated method stub
-	
-    }
-
-    @Override
-    public String getStoreRightTo() {
-	// TODO Auto-generated method stub
-	return null;
-    }
-
-    @Override
-    public void setStoreRightTo(String value) {
-	// TODO Auto-generated method stub
-	
-    }
-
 	@Override
 	public String getSemDisambiguate() {
 		// TODO Auto-generated method stub
