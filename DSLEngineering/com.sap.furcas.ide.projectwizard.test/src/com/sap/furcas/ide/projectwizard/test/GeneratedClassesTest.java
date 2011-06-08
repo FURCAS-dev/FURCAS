@@ -245,6 +245,7 @@ public class GeneratedClassesTest {
         pi.setModelPath("new");
         pi.setNsURI("http://www.example.com/mydsl");
         pi.setProjectName("my.dsl");
+        pi.setAutoResolve(false);
     }
 
     private static PrintStream redirectSystemErrTo(ByteArrayOutputStream errByteStream) {

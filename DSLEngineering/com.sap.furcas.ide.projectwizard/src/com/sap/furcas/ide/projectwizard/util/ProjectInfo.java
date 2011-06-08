@@ -29,6 +29,8 @@ public class ProjectInfo {
      * The nsURI of the metamodel as entered on the {@link SelectionPage} if new Metamodel project creation is chosen.
      */
     private String nsURI = "";
+    
+    private boolean autoResolve = false;
 
     /**
      * Stores the name of the first class that is used for the main template in the language. When new Metamodel project creation
@@ -101,6 +103,14 @@ public class ProjectInfo {
      */
     public void setNsURI(String nsURI) {
         this.nsURI = nsURI;
+    }
+    
+    public boolean isAutoResolve(){
+        return autoResolve;
+    }
+    
+    public void setAutoResolve(boolean autoResolve){
+        this.autoResolve = autoResolve;
     }
 
     /**
