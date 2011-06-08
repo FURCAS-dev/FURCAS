@@ -173,9 +173,9 @@ public class InjectorActionsHandler<Type> {
         List<Diagnostic> oclErrors = metaLookup.validateOclQuery(template, query);
         for (Diagnostic error : oclErrors) {
             if(error.getSeverity() == Diagnostic.ERROR) {
-                errorBucket.addError("Error: " + error.getMessage() + " in OCL query: \"" + query + "\"", propInit);
+                errorBucket.addError(error.getMessage() + " in OCL query: \"" + query + "\"", propInit);
             } else if(error.getSeverity() == Diagnostic.WARNING) {
-                errorBucket.addWarning("Warning: " + error.getMessage() + " in OCL query " + query, propInit);
+                errorBucket.addWarning(error.getMessage() + " in OCL query " + query, propInit);
             }
     }
     }

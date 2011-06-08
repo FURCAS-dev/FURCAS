@@ -31,6 +31,8 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
+import com.sap.furcas.modeladaptation.emf.lookup.QueryBasedEcoreMetaModelLookUp;
+import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.unparser.extraction.textblocks.TextBlockTCSExtractorStream;
@@ -81,9 +83,9 @@ public class PrettyPrintAction extends Action {
                         .constructParserFactoryForSyntax(syntax);
                 TextBlockTCSExtractorStream stream = new TextBlockTCSExtractorStream(parserFactory);
 
-                IncrementalTextBlockPrettyPrinter prettyPrinter = new IncrementalTextBlockPrettyPrinter();
-                prettyPrinter.prettyPrint(modelElement, textBlockToReuse,
-                        syntax, template, stream);
+                IMetaModelLookup<EObject> metamodelLookup = new QueryBasedEcoreMetaModelLookUp(connection, parserFactory.getMetamodelURIs());
+                IncrementalTextBlockPrettyPrinter prettyPrinter = new IncrementalTextBlockPrettyPrinter(syntax, metamodelLookup);
+                prettyPrinter.prettyPrint(modelElement, textBlockToReuse, template, stream);
                 resultBlock = stream.getPrintedResultRootBlock();
                 if (resultBlock != null) {
                     resource.save(null);

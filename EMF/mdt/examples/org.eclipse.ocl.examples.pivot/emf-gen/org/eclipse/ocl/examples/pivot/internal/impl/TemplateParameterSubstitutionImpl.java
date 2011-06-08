@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateParameterSubstitutionImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
+ * $Id: TemplateParameterSubstitutionImpl.java,v 1.3 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -202,32 +202,6 @@ public class TemplateParameterSubstitutionImpl
 	 * @generated
 	 */
 	public ParameterableElement getOwnedActual() {
-		if (ownedActual != null && ((EObject)ownedActual).eIsProxy())
-		{
-			InternalEObject oldOwnedActual = (InternalEObject)ownedActual;
-			ownedActual = (ParameterableElement)eResolveProxy(oldOwnedActual);
-			if (ownedActual != oldOwnedActual)
-			{
-				InternalEObject newOwnedActual = (InternalEObject)ownedActual;
-				NotificationChain msgs = oldOwnedActual.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL, null, null);
-				if (newOwnedActual.eInternalContainer() == null)
-				{
-					msgs = newOwnedActual.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL, null, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL, oldOwnedActual, ownedActual));
-			}
-		}
-		return ownedActual;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ParameterableElement basicGetOwnedActual() {
 		return ownedActual;
 	}
 
@@ -297,16 +271,6 @@ public class TemplateParameterSubstitutionImpl
 	public TemplateBinding getTemplateBinding() {
 		if (eContainerFeatureID() != PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING) return null;
 		return (TemplateBinding)eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplateBinding basicGetTemplateBinding() {
-		if (eContainerFeatureID() != PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING) return null;
-		return (TemplateBinding)eInternalContainer();
 	}
 
 	/**
@@ -424,11 +388,9 @@ public class TemplateParameterSubstitutionImpl
 				if (resolve) return getActual();
 				return basicGetActual();
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL:
-				if (resolve) return getOwnedActual();
-				return basicGetOwnedActual();
+				return getOwnedActual();
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING:
-				if (resolve) return getTemplateBinding();
-				return basicGetTemplateBinding();
+				return getTemplateBinding();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -509,7 +471,7 @@ public class TemplateParameterSubstitutionImpl
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__OWNED_ACTUAL:
 				return ownedActual != null;
 			case PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING:
-				return basicGetTemplateBinding() != null;
+				return getTemplateBinding() != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

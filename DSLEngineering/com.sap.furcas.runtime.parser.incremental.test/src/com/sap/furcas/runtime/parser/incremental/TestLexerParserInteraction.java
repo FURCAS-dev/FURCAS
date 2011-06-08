@@ -150,7 +150,7 @@ public class TestLexerParserInteraction extends FixtureProvidingTextBlockTest {
         input.getTokens();
 
         // simulate main parse rule
-        tbh.notifyEnterRule(null, null);
+        tbh.notifyEnterRule(null);
         // simulate consumption of "syntax" token
         AbstractToken nextToken = TbNavigationUtil.nextToken(bostoken);
         tbh.notifyTokenConsume(getInverseToken(input, nextToken));
@@ -164,7 +164,7 @@ public class TestLexerParserInteraction extends FixtureProvidingTextBlockTest {
         nextToken = TbNavigationUtil.nextToken(nextToken);
         tbh.notifyTokenConsume(getInverseToken(input, nextToken));
         // descend into sub parse rule for template
-        tbh.notifyEnterRule(null, null);
+        tbh.notifyEnterRule(null);
         // simulate consumption of "template" token
         nextToken = TbNavigationUtil.nextToken(nextToken);
         tbh.notifyTokenConsume(getInverseToken(input, nextToken));
@@ -181,12 +181,12 @@ public class TestLexerParserInteraction extends FixtureProvidingTextBlockTest {
         nextToken = TbNavigationUtil.nextToken(nextToken);
         tbh.notifyTokenConsume(getInverseToken(input, nextToken));
         // exit template rule
-        tbh.notifyExitRule(null);
+        tbh.notifyExitRule();
         // simulate consumption of "}" token
         nextToken = TbNavigationUtil.nextToken(nextToken);
         tbh.notifyTokenConsume(getInverseToken(input, nextToken));
         // exit main rule
-        tbh.notifyExitRule(null);
+        tbh.notifyExitRule();
 
         assertEquals(6, tbh.getCurrentTbProxy().getSubNodes().size());
         TextBlockProxy syntaxTb = (TextBlockProxy) tbh.getCurrentTbProxy().getSubNodes().get(4);

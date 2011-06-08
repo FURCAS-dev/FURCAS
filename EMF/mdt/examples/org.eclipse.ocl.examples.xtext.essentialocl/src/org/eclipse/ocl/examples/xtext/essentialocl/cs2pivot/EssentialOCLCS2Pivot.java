@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2Pivot.java,v 1.8 2011/05/02 09:31:32 ewillink Exp $
+ * $Id: EssentialOCLCS2Pivot.java,v 1.10 2011/05/20 15:27:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -23,7 +23,7 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.examples.pivot.ClassifierType;
+import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
@@ -32,6 +32,7 @@ import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseCS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
@@ -39,9 +40,12 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS;
 import org.eclipse.osgi.util.NLS;
 
 public class EssentialOCLCS2Pivot extends BaseCS2Pivot
@@ -144,23 +148,46 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 			else {
 				messageTemplate = "Unknown unresolved context";
 			}
+			TypedElement source = null;
+			ExpCS csSource = navigationArgument;
+			while (csSource != null) {
+				OperatorCS csOperator = csSource.getParent();
+				if ((csOperator != null) && (csOperator.getSource() != csSource)) {
+					csSource = csOperator.getSource();
+					break;
+				}
+				EObject eContainer = csSource.eContainer();
+				if (eContainer instanceof NavigatingArgCS) {
+					csSource = ((NavigatingArgCS)eContainer).getNavigatingExp();
+				}
+				else if (eContainer instanceof InfixExpCS) {
+					csSource = (InfixExpCS)eContainer;
+				}
+				else if (eContainer instanceof PrefixExpCS) {
+					csSource = (PrefixExpCS)eContainer;
+				}
+				else if (eContainer instanceof NestedExpCS) {
+					csSource = (NestedExpCS)eContainer;
+				}
+				else if (eContainer instanceof SpecificationCS) {
+					ExpressionInOcl expression = PivotUtil.getPivot(ExpressionInOcl.class, (SpecificationCS)eContainer);
+					source = expression!= null ? expression.getContextVariable() : null;
+					break;
+				}
+				else {
+					break;
+				}
+			}
+			if (source == null) {
+				if ((csSource != null) && (csSource != navigationArgument)) {
+					source = PivotUtil.getPivot(OclExpression.class, csSource);
+				}
+			}
 			String typeText = PivotConstants.UNKNOWN_TYPE_TEXT;
-			OperatorCS csOperator = navigationArgument != null ? navigationArgument.getParent() : null;
-			if ((csOperator != null) && (csOperator.getSource() != navigationArgument)) {
-				OclExpression source = PivotUtil.getPivot(OclExpression.class, csOperator.getSource());
-				if (source != null) {
-					Type sourceType = source.getType();
-					if (sourceType instanceof ClassifierType) {
-						sourceType = ((ClassifierType)sourceType).getInstanceType();
-						if (sourceType != null) {
-							typeText = sourceType.toString() + " type";
-						}
-					}
-					else {
-						if (sourceType != null) {
-							typeText = sourceType.toString() + " value";
-						}
-					}
+			if (source != null) {
+				Type sourceType = source.getType();
+				if (sourceType != null) {
+					typeText = sourceType.toString();
 				}
 			}
 			if (argumentText == null) {

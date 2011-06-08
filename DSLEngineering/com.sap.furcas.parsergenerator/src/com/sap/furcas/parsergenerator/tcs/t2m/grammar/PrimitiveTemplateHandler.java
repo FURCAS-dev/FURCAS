@@ -8,7 +8,6 @@
  *******************************************************************************/
 package com.sap.furcas.parsergenerator.tcs.t2m.grammar;
 
-
 import java.util.Set;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
@@ -22,7 +21,6 @@ import com.sap.furcas.runtime.tcs.MetaModelElementResolutionHelper;
 import com.sap.furcas.runtime.tcs.SyntaxLookup;
 import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
 
-
 /**
  * The Class PrimitiveTemplateHandler. Creates rules such as
  * identifier returns[Object ret2] @init{java.lang.Object ret=null;}
@@ -35,76 +33,72 @@ import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
  */
 public class PrimitiveTemplateHandler {
 
-	private static final String ASTSTRING = "(ast=";
+    private static final String ASTSTRING = "(ast=";
     private static final String RESTBODY_STRING_START = " {ret = ";
     private static final String RESTBODY_STRING_GETTEXT = " ast.getText()";
     private static final String RESTBODY_STRING_MIDDLE = ";\n}";
     private static final String RESTBODY_STRING_END = ")\n{\nret2=ret;\n}";
-    
-    /** The writer. */
-	private final ANTLR3GrammarWriter writer;
 
-	private final SyntaxLookup syntaxLookup;
-	
+    /** The writer. */
+    private final ANTLR3GrammarWriter writer;
+
+    private final SyntaxLookup syntaxLookup;
+
     private final TemplateNamingHelper<?> namingHelper;
     private final SemanticErrorBucket errorBucket;
     private final MetaModelElementResolutionHelper<?> resolutionHelper;
-    
-	/**
-	 * keeping this constructor for testing.
-	 * 
-	 * @param writer the writer
-	 * @param syntaxLookup 
-	 * @param metaLookup 
-	 * @param namingHelper 
-	 * @param syntaxLookup 
-	 * @param errorBucket 
-	 * @param metaModelElementResolutionHelper 
-	 */
-	protected PrimitiveTemplateHandler(ANTLR3GrammarWriter writer, TemplateNamingHelper<?> namingHelper, SyntaxLookup syntaxLookup, SemanticErrorBucket errorBucket, MetaModelElementResolutionHelper<?> metaModelElementResolutionHelper) {
-		this.writer = writer;
-		this.namingHelper = namingHelper;
-		this.syntaxLookup = syntaxLookup;
-		this.errorBucket = errorBucket;
-		this.resolutionHelper = metaModelElementResolutionHelper;
-	}
 
-	/**
-     * @param handlerConfig
+    /**
+     * keeping this constructor for testing.
+     * 
+     * @param writer the writer
+     * @param syntaxLookup 
+     * @param metaLookup 
+     * @param namingHelper 
+     * @param syntaxLookup 
+     * @param errorBucket 
+     * @param metaModelElementResolutionHelper 
      */
-    public PrimitiveTemplateHandler(
-            SyntaxElementHandlerConfigurationBean<?> handlerConfig) {
-        this(handlerConfig.getWriter(),
-                handlerConfig.getNamingHelper(),
-                handlerConfig.getSyntaxLookup(),
-                handlerConfig.getErrorBucket(),
-                handlerConfig.getResolutionHelper());
+    protected PrimitiveTemplateHandler(ANTLR3GrammarWriter writer, TemplateNamingHelper<?> namingHelper,
+            SyntaxLookup syntaxLookup, SemanticErrorBucket errorBucket,
+            MetaModelElementResolutionHelper<?> metaModelElementResolutionHelper) {
+        this.writer = writer;
+        this.namingHelper = namingHelper;
+        this.syntaxLookup = syntaxLookup;
+        this.errorBucket = errorBucket;
+        this.resolutionHelper = metaModelElementResolutionHelper;
     }
 
     /**
-	 * Adds the template.
-	 * 
-	 * @param prim the prim
-	 * @throws SyntaxParsingException 
-	 */
-	public void addTemplate(PrimitiveTemplate prim) {
- 
-	    String content;
-	    if (prim.getValue() != null) {
-	        content = prim.getValue().replaceAll("%token%", RESTBODY_STRING_GETTEXT);
-	    } else {
-	        content = RESTBODY_STRING_GETTEXT;
-	    }
+     * @param handlerConfig
+     */
+    public PrimitiveTemplateHandler(SyntaxElementHandlerConfigurationBean<?> handlerConfig) {
+        this(handlerConfig.getWriter(), handlerConfig.getNamingHelper(), handlerConfig.getSyntaxLookup(), handlerConfig
+                .getErrorBucket(), handlerConfig.getResolutionHelper());
+    }
 
-	    StringBuilder rulebody = new StringBuilder();
-	    rulebody.append(ASTSTRING)
-	    .append(prim.getTokenName())
-	    .append(RESTBODY_STRING_START);
-	    rulebody.append(content);
-	    rulebody.append(RESTBODY_STRING_MIDDLE);
+    /**
+     * Adds the template.
+     * 
+     * @param prim the prim
+     * @throws SyntaxParsingException 
+     */
+    public void addTemplate(PrimitiveTemplate prim) {
+
+        String content;
+        if (prim.getValue() != null) {
+            content = prim.getValue().replaceAll("%token%", RESTBODY_STRING_GETTEXT);
+        } else {
+            content = RESTBODY_STRING_GETTEXT;
+        }
+
+        StringBuilder rulebody = new StringBuilder();
+        rulebody.append(ASTSTRING).append(prim.getTokenName()).append(RESTBODY_STRING_START);
+        rulebody.append(content);
+        rulebody.append(RESTBODY_STRING_MIDDLE);
 
         // add all keywords if allowed explicitly
-        if (prim.isOrKeyword() ) {
+        if (prim.isOrKeyword()) {
             Set<Keyword> keywords = syntaxLookup.getAllKeywords();
             for (Keyword keyword : keywords) {
                 rulebody.append("\n  | '");
@@ -118,22 +112,23 @@ public class PrimitiveTemplateHandler {
         }
         rulebody.append(RESTBODY_STRING_END);
 
-        
         try {
             if (resolutionHelper.resolve(prim) == null) {
                 errorBucket.addError("Metamodel could not resolve primitive type " + MessageHelper.getTemplateName(prim), prim);
             }
         } catch (NameResolutionFailedException e) {
-            errorBucket.addError("Metamodel could not resolve primitive type " + MessageHelper.getTemplateName(prim) + " " + e.getMessage(), prim);
-        } 
-        
+            errorBucket.addError(
+                    "Metamodel could not resolve primitive type " + MessageHelper.getTemplateName(prim) + " " + e.getMessage(),
+                    prim);
+        }
+
         try {
             String rulename = namingHelper.getRuleName(prim);
-            writer.addRule(new ClassProductionRule(rulename , "Object ret2",
-                    "java.lang.Object ret=null;", rulebody.toString(), null));
+            writer.addRule(new ClassProductionRule(rulename, "Object ret2", "java.lang.Object ret=null;", rulebody.toString(),
+                    null));
         } catch (SyntaxElementException e) {
             errorBucket.addException(e);
         }
-	}
+    }
 
 }

@@ -69,7 +69,7 @@ public class OrPatternImpl extends LocatedElementImpl implements OrPattern {
      */
         public EList<SimplePattern> getSimplePatterns() {
         if (simplePatterns == null) {
-            simplePatterns = new EObjectContainmentEList.Resolving<SimplePattern>(SimplePattern.class, this, TCSPackage.OR_PATTERN__SIMPLE_PATTERNS);
+            simplePatterns = new EObjectContainmentEList<SimplePattern>(SimplePattern.class, this, TCSPackage.OR_PATTERN__SIMPLE_PATTERNS);
         }
         return simplePatterns;
     }

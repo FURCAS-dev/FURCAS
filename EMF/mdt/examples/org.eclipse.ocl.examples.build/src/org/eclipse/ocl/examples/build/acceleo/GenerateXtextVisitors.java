@@ -35,7 +35,7 @@ public class GenerateXtextVisitors extends AbstractAcceleoGenerator {
 	 *
 	 * @generated
 	 */
-	public static final String MODULE_FILE_NAME = "generateXtextVisitors";
+	public static final String MODULE_FILE_NAME = "/org/eclipse/ocl/examples/build/acceleo/generateXtextVisitors";
 	
 	/**
 	 * The name of the templates that are to be generated.
@@ -136,7 +136,7 @@ public class GenerateXtextVisitors extends AbstractAcceleoGenerator {
                 
                 /*
                  * Add the properties from the launch arguments.
-                 * If you want to programmatically add new arguments, add them in "propertiesfiles"
+                 * If you want to programmatically add new arguments, add them in "propertiesFiles"
                  * You can add the absolute path of a properties files, or even a project relative path.
                  * If you want to add another "protocol" for your properties files, please override 
                  * "getPropertiesLoaderService(AcceleoService)" in order to return a new property loader.
@@ -169,9 +169,24 @@ public class GenerateXtextVisitors extends AbstractAcceleoGenerator {
 	@Override
 	public void doGenerate(Monitor monitor) throws IOException {
         /*
-         * TODO if you wish to change the generation as a whole, override this.
-         * The default behavior should be sufficient in most cases.
+         * TODO if you wish to change the generation as a whole, override this. The default behavior should
+         * be sufficient in most cases. If you want to change the content of this method, do NOT forget to
+         * change the "@generated" tag in the Javadoc of this method to "@generated NOT". Without this new tag,
+         * any compilation of the Acceleo module with the main template that has caused the creation of this
+         * class will revert your modifications. If you encounter a problem with an unresolved proxy during the
+         * generation, you can remove the comments in the following instructions to check for problems. Please
+         * note that those instructions may have a significant impact on the performances.
          */
+
+        //org.eclipse.emf.ecore.util.EcoreUtil.resolveAll(model);
+
+        //if (model != null && model.eResource() != null) {
+        //    List<org.eclipse.emf.ecore.resource.Resource.Diagnostic> errors = model.eResource().getErrors();
+        //    for (org.eclipse.emf.ecore.resource.Resource.Diagnostic diagnostic : errors) {
+        //        System.err.println(diagnostic.toString());
+        //    }
+        //}
+
         super.doGenerate(monitor);
     }
 	
@@ -184,7 +199,12 @@ public class GenerateXtextVisitors extends AbstractAcceleoGenerator {
 	@Override
 	public List<IAcceleoTextGenerationListener> getGenerationListeners() {
         List<IAcceleoTextGenerationListener> listeners = super.getGenerationListeners();
-        // TODO if you need to listen to generation event, add listeners to the list here
+        /*
+         * TODO if you need to listen to generation event, add listeners to the list here. If you want to change
+         * the content of this method, do NOT forget to change the "@generated" tag in the Javadoc of this method
+         * to "@generated NOT". Without this new tag, any compilation of the Acceleo module with the main template
+         * that has caused the creation of this class will revert your modifications.
+         */
         return listeners;
     }
 	
@@ -243,13 +263,13 @@ public class GenerateXtextVisitors extends AbstractAcceleoGenerator {
 	@Override
 	public List<String> getProperties() {
         /*
-         * TODO if your generation module requires access to properties files,
-         * add their qualified path to the list here. Properties files are
-         * expected to be in source folders, and the path here to be the
-         * qualified path as if referring to a Java class. For example, if you
-         * have a file named "messages.properties" in package
-         * "org.eclipse.acceleo.sample", the path that needs be added to this
-         * list is "org.eclipse.acceleo.sample.messages".
+         * TODO if your generation module requires access to properties files, add their qualified path to the list here.
+         * Properties files are expected to be in source folders, and the path here to be the qualified path as if referring
+         * to a Java class. For example, if you have a file named "messages.properties" in package "org.eclipse.acceleo.sample",
+         * the path that needs be added to this list is "org.eclipse.acceleo.sample.messages". If you want to change the content
+         * of this method, do NOT forget to change the "@generated" tag in the Javadoc of this method to "@generated NOT".
+         * Without this new tag, any compilation of the Acceleo module with the main template that has caused the creation of 
+         * this class will revert your modifications.
          */
         return propertiesFiles;
     }
@@ -287,11 +307,28 @@ public class GenerateXtextVisitors extends AbstractAcceleoGenerator {
 	@Override
 	public void registerPackages(ResourceSet resourceSet) {
         super.registerPackages(resourceSet);
-        if (!isInWorkspace(org.eclipse.emf.ecore.impl.EcorePackageImpl.class)) {
-            resourceSet.getPackageRegistry().put(org.eclipse.emf.ecore.impl.EcorePackageImpl.eINSTANCE.getNsURI(), org.eclipse.emf.ecore.impl.EcorePackageImpl.eINSTANCE);
+        if (!isInWorkspace(org.eclipse.emf.ecore.EcorePackage.class)) {
+            resourceSet.getPackageRegistry().put(org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getNsURI(), org.eclipse.emf.ecore.EcorePackage.eINSTANCE);
         }
-        // TODO If you need additional package registrations, do them here. The following line is an example for UML.
-        // resourceSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
+        
+        /*
+         * TODO If you need additional package registrations, you can register them here. The following line
+         * (in comment) is an example of the package registration for UML. If you want to change the content
+         * of this method, do NOT forget to change the "@generated" tag in the Javadoc of this method to
+         * "@generated NOT". Without this new tag, any compilation of the Acceleo module with the main template
+         * that has caused the creation of this class will revert your modifications. You can use the method
+         * "isInWorkspace(Class c)" to check if the package that you are about to register is in the workspace.
+         * To register a package properly, please follow the following conventions:
+         * 
+         * if (!isInWorkspace(UMLPackage.class)) {
+         *     // The normal package registration if your metamodel is in a plugin.
+         *     resourceSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
+         * } else {
+         *     // The package registration that will be used if the metamodel is not deployed in a plugin.
+         *     // This should be used if your metamodel is in your workspace.
+         *     resourceSet.getPackageRegistry().put("/myproject/myfolder/mysubfolder/MyUMLMetamodel.ecore", UMLPackage.eINSTANCE);
+         * }
+         */
     }
 
 	/**
@@ -304,7 +341,14 @@ public class GenerateXtextVisitors extends AbstractAcceleoGenerator {
 	@Override
 	public void registerResourceFactories(ResourceSet resourceSet) {
         super.registerResourceFactories(resourceSet);
-        // TODO If you need additional resource factories registrations, do them here. The following line is an example for UML.
+        /*
+         * TODO If you need additional resource factories registrations, you can register them here. the following line
+         * (in comment) is an example of the resource factory registration for UML. If you want to change the content
+         * of this method, do NOT forget to change the "@generated" tag in the Javadoc of this method to "@generated NOT".
+         * Without this new tag, any compilation of the Acceleo module with the main template that has caused the creation
+         * of this class will revert your modifications. 
+         */ 
+        
         // resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
     }
 }

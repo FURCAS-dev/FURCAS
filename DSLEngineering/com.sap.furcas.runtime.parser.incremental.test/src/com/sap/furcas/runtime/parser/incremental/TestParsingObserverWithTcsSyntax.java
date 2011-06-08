@@ -88,8 +88,9 @@ public class TestParsingObserverWithTcsSyntax {
 
     @Test
     public void testParseTcsItself() throws Exception {
-        File[] metamodels = { ScenarioFixtureData.TCS_METAMODEL };
-        setupParserFor(getResourceSetAsScope(loadResourceSet(metamodels)));
+        File[] metamodels = { ScenarioFixtureData.TCS_OBSOLETE_METAMODEL };
+        ResourceSet metamodelResources = loadResourceSet(metamodels);
+        setupParserFor(getResourceSetAsScope(metamodelResources));
         
         AbstractToken content = modelFactory.createToken("");
         TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, content);
@@ -112,7 +113,8 @@ public class TestParsingObserverWithTcsSyntax {
     @Test
     public void testParseBibText() throws Exception {
         File[] metamodels = { ScenarioFixtureData.BIBTEXT1_METAMODEL, ScenarioFixtureData.BIBTEXT_METAMODEL };
-        setupParserFor(getResourceSetAsScope(loadResourceSet(metamodels)));
+        ResourceSet metamodelResources = loadResourceSet(metamodels);
+        setupParserFor(getResourceSetAsScope(metamodelResources));
         
         AbstractToken content = modelFactory.createToken("");
         TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, content);
@@ -244,7 +246,8 @@ public class TestParsingObserverWithTcsSyntax {
     @Test
     public void testParseATL() throws Exception {
         File[] metamodels = { ScenarioFixtureData.ATL_METAMODEL };
-        setupParserFor(getResourceSetAsScope(loadResourceSet(metamodels)));
+        ResourceSet metamodelResources = loadResourceSet(metamodels);
+        setupParserFor(getResourceSetAsScope(metamodelResources));;
 
         File syntaxDefFile = ScenarioFixtureData.ATL_TCS;
 
@@ -274,7 +277,8 @@ public class TestParsingObserverWithTcsSyntax {
     @Ignore("Failing. Reference not set to new value")
     public void testParseBibTextReplaceReference() throws Exception {
         File[] metamodels = { ScenarioFixtureData.BIBTEXT1_METAMODEL, ScenarioFixtureData.BIBTEXT_METAMODEL };
-        setupParserFor(getResourceSetAsScope(loadResourceSet(metamodels)));
+        ResourceSet metamodelResources = loadResourceSet(metamodels);
+        setupParserFor(getResourceSetAsScope(metamodelResources));
         
         AbstractToken content = modelFactory.createToken("");
         TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, content);

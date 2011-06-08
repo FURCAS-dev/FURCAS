@@ -342,6 +342,9 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 			// an isDefined Alternative which qualifies for reuse
 			typeEquals = checkIsDefinedAlternative(candidate, nextToken);
 		}
+		if (!typeEquals) {
+		    return false; // basic check failed. no need to try the other checks.
+		}
 		// AbstractToken reference = TbVersionUtil.getOtherVersion(candidate,
 		// Version.REFERENCE);
 		boolean contentEquals = compareContentForReuse(candidate, lexerToken);// nextToken.getText().equals(reference.getValue());

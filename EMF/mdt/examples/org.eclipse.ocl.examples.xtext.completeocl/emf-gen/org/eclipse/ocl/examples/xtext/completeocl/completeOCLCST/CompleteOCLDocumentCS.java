@@ -12,12 +12,12 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLDocumentCS.java,v 1.1 2010/05/03 05:58:31 ewillink Exp $
+ * $Id: CompleteOCLDocumentCS.java,v 1.3 2011/05/20 15:26:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentCS;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS#getPackages <em>Packages</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS#getContexts <em>Contexts</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS#getOwnedInclude <em>Owned Include</em>}</li>
  * </ul>
  * </p>
  *
@@ -36,7 +37,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentCS;
  * @model
  * @generated
  */
-public interface CompleteOCLDocumentCS extends DocumentCS {
+public interface CompleteOCLDocumentCS extends RootPackageCS {
 	/**
 	 * Returns the value of the '<em><b>Packages</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS}.
@@ -68,5 +69,21 @@ public interface CompleteOCLDocumentCS extends DocumentCS {
 	 * @generated
 	 */
 	EList<ContextDeclCS> getContexts();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Include</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.IncludeCS}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Include</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Include</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getCompleteOCLDocumentCS_OwnedInclude()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<IncludeCS> getOwnedInclude();
 
 } // DocumentCS

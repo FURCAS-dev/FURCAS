@@ -9,27 +9,22 @@
  *     SAP AG - initial API and implementation
  ******************************************************************************/
 package com.sap.furcas.ide.editor.imp;
-
 import java.util.EventObject;
 
 import org.antlr.runtime.Lexer;
-import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
-import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalCommandStack;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
 import org.eclipse.imp.editor.UniversalEditor;
 import org.eclipse.imp.language.Language;
 import org.eclipse.imp.services.ITokenColorer;
-import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
-import org.eclipse.ocl.expressions.provider.ExpressionsItemProviderAdapterFactory;
-import org.eclipse.ocl.types.provider.TypesItemProviderAdapterFactory;
-import org.eclipse.ocl.utilities.provider.UtilitiesItemProviderAdapterFactory;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
@@ -37,27 +32,21 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 
+import com.sap.furcas.ide.editor.commands.SetupTextBlocksModelCommand;
 import com.sap.furcas.ide.editor.document.CtsDocument;
 import com.sap.furcas.ide.editor.document.CtsDocumentProvider;
 import com.sap.furcas.ide.editor.document.ModelEditorInput;
 import com.sap.furcas.ide.editor.document.ModelEditorInputLoader;
-import com.sap.furcas.ide.editor.imp.parsing.FurcasParseController;
 import com.sap.furcas.ide.editor.imp.services.FurcasContentProposer;
 import com.sap.furcas.ide.editor.imp.services.FurcasLabelProvider;
 import com.sap.furcas.ide.editor.imp.services.FurcasTreeModelBuilder;
 import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
-import com.sap.furcas.metamodel.FURCAS.TCS.provider.TCSItemProviderAdapterFactory;
-import com.sap.furcas.metamodel.FURCAS.provider.FURCASItemProviderAdapterFactory;
-import com.sap.furcas.metamodel.FURCAS.textblocks.provider.TextblocksItemProviderAdapterFactory;
 import com.sap.furcas.runtime.common.exceptions.ParserInstantiationException;
-import com.sap.furcas.runtime.parser.ParserFactory;
 import com.sap.furcas.runtime.parser.PartitionAssignmentHandler;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
-import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.ide.cts.parser.incremental.DefaultPartitionAssignmentHandlerImpl;
 import com.sap.ide.cts.parser.incremental.IncrementalParserFacade;
-import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
 /**
  * Base class for language specific FURCAS editors. <p>
@@ -111,8 +100,10 @@ public class AbstractFurcasEditor extends UniversalEditor {
         }
     }
     
-    private final EditingDomain editingDomain;
-    private ConcreteSyntax syntax;
+    private final TransactionalEditingDomain editingDomain;
+    private final ConcreteSyntax syntax;
+    private final ComposedAdapterFactory adapterFactory;
+    
     private CtsDocumentProvider documentProvoider;
 
     private final AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory;
@@ -120,8 +111,14 @@ public class AbstractFurcasEditor extends UniversalEditor {
 
     
     public AbstractFurcasEditor(AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>  parserFactory) {
-        this.editingDomain = createEditingDomain();
         this.parserFactory = parserFactory;
+        this.editingDomain = createEditingDomain();
+        configureEditingDomain(editingDomain);
+        
+        this.adapterFactory = createAdapterFactory();
+        
+        this.syntax = (ConcreteSyntax) editingDomain.getResourceSet().getEObject(URI.createURI(parserFactory.getSyntaxUUID()), true);
+        validateEditorState(syntax, parserFactory);
     }
     
     /**
@@ -132,43 +129,39 @@ public class AbstractFurcasEditor extends UniversalEditor {
      */
     @Override
     public void init(IEditorSite site, IEditorInput input) throws PartInitException {
-        editingDomain.getResourceSet().getResource(parserFactory.getSyntaxResourceURI(), /*load*/ true);
-        syntax = TcsUtil.getSyntaxByName(editingDomain.getResourceSet(), parserFactory.getLanguageId());
-        validateEditorState(syntax, parserFactory);
-        
-        // create a temporary opposite end finder that knows about the static resources in the workspace
-        // It is required to find potential textblocks
-        OppositeEndFinder entireWorkspaceOppositeEndFinder = Query2OppositeEndFinder.getInstance();
-        ModelEditorInputLoader loader = new ModelEditorInputLoader(syntax, editingDomain.getResourceSet(),
-                entireWorkspaceOppositeEndFinder, parserFactory);
+        ModelEditorInputLoader loader = new ModelEditorInputLoader(syntax, editingDomain.getResourceSet(), adapterFactory);
         ModelEditorInput modelEditorInput = loader.loadEditorInput(input);
         
-        PartitionAssignmentHandler partitionHandler = setupPartitioning(modelEditorInput);
-
-        try {
-            // create a parser/lexer combo suitable for the current editor input
-            parserFacade = new IncrementalParserFacade(parserFactory, editingDomain.getResourceSet(), partitionHandler);
-            assert syntax == parserFacade.getParserScope().getSyntax();
-        } catch (ParserInstantiationException e) {
-            throw new PartInitException("Unable to instantiate parser for language " + parserFactory.getLanguageId(), e);
-        }
-
-        documentProvoider = new CtsDocumentProvider(syntax, editingDomain, partitionHandler);
-        super.init(site, modelEditorInput);
+        PartitionAssignmentHandler partitionHandler = createPartititionAssignmentHandler(modelEditorInput);
+        parserFacade = createParserFacade(partitionHandler);
         
-        CtsDocument document = getDocumentProvider().getDocument(modelEditorInput);
-        document.completeInit(parserFacade);
+        SetupTextBlocksModelCommand command = new SetupTextBlocksModelCommand(editingDomain, modelEditorInput.getRootObject(),
+                modelEditorInput.getRootBlock(), parserFacade);
+        editingDomain.getCommandStack().execute(command);
+        modelEditorInput.setRootBlock(command.getResultBlock());
+        
+        documentProvoider = new CtsDocumentProvider(modelEditorInput, editingDomain, partitionHandler);
+        super.init(site, modelEditorInput.asLightWeightEditorInput());
     }
 
-    private static PartitionAssignmentHandler setupPartitioning(ModelEditorInput modelEditorInput) {
-        PartitionAssignmentHandler partitionHandler = new DefaultPartitionAssignmentHandlerImpl();
-        partitionHandler.setDefaultPartition(modelEditorInput.getRootObject().eResource());
-        
-        if (modelEditorInput.getRootBlock().eResource() == null) {
-            // might be a completely new textblock
-            partitionHandler.assignToDefaultTextBlocksPartition(modelEditorInput.getRootBlock());
-        }        
-        return partitionHandler;
+    private IncrementalParserFacade createParserFacade(final PartitionAssignmentHandler partitionHandler) {
+        // Using the command is a workaround because the incremental parser facade
+        // is already modifying a model when creating the transient parsing resource
+        final IncrementalParserFacade[] facade = new IncrementalParserFacade[1];
+        RecordingCommand cmd = new RecordingCommand(editingDomain) {
+            @Override
+            protected void doExecute() {
+                try {
+                    // create a parser/lexer combo suitable for the current editor input
+                    facade[0] = new IncrementalParserFacade(parserFactory, editingDomain.getResourceSet(), partitionHandler);
+                    assert syntax == facade[0].getParserScope().getSyntax();
+                } catch (ParserInstantiationException e) {
+                    throw new RuntimeException("Unable to instantiate parser for language " + parserFactory.getLanguageId(), e);
+                }
+            }
+        };
+        editingDomain.getCommandStack().execute(cmd);
+        return facade[0];
     }
             
     /**
@@ -191,33 +184,35 @@ public class AbstractFurcasEditor extends UniversalEditor {
         fParserScheduler.schedule();
     }
     
-    @Override
-    public CtsDocumentProvider getDocumentProvider() {
-        return documentProvoider;
-    }
-    
-    @Override
-    public FurcasParseController getParseController() {
-        return (FurcasParseController) super.getParseController();
-    }
-    
-    private AdapterFactoryEditingDomain createEditingDomain() {
-        // Create an adapter factory that yields item providers.
-        ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-
+    /**
+     * Can be overwritten by subclasses if needed.
+     */
+    protected ComposedAdapterFactory createAdapterFactory() {
+        @SuppressWarnings("hiding")
+        ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory();
         adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
-        adapterFactory.addAdapterFactory(new FURCASItemProviderAdapterFactory());
-        adapterFactory.addAdapterFactory(new TCSItemProviderAdapterFactory());
-        adapterFactory.addAdapterFactory(new TextblocksItemProviderAdapterFactory());
-        adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
-        adapterFactory.addAdapterFactory(new TypesItemProviderAdapterFactory());
-        adapterFactory.addAdapterFactory(new UtilitiesItemProviderAdapterFactory());
-        adapterFactory.addAdapterFactory(new ExpressionsItemProviderAdapterFactory());
-        adapterFactory.addAdapterFactory(new org.eclipse.ocl.ecore.provider.EcoreItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
-
-        // Create the command stack that will notify this editor as commands are executed.
-        BasicCommandStack commandStack = new BasicCommandStack();
+        return adapterFactory;
+    }
+    
+    /**
+     * Can be overwritten by subclasses if needed.
+     * @param modelEditorInput 
+     */
+    protected PartitionAssignmentHandler createPartititionAssignmentHandler(ModelEditorInput modelEditorInput) {
+        return new DefaultPartitionAssignmentHandlerImpl();
+    }
+    
+    /**
+     * Can be overwritten by subclasses if needed.
+     */
+    protected TransactionalEditingDomain createEditingDomain() {
+        return  WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain();
+    }
+    
+    private void configureEditingDomain(TransactionalEditingDomain domain) {
+        TransactionalCommandStack commandStack = (TransactionalCommandStack) domain.getCommandStack();
+        commandStack.setExceptionHandler(new CommandStackExceptionHandler());
         commandStack.addCommandStackListener(new CommandStackListener() {
             @Override
             public void commandStackChanged(EventObject event) {
@@ -229,13 +224,10 @@ public class AbstractFurcasEditor extends UniversalEditor {
                 });
             }
         });
-        AdapterFactoryEditingDomain domain = new AdapterFactoryEditingDomain(adapterFactory, commandStack);
         
         ECrossReferenceAdapter crossRefAdapter = new ECrossReferenceAdapter();
-        domain.getResourceSet().eAdapters().add(crossRefAdapter);
-        crossRefAdapter.setTarget(domain.getResourceSet());
-        
-        return domain;
+        editingDomain.getResourceSet().eAdapters().add(crossRefAdapter);
+        crossRefAdapter.setTarget(editingDomain.getResourceSet()); 
     }
     
     private static void validateEditorState(ConcreteSyntax syntax, AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>  parserFactory) {
@@ -245,17 +237,40 @@ public class AbstractFurcasEditor extends UniversalEditor {
                     + "is correctly referenced and the mapping model is available.";
             throw new RuntimeException(message);
         }
-        if (!isParserConsistentToMapping(syntax, parserFactory)) {
-            String message = "Inconsistency between mapping and parser: " +
-                    "Loaded parser class: " + parserFactory.getParserClass().getCanonicalName() +
-                    " is not consistent with mapping: " + EcoreUtil.getURI(syntax);
-            throw new RuntimeException(message);
-        }
     }
-
-    private static boolean isParserConsistentToMapping(ConcreteSyntax syntax, ParserFactory<?, ?> parserFactory) {
-        String id = parserFactory.getSyntaxUUID();
-        return id == null || EcoreUtil.getURI(syntax).equals(id);
+    
+    @Override
+    public CtsDocumentProvider getDocumentProvider() {
+        return documentProvoider;
     }
-   
+    
+    @Override
+    public FurcasParseController getParseController() {
+        return (FurcasParseController) super.getParseController();
+    }
+    
+//    @Override
+//    public void gotoMarker(IMarker marker) {
+//        EditUIMarkerHelper;
+//        //getTargetObjects 
+//        
+//            try {
+//                    if (marker.getType().equals(EValidator.MARKER)) {
+//                            String uriAttribute = marker.getAttribute(
+//                                            EValidator.URI_ATTRIBUTE, null);
+//                            if (uriAttribute != null) {
+//                                    URI uri = URI.createURI(uriAttribute);
+//                                    EObject eObject = editingDomain.getResourceSet()
+//                                                    .getEObject(uri, true);
+//                                    if (eObject != null) {
+//                                            setSelectionToViewer(Collections
+//                                                            .singleton(editingDomain.getWrapper(eObject)));
+//                                    }
+//                            }
+//                    }
+//            } catch (CoreException exception) {
+//                    OCLInEcorePlugin.INSTANCE.log(exception);
+//            }
+//    }
+    
 }

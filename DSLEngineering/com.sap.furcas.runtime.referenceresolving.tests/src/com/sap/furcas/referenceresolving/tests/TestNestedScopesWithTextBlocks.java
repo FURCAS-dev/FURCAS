@@ -38,6 +38,7 @@ import com.sap.furcas.runtime.referenceresolving.TokenChanger;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
+import com.sap.furcas.test.fixture.ScenarioFixtureData;
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException.Component;
 
@@ -51,13 +52,12 @@ import com.sap.ide.cts.parser.errorhandling.SemanticParserException.Component;
 public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTestWithTextBlocks {
 
     private static final String LANGUAGE = "NestedScopesTestSyntax";
-    private static final File TCS = new File("fixtures/NestedScopes.tcs");
-    private static final File METAMODEL = new File("fixtures/NestedScopes.ecore");
-    private static final String MM_PACKAGE_URI = "http://www.furcas.org/TCS/referenceresolving/tests/nestedScopes";
+    private static final File TCS = ScenarioFixtureData.NESTED_SCOPE_TCS;
+    private static final File METAMODEL = ScenarioFixtureData.NESTED_SCOPE_METAMODEL;
 
     @BeforeClass
     public static void setupParser() throws Exception {
-        setupParser(TCS, LANGUAGE, MM_PACKAGE_URI, METAMODEL);
+        setupParser(TCS, LANGUAGE, METAMODEL);
     }
 
     @After

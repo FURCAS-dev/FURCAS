@@ -1263,6 +1263,10 @@ public class TcsUtil {
     // }
     // return null;
     // }
+    
+    public static Object getPropertyValue(Object target, PropertyReference propRef) {
+        return getPropertyValue(((EObject) target), propRef);
+    }
 
     /**
      * Returns the value of the property identified by propName of the given target EObject.
@@ -1432,16 +1436,6 @@ public class TcsUtil {
         // TODO for language composition return also all partitions of
         // dependencies
         return Collections.singleton(((EObject) cs).eResource().getURI());
-    }
-
-    public static ClassTemplate resolveClassTemplate(List<String> qualifiedName, String mode,
-            Map<List<String>, Map<String, ClassTemplate>> classTemplateMap) {
-        Map<String, ClassTemplate> templateMap = classTemplateMap.get(qualifiedName);
-        if (templateMap != null) {
-            return templateMap.get(mode);
-        } else {
-            return null;
-        }
     }
 
     public static boolean isContext(Template template) {

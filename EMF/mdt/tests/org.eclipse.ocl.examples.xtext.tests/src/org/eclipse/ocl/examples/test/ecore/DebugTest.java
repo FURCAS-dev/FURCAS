@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DebugTest.java,v 1.3 2011/02/19 12:03:51 ewillink Exp $
+ * $Id: DebugTest.java,v 1.4 2011/05/20 15:27:16 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.ecore;
@@ -31,7 +31,7 @@ public class DebugTest extends GenericDebugTest {
     @Override
     protected void setUp() {
         super.setUp();
-        pkg1 = typeManager.createPackage("pkg1");
+        pkg1 = typeManager.createPackage("pkg1", null);
         helper.setContext(getMetaclass(denormalize("%Package")));
     }
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateParameterImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
+ * $Id: TemplateParameterImpl.java,v 1.3 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -253,16 +253,6 @@ public class TemplateParameterImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateSignature basicGetSignature() {
-		if (eContainerFeatureID() != PivotPackage.TEMPLATE_PARAMETER__SIGNATURE) return null;
-		return (TemplateSignature)eInternalContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public NotificationChain basicSetSignature(TemplateSignature newSignature,
 			NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newSignature, PivotPackage.TEMPLATE_PARAMETER__SIGNATURE, msgs);
@@ -297,32 +287,6 @@ public class TemplateParameterImpl
 	 * @generated
 	 */
 	public ParameterableElement getOwnedParameteredElement() {
-		if (ownedParameteredElement != null && ((EObject)ownedParameteredElement).eIsProxy())
-		{
-			InternalEObject oldOwnedParameteredElement = (InternalEObject)ownedParameteredElement;
-			ownedParameteredElement = (ParameterableElement)eResolveProxy(oldOwnedParameteredElement);
-			if (ownedParameteredElement != oldOwnedParameteredElement)
-			{
-				InternalEObject newOwnedParameteredElement = (InternalEObject)ownedParameteredElement;
-				NotificationChain msgs =  oldOwnedParameteredElement.eInverseRemove(this, PivotPackage.PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER, ParameterableElement.class, null);
-				if (newOwnedParameteredElement.eInternalContainer() == null)
-				{
-					msgs =  newOwnedParameteredElement.eInverseAdd(this, PivotPackage.PARAMETERABLE_ELEMENT__OWNING_TEMPLATE_PARAMETER, ParameterableElement.class, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, oldOwnedParameteredElement, ownedParameteredElement));
-			}
-		}
-		return ownedParameteredElement;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ParameterableElement basicGetOwnedParameteredElement() {
 		return ownedParameteredElement;
 	}
 
@@ -392,32 +356,6 @@ public class TemplateParameterImpl
 	 * @generated
 	 */
 	public ParameterableElement getOwnedDefault() {
-		if (ownedDefault != null && ((EObject)ownedDefault).eIsProxy())
-		{
-			InternalEObject oldOwnedDefault = (InternalEObject)ownedDefault;
-			ownedDefault = (ParameterableElement)eResolveProxy(oldOwnedDefault);
-			if (ownedDefault != oldOwnedDefault)
-			{
-				InternalEObject newOwnedDefault = (InternalEObject)ownedDefault;
-				NotificationChain msgs = oldOwnedDefault.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TEMPLATE_PARAMETER__OWNED_DEFAULT, null, null);
-				if (newOwnedDefault.eInternalContainer() == null)
-				{
-					msgs = newOwnedDefault.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.TEMPLATE_PARAMETER__OWNED_DEFAULT, null, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.TEMPLATE_PARAMETER__OWNED_DEFAULT, oldOwnedDefault, ownedDefault));
-			}
-		}
-		return ownedDefault;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ParameterableElement basicGetOwnedDefault() {
 		return ownedDefault;
 	}
 
@@ -567,20 +505,17 @@ public class TemplateParameterImpl
 			case PivotPackage.TEMPLATE_PARAMETER__OWNED_COMMENT:
 				return getOwnedComments();
 			case PivotPackage.TEMPLATE_PARAMETER__SIGNATURE:
-				if (resolve) return getSignature();
-				return basicGetSignature();
+				return getSignature();
 			case PivotPackage.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT:
 				if (resolve) return getParameteredElement();
 				return basicGetParameteredElement();
 			case PivotPackage.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT:
-				if (resolve) return getOwnedParameteredElement();
-				return basicGetOwnedParameteredElement();
+				return getOwnedParameteredElement();
 			case PivotPackage.TEMPLATE_PARAMETER__DEFAULT:
 				if (resolve) return getDefault();
 				return basicGetDefault();
 			case PivotPackage.TEMPLATE_PARAMETER__OWNED_DEFAULT:
-				if (resolve) return getOwnedDefault();
-				return basicGetOwnedDefault();
+				return getOwnedDefault();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -661,7 +596,7 @@ public class TemplateParameterImpl
 			case PivotPackage.TEMPLATE_PARAMETER__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
 			case PivotPackage.TEMPLATE_PARAMETER__SIGNATURE:
-				return basicGetSignature() != null;
+				return getSignature() != null;
 			case PivotPackage.TEMPLATE_PARAMETER__PARAMETERED_ELEMENT:
 				return parameteredElement != null;
 			case PivotPackage.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT:

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionItemImpl.java,v 1.3 2011/03/01 08:47:18 ewillink Exp $
+ * $Id: CollectionItemImpl.java,v 1.4 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -21,7 +21,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -86,32 +85,6 @@ public class CollectionItemImpl
 	 * @generated
 	 */
 	public OclExpression getItem() {
-		if (item != null && ((EObject)item).eIsProxy())
-		{
-			InternalEObject oldItem = (InternalEObject)item;
-			item = (OclExpression)eResolveProxy(oldItem);
-			if (item != oldItem)
-			{
-				InternalEObject newItem = (InternalEObject)item;
-				NotificationChain msgs = oldItem.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.COLLECTION_ITEM__ITEM, null, null);
-				if (newItem.eInternalContainer() == null)
-				{
-					msgs = newItem.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.COLLECTION_ITEM__ITEM, null, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.COLLECTION_ITEM__ITEM, oldItem, item));
-			}
-		}
-		return item;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OclExpression basicGetItem() {
 		return item;
 	}
 
@@ -210,8 +183,7 @@ public class CollectionItemImpl
 				if (resolve) return getType();
 				return basicGetType();
 			case PivotPackage.COLLECTION_ITEM__ITEM:
-				if (resolve) return getItem();
-				return basicGetItem();
+				return getItem();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}

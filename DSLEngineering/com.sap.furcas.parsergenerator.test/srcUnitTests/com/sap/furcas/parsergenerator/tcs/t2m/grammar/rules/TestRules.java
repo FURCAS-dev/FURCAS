@@ -78,22 +78,22 @@ public class TestRules {
         OperatorTemplateProductionRule rule = new OperatorTemplateProductionRule("head", "paramDec", "returnDec", "initDec", "body");
         result = new VarStringBuffer();
         rule.addToSerializationBuffer(result);
-        assertEquals("head" +"[" +"paramDec"+"]"+ RETURNSTRING + "returnDec" + "]" + INITSTRING + "initDec" +"}" + COLONSTRING + "body" + SEMICOLONSTRING + " finally {onExitTemplateRule(metaType);}", result.toString());
+        assertEquals("head" +"[" +"paramDec"+"]"+ RETURNSTRING + "returnDec" + "]" + INITSTRING + "initDec" +"}" + COLONSTRING + "body" + SEMICOLONSTRING + " finally {onExitTemplateRule();}", result.toString());
         
         rule = new OperatorTemplateProductionRule("head", null, "returnDec", "initDec", "body");
         result = new VarStringBuffer();
         rule.addToSerializationBuffer(result);
-        assertEquals("head" + RETURNSTRING + "returnDec" + "]" + INITSTRING + "initDec" +"}" + COLONSTRING + "body" + SEMICOLONSTRING + " finally {onExitTemplateRule(metaType);}", result.toString());
+        assertEquals("head" + RETURNSTRING + "returnDec" + "]" + INITSTRING + "initDec" +"}" + COLONSTRING + "body" + SEMICOLONSTRING + " finally {onExitTemplateRule();}", result.toString());
         
         rule = new OperatorTemplateProductionRule("head", null, null, "initDec", "body");
         result = new VarStringBuffer();
         rule.addToSerializationBuffer(result);
-        assertEquals("head" + INITSTRING + "initDec" +"}" + COLONSTRING + "body" + SEMICOLONSTRING + " finally {onExitTemplateRule(metaType);}", result.toString());
+        assertEquals("head" + INITSTRING + "initDec" +"}" + COLONSTRING + "body" + SEMICOLONSTRING + " finally {onExitTemplateRule();}", result.toString());
         
         rule = new OperatorTemplateProductionRule("head", null, null, null, "body");
         result = new VarStringBuffer();
         rule.addToSerializationBuffer(result);
-        assertEquals("head" + COLONSTRING + "body" + SEMICOLONSTRING + " finally {onExitTemplateRule(metaType);}", result.toString());
+        assertEquals("head" + COLONSTRING + "body" + SEMICOLONSTRING + " finally {onExitTemplateRule();}", result.toString());
         
     }
 

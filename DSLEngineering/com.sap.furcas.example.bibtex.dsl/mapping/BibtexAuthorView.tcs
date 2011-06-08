@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ASCII"?>
+<com.sap.furcas.TCS:ConcreteSyntax xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.sap.furcas.TCS="http://www.furcas.org/TCS" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmi:id="_eCxuAIt_EeCBY6jDWuZfbw" name="BibtexAuthorView">
+  <templates xsi:type="com.sap.furcas.TCS:PrimitiveTemplate" xmi:id="_eCxuAYt_EeCBY6jDWuZfbw" templateName="identifier" default="true" tokenName="NAME" value="%token%">
+    <metaReference xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </templates>
+  <templates xsi:type="com.sap.furcas.TCS:PrimitiveTemplate" xmi:id="_eCxuAot_EeCBY6jDWuZfbw" templateName="stringSymbol" tokenName="STRING" value="unescapeString(%token%)" serializer="\'%value%\'">
+    <metaReference xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </templates>
+  <templates xsi:type="com.sap.furcas.TCS:PrimitiveTemplate" xmi:id="_eCxuA4t_EeCBY6jDWuZfbw" templateName="integerSymbol" default="true" tokenName="INT" value="Integer.valueOf(%token%)">
+    <metaReference xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </templates>
+  <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" xmi:id="_eCxuBIt_EeCBY6jDWuZfbw" isMain="true">
+    <metaReference xsi:type="ecore:EClass" href="http://www.sap.com/furcas/examples/bibtex#//Author"/>
+    <templateSequence xmi:id="_eCxuBYt_EeCBY6jDWuZfbw">
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" xmi:id="_eCxuBot_EeCBY6jDWuZfbw" parentTemplate="_eCxuBIt_EeCBY6jDWuZfbw" referredLiteral="_eCyVGYt_EeCBY6jDWuZfbw"/>
+      <elements xsi:type="com.sap.furcas.TCS:Property" xmi:id="_eCxuB4t_EeCBY6jDWuZfbw" parentTemplate="_eCxuBIt_EeCBY6jDWuZfbw">
+        <propertyReference xmi:id="_eCxuCIt_EeCBY6jDWuZfbw">
+          <strucfeature xsi:type="ecore:EAttribute" href="http://www.sap.com/furcas/examples/bibtex#//Author/name"/>
+        </propertyReference>
+      </elements>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" xmi:id="_eCxuCYt_EeCBY6jDWuZfbw" parentTemplate="_eCxuBIt_EeCBY6jDWuZfbw" referredLiteral="_eCyVG4t_EeCBY6jDWuZfbw"/>
+      <elements xsi:type="com.sap.furcas.TCS:Block" xmi:id="_eCxuCot_EeCBY6jDWuZfbw" parentTemplate="_eCxuBIt_EeCBY6jDWuZfbw">
+        <blockSequence xmi:id="_eCxuC4t_EeCBY6jDWuZfbw">
+          <elements xsi:type="com.sap.furcas.TCS:Property" xmi:id="_eCxuDIt_EeCBY6jDWuZfbw" parentTemplate="_eCxuBIt_EeCBY6jDWuZfbw">
+            <propertyReference xmi:id="_eCxuDYt_EeCBY6jDWuZfbw">
+              <strucfeature xsi:type="ecore:EReference" href="http://www.sap.com/furcas/examples/bibtex#//Author/publications"/>
+            </propertyReference>
+          </elements>
+        </blockSequence>
+      </elements>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" xmi:id="_eCyVEIt_EeCBY6jDWuZfbw" parentTemplate="_eCxuBIt_EeCBY6jDWuZfbw" referredLiteral="_eCyVHIt_EeCBY6jDWuZfbw"/>
+    </templateSequence>
+  </templates>
+  <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" xmi:id="_eCyVEYt_EeCBY6jDWuZfbw">
+    <metaReference xsi:type="ecore:EClass" href="http://www.sap.com/furcas/examples/bibtex#//Entry"/>
+    <templateSequence xmi:id="_eCyVEot_EeCBY6jDWuZfbw">
+      <elements xsi:type="com.sap.furcas.TCS:Property" xmi:id="_eCyVE4t_EeCBY6jDWuZfbw" parentTemplate="_eCyVEYt_EeCBY6jDWuZfbw">
+        <propertyReference xmi:id="_eCyVFIt_EeCBY6jDWuZfbw">
+          <strucfeature xsi:type="ecore:EAttribute" href="http://www.sap.com/furcas/examples/bibtex#//Entry/id"/>
+        </propertyReference>
+      </elements>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" xmi:id="_eCyVFYt_EeCBY6jDWuZfbw" parentTemplate="_eCyVEYt_EeCBY6jDWuZfbw" referredLiteral="_eCyVGot_EeCBY6jDWuZfbw"/>
+      <elements xsi:type="com.sap.furcas.TCS:Property" xmi:id="_eCyVFot_EeCBY6jDWuZfbw" parentTemplate="_eCyVEYt_EeCBY6jDWuZfbw">
+        <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" xmi:id="_eCyVF4t_EeCBY6jDWuZfbw" template="_eCxuAot_EeCBY6jDWuZfbw"/>
+        <propertyReference xmi:id="_eCyVGIt_EeCBY6jDWuZfbw">
+          <strucfeature xsi:type="ecore:EAttribute" href="http://www.sap.com/furcas/examples/bibtex#//Entry/title"/>
+        </propertyReference>
+      </elements>
+    </templateSequence>
+  </templates>
+  <keywords xmi:id="_eCyVGYt_EeCBY6jDWuZfbw" literalRefs="_eCxuBot_EeCBY6jDWuZfbw" value="Author:"/>
+  <symbols xmi:id="_eCyVGot_EeCBY6jDWuZfbw" name="colon" literalRefs="_eCyVFYt_EeCBY6jDWuZfbw" value=":">
+    <spaces>leftNone</spaces>
+    <spaces>rightSpace</spaces>
+  </symbols>
+  <symbols xmi:id="_eCyVG4t_EeCBY6jDWuZfbw" name="lcurly" literalRefs="_eCxuCYt_EeCBY6jDWuZfbw" value="{">
+    <spaces>leftSpace</spaces>
+    <spaces>rightSpace</spaces>
+  </symbols>
+  <symbols xmi:id="_eCyVHIt_EeCBY6jDWuZfbw" name="rcurly" literalRefs="_eCyVEIt_EeCBY6jDWuZfbw" value="}">
+    <spaces>leftSpace</spaces>
+    <spaces>rightSpace</spaces>
+  </symbols>
+  <tokens xmi:id="_eCyVHYt_EeCBY6jDWuZfbw" name="COMMENT" omitted="true">
+    <pattern xmi:id="_eCyVHot_EeCBY6jDWuZfbw">
+      <simplePatterns xsi:type="com.sap.furcas.TCS:RulePattern" xmi:id="_eCyVH4t_EeCBY6jDWuZfbw">
+        <rule xsi:type="com.sap.furcas.TCS:EndOfLineRule" xmi:id="_eCyVIIt_EeCBY6jDWuZfbw">
+          <start xmi:id="_eCyVIYt_EeCBY6jDWuZfbw" name="//"/>
+        </rule>
+      </simplePatterns>
+    </pattern>
+  </tokens>
+</com.sap.furcas.TCS:ConcreteSyntax>

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Department.java,v 1.2 2011/03/09 14:45:50 auhl Exp $
+ * $Id: Department.java,v 1.3 2011/05/27 10:57:35 auhl Exp $
  */
 package company;
 
@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link company.Department#getSubDepartment <em>Sub Department</em>}</li>
  *   <li>{@link company.Department#getParentDepartment <em>Parent Department</em>}</li>
  *   <li>{@link company.Department#getEmployeeOfTheMonth <em>Employee Of The Month</em>}</li>
+ *   <li>{@link company.Department#getBiggestNumberOfStudentsOrFreelancers <em>Biggest Number Of Students Or Freelancers</em>}</li>
  * </ul>
  * </p>
  *
@@ -243,6 +244,22 @@ public interface Department extends EObject {
 	 * @generated
 	 */
 	boolean isSetEmployeeOfTheMonth();
+
+/**
+     * Returns the value of the '<em><b>Biggest Number Of Students Or Freelancers</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Biggest Number Of Students Or Freelancers</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Biggest Number Of Students Or Freelancers</em>' attribute.
+     * @see company.CompanyPackage#getDepartment_BiggestNumberOfStudentsOrFreelancers()
+     * @model dataType="primitivetypes.Integer" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL derivation='let numFreelance : Integer = self.employee->select(e : Employee | e.oclIsKindOf(Freelance))->size() in let numStudent : Integer = self.employee->select(e : Employee | e.oclIsKindOf(Student))->size() in if numFreelance < numStudent then numStudent else numFreelance endif'"
+     * @generated
+     */
+    int getBiggestNumberOfStudentsOrFreelancers();
 
 /**
 	 * <!-- begin-user-doc -->

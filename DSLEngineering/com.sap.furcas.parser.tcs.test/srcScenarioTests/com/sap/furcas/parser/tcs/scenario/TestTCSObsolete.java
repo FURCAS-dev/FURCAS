@@ -26,7 +26,7 @@ public class TestTCSObsolete extends GeneratedParserBasedTest {
 
     private static final String LANGUAGE = "TCSObsolete";
     private static final File TCS = ScenarioFixtureData.TCS_OBSOLETE_TCS;
-    private static final File[] METAMODELS = { ScenarioFixtureData.TCS_METAMODEL };
+    private static final File[] METAMODELS = { ScenarioFixtureData.TCS_OBSOLETE_METAMODEL };
     private static final String DSLSAMPLEDIR = "../com.sap.furcas.test/scenarioFixtures/";
 
     private static StubParsingHelper parsingHelper;

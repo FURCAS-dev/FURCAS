@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
@@ -114,15 +115,33 @@ public class IncrementalParserFacade {
      * @return
      */
     public TextBlock parseIncrementally(TextBlock rootBlock) throws SemanticParserException {
+        setDefaultPartitionFromRoot(rootBlock);
+        
         if (lexAndPrepareParsing(rootBlock)) {
             TextBlock preparedTextBlock = getCurrentVersion(rootBlock);
-            incrementalLexer.setCurrentTokenForParser(preparedTextBlock.getTokens().get(0));
+            incrementalLexer.setCurrentTokenForParser((AbstractToken) preparedTextBlock.getSubNodes().get(0));
             observer.setRootBlock(preparedTextBlock);
             TextBlock newRoot = incrementalParser.incrementalParse(preparedTextBlock);
             return newRoot;
         } else {
             throw new SemanticParserException(getErrors(), Component.LEXICAL_ANALYSIS);
         }
+    }
+    
+    /**
+     * Sets the default partition that is used to assign all created model
+     * elements. In this case the same partition as the one from the root blocks
+     * corresponding model element is used.
+     */
+    private void setDefaultPartitionFromRoot(TextBlock root) {
+        Resource defaultPartition = null;
+        if (root.getCorrespondingModelElements().size() != 0) {
+            defaultPartition = getParsingResult(root).eResource();
+        } else {
+            defaultPartition = root.eResource();
+        }
+        partitionAssignmentHandler.setDefaultPartition(defaultPartition);
+        partitionAssignmentHandler.assignToDefaultTextBlocksPartition(root);
     }
 
     public List<ParsingError> dryParse(TextBlock rootBlock) throws ParserInstantiationException {
@@ -137,14 +156,12 @@ public class IncrementalParserFacade {
         return p.checkSyntaxWithoutInjecting();
     }
 
-    public static Object getParsingResult(TextBlock rootBlock) {
+    public static EObject getParsingResult(TextBlock rootBlock) {
         Collection<EObject> result = rootBlock.getCorrespondingModelElements();
         if (result.size() == 0) {
             return null;
-        } else if (result.size() == 1) {
-            return result.iterator().next();
         } else {
-            return result;
+            return result.iterator().next();
         }
     }
 
@@ -162,7 +179,7 @@ public class IncrementalParserFacade {
         // go back to beginning of stream
         tbTokenStream.reset();
         TextBlock previousVersionTb = TbVersionUtil.getOtherVersion(rootBlock, Version.PREVIOUS);
-        incrementalLexer.setSource(previousVersionTb.getTokens().get(0));
+        incrementalLexer.setSource((AbstractToken) previousVersionTb.getSubNodes().get(0));
         boolean lexingSuccessful = incrementalLexer.lex(previousVersionTb);
 
         return lexingSuccessful;

@@ -1,14 +1,12 @@
 package com.sap.furcas.runtime.parser.testbase;
 
+import static com.sap.furcas.runtime.common.util.FileResourceHelper.getResourceSetAsScope;
+import static com.sap.furcas.runtime.common.util.FileResourceHelper.loadResourceSet;
+
 import java.io.File;
-import java.io.IOException;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
@@ -51,7 +49,15 @@ public class GeneratedParserTestConfiguration {
      * @throws MetaModelLookupException
      */
     public GeneratedParserTestConfiguration(String languageName, File syntaxDefFile, File... metamodels) throws MetaModelLookupException {
-        this(languageName, syntaxDefFile, DEFAULT_GENERATIONDIR, DEFAULT_PACKAGE, metamodels);
+        this.languageName = languageName;
+        this.syntaxDefFile = syntaxDefFile;
+        this.generationDir = DEFAULT_GENERATIONDIR;
+        this.packageName = DEFAULT_PACKAGE;
+        
+        grammarFile = createGrammarFile(languageName);
+        resourceSet = loadResourceSet(metamodels);
+        referenceScope = ResourceTestHelper.createEcoreReferenceScope();
+        referenceScope.addAll(getResourceSetAsScope(resourceSet));
     }
 
     /**
@@ -65,59 +71,22 @@ public class GeneratedParserTestConfiguration {
      * 
      * @throws MetaModelLookupException
      */
-    public GeneratedParserTestConfiguration(String languageName, File syntaxDefFile, String generationDir, String packageName, File... metamodels) throws MetaModelLookupException {
+    public GeneratedParserTestConfiguration(String languageName, File syntaxDefFile, String generationDir, String packageName, Set<URI> metamodels) throws MetaModelLookupException {
         this.languageName = languageName;
         this.syntaxDefFile = syntaxDefFile;
         this.generationDir = generationDir;
         this.packageName = packageName;
         
         grammarFile = createGrammarFile(languageName);
-        resourceSet = createResourceSet(metamodels);
-        referenceScope = createReferenceScope();
+        resourceSet = ResourceTestHelper.createResourceSet();
+        referenceScope = ResourceTestHelper.createEcoreReferenceScope();
+        referenceScope.addAll(metamodels);
     }
     
     private File createGrammarFile(String language) {
         return new File(generationDir + language + ANTLR_GRAMMAR_SUFFIX);
     }
-    
-    private Set<URI> createReferenceScope() {
-        Set<URI> scope =  ResourceTestHelper.createEcoreReferenceScope();
-        //add metamodels to scope set:
-        for (Resource res : resourceSet.getResources()) {
-            scope.add(res.getURI());
-        }
-        return scope;
-    }
-    
-    private static ResourceSet createResourceSet(File... metamodels) throws MetaModelLookupException {
-        ResourceSet resourceSet = ResourceTestHelper.createResourceSet();
-        return loadResourceSet(resourceSet, metamodels);
-    }
-    
-    private static ResourceSet loadResourceSet(ResourceSet resourceSet, File... fileArr) throws MetaModelLookupException {
-        for (File file : fileArr) {
-            loadResourceFromUri(resourceSet, file.toURI().normalize().toString());
-        }
-        return resourceSet;
-    }
-
-    private static void loadResourceFromUri(ResourceSet resourceSet, String uri) throws MetaModelLookupException {
-        Resource resource = resourceSet.createResource(URI.createURI(uri));
-        try {
-            resource.load(null);
-        } catch (IOException e) {
-            throw new MetaModelLookupException("Unable to parse ecore xmi for file uri " + uri + " : " + e.getMessage(), e);
-        }
-        EList<EObject> list = resource.getContents();
-        for (EObject object : list) {
-            if (object instanceof EPackage) {
-                EPackage new_package = (EPackage) object;
-                EPackage.Registry.INSTANCE.put(uri, new_package);
-                EPackage.Registry.INSTANCE.put(new_package.getNsURI(), new_package);
-            }
-        }
-    }
-    
+        
     public GrammarGenerationTargetConfiguration getTargetConfiguration() {
         return new GrammarGenerationTargetConfiguration(packageName, grammarFile);
     }

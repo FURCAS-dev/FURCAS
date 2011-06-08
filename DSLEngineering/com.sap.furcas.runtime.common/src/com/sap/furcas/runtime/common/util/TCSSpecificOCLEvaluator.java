@@ -12,10 +12,13 @@ package com.sap.furcas.runtime.common.util;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ParserException;
@@ -24,6 +27,8 @@ import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
+import com.sap.emf.ocl.prepared.PreparedOCLExpression;
+import com.sap.emf.ocl.prepared.PreparedOCLExpression.ParameterValue;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
@@ -41,9 +46,45 @@ import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectDependen
  */
 public class TCSSpecificOCLEvaluator {
     
+    private static class CacheKey {
+
+        private final String queryToExecute;
+        private final EClass context;
+
+        @Override
+        public int hashCode() {
+            final int prime = 31;
+            int result = 1;
+            result = prime * result + context.hashCode();
+            result = prime * result + queryToExecute.hashCode();
+            return result;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (!(obj instanceof CacheKey)) {
+                return false;
+            }
+            CacheKey other = (CacheKey) obj;
+            return other.context.equals(this.context) &&
+                other.queryToExecute.equals(this.queryToExecute);
+        }
+
+        public CacheKey(String queryToExecute, EClass context) {
+            this.queryToExecute = queryToExecute;
+            this.context = context;
+        }
+    }
+    
+    private static final String LEGACY_QUERY_PARAMETER = "?";
+    
     private final OCL ocl;
     private final Helper oclHelper;
     private final OppositeEndFinder oppositeEndFinder;
+    private final Map<CacheKey, PreparedOCLExpression> queryCache = new HashMap<CacheKey, PreparedOCLExpression>();
 
     public TCSSpecificOCLEvaluator() {
         this(new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider()));
@@ -79,12 +120,10 @@ public class TCSSpecificOCLEvaluator {
             String queryToExecute, EObject contextObject, EObject foreachObject) throws ModelAdapterException {
 
         EObject objectForSelf = determineObjectForSelf(sourceModelElement, queryToExecute, foreachObject, contextObject);
-        queryToExecute = ContextAndForeachHelper.prepareOclQuery(queryToExecute, keyValue);
         try {
-            oclHelper.setContext(objectForSelf.eClass());
-            OCLExpression exp = oclHelper.createQuery(queryToExecute);
-
-            Object result = ocl.evaluate(objectForSelf, exp);
+            PreparedOCLExpression preparedExp = getOCLExpressionToExecute(objectForSelf, keyValue, queryToExecute);
+            Object result = evaluate(objectForSelf, keyValue, preparedExp);
+            
             if (ocl.isInvalid(result)) {
                 throw new ModelAdapterException("Cannot evaluate OCLExpression:" + queryToExecute + " Reason: Result is invalid "
                         + (ocl.getEvaluationProblems() == null ? "" : ocl.getEvaluationProblems().getMessage()));
@@ -100,7 +139,40 @@ public class TCSSpecificOCLEvaluator {
                     + e.getDiagnostic().getMessage(), e);
         }
     }
+
+    private Object evaluate( EObject objectForSelf, Object keyValue, PreparedOCLExpression exp) {
+        if (keyValue != null) {
+            ParameterValue<Object> parameter = exp.createParameterValue(LEGACY_QUERY_PARAMETER, keyValue);
+            return exp.evaluate(objectForSelf, parameter);
+        } else {
+            return exp.evaluate(objectForSelf);
+        }
+    }
     
+    private PreparedOCLExpression getOCLExpressionToExecute(EObject objectForSelf, Object keyValue, String queryToExecute) throws ParserException {
+        CacheKey key = new CacheKey(queryToExecute, objectForSelf.eClass());
+        if (queryCache.containsKey(key)) {
+            return queryCache.get(key);
+        }
+        // FIXME: Workaround because prepared statements require '?' but our generator
+        // only produces queries with a plain ?. 
+        // Once the parser generator is migrated this additional replacing can go away.
+        queryToExecute = ContextAndForeachHelper.prepareOclQuery(queryToExecute, LEGACY_QUERY_PARAMETER);
+        
+        oclHelper.setContext(objectForSelf.eClass());
+        OCLExpression exp = oclHelper.createQuery(queryToExecute);
+        
+        PreparedOCLExpression preparedExp = null;
+        if (keyValue != null) {
+            // FIXME: ? is the legacy parameter. We have to replace it with something less problematic.
+            preparedExp = new PreparedOCLExpression(oppositeEndFinder, exp, LEGACY_QUERY_PARAMETER);
+        } else {
+            preparedExp = new PreparedOCLExpression(oppositeEndFinder, exp);
+        }
+        queryCache.put(key, preparedExp);
+        return preparedExp;
+    }
+
     private EObject determineObjectForSelf(EObject sourceModelElement, String oclQuery, EObject foreachObject, EObject contextRefObject) throws ModelAdapterException {
         EObject objectForSelf;
         if (ContextAndForeachHelper.usesContext(oclQuery)) {

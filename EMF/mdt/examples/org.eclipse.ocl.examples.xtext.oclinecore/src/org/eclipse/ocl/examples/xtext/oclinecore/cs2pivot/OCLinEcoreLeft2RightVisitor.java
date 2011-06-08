@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreLeft2RightVisitor.java,v 1.7 2011/03/14 10:19:43 ewillink Exp $
+ * $Id: OCLinEcoreLeft2RightVisitor.java,v 1.9 2011/05/23 05:51:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.cs2pivot;
 
@@ -52,6 +52,7 @@ public class OCLinEcoreLeft2RightVisitor
 	public MonikeredElement visitOCLinEcoreConstraintCS(OCLinEcoreConstraintCS csConstraint) {
 		Constraint pivotConstraint = PivotUtil.getPivot(Constraint.class, csConstraint);
 		ExpSpecificationCS csSpecification = (ExpSpecificationCS) csConstraint.getSpecification();
+		pivotConstraint.setIsCallable(csConstraint.isCallable());
 		ExpCS csExpression = csSpecification.getOwnedExpression();
 		if (csExpression != null) {
 			ExpressionInOcl pivotSpecification = context.refreshMonikeredElement(ExpressionInOcl.class,
@@ -81,7 +82,7 @@ public class OCLinEcoreLeft2RightVisitor
 		        for (Parameter parameter : contextOperation.getOwnedParameters()) {
 			        Variable param = PivotFactory.eINSTANCE.createVariable();
 			        param.setName(parameter.getName());
-			        param.setType(parameter.getType());
+					context.setTypeWithMultiplicity(param, parameter);
 			        param.setRepresentedParameter(parameter);
 			        pivotSpecification.getParameterVariables().add(param);
 		        }
@@ -91,7 +92,7 @@ public class OCLinEcoreLeft2RightVisitor
 						resultVariable = PivotFactory.eINSTANCE.createVariable();
 					}
 					resultVariable.setName(Environment.RESULT_VARIABLE_NAME);
-					resultVariable.setType(contextOperation.getType());
+					context.setTypeWithMultiplicity(resultVariable, contextOperation);
 					pivotSpecification.setResultVariable(resultVariable);
 		        }
 			}

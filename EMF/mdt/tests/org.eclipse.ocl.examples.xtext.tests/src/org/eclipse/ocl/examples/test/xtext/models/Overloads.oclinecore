@@ -1,0 +1,26 @@
+package overloads
+{
+	class Overload
+	{
+		operation add(o : Overload) : Overload{
+			body: addSelf(add(add(self)));
+		}
+		operation add(bag : Overload[*] { !ordered !unique }) : Overload[*] { !ordered !unique } {
+			body: addBag(add(bag->union(bag))->union(bag));
+		}
+		operation add(orderedset : Overload[*] { ordered unique }) : Overload[*] { ordered unique } {
+			body: addOrderedSet(add(orderedset->union(orderedset))->union(orderedset));
+		}
+		operation add(sequence : Overload[*] { ordered !unique }) : Overload[*] { ordered !unique } {
+			body: addSequence(add(sequence->union(sequence))->union(sequence));
+		}
+		operation add(set : Overload[*] { !ordered unique }) : Overload[*] { !ordered unique } {
+			body: addSet(add(set->union(set))->union(set));
+		}
+		operation addSelf(o : Overload) : Overload;
+		operation addBag(bag : Overload[*] { !ordered !unique }) : Overload[*] { !ordered !unique };
+		operation addOrderedSet(orderedset : Overload[*] { ordered unique }) : Overload[*] { ordered unique };
+		operation addSequence(sequence : Overload[*] { ordered !unique }) : Overload[*] { ordered !unique };
+		operation addSet(set : Overload[*] { !ordered unique }) : Overload[*] { !ordered unique };
+	}
+}

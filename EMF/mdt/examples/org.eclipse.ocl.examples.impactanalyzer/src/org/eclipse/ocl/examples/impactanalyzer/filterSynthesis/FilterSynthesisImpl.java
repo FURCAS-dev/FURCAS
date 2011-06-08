@@ -94,6 +94,7 @@ implements OperationBodyToCallMapper {
     private final Map<OCLExpression, Set<Variable>> parameterVariablesUsedInBody = new HashMap<OCLExpression, Set<Variable>>();
     private final OCL ocl;
     private final Map<OCLExpression, Set<PropertyCallExp>> derivedProperties = new HashMap<OCLExpression, Set<PropertyCallExp>>();
+    private final Stack<OCLExpression> derivedPropertiesStack = new Stack<OCLExpression>();
 
 	/**
      * @param expression The {@link OCLExpression} the filter should be created for. 
@@ -129,8 +130,9 @@ implements OperationBodyToCallMapper {
             if (callsForProperty == null) {
                 callsForProperty = new HashSet<PropertyCallExp>();
                 derivedProperties.put(body, callsForProperty);
-                // TODO do same stack handling for self-variable analysis as done for OperationCallExp
+                derivedPropertiesStack.push(body);
                 walk(body);
+                derivedPropertiesStack.pop();
             }
             callsForProperty.add((PropertyCallExp) propCallExp);
         }
@@ -207,12 +209,12 @@ implements OperationBodyToCallMapper {
 
     @Override
     public EPackage visitVariableExp(VariableExp<EClassifier, EParameter> var) {
-        EOperation operation = null;
-        // TODO do same thing also for derived properties, influencing the self variable
         if (!visitedOperationBodyStack.isEmpty()) {
             OCLExpression body = visitedOperationBodyStack.peek();
-            operation = visitedOperationBodies.get(body).iterator().next().getReferredOperation();
-            // TODO also record non-operation self variables because they are always in scope for outermost expression
+            EOperation operation = visitedOperationBodies.get(body).iterator().next()
+                    .getReferredOperation();
+            // TODO also record non-operation self variables because they are
+            // always in scope for outermost expression
             if (var.getName().equals(Environment.SELF_VARIABLE_NAME)) {
                 addSelfUsageForBody(var, body);
             } else {
@@ -228,6 +230,14 @@ implements OperationBodyToCallMapper {
                     }
                 }
             }
+        } else if (!derivedPropertiesStack.isEmpty()
+                && var.getName().equals(Environment.SELF_VARIABLE_NAME)) {
+            OCLExpression derivationExpression = derivedPropertiesStack.peek();
+            // TODO refactor interface naming & description
+            // Since the selfVariablesUsedInBody field is only read
+            // from a method of the OperationBodyToCallMapper interface this
+            // is kind of an abuse of the data structure.
+            addSelfUsageForBody(var, derivationExpression);
         } else {
             if (var.getName().equals(Environment.SELF_VARIABLE_NAME)) {
                 // self used outside of operation body; associate with root expression as "body"

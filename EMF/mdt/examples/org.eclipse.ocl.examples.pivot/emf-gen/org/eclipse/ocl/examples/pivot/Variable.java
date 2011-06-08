@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Variable.java,v 1.4 2011/03/01 08:47:19 ewillink Exp $
+ * $Id: Variable.java,v 1.5 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -50,7 +50,7 @@ public interface Variable
 	 * @return the value of the '<em>Init Expression</em>' containment reference.
 	 * @see #setInitExpression(OclExpression)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getVariable_InitExpression()
-	 * @model containment="true" resolveProxies="true" ordered="false"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	OclExpression getInitExpression();

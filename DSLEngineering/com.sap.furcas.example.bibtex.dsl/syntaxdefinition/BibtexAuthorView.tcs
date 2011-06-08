@@ -1,0 +1,47 @@
+/**
+ * A view on the Bibtex Model which presents
+ * an individual author and his publications.
+ */ 
+syntax BibtexAuthorView {
+
+  primitiveTemplate identifier for EString default using NAME
+  : value = "%token%"
+  ;
+
+  primitiveTemplate stringSymbol for EString using STRING
+  : value = "unescapeString(%token%)",
+    serializer="\'%value%\'" 
+  ;
+
+  primitiveTemplate integerSymbol for EInt default using INT
+  : value = "Integer.valueOf(%token%)"
+  ;
+  
+  template Author main
+  : "Author:" name "{" [ publications ] "}"
+  ; 
+
+  template Entry
+  : id ":" title{as=stringSymbol}
+  ;
+  
+
+  -- place keywords here (optional, seldom used)
+
+  -- place symbols here (optional)
+          symbols {
+                colon           = ":" : leftNone, rightSpace;
+                lcurly          = "{" : leftSpace, rightSpace;
+                rcurly          = "}" : leftSpace, rightSpace;
+        }
+
+  -- place operatorLists here (optional)
+
+  -- place tokens here (optional, except for COMMENT)
+
+  omitted token COMMENT : endOfLine(start = "//");
+
+  -- place lexer here (optional)
+
+}
+  

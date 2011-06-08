@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CompanyPackageImpl.java,v 1.3 2011/03/23 05:36:08 auhl Exp $
+ * $Id: CompanyPackageImpl.java,v 1.4 2011/05/27 10:57:35 auhl Exp $
  */
 package company.impl;
 
@@ -317,6 +317,15 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
      * <!-- end-user-doc -->
 	 * @generated
 	 */
+    public EAttribute getDepartment_BiggestNumberOfStudentsOrFreelancers() {
+        return (EAttribute)departmentEClass.getEStructuralFeatures().get(8);
+    }
+
+/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getFreelance() {
 		return freelanceEClass;
 	}
@@ -503,6 +512,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		createEReference(departmentEClass, DEPARTMENT__SUB_DEPARTMENT);
 		createEReference(departmentEClass, DEPARTMENT__PARENT_DEPARTMENT);
 		createEReference(departmentEClass, DEPARTMENT__EMPLOYEE_OF_THE_MONTH);
+        createEAttribute(departmentEClass, DEPARTMENT__BIGGEST_NUMBER_OF_STUDENTS_OR_FREELANCERS);
 
 		freelanceEClass = createEClass(FREELANCE);
 		createEAttribute(freelanceEClass, FREELANCE__ASSIGNMENT);
@@ -579,6 +589,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		initEReference(getDepartment_SubDepartment(), this.getDepartment(), this.getDepartment_ParentDepartment(), "subDepartment", null, 0, -1, Department.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDepartment_ParentDepartment(), this.getDepartment(), this.getDepartment_SubDepartment(), "parentDepartment", null, 0, 1, Department.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDepartment_EmployeeOfTheMonth(), this.getEmployee(), null, "employeeOfTheMonth", null, 0, -1, Department.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getDepartment_BiggestNumberOfStudentsOrFreelancers(), thePrimitivetypesPackage.getInteger(), "biggestNumberOfStudentsOrFreelancers", null, 0, 1, Department.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
 		addEOperation(departmentEClass, thePrimitivetypesPackage.getInteger(), "calcExpenses", 0, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -715,6 +726,12 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 			 "body", "if self.subDepartment->size() >= 1 then\r\n\tself.subDepartment->iterate(department; return : Integer = 0 | return + department.sumBudget()) + self.budget\r\nelse\r\n\tself.budget\r\nendif "
 		   });		
 		addAnnotation
+          (getDepartment_BiggestNumberOfStudentsOrFreelancers(), 
+           source, 
+           new String[] {
+             "derivation", "let numFreelance : Integer = self.employee->select(e : Employee | e.oclIsKindOf(Freelance))->size() in let numStudent : Integer = self.employee->select(e : Employee | e.oclIsKindOf(Student))->size() in if numFreelance < numStudent then numStudent else numFreelance endif"
+           });		
+        addAnnotation
 		  (freelanceEClass, 
 		   source, 
 		   new String[] {

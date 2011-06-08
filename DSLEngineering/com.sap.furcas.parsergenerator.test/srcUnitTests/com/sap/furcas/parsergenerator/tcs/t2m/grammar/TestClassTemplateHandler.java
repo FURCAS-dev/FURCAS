@@ -79,7 +79,7 @@ public class TestClassTemplateHandler {
 
         String expected = "testclass returns[Object ret2] @init{IModelElementProxy ret; List<String> metaType=testclass;" +  
         		" ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;" + 
-        		" onEnterTemplateRule(metaType);" +
+        		" onEnterTemplateRule(\"#//\");" +
         		" org.antlr.runtime.Token firstToken=input.LT(1);" + 
         		" }" + 
         		"  :" + 
@@ -88,7 +88,7 @@ public class TestClassTemplateHandler {
         		" ret2 = commitCreation(ret, firstToken, false);" + 
         		" }" + 
         		"  ;" +
-        		" catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule(metaType);}";
+        		" catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule();}";
         
         List tokens = tokens( expected); 
         List tokens2 = tokens( result.toString()); 
@@ -120,7 +120,7 @@ public class TestClassTemplateHandler {
 
         String expected = "testclass returns[Object ret2] @init{IModelElementProxy ret; List<String> metaType=testclass;" +  
         		" ret=(getBacktrackingLevel()==0) ? createReferenceProxy(metaType) : null;" + 
-        		" onEnterTemplateRule(metaType);" +
+        		" onEnterTemplateRule(\"#//\");" +
         		" org.antlr.runtime.Token firstToken=input.LT(1);" + 
         " }" + 
         "  :" + 
@@ -129,7 +129,7 @@ public class TestClassTemplateHandler {
         " ret2 = commitCreation(ret, firstToken, false);" + 
         " }" + 
         "  ;" +
-        " catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule(metaType);}";
+        " catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule();}";
         
         List tokens = tokens( expected); 
         List tokens2 = tokens( result.toString()); 
@@ -162,7 +162,7 @@ public class TestClassTemplateHandler {
 
         String expected = "testclass_testmode returns[Object ret2] @init{IModelElementProxy ret; List<String> metaType=testclass;" + 
         " ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;" + 
-        " onEnterTemplateRule(metaType,\"testmode\");" + 
+        " onEnterTemplateRule(\"#//\");" + 
         " org.antlr.runtime.Token firstToken=input.LT(1);" + 
         " }" + 
         "  :" + 
@@ -171,7 +171,7 @@ public class TestClassTemplateHandler {
         " ret2 = commitCreation(ret, firstToken, false);" + 
         " }" + 
         "  ;" +
-        " catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule(metaType);}";
+        " catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule();}";
         
         List tokens = tokens( expected); 
         List tokens2 = tokens( result.toString()); 
@@ -256,7 +256,7 @@ public class TestClassTemplateHandler {
 
         String expected = "testclass returns[Object ret2] @init{IModelElementProxy ret; List<String> metaType=testclass;" + 
         " ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, true, false) : null;" + 
-        " onEnterTemplateRule(metaType);" + 
+        " onEnterTemplateRule(\"#//\");" + 
         " org.antlr.runtime.Token firstToken=input.LT(1);" + 
         " }" + 
         "  :" + 
@@ -265,7 +265,7 @@ public class TestClassTemplateHandler {
         " ret2 = commitCreation(ret, firstToken, true);" + 
         " }" + 
         "  ;" +
-        " catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule(metaType);}";
+        " catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule();}";
         
         List tokens = tokens( expected); 
         List tokens2 = tokens( result.toString()); 
@@ -302,7 +302,7 @@ public class TestClassTemplateHandler {
 
         String expected = "testclass returns[Object ret2] @init{IModelElementProxy ret; List<String> metaType=testclass;" + 
         " ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, true, false, new String[]{\"testTag\"}) : null;" + 
-        " onEnterTemplateRule(metaType);" +
+        " onEnterTemplateRule(\"#//\");" +
         " org.antlr.runtime.Token firstToken=input.LT(1);" + 
         " }" + 
         "  :" + 
@@ -311,7 +311,7 @@ public class TestClassTemplateHandler {
         " ret2 = commitCreation(ret, firstToken, true);" + 
         " }" + 
         "  ;" +
-        " catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule(metaType);}";
+        " catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule();}";
         
         List tokens = tokens( expected); 
         List tokens2 = tokens( result.toString()); 
@@ -349,7 +349,7 @@ public class TestClassTemplateHandler {
 
         String expected = "testclass returns[Object ret2] @init{IModelElementProxy ret; List<String> metaType=testclass;" + 
         " ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, true, false, new String[]{\"testTag1\", \"testTag2\"}) : null;" + 
-        " onEnterTemplateRule(metaType);" +
+        " onEnterTemplateRule(\"#//\");" +
         " org.antlr.runtime.Token firstToken=input.LT(1);" + 
         " }" + 
         "  :" + 
@@ -358,7 +358,7 @@ public class TestClassTemplateHandler {
         " ret2 = commitCreation(ret, firstToken, true);" + 
         " }" + 
         "  ;" +
-        " catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule(metaType);}";
+        " catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule();}";
         
         List tokens = tokens( expected); 
         List tokens2 = tokens( result.toString()); 
@@ -394,7 +394,7 @@ public class TestClassTemplateHandler {
 
         String expected = "testclass returns[Object ret2] @init{IModelElementProxy ret; List<String> metaType=testclass;" + 
         " ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, true) : null;" + 
-        " onEnterTemplateRule(metaType);" +
+        " onEnterTemplateRule(\"#//\");" +
         " org.antlr.runtime.Token firstToken=input.LT(1);" + 
         " }" + 
         "  :" + 
@@ -403,7 +403,7 @@ public class TestClassTemplateHandler {
         " ret2 = commitCreation(ret, firstToken, false);" + 
         " }" + 
         "  ;" +
-        " catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule(metaType);}";
+        " catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule();}";
         
         List tokens = tokens( expected); 
         List tokens2 = tokens( result.toString()); 
@@ -440,7 +440,7 @@ public class TestClassTemplateHandler {
 
         String expected = "testclass returns[Object ret2] @init{IModelElementProxy ret; List<String> metaType=testclass;" + 
         " ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, true, true) : null;" + 
-        " onEnterTemplateRule(metaType);" +
+        " onEnterTemplateRule(\"#//\");" +
         " org.antlr.runtime.Token firstToken=input.LT(1);" + 
         " }" + 
         "  :" + 
@@ -449,7 +449,7 @@ public class TestClassTemplateHandler {
         " ret2 = commitCreation(ret, firstToken, true);" + 
         " }" + 
         "  ;" +
-        " catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule(metaType);}";
+        " catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule();}";
         
         List tokens = tokens( expected); 
         List tokens2 = tokens( result.toString()); 
@@ -490,7 +490,7 @@ public class TestClassTemplateHandler {
         
         String expected = "testclass returns[Object ret2] @init{IModelElementProxy ret; List<String> metaType=testclass;" + 
         " ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;" + 
-        " onEnterTemplateRule(metaType);" +
+        " onEnterTemplateRule(\"#//\");" +
         " org.antlr.runtime.Token firstToken=input.LT(1);" + 
         " }" + 
         "  :" + 
@@ -499,7 +499,7 @@ public class TestClassTemplateHandler {
         " ret2 = commitCreation(ret, firstToken, false);" + 
         " }" + 
         "  ;" +
-        " catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule(metaType);}";
+        " catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule();}";
 
         List tokens = tokens( expected); 
         List tokens2 = tokens( result.toString()); 
@@ -634,7 +634,7 @@ public class TestClassTemplateHandler {
         
         String expected = "testclass__impl returns[Object ret2] @init{IModelElementProxy ret; List<String> metaType=testclass;\n"
 		+ "ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;\n"
-		+ "onEnterTemplateRule(metaType);\n"
+		+ "onEnterTemplateRule(\"#//\");\n"
 		+ "org.antlr.runtime.Token firstToken=input.LT(1);\n"
 		+ "}\n"
 		+ ":\n"
@@ -644,7 +644,7 @@ public class TestClassTemplateHandler {
 		+ "\n"
 		+ " }\n"
 		+ "  ;\n"
-		+ "catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule(metaType);}\n";
+		+ "catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule();}\n";
         
         List tokens = tokens( expected); 
         List tokens2 = tokens( result.toString()); 
@@ -818,7 +818,7 @@ public class TestClassTemplateHandler {
 							"IModelElementProxy ret;\n"+
 							"List<String> metaType=testclass;\n"+
 							"ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;\n"+
-							"onEnterTemplateRule(metaType);\n"+
+							"onEnterTemplateRule(\"#//\");\n"+
 							"org.antlr.runtime.Token firstToken=input.LT(1);\n"+
 							"}\n"+
 							  ":\n"+
@@ -989,7 +989,7 @@ public class TestClassTemplateHandler {
 
         String expected = "testclass_abstractContents returns[Object ret2] @init{IModelElementProxy ret; List<String> metaType=testclass;" +  
         		" ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;" + 
-        		" onEnterTemplateRule(metaType);" +
+        		" onEnterTemplateRule(\"#//\");" +
         		" org.antlr.runtime.Token firstToken=input.LT(1);" + 
         		" }" + 
         		"  :" + 
@@ -998,7 +998,7 @@ public class TestClassTemplateHandler {
         		" ret2 = commitCreation(ret, firstToken, false);" +  
         		" }" + 
         		"  ;" + 
-        		" catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule(metaType);} ";
+        		" catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule();} ";
         
         List tokens = tokens( expected); 
         List tokens2 = tokens( result.toString()); 
@@ -1068,7 +1068,7 @@ public class TestClassTemplateHandler {
 
         String expected = "testclass_abstractContents returns[Object ret2] @init{IModelElementProxy ret; List<String> metaType=testclass;" + 
         " ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, true, false) : null;" + 
-        " onEnterTemplateRule(metaType);" +
+        " onEnterTemplateRule(\"#//\");" +
         " org.antlr.runtime.Token firstToken=input.LT(1);" + 
         " }" + 
         "  :" + 
@@ -1077,7 +1077,7 @@ public class TestClassTemplateHandler {
         " ret2 = commitCreation(ret, firstToken, true);" +  
         " }" + 
         "  ;" + 
-        " catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule(metaType);} ";
+        " catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule();} ";
         
         List tokens = tokens( expected); 
         List tokens2 = tokens( result.toString()); 
@@ -1148,7 +1148,7 @@ public class TestClassTemplateHandler {
 
         String expected = "testclass_abstractContents returns[Object ret2] @init{IModelElementProxy ret; List<String> metaType=testclass;" +  
         " ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, true, false) : null;" + 
-        " onEnterTemplateRule(metaType);" +
+        " onEnterTemplateRule(\"#//\");" +
         " org.antlr.runtime.Token firstToken=input.LT(1);" + 
         " }" + 
         "  :" + 
@@ -1157,7 +1157,7 @@ public class TestClassTemplateHandler {
         " ret2 = commitCreation(ret, firstToken, true);" +  
         " }" + 
         "  ;" + 
-        " catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule(metaType);} ";
+        " catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally {onExitTemplateRule();} ";
         
         List tokens = tokens( expected); 
         List tokens2 = tokens( result.toString()); 

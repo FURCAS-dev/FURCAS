@@ -25,7 +25,6 @@ import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.parser.ParserFactory;
 import com.sap.furcas.runtime.tcs.MetaModelElementResolutionHelper;
 import com.sap.furcas.runtime.tcs.SyntaxLookup;
-import com.sap.furcas.runtime.tcs.TcsUtil;
 
 import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectDependencyQueryContextProvider;
 
@@ -59,8 +58,7 @@ public class ParserScope {
         this.metamodels = parserFactory.getMetamodelURIs();
         this.metamodelLookup = new QueryBasedEcoreMetaModelLookUp(resourceSet, metamodels);
         
-        resourceSet.getResource(parserFactory.getSyntaxResourceURI(), /*loadOnDemand*/ true);
-        this.syntax = TcsUtil.getSyntaxByName(resourceSet, parserFactory.getLanguageId());
+        this.syntax = (ConcreteSyntax) resourceSet.getEObject(URI.createURI(parserFactory.getSyntaxUUID()), true);
         this.resourceSet = resourceSet;
         
         

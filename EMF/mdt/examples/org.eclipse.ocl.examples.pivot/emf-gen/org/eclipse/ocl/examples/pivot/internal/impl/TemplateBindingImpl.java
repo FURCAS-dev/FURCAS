@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateBindingImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
+ * $Id: TemplateBindingImpl.java,v 1.3 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -146,7 +146,7 @@ public class TemplateBindingImpl
 	public EList<TemplateParameterSubstitution> getParameterSubstitutions() {
 		if (parameterSubstitutions == null)
 		{
-			parameterSubstitutions = new EObjectContainmentWithInverseEList.Resolving<TemplateParameterSubstitution>(TemplateParameterSubstitution.class, this, PivotPackage.TEMPLATE_BINDING__PARAMETER_SUBSTITUTION, PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING);
+			parameterSubstitutions = new EObjectContainmentWithInverseEList<TemplateParameterSubstitution>(TemplateParameterSubstitution.class, this, PivotPackage.TEMPLATE_BINDING__PARAMETER_SUBSTITUTION, PivotPackage.TEMPLATE_PARAMETER_SUBSTITUTION__TEMPLATE_BINDING);
 		}
 		return parameterSubstitutions;
 	}
@@ -170,16 +170,6 @@ public class TemplateBindingImpl
 	public TemplateableElement getBoundElement() {
 		if (eContainerFeatureID() != PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT) return null;
 		return (TemplateableElement)eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplateableElement basicGetBoundElement() {
-		if (eContainerFeatureID() != PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT) return null;
-		return (TemplateableElement)eInternalContainer();
 	}
 
 	/**
@@ -309,8 +299,7 @@ public class TemplateBindingImpl
 			case PivotPackage.TEMPLATE_BINDING__PARAMETER_SUBSTITUTION:
 				return getParameterSubstitutions();
 			case PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT:
-				if (resolve) return getBoundElement();
-				return basicGetBoundElement();
+				return getBoundElement();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -384,7 +373,7 @@ public class TemplateBindingImpl
 			case PivotPackage.TEMPLATE_BINDING__PARAMETER_SUBSTITUTION:
 				return parameterSubstitutions != null && !parameterSubstitutions.isEmpty();
 			case PivotPackage.TEMPLATE_BINDING__BOUND_ELEMENT:
-				return basicGetBoundElement() != null;
+				return getBoundElement() != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

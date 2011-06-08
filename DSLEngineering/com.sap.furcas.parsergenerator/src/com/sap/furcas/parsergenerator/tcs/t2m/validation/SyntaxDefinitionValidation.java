@@ -16,40 +16,37 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.SemanticErrorBucket;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 
-
 /**
  * The Class SyntaxDefinitionValidation.
  */
 public class SyntaxDefinitionValidation {
 
-	/** The rules. */
-	private List<ISyntaxValidationRule> rules = new ArrayList<ISyntaxValidationRule>();
-	
-	/**
-	 * Instantiates a new syntax definition validation.
-	 */
-	public SyntaxDefinitionValidation() {
-		rules.add(new TemplateNameValidation());
-		rules.add(new MainTemplateValidation());
-		rules.add(new OperatorListValidation());
-		rules.add(new TemplateAbstractWithSequenceValidation());
-	}
+    /** The rules. */
+    private final List<ISyntaxValidationRule> rules = new ArrayList<ISyntaxValidationRule>();
 
+    /**
+     * Instantiates a new syntax definition validation.
+     */
+    public SyntaxDefinitionValidation() {
+        rules.add(new TemplateNameValidation());
+        rules.add(new MainTemplateValidation());
+        rules.add(new OperatorListValidation());
+        rules.add(new TemplateAbstractWithSequenceValidation());
+    }
 
     /**
      * @param syntax
      * @param metaLookup
      * @param errorBucket 
      */
-    public void validateSyntax(ConcreteSyntax syntax,
-            IMetaModelLookup<?> metaLookup, SemanticErrorBucket errorBucket) {
+    public void validateSyntax(ConcreteSyntax syntax, IMetaModelLookup<?> metaLookup, SemanticErrorBucket errorBucket) {
         for (Iterator<ISyntaxValidationRule> iterator = rules.iterator(); iterator.hasNext();) {
             ISyntaxValidationRule rule = iterator.next();
-           
+
             rule.validate(syntax, metaLookup, errorBucket);
-           
+
         }
-        
+
     }
-	
+
 }

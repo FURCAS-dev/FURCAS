@@ -36,7 +36,7 @@ public interface Token extends NamedElement {
      * @return the value of the '<em>Pattern</em>' containment reference.
      * @see #setPattern(OrPattern)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getToken_Pattern()
-     * @model containment="true" resolveProxies="true" required="true" ordered="false"
+     * @model containment="true" required="true" ordered="false"
      * @generated
      */
         OrPattern getPattern();

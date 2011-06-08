@@ -42,15 +42,16 @@ public class TestPrettyPrintTCS {
     
     @Rule
     public final TemporaryFolder tmpFolder = new TemporaryFolder();
+    private static Set<URI> referenceScope;
 
 
     @BeforeClass
     public static void init() throws ParserGeneratorInvocationException, ParserInvokationException {
         TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
-        Set<URI> refScope = ResourceTestHelper.createFURCASReferenceScope();
-        refScope.addAll(ResourceTestHelper.createEcoreReferenceScope());
+        referenceScope = ResourceTestHelper.createFURCASReferenceScope();
+        referenceScope.addAll(ResourceTestHelper.createEcoreReferenceScope());
         syntax = generator.parseSyntax(new GrammarGenerationSourceConfiguration(ResourceTestHelper.createResourceSet(),
-                refScope), TCSSyntaxDefinition.TCS_TCS, new FailOnErrorErrorHandler()).getSyntax();
+                referenceScope), TCSSyntaxDefinition.TCS_TCS, new FailOnErrorErrorHandler()).getSyntax();
     }
 
     @Test
@@ -126,7 +127,7 @@ public class TestPrettyPrintTCS {
      */
     @Test
     public void testPrettyPrintTCS() throws Exception {
-        String reprintedTCS = PrettyPrintTestHelper.prettyPrintString(syntax, syntax);
+        String reprintedTCS = PrettyPrintTestHelper.prettyPrintString(syntax, syntax, referenceScope);
         assertTrue(reprintedTCS.startsWith("syntax TCS"));
         assertTrue(reprintedTCS.endsWith("}"));
         

@@ -38,7 +38,6 @@ public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
     private static final File TCS = new File("fixtures/Bibtex.tcs");
 
     private static final File[] METAMODELS = { ScenarioFixtureData.BIBTEXT_METAMODEL, ScenarioFixtureData.BIBTEXT1_METAMODEL };
-    private static final String MM_PACKAGE_URI = ScenarioFixtureData.BIBTEXT_PACKAGE_URI;
 
     private static IncrementalParserFacade incrementalParserFacade;
     
@@ -48,7 +47,7 @@ public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
 
     @BeforeClass
     public static void setupParser() throws Exception {
-        GeneratedParserAndFactoryTestConfiguration testConfig = new GeneratedParserAndFactoryTestConfiguration(LANGUAGE, TCS, MM_PACKAGE_URI, METAMODELS);
+        GeneratedParserAndFactoryTestConfiguration testConfig = new GeneratedParserAndFactoryTestConfiguration(LANGUAGE, TCS, METAMODELS);
 
         resourceSet = testConfig.getSourceConfiguration().getResourceSet();
         

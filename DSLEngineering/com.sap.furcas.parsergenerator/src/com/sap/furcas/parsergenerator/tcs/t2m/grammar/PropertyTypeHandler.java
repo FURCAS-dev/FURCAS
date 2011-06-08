@@ -265,9 +265,9 @@ public class PropertyTypeHandler<Type extends Object> {
         List<Diagnostic> oclErrors = metaLookup.validateOclQuery(parsingContext, query);
         for (Diagnostic error : oclErrors) {
         	if(error.getSeverity() == Diagnostic.ERROR) {
-        	    errorBucket.addError("Error: " + error.getMessage() + " in OCL query: \"" + query + "\"", argument);
+        	    errorBucket.addError(error.getMessage() + " in OCL query: \"" + query + "\"", argument);
         	} else if(error.getSeverity() == Diagnostic.WARNING) {
-        		errorBucket.addWarning("Warning: " + error.getMessage() + " in OCL query " + query, argument);
+        		errorBucket.addWarning(error.getMessage() + " in OCL query " + query, argument);
         	}
         }
     }
@@ -276,9 +276,9 @@ public class PropertyTypeHandler<Type extends Object> {
         List<Diagnostic> oclErrors = metaLookup.validateOclQuery(prop.getParentTemplate(), query);
         for (Diagnostic error : oclErrors) {
             if(error.getSeverity() == Diagnostic.ERROR) {
-                errorBucket.addError("Error: " + error.getMessage() + " in OCL query: \"" + query + "\"", argument);
+                errorBucket.addError(error.getMessage() + " in OCL query: \"" + query + "\"", argument);
             } else if(error.getSeverity() == Diagnostic.WARNING) {
-                    errorBucket.addWarning("Warning: " + error.getMessage() + " in OCL query " + query, argument);
+                    errorBucket.addWarning(error.getMessage() + " in OCL query " + query, argument);
             }
     }
     }

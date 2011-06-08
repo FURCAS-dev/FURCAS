@@ -19,6 +19,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.PrimitivePropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyInit;
@@ -139,6 +140,25 @@ public class PrettyPrintExceptions {
 	protected String getMismatchError() {
 	    return "Did not find templat for type: " + typeName + " with mode: " + mode;
 	}
+    }
+    
+    public static class OperatorTemplateOperatorMissmatchException extends SyntaxMismatchException {
+
+        private static final long serialVersionUID = 1L;
+        private final String operator;
+        private final OperatorTemplate template;
+
+        public OperatorTemplateOperatorMissmatchException(PrettyPrintContext context, String operator, OperatorTemplate template) {
+            super(context);
+            this.operator = operator;
+            this.template = template;
+        }
+
+        @Override
+        protected String getMismatchError() {
+            return "Operator and template missmatch. Template " + EMFModelInspector.getTypeName(template) +
+                " does not support the operator " + operator;
+        }
     }
 
     public static class PropertyInitException extends SyntaxMismatchException {

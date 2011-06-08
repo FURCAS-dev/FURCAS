@@ -160,6 +160,16 @@ public class PreparedOCLExpression {
     }
     
     /**
+     * Like {@link #PreparedOCLExpression(OCLExpression, Object...)}, but allows clients to provide
+     * a specific {@link OppositeEndFinder} to be used during expression evaluation.
+     */
+    public PreparedOCLExpression(OppositeEndFinder oppositeEndFinder,
+            OCLExpression expression, Object... paramValues) {
+        this(expression, paramValues);
+        this.oppositeEndFinder = oppositeEndFinder;
+    }
+    
+    /**
      * Produces a parameter setting for the parameter identified by its original value <code>originalValue</code>.
      * This could, e.g., be one of the values passed to the {@link #PreparedOCLExpression(OCLExpression, Object...)}.
      * The <code>newValue</code> is the actual value to which to set the parameter during evaluation when the resulting

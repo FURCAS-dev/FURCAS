@@ -3,7 +3,6 @@
  */
 package com.sap.furcas.runtime.textblocks;
 
-import java.util.Iterator;
 import java.util.List;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
@@ -91,43 +90,12 @@ public class TbNavigationUtil {
 	 * @return
 	 */
 	public static DocumentNode getNextInSubTree(DocumentNode node) {
-
 		// root node has no siblings
 		if (node == null || node.getParent() == null) {
 			return null;
 		}
-
-		TextBlock textBlock = node.getParent();
-		Iterator<DocumentNode> itNodes = textBlock.getSubNodes().iterator();
-
-		DocumentNode nextNode = null;
-
-		if (itNodes.hasNext()) {
-			nextNode = itNodes.next();
-		}
-
-		DocumentNode candidate = null;
-		boolean returnNext = false;
-		// while there are still more elements
-		while (nextNode != null) {
-			DocumentNode loopNode = null;
-				loopNode = nextNode;
-				if (itNodes.hasNext()) {
-					nextNode = itNodes.next();
-				} else {
-					nextNode = null;
-				}
-			 
-			if (returnNext) {
-				candidate = loopNode;
-				break;
-			}
-			if (loopNode.equals(node)) {
-				returnNext = true;
-			}
-		} // while (subnodes.size() < totalSize);
-
-		return candidate;
+		int index = node.getParent().getSubNodes().indexOf(node);
+		return getSubNodeAt(node.getParent(), index + 1);
 	}
 
 	/**
@@ -273,22 +241,12 @@ public class TbNavigationUtil {
      * @return
      */
     public static DocumentNode getPreviousInSubTree(DocumentNode node) {
-        TextBlock parent = getParent(node);
+        TextBlock parent = node.getParent();
         if (parent == null) {
             return null;
         }
         int nodeIndex = getSubNodesIndex(node);
         return getSubNodeAt(parent, nodeIndex - 1);
-    }
-
-    private static TextBlock getParent(DocumentNode node) {
-        if (node instanceof TextBlock) {
-            TextBlock tb = (TextBlock) node;
-            return tb.getParent();
-        } else {
-            AbstractToken tok = (AbstractToken) node;
-            return tok.getParent();
-        }
     }
 
     public static boolean isToken(DocumentNode node) {

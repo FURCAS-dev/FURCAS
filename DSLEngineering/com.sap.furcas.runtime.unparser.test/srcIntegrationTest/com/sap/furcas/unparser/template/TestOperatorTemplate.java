@@ -2,7 +2,9 @@ package com.sap.furcas.unparser.template;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -37,12 +39,14 @@ public class TestOperatorTemplate extends GeneratedParserBasedTest {
 
     private static EMFParsingHelper parsingHelper;
     private static ConcreteSyntax syntax;
+    private static Set<URI> referenceScope;
 
 
     @BeforeClass
     public static void setupParser() throws Exception {
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS);
         TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
+        referenceScope = testConfig.getSourceConfiguration().getReferenceScope();
         syntax = syntaxBean.getSyntax();
         ParserFacade facade = generateParserForLanguage(syntaxBean, testConfig, new ClassLookupImpl());
         parsingHelper = new EMFParsingHelper(facade, testConfig, PACKAGE_URI);
@@ -88,7 +92,7 @@ public class TestOperatorTemplate extends GeneratedParserBasedTest {
     
     private String parseAndReprintString(String text) throws IOException, UnknownProductionRuleException, SyntaxAndModelMismatchException {
         ModelParsingResult result = parsingHelper.parseString(text, /*expected errors*/ 0);
-        String printed = PrettyPrintTestHelper.prettyPrintString((EObject) result.getParsedModelElement(), syntax);
+        String printed = PrettyPrintTestHelper.prettyPrintString((EObject) result.getParsedModelElement(), syntax, referenceScope);
         return printed;
     }
     

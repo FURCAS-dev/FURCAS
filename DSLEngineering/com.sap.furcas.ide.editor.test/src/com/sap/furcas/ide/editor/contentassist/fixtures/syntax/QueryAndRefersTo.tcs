@@ -1,0 +1,46 @@
+syntax QueryAndRefersTo {
+
+	template test::reference::Library main context
+		:	"library"
+				"{" 
+					"authors" authors 
+					"books" books{ separator = ";" } 
+				"}"
+	;
+	
+	template test::reference::Author
+		:	name
+	;
+	
+	template test::reference::Book
+		:	title "by" 
+			author{ 
+				refersTo = name, -- refers to is used to know the correct type only. (no ? parameter in query, see query/filter instead)
+				query="OCL:#context.oclAsType(test::reference::Library).authors->select( a | a.name = 'hegel' )->asSequence()->first()"
+			}
+	;
+	
+	
+	
+	---------------------- BELOW IS A MINIMAL SYNTAX -------------------------------
+		
+	primitiveTemplate identifier for ecore::EString default using NAME
+	: value = "unescapeString(%token%)"
+	;
+	primitiveTemplate identifierOrKeyword for ecore::EString using NAME orKeyword
+	: value = "unescapeString(%token%)"
+	;
+	primitiveTemplate stringSymbol for ecore::EString using STRING
+	: value = "unescapeString(%token%)",
+      serializer = "\'%value%\'"
+    ;
+	primitiveTemplate integerSymbol for ecore::EIntegerObject default using INT
+	: value = "Integer.valueOf(%token%)"
+	;
+	primitiveTemplate floatSymbol for ecore::EDoubleObject default using FLOAT
+	: value = "Double.valueOf(%token%)"
+	;
+
+	omitted token COMMENT	: endOfLine(start = "--");
+	
+}

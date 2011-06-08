@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibTests.java,v 1.6 2011/05/05 17:56:29 ewillink Exp $
+ * $Id: OCLstdlibTests.java,v 1.9 2011/05/22 16:41:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -72,7 +72,7 @@ public class OCLstdlibTests extends XtextTestCase
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(libraryURI, true);
 		assertNoResourceErrors("Load failed", xtextResource);
 		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
-		adapter.refreshPivotMappings();
+		adapter.refreshPivotMappings(null);
 		Resource fileResource = adapter.getPivotResource(xtextResource);
 		assertNoResourceErrors("File Model", fileResource);
 		assertNoUnresolvedProxies("File Model", fileResource);
@@ -272,7 +272,7 @@ public class OCLstdlibTests extends XtextTestCase
 	
 	public void testLoadAsString() throws Exception {
 		String testFile =
-			"library lib {\n"+
+			"library lib : lib = 'http://mylib'{\n"+
 			"    type OclAny : AnyType {\n"+
 			"    	operation a(elem : Boolean) : Integer {\n"+
 			"           post a: elem;\n"+
@@ -292,9 +292,9 @@ public class OCLstdlibTests extends XtextTestCase
 	
 	public void testImport() throws Exception {
 		String testFile =
-			"import 'minimal.oclstdlib'\n"+
-			"import 'minimal.oclstdlib'\n"+
-			"library lib {\n"+
+			"import 'minimal.oclstdlib';\n"+
+			"import 'minimal.oclstdlib';\n"+
+			"library lib : lib = 'http://minimal.oclstdlib'{\n"+
 			"    type OclAny : AnyType {\n"+
 			"    	operation a(elem : Boolean) : Integer {\n"+
 			"           post a: elem;\n"+

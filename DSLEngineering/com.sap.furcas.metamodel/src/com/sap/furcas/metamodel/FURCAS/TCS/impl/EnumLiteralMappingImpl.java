@@ -77,29 +77,6 @@ public class EnumLiteralMappingImpl extends LocatedElementImpl implements EnumLi
      * @generated
      */
         public EnumLiteralVal getLiteral() {
-        if (literal != null && literal.eIsProxy()) {
-            InternalEObject oldLiteral = (InternalEObject)literal;
-            literal = (EnumLiteralVal)eResolveProxy(oldLiteral);
-            if (literal != oldLiteral) {
-                InternalEObject newLiteral = (InternalEObject)literal;
-                NotificationChain msgs = oldLiteral.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TCSPackage.ENUM_LITERAL_MAPPING__LITERAL, null, null);
-                if (newLiteral.eInternalContainer() == null) {
-                    msgs = newLiteral.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TCSPackage.ENUM_LITERAL_MAPPING__LITERAL, null, msgs);
-                }
-                if (msgs != null) msgs.dispatch();
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.ENUM_LITERAL_MAPPING__LITERAL, oldLiteral, literal));
-            }
-        }
-        return literal;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EnumLiteralVal basicGetLiteral() {
         return literal;
     }
 
@@ -143,29 +120,6 @@ public class EnumLiteralMappingImpl extends LocatedElementImpl implements EnumLi
      * @generated
      */
         public SequenceElement getElement() {
-        if (element != null && element.eIsProxy()) {
-            InternalEObject oldElement = (InternalEObject)element;
-            element = (SequenceElement)eResolveProxy(oldElement);
-            if (element != oldElement) {
-                InternalEObject newElement = (InternalEObject)element;
-                NotificationChain msgs = oldElement.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TCSPackage.ENUM_LITERAL_MAPPING__ELEMENT, null, null);
-                if (newElement.eInternalContainer() == null) {
-                    msgs = newElement.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TCSPackage.ENUM_LITERAL_MAPPING__ELEMENT, null, msgs);
-                }
-                if (msgs != null) msgs.dispatch();
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.ENUM_LITERAL_MAPPING__ELEMENT, oldElement, element));
-            }
-        }
-        return element;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public SequenceElement basicGetElement() {
         return element;
     }
 
@@ -228,11 +182,9 @@ public class EnumLiteralMappingImpl extends LocatedElementImpl implements EnumLi
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.ENUM_LITERAL_MAPPING__LITERAL:
-                if (resolve) return getLiteral();
-                return basicGetLiteral();
+                return getLiteral();
             case TCSPackage.ENUM_LITERAL_MAPPING__ELEMENT:
-                if (resolve) return getElement();
-                return basicGetElement();
+                return getElement();
         }
         return super.eGet(featureID, resolve, coreType);
     }

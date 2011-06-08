@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeTemplateParameterImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
+ * $Id: TypeTemplateParameterImpl.java,v 1.3 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -241,20 +241,17 @@ public class TypeTemplateParameterImpl
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__OWNED_COMMENT:
 				return getOwnedComments();
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__SIGNATURE:
-				if (resolve) return getSignature();
-				return basicGetSignature();
+				return getSignature();
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__PARAMETERED_ELEMENT:
 				if (resolve) return getParameteredElement();
 				return basicGetParameteredElement();
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT:
-				if (resolve) return getOwnedParameteredElement();
-				return basicGetOwnedParameteredElement();
+				return getOwnedParameteredElement();
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__DEFAULT:
 				if (resolve) return getDefault();
 				return basicGetDefault();
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__OWNED_DEFAULT:
-				if (resolve) return getOwnedDefault();
-				return basicGetOwnedDefault();
+				return getOwnedDefault();
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__ALLOW_SUBSTITUTABLE:
 				return isAllowSubstitutable();
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__CONSTRAINING_TYPE:
@@ -352,7 +349,7 @@ public class TypeTemplateParameterImpl
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__OWNED_COMMENT:
 				return ownedComments != null && !ownedComments.isEmpty();
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__SIGNATURE:
-				return basicGetSignature() != null;
+				return getSignature() != null;
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__PARAMETERED_ELEMENT:
 				return isSetParameteredElement();
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT:

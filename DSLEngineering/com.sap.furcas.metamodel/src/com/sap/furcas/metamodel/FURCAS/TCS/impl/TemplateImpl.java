@@ -126,16 +126,6 @@ public abstract class TemplateImpl extends QualifiedNamedElementImpl implements 
 
         /**
      * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public ConcreteSyntax basicGetConcreteSyntax() {
-        if (eContainerFeatureID() != TCSPackage.TEMPLATE__CONCRETE_SYNTAX) return null;
-        return (ConcreteSyntax)eInternalContainer();
-    }
-
-        /**
-     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -288,8 +278,7 @@ public abstract class TemplateImpl extends QualifiedNamedElementImpl implements 
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.TEMPLATE__CONCRETE_SYNTAX:
-                if (resolve) return getConcreteSyntax();
-                return basicGetConcreteSyntax();
+                return getConcreteSyntax();
             case TCSPackage.TEMPLATE__DISAMBIGUATE:
                 return getDisambiguate();
             case TCSPackage.TEMPLATE__DISAMBIGUATE_V3:
@@ -357,7 +346,7 @@ public abstract class TemplateImpl extends QualifiedNamedElementImpl implements 
         public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.TEMPLATE__CONCRETE_SYNTAX:
-                return basicGetConcreteSyntax() != null;
+                return getConcreteSyntax() != null;
             case TCSPackage.TEMPLATE__DISAMBIGUATE:
                 return DISAMBIGUATE_EDEFAULT == null ? disambiguate != null : !DISAMBIGUATE_EDEFAULT.equals(disambiguate);
             case TCSPackage.TEMPLATE__DISAMBIGUATE_V3:

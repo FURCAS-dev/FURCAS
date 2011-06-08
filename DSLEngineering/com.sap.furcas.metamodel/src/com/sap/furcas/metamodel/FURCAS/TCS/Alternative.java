@@ -39,7 +39,7 @@ public interface Alternative extends SequenceElement {
      * @return the value of the '<em>Sequences</em>' containment reference list.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getAlternative_Sequences()
      * @see com.sap.furcas.metamodel.FURCAS.TCS.SequenceInAlternative#getAlternativeContainer
-     * @model opposite="alternativeContainer" containment="true" resolveProxies="true" lower="2"
+     * @model opposite="alternativeContainer" containment="true" lower="2"
      * @generated
      */
         EList<SequenceInAlternative> getSequences();

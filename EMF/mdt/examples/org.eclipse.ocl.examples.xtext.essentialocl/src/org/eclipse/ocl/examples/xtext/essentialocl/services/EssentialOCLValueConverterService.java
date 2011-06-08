@@ -12,12 +12,9 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLValueConverterService.java,v 1.12 2011/05/07 16:39:54 ewillink Exp $
+ * $Id: EssentialOCLValueConverterService.java,v 1.14 2011/05/21 14:55:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
-
-import static org.eclipse.xtext.EcoreUtil2.eAllContentsAsList;
-import static org.eclipse.xtext.EcoreUtil2.typeSelect;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -25,12 +22,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
+import org.eclipse.xtext.AbstractRule;
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.GrammarUtil;
 import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.ParserRule;
+import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.conversion.IValueConverter;
 import org.eclipse.xtext.conversion.ValueConverter;
 import org.eclipse.xtext.conversion.ValueConverterException;
@@ -100,10 +100,15 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 
 		@Override
 		protected String internalToString(String value) {
-			if (allKeywords.contains(value) || !ElementUtil.isValidIdentifier(value)) {
-				return "_'" + value + "'";
+			if (allKeywords.contains(value)) {
+				return escapeIdentifier(value);
 			}
-			return value;
+			else if (!PivotUtil.isValidIdentifier(value)) {
+				return escapeIdentifier(value);
+			}
+			else {
+				return value;
+			}
 		}
 	}
 
@@ -140,14 +145,20 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 
 		public NameConverter(Grammar grammar) {
 			nameKeywords = computeKeywords(grammar);
+//			printKeywords("Name", nameKeywords);
 		}
 		
 		@Override
 		protected String internalToString(String value) {
-			if (nameKeywords.contains(value) || !ElementUtil.isValidIdentifier(value)) {
-				return "_'" + value + "'";
+			if (nameKeywords.contains(value)) {
+				return escapeIdentifier(value);
 			}
-			return value;
+			else if (!PivotUtil.isValidIdentifier(value)) {
+				return escapeIdentifier(value);
+			}
+			else {
+				return value;
+			}
 		}
 	}
 
@@ -203,27 +214,70 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 		}
 	}
 
-	protected static class UnrestrictedNameConverter extends AbstractIDConverter
+	protected static class UnreservedNameConverter extends AbstractIDConverter
 	{
-		private final Set<String> unrestrictedKeywords;
+		private final Set<String> reservedKeywords;
 
-		protected static Set<String> computeUnrestrictedKeywords(Grammar grammar) {
+		protected static Set<String> computeReservedKeywords(Grammar grammar) {
 			Set<String> keywords = new HashSet<String>(GrammarUtil.getAllKeywords(grammar));
-			keywords.removeAll(getAllKeywords(grammar, "UnrestrictedName"));
+			Set<String> unreservedNames = getAllKeywords(grammar, "UnreservedName");
+			keywords.removeAll(unreservedNames);
+//			printKeywords("Unreserved", unreservedNames);
 			return keywords;
 		}
 
-		public UnrestrictedNameConverter(Grammar grammar) {
-			unrestrictedKeywords = computeUnrestrictedKeywords(grammar);
+		public UnreservedNameConverter(Grammar grammar) {
+			reservedKeywords = computeReservedKeywords(grammar);
+//			printKeywords("Reserved", reservedKeywords);
 		}
 		
 		@Override
 		protected String internalToString(String value) {
-			if (unrestrictedKeywords.contains(value) || !ElementUtil.isValidIdentifier(value)) {
-				return "_'" + value + "'";
+			if (reservedKeywords.contains(value)) {
+				return escapeIdentifier(value);
 			}
-			return value;
+			else if (!PivotUtil.isValidIdentifier(value)) {
+				return escapeIdentifier(value);
+			}
+			else {
+				return value;
+			}
 		}
+	}
+
+	protected static class UnrestrictedNameConverter extends AbstractIDConverter
+	{
+		private final Set<String> restrictedKeywords;
+
+		protected static Set<String> computeRestrictedKeywords(Grammar grammar) {
+			Set<String> keywords = new HashSet<String>(GrammarUtil.getAllKeywords(grammar));
+			Set<String> unrestrictedNames = getAllKeywords(grammar, "UnrestrictedName");
+			keywords.removeAll(unrestrictedNames);
+//			printKeywords("Unrestricted", unrestrictedNames);
+			return keywords;
+		}
+
+		public UnrestrictedNameConverter(Grammar grammar) {
+			restrictedKeywords = computeRestrictedKeywords(grammar);
+//			printKeywords("Restricted", restrictedKeywords);
+		}
+		
+		@Override
+		protected String internalToString(String value) {
+			if (restrictedKeywords.contains(value)) {
+				return escapeIdentifier(value);
+			}
+			else if (!PivotUtil.isValidIdentifier(value)) {
+				return escapeIdentifier(value);
+			}
+			else {
+				return value;
+			}
+		}
+	}
+
+	public static String escapeIdentifier(String value) {
+		return "_'" + value + "'";
 	}
 
 	public static Set<String> getAllKeywords(Grammar g, String name) {
@@ -231,14 +285,29 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 		List<ParserRule> rules = GrammarUtil.allParserRules(g);
 		for (ParserRule parserRule : rules) {
 			if (parserRule.getName().equals(name)) {
-				List<Keyword> list = typeSelect(eAllContentsAsList(parserRule), Keyword.class);
-				for (Keyword keyword : list) {
-					kws.add(keyword.getValue());
-				}
+				getAllKeywords(kws, parserRule);
 			}
 		}
 		return kws;
 	}
+
+	private static void getAllKeywords(Set<String> kws, AbstractRule parserRule) {
+		for (TreeIterator<EObject> tit = parserRule.eAllContents(); tit.hasNext(); ) {
+			Object ele = tit.next();
+			if (ele instanceof Keyword) {
+				kws.add(((Keyword)ele).getValue());
+			}
+			else if (ele instanceof RuleCall) {
+				getAllKeywords(kws, ((RuleCall)ele).getRule());
+			}
+		}
+	}
+	
+//	private static void printKeywords(String prefix, Collection<String> keywords) {
+//		List<String> list = new ArrayList<String>(keywords);
+//		Collections.sort(list);
+//		System.out.println(prefix + ": " + StringUtils.splice(list, ", "));
+//	}
 
 	private static DoubleQuotedStringConverter doubleQuotedStringConverter = null;
 	private static EscapedIDConverter escapedIDConverter = null;
@@ -248,6 +317,7 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 	private static NumberConverter numberConverter = null;
 	private static SimpleIDConverter simpleIDConverter = null;
 	private static SingleQuotedStringConverter singleQuotedStringConverter = null;
+	private UnreservedNameConverter unreservedNameConverter = null; 				// not static - grammar-dependent
 	private UnrestrictedNameConverter unrestrictedNameConverter = null; 				// not static - grammar-dependent
 
 	@ValueConverter(rule = "DOUBLE_QUOTED_STRING")
@@ -323,6 +393,14 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 	@ValueConverter(rule = "StringLiteral")
 	public IValueConverter<String> StringLiteral() {
 		return SINGLE_QUOTED_STRING();
+	}
+
+	@ValueConverter(rule = "UnreservedName")
+	public IValueConverter<String> UnreservedName() {
+		if (unreservedNameConverter == null) {
+			unreservedNameConverter = new UnreservedNameConverter(getGrammar());
+		}
+		return unreservedNameConverter;
 	}
 
 	@ValueConverter(rule = "UnrestrictedName")

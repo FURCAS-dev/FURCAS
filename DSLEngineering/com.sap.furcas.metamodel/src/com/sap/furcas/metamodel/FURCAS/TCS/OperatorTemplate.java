@@ -138,7 +138,7 @@ public interface OperatorTemplate extends ContextTemplate {
      * @return the value of the '<em>Store Operator To</em>' containment reference.
      * @see #setStoreOperatorTo(PropertyReference)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getOperatorTemplate_StoreOperatorTo()
-     * @model containment="true" resolveProxies="true"
+     * @model containment="true"
      * @generated
      */
         PropertyReference getStoreOperatorTo();
@@ -164,7 +164,7 @@ public interface OperatorTemplate extends ContextTemplate {
      * @return the value of the '<em>Store Left Side To</em>' containment reference.
      * @see #setStoreLeftSideTo(PropertyReference)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getOperatorTemplate_StoreLeftSideTo()
-     * @model containment="true" resolveProxies="true"
+     * @model containment="true"
      * @generated
      */
         PropertyReference getStoreLeftSideTo();
@@ -190,7 +190,7 @@ public interface OperatorTemplate extends ContextTemplate {
      * @return the value of the '<em>Store Right Side To</em>' containment reference.
      * @see #setStoreRightSideTo(PropertyReference)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getOperatorTemplate_StoreRightSideTo()
-     * @model containment="true" resolveProxies="true"
+     * @model containment="true"
      * @generated
      */
         PropertyReference getStoreRightSideTo();

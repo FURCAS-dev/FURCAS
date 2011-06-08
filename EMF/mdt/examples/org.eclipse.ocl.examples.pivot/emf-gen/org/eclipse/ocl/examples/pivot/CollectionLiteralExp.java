@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralExp.java,v 1.2 2011/01/24 20:42:35 ewillink Exp $
+ * $Id: CollectionLiteralExp.java,v 1.3 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -79,7 +79,7 @@ public interface CollectionLiteralExp
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Part</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCollectionLiteralExp_Part()
-	 * @model containment="true" resolveProxies="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<CollectionLiteralPart> getParts();

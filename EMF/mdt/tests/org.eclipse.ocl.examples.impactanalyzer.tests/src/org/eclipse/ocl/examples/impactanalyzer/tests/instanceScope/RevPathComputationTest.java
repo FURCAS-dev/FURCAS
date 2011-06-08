@@ -37,6 +37,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import company.Company;
 import company.CompanyFactory;
 import company.Department;
 import company.Division;
@@ -67,6 +68,7 @@ public class RevPathComputationTest extends BaseDepartmentTestWithOCL {
     private Employee secretary;
     private Student stud1;
     private Student stud2;
+    private Company company;
 
     @Override
     @Before
@@ -939,10 +941,9 @@ public class RevPathComputationTest extends BaseDepartmentTestWithOCL {
         
         // Make e1 the employee of the month of div by making him the employee of the month of dep1.
         // That should influence the derived property Department.employeesOfTheMonth but this feature isn't implemented by default.
-        // TODO implement a derived Property Notifier and apply it here to generate an impact via some sort of follow up notification.
         noti = NotificationHelper.createReferenceAddNotification(this.dep1, this.departmentEmployeeOfTheMonth, this.e1);
         instances = computeAffectedInstances(this.getLimitEmployeesOfTheMonthAST(), noti);
-        compareInstances(instances, new EObject[] {/*this.div*/});
+        compareInstances(instances, new EObject[] {this.div});
     }
     
     @Test
@@ -951,10 +952,9 @@ public class RevPathComputationTest extends BaseDepartmentTestWithOCL {
         
         // Make e1 the employee of the month of div by directly manipulating the derived property.
         // Since the derived property is unmodifiable, this should return null.
+        System.out.println("The following warning is intended.");
         noti = NotificationHelper.createReferenceAddNotification(this.div, this.divisionEmployeesOfTheMonth, this.e1);
         assertTrue(noti == null);
-        
-        System.out.println("--------------------------------------------------\n");
     }
     
     @Test
@@ -964,10 +964,63 @@ public class RevPathComputationTest extends BaseDepartmentTestWithOCL {
         
         // Make e1 the employee of the month of div by making him the employee of the month of dep1.
         // That should influence the derived property Department.employeesOfTheMonth but this feature isn't implemented by default.
-        // TODO implement a derived Property Notifier and apply it here to generate an impact via some sort of follow up notification.
         noti = NotificationHelper.createReferenceAddNotification(this.dep1, this.departmentEmployeeOfTheMonth, this.e1);
         instances = computeAffectedInstances(this.getNestedDerivationAST(), noti);
-        compareInstances(instances, new EObject[] {/*this.div*/});       
+        compareInstances(instances, new EObject[] {this.div});       
+    }
+
+    @Test
+    public void testNonLinearDerivationPositive() {
+        Notification noti;
+        Collection<EObject> instances;
+        
+        //Use a derived property with a derivation expression that contains a branch (Department.biggestNumberOfStudentsOrFreelancers)
+        //and see if a change in the unused branch causes an impact.
+        //After the instance creation dep2 has 1 freelance.
+        //We add another one which will influence the biggestNumberOfStudentsOrFreelancers attribute of dep2 since it has only 1 student.
+        noti = NotificationHelper.createReferenceAddNotification(this.dep2, this.employeeRef, this.e2);
+        instances = computeAffectedInstances(this.getNonLinearDerivationAST(), noti);
+        compareInstances(instances, new EObject[] {this.dep2});
+    }
+    
+    @Test
+    public void testNonLinearDerivationNegative() {
+        Notification noti;
+        Collection<EObject> instances;
+        
+        //Use a derived property with a derivation expression that contains a branch (Department.biggestNumberOfStudentsOrFreelancers)
+        //and see if a change in the unused branch causes an impact.
+        //After the instance creation dep2 has 1 freelance.
+        //We add two more and afterwards we add 1 student which will not influence the biggestNumberOfStudentsOrFreelancers
+        //attribute of dep2 since it has more freelancers than students.
+        e2.setEmployer(dep2);
+        boss1.setEmployer(dep2);
+        
+        noti = NotificationHelper.createReferenceAddNotification(this.dep2, this.employeeRef, this.stud1);
+        instances = computeAffectedInstances(this.getNonLinearDerivationAST(), noti);
+        compareInstances(instances, new EObject[] {/*this.dep2 should not be in the impact since the derived property didn't and couldn't change but this can only be determined if unusedChecks are enabled*/});
+        System.out.println("Enable unusedChecks to get rid of this extra context instance.");
+    }
+    
+    @Test
+    public void testlongNavigationWithDerivation() {
+        // derived property handling has so far only been implemented for the traceback-step approach
+        if (OptimizationActivation.getOption().isTracebackStepISAActive()) {
+        	Notification noti;
+        	Collection<EObject> instances;
+        
+        	// The tested constraint makes sure, the context of the constraint and of the derivation expression differ.
+        	// The constraints sorts all departments of all divisions of a company by their biggestNumberOfStudentsOrFreelancers
+        	// attribute and checks if the last one in the collection has less than 5 students and freelancers.
+        	// Dep2 initially has 2 freelancers, resulting in the highest value for the biggestNumberOfStudentsOrFreelancers attribute.
+        	// We add another freelancer to generate an impact for this constraint.
+        
+        	noti = NotificationHelper.createReferenceAddNotification(this.dep2, this.employeeRef, this.e2);
+        	instances = computeAffectedInstances(this.getlongNavigationWithDerivationAST(), noti);
+        	compareInstances(instances, new EObject[] {this.company});
+        
+        	System.out.println("--------------------------------------------------\n");
+        }
     }
 
     // @Test
@@ -999,13 +1052,18 @@ public class RevPathComputationTest extends BaseDepartmentTestWithOCL {
      */
     private void createInstances() {
 
-        this.div = CompanyFactory.eINSTANCE.createDivision();
-        this.div.setBudget(1234567);
-        this.div.setName("Div1");
         this.rs = new ResourceSetImpl();
         Resource r = this.rs.createResource(URI.createURI("http://rev/path/computation/test"));
         r.eAdapters().add(new ECrossReferenceAdapter());
         this.rs.getResources().add(r);
+        
+        this.company = CompanyFactory.eINSTANCE.createCompany();
+        r.getContents().add(this.company);
+        
+        this.div = CompanyFactory.eINSTANCE.createDivision();
+        this.div.setBudget(1234567);
+        this.div.setName("Div1");
+        this.div.setCompany(this.company);
         r.getContents().add(this.div);
 
         this.director = CompanyFactory.eINSTANCE.createEmployee();
@@ -1126,7 +1184,7 @@ public class RevPathComputationTest extends BaseDepartmentTestWithOCL {
             System.out.println(">> FAILURE\n");
             expected.removeAll(instances);
             for (EObject o : expected) {
-                System.out.print(o + "not in result");
+                System.out.print(o + " not in result");
             }
             System.out.println("");
             fail("Returned instances does not match expected instances!");

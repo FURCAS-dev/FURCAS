@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractNullBaseCSVisitor.java,v 1.10 2011/05/05 17:53:02 ewillink Exp $
+ * $Id: AbstractNullBaseCSVisitor.java,v 1.12 2011/05/20 15:27:24 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.base.util;
 
@@ -118,10 +118,6 @@ public abstract class AbstractNullBaseCSVisitor<R, C>
 	}
 
 	public R visitNamedElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS object) {
-		return null;
-	}
-
-	public R visitNamespaceRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceRefCS object) {
 		return null;
 	}
 

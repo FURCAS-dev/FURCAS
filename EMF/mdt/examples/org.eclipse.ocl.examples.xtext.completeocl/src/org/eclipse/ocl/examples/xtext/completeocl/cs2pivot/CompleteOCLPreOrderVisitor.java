@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLPreOrderVisitor.java,v 1.9 2011/05/02 09:31:22 ewillink Exp $
+ * $Id: CompleteOCLPreOrderVisitor.java,v 1.11 2011/05/20 15:26:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
@@ -37,7 +37,9 @@ import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.Continuation;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.SingleContinuation;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.IncludeCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
@@ -74,7 +76,14 @@ public class CompleteOCLPreOrderVisitor
 
 		@Override
 		public BasicContinuation<?> execute() {
-			Type type = ((ClassifierContextDeclCS) csElement.getContextDecl()).getClassifier();
+			ClassifierContextDeclCS csClassifierContextDecl = (ClassifierContextDeclCS) csElement.getContextDecl();
+			if (csClassifierContextDecl == null) {
+				return null;
+			}
+			Type type = csClassifierContextDecl.getClassifier();
+			if ((type == null) || type.eIsProxy()) {
+				return null;
+			}
 //			org.eclipse.ocl.examples.pivot.Class classifier = (org.eclipse.ocl.examples.pivot.Class)type;
 			org.eclipse.ocl.examples.pivot.Class classifier = getContextClassifier(type, csElement);
 			Operation pivotOperation = null;
@@ -258,6 +267,15 @@ public class CompleteOCLPreOrderVisitor
 //		}
 		context.installPivotElement(object, contextClassifier);
 		return null;
+	}
+
+	@Override
+	public Continuation<?> visitCompleteOCLDocumentCS(CompleteOCLDocumentCS object) {
+		Continuation<?> continuation = super.visitCompleteOCLDocumentCS(object);
+		for (IncludeCS csInclude : object.getOwnedInclude()) {
+			csInclude.getNamespace();					// Resolve the proxy to perform the import.
+		}
+		return continuation;
 	}
 
 	@Override

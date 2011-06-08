@@ -18,9 +18,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.util.Collection;
 
 import org.antlr.runtime.Lexer;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.emf.bundlelistener.EcorePackageLoadListener;
@@ -69,10 +71,10 @@ public class ParserAndFactoryGenerator extends ParserGenerator {
     }
     
     public void generateParserFactory(TCSSyntaxContainerBean syntaxBean) {
+        File parserFactoryFile = new File(testConfig.getRelativePathToGeneratedParserFactoryClass());
+        PrintStream out = null;
         try {
-            File parserFactoryFile = new File(testConfig.getRelativePathToGeneratedParserFactoryClass());
-            PrintStream out = new PrintStream(new FileOutputStream(parserFactoryFile));
-
+            out = new PrintStream(new FileOutputStream(parserFactoryFile));
             out.println("package " + testConfig.getTargetConfiguration().getParserTargetPackageName() + ";");
 
             out.println("import " + testConfig.getClassNameOfCompiledLexer() + ";");
@@ -83,6 +85,7 @@ public class ParserAndFactoryGenerator extends ParserGenerator {
             out.println("import org.eclipse.emf.ecore.EPackage;");
             out.println("import org.eclipse.emf.common.util.URI;");
             out.println("import java.util.Set;");
+            out.println("import java.util.HashSet;");
             out.println("import java.util.Collections;");
 
             out.println("public class " + testConfig.getParserFactoryName() + " extends AbstractParserFactory<"
@@ -107,7 +110,7 @@ public class ParserAndFactoryGenerator extends ParserGenerator {
 
             out.println("       @Override");
             out.println("       public Set<URI> getMetamodelURIs() {");
-            out.println("           return Collections.singleton(URI.createURI(\"" + testConfig.getMetamodelPackageURI() + "\"));");
+            out.println(           getUriListAsString(testConfig.getSourceConfiguration().getReferenceScope()));
             out.println("       }");
 
             out.println("       @Override");
@@ -117,7 +120,7 @@ public class ParserAndFactoryGenerator extends ParserGenerator {
 
             out.println("       @Override");
             out.println("       public Set<URI> getAdditionalQueryScope() {");
-            out.println("           return Collections.emptySet();");
+            out.println(                getUriListAsString(testConfig.getAdditionalQueryScope()));
             out.println("       }");
 
             out.println("}");
@@ -127,8 +130,21 @@ public class ParserAndFactoryGenerator extends ParserGenerator {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             fail("Failed to generate parser factory: " + e.getMessage());
+        } finally {
+            if (out != null) {
+                out.close();
+            }
         }
-
+    }
+    
+    private String getUriListAsString(Collection<URI> uris) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("HashSet<URI> uris = new HashSet<URI>();\n");
+        for (URI uri : uris) {
+            builder.append("uris.add(URI.createURI(\"" + uri.toString() + "\"));\n"); 
+        }
+        builder.append("return uris;\n");
+        return builder.toString();
     }
     
     public void compileParserFactory() {

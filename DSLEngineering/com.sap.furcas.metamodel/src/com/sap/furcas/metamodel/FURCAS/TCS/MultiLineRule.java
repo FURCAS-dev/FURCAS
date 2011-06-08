@@ -41,7 +41,7 @@ public interface MultiLineRule extends Rule {
      * @return the value of the '<em>Start</em>' containment reference.
      * @see #setStart(StringPattern)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getMultiLineRule_Start()
-     * @model containment="true" resolveProxies="true" required="true" ordered="false"
+     * @model containment="true" required="true" ordered="false"
      * @generated
      */
         StringPattern getStart();
@@ -67,7 +67,7 @@ public interface MultiLineRule extends Rule {
      * @return the value of the '<em>End</em>' containment reference.
      * @see #setEnd(StringPattern)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getMultiLineRule_End()
-     * @model containment="true" resolveProxies="true" required="true" ordered="false"
+     * @model containment="true" required="true" ordered="false"
      * @generated
      */
         StringPattern getEnd();
@@ -93,7 +93,7 @@ public interface MultiLineRule extends Rule {
      * @return the value of the '<em>Esc</em>' containment reference.
      * @see #setEsc(StringPattern)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getMultiLineRule_Esc()
-     * @model containment="true" resolveProxies="true" ordered="false"
+     * @model containment="true" ordered="false"
      * @generated
      */
         StringPattern getEsc();
@@ -119,7 +119,7 @@ public interface MultiLineRule extends Rule {
          * <!-- end-user-doc -->
      * @return the value of the '<em>Esc Mappings</em>' containment reference list.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getMultiLineRule_EscMappings()
-     * @model containment="true" resolveProxies="true" ordered="false"
+     * @model containment="true" ordered="false"
      * @generated
      */
         EList<Mapping> getEscMappings();

@@ -22,7 +22,7 @@ import com.sap.furcas.runtime.parser.IParsingObserver;
  */
 public class DelegationParsingObserver implements IParsingObserver {
 
-    private List<IParsingObserver> observers = new ArrayList<IParsingObserver>();
+    private final List<IParsingObserver> observers = new ArrayList<IParsingObserver>();
 
     public void addParsingObserver(IParsingObserver observer) {
         observers.add(observer);
@@ -33,13 +33,10 @@ public class DelegationParsingObserver implements IParsingObserver {
     }
 
     @Override
-    public void notifyEnterRule(List<String> createdElement, String mode) {
-
+    public void notifyEnterRule(String templateURI) {
         for (IParsingObserver observer : observers) {
-            observer.notifyEnterRule(createdElement, mode);
+            observer.notifyEnterRule(templateURI);
         }
-
-
     }
 
     @Override
@@ -48,7 +45,6 @@ public class DelegationParsingObserver implements IParsingObserver {
         for (IParsingObserver observer : observers) {
             observer.notifyEnterSequenceAlternative(choice);
         }
-
     }
 
     @Override
@@ -57,8 +53,6 @@ public class DelegationParsingObserver implements IParsingObserver {
         for (IParsingObserver observer : observers) {
             observer.notifyEnterSequenceElement();
         }
-
-
     }
 
     @Override
@@ -67,17 +61,13 @@ public class DelegationParsingObserver implements IParsingObserver {
         for (IParsingObserver observer : observers) {
             observer.notifyErrorInRule(re);
         }
-
-
     }
 
     @Override
-    public void notifyExitRule(List<String> createdElementType) {
-
+    public void notifyExitRule() {
         for (IParsingObserver observer : observers) {
-            observer.notifyExitRule(createdElementType);
+            observer.notifyExitRule();
         }
-
     }
 
     @Override
@@ -86,8 +76,6 @@ public class DelegationParsingObserver implements IParsingObserver {
         for (IParsingObserver observer : observers) {
             observer.notifyExitSequenceAlternative();
         }
-
-
     }
 
     @Override
@@ -96,8 +84,6 @@ public class DelegationParsingObserver implements IParsingObserver {
         for (IParsingObserver observer : observers) {
             observer.notifyExitSequenceElement();
         }
-
-
     }
 
     @Override
@@ -247,6 +233,5 @@ public class DelegationParsingObserver implements IParsingObserver {
 	     observer.reset();
 	 }
     }
-
 
 }
