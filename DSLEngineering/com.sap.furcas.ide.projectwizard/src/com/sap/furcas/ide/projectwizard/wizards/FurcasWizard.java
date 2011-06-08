@@ -321,7 +321,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
                 // instantiates the configuration take a look at EcoreMetaProjectConf for more details
                 // uses the new URI list in the ReferenceScope to load the referenced metamodel from registered packages
                 //
-                conf = new EcoreMetaProjectConf(project, "", pi.getNsURI(),pi.isAutoResolve()); //$NON-NLS-1$
+                conf = new EcoreMetaProjectConf(project, "", pi.getNsURI()+",http://www.eclipse.org/emf/2002/Ecore",pi.isAutoResolve()); //$NON-NLS-1$
             } else {
                 // instantiates the configuration, take a look at EcoreMetaProjectConf for more details
                 // uses the ResourceSet in the ReferenceScope to load the referenced metamodel in the workspace

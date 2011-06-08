@@ -100,7 +100,7 @@ public final class EcoreMetaProjectConf implements IProjectMetaRefConf {
     @Override
     public void configureProject(IProject project) throws CoreException {
         ProjectPropertiesStorageHelper.setProperty(project, Constants.REFERRED_PROJECT_NAME_KEY, referencedProject.getName());
-        ProjectPropertiesStorageHelper.setProperty(project, "metamodels", metamodelURIs+",http://www.eclipse.org/emf/2002/Ecore");
+        ProjectPropertiesStorageHelper.setProperty(project, "metamodels", metamodelURIs);
         ProjectPropertiesStorageHelper.setProperty(project, "modelPath", modelPath);
         ProjectPropertiesStorageHelper.setProperty(project, "autoResolve", Boolean.toString(autoResolve));
     }
