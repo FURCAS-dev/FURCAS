@@ -36,6 +36,7 @@ public final class EcoreMetaProjectConf implements IProjectMetaRefConf {
     private final IProject referencedProject;
     private final String nsURI;
     private final String modelPath;
+    private final boolean autoResolve;
 
     /**
      * Instantiates a new ecore meta project conf.
@@ -46,10 +47,11 @@ public final class EcoreMetaProjectConf implements IProjectMetaRefConf {
      * @throws CoreException
      *             the core exception
      */
-    public EcoreMetaProjectConf(IProject referencedProject, String modelPath, String nsURI) {
+    public EcoreMetaProjectConf(IProject referencedProject, String modelPath, String nsURI, boolean autoResolve) {
         this.referencedProject = referencedProject;
         this.nsURI = nsURI;
         this.modelPath = modelPath;
+        this.autoResolve = autoResolve;
     }
 
     /**
@@ -67,6 +69,8 @@ public final class EcoreMetaProjectConf implements IProjectMetaRefConf {
         String projectName = ProjectPropertiesStorageHelper.getProperty(project, Constants.REFERRED_PROJECT_NAME_KEY);
         String nsURI = ProjectPropertiesStorageHelper.getProperty(project, "nsURI");
         String modelPath = ProjectPropertiesStorageHelper.getProperty(project, "modelPath");
+        boolean autoResolve = Boolean.parseBoolean(ProjectPropertiesStorageHelper.getProperty(project, "autoResolve"));
+
         if (projectName == null || projectName.trim().equals("")) {
             throw new CoreException(EclipseExceptionHelper.getErrorStatus("Project " + project.getName()
                     + " not configured for use with " + EcoreMetaProjectConf.class.getName(), Activator.PLUGIN_ID));
@@ -76,7 +80,7 @@ public final class EcoreMetaProjectConf implements IProjectMetaRefConf {
             throw new CoreException(EclipseExceptionHelper.getErrorStatus("Referenced Project " + projectName
                     + " does not exist in Workspace.", Activator.PLUGIN_ID));
         }
-        return new EcoreMetaProjectConf(referencedProject, modelPath, nsURI);
+        return new EcoreMetaProjectConf(referencedProject, modelPath, nsURI, autoResolve);
     }
 
     /*
@@ -89,6 +93,7 @@ public final class EcoreMetaProjectConf implements IProjectMetaRefConf {
         ProjectPropertiesStorageHelper.setProperty(project, Constants.REFERRED_PROJECT_NAME_KEY, referencedProject.getName());
         ProjectPropertiesStorageHelper.setProperty(project, "nsURI", nsURI);
         ProjectPropertiesStorageHelper.setProperty(project, "modelPath", modelPath);
+        ProjectPropertiesStorageHelper.setProperty(project, "autoResolve", Boolean.toString(autoResolve));
     }
 
     /*
@@ -126,7 +131,9 @@ public final class EcoreMetaProjectConf implements IProjectMetaRefConf {
             newURIs.add(createURI);
             resourceSet.getResources().add(resourceSet.getResource(createURI, true));
         }
-        addAllCrossReferences(resourceSet);
+        if (autoResolve) {
+            addAllCrossReferences(resourceSet);
+        }
         newURIs.add(URI.createURI(FURCASPackage.eINSTANCE.eClass().getEPackage().getNsURI()));
         newURIs.addAll(FileResourceHelper.getResourceSetAsScope(resourceSet));
         return new ReferenceScopeBean(resourceSet, newURIs);
@@ -136,7 +143,7 @@ public final class EcoreMetaProjectConf implements IProjectMetaRefConf {
         Set<Resource> externalResources = new HashSet<Resource>();
         Set<Resource> newResources = new HashSet<Resource>();
         Set<Resource> resourcesToCheckForCrossReferences = new HashSet<Resource>();
-        
+
         resourcesToCheckForCrossReferences.addAll(resourceSet.getResources());
         do {
             for (EObject obj : EcoreUtil.ExternalCrossReferencer.find(resourcesToCheckForCrossReferences).keySet()) {
