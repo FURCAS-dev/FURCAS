@@ -62,8 +62,6 @@ public class OperatorTemplateItemProvider
 
             addOperatorsPropertyDescriptor(object);
             addSourcePropertyDescriptor(object);
-            addStoreOpToPropertyDescriptor(object);
-            addStoreRightToPropertyDescriptor(object);
             addStoreOperatorToPropertyDescriptor(object);
             addStoreLeftSideToPropertyDescriptor(object);
             addStoreRightSideToPropertyDescriptor(object);
@@ -107,50 +105,6 @@ public class OperatorTemplateItemProvider
                  getString("_UI_OperatorTemplate_source_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_OperatorTemplate_source_feature", "_UI_OperatorTemplate_type"),
                  TCSPackage.Literals.OPERATOR_TEMPLATE__SOURCE,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
-    }
-
-        /**
-     * This adds a property descriptor for the Store Op To feature.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        protected void addStoreOpToPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_OperatorTemplate_storeOpTo_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_OperatorTemplate_storeOpTo_feature", "_UI_OperatorTemplate_type"),
-                 TCSPackage.Literals.OPERATOR_TEMPLATE__STORE_OP_TO,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
-    }
-
-        /**
-     * This adds a property descriptor for the Store Right To feature.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        protected void addStoreRightToPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_OperatorTemplate_storeRightTo_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_OperatorTemplate_storeRightTo_feature", "_UI_OperatorTemplate_type"),
-                 TCSPackage.Literals.OPERATOR_TEMPLATE__STORE_RIGHT_TO,
                  true,
                  false,
                  false,
@@ -263,8 +217,6 @@ public class OperatorTemplateItemProvider
 
         switch (notification.getFeatureID(OperatorTemplate.class)) {
             case TCSPackage.OPERATOR_TEMPLATE__SOURCE:
-            case TCSPackage.OPERATOR_TEMPLATE__STORE_OP_TO:
-            case TCSPackage.OPERATOR_TEMPLATE__STORE_RIGHT_TO:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }

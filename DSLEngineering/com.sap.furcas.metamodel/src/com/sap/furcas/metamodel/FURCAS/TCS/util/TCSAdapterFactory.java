@@ -470,10 +470,6 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
                 return createPostfixPArgAdapter();
             }
             @Override
-            public Adapter caseOclPArg(OclPArg object) {
-                return createOclPArgAdapter();
-            }
-            @Override
             public Adapter casePropertyReference(PropertyReference object) {
                 return createPropertyReferenceAdapter();
             }
@@ -492,10 +488,6 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter casePropertyInit(PropertyInit object) {
                 return createPropertyInitAdapter();
-            }
-            @Override
-            public Adapter caseOclPropertyInit(OclPropertyInit object) {
-                return createOclPropertyInitAdapter();
             }
             @Override
             public Adapter caseScopeArg(ScopeArg object) {
@@ -1630,20 +1622,6 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
     }
 
         /**
-     * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.OclPArg <em>Ocl PArg</em>}'.
-     * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.OclPArg
-     * @generated
-     */
-        public Adapter createOclPArgAdapter() {
-        return null;
-    }
-
-        /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference <em>Property Reference</em>}'.
      * <!-- begin-user-doc -->
          * This default implementation returns null so that we can easily ignore cases;
@@ -1710,20 +1688,6 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
         public Adapter createPropertyInitAdapter() {
-        return null;
-    }
-
-        /**
-     * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.OclPropertyInit <em>Ocl Property Init</em>}'.
-     * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.OclPropertyInit
-     * @generated
-     */
-        public Adapter createOclPropertyInitAdapter() {
         return null;
     }
 

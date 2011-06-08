@@ -98,7 +98,7 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
         protected boolean isReferenceOnly = IS_REFERENCE_ONLY_EDEFAULT;
 
         /**
-     * The cached value of the '{@link #getContextTags() <em>Context Tags</em>}' reference.
+     * The cached value of the '{@link #getContextTags() <em>Context Tags</em>}' containment reference.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @see #getContextTags()
@@ -215,24 +215,22 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
      * @generated
      */
         public ContextTags getContextTags() {
-        if (contextTags != null && contextTags.eIsProxy()) {
-            InternalEObject oldContextTags = (InternalEObject)contextTags;
-            contextTags = (ContextTags)eResolveProxy(oldContextTags);
-            if (contextTags != oldContextTags) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.CONTEXT_TEMPLATE__CONTEXT_TAGS, oldContextTags, contextTags));
-            }
-        }
         return contextTags;
     }
 
         /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public ContextTags basicGetContextTags() {
-        return contextTags;
+    public NotificationChain basicSetContextTags(ContextTags newContextTags, NotificationChain msgs) {
+        ContextTags oldContextTags = contextTags;
+        contextTags = newContextTags;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TCSPackage.CONTEXT_TEMPLATE__CONTEXT_TAGS, oldContextTags, newContextTags);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
     }
 
         /**
@@ -241,10 +239,17 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
      * @generated
      */
         public void setContextTags(ContextTags newContextTags) {
-        ContextTags oldContextTags = contextTags;
-        contextTags = newContextTags;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CONTEXT_TEMPLATE__CONTEXT_TAGS, oldContextTags, contextTags));
+        if (newContextTags != contextTags) {
+            NotificationChain msgs = null;
+            if (contextTags != null)
+                msgs = ((InternalEObject)contextTags).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TCSPackage.CONTEXT_TEMPLATE__CONTEXT_TAGS, null, msgs);
+            if (newContextTags != null)
+                msgs = ((InternalEObject)newContextTags).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TCSPackage.CONTEXT_TEMPLATE__CONTEXT_TAGS, null, msgs);
+            msgs = basicSetContextTags(newContextTags, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CONTEXT_TEMPLATE__CONTEXT_TAGS, newContextTags, newContextTags));
     }
 
         /**
@@ -341,6 +346,8 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
         @Override
         public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
+            case TCSPackage.CONTEXT_TEMPLATE__CONTEXT_TAGS:
+                return basicSetContextTags(null, msgs);
             case TCSPackage.CONTEXT_TEMPLATE__SCOPE:
                 return basicSetScope(null, msgs);
             case TCSPackage.CONTEXT_TEMPLATE__TEMPLATE_SEQUENCE:
@@ -364,8 +371,7 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
             case TCSPackage.CONTEXT_TEMPLATE__IS_REFERENCE_ONLY:
                 return isIsReferenceOnly();
             case TCSPackage.CONTEXT_TEMPLATE__CONTEXT_TAGS:
-                if (resolve) return getContextTags();
-                return basicGetContextTags();
+                return getContextTags();
             case TCSPackage.CONTEXT_TEMPLATE__SCOPE:
                 return getScope();
             case TCSPackage.CONTEXT_TEMPLATE__TEMPLATE_SEQUENCE:

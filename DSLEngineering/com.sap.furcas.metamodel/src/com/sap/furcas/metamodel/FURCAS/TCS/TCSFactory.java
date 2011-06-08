@@ -620,15 +620,6 @@ public interface TCSFactory extends EFactory {
         ContextTags createContextTags();
 
         /**
-     * Returns a new object of class '<em>Ocl Property Init</em>'.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @return a new object of class '<em>Ocl Property Init</em>'.
-     * @generated
-     */
-        OclPropertyInit createOclPropertyInit();
-
-        /**
      * Returns a new object of class '<em>Scope Arg</em>'.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
