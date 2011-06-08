@@ -50,7 +50,7 @@ public class ProjectPropertiesStorageHelper {
             prop.setProperty(key, value);
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             Writer writer = new OutputStreamWriter(out);
-            prop.store(writer, "Created by DSL Engineering Nature, best edited in project properties.");
+            prop.store(writer, "Created by DSL Engineering Nature");
             ByteArrayInputStream in = new ByteArrayInputStream(out.toByteArray());
             if ( propFile.exists()) {
                 propFile.setContents(in, IFile.FORCE, new NullProgressMonitor());
