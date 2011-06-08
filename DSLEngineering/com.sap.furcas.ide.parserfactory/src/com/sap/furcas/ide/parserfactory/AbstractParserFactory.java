@@ -1,25 +1,14 @@
 package com.sap.furcas.ide.parserfactory;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashSet;
-import java.util.Properties;
-import java.util.Set;
 
 import org.antlr.runtime.CharStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.TokenStream;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.resource.impl.PlatformResourceURIHandlerImpl.WorkbenchHelper;
 
-import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
 import com.sap.furcas.runtime.common.exceptions.ParserInstantiationException;
 import com.sap.furcas.runtime.common.interfaces.IRuleName;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
@@ -32,9 +21,6 @@ import com.sap.furcas.runtime.tcs.RuleNameFinder;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRParserFactory;
 
 public abstract class AbstractParserFactory<P extends ObservableInjectingParser, L extends Lexer> extends ANTLRParserFactory<P, L> {
-    
-    private final static String PROPERTIES_FILENAME = "dslEngineering.properties";
-    private final static String PROPERTIES_NSURI = "nsURI";
 
     @Override
     public P createParser(TokenStream input, IModelAdapter modelAdapter) throws ParserInstantiationException {
@@ -105,22 +91,6 @@ public abstract class AbstractParserFactory<P extends ObservableInjectingParser,
     @Override
     public IRuleName getRuleNameFinder() {
         return new RuleNameFinder();
-    }
-    
-    @Override
-    public Set<URI> getMetamodelURIs() {
-        Properties properties = new Properties();
-        HashSet<URI> metamodels = new HashSet<URI>();
-        try {
-            properties.load(new FileInputStream(new File(PROPERTIES_FILENAME)));
-            metamodels.add(URI.createURI(properties.getProperty(PROPERTIES_NSURI)));
-            metamodels.add(URI.createURI(EcorePackage.eINSTANCE.getNsURI()));
-            return metamodels;
-            
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } 
-        
     }
 
 }

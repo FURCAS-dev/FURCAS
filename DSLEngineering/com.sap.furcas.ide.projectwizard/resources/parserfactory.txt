@@ -32,6 +32,14 @@ public class $CapLangName$ParserFactory extends AbstractParserFactory<$CapLangNa
     public String getLanguageId() {
         return LANGUAGE_ID;
     }
+        
+    @Override
+    public Set<URI> getMetamodelURIs() {
+        HashSet<URI> metamodels = new HashSet<URI>();
+        metamodels.add(URI.createURI("$URI$"));
+        metamodels.add(URI.createURI(EcorePackage.eINSTANCE.getNsURI()));
+        return metamodels;
+    }
 
     @Override
     public URI getSyntaxResourceURI() {
