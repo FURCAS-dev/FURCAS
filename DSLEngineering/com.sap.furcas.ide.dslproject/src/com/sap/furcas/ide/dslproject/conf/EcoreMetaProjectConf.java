@@ -111,7 +111,7 @@ public final class EcoreMetaProjectConf implements IProjectMetaRefConf {
                 resource.load(options);
                 newURIs.add(resource.getURI());
             } catch (IOException e) {
-                Activator.logger.logError("Error loading resource: " + resource.getURI() , e);
+                Activator.logger.logError("Error loading resource: " + resource.getURI(), e);
             }
             EList<EObject> list = resource.getContents();
             for (EObject object : list) {
@@ -132,16 +132,26 @@ public final class EcoreMetaProjectConf implements IProjectMetaRefConf {
         return new ReferenceScopeBean(resourceSet, newURIs);
     }
 
-    private void addAllCrossReferences(ResourceSet connection) {
+    private void addAllCrossReferences(ResourceSet resourceSet) {
         Set<Resource> externalResources = new HashSet<Resource>();
-        for (EObject obj : EcoreUtil.ExternalCrossReferencer.find(connection)
-                .keySet()) {
-            Resource externalResource = obj.eResource();
-            if (externalResource != null) {
-                externalResources.add(externalResource);
+        Set<Resource> newResources = new HashSet<Resource>();
+        Set<Resource> resourcesToCheckForCrossReferences = new HashSet<Resource>();
+        
+        resourcesToCheckForCrossReferences.addAll(resourceSet.getResources());
+        do {
+            for (EObject obj : EcoreUtil.ExternalCrossReferencer.find(resourcesToCheckForCrossReferences).keySet()) {
+                Resource externalResource = obj.eResource();
+                if (externalResource != null) {
+                    externalResources.add(externalResource);
+                    newResources.add(externalResource);
+                }
             }
-        }
-        connection.getResources().addAll(externalResources);
+            resourcesToCheckForCrossReferences.clear();
+            resourcesToCheckForCrossReferences.addAll(newResources);
+            newResources.clear();
+        } while (resourcesToCheckForCrossReferences.size() != 0);
+
+        resourceSet.getResources().addAll(externalResources);
     }
 
     /**
