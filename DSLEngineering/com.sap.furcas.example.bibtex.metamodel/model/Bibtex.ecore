@@ -10,15 +10,15 @@
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="LiteratureDb">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-      <details key="uniqueName" value="LiteratureDb.allInstances().name.entries->select(db | db.name = self.name)->size() = 1"/>
+      <details key="uniqueName" value="LiteratureDb.allInstances()->select(db | db.name = self.name)->size() = 1"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="uniqueName"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="author" upperBound="-1"
-        eType="#//Author" containment="true"/>
+        eType="#//Author" containment="true" eOpposite="#//Author/literaturedb"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="entries" upperBound="-1"
-        eType="#//Entry" containment="true"/>
+        eType="#//Entry" containment="true" eOpposite="#//Entry/literaturedb"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Entry">
@@ -34,13 +34,13 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="author" upperBound="-1"
         eType="#//Author" eOpposite="#//Author/publications"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="literaturedb" lowerBound="1"
-        eType="#//LiteratureDb"/>
+        eType="#//LiteratureDb" eOpposite="#//LiteratureDb/entries"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Author">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="publications" upperBound="-1"
         eType="#//Entry" eOpposite="#//Entry/author"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="literaturedb" lowerBound="1"
-        eType="#//LiteratureDb"/>
+        eType="#//LiteratureDb" eOpposite="#//LiteratureDb/author"/>
   </eClassifiers>
 </ecore:EPackage>

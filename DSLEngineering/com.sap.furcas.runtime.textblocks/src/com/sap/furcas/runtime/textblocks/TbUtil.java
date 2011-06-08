@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -45,24 +46,15 @@ public class TbUtil {
 	 * return absoluteOffset;
 	 */
 
-	if (node.isOffsetRelative()) {
-	    if (node instanceof TextBlock) {
-		if (((TextBlock) node).getParent() != null) {
-		    return getAbsoluteOffset(((TextBlock) node).getParent())
-			    + node.getOffset();
-		} else {
-		    return node.getOffset();
-		}
-	    } else if (node instanceof AbstractToken) {
-		int parentOffset = getAbsoluteOffset(((AbstractToken) node).getParent());
-		return parentOffset + node.getOffset();
-	    } else {
-		throw new RuntimeException(
-			"No other classes than AbstractToken or TextBlock are supported!");
-	    }
-	} else {
-	    return node.getOffset();
-	}
+        if (node.isOffsetRelative()) {
+            if (node.getParent() != null) {
+                return getAbsoluteOffset(node.getParent()) + node.getOffset();
+            } else {
+                return node.getOffset();
+            }
+        } else {
+            return node.getOffset();
+        }
 
     }
 
@@ -157,11 +149,10 @@ public class TbUtil {
 		// referencingNode.getOtherVersions().remove(copiedNode);
 		// }
 		// copiedNode.getOtherVersions().clear();
-		for (EObject original : copiedElements.keySet()) {
-			DocumentNode copiedNode = (DocumentNode) copiedElements.get(original);
+		for (Entry<EObject, EObject> entry : copiedElements.entrySet()) {
+			DocumentNode copiedNode = (DocumentNode) entry.getValue();
 			copiedNode.getOtherVersions().clear();
-			referenceVersions((DocumentNode) original, 
-					copiedNode);
+			referenceVersions((DocumentNode) entry.getKey(), copiedNode);
 		}
 		
 		// per default assign to the same partition

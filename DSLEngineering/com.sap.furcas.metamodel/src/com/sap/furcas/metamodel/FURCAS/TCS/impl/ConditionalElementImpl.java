@@ -88,29 +88,6 @@ public class ConditionalElementImpl extends SequenceElementImpl implements Condi
      * @generated
      */
         public Expression getCondition() {
-        if (condition != null && condition.eIsProxy()) {
-            InternalEObject oldCondition = (InternalEObject)condition;
-            condition = (Expression)eResolveProxy(oldCondition);
-            if (condition != oldCondition) {
-                InternalEObject newCondition = (InternalEObject)condition;
-                NotificationChain msgs =  oldCondition.eInverseRemove(this, TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT, Expression.class, null);
-                if (newCondition.eInternalContainer() == null) {
-                    msgs =  newCondition.eInverseAdd(this, TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT, Expression.class, msgs);
-                }
-                if (msgs != null) msgs.dispatch();
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.CONDITIONAL_ELEMENT__CONDITION, oldCondition, condition));
-            }
-        }
-        return condition;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Expression basicGetCondition() {
         return condition;
     }
 
@@ -154,29 +131,6 @@ public class ConditionalElementImpl extends SequenceElementImpl implements Condi
      * @generated
      */
         public Sequence getThenSequence() {
-        if (thenSequence != null && thenSequence.eIsProxy()) {
-            InternalEObject oldThenSequence = (InternalEObject)thenSequence;
-            thenSequence = (Sequence)eResolveProxy(oldThenSequence);
-            if (thenSequence != oldThenSequence) {
-                InternalEObject newThenSequence = (InternalEObject)thenSequence;
-                NotificationChain msgs =  oldThenSequence.eInverseRemove(this, TCSPackage.SEQUENCE__THEN_CONTAINER, Sequence.class, null);
-                if (newThenSequence.eInternalContainer() == null) {
-                    msgs =  newThenSequence.eInverseAdd(this, TCSPackage.SEQUENCE__THEN_CONTAINER, Sequence.class, msgs);
-                }
-                if (msgs != null) msgs.dispatch();
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.CONDITIONAL_ELEMENT__THEN_SEQUENCE, oldThenSequence, thenSequence));
-            }
-        }
-        return thenSequence;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Sequence basicGetThenSequence() {
         return thenSequence;
     }
 
@@ -220,29 +174,6 @@ public class ConditionalElementImpl extends SequenceElementImpl implements Condi
      * @generated
      */
         public Sequence getElseSequence() {
-        if (elseSequence != null && elseSequence.eIsProxy()) {
-            InternalEObject oldElseSequence = (InternalEObject)elseSequence;
-            elseSequence = (Sequence)eResolveProxy(oldElseSequence);
-            if (elseSequence != oldElseSequence) {
-                InternalEObject newElseSequence = (InternalEObject)elseSequence;
-                NotificationChain msgs =  oldElseSequence.eInverseRemove(this, TCSPackage.SEQUENCE__ELSE_CONTAINER, Sequence.class, null);
-                if (newElseSequence.eInternalContainer() == null) {
-                    msgs =  newElseSequence.eInverseAdd(this, TCSPackage.SEQUENCE__ELSE_CONTAINER, Sequence.class, msgs);
-                }
-                if (msgs != null) msgs.dispatch();
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.CONDITIONAL_ELEMENT__ELSE_SEQUENCE, oldElseSequence, elseSequence));
-            }
-        }
-        return elseSequence;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Sequence basicGetElseSequence() {
         return elseSequence;
     }
 
@@ -331,14 +262,11 @@ public class ConditionalElementImpl extends SequenceElementImpl implements Condi
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.CONDITIONAL_ELEMENT__CONDITION:
-                if (resolve) return getCondition();
-                return basicGetCondition();
+                return getCondition();
             case TCSPackage.CONDITIONAL_ELEMENT__THEN_SEQUENCE:
-                if (resolve) return getThenSequence();
-                return basicGetThenSequence();
+                return getThenSequence();
             case TCSPackage.CONDITIONAL_ELEMENT__ELSE_SEQUENCE:
-                if (resolve) return getElseSequence();
-                return basicGetElseSequence();
+                return getElseSequence();
         }
         return super.eGet(featureID, resolve, coreType);
     }

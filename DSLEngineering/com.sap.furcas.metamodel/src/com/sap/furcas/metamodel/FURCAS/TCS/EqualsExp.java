@@ -35,7 +35,7 @@ public interface EqualsExp extends AtomExp {
      * @return the value of the '<em>Value</em>' containment reference.
      * @see #setValue(Value)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getEqualsExp_Value()
-     * @model containment="true" resolveProxies="true" required="true" ordered="false"
+     * @model containment="true" required="true" ordered="false"
      * @generated
      */
         Value getValue();

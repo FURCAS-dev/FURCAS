@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassImpl.java,v 1.4 2011/05/02 15:38:53 ewillink Exp $
+ * $Id: ClassImpl.java,v 1.5 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -227,7 +227,7 @@ public class ClassImpl
 	public EList<Property> getOwnedAttributes() {
 		if (ownedAttributes == null)
 		{
-			ownedAttributes = new EObjectContainmentWithInverseEList.Resolving<Property>(Property.class, this, PivotPackage.CLASS__OWNED_ATTRIBUTE, PivotPackage.PROPERTY__CLASS);
+			ownedAttributes = new EObjectContainmentWithInverseEList<Property>(Property.class, this, PivotPackage.CLASS__OWNED_ATTRIBUTE, PivotPackage.PROPERTY__CLASS);
 		}
 		return ownedAttributes;
 	}
@@ -251,7 +251,7 @@ public class ClassImpl
 	public EList<Operation> getOwnedOperations() {
 		if (ownedOperations == null)
 		{
-			ownedOperations = new EObjectContainmentWithInverseEList.Resolving<Operation>(Operation.class, this, PivotPackage.CLASS__OWNED_OPERATION, PivotPackage.OPERATION__CLASS);
+			ownedOperations = new EObjectContainmentWithInverseEList<Operation>(Operation.class, this, PivotPackage.CLASS__OWNED_OPERATION, PivotPackage.OPERATION__CLASS);
 		}
 		return ownedOperations;
 	}
@@ -420,19 +420,16 @@ public class ClassImpl
 			case PivotPackage.CLASS__TEMPLATE_BINDING:
 				return getTemplateBindings();
 			case PivotPackage.CLASS__OWNED_TEMPLATE_SIGNATURE:
-				if (resolve) return getOwnedTemplateSignature();
-				return basicGetOwnedTemplateSignature();
+				return getOwnedTemplateSignature();
 			case PivotPackage.CLASS__UNSPECIALIZED_ELEMENT:
 				return getUnspecializedElement();
 			case PivotPackage.CLASS__OWNING_TEMPLATE_PARAMETER:
-				if (resolve) return getOwningTemplateParameter();
-				return basicGetOwningTemplateParameter();
+				return getOwningTemplateParameter();
 			case PivotPackage.CLASS__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
 			case PivotPackage.CLASS__PACKAGE:
-				if (resolve) return getPackage();
-				return basicGetPackage();
+				return getPackage();
 			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
 				return getInstanceClassName();
 			case PivotPackage.CLASS__IS_ABSTRACT:
@@ -628,11 +625,11 @@ public class ClassImpl
 			case PivotPackage.CLASS__UNSPECIALIZED_ELEMENT:
 				return unspecializedElement != null;
 			case PivotPackage.CLASS__OWNING_TEMPLATE_PARAMETER:
-				return basicGetOwningTemplateParameter() != null;
+				return getOwningTemplateParameter() != null;
 			case PivotPackage.CLASS__TEMPLATE_PARAMETER:
 				return isSetTemplateParameter();
 			case PivotPackage.CLASS__PACKAGE:
-				return basicGetPackage() != null;
+				return getPackage() != null;
 			case PivotPackage.CLASS__INSTANCE_CLASS_NAME:
 				return isSetInstanceClassName();
 			case PivotPackage.CLASS__IS_ABSTRACT:

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Operation.java,v 1.5 2011/05/02 15:38:53 ewillink Exp $
+ * $Id: Operation.java,v 1.6 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -102,7 +102,7 @@ public interface Operation
 	 * @return the value of the '<em>Owned Parameter</em>' containment reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getOperation_OwnedParameter()
 	 * @see org.eclipse.ocl.examples.pivot.Parameter#getOperation
-	 * @model opposite="operation" containment="true" resolveProxies="true"
+	 * @model opposite="operation" containment="true"
 	 * @generated
 	 */
 	EList<Parameter> getOwnedParameters();

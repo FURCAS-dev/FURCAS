@@ -5,13 +5,13 @@
     modelPluginID="com.sap.furcas.metamodel" modelName="FURCAS" editPluginClass="com.sap.furcas.metamodel.FURCAS.provider.FURCASEditPlugin"
     editorPluginClass="com.sap.furcas.metamodel.FURCAS.presentation.FURCASEditorPlugin"
     testSuiteClass="com.sap.furcas.metamodel.FURCAS.tests.FURCASAllTests" importerID="org.eclipse.emf.importer.ecore"
-    containmentProxies="true" complianceLevel="6.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.ocl/model/OCL.genmodel#//ocl platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.genmodel#//ocl">
+    complianceLevel="6.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.ocl/model/OCL.genmodel#//ocl platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.genmodel#//ocl">
   <foreignModel>FURCAS.ecore</foreignModel>
   <genPackages prefix="FURCAS" basePackage="com.sap.furcas.metamodel" disposableProviderFactory="true"
       ecorePackage="FURCAS.ecore#/">
     <genClasses ecoreClass="FURCAS.ecore#//EmptyDummyClassToWorkaroundGeneratorBug"/>
     <nestedGenPackages prefix="TCS" basePackage="com.sap.furcas.metamodel.FURCAS"
-        resource="XML" disposableProviderFactory="true" ecorePackage="TCS.ecore#/">
+        resource="XMI" disposableProviderFactory="true" ecorePackage="TCS.ecore#/">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="TCS.ecore#//TemplateModifiers">
         <genEnumLiterals ecoreEnumLiteral="TCS.ecore#//TemplateModifiers/abstract"/>
         <genEnumLiterals ecoreEnumLiteral="TCS.ecore#//TemplateModifiers/operatored"/>

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EditTests.java,v 1.6 2011/05/02 09:31:37 ewillink Exp $
+ * $Id: EditTests.java,v 1.8 2011/05/20 15:27:16 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -122,7 +122,7 @@ public class EditTests extends XtextTestCase
 		TypeManagerResourceAdapter adapter = TypeManagerResourceAdapter.getAdapter(xtextResource, null);
 		TypeManager typeManager = adapter.getTypeManager();
 		Resource pivotResource = savePivotFromCS(typeManager, xtextResource, null);
-		Resource ecoreResource = savePivotAsEcore(typeManager, pivotResource, ecoreURI);
+		Resource ecoreResource = savePivotAsEcore(typeManager, pivotResource, ecoreURI, true);
 		adapter.dispose();
 		typeManager.dispose();
 		return ecoreResource;
@@ -134,10 +134,11 @@ public class EditTests extends XtextTestCase
 		replace(xtextResource, oldString, newString); 
 		assertResourceErrors(contextMessage, xtextResource, expectedErrors);
 		assertNoResourceErrors(contextMessage, pivotResource);
-		if (expectedErrors.length == 0) {
+		boolean validSave = expectedErrors.length == 0;
+		if (validSave) {
 			assertNoValidationErrors(contextMessage, pivotResource);
 		}
-		Resource ecoreResource = savePivotAsEcore(typeManager, pivotResource, null);
+		Resource ecoreResource = savePivotAsEcore(typeManager, pivotResource, null, validSave);
 		assertNoResourceErrors(contextMessage, ecoreResource);
 		return ecoreResource;
 	}	
@@ -162,7 +163,7 @@ public class EditTests extends XtextTestCase
 		TypeManagerResourceAdapter.getAdapter(xtextResource, typeManager);
 		xtextResource.load(inputStream, null);
 		Resource pivotResource = savePivotFromCS(typeManager, xtextResource, null);
-		Resource ecoreResource1 = savePivotAsEcore(typeManager, pivotResource, ecoreURI1);
+		Resource ecoreResource1 = savePivotAsEcore(typeManager, pivotResource, ecoreURI1, true);
 		assertSameModel(ecoreResource0, ecoreResource1);		
 		//
 		//	Inserting a leading space has no Ecore effect.
@@ -170,7 +171,7 @@ public class EditTests extends XtextTestCase
 		xtextResource.update(0, 0, " ");
 		assertNoResourceErrors("Adding space", xtextResource);
 		URI ecoreURI2 = getProjectFileURI("test2.ecore");
-		Resource ecoreResource2 = savePivotAsEcore(typeManager, pivotResource, ecoreURI2);
+		Resource ecoreResource2 = savePivotAsEcore(typeManager, pivotResource, ecoreURI2, true);
 		assertSameModel(ecoreResource0, ecoreResource2);		
 		//
 		//	Deleting the leading space has no Ecore effect.
@@ -178,7 +179,7 @@ public class EditTests extends XtextTestCase
 		xtextResource.update(0, 1, "");
 		assertNoResourceErrors("Deleting space", xtextResource);
 		URI ecoreURI3 = getProjectFileURI("test3.ecore");
-		Resource ecoreResource3 = savePivotAsEcore(typeManager, pivotResource, ecoreURI3);
+		Resource ecoreResource3 = savePivotAsEcore(typeManager, pivotResource, ecoreURI3, true);
 		assertSameModel(ecoreResource0, ecoreResource3);		
 		//
 		//	Changing "p1" to "pkg" renames the package.
@@ -186,7 +187,7 @@ public class EditTests extends XtextTestCase
 		replace(xtextResource, "p1", "pkg"); 
 		assertNoResourceErrors("Renaming", xtextResource);
 		URI ecoreURI4 = getProjectFileURI("test4.ecore");
-		Resource ecoreResource4 = savePivotAsEcore(typeManager, pivotResource, ecoreURI4);
+		Resource ecoreResource4 = savePivotAsEcore(typeManager, pivotResource, ecoreURI4, true);
 		((EPackage)ecoreResource0.getContents().get(0)).setName("pkg");
 		assertSameModel(ecoreResource0, ecoreResource4);		
 	}	
@@ -215,15 +216,14 @@ public class EditTests extends XtextTestCase
 		TypeManagerResourceAdapter adapter = TypeManagerResourceAdapter.getAdapter(xtextResource, typeManager);
 		xtextResource.load(inputStream, null);
 		Resource pivotResource = savePivotFromCS(typeManager, xtextResource, null);
-		Resource ecoreResource1 = savePivotAsEcore(typeManager, pivotResource, ecoreURI1);
+		Resource ecoreResource1 = savePivotAsEcore(typeManager, pivotResource, ecoreURI1, true);
 		assertSameModel(ecoreResource0, ecoreResource1);
 		org.eclipse.ocl.examples.pivot.Class pivotTestClass1 = typeManager.getPrimaryClass("TestPackage!TestClass1");
 		//
 		//	Changing "TestClass1" to "Testing" renames a type and breaks the invariant.
 		//
 		doRename(xtextResource, pivotResource, "TestClass1", "Testing",
-			NLS.bind(OCLMessages.Unresolved_ERROR_, "Type", pivotTestClass1.getName()),
-			NLS.bind(OCLMessages.UnresolvedType_ERROR_, pivotTestClass1.getName()),
+//			NLS.bind(OCLMessages.Unresolved_ERROR_, "Type", pivotTestClass1.getName()),
 			NLS.bind(OCLMessages.UnresolvedType_ERROR_, pivotTestClass1.getName()));
 		//
 		//	Changing "Testing" back to "TestClass1" restores the type and the invariant.
@@ -234,8 +234,7 @@ public class EditTests extends XtextTestCase
 		//	Changing "testProperty1" to "tProperty" renames the property and breaks the invariant.
 		//
 		doRename(xtextResource, pivotResource, "testProperty1", "tProperty",
-//			NLS.bind(OCLMessages.UnresolvedProperty_ERROR_, "testProperty1", PivotConstants.UNKNOWN_TYPE_TEXT),
-			NLS.bind(OCLMessages.UnresolvedProperty_ERROR_, "testProperty1", pivotTestClass1 + " value"));
+			NLS.bind(OCLMessages.UnresolvedProperty_ERROR_, "testProperty1", pivotTestClass1 + ""));
 		//
 		//	Changing "tProperty" back to "testProperty" restores the property and the invariant.
 		//
@@ -244,7 +243,7 @@ public class EditTests extends XtextTestCase
 		//	Changing "testOperation" to "tOperation" renames the operation and breaks the invariant.
 		//
 		doRename(xtextResource, pivotResource, "testOperation", "tOperation",
-			NLS.bind(OCLMessages.UnresolvedOperationCall_ERROR_, new Object[]{"testOperation", pivotTestClass1 + " value", "UnlimitedNatural"}));
+			NLS.bind(OCLMessages.UnresolvedOperationCall_ERROR_, new Object[]{"testOperation", pivotTestClass1 + "", "UnlimitedNatural"}));
 		//
 		//	Changing "tOperation" back to "testOperation" restores the operation and the invariant.
 		//
@@ -253,7 +252,7 @@ public class EditTests extends XtextTestCase
 		//	Changing "testOperation(i : Integer)" to "testOperation()" mismatches the operation signature and breaks the invariant.
 		//
 		doRename(xtextResource, pivotResource, "testOperation(i : Integer)", "testOperation()",
-				NLS.bind(OCLMessages.UnresolvedOperationCall_ERROR_, new Object[]{"testOperation", pivotTestClass1 + " value", "UnlimitedNatural"}));
+			NLS.bind(OCLMessages.UnresolvedOperationCall_ERROR_, new Object[]{"testOperation", pivotTestClass1 + "", "UnlimitedNatural"}));
 		//
 		//	Changing "testOperation()" back to "testOperation(i : Integer)" restores the operation and the invariant.
 		//
@@ -262,7 +261,7 @@ public class EditTests extends XtextTestCase
 		//	Changing "testOperation(i : Integer)" to "testOperation(s : String)" mismatches the operation signature and breaks the invariant.
 		//
 		doRename(xtextResource, pivotResource, "testOperation(i : Integer)", "testOperation(s : String)",
-				NLS.bind(OCLMessages.UnresolvedOperationCall_ERROR_, new Object[]{"testOperation", pivotTestClass1 + " value", "UnlimitedNatural"}));
+			NLS.bind(OCLMessages.UnresolvedOperationCall_ERROR_, new Object[]{"testOperation", pivotTestClass1 + "", "UnlimitedNatural"}));
 		//
 		//	Changing "testOperation()" back to "testOperation(i : Integer)" restores the operation and the invariant.
 		//
@@ -296,19 +295,13 @@ public class EditTests extends XtextTestCase
 //		System.out.println("*************load*********************************************************");
 		xtextResource.load(inputStream, null);
 		Resource pivotResource = savePivotFromCS(typeManager, xtextResource, null);
-		Resource ecoreResource1 = savePivotAsEcore(typeManager, pivotResource, ecoreURI1);
+		Resource ecoreResource1 = savePivotAsEcore(typeManager, pivotResource, ecoreURI1, true);
 		assertSameModel(ecoreResource0, ecoreResource1);
 		org.eclipse.ocl.examples.pivot.Class pivotTestClass1 = typeManager.getPrimaryClass("TestPackage!TestClass1");
 		//
 		//	Changing "TestClass1" to "Testing" renames a type and breaks the referredProperty/referredOperation.
 		//
 		doRename(xtextResource, pivotResource, "TestClass1", "Testing",
-//			NLS.bind(OCLMessages.UnresolvedProperty_ERROR_, "testProperty1", PivotConstants.UNKNOWN_TYPE_TEXT),
-//			NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "select", PivotConstants.UNKNOWN_TYPE_TEXT),
-//			NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "testOperation", PivotConstants.UNKNOWN_TYPE_TEXT),
-//			NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "isEmpty", PivotConstants.UNKNOWN_TYPE_TEXT),
-			NLS.bind(OCLMessages.Unresolved_ERROR_, "Type", pivotTestClass1.getName()),
-			NLS.bind(OCLMessages.UnresolvedType_ERROR_, pivotTestClass1.getName()),
 			NLS.bind(OCLMessages.UnresolvedType_ERROR_, pivotTestClass1.getName()));
 		//
 		//	Changing "Testing" back to "TestClass1" restores the type and the referredProperty/referredOperation.
@@ -319,12 +312,6 @@ public class EditTests extends XtextTestCase
 		//	Changing "TestClass1" to "Testing" renames a type and breaks the referredProperty/referredOperation.
 		//
 		doRename(xtextResource, pivotResource, "TestClass1", "Testing",
-//			NLS.bind(OCLMessages.UnresolvedProperty_ERROR_, "testProperty1", PivotConstants.UNKNOWN_TYPE_TEXT),
-//			NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "select", PivotConstants.UNKNOWN_TYPE_TEXT),
-//			NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "testOperation", PivotConstants.UNKNOWN_TYPE_TEXT),
-//			NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "isEmpty", PivotConstants.UNKNOWN_TYPE_TEXT),
-			NLS.bind(OCLMessages.Unresolved_ERROR_, "Type", pivotTestClass1.getName()),
-			NLS.bind(OCLMessages.UnresolvedType_ERROR_, pivotTestClass1.getName()),
 			NLS.bind(OCLMessages.UnresolvedType_ERROR_, pivotTestClass1.getName()));
 		//
 		//	Changing "Testing" back to "TestClass1" restores the type and the referredProperty/referredOperation.

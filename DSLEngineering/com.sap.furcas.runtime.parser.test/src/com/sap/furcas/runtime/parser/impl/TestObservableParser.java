@@ -5,8 +5,6 @@ package com.sap.furcas.runtime.parser.impl;
 
 import static junit.framework.Assert.assertEquals;
 
-import java.util.List;
-
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.RecognizerSharedState;
 import org.antlr.runtime.Token;
@@ -16,13 +14,11 @@ import org.junit.Test;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.IParsingObserver;
 import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationTokenImpl;
-import com.sap.furcas.test.testutils.StringListHelper;
 
 /**
  * 
  */
 public class TestObservableParser {
-
     
     @Test
     public void testNullObserverNoException() throws Exception {
@@ -32,9 +28,8 @@ public class TestObservableParser {
         parser._enterAlt(1);
         parser._exitAlt();
         parser.onEnterTemplateRule(null);
-        parser.onEnterTemplateRule(null, null);
         parser.onErrorInTemplateRule(null);
-        parser.onExitTemplateRule(null);
+        parser.onExitTemplateRule();
         parser.onRuleElementCreationCommited(null);
         parser.onRuleElementResolvedOutOfContext(null, null, null, null);
     }
@@ -98,17 +93,14 @@ public class TestObservableParser {
         parser._exitAlt();
         assertEquals("6", mock.result);
 
-        parser.onEnterTemplateRule(StringListHelper.list("test", "1234"));
-        assertEquals("1[test, 1234]null", mock.result);
-
-        parser.onEnterTemplateRule(StringListHelper.list("test", "1234"), "hello");
-        assertEquals("1[test, 1234]hello", mock.result);
+        parser.onEnterTemplateRule("platform:/plugin/com.example/mapping/TCS.tcs#//@templates.1");
+        assertEquals("1platform:/plugin/com.example/mapping/TCS.tcs#//@templates.1", mock.result);
 
         parser.onErrorInTemplateRule(new RecognitionException());
         assertEquals("4null", mock.result);
 
-        parser.onExitTemplateRule(StringListHelper.list("test", "1234"));
-        assertEquals("5[test, 1234]", mock.result);
+        parser.onExitTemplateRule();
+        assertEquals("5", mock.result);
 
         parser.onRuleElementCreationCommited("test");
         assertEquals("8test", mock.result);
@@ -125,8 +117,8 @@ public class TestObservableParser {
         public String result = "";
 
         @Override
-        public void notifyEnterRule(List<String> createdElement, String mode) {
-            result = 1 + createdElement.toString() + mode;
+        public void notifyEnterRule(String templateURI) {
+            result = 1 + templateURI;
         }
 
         @Override
@@ -150,8 +142,8 @@ public class TestObservableParser {
         }
 
         @Override
-        public void notifyExitRule(List<String> createdElementType) {
-            result = 5 + createdElementType.toString();
+        public void notifyExitRule() {
+            result = "5";
         }
 
         @Override
@@ -299,15 +291,10 @@ public class TestObservableParser {
         }
 
         @Override
-        public void onEnterTemplateRule(List<String> createdElement) {
-            super.onEnterTemplateRule(createdElement);
+        public void onEnterTemplateRule(String templateURI) {
+            super.onEnterTemplateRule(templateURI);
         }
         
-        @Override
-        public void onEnterTemplateRule(List<String> createdElement, String mode) {
-            super.onEnterTemplateRule(createdElement, mode);
-        }
-
         @Override
         public void onRuleElementCreationCommited(Object modelElement) {
             super.onRuleElementCreationCommited(modelElement);
@@ -320,8 +307,8 @@ public class TestObservableParser {
         }
 
         @Override
-        public void onExitTemplateRule(List<String> createdElement) {
-            super.onExitTemplateRule(createdElement);
+        public void onExitTemplateRule() {
+            super.onExitTemplateRule();
         }
 
         @Override

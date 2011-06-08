@@ -80,14 +80,14 @@ public class TextblocksTestHelper {
 	assertNodeLength(block);
 	assertNodeOffset(block);
 
-	for (TextBlock subBlock : block.getSubBlocks()) {
-	    assertTextBlockAndChildren(subBlock);
-	}
-
-	for (AbstractToken tok : block.getTokens()) {
-	    if (!(tok instanceof Bostoken) && !(tok instanceof Eostoken)) {
-		assertNodeLength(tok);
-		assertNodeOffset(tok);
+	for (DocumentNode node : block.getSubNodes()) {
+	    if (node instanceof AbstractToken) {
+	        if (!(node instanceof Bostoken) && !(node instanceof Eostoken)) {
+	            assertNodeLength(node);
+	            assertNodeOffset(node);
+	        }
+	    } else {
+	        assertTextBlockAndChildren((TextBlock) node);
 	    }
 	}
 
@@ -96,23 +96,12 @@ public class TextblocksTestHelper {
     public static void assertTextBlockChildrenSortedByOffset(TextBlock block) {
 	int curOffset = -1;
 	int curAbsOffset = -1;
-	for (TextBlock subBlock : block.getSubBlocks()) {
-	    assertTrue(curOffset < subBlock.getOffset());
-	    int absOffset = TbUtil.getAbsoluteOffset(subBlock);
-	    assertTrue(curAbsOffset < absOffset);
-	    curOffset = subBlock.getOffset();
-	    curAbsOffset = absOffset;
-
-	}
-
-	curOffset = -1;
-	curAbsOffset = -1;
-	for (AbstractToken tok : block.getTokens()) {
-	    if (!(tok instanceof Bostoken) && !(tok instanceof Eostoken)) {
-		assertTrue(curOffset < tok.getOffset());
-		int absOffset = TbUtil.getAbsoluteOffset(tok);
+	for (DocumentNode node : block.getSubNodes()) {
+	    if (!(node instanceof Bostoken) && !(node instanceof Eostoken)) {
+		assertTrue(curOffset < node.getOffset());
+		int absOffset = TbUtil.getAbsoluteOffset(node);
 		assertTrue(curAbsOffset < absOffset);
-		curOffset = tok.getOffset();
+		curOffset = node.getOffset();
 		curAbsOffset = absOffset;
 	    }
 	}

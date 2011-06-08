@@ -1,7 +1,7 @@
 package $ProjectName$.editor;
 
 import $ProjectName$.parser.$CapLangName$ParserFactory;
-import com.sap.furcas.ide.editor.imp.parsing.FurcasParseController;
+import com.sap.furcas.ide.editor.imp.FurcasParseController;
 import com.sap.furcas.ide.editor.imp.services.DefaultLanguageSyntaxProperties;
 
 public class $CapLangName$ParseController extends FurcasParseController {

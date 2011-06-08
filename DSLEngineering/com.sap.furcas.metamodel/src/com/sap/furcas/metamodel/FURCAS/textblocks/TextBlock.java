@@ -75,7 +75,7 @@ public interface TextBlock extends DocumentNode {
      * @return the value of the '<em>Sub Nodes</em>' containment reference list.
      * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getTextBlock_SubNodes()
      * @see com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode#getParent
-     * @model opposite="parent" containment="true" resolveProxies="true"
+     * @model opposite="parent" containment="true"
      * @generated
      */
         EList<DocumentNode> getSubNodes();
@@ -123,7 +123,7 @@ public interface TextBlock extends DocumentNode {
          * <!-- end-user-doc -->
      * @return the value of the '<em>For Each Executions</em>' containment reference list.
      * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getTextBlock_ForEachExecutions()
-     * @model containment="true" resolveProxies="true"
+     * @model containment="true"
      * @generated
      */
         EList<ForEachExecution> getForEachExecutions();

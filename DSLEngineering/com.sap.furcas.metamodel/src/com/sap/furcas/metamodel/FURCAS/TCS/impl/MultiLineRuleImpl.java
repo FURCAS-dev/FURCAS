@@ -146,29 +146,6 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
      * @generated
      */
         public StringPattern getStart() {
-        if (start != null && start.eIsProxy()) {
-            InternalEObject oldStart = (InternalEObject)start;
-            start = (StringPattern)eResolveProxy(oldStart);
-            if (start != oldStart) {
-                InternalEObject newStart = (InternalEObject)start;
-                NotificationChain msgs = oldStart.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TCSPackage.MULTI_LINE_RULE__START, null, null);
-                if (newStart.eInternalContainer() == null) {
-                    msgs = newStart.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TCSPackage.MULTI_LINE_RULE__START, null, msgs);
-                }
-                if (msgs != null) msgs.dispatch();
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.MULTI_LINE_RULE__START, oldStart, start));
-            }
-        }
-        return start;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public StringPattern basicGetStart() {
         return start;
     }
 
@@ -212,29 +189,6 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
      * @generated
      */
         public StringPattern getEnd() {
-        if (end != null && end.eIsProxy()) {
-            InternalEObject oldEnd = (InternalEObject)end;
-            end = (StringPattern)eResolveProxy(oldEnd);
-            if (end != oldEnd) {
-                InternalEObject newEnd = (InternalEObject)end;
-                NotificationChain msgs = oldEnd.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TCSPackage.MULTI_LINE_RULE__END, null, null);
-                if (newEnd.eInternalContainer() == null) {
-                    msgs = newEnd.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TCSPackage.MULTI_LINE_RULE__END, null, msgs);
-                }
-                if (msgs != null) msgs.dispatch();
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.MULTI_LINE_RULE__END, oldEnd, end));
-            }
-        }
-        return end;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public StringPattern basicGetEnd() {
         return end;
     }
 
@@ -278,29 +232,6 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
      * @generated
      */
         public StringPattern getEsc() {
-        if (esc != null && esc.eIsProxy()) {
-            InternalEObject oldEsc = (InternalEObject)esc;
-            esc = (StringPattern)eResolveProxy(oldEsc);
-            if (esc != oldEsc) {
-                InternalEObject newEsc = (InternalEObject)esc;
-                NotificationChain msgs = oldEsc.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TCSPackage.MULTI_LINE_RULE__ESC, null, null);
-                if (newEsc.eInternalContainer() == null) {
-                    msgs = newEsc.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TCSPackage.MULTI_LINE_RULE__ESC, null, msgs);
-                }
-                if (msgs != null) msgs.dispatch();
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.MULTI_LINE_RULE__ESC, oldEsc, esc));
-            }
-        }
-        return esc;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public StringPattern basicGetEsc() {
         return esc;
     }
 
@@ -345,7 +276,7 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
      */
         public EList<Mapping> getEscMappings() {
         if (escMappings == null) {
-            escMappings = new EObjectContainmentEList.Resolving<Mapping>(Mapping.class, this, TCSPackage.MULTI_LINE_RULE__ESC_MAPPINGS);
+            escMappings = new EObjectContainmentEList<Mapping>(Mapping.class, this, TCSPackage.MULTI_LINE_RULE__ESC_MAPPINGS);
         }
         return escMappings;
     }
@@ -421,14 +352,11 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.MULTI_LINE_RULE__START:
-                if (resolve) return getStart();
-                return basicGetStart();
+                return getStart();
             case TCSPackage.MULTI_LINE_RULE__END:
-                if (resolve) return getEnd();
-                return basicGetEnd();
+                return getEnd();
             case TCSPackage.MULTI_LINE_RULE__ESC:
-                if (resolve) return getEsc();
-                return basicGetEsc();
+                return getEsc();
             case TCSPackage.MULTI_LINE_RULE__ESC_MAPPINGS:
                 return getEscMappings();
             case TCSPackage.MULTI_LINE_RULE__DROP_START:

@@ -29,8 +29,6 @@ import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
 import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
 import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
 
-
-
 /**
  * The Class OperatorHandler.
  */
@@ -39,9 +37,7 @@ public class OperatorHandler {
     /** The writer. */
     ANTLR3GrammarWriter writer;
 
-
     private final TemplateNamingHelper<?> namingHelper;
-
 
     private final SemanticErrorBucket errorBucket;
 
@@ -65,9 +61,7 @@ public class OperatorHandler {
      * @param handlerConfig
      */
     public OperatorHandler(SyntaxElementHandlerConfigurationBean<?> handlerConfig) {
-        this(handlerConfig.getWriter(),
-                handlerConfig.getNamingHelper(),
-                handlerConfig.getErrorBucket());
+        this(handlerConfig.getWriter(), handlerConfig.getNamingHelper(), handlerConfig.getErrorBucket());
     }
 
     /**
@@ -86,13 +80,13 @@ public class OperatorHandler {
      * integer -> priority_3 -> priority_2 -> priority_1 -> priority_0 -> primary_integer
      * 
      *  Priority rules for binary operators will look like this
- ( 
-( ret=primary_element
--- first element to be parsed, can be recursive operatored expression (in brackets) or atomic expression without operator
-((SYMBOL {opName = "*";} ((ret=atomicElement[opName, ret, firstToken]))))*
--- Loop (implicit recursion over variable ret!): Any next element will have the previous "ret" as left side
-)
-)
+    ( 
+    ( ret=primary_element
+    -- first element to be parsed, can be recursive operatored expression (in brackets) or atomic expression without operator
+    ((SYMBOL {opName = "*";} ((ret=atomicElement[opName, ret, firstToken]))))*
+    -- Loop (implicit recursion over variable ret!): Any next element will have the previous "ret" as left side
+    )
+    )
      * 
      * 
      * 
@@ -105,12 +99,13 @@ public class OperatorHandler {
      * @param template 
      * @throws SyntaxParsingException 
      */
-    public void addOperatorList(OperatorList opList, String classTemplateName, boolean hasPrimaries, RuleBodyBufferFactory ruleBodyBufferFactory, ClassTemplate template) {
+    public void addOperatorList(OperatorList opList, String classTemplateName, boolean hasPrimaries,
+            RuleBodyBufferFactory ruleBodyBufferFactory, ClassTemplate template) {
 
         Collection<Priority> prios = opList.getPriorities();
         if (prios == null) {
             throw new IllegalArgumentException("OperatorList has null as Priorities List");
-        } 
+        }
 
         String prefix = getPriorityPrefix(opList);
         // we can assume the following (need to check validity for better errors?)
@@ -124,14 +119,14 @@ public class OperatorHandler {
             if (priority.getValue() > 0) {
                 calledRule = prefix + "priority_" + (priority.getValue() - 1);
             } else {
-        	if(hasPrimaries) {
+                if (hasPrimaries) {
                     calledRule = "primary_";
-                    if (classTemplateName != null) { 
-                    	calledRule += classTemplateName.toLowerCase();
+                    if (classTemplateName != null) {
+                        calledRule += classTemplateName.toLowerCase();
                     } else {
-                    	// the syntax is invalid in that case, but we dealt with that earlier, so let is pass here
+                        // the syntax is invalid in that case, but we dealt with that earlier, so let is pass here
                     }
-        	}
+                }
             }
 
             String associatedCallRule;
@@ -144,19 +139,15 @@ public class OperatorHandler {
                 associatedCallRule = prefix + "priority_" + (priority.getValue()); // call same priority again
             }
 
-            
+            appendOperatorAlternatives(rulebody, priority, calledRule, associatedCallRule, isLeftAssociative,
+                    ruleBodyBufferFactory, template);
 
-            appendOperatorAlternatives(rulebody, priority, calledRule, associatedCallRule, isLeftAssociative, ruleBodyBufferFactory, template);
-
-            rulebody.append("\n{\n")
-            .append("this.setLocationAndComment(ret, firstToken);\n")
-            .append("ret2=ret;\n }");
-
+            rulebody.append("\n{\n").append("this.setLocationAndComment(ret, firstToken);\n").append("ret2=ret;\n }");
 
             String initString = "java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1); Object semRef=null;";
 
-
-            ClassProductionRule rule = ClassProductionRule.getClassTemplateProductionRule(prefix + "priority_" + priority.getValue(), "Object ret2", initString, rulebody.toString(), false, true);
+            ClassProductionRule rule = ClassProductionRule.getClassTemplateProductionRule(prefix + "priority_" + priority.getValue(),
+                    "Object ret2", initString, rulebody.toString(), false, true);
             writer.addRule(rule);
         }
     }
@@ -172,7 +163,7 @@ public class OperatorHandler {
         if (opList != null && opList.getName() != null) {
             prefix = opList.getName().toLowerCase() + '_';
         } else {
-            prefix = ""; 
+            prefix = "";
         }
         return prefix;
     }
@@ -189,8 +180,9 @@ public class OperatorHandler {
      * @param template 
      * @throws SyntaxParsingException 
      */
-    private void appendOperatorAlternatives(VarStringBuffer rulebody,
-    		 Priority priority, String nextCalledRule, String associatedCalledRule, boolean isLeftAssociative, RuleBodyBufferFactory ruleBodyBufferFactory, ClassTemplate template ) {
+    private void appendOperatorAlternatives(VarStringBuffer rulebody, Priority priority, String nextCalledRule,
+            String associatedCalledRule, boolean isLeftAssociative, RuleBodyBufferFactory ruleBodyBufferFactory,
+            ClassTemplate template) {
 
         rulebody.append(" ("); // b1
         Collection<Operator> operators = priority.getOperators();
@@ -204,44 +196,47 @@ public class OperatorHandler {
             splitOperators(operators, unaryOperators, binaryOperators);
 
             // binary operators have a different rulebody than unary ones, as they can repeat (a + b + c + d...)
-            
+
             if (unaryOperators.size() > 0) {
-            	List<Operator> nonPostFixUnaryOperators = new ArrayList<Operator>(operators.size());
-            	for (Operator operator : unaryOperators) {
-					if(!operator.isPostfix()) {
-						nonPostFixUnaryOperators.add(operator);
-					}
-				}
-            	if(nonPostFixUnaryOperators.size() > 0) {
-            		appendOperatorsList(rulebody, nonPostFixUnaryOperators, associatedCalledRule, isLeftAssociative, 1, ruleBodyBufferFactory, template);
-            		rulebody.append("\n|\n");
-            	}
+                List<Operator> nonPostFixUnaryOperators = new ArrayList<Operator>(operators.size());
+                for (Operator operator : unaryOperators) {
+                    if (!operator.isPostfix()) {
+                        nonPostFixUnaryOperators.add(operator);
+                    }
+                }
+                if (nonPostFixUnaryOperators.size() > 0) {
+                    appendOperatorsList(rulebody, nonPostFixUnaryOperators, associatedCalledRule, isLeftAssociative, 1,
+                            ruleBodyBufferFactory, template);
+                    rulebody.append("\n|\n");
+                }
             }
             // in any case we need a reference to the nextCalled Rule.
             // In case of unary operators, this is an alternative in itself,
             // in case of binary operators, this would be the left side.
 
             rulebody.append(" ( ret=", nextCalledRule); // b2
-            
+
             //now all postfix unary operators
             if (unaryOperators.size() > 0) {
-            	List<Operator> postFixUnaryOperators = new ArrayList<Operator>(operators.size());
-            	for (Operator operator : unaryOperators) {
-					if(operator.isPostfix()) {
-						postFixUnaryOperators.add(operator);
-					}
-				}
-            	if(postFixUnaryOperators.size() > 0) {
-            		rulebody.append("\n)(\n"); //b2
-            		appendOperatorsList(rulebody, postFixUnaryOperators, associatedCalledRule, isLeftAssociative, 1, ruleBodyBufferFactory, template);
-                	rulebody.append("\n|\n");
-            	}
+                List<Operator> postFixUnaryOperators = new ArrayList<Operator>(operators.size());
+                for (Operator operator : unaryOperators) {
+                    if (operator.isPostfix()) {
+                        postFixUnaryOperators.add(operator);
+                    }
+                }
+                if (postFixUnaryOperators.size() > 0) {
+                    rulebody.append("\n)(\n"); //b2
+                    appendOperatorsList(rulebody, postFixUnaryOperators, associatedCalledRule, isLeftAssociative, 1,
+                            ruleBodyBufferFactory, template);
+                    rulebody.append("\n|\n");
+                }
             }
-            
+
             // now append all the possible operators + right sides to rule body, if any
             if (binaryOperators.size() > 0) {
 
-                appendOperatorsList(rulebody, binaryOperators, associatedCalledRule, isLeftAssociative, 2, ruleBodyBufferFactory, template);
+                appendOperatorsList(rulebody, binaryOperators, associatedCalledRule, isLeftAssociative, 2, ruleBodyBufferFactory,
+                        template);
                 // '*' or '?' depends on associativity of Priority
 
             }
@@ -258,17 +253,15 @@ public class OperatorHandler {
      * @param unaryOperators
      * @param binaryOperators
      */
-    private void splitOperators(Collection<Operator> operators,
-            List<Operator> unaryOperators, List<Operator> binaryOperators) {
+    private void splitOperators(Collection<Operator> operators, List<Operator> unaryOperators, List<Operator> binaryOperators) {
         for (Operator operator : operators) {
             if (operator.getArity() == 1) {
                 unaryOperators.add(operator);
             } else if (operator.getArity() == 2) {
                 binaryOperators.add(operator);
             } else {
-                errorBucket.addError("Operator with illegal arity: "
-                        + operator.getName() + " has arity "
-                        + operator.getArity(), operator);
+                errorBucket.addError("Operator with illegal arity: " + operator.getName() + " has arity " + operator.getArity(),
+                        operator);
             }
             if (operator.isPostfix() && operator.getArity() > 1) {
                 errorBucket.addError("Postfix notation for arity > 1 not implemented yet.", operator);
@@ -287,8 +280,8 @@ public class OperatorHandler {
      * @param template
      * @throws SyntaxParsingException 
      */
-    private void appendOperatorsList(VarStringBuffer targetrulebody,
-    		 List<Operator> operators, String associativityCalledRule, boolean isLeftAssociative, int arity, RuleBodyBufferFactory ruleBodyBufferFactory, ClassTemplate template) {
+    private void appendOperatorsList(VarStringBuffer targetrulebody, List<Operator> operators, String associativityCalledRule,
+            boolean isLeftAssociative, int arity, RuleBodyBufferFactory ruleBodyBufferFactory, ClassTemplate template) {
         try {
             VarStringBuffer rulebody = new VarStringBuffer();
             boolean hasAddedOperator = false; // used to decide about parentheses, none if nothing is added
@@ -296,8 +289,8 @@ public class OperatorHandler {
             for (Operator operator : operators) {
                 // don't create anything if operator has no operator Template (non critical case? Maybe warning would be good.)
                 Collection<OperatorTemplate> opTemplateList //= (Collection<OperatorTemplate>) operator.refGetValue("templates");
-                                = operator.getTemplates();
-                
+                = operator.getTemplates();
+
                 if (opTemplateList.size() == 0) {
                     // operator is in list, but never used in any operatorTemplate, so ignore it
                     errorBucket.addWarning("Operator not used by any template.", operator);
@@ -309,73 +302,73 @@ public class OperatorHandler {
                 hasAddedOperator = true;
 
                 Literal literal = operator.getLiteral();
-                if (literal == null) { 
+                if (literal == null) {
                     throw new SyntaxElementException("Operator does not have a literal " + operator, operator);
-//                  literal = syntaxLookup.getLiteralForOperator(operator);
+                    //                  literal = syntaxLookup.getLiteralForOperator(operator);
                 }
 
                 if (arity == 2 || isLeftAssociative) { // don't add here if unary and right associative
                     String literalValue = null;
-                	if (literal instanceof Keyword) {
+                    if (literal instanceof Keyword) {
                         // Keywords being used by their value, as they are not declared as named symbols
-                    	//add synpred to cope with recursion and the empty alternative
-                	 literalValue = "'" + literal.getValue() + "'";
-                    	
-                    	
-                    	
+                        //add synpred to cope with recursion and the empty alternative
+                        literalValue = "'" + literal.getValue() + "'";
+
                     } else {
-                    	//add synpred to cope with recursion and the empty alternative
+                        //add synpred to cope with recursion and the empty alternative
                         literalValue = literal.getName().toUpperCase();
                     }
-                	rulebody.append("(", literalValue);
-                        boolean first = true;
-                        boolean addedAtLeastOne = false;
-                        List<String> synpreds = new ArrayList<String>(opTemplateList.size());
-                        for (OperatorTemplate operatorTemplate : opTemplateList) {
-                            
-                            if(operatorTemplate.getDisambiguateV3() != null && !synpreds.contains(operatorTemplate.getDisambiguateV3())) {
-                                if(first) {
-                                    rulebody.append("(");
-                                }
-                                addedAtLeastOne = true;
-                                synpreds.add(operatorTemplate.getDisambiguateV3());
-                                if(!first) {
-                                    rulebody.append("|");
-                                } else {
-                                    first = false;
-                                }
-                                rulebody.append("(", operatorTemplate.getDisambiguateV3(), ")");
-                            }   
+                    rulebody.append("(", literalValue);
+                    boolean first = true;
+                    boolean addedAtLeastOne = false;
+                    List<String> synpreds = new ArrayList<String>(opTemplateList.size());
+                    for (OperatorTemplate operatorTemplate : opTemplateList) {
+
+                        if (operatorTemplate.getDisambiguateV3() != null
+                                && !synpreds.contains(operatorTemplate.getDisambiguateV3())) {
+                            if (first) {
+                                rulebody.append("(");
+                            }
+                            addedAtLeastOne = true;
+                            synpreds.add(operatorTemplate.getDisambiguateV3());
+                            if (!first) {
+                                rulebody.append("|");
+                            } else {
+                                first = false;
+                            }
+                            rulebody.append("(", operatorTemplate.getDisambiguateV3(), ")");
                         }
-                        if (addedAtLeastOne) {
-                            rulebody.append(")");
-                        }
-                        rulebody.append(")=>");
+                    }
+                    if (addedAtLeastOne) {
+                        rulebody.append(")");
+                    }
+                    rulebody.append(")=>");
                 }
-                
+
                 rulebody.append('('); // b2  required to separate operators, if many
-                rulebody.append(ObservationDirectivesHelper.getEnterOperatorSequenceNotification(operator.getLiteral().getValue(), arity, operator.isPostfix()));
-                
+                rulebody.append(ObservationDirectivesHelper.getEnterOperatorSequenceNotification(
+                        operator.getLiteral().getValue(), arity, operator.isPostfix()));
+
                 if (arity == 2 || isLeftAssociative) { // don't add here if unary and right associative
-                	//FIXME: have a seperate notification for operators? Or is OperatorSequence enough?
-                	rulebody.append(ObservationDirectivesHelper.getEnterSequenceElementNotification(null));
+                    //FIXME: have a seperate notification for operators? Or is OperatorSequence enough?
+                    rulebody.append(ObservationDirectivesHelper.getEnterSequenceElementNotification(null));
                     appendOperatorLiteralBit(rulebody, literal);
                     rulebody.append(ObservationDirectivesHelper.getExitSequenceElementNotification());
                 }
-                
+
                 rulebody.append('('); // b3  / required to separate templates if many
-                
-                SemanticDisambiguateHandler semanticHandler = new SemanticDisambiguateHandler(opTemplateList,
-                		errorBucket, namingHelper);
+
+                SemanticDisambiguateHandler semanticHandler = new SemanticDisambiguateHandler(opTemplateList, errorBucket,
+                        namingHelper);
                 boolean addedSemanticDisambiguateRule = false;
-                
+
                 for (Iterator<OperatorTemplate> iterator2 = opTemplateList.iterator(); iterator2.hasNext();) {
                     OperatorTemplate opTemplate = iterator2.next();
 
-//                  if (opTemplate == null || opTemplate.getNames() == null || namingHelper.getRuleName(opTemplate) == null) {
-//                  // TODO: Can this ever happen after parsing the syntax? Probably not.
-//                  throw new RuntimeException("Inconsistent OperatorTemplate either null or name == null " + opTemplate);
-//                  }
+                    //                  if (opTemplate == null || opTemplate.getNames() == null || namingHelper.getRuleName(opTemplate) == null) {
+                    //                  // TODO: Can this ever happen after parsing the syntax? Probably not.
+                    //                  throw new RuntimeException("Inconsistent OperatorTemplate either null or name == null " + opTemplate);
+                    //                  }
                     /*
                      * if there are 2 operands (arity = 2), the expression for both operands is first created with 
                      * the first operand, then the second operand is parsed and set. For unary operators, there 
@@ -383,75 +376,56 @@ public class OperatorHandler {
                      * then the operand is set.
                      */
                     if (arity == 2) {
-                    	if (semanticHandler
-                                .shouldUseSemanticDisambiguate(opTemplate)) {
-                            addedSemanticDisambiguateRule = semanticHandler
-                                    .addSemanticDisambiguateRule(
-                                            opTemplate,
-                                            rulebody,
-                                            ruleBodyBufferFactory,
-                                            template,
-                                            namingHelper
-                                                    .getMetaTypeListParameter(template), addedSemanticDisambiguateRule);
+                        if (semanticHandler.shouldUseSemanticDisambiguate(opTemplate)) {
+                            addedSemanticDisambiguateRule = semanticHandler.addSemanticDisambiguateRule(opTemplate, rulebody,
+                                    ruleBodyBufferFactory, template, namingHelper.getMetaTypeListParameter(template),
+                                    addedSemanticDisambiguateRule);
                             if (iterator2.hasNext()) {
                                 rulebody.append("\n| ");
                             }
                         } else {
                             if (opTemplate.getDisambiguateV3() != null) {
                                 // add disambiguation rule
-                                rulebody.append("("
-                                        + opTemplate.getDisambiguateV3()
-                                        + ")=>");
+                                rulebody.append("(" + opTemplate.getDisambiguateV3() + ")=>");
                             }
-                            rulebody.append("(ret=", namingHelper
-                                    .getRuleName(opTemplate),
-                                    "[opName, ret, firstToken]");
+                            rulebody.append("(ret=", namingHelper.getRuleName(opTemplate), "[opName, ret, firstToken]");
                             // auch f�r sem pr�dikat am ende erzeugen
                             String storeRightTo = getRightSideStorageName(opTemplate);
                             if (storeRightTo != null) { // is this ever
                                                         // possible?
-                                rulebody.append("right=",
-                                        associativityCalledRule);
-                                rulebody
-                                        .append(
-                                                " {setProperty(ret, \"",
-                                                storeRightTo,
-                                                "\", right);\n",
-                                                "this.setLocationAndComment(ret, firstToken);\n",
-                                                "}");
+                                rulebody.append("right=", associativityCalledRule);
+                                rulebody.append(" {setProperty(ret, \"", storeRightTo, "\", right);\n",
+                                        "this.setLocationAndComment(ret, firstToken);\n", "}");
                             }
                             rulebody.append(')');
-//                            if (iterator2.hasNext()) {
-//                                rulebody.append("\n| ");
-//                            }
+                            //                            if (iterator2.hasNext()) {
+                            //                                rulebody.append("\n| ");
+                            //                            }
                         }
-                    } else { 
+                    } else {
                         // arity == 1, unary templates don't have a StoreRightTo attribute, because they are unary.
                         if (opTemplate.getDisambiguateV3() != null) {
                             // add disambiguation rule
-                            rulebody.append("("
-                                    + opTemplate.getDisambiguateV3() + ")=>");
+                            rulebody.append("(" + opTemplate.getDisambiguateV3() + ")=>");
                         }
-                    	 if(operator.isPostfix()) {
-                    		 rulebody.append("(ret=", namingHelper.getRuleName(opTemplate), "[opName, ret, firstToken]");
-                    	 } else {
-                    		 rulebody.append("(ret=", namingHelper.getRuleName(opTemplate), "[opName, null, firstToken]");
-                    	 }
-                        if ( ! isLeftAssociative) { // add here if unary and right associative
+                        if (operator.isPostfix()) {
+                            rulebody.append("(ret=", namingHelper.getRuleName(opTemplate), "[opName, ret, firstToken]");
+                        } else {
+                            rulebody.append("(ret=", namingHelper.getRuleName(opTemplate), "[opName, null, firstToken]");
+                        }
+                        if (!isLeftAssociative) { // add here if unary and right associative
                             rulebody.append(ObservationDirectivesHelper.getEnterSequenceElementNotification(null));
                             appendOperatorLiteralBit(rulebody, literal);
                             rulebody.append(ObservationDirectivesHelper.getExitSequenceElementNotification());
                         }
-                        if ( ! operator.isPostfix()) {
-                            rulebody.append("right=", associativityCalledRule);				    
+                        if (!operator.isPostfix()) {
+                            rulebody.append("right=", associativityCalledRule);
                             rulebody.append(" {setProperty(ret, \"", getSourceStorageName(opTemplate), "\", right);\n");
                         } else {
                             rulebody.append("{");
                         }
-                        rulebody.append("this.setLocationAndComment(ret, firstToken);\n",
-                        "})");
+                        rulebody.append("this.setLocationAndComment(ret, firstToken);\n", "})");
                     }
-
 
                     if (iterator2.hasNext()) {
                         rulebody.append("\n| ");
@@ -461,12 +435,10 @@ public class OperatorHandler {
 
                 rulebody.append(ObservationDirectivesHelper.getExitOperatorSequenceNotification());
                 rulebody.append(')'); // b2
-//                if (iterator.hasNext()) {
-//                    rulebody.append("\n| ");
-//                }			
+                //                if (iterator.hasNext()) {
+                //                    rulebody.append("\n| ");
+                //                }			
             } // end for operators
-
-
 
             if (hasAddedOperator) {
                 targetrulebody.append('('); // bx
@@ -486,13 +458,11 @@ public class OperatorHandler {
         } catch (SyntaxElementException e) {
             errorBucket.addException(e);
         } catch (MetaModelLookupException e) {
-            errorBucket.addException(new SyntaxElementException(e.getMessage(),
-                    null, e));
+            errorBucket.addException(new SyntaxElementException(e.getMessage(), null, e));
         }
     }
 
-    private static void appendOperatorLiteralBit(VarStringBuffer rulebody,
-            Literal literal) {
+    private static void appendOperatorLiteralBit(VarStringBuffer rulebody, Literal literal) {
         if (literal instanceof Keyword) {
             // Keywords being used by their value, as they are not declared as named symbols
             rulebody.append('\'', literal.getValue(), '\'');
@@ -502,7 +472,6 @@ public class OperatorHandler {
         rulebody.append("{opName = \"", literal.getValue(), "\";}");
     }
 
-
     /**
      * @param template
      * @return
@@ -510,7 +479,7 @@ public class OperatorHandler {
     private static String getRightSideStorageName(OperatorTemplate template) {
         if (template != null) {
             PropertyReference propRef = template.getStoreRightSideTo();
-            if ( propRef != null) {
+            if (propRef != null) {
                 if (propRef.getStrucfeature() != null) {
                     return propRef.getStrucfeature().getName();
                 } else {

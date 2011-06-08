@@ -124,7 +124,7 @@ public interface Priority extends LocatedElement {
      * @return the value of the '<em>Operators</em>' containment reference list.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getPriority_Operators()
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Operator#getPriority
-     * @model opposite="priority" containment="true" resolveProxies="true" ordered="false"
+     * @model opposite="priority" containment="true" ordered="false"
      * @generated
      */
         EList<Operator> getOperators();

@@ -65,29 +65,6 @@ public class RulePatternImpl extends SimplePatternImpl implements RulePattern {
      * @generated
      */
         public Rule getRule() {
-        if (rule != null && rule.eIsProxy()) {
-            InternalEObject oldRule = (InternalEObject)rule;
-            rule = (Rule)eResolveProxy(oldRule);
-            if (rule != oldRule) {
-                InternalEObject newRule = (InternalEObject)rule;
-                NotificationChain msgs = oldRule.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TCSPackage.RULE_PATTERN__RULE, null, null);
-                if (newRule.eInternalContainer() == null) {
-                    msgs = newRule.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TCSPackage.RULE_PATTERN__RULE, null, msgs);
-                }
-                if (msgs != null) msgs.dispatch();
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.RULE_PATTERN__RULE, oldRule, rule));
-            }
-        }
-        return rule;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Rule basicGetRule() {
         return rule;
     }
 
@@ -148,8 +125,7 @@ public class RulePatternImpl extends SimplePatternImpl implements RulePattern {
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.RULE_PATTERN__RULE:
-                if (resolve) return getRule();
-                return basicGetRule();
+                return getRule();
         }
         return super.eGet(featureID, resolve, coreType);
     }

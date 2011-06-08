@@ -10,7 +10,7 @@ Require-Bundle: org.junit,
  com.sap.furcas.runtime.tcs,
  com.sap.furcas.runtime.parser,
  com.sap.furcas.runtime.referenceresolving,
- com.sap.furcas.ide.parserfactory
+ com.sap.furcas.ide.parserfactory;visibility:=reexport
 Bundle-ClassPath: .
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: SAP

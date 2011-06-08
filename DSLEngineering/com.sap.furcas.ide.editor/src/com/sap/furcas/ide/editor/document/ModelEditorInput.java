@@ -1,58 +1,99 @@
 package com.sap.furcas.ide.editor.document;
 
-import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.ui.URIEditorInput;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.imp.editor.UniversalEditor;
 import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.part.FileEditorInput;
+import org.eclipse.ui.IMemento;
+import org.eclipse.ui.IPathEditorInput;
 
 import com.sap.furcas.ide.editor.imp.AbstractFurcasEditor;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 
 /**
- * {@link IEditorInput} as used by the {@link AbstractFurcasEditor}.
- * It inherits from {@link FileEditorInput} to be compatible with the
- * IMP editor base class. 
+ * Provider for an {@link IEditorInput} which represents the currently 
+ * edited document. It used by the {@link AbstractFurcasEditor}.<p>
+ * 
+ * Mind that the {@link UniversalEditor} does only work on the light
+ * weight representation of the editor input.
  * 
  * @author Stephan Erb
  *
  */
-public class ModelEditorInput extends FileEditorInput {
+public class ModelEditorInput {
+    
+    /**
+     * A light-weight editor input which does only store an URI but
+     * no full blown objects. For the reasons behind this decissions
+     * see {@link IEditorInput}
+     */
+    private static class ModelURIEditorInput extends URIEditorInput implements IPathEditorInput {
+
+        public ModelURIEditorInput(URI uri) {
+            super(uri);
+        }
+
+        public ModelURIEditorInput(URI uri, String name) {
+            super(uri, name);
+        }
+
+        public ModelURIEditorInput(IMemento memento) {
+            super(memento);
+        }
+        
+        @Override
+        public IPath getPath() {
+           return new Path(getURI().trimFragment().toPlatformString(true));
+        }
+        
+    }
 
     private final EObject rootObject;
-    private final TextBlock rootBlock;
+    private TextBlock rootBlock;
     
-    public ModelEditorInput(IFile file, EObject rootObject, TextBlock rootBlock) {
-        super(file);
+    public ModelEditorInput(EObject rootObject, TextBlock rootBlock) {
         this.rootObject = rootObject;
         this.rootBlock = rootBlock;
     }
 
-    @Override
-    public String getName() {
+    /**
+     * Will never be null
+     */
+    public EObject getRootObject() {
+        return rootObject;
+    }
+    
+    /**
+     * May be null
+     */
+    public TextBlock getRootBlock() {
+        return rootBlock;
+    }
+    
+    public void setRootBlock(TextBlock rootBlock) {
+        this.rootBlock = rootBlock;
+    }
+    
+    public IPathEditorInput asLightWeightEditorInput() {
+        // only depend on the rootObject here. The rootBlock is not stable
+        // and will be recreated all the time during parsing
+        return new ModelURIEditorInput(EcoreUtil.getURI(rootObject), getName());
+    }
+    
+    private String getName() {
         EStructuralFeature nameFeat = rootObject.eClass().getEStructuralFeature("name");
-        if(nameFeat != null && rootObject.eGet(nameFeat) != null) {
+        if (nameFeat != null && rootObject.eGet(nameFeat) != null) {
             return (String) rootObject.eGet(nameFeat);
-        } else if(EcoreUtil.getID(rootObject) != null) {
+        } else if (EcoreUtil.getID(rootObject) != null) {
             return EcoreUtil.getID(rootObject);
         } else {
             return rootObject.toString();
         }
     }
-
-    @Override
-    public String getToolTipText() {
-        String uri = EcoreUtil.getURI(rootObject).toString();
-        return uri != null ? uri : getName();
-    }
-
-    public EObject getRootObject() {
-        return rootObject;
-    }
     
-    public TextBlock getRootBlock() {
-        return rootBlock;
-    }
-
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LetExpImpl.java,v 1.3 2011/03/01 08:47:18 ewillink Exp $
+ * $Id: LetExpImpl.java,v 1.4 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -21,7 +21,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -98,32 +97,6 @@ public class LetExpImpl
 	 * @generated
 	 */
 	public OclExpression getIn() {
-		if (in != null && ((EObject)in).eIsProxy())
-		{
-			InternalEObject oldIn = (InternalEObject)in;
-			in = (OclExpression)eResolveProxy(oldIn);
-			if (in != oldIn)
-			{
-				InternalEObject newIn = (InternalEObject)in;
-				NotificationChain msgs = oldIn.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.LET_EXP__IN, null, null);
-				if (newIn.eInternalContainer() == null)
-				{
-					msgs = newIn.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.LET_EXP__IN, null, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.LET_EXP__IN, oldIn, in));
-			}
-		}
-		return in;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OclExpression basicGetIn() {
 		return in;
 	}
 
@@ -181,32 +154,6 @@ public class LetExpImpl
 	 * @generated
 	 */
 	public Variable getVariable() {
-		if (variable != null && ((EObject)variable).eIsProxy())
-		{
-			InternalEObject oldVariable = (InternalEObject)variable;
-			variable = (Variable)eResolveProxy(oldVariable);
-			if (variable != oldVariable)
-			{
-				InternalEObject newVariable = (InternalEObject)variable;
-				NotificationChain msgs = oldVariable.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.LET_EXP__VARIABLE, null, null);
-				if (newVariable.eInternalContainer() == null)
-				{
-					msgs = newVariable.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.LET_EXP__VARIABLE, null, msgs);
-				}
-				if (msgs != null) msgs.dispatch();
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.LET_EXP__VARIABLE, oldVariable, variable));
-			}
-		}
-		return variable;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Variable basicGetVariable() {
 		return variable;
 	}
 
@@ -307,11 +254,9 @@ public class LetExpImpl
 				if (resolve) return getType();
 				return basicGetType();
 			case PivotPackage.LET_EXP__IN:
-				if (resolve) return getIn();
-				return basicGetIn();
+				return getIn();
 			case PivotPackage.LET_EXP__VARIABLE:
-				if (resolve) return getVariable();
-				return basicGetVariable();
+				return getVariable();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}

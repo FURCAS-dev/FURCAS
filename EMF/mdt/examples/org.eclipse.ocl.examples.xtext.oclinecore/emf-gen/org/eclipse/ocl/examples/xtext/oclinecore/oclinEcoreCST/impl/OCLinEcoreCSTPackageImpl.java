@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSTPackageImpl.java,v 1.7 2011/03/01 08:46:35 ewillink Exp $
+ * $Id: OCLinEcoreCSTPackageImpl.java,v 1.8 2011/05/13 19:07:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -126,6 +127,16 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getOCLinEcoreConstraintCS_Callable()
+	{
+		return (EAttribute)ocLinEcoreConstraintCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getOCLinEcoreSpecificationCS()
 	{
 		return ocLinEcoreSpecificationCSEClass;
@@ -160,6 +171,7 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 
 		// Create classes and their features
 		ocLinEcoreConstraintCSEClass = createEClass(OC_LIN_ECORE_CONSTRAINT_CS);
+		createEAttribute(ocLinEcoreConstraintCSEClass, OC_LIN_ECORE_CONSTRAINT_CS__CALLABLE);
 
 		ocLinEcoreSpecificationCSEClass = createEClass(OC_LIN_ECORE_SPECIFICATION_CS);
 	}
@@ -201,6 +213,7 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(ocLinEcoreConstraintCSEClass, OCLinEcoreConstraintCS.class, "OCLinEcoreConstraintCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getOCLinEcoreConstraintCS_Callable(), ecorePackage.getEBoolean(), "callable", null, 0, 1, OCLinEcoreConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(ocLinEcoreSpecificationCSEClass, OCLinEcoreSpecificationCS.class, "OCLinEcoreSpecificationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

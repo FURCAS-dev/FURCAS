@@ -261,7 +261,7 @@ public class ClassTemplateHandler<Type extends Object> {
              		   createModelElementProxyString(template, 
              		   forceAddToContextFalse,metaObjectListParam));
              	if (withEnterNotification) {
-                     ObservationDirectivesHelper.appendEnterTemplateNotification(initString, template);            
+             	    initString.append(ObservationDirectivesHelper.getEnterTemplateNotification(template));            
                  }
                 initString.append("org.antlr.runtime.Token firstToken=input.LT(1);\n");
              }

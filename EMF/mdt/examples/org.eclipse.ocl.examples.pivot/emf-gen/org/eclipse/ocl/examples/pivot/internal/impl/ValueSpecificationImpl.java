@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValueSpecificationImpl.java,v 1.2 2011/01/24 20:42:33 ewillink Exp $
+ * $Id: ValueSpecificationImpl.java,v 1.3 2011/05/19 16:55:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -133,7 +133,7 @@ public abstract class ValueSpecificationImpl
 		}
 		Resource.Internal eInternalResource = eInternalResource();
 		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			TemplateParameter owningTemplateParameter = basicGetOwningTemplateParameter();
+			TemplateParameter owningTemplateParameter = getOwningTemplateParameter();
 			if (owningTemplateParameter != null && owningTemplateParameter != newTemplateParameter)
 			{
 				setOwningTemplateParameter(null);
@@ -170,16 +170,6 @@ public abstract class ValueSpecificationImpl
 	public TemplateParameter getOwningTemplateParameter() {
 		if (eContainerFeatureID() != PivotPackage.VALUE_SPECIFICATION__OWNING_TEMPLATE_PARAMETER) return null;
 		return (TemplateParameter)eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplateParameter basicGetOwningTemplateParameter() {
-		if (eContainerFeatureID() != PivotPackage.VALUE_SPECIFICATION__OWNING_TEMPLATE_PARAMETER) return null;
-		return (TemplateParameter)eInternalContainer();
 	}
 
 	/**
@@ -376,8 +366,7 @@ public abstract class ValueSpecificationImpl
 				if (resolve) return getType();
 				return basicGetType();
 			case PivotPackage.VALUE_SPECIFICATION__OWNING_TEMPLATE_PARAMETER:
-				if (resolve) return getOwningTemplateParameter();
-				return basicGetOwningTemplateParameter();
+				return getOwningTemplateParameter();
 			case PivotPackage.VALUE_SPECIFICATION__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
@@ -493,7 +482,7 @@ public abstract class ValueSpecificationImpl
 			case PivotPackage.VALUE_SPECIFICATION__TYPE:
 				return type != null;
 			case PivotPackage.VALUE_SPECIFICATION__OWNING_TEMPLATE_PARAMETER:
-				return basicGetOwningTemplateParameter() != null;
+				return getOwningTemplateParameter() != null;
 			case PivotPackage.VALUE_SPECIFICATION__TEMPLATE_PARAMETER:
 				return templateParameter != null;
 		}

@@ -37,7 +37,6 @@ public class TestPropertyInitReEvaluationWithContextInForeachTriggeredTemplate e
     private static final String LANGUAGE = "BibtexWithContextUsedInForeachTriggeredTemplate";
     private static final File TCS = new File("fixtures/BibtexWithContextUsedInForeachTriggeredTemplate.tcs");
     private static final File[] METAMODELS = { ScenarioFixtureData.BIBTEXT_METAMODEL, ScenarioFixtureData.BIBTEXT1_METAMODEL };
-    private static final String MM_PACKAGE_URI = ScenarioFixtureData.BIBTEXT_PACKAGE_URI;
 
     private EObject johnDoe;
     private EObject article;
@@ -46,7 +45,7 @@ public class TestPropertyInitReEvaluationWithContextInForeachTriggeredTemplate e
 
     @BeforeClass
     public static void setupParser() throws Exception {
-        setupParser(TCS, LANGUAGE, MM_PACKAGE_URI, METAMODELS);
+        setupParser(TCS, LANGUAGE, METAMODELS);
     }
     
     /**

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTFactoryImpl.java,v 1.9 2011/05/05 17:53:02 ewillink Exp $
+ * $Id: BaseCSTFactoryImpl.java,v 1.10 2011/05/12 08:46:40 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -40,7 +40,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.IteratorKind;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
@@ -119,7 +118,6 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 			case BaseCSTPackage.IMPORT_CS: return createImportCS();
 			case BaseCSTPackage.LAMBDA_TYPE_CS: return createLambdaTypeCS();
 			case BaseCSTPackage.LIBRARY_CS: return createLibraryCS();
-			case BaseCSTPackage.NAMESPACE_REF_CS: return createNamespaceRefCS();
 			case BaseCSTPackage.OPERATION_CS: return createOperationCS();
 			case BaseCSTPackage.PACKAGE_CS: return createPackageCS();
 			case BaseCSTPackage.PARAMETER_CS: return createParameterCS();
@@ -320,17 +318,6 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	public LibraryCS createLibraryCS() {
 		LibraryCSImpl libraryCS = new LibraryCSImpl();
 		return libraryCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NamespaceRefCS createNamespaceRefCS()
-	{
-		NamespaceRefCSImpl namespaceRefCS = new NamespaceRefCSImpl();
-		return namespaceRefCS;
 	}
 
 	/**

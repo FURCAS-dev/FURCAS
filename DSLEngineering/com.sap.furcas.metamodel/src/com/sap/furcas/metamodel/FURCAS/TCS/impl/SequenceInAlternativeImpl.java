@@ -83,16 +83,6 @@ public class SequenceInAlternativeImpl extends SequenceImpl implements SequenceI
 
         /**
      * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Alternative basicGetAlternativeContainer() {
-        if (eContainerFeatureID() != TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER) return null;
-        return (Alternative)eInternalContainer();
-    }
-
-        /**
-     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -196,8 +186,7 @@ public class SequenceInAlternativeImpl extends SequenceImpl implements SequenceI
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER:
-                if (resolve) return getAlternativeContainer();
-                return basicGetAlternativeContainer();
+                return getAlternativeContainer();
             case TCSPackage.SEQUENCE_IN_ALTERNATIVE__DISAMBIGUATE:
                 return getDisambiguate();
         }
@@ -249,7 +238,7 @@ public class SequenceInAlternativeImpl extends SequenceImpl implements SequenceI
         public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER:
-                return basicGetAlternativeContainer() != null;
+                return getAlternativeContainer() != null;
             case TCSPackage.SEQUENCE_IN_ALTERNATIVE__DISAMBIGUATE:
                 return DISAMBIGUATE_EDEFAULT == null ? disambiguate != null : !DISAMBIGUATE_EDEFAULT.equals(disambiguate);
         }

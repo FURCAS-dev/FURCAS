@@ -11,8 +11,8 @@ import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
 
-import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CharStream;
+import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.TokenStream;
 import org.eclipse.emf.common.util.URI;
@@ -95,7 +95,7 @@ public abstract class AbstractParserFactory<P extends ObservableInjectingParser,
         Class<P> parserClass = getParserClass();
         try {
             Constructor<P> c = parserClass.getConstructor(TokenStream.class);
-            P parser = c.newInstance(new ANTLRStringStream());
+            P parser = c.newInstance(new CommonTokenStream());
             return parser.getSyntaxUUID();
         } catch (Exception e) {
             return null;

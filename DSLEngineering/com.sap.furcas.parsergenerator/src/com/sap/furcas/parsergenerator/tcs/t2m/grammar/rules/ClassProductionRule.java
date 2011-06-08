@@ -27,8 +27,8 @@ public class ClassProductionRule extends SimpleProductionRule  {
     private String initString, returnDeclaration, finalizeString, catchString; 
     private int additionalLength;
     
-    public static ClassProductionRule getClassTemplateProductionRule(String ruleHead, 
-            String returnDeclaration, String initString, String rulebody, boolean addExitNotification, boolean catchString) {
+    public static ClassProductionRule getClassTemplateProductionRule(String ruleHead, String returnDeclaration,
+            String initString, String rulebody, boolean addExitNotification, boolean catchString) {
         String exitNotification = null;
         if (addExitNotification) {
             exitNotification = ObservationDirectivesHelper.getExitTemplateNotification();

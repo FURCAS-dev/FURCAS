@@ -12,7 +12,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
@@ -232,6 +231,7 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public Version getVersion() {
         return version;
     }
@@ -241,11 +241,13 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public void setVersion(Version newVersion) {
         Version oldVersion = version;
         version = newVersion == null ? VERSION_EDEFAULT : newVersion;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.DOCUMENT_NODE__VERSION, oldVersion, version));
+        }
     }
 
         /**
@@ -253,6 +255,7 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public boolean isChildrenChanged() {
         return childrenChanged;
     }
@@ -262,11 +265,13 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public void setChildrenChanged(boolean newChildrenChanged) {
         boolean oldChildrenChanged = childrenChanged;
         childrenChanged = newChildrenChanged;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.DOCUMENT_NODE__CHILDREN_CHANGED, oldChildrenChanged, childrenChanged));
+        }
     }
 
         /**
@@ -274,6 +279,7 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public boolean isRelexingNeeded() {
         return relexingNeeded;
     }
@@ -283,11 +289,13 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public void setRelexingNeeded(boolean newRelexingNeeded) {
         boolean oldRelexingNeeded = relexingNeeded;
         relexingNeeded = newRelexingNeeded;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.DOCUMENT_NODE__RELEXING_NEEDED, oldRelexingNeeded, relexingNeeded));
+        }
     }
 
         /**
@@ -295,19 +303,12 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public TextBlock getParent() {
-        if (eContainerFeatureID() != TextblocksPackage.DOCUMENT_NODE__PARENT) return null;
+        if (eContainerFeatureID() != TextblocksPackage.DOCUMENT_NODE__PARENT) {
+            return null;
+        }
         return (TextBlock)eContainer();
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public TextBlock basicGetParent() {
-        if (eContainerFeatureID() != TextblocksPackage.DOCUMENT_NODE__PARENT) return null;
-        return (TextBlock)eInternalContainer();
     }
 
         /**
@@ -325,20 +326,27 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public void setParent(TextBlock newParent) {
         if (newParent != eInternalContainer() || (eContainerFeatureID() != TextblocksPackage.DOCUMENT_NODE__PARENT && newParent != null)) {
-            if (EcoreUtil.isAncestor(this, newParent))
+            if (EcoreUtil.isAncestor(this, newParent)) {
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            }
             NotificationChain msgs = null;
-            if (eInternalContainer() != null)
+            if (eInternalContainer() != null) {
                 msgs = eBasicRemoveFromContainer(msgs);
-            if (newParent != null)
+            }
+            if (newParent != null) {
                 msgs = ((InternalEObject)newParent).eInverseAdd(this, TextblocksPackage.TEXT_BLOCK__SUB_NODES, TextBlock.class, msgs);
+            }
             msgs = basicSetParent(newParent, msgs);
-            if (msgs != null) msgs.dispatch();
+            if (msgs != null) {
+                msgs.dispatch();
+            }
         }
-        else if (eNotificationRequired())
+        else if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.DOCUMENT_NODE__PARENT, newParent, newParent));
+        }
     }
 
         /**
@@ -346,13 +354,15 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public SequenceElement getSequenceElement() {
         if (sequenceElement != null && sequenceElement.eIsProxy()) {
             InternalEObject oldSequenceElement = (InternalEObject)sequenceElement;
             sequenceElement = (SequenceElement)eResolveProxy(oldSequenceElement);
             if (sequenceElement != oldSequenceElement) {
-                if (eNotificationRequired())
+                if (eNotificationRequired()) {
                     eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblocksPackage.DOCUMENT_NODE__SEQUENCE_ELEMENT, oldSequenceElement, sequenceElement));
+                }
             }
         }
         return sequenceElement;
@@ -372,11 +382,13 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public void setSequenceElement(SequenceElement newSequenceElement) {
         SequenceElement oldSequenceElement = sequenceElement;
         sequenceElement = newSequenceElement;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.DOCUMENT_NODE__SEQUENCE_ELEMENT, oldSequenceElement, sequenceElement));
+        }
     }
 
         /**
@@ -384,6 +396,7 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public int getOffset() {
         return offset;
     }
@@ -393,11 +406,13 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public void setOffset(int newOffset) {
         int oldOffset = offset;
         offset = newOffset;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.DOCUMENT_NODE__OFFSET, oldOffset, offset));
+        }
     }
 
         /**
@@ -405,6 +420,7 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public int getLength() {
         return length;
     }
@@ -414,11 +430,13 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public void setLength(int newLength) {
         int oldLength = length;
         length = newLength;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.DOCUMENT_NODE__LENGTH, oldLength, length));
+        }
     }
 
         /**
@@ -426,6 +444,7 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EList<DocumentNode> getOtherVersions() {
         if (otherVersions == null) {
             otherVersions = new EObjectResolvingEList<DocumentNode>(DocumentNode.class, this, TextblocksPackage.DOCUMENT_NODE__OTHER_VERSIONS);
@@ -438,6 +457,7 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public boolean isOffsetRelative() {
         return offsetRelative;
     }
@@ -447,11 +467,13 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public void setOffsetRelative(boolean newOffsetRelative) {
         boolean oldOffsetRelative = offsetRelative;
         offsetRelative = newOffsetRelative;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.DOCUMENT_NODE__OFFSET_RELATIVE, oldOffsetRelative, offsetRelative));
+        }
     }
 
         /**
@@ -459,6 +481,7 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public int getAbsoluteOffset() {
         return absoluteOffset;
     }
@@ -468,11 +491,13 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public void setAbsoluteOffset(int newAbsoluteOffset) {
         int oldAbsoluteOffset = absoluteOffset;
         absoluteOffset = newAbsoluteOffset;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.DOCUMENT_NODE__ABSOLUTE_OFFSET, oldAbsoluteOffset, absoluteOffset));
+        }
     }
 
         /**
@@ -484,8 +509,9 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
         public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TextblocksPackage.DOCUMENT_NODE__PARENT:
-                if (eInternalContainer() != null)
+                if (eInternalContainer() != null) {
                     msgs = eBasicRemoveFromContainer(msgs);
+                }
                 return basicSetParent((TextBlock)otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -534,10 +560,11 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
             case TextblocksPackage.DOCUMENT_NODE__RELEXING_NEEDED:
                 return isRelexingNeeded();
             case TextblocksPackage.DOCUMENT_NODE__PARENT:
-                if (resolve) return getParent();
-                return basicGetParent();
+                return getParent();
             case TextblocksPackage.DOCUMENT_NODE__SEQUENCE_ELEMENT:
-                if (resolve) return getSequenceElement();
+                if (resolve) {
+                    return getSequenceElement();
+                }
                 return basicGetSequenceElement();
             case TextblocksPackage.DOCUMENT_NODE__OFFSET:
                 return getOffset();
@@ -654,7 +681,7 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
             case TextblocksPackage.DOCUMENT_NODE__RELEXING_NEEDED:
                 return relexingNeeded != RELEXING_NEEDED_EDEFAULT;
             case TextblocksPackage.DOCUMENT_NODE__PARENT:
-                return basicGetParent() != null;
+                return getParent() != null;
             case TextblocksPackage.DOCUMENT_NODE__SEQUENCE_ELEMENT:
                 return sequenceElement != null;
             case TextblocksPackage.DOCUMENT_NODE__OFFSET:
@@ -678,7 +705,9 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
      */
         @Override
         public String toString() {
-        if (eIsProxy()) return super.toString();
+        if (eIsProxy()) {
+            return super.toString();
+        }
 
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (version: ");

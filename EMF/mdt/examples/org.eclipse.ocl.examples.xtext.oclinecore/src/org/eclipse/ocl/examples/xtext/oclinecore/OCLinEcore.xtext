@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcore.xtext,v 1.11 2011/05/05 17:53:16 ewillink Exp $
+ * $Id: OCLinEcore.xtext,v 1.14 2011/05/21 14:58:25 ewillink Exp $
  */
 grammar org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore with org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL
 
@@ -52,6 +52,7 @@ UnrestrictedName returns ecore::EString:
 |	'annotation'
 |	'attribute'
 |	'body'
+|	'callable'
 |	'class'
 |	'composes'
 |	'datatype'
@@ -88,28 +89,28 @@ UnrestrictedName returns ecore::EString:
 ;
 
 BodyConstraintCS returns OCLinEcoreConstraintCS:
-	stereotype='body' name=UnrestrictedName? ':' specification=SpecificationCS ';'
+	stereotype='body' name=UnrestrictedName? ':' specification=SpecificationCS? ';'
 ;
 
 DerivedConstraintCS returns OCLinEcoreConstraintCS:
-	stereotype='derivation' ':' specification=SpecificationCS ';'
+	stereotype='derivation' ':' specification=SpecificationCS? ';'
 ;
 
 InitialConstraintCS returns OCLinEcoreConstraintCS:
-	stereotype='initial' ':' specification=SpecificationCS ';'
+	stereotype='initial' ':' specification=SpecificationCS? ';'
 ;
 
 InvariantConstraintCS returns OCLinEcoreConstraintCS:
-	stereotype='invariant' (name=UnrestrictedName ('(' messageSpecification=SpecificationCS ')')?)?
-	':' specification=SpecificationCS ';'
+	(callable?='callable')? stereotype='invariant' (name=UnrestrictedName ('(' messageSpecification=SpecificationCS ')')?)?
+	(':' specification=SpecificationCS?)? ';'
 ;
 
 PostconditionConstraintCS returns OCLinEcoreConstraintCS:
-	stereotype='postcondition' name=UnrestrictedName? ':' specification=SpecificationCS ';'
+	stereotype='postcondition' name=UnrestrictedName? ':' specification=SpecificationCS? ';'
 ;
 
 PreconditionConstraintCS returns OCLinEcoreConstraintCS:
-	stereotype='precondition' name=UnrestrictedName? ':' specification=SpecificationCS ';'
+	stereotype='precondition' name=UnrestrictedName? ':' specification=SpecificationCS? ';'
 ;
 
 AnnotationCS returns base::AnnotationCS:
@@ -291,7 +292,7 @@ ReferenceCS returns base::ReferenceCS:
 ;
 
 SpecificationCS returns OCLinEcoreSpecificationCS:
-	{OCLinEcoreSpecificationCS} (ownedExpression=ExpCS | exprString=UNQUOTED_STRING)?
+	ownedExpression=ExpCS | exprString=UNQUOTED_STRING
 ;
 
 StructuralFeatureCS returns base::StructuralFeatureCS:
@@ -331,8 +332,9 @@ TypedRefCS returns base::TypedRefCS:
 ;
 
 TypedTypeRefCS returns base::TypedTypeRefCS:
-	(namespace+=[pivot::Namespace|UnrestrictedName] '::')*
-	type=[pivot::Type|UnrestrictedName]
+	((namespace+=[pivot::Namespace|UnrestrictedName] '::' (namespace+=[pivot::Namespace|UnreservedName] '::')*
+	  type=[pivot::Type|UnreservedName])
+	| type=[pivot::Type|UnrestrictedName])
 	(ownedTemplateBinding=TemplateBindingCS)?
 ;
 

@@ -1,0 +1,47 @@
+syntax TemplateProposals {
+
+	template test::reference::Library main
+		:	[[ "library" | "state_library" ]]
+			(isDefined(authors) ? "has" : "had") "an"
+			authors{ forcedLower = 1, forcedUpper = 1 }
+			"that" "was"
+			[[ 
+				[ [[ "hardly" | "very" ]] "popular" ] | 
+				"unpopular"
+			]]
+			"and" "always" "hard" "working"
+		;
+		
+	template test::reference::Author
+		: "author" $name
+	;
+	
+	
+	function name(test::reference::Author)
+		:	"mr" name
+	;
+	
+	
+	
+	---------------------- BELOW IS A MINIMAL SYNTAX -------------------------------
+		
+	primitiveTemplate identifier for ecore::EString default using NAME
+	: value = "unescapeString(%token%)"
+	;
+	primitiveTemplate identifierOrKeyword for ecore::EString using NAME orKeyword
+	: value = "unescapeString(%token%)"
+	;
+	primitiveTemplate stringSymbol for ecore::EString using STRING
+	: value = "unescapeString(%token%)",
+      serializer = "\'%value%\'"
+    ;
+	primitiveTemplate integerSymbol for ecore::EIntegerObject default using INT
+	: value = "Integer.valueOf(%token%)"
+	;
+	primitiveTemplate floatSymbol for ecore::EDoubleObject default using FLOAT
+	: value = "Double.valueOf(%token%)"
+	;
+
+	omitted token COMMENT	: endOfLine(start = "--");
+	
+}

@@ -11,6 +11,7 @@ import java.util.TreeMap;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
@@ -19,6 +20,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Block;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.FunctionCall;
 import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
 import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
@@ -58,16 +60,18 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
     }
 
     ConcreteSyntax syntax;
+    private final ResourceSet resourceSet;
 
     /**
      * set to true after an error is found
      */
     private Boolean foundError = false;
 
-    public CtsContentAssistParsingHandler(ConcreteSyntax syntax) {
+    public CtsContentAssistParsingHandler(ConcreteSyntax syntax, ResourceSet resourceSet) {
         Assert.isNotNull(syntax);
         this.syntax = syntax;
-        
+        this.resourceSet = resourceSet;
+
         transientPartition = EcoreHelper.createTransientParsingResource(syntax.eResource().getResourceSet(),
                 TCSPackage.eINSTANCE.getNsURI());
 
@@ -127,26 +131,19 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
      * state.
      */
     public void assertValidFinishState() {
-        Assert.isTrue(
-                currentSequenceStack.isEmpty(),
-                "currentSequenceStack still contains "
-                        + currentSequenceStack.size() + " elements");
-        Assert.isTrue(currentSequenceElementStack.isEmpty(),
-                "currentSequenceElementStack still contains "
-                        + currentSequenceElementStack.size() + " elements");
-        Assert.isTrue(currentParentFunctionCallStack.isEmpty(),
-                "currentParentFunctionCallStack still contains "
-                        + currentParentFunctionCallStack.size() + " elements");
-        Assert.isTrue(currentParentPropertyStack.isEmpty(),
-                "currentParentPropertyStack still contains "
-                        + currentParentPropertyStack.size() + " elements");
-        Assert.isTrue(currentParentTemplateStack.isEmpty(),
-                "currentParentTemplateStack still contains "
-                        + currentParentTemplateStack.size() + " elements");
+        Assert.isTrue(currentSequenceStack.isEmpty(), "currentSequenceStack still contains " + currentSequenceStack.size()
+                + " elements");
+        Assert.isTrue(currentSequenceElementStack.isEmpty(), "currentSequenceElementStack still contains "
+                + currentSequenceElementStack.size() + " elements");
+        Assert.isTrue(currentParentFunctionCallStack.isEmpty(), "currentParentFunctionCallStack still contains "
+                + currentParentFunctionCallStack.size() + " elements");
+        Assert.isTrue(currentParentPropertyStack.isEmpty(), "currentParentPropertyStack still contains "
+                + currentParentPropertyStack.size() + " elements");
+        Assert.isTrue(currentParentTemplateStack.isEmpty(), "currentParentTemplateStack still contains "
+                + currentParentTemplateStack.size() + " elements");
     }
 
-    public CtsContentAssistContext getFloorContext(int line,
-            int charPositionInLine) {
+    public CtsContentAssistContext getFloorContext(int line, int charPositionInLine) {
         return getFloorContext(new TextPosition(line, charPositionInLine));
     }
 
@@ -156,8 +153,7 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
         }
 
         // return nearest entry before position
-        SortedMap<TextPosition, CtsContentAssistContext> headMap = positionMap
-                .headMap(position);
+        SortedMap<TextPosition, CtsContentAssistContext> headMap = positionMap.headMap(position);
         if (headMap.size() != 0) {
             return headMap.get(headMap.lastKey());
         }
@@ -167,15 +163,12 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
 
     private void resolveNextSequenceElement() {
         try {
-            SequenceElement currentSequenceElement = currentSequenceElementStack
-                    .pop();
+            SequenceElement currentSequenceElement = currentSequenceElementStack.pop();
 
             if (currentSequenceElement == null) {
-                currentSequenceElement = TcsUtil
-                        .getFirstSequenceElement(currentSequenceStack.peek());
+                currentSequenceElement = TcsUtil.getFirstSequenceElement(currentSequenceStack.peek());
             } else {
-                currentSequenceElement = TcsUtil
-                        .getNextSequenceElement(currentSequenceElement);
+                currentSequenceElement = TcsUtil.getNextSequenceElement(currentSequenceElement);
             }
 
             currentSequenceElementStack.push(currentSequenceElement);
@@ -187,8 +180,7 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
     }
 
     private void pushSequenceIfNecessary() {
-        SequenceElement currentSequenceElement = currentSequenceElementStack
-                .peek();
+        SequenceElement currentSequenceElement = currentSequenceElementStack.peek();
         if (currentSequenceElement instanceof FunctionCall) {
             FunctionCall call = (FunctionCall) currentSequenceElement;
             logInfo("push function call");
@@ -238,8 +230,7 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
 
     private void popSequenceIfNecessary() {
         try {
-            SequenceElement currentSequenceElement = currentSequenceElementStack
-                    .peek();
+            SequenceElement currentSequenceElement = currentSequenceElementStack.peek();
             if (TcsUtil.isLastSequenceElement(currentSequenceElement)) {
                 logInfo("pop Sequence");
                 Sequence currentSequence = currentSequenceStack.pop();
@@ -256,28 +247,16 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
     }
 
     @Override
-    public void notifyEnterRule(List<String> createdElement, String mode) {
-        logInfo("notifyEnterRule " + createdElement + " " + mode);
+    public void notifyEnterRule(String templateURI) {
+        logInfo("notifyEnterRule " + templateURI);
 
-        ClassTemplate resolved = TcsUtil.resolveClassTemplate(createdElement,
-                mode, classTemplateMap);
-
-        if (resolved != null) {
+        Template template = (Template) resourceSet.getEObject(URI.createURI(templateURI), true);
+        if (template instanceof ContextTemplate) {
             logInfo("push parentTemplate");
-            currentParentTemplateStack.push(resolved);
-            pushNonEmptySequence(resolved.getTemplateSequence());
+            currentParentTemplateStack.push(template);
+            pushNonEmptySequence(((ContextTemplate) template).getTemplateSequence());
         } else {
-            // check if we have an operatorTemplate
-
-            OperatorTemplate ot = operatorTemplateMap.get(createdElement);
-            if (ot != null) {
-                logInfo("push parentTemplate");
-                currentParentTemplateStack.push(resolved);
-                pushNonEmptySequence(ot.getTemplateSequence());
-            } else {
-
-                logError("resolved null Template " + createdElement);
-            }
+            logError("resolved no Template " + templateURI);
         }
     }
 
@@ -285,8 +264,7 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
     public void notifyEnterSequenceAlternative(int choice) {
         logInfo("notifyEnterSequenceAlternative " + choice);
 
-        SequenceElement currentSequenceElement = currentSequenceElementStack
-                .peek();
+        SequenceElement currentSequenceElement = currentSequenceElementStack.peek();
 
         if (currentSequenceElement instanceof ConditionalElement) {
             ConditionalElement cond = (ConditionalElement) currentSequenceElement;
@@ -301,14 +279,12 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
             Alternative alt = (Alternative) currentSequenceElement;
             // TODO why is Alternative.getSequences() a collection? Should be
             // ordered.
-            List<SequenceInAlternative> sequences = new ArrayList<SequenceInAlternative>(
-                    alt.getSequences());
+            List<SequenceInAlternative> sequences = new ArrayList<SequenceInAlternative>(alt.getSequences());
 
             if (choice < sequences.size()) {
                 pushNonEmptySequence(sequences.get(choice));
             } else {
-                logError("invalid choice " + choice + " for "
-                        + TcsDebugUtil.prettyPrint(alt));
+                logError("invalid choice " + choice + " for " + TcsDebugUtil.prettyPrint(alt));
             }
         }
 
@@ -318,21 +294,17 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
     public void notifyEnterSequenceElement() {
         resolveNextSequenceElement();
 
-        SequenceElement currentSequenceElement = currentSequenceElementStack
-                .peek();
+        SequenceElement currentSequenceElement = currentSequenceElementStack.peek();
 
         if (currentSequenceElement != null) {
-            logInfo("notifyEnterSequenceElement "
-                    + TcsDebugUtil.prettyPrint(currentSequenceElement));
+            logInfo("notifyEnterSequenceElement " + TcsDebugUtil.prettyPrint(currentSequenceElement));
 
             if (currentSequenceElement instanceof Property) {
                 Property prop = (Property) currentSequenceElement;
                 if (isParentProperty(prop)) {
                     // further class templates belong to this Property, until it
                     // is left
-                    logInfo("push parent property "
-                            + TcsUtil.getPropertyName(prop
-                                    .getPropertyReference()));
+                    logInfo("push parent property " + TcsUtil.getPropertyName(prop.getPropertyReference()));
                     currentParentPropertyStack.push(prop);
                 }
 
@@ -384,16 +356,14 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
     }
 
     @Override
-    public void notifyExitRule(List<String> createdElementType) {
-        logInfo("notifyExitRule " + createdElementType);
-
+    public void notifyExitRule() {
+        logInfo("notifyExitRule");
         try {
             logInfo("pop parentTemplate");
             currentParentTemplateStack.pop();
         } catch (EmptyStackException e) {
             logError("tried to pop empty stack");
         }
-
         // remaining pop of stacks is handled in
         // notifyExitSequenceElement()
     }
@@ -410,16 +380,13 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
     public void notifyExitSequenceElement() {
         try {
             SequenceElement top = currentSequenceElementStack.peek();
-            logInfo("notifyExitSequenceElement "
-                    + TcsDebugUtil.prettyPrint(top));
+            logInfo("notifyExitSequenceElement " + TcsDebugUtil.prettyPrint(top));
 
             if (top instanceof Property) {
                 Property prop = (Property) top;
                 if (isParentProperty(prop)) {
                     // no more class templates that belong to this Property
-                    logInfo("pop parent property "
-                            + TcsUtil.getPropertyName(prop
-                                    .getPropertyReference()));
+                    logInfo("pop parent property " + TcsUtil.getPropertyName(prop.getPropertyReference()));
                     currentParentPropertyStack.pop();
                 }
             }
@@ -427,14 +394,12 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
             popSequenceIfNecessary();
 
         } catch (EmptyStackException e) {
-            System.err
-                    .println("sequence element stack empty on notifyExitSequenceElement");
+            System.err.println("sequence element stack empty on notifyExitSequenceElement");
         }
     }
 
     boolean isParentProperty(Property p) {
-        return !TcsUtil.isAtomic(p, classTemplateMap)
-                || PropertyArgumentUtil.containsSeparatorArg(p) || TcsUtil.isEnumeration(p);
+        return !TcsUtil.isAtomic(p, classTemplateMap) || PropertyArgumentUtil.containsSeparatorArg(p) || TcsUtil.isEnumeration(p);
     }
 
     @Override
@@ -445,11 +410,9 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
     }
 
     @Override
-    public void notifyModelElementResolvedOutOfContext(Object modelElement,
-            Object contextModelElement, Token referenceLocation,
+    public void notifyModelElementResolvedOutOfContext(Object modelElement, Object contextModelElement, Token referenceLocation,
             DelayedReference reference) {
-        logInfo("notifyModelElementResolvedOutOfContext " + modelElement + " "
-                + contextModelElement + " " + referenceLocation);
+        logInfo("notifyModelElementResolvedOutOfContext " + modelElement + " " + contextModelElement + " " + referenceLocation);
 
         // TODO check if action is needed
 
@@ -459,9 +422,7 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
     public void notifyTokenConsume(Token token) {
         if (token != null) {
 
-            logInfo("notifyTokenConsume " + token.getText() + " ["
-                    + token.getLine() + ", " + token.getCharPositionInLine()
-                    + "]");
+            logInfo("notifyTokenConsume " + token.getText() + " [" + token.getLine() + ", " + token.getCharPositionInLine() + "]");
 
             if (token.getText() == null) {
                 // special case for eos token
@@ -478,8 +439,7 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
                 addContextToPositionMap(context);
 
             } catch (EmptyStackException e) {
-                System.err
-                        .println("could not create context, sequence element stack is empty");
+                System.err.println("could not create context, sequence element stack is empty");
             }
         } else {
             logError("consumed null token");
@@ -489,8 +449,7 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
 
     private void addContextToPositionMap(CtsContentAssistContext context) {
         positionMap.put(
-                new TextPosition(CtsContentAssistUtil.getLine(context
-                        .getToken()), CtsContentAssistUtil
+                new TextPosition(CtsContentAssistUtil.getLine(context.getToken()), CtsContentAssistUtil
                         .getCharPositionInLine(context.getToken())), context);
     }
 
@@ -498,12 +457,9 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
         CtsContentAssistContext context = new CtsContentAssistContext();
         context.setToken(token);
         context.setSequenceElement(currentSequenceElementStack.peek());
-        context.setParentFunctionCallStack(TcsUtil
-                .duplicateFunctionCallStack(currentParentFunctionCallStack));
-        context.setParentPropertyStack(TcsUtil
-                .duplicatePropertyStack(currentParentPropertyStack));
-        context.setParentTemplateStack(TcsUtil
-                .duplicateTemplateStack(currentParentTemplateStack));
+        context.setParentFunctionCallStack(TcsUtil.duplicateFunctionCallStack(currentParentFunctionCallStack));
+        context.setParentPropertyStack(TcsUtil.duplicatePropertyStack(currentParentPropertyStack));
+        context.setParentTemplateStack(TcsUtil.duplicateTemplateStack(currentParentTemplateStack));
         context.setOperator(currentIsOperator);
 
         // reset, as only the first token is the operator
@@ -528,11 +484,9 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
                 // text is available
                 if (getLastContext() != null) {
                     Token lastContextToken = getLastContext().getToken();
-                    if (lastContextToken != null
-                            && lastContextToken.getText() != null) {
+                    if (lastContextToken != null && lastContextToken.getText() != null) {
                         token.setLine(lastContextToken.getLine());
-                        token.setCharPositionInLine(lastContextToken
-                                .getCharPositionInLine()
+                        token.setCharPositionInLine(lastContextToken.getCharPositionInLine()
                                 + lastContextToken.getText().length());
                     }
                 }
@@ -623,10 +577,8 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
      * (java.lang.String, int, boolean)
      */
     @Override
-    public void notifyEnterOperatorSequence(String operator, int arity,
-            boolean isUnaryPostfix) {
-        logInfo("notifyEnterOperatorSequence operator: " + operator
-                + " arity: " + arity + " isUnaryPostfix: " + isUnaryPostfix);
+    public void notifyEnterOperatorSequence(String operator, int arity, boolean isUnaryPostfix) {
+        logInfo("notifyEnterOperatorSequence operator: " + operator + " arity: " + arity + " isUnaryPostfix: " + isUnaryPostfix);
 
         currentIsOperator = true;
 
@@ -643,7 +595,7 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
         TCSFactory c = TCSFactory.eINSTANCE;
         Sequence dummy = c.createSequence();
         transientPartition.getContents().add(dummy);
-        
+
         LiteralRef litRef = c.createLiteralRef();
         transientPartition.getContents().add(litRef);
 

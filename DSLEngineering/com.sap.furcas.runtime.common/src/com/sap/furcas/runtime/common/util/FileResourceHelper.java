@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
@@ -48,6 +49,7 @@ public class FileResourceHelper {
 
         try {
             resource.load(null);
+            checkForErrors(resource);
         } catch (IOException e) {
             throw new MetaModelLookupException("Unable to parse ecore xmi for file uri " + uri + " : " + e.getMessage(), e);
         }
@@ -57,6 +59,16 @@ public class FileResourceHelper {
                 EPackage new_package = (EPackage) object;
                 EPackage.Registry.INSTANCE.put(new_package.getNsURI(), new_package);
             }
+        }
+    }
+
+    private static void checkForErrors(Resource resource) {
+        if (resource.getErrors().size() > 0) {
+            StringBuilder buff = new StringBuilder();
+            for (Diagnostic err : resource.getErrors()) {
+                buff.append(err.getMessage() + "\n");
+            }
+            throw new RuntimeException("Loaded resource contains errors: \n" + buff.toString());
         }
     }
     

@@ -36,7 +36,7 @@ public interface EndOfLineRule extends Rule {
      * @return the value of the '<em>Start</em>' containment reference.
      * @see #setStart(StringPattern)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getEndOfLineRule_Start()
-     * @model containment="true" resolveProxies="true" required="true" ordered="false"
+     * @model containment="true" required="true" ordered="false"
      * @generated
      */
         StringPattern getStart();
