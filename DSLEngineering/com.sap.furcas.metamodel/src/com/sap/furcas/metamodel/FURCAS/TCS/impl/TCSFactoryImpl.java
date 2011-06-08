@@ -211,7 +211,6 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
             case TCSPackage.PROPERTY_REFERENCE: return createPropertyReference();
             case TCSPackage.CONTEXT_TEMPLATE: return createContextTemplate();
             case TCSPackage.CONTEXT_TAGS: return createContextTags();
-            case TCSPackage.OCL_PROPERTY_INIT: return createOclPropertyInit();
             case TCSPackage.SCOPE_ARG: return createScopeArg();
             case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT: return createForeachPredicatePropertyInit();
             case TCSPackage.PREDICATE_SEMANTIC: return createPredicateSemantic();
@@ -997,17 +996,6 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
         public ContextTags createContextTags() {
         ContextTagsImpl contextTags = new ContextTagsImpl();
         return contextTags;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public OclPropertyInit createOclPropertyInit() {
-        OclPropertyInitImpl oclPropertyInit = new OclPropertyInitImpl();
-        return oclPropertyInit;
     }
 
         /**

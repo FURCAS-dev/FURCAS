@@ -31,8 +31,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * <ul>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.OperatorTemplateImpl#getOperators <em>Operators</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.OperatorTemplateImpl#getSource <em>Source</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.OperatorTemplateImpl#getStoreOpTo <em>Store Op To</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.OperatorTemplateImpl#getStoreRightTo <em>Store Right To</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.OperatorTemplateImpl#getStoreOperatorTo <em>Store Operator To</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.OperatorTemplateImpl#getStoreLeftSideTo <em>Store Left Side To</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.OperatorTemplateImpl#getStoreRightSideTo <em>Store Right Side To</em>}</li>
@@ -71,46 +69,6 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
      * @ordered
      */
         protected String source = SOURCE_EDEFAULT;
-
-        /**
-     * The default value of the '{@link #getStoreOpTo() <em>Store Op To</em>}' attribute.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @see #getStoreOpTo()
-     * @generated
-     * @ordered
-     */
-        protected static final String STORE_OP_TO_EDEFAULT = null;
-
-        /**
-     * The cached value of the '{@link #getStoreOpTo() <em>Store Op To</em>}' attribute.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @see #getStoreOpTo()
-     * @generated
-     * @ordered
-     */
-        protected String storeOpTo = STORE_OP_TO_EDEFAULT;
-
-        /**
-     * The default value of the '{@link #getStoreRightTo() <em>Store Right To</em>}' attribute.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @see #getStoreRightTo()
-     * @generated
-     * @ordered
-     */
-        protected static final String STORE_RIGHT_TO_EDEFAULT = null;
-
-        /**
-     * The cached value of the '{@link #getStoreRightTo() <em>Store Right To</em>}' attribute.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @see #getStoreRightTo()
-     * @generated
-     * @ordered
-     */
-        protected String storeRightTo = STORE_RIGHT_TO_EDEFAULT;
 
         /**
      * The cached value of the '{@link #getStoreOperatorTo() <em>Store Operator To</em>}' containment reference.
@@ -192,48 +150,6 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
         source = newSource;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.OPERATOR_TEMPLATE__SOURCE, oldSource, source));
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        public String getStoreOpTo() {
-        return storeOpTo;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        public void setStoreOpTo(String newStoreOpTo) {
-        String oldStoreOpTo = storeOpTo;
-        storeOpTo = newStoreOpTo;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.OPERATOR_TEMPLATE__STORE_OP_TO, oldStoreOpTo, storeOpTo));
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        public String getStoreRightTo() {
-        return storeRightTo;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        public void setStoreRightTo(String newStoreRightTo) {
-        String oldStoreRightTo = storeRightTo;
-        storeRightTo = newStoreRightTo;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.OPERATOR_TEMPLATE__STORE_RIGHT_TO, oldStoreRightTo, storeRightTo));
     }
 
         /**
@@ -412,10 +328,6 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
                 return getOperators();
             case TCSPackage.OPERATOR_TEMPLATE__SOURCE:
                 return getSource();
-            case TCSPackage.OPERATOR_TEMPLATE__STORE_OP_TO:
-                return getStoreOpTo();
-            case TCSPackage.OPERATOR_TEMPLATE__STORE_RIGHT_TO:
-                return getStoreRightTo();
             case TCSPackage.OPERATOR_TEMPLATE__STORE_OPERATOR_TO:
                 return getStoreOperatorTo();
             case TCSPackage.OPERATOR_TEMPLATE__STORE_LEFT_SIDE_TO:
@@ -441,12 +353,6 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
                 return;
             case TCSPackage.OPERATOR_TEMPLATE__SOURCE:
                 setSource((String)newValue);
-                return;
-            case TCSPackage.OPERATOR_TEMPLATE__STORE_OP_TO:
-                setStoreOpTo((String)newValue);
-                return;
-            case TCSPackage.OPERATOR_TEMPLATE__STORE_RIGHT_TO:
-                setStoreRightTo((String)newValue);
                 return;
             case TCSPackage.OPERATOR_TEMPLATE__STORE_OPERATOR_TO:
                 setStoreOperatorTo((PropertyReference)newValue);
@@ -475,12 +381,6 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
             case TCSPackage.OPERATOR_TEMPLATE__SOURCE:
                 setSource(SOURCE_EDEFAULT);
                 return;
-            case TCSPackage.OPERATOR_TEMPLATE__STORE_OP_TO:
-                setStoreOpTo(STORE_OP_TO_EDEFAULT);
-                return;
-            case TCSPackage.OPERATOR_TEMPLATE__STORE_RIGHT_TO:
-                setStoreRightTo(STORE_RIGHT_TO_EDEFAULT);
-                return;
             case TCSPackage.OPERATOR_TEMPLATE__STORE_OPERATOR_TO:
                 setStoreOperatorTo((PropertyReference)null);
                 return;
@@ -506,10 +406,6 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
                 return operators != null && !operators.isEmpty();
             case TCSPackage.OPERATOR_TEMPLATE__SOURCE:
                 return SOURCE_EDEFAULT == null ? source != null : !SOURCE_EDEFAULT.equals(source);
-            case TCSPackage.OPERATOR_TEMPLATE__STORE_OP_TO:
-                return STORE_OP_TO_EDEFAULT == null ? storeOpTo != null : !STORE_OP_TO_EDEFAULT.equals(storeOpTo);
-            case TCSPackage.OPERATOR_TEMPLATE__STORE_RIGHT_TO:
-                return STORE_RIGHT_TO_EDEFAULT == null ? storeRightTo != null : !STORE_RIGHT_TO_EDEFAULT.equals(storeRightTo);
             case TCSPackage.OPERATOR_TEMPLATE__STORE_OPERATOR_TO:
                 return storeOperatorTo != null;
             case TCSPackage.OPERATOR_TEMPLATE__STORE_LEFT_SIDE_TO:
@@ -532,10 +428,6 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (source: ");
         result.append(source);
-        result.append(", storeOpTo: ");
-        result.append(storeOpTo);
-        result.append(", storeRightTo: ");
-        result.append(storeRightTo);
         result.append(')');
         return result.toString();
     }

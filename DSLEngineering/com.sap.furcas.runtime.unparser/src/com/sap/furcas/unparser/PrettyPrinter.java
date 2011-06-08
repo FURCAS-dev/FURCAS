@@ -764,7 +764,7 @@ public class PrettyPrinter {
 	} else if (name.equals("space")) {
 	    printer.printCustomWhiteSpace(" ");
 	} else if (name.equals("newline")) {
-	    printer.printCustomWhiteSpace(LINE_FEED);
+	    printer.printCustomWhiteSpace(LINE_FEED + currentContext.getCurIndent());
 	} else if (name.equals("tab")) {
 	    printer.printCustomWhiteSpace("\t");
 	}
