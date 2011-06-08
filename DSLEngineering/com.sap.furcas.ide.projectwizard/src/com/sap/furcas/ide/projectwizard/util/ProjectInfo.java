@@ -30,7 +30,7 @@ public class ProjectInfo {
      */
     private String nsURI = "";
     
-    private boolean autoResolve = false;
+    private boolean autoResolve = true;
 
     /**
      * Stores the name of the first class that is used for the main template in the language. When new Metamodel project creation
