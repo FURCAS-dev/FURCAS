@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import com.sap.furcas.ide.dslproject.Activator;
 import com.sap.furcas.ide.dslproject.Constants;
 import com.sap.furcas.ide.dslproject.builder.BuildHelper;
-import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
 import com.sap.furcas.runtime.common.util.FileResourceHelper;
 import com.sap.furcas.utils.exceptions.EclipseExceptionHelper;
 
@@ -34,7 +33,7 @@ public final class EcoreMetaProjectConf implements IProjectMetaRefConf {
 
     /** The referenced project. */
     private final IProject referencedProject;
-    private final String nsURI;
+    private final String metamodelURIs;
     private final String modelPath;
     private final boolean autoResolve;
 
@@ -47,9 +46,9 @@ public final class EcoreMetaProjectConf implements IProjectMetaRefConf {
      * @throws CoreException
      *             the core exception
      */
-    public EcoreMetaProjectConf(IProject referencedProject, String modelPath, String nsURI, boolean autoResolve) {
+    public EcoreMetaProjectConf(IProject referencedProject, String modelPath, String metamodelURIs, boolean autoResolve) {
         this.referencedProject = referencedProject;
-        this.nsURI = nsURI;
+        this.metamodelURIs = metamodelURIs;
         this.modelPath = modelPath;
         this.autoResolve = autoResolve;
     }
@@ -67,7 +66,7 @@ public final class EcoreMetaProjectConf implements IProjectMetaRefConf {
      */
     public static EcoreMetaProjectConf getConfigurationFromProject(IProject project) throws CoreException {
         String projectName = ProjectPropertiesStorageHelper.getProperty(project, Constants.REFERRED_PROJECT_NAME_KEY);
-        String nsURI = ProjectPropertiesStorageHelper.getProperty(project, "nsURI");
+        String metamodelURIs = ProjectPropertiesStorageHelper.getProperty(project, "metamodels");
         String modelPath = ProjectPropertiesStorageHelper.getProperty(project, "modelPath");
         boolean autoResolve = Boolean.parseBoolean(ProjectPropertiesStorageHelper.getProperty(project, "autoResolve"));
 
@@ -80,7 +79,7 @@ public final class EcoreMetaProjectConf implements IProjectMetaRefConf {
             throw new CoreException(EclipseExceptionHelper.getErrorStatus("Referenced Project " + projectName
                     + " does not exist in Workspace.", Activator.PLUGIN_ID));
         }
-        return new EcoreMetaProjectConf(referencedProject, modelPath, nsURI, autoResolve);
+        return new EcoreMetaProjectConf(referencedProject, modelPath, metamodelURIs, autoResolve);
     }
 
     /*
@@ -91,7 +90,7 @@ public final class EcoreMetaProjectConf implements IProjectMetaRefConf {
     @Override
     public void configureProject(IProject project) throws CoreException {
         ProjectPropertiesStorageHelper.setProperty(project, Constants.REFERRED_PROJECT_NAME_KEY, referencedProject.getName());
-        ProjectPropertiesStorageHelper.setProperty(project, "nsURI", nsURI);
+        ProjectPropertiesStorageHelper.setProperty(project, "metamodels", metamodelURIs+",http://www.eclipse.org/emf/2002/Ecore");
         ProjectPropertiesStorageHelper.setProperty(project, "modelPath", modelPath);
         ProjectPropertiesStorageHelper.setProperty(project, "autoResolve", Boolean.toString(autoResolve));
     }
@@ -127,15 +126,17 @@ public final class EcoreMetaProjectConf implements IProjectMetaRefConf {
             }
 
         } else {
-            URI createURI = URI.createURI(nsURI);
-            newURIs.add(createURI);
-            resourceSet.getResources().add(resourceSet.getResource(createURI, true));
+            String[] uris = metamodelURIs.split(",");
+            for (String uri : uris) {
+                URI createURI = URI.createURI(uri);
+                newURIs.add(createURI);
+                resourceSet.getResources().add(resourceSet.getResource(createURI, true));
+            }
         }
         if (autoResolve) {
             addAllCrossReferences(resourceSet);
+            newURIs.addAll(FileResourceHelper.getResourceSetAsScope(resourceSet));
         }
-        newURIs.add(URI.createURI(FURCASPackage.eINSTANCE.eClass().getEPackage().getNsURI()));
-        newURIs.addAll(FileResourceHelper.getResourceSetAsScope(resourceSet));
         return new ReferenceScopeBean(resourceSet, newURIs);
     }
 
