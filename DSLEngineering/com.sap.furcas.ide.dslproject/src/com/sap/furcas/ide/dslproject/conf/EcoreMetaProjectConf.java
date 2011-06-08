@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2011 SAP AG and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     SAP AG - initial API and implementation
+ ******************************************************************************/
 package com.sap.furcas.ide.dslproject.conf;
 
 import java.io.IOException;
@@ -25,9 +35,9 @@ import com.sap.furcas.runtime.common.util.FileResourceHelper;
 import com.sap.furcas.utils.exceptions.EclipseExceptionHelper;
 
 /**
- * configures a project to use an open MOF14 metamodel as reference.
+ * Configures a project to use an ecore metamodel as reference.
  * 
- * @author C5107456
+ *  @author Frederik Petersen (D054528)
  */
 public final class EcoreMetaProjectConf implements IProjectMetaRefConf {
 
