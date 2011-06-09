@@ -8,6 +8,8 @@
  *******************************************************************************/
 package com.sap.furcas.runtime.parser;
 
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+
 
 
 /**
@@ -60,7 +62,12 @@ public class ParsingError {
 //        
 //    }
     
-	/**
+	public ParsingError(String message2, AbstractToken unconsumedToken) {
+        message = message2;
+        location = new TextLocation(unconsumedToken);
+    }
+
+    /**
 	 * Gets the message.
 	 * 
 	 * @return the message

@@ -183,24 +183,37 @@ public class IncrementalParser extends IncrementalRecognizer {
                 // parse the given part of the texblocktree
                 commonAncestor = prepareForParsing(commonAncestor,
                         parserTextBlocksHandler);
+                boolean errornous = false;
                 try {
                     callBatchParser(commonAncestor);
                     while (!errorMode
-                            && (getErrorList().size() > 0 || !comsumedAllTokens(commonAncestor))
-                            && commonAncestor.getParent() != null) {
+                            && (getErrorList().size() > 0 || !comsumedAllTokens(commonAncestor))) {
                         // parsing failed, so try to parse with the parent block
                         // and see if it works
-                        commonAncestor = commonAncestor.getParent();
-                        commonAncestor = prepareForParsing(commonAncestor,
-                                parserTextBlocksHandler);
-                        callBatchParser(commonAncestor);
+                        if (commonAncestor.getParent() != null) {
+                            //There is a parent than can be parsed
+                            commonAncestor = commonAncestor.getParent();
+                            commonAncestor = prepareForParsing(commonAncestor,
+                                    parserTextBlocksHandler);
+                            callBatchParser(commonAncestor);
+                        } else {
+                            //There is no parent block and there are still unconsumed tokens 
+                            //so we have an error in the input
+                            ANTLRIncrementalTokenStream tokenStream = (ANTLRIncrementalTokenStream) batchParser
+                                    .getTokenStream();
+                            AbstractToken unconsumedToken = TbNavigationUtil.nextToken(tokenStream.getLastConsumedToken());
+                            getErrorList().add(new ParsingError("There were uconsumed tokens: " + unconsumedToken.getValue(), unconsumedToken));
+                            errornous = true;
+                            break;
+                        }
                     }
 
-                    boolean errornous = false;
-                    if (batchParser.getInjector().getErrorList().size() > 0) {
+                    
+                    if (batchParser.getInjector().getErrorList().size() > 0 || errornous == true) {
                         if (!errorMode) {
                             throw new SemanticParserException(getErrorList(), Component.SYNTACTIC_ANALYSIS);
                         } else {
+                            //ensure errornous is set
                             errornous = true;
                         }
                     }
@@ -296,6 +309,10 @@ public class IncrementalParser extends IncrementalRecognizer {
             nextTok = TbNavigationUtil.nextToken(nextTok);
         }
         if (nextTok != null) {
+            if (nextTok instanceof Eostoken) {
+                //we are at the end of the streem, thus we consumed everything
+                return true;
+            }
             if (TbVersionUtil.getOtherVersion(tok, Version.REFERENCE) == null) {
                 if (TbVersionUtil.getOtherVersion(nextTok, Version.REFERENCE) != null) {
                     // this is the edge between new and existing tokens, so TODO
