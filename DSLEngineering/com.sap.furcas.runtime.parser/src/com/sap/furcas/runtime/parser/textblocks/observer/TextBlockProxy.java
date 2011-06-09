@@ -49,7 +49,9 @@ public class TextBlockProxy {
 	private final List<Integer> alternativeChoices = new ArrayList<Integer>(1);
 	
 	public <T extends Object> void addSubNode(T newNode) {
+	    if(!subNodes.contains(newNode)) {
 		subNodes.add(newNode);
+	    }
 	}
 	
 	public <T extends Object> void addSubNodes(List<T> newNodes) {
