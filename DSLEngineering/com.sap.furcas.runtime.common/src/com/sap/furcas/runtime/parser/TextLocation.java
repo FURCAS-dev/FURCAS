@@ -8,6 +8,8 @@
  *******************************************************************************/
 package com.sap.furcas.runtime.parser;
 
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+
  
 
 /**
@@ -68,6 +70,10 @@ public class TextLocation {
     
     
     
+    public TextLocation(AbstractToken unconsumedToken) {
+        // TODO Auto-generated constructor stub
+    }
+
     public int getStartLine() {
         return startLine;
     }

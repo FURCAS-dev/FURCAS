@@ -258,7 +258,6 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
     }
     
     
-    @Ignore("TB merge produces invalid textblock")
     @Test
     public void testMergeTwoBlocks() throws Exception {
         model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
