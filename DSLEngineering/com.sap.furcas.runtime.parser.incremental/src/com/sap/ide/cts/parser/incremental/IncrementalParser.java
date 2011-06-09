@@ -187,7 +187,8 @@ public class IncrementalParser extends IncrementalRecognizer {
                 try {
                     callBatchParser(commonAncestor);
                     while (!errorMode
-                            && (getErrorList().size() > 0 || !comsumedAllTokens(commonAncestor))) {
+                            && (getErrorList().size() > 0 || !comsumedAllTokens(commonAncestor,
+                                    parserTextBlocksHandler))) {
                         // parsing failed, so try to parse with the parent block
                         // and see if it works
                         if (commonAncestor.getParent() != null) {
@@ -294,7 +295,16 @@ public class IncrementalParser extends IncrementalRecognizer {
 
     }
 
-    private boolean comsumedAllTokens(TextBlock commonAncestor) {
+    /**
+     * Checks if there are unconsumed tokens in the given <tt>commonAncestor</tt> block. If that is the case
+     * the method will return <tt>false</tt>. Otherwise possibly remaining {@link OmittedToken}s will be added to 
+     * the root block of the {@link ParserTextBlocksHandler} and <tt>true</tt> will be returned.
+     * 
+     * @param commonAncestor The {@link TextBlock} from which the consumption of its tokens should be checked.
+     * @param parserTextBlocksHandler The {@link ParserTextBlocksHandler} which consumed the last tokens.
+     * @return <tt>true</tt> if all tokens in the given <tt>commonAncestor</tt> have been consumed, <tt>flase</tt> else. 
+     */
+    private boolean comsumedAllTokens(TextBlock commonAncestor, ParserTextBlocksHandler parserTextBlocksHandler) {
         // TODO if last new token was last consumed and the parent rule does
         // match the parent block
         // we should return true
@@ -304,13 +314,22 @@ public class IncrementalParser extends IncrementalRecognizer {
             return true;
         }
         AbstractToken nextTok = TbNavigationUtil.nextToken(tok);
+        List<OmittedToken> omittedTokensBetween = new ArrayList<OmittedToken>();
         while (nextTok instanceof OmittedToken
                 && !(nextTok instanceof Eostoken)) {
+            omittedTokensBetween.add((OmittedToken) nextTok);
             nextTok = TbNavigationUtil.nextToken(nextTok);
         }
         if (nextTok != null) {
             if (nextTok instanceof Eostoken) {
-                //we are at the end of the streem, thus we consumed everything
+                //we are at the end of the stream, 
+                //Still we have to ensure that all remaining Omitted Tokens have been consumed as well
+                //thus we consumed everything
+                if(omittedTokensBetween.size() > 0) {
+                    for (OmittedToken omittedToken : omittedTokensBetween) {
+                        parserTextBlocksHandler.getCurrentTbProxy().addSubNode(omittedToken);
+                    }
+                }
                 return true;
             }
             if (TbVersionUtil.getOtherVersion(tok, Version.REFERENCE) == null) {
