@@ -13,6 +13,7 @@ import java.util.EventObject;
 
 import org.antlr.runtime.Lexer;
 import org.eclipse.emf.common.command.CommandStackListener;
+import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -102,7 +103,7 @@ public class AbstractFurcasEditor extends UniversalEditor {
     
     private final TransactionalEditingDomain editingDomain;
     private final ConcreteSyntax syntax;
-    private final ComposedAdapterFactory adapterFactory;
+    private final AdapterFactory adapterFactory;
     
     private CtsDocumentProvider documentProvoider;
 
@@ -187,7 +188,7 @@ public class AbstractFurcasEditor extends UniversalEditor {
     /**
      * Can be overwritten by subclasses if needed.
      */
-    protected ComposedAdapterFactory createAdapterFactory() {
+    protected AdapterFactory createAdapterFactory() {
         @SuppressWarnings("hiding")
         ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory();
         adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
