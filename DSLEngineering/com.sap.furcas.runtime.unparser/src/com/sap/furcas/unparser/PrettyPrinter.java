@@ -485,7 +485,7 @@ public class PrettyPrinter {
 	    EnumerationTemplate template = findEnumerationTemplate((EEnum) TcsUtil.getType(property));
 	    String enumLiteral = value.toString();
 	    if (template.isAutomatic()) {
-	        printer.printStringLiteral(enumLiteral);
+	        printer.printDefault(enumLiteral);
 	    } else {
 	        for (EnumLiteralMapping mapping : template.getMappings()) {
 	            if (mapping.getLiteral().getName().equals(enumLiteral)) {
