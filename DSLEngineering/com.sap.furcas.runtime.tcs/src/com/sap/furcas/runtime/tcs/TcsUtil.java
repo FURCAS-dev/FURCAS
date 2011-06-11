@@ -208,11 +208,15 @@ public class TcsUtil {
 
                         for (OperatorTemplate ot : findOperatorTemplatesByOperatorLiteralValue(operatorValue,
                                 (EClass) getType(prop), syntax)) {
+                            
+                            HashSet<Template> visitedTemplates = new HashSet<Template>();
+                            visitedTemplates.add(ot);
+                            
                             if (ot.getTemplateSequence() != null) {
                                 addAllIfNotNull(
                                         results,
                                         getPossibleFirstAtomicSequenceElements(ot.getTemplateSequence(), classTemplateMap,
-                                                new HashSet<Template>(), syntax));
+                                                visitedTemplates, syntax));
                             } else {
                                 otWithoutSequenceFound = true;
                             }
@@ -443,13 +447,14 @@ public class TcsUtil {
             Map<List<String>, Map<String, ClassTemplate>> classTemplateMap) {
 
         ClassTemplate main = getMainClassTemplate(syntax);
+        Set<Template> visitedTemplates = new HashSet<Template>();
+        visitedTemplates.add(main);
+        
         if (main.isIsAbstract()) {
             return getPossibleFirstAtomicSequenceElements((EClass) main.getMetaReference(), main.getMode(), classTemplateMap,
-                    new HashSet<Template>(), syntax, getResourceSetFromEObject(main));
-
+                    visitedTemplates, syntax, getResourceSetFromEObject(main));
         } else {
-            return getPossibleFirstAtomicSequenceElements(getMainClassTemplate(syntax), classTemplateMap,
-                    new HashSet<Template>(), syntax);
+            return getPossibleFirstAtomicSequenceElements(main.getTemplateSequence(), classTemplateMap, visitedTemplates, syntax);
         }
     }
 
@@ -630,9 +635,17 @@ public class TcsUtil {
             Map<List<String>, Map<String, ClassTemplate>> classTemplateMap, Set<Template> visitedTemplates,
             ConcreteSyntax syntax, ResourceSet connection) {
         List<SequenceElement> results = new ArrayList<SequenceElement>();
-        for (ClassTemplate ct : getClassTemplates(type, mode, classTemplateMap, connection)) {
+
+        Collection<ClassTemplate> classTemplates = getClassTemplates(type, mode, classTemplateMap, connection);
+        classTemplates.removeAll(visitedTemplates); // reduce classTemplates to the templates which have not yet been visited 
+        visitedTemplates.addAll(classTemplates);
+
+        for (ClassTemplate ct : classTemplates) {
             if (!ct.isIsAbstract()) {
-                addAllIfNotNull(results, getPossibleFirstAtomicSequenceElements(ct, classTemplateMap, visitedTemplates, syntax));
+                addAllIfNotNull(
+                        results,
+                        getPossibleFirstAtomicSequenceElements(ct.getTemplateSequence(), classTemplateMap, visitedTemplates,
+                                syntax));
             } else {
                 if (ct.isIsOperatored()) {
                     // add prefix operators
@@ -821,33 +834,6 @@ public class TcsUtil {
                 return null;
             }
 
-        }
-
-        return createListWithEntry(null);
-    }
-
-    /**
-     * Returns a list of the first possible atomic SequenceElements of the given ClassTemplate.
-     * 
-     * If the ClassTemplate is abstract, compute subtypes and add all possible first atomic elements for each non-abstract
-     * subtype.
-     * 
-     * @param t
-     *            ClassTemplate to get the first possible atomic SequenceElements from
-     * @return first possible atomic SequenceElements
-     */
-    static List<SequenceElement> getPossibleFirstAtomicSequenceElements(ClassTemplate t,
-            Map<List<String>, Map<String, ClassTemplate>> classTemplateMap, Set<Template> visitedTemplates, ConcreteSyntax syntax) {
-
-        assert (visitedTemplates != null);
-
-        if (t != null) {
-            if (!visitedTemplates.contains(t)) {
-                visitedTemplates.add(t);
-                return getPossibleFirstAtomicSequenceElements(t.getTemplateSequence(), classTemplateMap, visitedTemplates, syntax);
-            } else {
-                return null;
-            }
         }
 
         return createListWithEntry(null);
