@@ -709,14 +709,16 @@ public class CtsContentAssistUtil {
             if (e instanceof Property) {
                 Property p = (Property) e;
                 if (!TcsUtil.isAtomic(p, classTemplateMap)) {
-                    for (ClassTemplate ct : TcsUtil.getClassTemplates((EClass) TcsUtil.getType(p), TcsUtil.getMode(p),
-                            classTemplateMap, p.eResource().getResourceSet())) {
+                    
+                    Collection<ClassTemplate> classTemplates = TcsUtil.getClassTemplates((EClass) TcsUtil.getType(p),
+                            TcsUtil.getMode(p), classTemplateMap, p.eResource().getResourceSet());
+                    classTemplates.removeAll(visitedTemplates); // reduce classTemplates to the templates which have not yet been visited 
+                    visitedTemplates.addAll(classTemplates);
+
+                    for (ClassTemplate ct : classTemplates) {
                         HashSet<Template> subVisited = new HashSet<Template>(visitedTemplates);
-                        if (!subVisited.contains(ct)) {
-                            subVisited.add(ct);
-                            results.addAll(generateFollowTemplateProposalStrings(ct.getTemplateSequence(), classTemplateMap,
-                                    syntax, subVisited));
-                        }
+                        results.addAll(generateFollowTemplateProposalStrings(ct.getTemplateSequence(), classTemplateMap, syntax,
+                                subVisited));
                     }
 
                     return results;
