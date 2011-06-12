@@ -137,7 +137,7 @@ public class AbstractFurcasEditor extends UniversalEditor {
         parserFacade = createParserFacade(partitionHandler);
         
         SetupTextBlocksModelCommand command = new SetupTextBlocksModelCommand(editingDomain, modelEditorInput.getRootObject(),
-                modelEditorInput.getRootBlock(), parserFacade);
+                modelEditorInput.getRootBlock(), parserFacade, partitionHandler);
         editingDomain.getCommandStack().execute(command);
         modelEditorInput.setRootBlock(command.getResultBlock());
         

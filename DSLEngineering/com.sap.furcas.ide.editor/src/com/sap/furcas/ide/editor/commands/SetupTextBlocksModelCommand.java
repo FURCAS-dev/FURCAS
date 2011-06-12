@@ -21,6 +21,7 @@ import com.sap.furcas.ide.editor.dialogs.PrettyPrintPreviewDialog;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.runtime.parser.PartitionAssignmentHandler;
 import com.sap.furcas.runtime.tcs.MessageHelper;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
@@ -52,14 +53,16 @@ public class SetupTextBlocksModelCommand extends RecordingCommand {
     private TextBlock resultBlock;
     private final ConcreteSyntax syntax;
     private final ClassTemplate mainTemplate;
+    private final PartitionAssignmentHandler partitionHandler;
 
     public SetupTextBlocksModelCommand(TransactionalEditingDomain domain, EObject rootObject, TextBlock rootBlock,
-            IncrementalParserFacade parserFacade) {
+            IncrementalParserFacade parserFacade, PartitionAssignmentHandler partitionHandler) {
         super(domain, "Initialize TextBlocks Model");
         
         this.rootObject = rootObject;
         this.rootBlock = rootBlock;
         this.parserFacade = parserFacade;
+        this.partitionHandler = partitionHandler;
         
         this.syntax = parserFacade.getParserScope().getSyntax();
         this.mainTemplate = TcsUtil.getMainClassTemplate(syntax);
@@ -77,6 +80,16 @@ public class SetupTextBlocksModelCommand extends RecordingCommand {
             
             TbValidationUtil.assertTextBlockConsistencyRecursive(resultBlock);
             TbValidationUtil.assertCacheIsUpToDate(resultBlock);
+            
+            if (resultBlock.eResource() == null) {
+                // It is not optimal to do this here, as it is meant to be the task
+                // of the parser facade. However, the invariant that each textblock
+                // is always assigned to a resources makes the implementation of the
+                // rest of the editor much easier. (Currently required to calculated
+                // marker positions within the current document).
+                partitionHandler.setDefaultPartition(rootObject.eResource());
+                partitionHandler.assignToDefaultTextBlocksPartition(resultBlock);
+            }
             
         } catch (Exception e) {
             throw new RuntimeException("Failed to initialize textual view", e);

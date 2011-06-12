@@ -100,4 +100,5 @@ public class EditorUtil {
 	}
 	throw new RuntimeException("No Parser Factory registered for syntax: " + syntax.getName());
     }
+    
 }
