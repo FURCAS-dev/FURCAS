@@ -1,5 +1,11 @@
 package com.sap.furcas.ide.editor.contentassist;
 
+import static com.sap.furcas.ide.editor.contentassist.CompletionProposalHelper.prefixFilter;
+import static com.sap.furcas.ide.editor.contentassist.CompletionProposalHelper.proposalListAsArray;
+import static com.sap.furcas.ide.editor.contentassist.CompletionProposalHelper.removeDuplicates;
+import static com.sap.furcas.ide.editor.contentassist.CompletionProposalHelper.removeNullValues;
+import static com.sap.furcas.ide.editor.contentassist.CompletionProposalHelper.sortProposals;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -178,7 +184,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
                     prefix = CtsContentAssistUtil.computeNonWhitespacePrefix(CtsContentAssistUtil.getDocumentContents(viewer),
                             curOffset, stopOffset);
 
-                    results = CompletionProposalHelper.prefixFilter(CompletionProposalHelper.removeNullValues(results), prefix);
+                    results = prefixFilter(removeNullValues(results), prefix);
 
                     // end workaround
 
@@ -210,7 +216,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
                         // compute prefix from token text
                         prefix = computePrefixFromContext(charPositionInLine, context);
 
-                        results = CompletionProposalHelper.prefixFilter(CompletionProposalHelper.removeNullValues(results), prefix);
+                        results = prefixFilter(removeNullValues(results), prefix);
 
                         // also get following proposals when after the last char
                         // of
@@ -237,7 +243,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
                     }
                 }
 
-                return CompletionProposalHelper.proposalListAsArray(CompletionProposalHelper.sortProposals(CompletionProposalHelper.removeDuplicates(CompletionProposalHelper.removeNullValues(results)), prefix));
+                return proposalListAsArray(sortProposals(removeDuplicates(removeNullValues(results)), prefix));
             }
 
         } catch (Exception e) {
