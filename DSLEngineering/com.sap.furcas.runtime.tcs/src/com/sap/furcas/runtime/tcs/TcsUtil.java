@@ -127,8 +127,10 @@ public class TcsUtil {
      * @param c
      */
     public static void clearTransientPartition(ResourceSet c) {
-        Resource transientPartition = c.getResource(TRANSIENT_PARTITION_NAME, true);
-        transientPartition.getContents().clear();
+        Resource transientPartition = c.getResource(TRANSIENT_PARTITION_NAME, false);
+        if (transientPartition != null) {
+            transientPartition.getContents().clear();
+        }
 
         // also clear operatorToLiteralRefMap which would otherwise refer to
         // deleted elements
@@ -1081,29 +1083,6 @@ public class TcsUtil {
             results.add((ConcreteSyntax) connection.getEObject(elem, false));
         }
         return results;
-    }
-
-    /**
-     * Get the build-in TCS ConcreteSyntax.
-     * 
-     * @param connection
-     *            ResourceSet to look in
-     * @return build-in TCS ConcreteSyntax
-     */
-    public static ConcreteSyntax getTcsSyntax(ResourceSet connection) {
-        // TODO implement some real way of identifying the build-in TCS
-        // ConcreteSyntax.
-        // note that the name will not suffice, as a new TCS syntax can be build
-        // using the build-in TCS syntax (after bootstrapping)
-
-        List<ConcreteSyntax> syntaxList = getSyntaxesInResourceSet(connection);
-
-        for (ConcreteSyntax syntax : syntaxList) {
-            if (syntax.getName().equals("TCS")) {
-                return syntax;
-            }
-        }
-        return null;
     }
 
     /**

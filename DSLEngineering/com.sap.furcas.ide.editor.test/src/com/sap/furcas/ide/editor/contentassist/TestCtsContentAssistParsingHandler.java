@@ -13,6 +13,7 @@ import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.parser.tcs.TCSParserFactory;
+import com.sap.furcas.runtime.tcs.TcsUtil;
 
 public class TestCtsContentAssistParsingHandler {
 
@@ -24,7 +25,8 @@ public class TestCtsContentAssistParsingHandler {
         TCSParserFactory factory = new TCSParserFactory();
         ConcreteSyntax tcsSyntax = (ConcreteSyntax) resourceSet.getEObject(URI.createURI(factory.getSyntaxUUID()), /*load*/true);
         assertNotNull(tcsSyntax);
-        handler = new CtsContentAssistParsingHandler(tcsSyntax, resourceSet);
+        handler = new CtsContentAssistParsingHandler(resourceSet, TcsUtil.createClassTemplateMap(tcsSyntax),
+                TcsUtil.createOperatorTemplateMap(tcsSyntax));
     }
 
     @Test

@@ -128,7 +128,7 @@ public class SelectEObjectDialog extends TitleAreaDialog {
             public void doubleClick(DoubleClickEvent event) {
                 if (OKbutton.isEnabled()) {
                     close();
-                }
+                 }
             }
         });
         

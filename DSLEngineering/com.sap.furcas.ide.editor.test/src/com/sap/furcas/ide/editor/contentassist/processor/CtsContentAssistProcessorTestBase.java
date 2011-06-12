@@ -39,8 +39,7 @@ public abstract class CtsContentAssistProcessorTestBase extends GeneratedTextblo
 
         initTbModel(in, facade, postFixtureParseReplacement);
 
-        processor = new CtsContentAssistProcessor(facade.getParserScope().getSyntax(), facade.getParserFactory(),
-                facade.getParserFactory().getLanguageId());
+        processor = new CtsContentAssistProcessor(facade);
     }
 
     /**

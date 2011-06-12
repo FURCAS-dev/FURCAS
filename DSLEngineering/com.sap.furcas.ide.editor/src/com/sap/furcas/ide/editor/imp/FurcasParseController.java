@@ -163,5 +163,9 @@ public abstract class FurcasParseController extends ParseControllerBase {
     public IAnnotationTypeInfo getAnnotationTypeInfo() {
         return annotationTypeInfo;
     }
+
+    public IncrementalParserFacade getParserFacade() {
+        return parserFacade;
+    }
     
 }

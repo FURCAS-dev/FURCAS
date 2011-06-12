@@ -10,17 +10,13 @@
  ******************************************************************************/
 package com.sap.furcas.ide.editor.imp.services;
 
-import org.antlr.runtime.Lexer;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.services.IContentProposer;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
-import com.sap.furcas.ide.editor.EditorUtil;
 import com.sap.furcas.ide.editor.contentassist.CtsContentAssistProcessor;
-import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
-import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
-import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.ide.editor.imp.FurcasParseController;
 
 /**
  * {@link IContentProposer} implementation for languages defined in FURCAS.
@@ -32,17 +28,13 @@ import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
  */
 public class FurcasContentProposer implements IContentProposer {
     
-    private final CtsContentAssistProcessor contentProposer;
-
-    public FurcasContentProposer(AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) {
-        // FIXME: the contentassit can have side effects!
-        // It still assumes we have transactions and wipes the entire resourceSet
-        ConcreteSyntax syntax = EditorUtil.loadConcreteSyntax(parserFactory);
-        contentProposer = new CtsContentAssistProcessor(syntax, parserFactory, parserFactory.getLanguageId());
-    }
+    private CtsContentAssistProcessor contentProposer;
 
     @Override
     public ICompletionProposal[] getContentProposals(IParseController controller, int offset, ITextViewer viewer) {
+        if (contentProposer == null) {
+            contentProposer = new CtsContentAssistProcessor(((FurcasParseController) controller).getParserFacade());
+        }
         return contentProposer.computeCompletionProposals(viewer, offset);
     }
 
