@@ -1,10 +1,21 @@
 package com.sap.furcas.ide.editor.contentassist;
 
+
 import static com.sap.furcas.ide.editor.contentassist.CompletionProposalHelper.prefixFilter;
 import static com.sap.furcas.ide.editor.contentassist.CompletionProposalHelper.proposalListAsArray;
 import static com.sap.furcas.ide.editor.contentassist.CompletionProposalHelper.removeDuplicates;
 import static com.sap.furcas.ide.editor.contentassist.CompletionProposalHelper.removeNullValues;
 import static com.sap.furcas.ide.editor.contentassist.CompletionProposalHelper.sortProposals;
+import static com.sap.furcas.ide.editor.contentassist.CtsContentAssistUtil.computeNonWhitespacePrefix;
+import static com.sap.furcas.ide.editor.contentassist.CtsContentAssistUtil.createFirstPossibleProposals;
+import static com.sap.furcas.ide.editor.contentassist.CtsContentAssistUtil.createFollowProposalsFromContext;
+import static com.sap.furcas.ide.editor.contentassist.CtsContentAssistUtil.fixTokenText;
+import static com.sap.furcas.ide.editor.contentassist.CtsContentAssistUtil.getAbsoluteOffset;
+import static com.sap.furcas.ide.editor.contentassist.CtsContentAssistUtil.getDocumentContents;
+import static com.sap.furcas.ide.editor.contentassist.CtsContentAssistUtil.getLine;
+import static com.sap.furcas.ide.editor.contentassist.CtsContentAssistUtil.isAtEndOfToken;
+import static com.sap.furcas.ide.editor.contentassist.CtsContentAssistUtil.isContextAtWhitespace;
+import static com.sap.furcas.ide.editor.contentassist.CtsContentAssistUtil.isInToken;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -20,9 +31,6 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
-import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
-import org.eclipse.jface.text.contentassist.IContextInformation;
-import org.eclipse.jface.text.contentassist.IContextInformationValidator;
 
 import com.sap.furcas.ide.editor.contentassist.modeladapter.StubModelAdapter;
 import com.sap.furcas.ide.editor.document.CtsDocument;
@@ -44,7 +52,16 @@ import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider;
 
-public class CtsContentAssistProcessor implements IContentAssistProcessor {
+
+/**
+ * Implements a content assists which is used by the editor framework.
+ * It can derive completion proposals based on a given {@link ConcreteSyntax}
+ * and a position within a text document. 
+ * 
+ * @author Philipp Meier
+ * 
+ */
+public class CtsContentAssistProcessor {
 
     /**
      * contains a mapping of qualifiedName + Mode to ClassTemplate of all
@@ -93,7 +110,6 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
     /**
      * offset = 0..n-1
      */
-    @Override
     public ICompletionProposal[] computeCompletionProposals(ITextViewer viewer, int offset) {
 
         try {
@@ -104,7 +120,6 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 
@@ -123,7 +138,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
         return offset - lineRegion.getOffset();
     }
 
-    public ICompletionProposal[] computeCompletionProposals(ITextViewer viewer, int line, int charPositionInLine) {
+    private ICompletionProposal[] computeCompletionProposals(ITextViewer viewer, int line, int charPositionInLine) {
         TextBlocksModel tbModel = null;
         IDocument doc = viewer.getDocument();
         if (doc instanceof CtsDocument) {
@@ -146,117 +161,100 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
             TextBlocksModel tbModel) {
 
         try {
+            if (inComment(viewer, line, charPositionInLine)) {
+                return null;
+            }
+            
             List<ICompletionProposal> results = new ArrayList<ICompletionProposal>();
-
             parsingHandler = initParsingHandler(viewer);
+            
+            CtsContentAssistContext context = getContext(line, charPositionInLine);
+            // workaround for ANTLR unlexed tokens that get parsed but start with whitespace
+            if (context != null) {
+                if (isContextAtWhitespace(viewer, context)) {
+                    context = getPreviousContext(context, viewer);
+                }
+            }
 
             String prefix = "";
+            
+            if (!isValid(context)) {
+                // no floor context, get first possible proposals
 
-            if (!inComment(viewer, line, charPositionInLine)) {
+                results = createFirstPossibleProposals(syntax, classTemplateMap, viewer, line, charPositionInLine, null, tbModel, oclEvaluator);
 
-                CtsContentAssistContext context = getContext(line, charPositionInLine);
+                // TODO workaround because ANTRL will not create error token
+                // for unlexed characters
+                // TODO this assumes languages with standard whitespaces
+                // filter by currently un-tokenized non-whitespace prefix
 
-                // workaround for ANTLR unlexed tokens that get parsed but start
-                // with whitespace
-                if (context != null) {
+                int curOffset = getAbsoluteOffset(viewer, line, charPositionInLine);
 
-                    if (CtsContentAssistUtil.isContextAtWhitespace(viewer, context)) {
-                        context = getPreviousContext(context, viewer);
-                    }
+                // stop just before start of current line
+                int stopOffset = getAbsoluteOffset(viewer, line, 0) - 1;
+                prefix = computeNonWhitespacePrefix(CtsContentAssistUtil.getDocumentContents(viewer), curOffset, stopOffset);
+                results = prefixFilter(removeNullValues(results), prefix);
+
+                // end workaround
+
+            } else {
+
+                if (context.getToken().getText() == null) {
+                    // TODO workaround as ANTLR does not create a correct
+                    // token for unlexed content
+                    fixTokenText(viewer, context.getToken());
                 }
 
-                if (!isValid(context)) {
-                    // no floor context, get first possible proposals
+                if (isInToken(line, charPositionInLine, context.getToken())) {
 
-                    results = CtsContentAssistUtil.createFirstPossibleProposals(syntax, classTemplateMap, viewer, line,
-                            charPositionInLine, null, tbModel, oclEvaluator);
+                    CtsContentAssistContext previousContext = getPreviousContext(context, viewer);
 
-                    // TODO workaround because ANTRL will not create error token
-                    // for unlexed characters
-                    // TODO this assumes languages with standard whitespaces
-                    // filter by currently un-tokenized non-whitespace prefix
+                    // get proposals that follow previous token, and apply
+                    // prefix filter
 
-                    int curOffset = CtsContentAssistUtil.getAbsoluteOffset(viewer, line, charPositionInLine);
+                    if (!isValid(previousContext)) {
 
-                    // stop just before start of current line
-                    int stopOffset = CtsContentAssistUtil.getAbsoluteOffset(viewer, line, 0) - 1;
+                        results = createFirstPossibleProposals(syntax, classTemplateMap, viewer, line,
+                                charPositionInLine, context.getToken(), tbModel, oclEvaluator);
+                    } else {
+                        results = createFollowProposalsFromContext(syntax, previousContext,
+                                classTemplateMap, viewer, line, charPositionInLine, context.getToken(), tbModel, oclEvaluator);
+                    }
 
-                    prefix = CtsContentAssistUtil.computeNonWhitespacePrefix(CtsContentAssistUtil.getDocumentContents(viewer),
-                            curOffset, stopOffset);
-
+                    // compute prefix from token text
+                    prefix = computePrefixFromContext(charPositionInLine, context);
                     results = prefixFilter(removeNullValues(results), prefix);
 
-                    // end workaround
+                    // also get following proposals when after the last char
+                    // of a token
+
+                    // TODO maybe make this dependent on token type and
+                    // symbol
+                    // space variables
+                    if (previousContext != null && isAtEndOfToken(line, charPositionInLine, context.getToken())) {
+                        results.addAll(createFollowProposalsFromContext(syntax, context, classTemplateMap,
+                                viewer, line, charPositionInLine, null, tbModel, oclEvaluator));
+
+                        // not prefix-filtered
+                    }
 
                 } else {
-
-                    if (context.getToken().getText() == null) {
-                        // TODO workaround as ANTLR does not create a correct
-                        // token for unlexed content
-                        CtsContentAssistUtil.fixTokenText(viewer, context.getToken());
-                    }
-
-                    if (CtsContentAssistUtil.isInToken(line, charPositionInLine, context.getToken())) {
-
-                        CtsContentAssistContext previousContext = getPreviousContext(context, viewer);
-
-                        // get proposals that follow previous token, and apply
-                        // prefix filter
-
-                        if (!isValid(previousContext)) {
-
-                            results = CtsContentAssistUtil.createFirstPossibleProposals(syntax, classTemplateMap, viewer, line,
-                                    charPositionInLine, context.getToken(), tbModel, oclEvaluator);
-                        } else {
-                            results = CtsContentAssistUtil
-                                    .createFollowProposalsFromContext(syntax, previousContext, classTemplateMap, viewer, line,
-                                            charPositionInLine, context.getToken(), tbModel, oclEvaluator);
-                        }
-
-                        // compute prefix from token text
-                        prefix = computePrefixFromContext(charPositionInLine, context);
-
-                        results = prefixFilter(removeNullValues(results), prefix);
-
-                        // also get following proposals when after the last char
-                        // of
-                        // a token
-
-                        // TODO maybe make this dependent on token type and
-                        // symbol
-                        // space variables
-                        if (previousContext != null
-                                && CtsContentAssistUtil.isAtEndOfToken(line, charPositionInLine, context.getToken())) {
-                            results.addAll(CtsContentAssistUtil.createFollowProposalsFromContext(syntax, context,
-                                    classTemplateMap, viewer, line, charPositionInLine, null, tbModel, oclEvaluator));
-
-                            // not prefix-filtered
-                        }
-
-                    } else {
-                        if (!context.isErrorContext()) {
-                            // get proposals that follow token
-                            results = CtsContentAssistUtil.createFollowProposalsFromContext(syntax, context, classTemplateMap,
-                                    viewer, line, charPositionInLine, context.getToken(), tbModel, oclEvaluator);
-                        }
-
+                    if (!context.isErrorContext()) {
+                        // get proposals that follow token
+                        results = createFollowProposalsFromContext(syntax, context, classTemplateMap,
+                                viewer, line, charPositionInLine, context.getToken(), tbModel, oclEvaluator);
                     }
                 }
-
-                return proposalListAsArray(sortProposals(removeDuplicates(removeNullValues(results)), prefix));
             }
+            return proposalListAsArray(sortProposals(removeDuplicates(removeNullValues(results)), prefix));
 
         } catch (Exception e) {
             e.printStackTrace();
-        }
-
-        finally {
-            // clear transient partitions used by content assist
+            return null;
+        } finally {
+            // FIXME: This is bad: There is a cache in a static class
             TcsUtil.clearTransientPartition(resourceSet);
         }
-
-        return null;
-
     }
 
     private String computePrefixFromContext(int charPositionInLine, CtsContentAssistContext context) {
@@ -278,7 +276,6 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
                 return true;
             }
         }
-
         return false;
     }
 
@@ -292,20 +289,17 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
         if (context == null) {
             return false;
         }
-
         if (context.getToken() == null) {
             return false;
         }
-
         if (CtsContentAssistUtil.getCharPositionInLine(context.getToken()) == -1) {
             return false;
         }
-
         return true;
     }
 
     private CtsContentAssistParsingHandler initParsingHandler(ITextViewer viewer) throws IOException, UnknownProductionRuleException {
-        String documentContents = CtsContentAssistUtil.getDocumentContents(viewer);
+        String documentContents = getDocumentContents(viewer);
         InputStream in = new ByteArrayInputStream(documentContents.getBytes());
         IModelAdapter modelHandler = new DefaultTextAwareModelAdapter(new StubModelAdapter());
 
@@ -320,37 +314,11 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 
     private CtsContentAssistContext getPreviousContext(CtsContentAssistContext context, ITextViewer viewer) {
         // get the context one offset before this context
-        return getContext(CtsContentAssistUtil.getLine(context.getToken()),
-                CtsContentAssistUtil.getCharPositionInLine(context.getToken()) - 1);
+        return getContext(getLine(context.getToken()), CtsContentAssistUtil.getCharPositionInLine(context.getToken()) - 1);
     }
 
     private CtsContentAssistContext getContext(int line, int charPositionInLine) {
         return parsingHandler.getFloorContext(line, charPositionInLine);
     }
-
-    @Override
-    public IContextInformation[] computeContextInformation(ITextViewer viewer, int offset) {
-        return null;
-    }
-
-    @Override
-    public char[] getCompletionProposalAutoActivationCharacters() {
-        return null;
-    }
-
-    @Override
-    public char[] getContextInformationAutoActivationCharacters() {
-        return null;
-    }
-
-    @Override
-    public IContextInformationValidator getContextInformationValidator() {
-        return null;
-    }
-
-    @Override
-    public String getErrorMessage() {
-        return null;
-    }
-
+    
 }
