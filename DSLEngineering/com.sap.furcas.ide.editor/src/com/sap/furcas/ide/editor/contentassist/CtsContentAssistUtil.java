@@ -798,7 +798,7 @@ public class CtsContentAssistUtil {
         return viewer.getDocument().get();
     }
 
-    static int getCharPositionInLine(Token token) {
+    public static int getCharPositionInLine(Token token) {
         // ANTRL line positions start at 0
         return token.getCharPositionInLine();
     }
