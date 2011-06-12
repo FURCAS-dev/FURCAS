@@ -126,7 +126,9 @@ public class SelectEObjectDialog extends TitleAreaDialog {
         viewer.addDoubleClickListener(new IDoubleClickListener() {
             @Override
             public void doubleClick(DoubleClickEvent event) {
-                close();
+                if (OKbutton.isEnabled()) {
+                    close();
+                }
             }
         });
         
