@@ -41,9 +41,13 @@ import org.eclipse.emf.examples.extlibrary.Library;
 import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Query;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.ocl.ecore.opposites.EcoreEnvironmentFactoryWithHiddenOpposites;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.OCLHelper;
 
@@ -224,5 +228,18 @@ public class DocumentationExamples extends AbstractTestSuite
 		// use the unique_title constraint to validate the book
 		System.out.printf("Validate book: %b%n",
 		    ocl.check(book, constraintMap.get("unique_title")));	
+	}
+	
+	private class MyOppositeEndFinder extends DefaultOppositeEndFinder {
+		public MyOppositeEndFinder() {
+			super(EPackage.Registry.INSTANCE);
+		}
+	}
+	
+	public void testCustomizingOppositeEndFinder() {
+		OppositeEndFinder oef = new MyOppositeEndFinder();
+		OCL ocl = OCL.newInstance(new EcoreEnvironmentFactoryWithHiddenOpposites(
+			                     EPackage.Registry.INSTANCE, oef));
+		assertSame(oef, ((EcoreEnvironment) ocl.getEnvironment()).getOppositeEndFinder());
 	}
 }
