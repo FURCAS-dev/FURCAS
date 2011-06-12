@@ -349,7 +349,8 @@ p.
 With this, OCL can be instantiated using the custom opposite end finder as follows:
 
 bc..    
-  OCL ocl = OCL.newInstance(new MyOppositeEndFinder());
+  OCL ocl = OCL.newInstance(new EcoreEnvironmentFactoryWithHiddenOpposites(
+                     EPackage.Registry.INSTANCE, new MyOppositeEndFinder()));
   ...
 p. 
 
