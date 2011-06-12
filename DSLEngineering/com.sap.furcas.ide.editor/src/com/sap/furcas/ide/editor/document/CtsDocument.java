@@ -73,6 +73,10 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
             @Override
             public void documentAboutToBeChanged(DocumentEvent event) { }
         });
+        
+        // Consumed the editor input. Set to null to allow the the block
+        // to be garbagae collected after the first parse run
+        editorInput.setRootBlock(null);
     }
 
     public TextBlock getRootBlock() {

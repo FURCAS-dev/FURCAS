@@ -38,7 +38,7 @@ public class TestCtsContentAssistUtil extends TCSFixtureTestBase {
 
         context.setSequenceElement(main1Lit);
 
-        assertEquals(expected, CtsContentAssistUtil.collectDisplayStrings(CtsContentAssistProcessor
+        assertEquals(expected, CtsContentAssistUtil.collectDisplayStrings(CompletionProposalHelper
                 .removeNullValues(CtsContentAssistUtil.createFollowProposalsFromContext(null, context, null, null, 0, 0, null,
                         null, oclEvaluator))));
     }
@@ -51,7 +51,7 @@ public class TestCtsContentAssistUtil extends TCSFixtureTestBase {
 
         context.setSequenceElement(main2CondThenLit);
 
-        assertEquals(expected, CtsContentAssistUtil.collectDisplayStrings(CtsContentAssistProcessor
+        assertEquals(expected, CtsContentAssistUtil.collectDisplayStrings(CompletionProposalHelper
                 .removeNullValues(CtsContentAssistUtil.createFollowProposalsFromContext(null, context, null, null, 0, 0, null,
                         null, oclEvaluator))));
     }
@@ -65,7 +65,7 @@ public class TestCtsContentAssistUtil extends TCSFixtureTestBase {
 
         context.setSequenceElement(main3Prop);
 
-        assertEquals(expected, CtsContentAssistUtil.collectDisplayStrings(CtsContentAssistProcessor
+        assertEquals(expected, CtsContentAssistUtil.collectDisplayStrings(CompletionProposalHelper
                 .removeNullValues(CtsContentAssistUtil.createFollowProposalsFromContext(null, context, null, null, 0, 0, null,
                         null, oclEvaluator))));
     }
@@ -84,7 +84,7 @@ public class TestCtsContentAssistUtil extends TCSFixtureTestBase {
 
         context.setSequenceElement(main4AltCase1Lit);
 
-        assertEquals(expected, CtsContentAssistUtil.collectDisplayStrings(CtsContentAssistProcessor
+        assertEquals(expected, CtsContentAssistUtil.collectDisplayStrings(CompletionProposalHelper
                 .removeNullValues(CtsContentAssistUtil.createFollowProposalsFromContext(null, context, classTemplateMap, null, 0,
                         0, null, null, oclEvaluator))));
     }
@@ -107,7 +107,7 @@ public class TestCtsContentAssistUtil extends TCSFixtureTestBase {
 
         context.setSequenceElement(main5BlockProp);
 
-        assertEquals(expected, CtsContentAssistUtil.collectDisplayStrings(CtsContentAssistProcessor
+        assertEquals(expected, CtsContentAssistUtil.collectDisplayStrings(CompletionProposalHelper
                 .removeNullValues(CtsContentAssistUtil.createFollowProposalsFromContext(null, context, classTemplateMap, null, 0,
                         0, null, null, oclEvaluator))));
     }
@@ -121,7 +121,7 @@ public class TestCtsContentAssistUtil extends TCSFixtureTestBase {
         context.setSequenceElement(funcTemplateLit);
         context.getParentFunctionCallStack().push(main6Call);
 
-        assertEquals(expected, CtsContentAssistUtil.collectDisplayStrings(CtsContentAssistProcessor
+        assertEquals(expected, CtsContentAssistUtil.collectDisplayStrings(CompletionProposalHelper
                 .removeNullValues(CtsContentAssistUtil.createFollowProposalsFromContext(null, context, null, null, 0, 0, null,
                         null, oclEvaluator))));
     }
@@ -135,7 +135,7 @@ public class TestCtsContentAssistUtil extends TCSFixtureTestBase {
 
         context.setSequenceElement(main7Lit);
 
-        assertEquals(expected, CtsContentAssistUtil.collectDisplayStrings(CtsContentAssistProcessor
+        assertEquals(expected, CtsContentAssistUtil.collectDisplayStrings(CompletionProposalHelper
                 .removeNullValues(CtsContentAssistUtil.createFollowProposalsFromContext(null, context, null, null, 0, 0, null,
                         null, oclEvaluator))));
     }
@@ -149,7 +149,7 @@ public class TestCtsContentAssistUtil extends TCSFixtureTestBase {
         context.setSequenceElement(funcTemplateLit);
         context.getParentFunctionCallStack().push(main8Call);
 
-        assertEquals(expected, CtsContentAssistUtil.collectDisplayStrings(CtsContentAssistProcessor
+        assertEquals(expected, CtsContentAssistUtil.collectDisplayStrings(CompletionProposalHelper
                 .removeNullValues(CtsContentAssistUtil.createFollowProposalsFromContext(null, context, null, null, 0, 0, null,
                         null, oclEvaluator))));
     }
@@ -160,7 +160,7 @@ public class TestCtsContentAssistUtil extends TCSFixtureTestBase {
         List<String> expected = new ArrayList<String>();
 
         assertEquals(expected,
-                CtsContentAssistUtil.collectDisplayStrings(CtsContentAssistProcessor.removeNullValues(CtsContentAssistUtil
+                CtsContentAssistUtil.collectDisplayStrings(CompletionProposalHelper.removeNullValues(CtsContentAssistUtil
                         .createFollowProposalsFromContext(null, null, null, null, 0, 0, null, null, oclEvaluator))));
     }
 

@@ -12,13 +12,11 @@ import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
 import com.sap.furcas.metamodel.FURCAS.TCS.Block;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.FunctionCall;
@@ -31,9 +29,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceInAlternative;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSFactory;
-import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
-import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.parser.IParsingObserver;
 import com.sap.furcas.runtime.parser.impl.DelayedReference;
 import com.sap.furcas.runtime.tcs.PropertyArgumentUtil;
@@ -48,18 +44,6 @@ import com.sap.furcas.runtime.tcs.TcsUtil;
  */
 public class CtsContentAssistParsingHandler implements IParsingObserver {
 
-    private static Resource transientPartition;
-
-    /**
-     * clears the parsing handler transient partition on this connection
-     * 
-     * @param c
-     */
-    public static void clearTransientPartition(ResourceSet c) {
-        transientPartition.getContents().clear();
-    }
-
-    ConcreteSyntax syntax;
     private final ResourceSet resourceSet;
 
     /**
@@ -67,32 +51,20 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
      */
     private Boolean foundError = false;
 
-    public CtsContentAssistParsingHandler(ConcreteSyntax syntax, ResourceSet resourceSet) {
-        Assert.isNotNull(syntax);
-        this.syntax = syntax;
-        this.resourceSet = resourceSet;
-
-        transientPartition = EcoreHelper.createTransientParsingResource(syntax.eResource().getResourceSet(),
-                TCSPackage.eINSTANCE.getNsURI());
-
-        classTemplateMap = TcsUtil.createClassTemplateMap(syntax);
-        operatorTemplateMap = TcsUtil.createOperatorTemplateMap(syntax);
-    }
-
     /**
      * contains a mapping of qualifiedName + Mode to ClassTemplate of all
      * ClassTemplates contained in the ConcreteSyntax passed to the constructor
      */
-    Map<List<String>, Map<String, ClassTemplate>> classTemplateMap;
+    private final Map<List<String>, Map<String, ClassTemplate>> classTemplateMap;
 
     /**
      * contains a mapping of qualifiedName to OperatorTemplate of all
      * OperatorTemplates contained in the ConcreteSyntax passed to the
      * constructor
      */
-    Map<List<String>, OperatorTemplate> operatorTemplateMap;
+    private final Map<List<String>, OperatorTemplate> operatorTemplateMap;
 
-    SortedMap<TextPosition, CtsContentAssistContext> positionMap = new TreeMap<TextPosition, CtsContentAssistContext>(
+    private final SortedMap<TextPosition, CtsContentAssistContext> positionMap = new TreeMap<TextPosition, CtsContentAssistContext>(
             new TextPositionComparator());
 
     /**
@@ -102,15 +74,22 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
         return positionMap;
     }
 
-    Stack<Sequence> currentSequenceStack = new Stack<Sequence>();
-    Stack<SequenceElement> currentSequenceElementStack = new Stack<SequenceElement>();
-    Stack<FunctionCall> currentParentFunctionCallStack = new Stack<FunctionCall>();
-    Stack<Property> currentParentPropertyStack = new Stack<Property>();
-    Stack<Template> currentParentTemplateStack = new Stack<Template>();
-    boolean currentIsOperator = false;
+    private final Stack<Sequence> currentSequenceStack = new Stack<Sequence>();
+    private final Stack<SequenceElement> currentSequenceElementStack = new Stack<SequenceElement>();
+    private final Stack<FunctionCall> currentParentFunctionCallStack = new Stack<FunctionCall>();
+    private final Stack<Property> currentParentPropertyStack = new Stack<Property>();
+    private final Stack<Template> currentParentTemplateStack = new Stack<Template>();
+    private boolean currentIsOperator = false;
 
-    private final int loglevel = 0; // 0 = no log, 1 = errorsonly, 2 = all
-
+    private static final int loglevel = 0; // 0 = no log, 1 = errorsonly, 2 = all
+    
+    public CtsContentAssistParsingHandler(ResourceSet resourceSet, Map<List<String>, Map<String, ClassTemplate>> classTemplateMap,
+            Map<List<String>, OperatorTemplate> operatorTemplateMap) {
+        this.resourceSet = resourceSet;
+        this.classTemplateMap = classTemplateMap;
+        this.operatorTemplateMap = operatorTemplateMap;
+    }
+    
     @Override
     public void reset() {
         foundError = false;
@@ -594,14 +573,11 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
     void pushDummySequence(String dummyKeywordName) {
         TCSFactory c = TCSFactory.eINSTANCE;
         Sequence dummy = c.createSequence();
-        transientPartition.getContents().add(dummy);
 
         LiteralRef litRef = c.createLiteralRef();
-        transientPartition.getContents().add(litRef);
 
         Keyword keyword = c.createKeyword();
         keyword.setValue(dummyKeywordName);
-        transientPartition.getContents().add(keyword);
 
         litRef.setReferredLiteral(keyword);
 
