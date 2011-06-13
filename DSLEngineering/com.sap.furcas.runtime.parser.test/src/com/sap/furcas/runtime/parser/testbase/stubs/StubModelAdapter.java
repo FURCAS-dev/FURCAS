@@ -9,9 +9,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.ReferenceSettingException;
 import com.sap.furcas.runtime.common.interfaces.IBareModelAdapter;
@@ -262,12 +259,6 @@ public class StubModelAdapter implements IModelAdapter, IBareModelAdapter {
 
     @Override
     public Collection<?> evaluateOCLQuery(Object modelElement, Object keyValue, String oclQuery, Object contextElement) {
-        fail("not implemented yet");
-        return null;
-    }
-
-    @Override
-    public Collection<URI> getPRIPartitions(ResourceSet conn, String languageId) {
         fail("not implemented yet");
         return null;
     }

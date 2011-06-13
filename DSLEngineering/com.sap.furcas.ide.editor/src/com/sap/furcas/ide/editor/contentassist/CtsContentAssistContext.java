@@ -12,7 +12,12 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 
+/**
+ * Used by the {@link CtsContentAssistParsingHandler} to store information
+ * about the parser run. 
+ */
 public class CtsContentAssistContext {
+
     private Stack<FunctionCall> parentFunctionCallStack;
     private Stack<Property> parentPropertyStack;
 
@@ -65,7 +70,6 @@ public class CtsContentAssistContext {
 
     public void setSequenceElement(SequenceElement sequenceElement) {
         this.sequenceElement = sequenceElement;
-
     }
 
     @Override

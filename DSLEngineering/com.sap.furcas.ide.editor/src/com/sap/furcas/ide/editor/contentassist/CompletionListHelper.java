@@ -18,7 +18,7 @@ import java.util.List;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 
-public class CompletionProposalHelper {
+public class CompletionListHelper {
 
     private static class CompletionProposalsComparator implements Comparator<ICompletionProposal> {
 
@@ -126,6 +126,28 @@ public class CompletionProposalHelper {
             return null;
         }
         return proposalList.toArray(new ICompletionProposal[proposalList.size()]);
+    }
+    
+    public static List<String> collectDisplayStrings(List<ICompletionProposal> proposals) {
+        List<String> results = new ArrayList<String>();
+        if (proposals != null) {
+
+            for (ICompletionProposal p : proposals) {
+                results.add(p.getDisplayString());
+            }
+        }
+        return results;
+    }
+
+    public static List<String> collectDisplayStrings(ICompletionProposal[] proposals) {
+        List<String> results = new ArrayList<String>();
+        if (proposals != null) {
+
+            for (ICompletionProposal p : proposals) {
+                results.add(p.getDisplayString());
+            }
+        }
+        return results;
     }
 
 }

@@ -7,8 +7,8 @@ import java.util.List;
 
 import org.eclipse.jface.text.ITextViewer;
 
+import com.sap.furcas.ide.editor.contentassist.CompletionListHelper;
 import com.sap.furcas.ide.editor.contentassist.CtsContentAssistProcessor;
-import com.sap.furcas.ide.editor.contentassist.CtsContentAssistUtil;
 import com.sap.furcas.ide.editor.contentassist.TestCtsContentAssistParsingHandler;
 import com.sap.furcas.ide.editor.contentassist.stubs.TextViewerStub;
 import com.sap.furcas.ide.editor.test.utils.GeneratedTextblocksBasedTest;
@@ -49,7 +49,7 @@ public abstract class CtsContentAssistProcessorTestBase extends GeneratedTextblo
      * @param charPositionInLine
      */
     protected void assertDisplayStrings(List<String> expected, int line, int charPositionInLine) {
-        List<String> displayStrings = CtsContentAssistUtil.collectDisplayStrings(processor.computeCompletionProposals(viewer,
+        List<String> displayStrings = CompletionListHelper.collectDisplayStrings(processor.computeCompletionProposals(viewer,
                 line, charPositionInLine, tbModel));
 
         boolean fail = false;

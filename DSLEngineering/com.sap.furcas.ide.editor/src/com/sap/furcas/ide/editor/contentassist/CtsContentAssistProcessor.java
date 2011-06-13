@@ -1,14 +1,12 @@
 package com.sap.furcas.ide.editor.contentassist;
 
 
-import static com.sap.furcas.ide.editor.contentassist.CompletionProposalHelper.prefixFilter;
-import static com.sap.furcas.ide.editor.contentassist.CompletionProposalHelper.proposalListAsArray;
-import static com.sap.furcas.ide.editor.contentassist.CompletionProposalHelper.removeDuplicates;
-import static com.sap.furcas.ide.editor.contentassist.CompletionProposalHelper.removeNullValues;
-import static com.sap.furcas.ide.editor.contentassist.CompletionProposalHelper.sortProposals;
+import static com.sap.furcas.ide.editor.contentassist.CompletionListHelper.prefixFilter;
+import static com.sap.furcas.ide.editor.contentassist.CompletionListHelper.proposalListAsArray;
+import static com.sap.furcas.ide.editor.contentassist.CompletionListHelper.removeDuplicates;
+import static com.sap.furcas.ide.editor.contentassist.CompletionListHelper.removeNullValues;
+import static com.sap.furcas.ide.editor.contentassist.CompletionListHelper.sortProposals;
 import static com.sap.furcas.ide.editor.contentassist.CtsContentAssistUtil.computeNonWhitespacePrefix;
-import static com.sap.furcas.ide.editor.contentassist.CtsContentAssistUtil.createFirstPossibleProposals;
-import static com.sap.furcas.ide.editor.contentassist.CtsContentAssistUtil.createFollowProposalsFromContext;
 import static com.sap.furcas.ide.editor.contentassist.CtsContentAssistUtil.fixTokenText;
 import static com.sap.furcas.ide.editor.contentassist.CtsContentAssistUtil.getAbsoluteOffset;
 import static com.sap.furcas.ide.editor.contentassist.CtsContentAssistUtil.getDocumentContents;
@@ -54,7 +52,10 @@ import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider
 
 
 /**
- * Implements a content assists which is used by the editor framework.
+ * Implements a content assists which is used by the editor framework. This
+ * class basically serves as facade. The actual completion is calculated
+ * by {@link CtsCompletionCalculator}.
+ * 
  * It can derive completion proposals based on a given {@link ConcreteSyntax}
  * and a position within a text document. 
  * 
@@ -111,7 +112,6 @@ public class CtsContentAssistProcessor {
      * offset = 0..n-1
      */
     public ICompletionProposal[] computeCompletionProposals(ITextViewer viewer, int offset) {
-
         try {
             int line = CtsContentAssistUtil.getLine(viewer, offset);
             int charPositionInLine = getCharPositionInLine(viewer, offset, line);
@@ -172,7 +172,7 @@ public class CtsContentAssistProcessor {
             // workaround for ANTLR unlexed tokens that get parsed but start with whitespace
             if (context != null) {
                 if (isContextAtWhitespace(viewer, context)) {
-                    context = getPreviousContext(context, viewer);
+                    context = getPreviousContext(context);
                 }
             }
 
@@ -181,7 +181,8 @@ public class CtsContentAssistProcessor {
             if (!isValid(context)) {
                 // no floor context, get first possible proposals
 
-                results = createFirstPossibleProposals(syntax, classTemplateMap, viewer, line, charPositionInLine, null, tbModel, oclEvaluator);
+                results = CtsCompletionCalculator.createFirstPossibleProposals(syntax, classTemplateMap, viewer, line,
+                        charPositionInLine, null, tbModel, oclEvaluator);
 
                 // TODO workaround because ANTRL will not create error token
                 // for unlexed characters
@@ -207,17 +208,17 @@ public class CtsContentAssistProcessor {
 
                 if (isInToken(line, charPositionInLine, context.getToken())) {
 
-                    CtsContentAssistContext previousContext = getPreviousContext(context, viewer);
+                    CtsContentAssistContext previousContext = getPreviousContext(context);
 
                     // get proposals that follow previous token, and apply
                     // prefix filter
 
                     if (!isValid(previousContext)) {
 
-                        results = createFirstPossibleProposals(syntax, classTemplateMap, viewer, line,
+                        results = CtsCompletionCalculator.createFirstPossibleProposals(syntax, classTemplateMap, viewer, line,
                                 charPositionInLine, context.getToken(), tbModel, oclEvaluator);
                     } else {
-                        results = createFollowProposalsFromContext(syntax, previousContext,
+                        results = CtsCompletionCalculator.createFollowProposalsFromContext(syntax, previousContext,
                                 classTemplateMap, viewer, line, charPositionInLine, context.getToken(), tbModel, oclEvaluator);
                     }
 
@@ -232,8 +233,8 @@ public class CtsContentAssistProcessor {
                     // symbol
                     // space variables
                     if (previousContext != null && isAtEndOfToken(line, charPositionInLine, context.getToken())) {
-                        results.addAll(createFollowProposalsFromContext(syntax, context, classTemplateMap,
-                                viewer, line, charPositionInLine, null, tbModel, oclEvaluator));
+                        results.addAll(CtsCompletionCalculator.createFollowProposalsFromContext(syntax, context,
+                                classTemplateMap, viewer, line, charPositionInLine, null, tbModel, oclEvaluator));
 
                         // not prefix-filtered
                     }
@@ -241,7 +242,7 @@ public class CtsContentAssistProcessor {
                 } else {
                     if (!context.isErrorContext()) {
                         // get proposals that follow token
-                        results = createFollowProposalsFromContext(syntax, context, classTemplateMap,
+                        results = CtsCompletionCalculator.createFollowProposalsFromContext(syntax, context, classTemplateMap,
                                 viewer, line, charPositionInLine, context.getToken(), tbModel, oclEvaluator);
                     }
                 }
@@ -253,7 +254,7 @@ public class CtsContentAssistProcessor {
             return null;
         } finally {
             // FIXME: This is bad: There is a cache in a static class
-            TcsUtil.clearTransientPartition(resourceSet);
+            CtsCompletionCalculator.clearTransientPartition(resourceSet);
         }
     }
 
@@ -312,7 +313,7 @@ public class CtsContentAssistProcessor {
         return handler;
     }
 
-    private CtsContentAssistContext getPreviousContext(CtsContentAssistContext context, ITextViewer viewer) {
+    private CtsContentAssistContext getPreviousContext(CtsContentAssistContext context) {
         // get the context one offset before this context
         return getContext(getLine(context.getToken()), CtsContentAssistUtil.getCharPositionInLine(context.getToken()) - 1);
     }

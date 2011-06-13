@@ -38,8 +38,9 @@ import com.sap.furcas.runtime.tcs.TcsUtil;
 
 /**
  * Parsing Observer, that gathers all information necessary for ContentAssist.
+ * The result produced by this observier is a stack of {@link CtsContentAssistContext} 
  * 
- * @author D052602
+ * @author Philipp Meier
  * 
  */
 public class CtsContentAssistParsingHandler implements IParsingObserver {
@@ -305,7 +306,6 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
         } else {
             logError("resolved null SequenceElement");
         }
-
     }
 
     @Override
@@ -378,7 +378,7 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
     }
 
     boolean isParentProperty(Property p) {
-        return !TcsUtil.isAtomic(p, classTemplateMap) || PropertyArgumentUtil.containsSeparatorArg(p) || TcsUtil.isEnumeration(p);
+        return !CtsContentAssistUtil.isAtomic(p, classTemplateMap) || PropertyArgumentUtil.containsSeparatorArg(p) || TcsUtil.isEnumeration(p);
     }
 
     @Override
@@ -436,9 +436,9 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
         CtsContentAssistContext context = new CtsContentAssistContext();
         context.setToken(token);
         context.setSequenceElement(currentSequenceElementStack.peek());
-        context.setParentFunctionCallStack(TcsUtil.duplicateFunctionCallStack(currentParentFunctionCallStack));
-        context.setParentPropertyStack(TcsUtil.duplicatePropertyStack(currentParentPropertyStack));
-        context.setParentTemplateStack(TcsUtil.duplicateTemplateStack(currentParentTemplateStack));
+        context.setParentFunctionCallStack(CtsContentAssistUtil.duplicateFunctionCallStack(currentParentFunctionCallStack));
+        context.setParentPropertyStack(CtsContentAssistUtil.duplicatePropertyStack(currentParentPropertyStack));
+        context.setParentTemplateStack(CtsContentAssistUtil.duplicateTemplateStack(currentParentTemplateStack));
         context.setOperator(currentIsOperator);
 
         // reset, as only the first token is the operator
@@ -481,7 +481,6 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
     @Override
     public void notifyCommitModelElementFailed() {
         logInfo("notifyModelElementResolutionFailed");
-
     }
 
     /**
@@ -504,13 +503,6 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * com.sap.mi.textual.grammar.impl.IParsingObserver#notifyEnterSeparatorSequence
-     * ()
-     */
     @Override
     public void notifyEnterSeparatorSequence() {
         logInfo("notifyEnterSeparatorSequence");
@@ -533,13 +525,6 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
 
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * com.sap.mi.textual.grammar.impl.IParsingObserver#notifyExitSeparatorSequence
-     * ()
-     */
     @Override
     public void notifyExitSeparatorSequence() {
         logInfo("notifyExitSeparatorSequence");
@@ -548,13 +533,6 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
         // notifyExitSequenceElement()
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * com.sap.mi.textual.grammar.impl.IParsingObserver#notifyEnterOperatorSequence
-     * (java.lang.String, int, boolean)
-     */
     @Override
     public void notifyEnterOperatorSequence(String operator, int arity, boolean isUnaryPostfix) {
         logInfo("notifyEnterOperatorSequence operator: " + operator + " arity: " + arity + " isUnaryPostfix: " + isUnaryPostfix);
@@ -586,13 +564,6 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
         pushNonEmptySequence(dummy);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * com.sap.mi.textual.grammar.impl.IParsingObserver#notifyExitOperatorSequence
-     * ()
-     */
     @Override
     public void notifyExitOperatorSequence() {
         logInfo("notifyExitOperatorSequence");
@@ -601,52 +572,35 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
         // notifyExitSequenceElement()
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @seecom.sap.mi.textual.grammar.impl.IParsingObserver#
-     * notifyEnterOperatoredBrackettedSequence()
-     */
     @Override
     public void notifyEnterOperatoredBrackettedSequence() {
         logInfo("notifyEnterOperatoredBrackettedSequence");
 
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @seecom.sap.mi.textual.grammar.impl.IParsingObserver#
-     * notifyExitOperatoredBrackettedSequence()
-     */
     @Override
     public void notifyExitOperatoredBrackettedSequence() {
         logInfo("notifyExitOperatoredBrackettedSequence");
-
     }
 
     @Override
     public void notifyElementAddedToContext(Object element) {
         logInfo("notifyElementAddedToContext");
-
     }
 
     @Override
     public void notifyDelayedReferenceCreated(DelayedReference ref) {
         logInfo("notifyDelayedReferenceCreated");
-
     }
 
     @Override
     public void notifyEnterInjectorAction() {
         logInfo("notifyEnterInjectorAction");
-
     }
 
     @Override
     public void notifyExitInjectorAction() {
         logInfo("notifyExitInjectorAction");
-
     }
 
 }

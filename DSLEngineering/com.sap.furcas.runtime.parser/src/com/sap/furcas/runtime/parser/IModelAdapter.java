@@ -12,9 +12,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-
 import com.sap.furcas.runtime.common.exceptions.DeferredActionResolvingException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.ReferenceSettingException;
@@ -147,11 +144,6 @@ public interface IModelAdapter extends IModelElementInvestigator { // extends In
      */
     public Collection<?> evaluateOCLQuery(Object modelElement, Object keyValue, String oclQuery, Object contextElement) throws ModelAdapterException;
 
-    /**
-     * Used to fetch the search scope where to find the mapping model for the given <tt>languageId</tt>.
-     */
-    public Collection<URI> getPRIPartitions(ResourceSet rs, String languageId);
-    
     /**
      * Return all modelElements of the given type with are known to this model adapter instance.
      */

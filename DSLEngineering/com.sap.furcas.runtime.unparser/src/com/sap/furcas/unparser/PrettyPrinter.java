@@ -73,6 +73,7 @@ import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
+import com.sap.furcas.runtime.tcs.BlockArgumentUtil;
 import com.sap.furcas.runtime.tcs.MetaModelElementResolutionHelper;
 import com.sap.furcas.runtime.tcs.PropertyArgumentUtil;
 import com.sap.furcas.runtime.tcs.SyntaxLookup;
@@ -685,11 +686,11 @@ public class PrettyPrinter {
 
     private void serializeSEBlock(Object element, Block block) throws SyntaxMismatchException {
 	debugWhiteSpace("<block>");
-	NbNLBArg nbNLBArg = TcsUtil.getNbNLBArg(block);
-	StartNbNLBArg startNbNLBArg = TcsUtil.getStartNbNLBArg(block);
-	IndentIncrBArg indentIncrBArg = TcsUtil.getIndentIncrBArg(block);
-	StartNLBArg startNLBArg = TcsUtil.getStartNLBArg(block);
-	EndNLBArg endNLBArg = TcsUtil.getEndNLBArg(block);
+	NbNLBArg nbNLBArg = BlockArgumentUtil.getNbNLBArg(block);
+	StartNbNLBArg startNbNLBArg = BlockArgumentUtil.getStartNbNLBArg(block);
+	IndentIncrBArg indentIncrBArg = BlockArgumentUtil.getIndentIncrBArg(block);
+	StartNLBArg startNLBArg = BlockArgumentUtil.getStartNLBArg(block);
+	EndNLBArg endNLBArg = BlockArgumentUtil.getEndNLBArg(block);
 	int indentIncr = 1; // how much to increase the indentation level
 	int nbNL = 1; // number of new lines before each element in the block
 	boolean startNL = true; // start to print block on a new line
