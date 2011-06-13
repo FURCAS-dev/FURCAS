@@ -236,6 +236,10 @@ public class DocumentationExamples extends AbstractTestSuite
 		}
 	}
 	
+	/**
+	 * The following is documented in doc/org.eclipse.ocl.doc/doc/5160-customization.textile
+	 * in section "Customizing Hidden Opposite Lookup and Navigation"
+	 */
 	public void testCustomizingOppositeEndFinder() {
 		OppositeEndFinder oef = new MyOppositeEndFinder();
 		OCL ocl = OCL.newInstance(new EcoreEnvironmentFactoryWithHiddenOpposites(
