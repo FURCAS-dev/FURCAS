@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/BibtexLibraryView.g 2011-05-31 14:01:27
+// $ANTLR 3.1.1 /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/BibtexLibraryView.g 2011-06-13 02:07:00
 
 package generated;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
@@ -64,7 +64,7 @@ public class BibtexLibraryViewParser extends ObservableInjectingParser {
     public String getGrammarFileName() { return "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/BibtexLibraryView.g"; }
 
 
-       private static final String syntaxUUID = "platform:/resource/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thnsgIt9EeCBY6jDWuZfbw";
+       private static final String syntaxUUID = "platform:/resource/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrDrAJVREeCeBYqoHugzOA";
        public String getSyntaxUUID() {
             return syntaxUUID;
        }
@@ -274,7 +274,7 @@ public class BibtexLibraryViewParser extends ObservableInjectingParser {
         IModelElementProxy ret;
         List<String> metaType=list("Bibtex","LiteratureDb");
         ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
-        onEnterTemplateRule("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thnshIt9EeCBY6jDWuZfbw");
+        onEnterTemplateRule("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrDrBJVREeCeBYqoHugzOA");
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
@@ -285,14 +285,14 @@ public class BibtexLibraryViewParser extends ObservableInjectingParser {
             // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/BibtexLibraryView.g:149:4: 'Library:' (temp= identifier ) 'Entries:' LCURLY ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) ) RCURLY 'Authors:' LCURLY (temp= bibtex_author (temp= bibtex_author )* )? RCURLY
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thnshot9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrDrBpVREeCeBYqoHugzOA");
             }
             match(input,18,FOLLOW_18_in_bibtex_literaturedb193); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thnsh4t9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrDrB5VREeCeBYqoHugzOA");
             }
             // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/BibtexLibraryView.g:149:276: (temp= identifier )
             // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/BibtexLibraryView.g:149:278: temp= identifier
@@ -314,27 +314,27 @@ public class BibtexLibraryViewParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thnsiYt9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrDrCZVREeCeBYqoHugzOA");
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thnsiot9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrDrCpVREeCeBYqoHugzOA");
             }
             match(input,19,FOLLOW_19_in_bibtex_literaturedb208); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thnsi4t9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrDrC5VREeCeBYqoHugzOA");
             }
             match(input,LCURLY,FOLLOW_LCURLY_in_bibtex_literaturedb212); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thnsjIt9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrDrDJVREeCeBYqoHugzOA");
             }
             // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/BibtexLibraryView.g:150:604: ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) )
             // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/BibtexLibraryView.g:150:605: ( (temp= bibtex_entry (temp= bibtex_entry )* )? )
@@ -343,7 +343,7 @@ public class BibtexLibraryViewParser extends ObservableInjectingParser {
             // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/BibtexLibraryView.g:150:606: (temp= bibtex_entry (temp= bibtex_entry )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thnsjot9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrDrDpVREeCeBYqoHugzOA");
             }
             // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/BibtexLibraryView.g:150:729: (temp= bibtex_entry (temp= bibtex_entry )* )?
             int alt2=2;
@@ -419,34 +419,34 @@ public class BibtexLibraryViewParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thnskIt9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrDrEJVREeCeBYqoHugzOA");
             }
             match(input,RCURLY,FOLLOW_RCURLY_in_bibtex_literaturedb246); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thnskYt9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrDrEZVREeCeBYqoHugzOA");
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thnskot9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrESEJVREeCeBYqoHugzOA");
             }
             match(input,20,FOLLOW_20_in_bibtex_literaturedb252); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thnsk4t9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrESEZVREeCeBYqoHugzOA");
             }
             match(input,LCURLY,FOLLOW_LCURLY_in_bibtex_literaturedb256); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thnslIt9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrESEpVREeCeBYqoHugzOA");
             }
             // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/BibtexLibraryView.g:152:777: (temp= bibtex_author (temp= bibtex_author )* )?
             int alt4=2;
@@ -513,14 +513,14 @@ public class BibtexLibraryViewParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thnslot9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrESFJVREeCeBYqoHugzOA");
             }
             match(input,RCURLY,FOLLOW_RCURLY_in_bibtex_literaturedb284); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thnsl4t9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrESFZVREeCeBYqoHugzOA");
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -560,7 +560,7 @@ public class BibtexLibraryViewParser extends ObservableInjectingParser {
         IModelElementProxy ret;
         List<String> metaType=list("Bibtex","Entry");
         ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
-        onEnterTemplateRule("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thnsmIt9EeCBY6jDWuZfbw");
+        onEnterTemplateRule("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrESFpVREeCeBYqoHugzOA");
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
@@ -571,21 +571,21 @@ public class BibtexLibraryViewParser extends ObservableInjectingParser {
             // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/BibtexLibraryView.g:169:4: '@article' LCURLY (temp= identifier ) COMA 'title' '=' LCURLY (temp= stringSymbol ) RCURLY COMA 'author' '=' LCURLY (temp= identifier ( ( 'and' ) temp= identifier )* )? RCURLY RCURLY
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thoTkYt9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrESGJVREeCeBYqoHugzOA");
             }
             match(input,21,FOLLOW_21_in_bibtex_entry327); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thoTkot9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrESGZVREeCeBYqoHugzOA");
             }
             match(input,LCURLY,FOLLOW_LCURLY_in_bibtex_entry331); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thoTk4t9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrESGpVREeCeBYqoHugzOA");
             }
             // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/BibtexLibraryView.g:169:423: (temp= identifier )
             // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/BibtexLibraryView.g:169:425: temp= identifier
@@ -607,35 +607,35 @@ public class BibtexLibraryViewParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thoTlYt9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrESHJVREeCeBYqoHugzOA");
             }
             match(input,COMA,FOLLOW_COMA_in_bibtex_entry346); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thoTlot9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrESHZVREeCeBYqoHugzOA");
             }
             match(input,22,FOLLOW_22_in_bibtex_entry350); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thoTl4t9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrESHpVREeCeBYqoHugzOA");
             }
             match(input,23,FOLLOW_23_in_bibtex_entry353); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thoTmIt9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrESH5VREeCeBYqoHugzOA");
             }
             match(input,LCURLY,FOLLOW_LCURLY_in_bibtex_entry357); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thoTmYt9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrESIJVREeCeBYqoHugzOA");
             }
             // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/BibtexLibraryView.g:170:747: (temp= stringSymbol )
             // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/BibtexLibraryView.g:170:749: temp= stringSymbol
@@ -657,42 +657,42 @@ public class BibtexLibraryViewParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thoTnIt9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrESI5VREeCeBYqoHugzOA");
             }
             match(input,RCURLY,FOLLOW_RCURLY_in_bibtex_entry372); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thoTnYt9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrESJJVREeCeBYqoHugzOA");
             }
             match(input,COMA,FOLLOW_COMA_in_bibtex_entry377); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thoTnot9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrESJZVREeCeBYqoHugzOA");
             }
             match(input,24,FOLLOW_24_in_bibtex_entry381); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thoTn4t9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrESJpVREeCeBYqoHugzOA");
             }
             match(input,23,FOLLOW_23_in_bibtex_entry384); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thoToIt9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrESJ5VREeCeBYqoHugzOA");
             }
             match(input,LCURLY,FOLLOW_LCURLY_in_bibtex_entry388); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thoToYt9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrESKJVREeCeBYqoHugzOA");
             }
             // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/BibtexLibraryView.g:171:898: (temp= identifier ( ( 'and' ) temp= identifier )* )?
             int alt6=2;
@@ -712,7 +712,7 @@ public class BibtexLibraryViewParser extends ObservableInjectingParser {
                     state._fsp--;
                     if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
-                      setOclRef(ret, "author", null, temp, "OCL:self.literaturedb.author->select(name = ?)", "platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thoToYt9EeCBY6jDWuZfbw", SyntaxRegistryFacade.getModelUpdaterRegistry());
+                      setOclRef(ret, "author", null, temp, "OCL:self.literaturedb.author->select(name = ?)", "platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrESKJVREeCeBYqoHugzOA", SyntaxRegistryFacade.getModelUpdaterRegistry());
                     }
                     // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/BibtexLibraryView.g:171:1162: ( ( 'and' ) temp= identifier )*
                     loop5:
@@ -736,7 +736,7 @@ public class BibtexLibraryViewParser extends ObservableInjectingParser {
                     	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/BibtexLibraryView.g:171:1181: 'and'
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thoTpYt9EeCBY6jDWuZfbw");
+                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrESLJVREeCeBYqoHugzOA");
                     	    }
                     	    match(input,25,FOLLOW_25_in_bibtex_entry404); if (state.failed) return ret2;
                     	    if ( state.backtracking==0 ) {
@@ -755,7 +755,7 @@ public class BibtexLibraryViewParser extends ObservableInjectingParser {
                     	    state._fsp--;
                     	    if (state.failed) return ret2;
                     	    if ( state.backtracking==0 ) {
-                    	      setOclRef(ret, "author", null, temp, "OCL:self.literaturedb.author->select(name = ?)", "platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thoToYt9EeCBY6jDWuZfbw", SyntaxRegistryFacade.getModelUpdaterRegistry());
+                    	      setOclRef(ret, "author", null, temp, "OCL:self.literaturedb.author->select(name = ?)", "platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrESKJVREeCeBYqoHugzOA", SyntaxRegistryFacade.getModelUpdaterRegistry());
                     	    }
 
                     	    }
@@ -776,14 +776,14 @@ public class BibtexLibraryViewParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thoTqIt9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrESL5VREeCeBYqoHugzOA");
             }
             match(input,RCURLY,FOLLOW_RCURLY_in_bibtex_entry423); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thoTqYt9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrESMJVREeCeBYqoHugzOA");
             }
             match(input,RCURLY,FOLLOW_RCURLY_in_bibtex_entry428); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -824,7 +824,7 @@ public class BibtexLibraryViewParser extends ObservableInjectingParser {
         IModelElementProxy ret;
         List<String> metaType=list("Bibtex","Author");
         ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
-        onEnterTemplateRule("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thoTqot9EeCBY6jDWuZfbw");
+        onEnterTemplateRule("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrESMZVREeCeBYqoHugzOA");
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
@@ -835,7 +835,7 @@ public class BibtexLibraryViewParser extends ObservableInjectingParser {
             // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/BibtexLibraryView.g:186:4: (temp= identifier )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_thoTrIt9EeCBY6jDWuZfbw");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.example.bibtex.dsl/mapping/BibtexLibraryView.tcs#_DrESM5VREeCeBYqoHugzOA");
             }
             // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/BibtexLibraryView.g:186:127: (temp= identifier )
             // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/BibtexLibraryView.g:186:129: temp= identifier
