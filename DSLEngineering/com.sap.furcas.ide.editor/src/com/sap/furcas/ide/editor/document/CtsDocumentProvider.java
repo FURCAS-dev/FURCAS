@@ -132,9 +132,6 @@ public class CtsDocumentProvider extends AbstractDocumentProvider {
     @Override
     public void doSaveDocument(IProgressMonitor monitor, Object element, IDocument document, boolean overwrite) throws CoreException {
         try {
-            //inform about the upcoming content change
-            fireElementStateChanging(element);
-
             editingDomain.runExclusive(new Runnable() {
                 @Override
                 public void run() {
@@ -147,10 +144,7 @@ public class CtsDocumentProvider extends AbstractDocumentProvider {
                 }
             });
             ((BasicCommandStack) editingDomain.getCommandStack()).saveIsDone();
-
-            fireElementDirtyStateChanged(element, /*isDirty*/false);
         } catch (Exception e) {
-            fireElementStateChangeFailed(element);
             throw new CoreException(new Status(Status.ERROR, CtsActivator.PLUGIN_ID, e.getMessage(), e));
         }
     }

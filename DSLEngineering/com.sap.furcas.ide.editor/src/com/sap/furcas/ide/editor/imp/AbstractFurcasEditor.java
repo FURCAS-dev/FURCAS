@@ -12,13 +12,17 @@ package com.sap.furcas.ide.editor.imp;
 import java.util.EventObject;
 
 import org.antlr.runtime.Lexer;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -143,6 +147,9 @@ public class AbstractFurcasEditor extends UniversalEditor {
         
         documentProvoider = new CtsDocumentProvider(modelEditorInput, editingDomain, partitionHandler);
         super.init(site, modelEditorInput.asLightWeightEditorInput());
+        
+        // Reset dirty state. It was changed by the initializing commands.
+        ((BasicCommandStack) editingDomain.getCommandStack()).saveIsDone();        
     }
 
     private IncrementalParserFacade createParserFacade(final PartitionAssignmentHandler partitionHandler) {
@@ -275,29 +282,5 @@ public class AbstractFurcasEditor extends UniversalEditor {
     public FurcasParseController getParseController() {
         return (FurcasParseController) super.getParseController();
     }
-    
-//    @Override
-//    public void gotoMarker(IMarker marker) {
-//        EditUIMarkerHelper;
-//        //getTargetObjects 
-//        
-//            try {
-//                    if (marker.getType().equals(EValidator.MARKER)) {
-//                            String uriAttribute = marker.getAttribute(
-//                                            EValidator.URI_ATTRIBUTE, null);
-//                            if (uriAttribute != null) {
-//                                    URI uri = URI.createURI(uriAttribute);
-//                                    EObject eObject = editingDomain.getResourceSet()
-//                                                    .getEObject(uri, true);
-//                                    if (eObject != null) {
-//                                            setSelectionToViewer(Collections
-//                                                            .singleton(editingDomain.getWrapper(eObject)));
-//                                    }
-//                            }
-//                    }
-//            } catch (CoreException exception) {
-//                    OCLInEcorePlugin.INSTANCE.log(exception);
-//            }
-//    }
     
 }
