@@ -191,6 +191,9 @@ public class AbstractFurcasEditor extends UniversalEditor {
         fParserScheduler.cancel();
         fParserScheduler.schedule();
         
+        // Allow the root block to be garbage collected after the first parse run
+        getDocumentProvider().consumeModelEditorInput();
+        
         updateVisuals();
     }
     

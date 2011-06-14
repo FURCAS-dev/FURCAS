@@ -251,4 +251,8 @@ public class CtsDocumentProvider extends AbstractDocumentProvider {
         return true;
     }
     
+    public void consumeModelEditorInput() {
+        editorInput.consume();
+    }
+    
 }

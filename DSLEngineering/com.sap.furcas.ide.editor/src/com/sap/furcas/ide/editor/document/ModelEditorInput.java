@@ -1,5 +1,6 @@
 package com.sap.furcas.ide.editor.document;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.ui.URIEditorInput;
@@ -32,7 +33,7 @@ public class ModelEditorInput {
      * no full blown objects. For the reasons behind this decissions
      * see {@link IEditorInput}
      */
-    private static class ModelURIEditorInput extends URIEditorInput implements IPathEditorInput {
+    public static class ModelURIEditorInput extends URIEditorInput implements IPathEditorInput {
 
         public ModelURIEditorInput(URI uri) {
             super(uri);
@@ -53,18 +54,33 @@ public class ModelEditorInput {
         
     }
 
+    /**
+     * Set empty after first usage. Prevents memory leak when the root elements are replaced through
+     * editing actions..
+     */
+    private boolean consumed = false;
     private final EObject rootObject;
     private TextBlock rootBlock;
+    private final ModelURIEditorInput editorInput;
     
     public ModelEditorInput(EObject rootObject, TextBlock rootBlock) {
         this.rootObject = rootObject;
         this.rootBlock = rootBlock;
+        
+        // only depend on the rootObject here. The rootBlock is not stable
+        // and will be recreated all the time during parsing
+        editorInput = new ModelURIEditorInput(EcoreUtil.getURI(rootObject), getName());
+    }
+    
+    public void consume() {
+        consumed  = true;
     }
 
     /**
      * Will never be null
      */
     public EObject getRootObject() {
+        Assert.isLegal(!consumed, "Editor input no longer valid");
         return rootObject;
     }
     
@@ -72,6 +88,7 @@ public class ModelEditorInput {
      * May be null
      */
     public TextBlock getRootBlock() {
+        Assert.isLegal(!consumed, "Editor input no longer valid");
         return rootBlock;
     }
     
@@ -80,9 +97,7 @@ public class ModelEditorInput {
     }
     
     public IPathEditorInput asLightWeightEditorInput() {
-        // only depend on the rootObject here. The rootBlock is not stable
-        // and will be recreated all the time during parsing
-        return new ModelURIEditorInput(EcoreUtil.getURI(rootObject), getName());
+        return editorInput;
     }
     
     private String getName() {
