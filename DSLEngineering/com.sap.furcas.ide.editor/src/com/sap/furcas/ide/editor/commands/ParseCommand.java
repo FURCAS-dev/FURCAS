@@ -44,6 +44,7 @@ public class ParseCommand extends RecordingCommand {
     private final IncrementalParserFacade parserFacade;
     private TextBlock result;
     private final IMessageHandler handler;
+    private boolean wasEffective;
 
     public ParseCommand(TransactionalEditingDomain domain, CtsDocument document, IncrementalParserFacade parserFacade, IMessageHandler handler) {
         super(domain, "Parse document");
@@ -55,6 +56,8 @@ public class ParseCommand extends RecordingCommand {
 
     @Override
     protected void doExecute() {
+        wasEffective = false;
+        
         // 1) Write all buffered user edits to the underlying 
         //    textblocks model. Synchronize to prevent concurrent
         //    editing from within the UI thread.
@@ -70,6 +73,10 @@ public class ParseCommand extends RecordingCommand {
             return;
         }
         result = parse(blockWithUnparsedEdits);
+        
+        // Succeded without an exception. The command will not be rolled back and the
+        // model changes will remain in effect
+        wasEffective = true; 
         
         if (result == null || Version.REFERENCE != result.getVersion()) {
             return;
@@ -87,6 +94,8 @@ public class ParseCommand extends RecordingCommand {
             //document.expandToEditableVersion();
             //document.refreshContentFromTextBlocksModel();
         }
+        
+
     }
     
     private TextBlock parse(TextBlock oldBlock) {
@@ -119,6 +128,13 @@ public class ParseCommand extends RecordingCommand {
     
     public TextBlock getParsingResult() {
         return result;
+    }
+    
+    /**
+     * True if some actual work was done. False if the command did not change anything. 
+     */
+    public boolean wasEffective() {
+        return wasEffective;
     }
     
 }
