@@ -108,7 +108,7 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
      */
     public void refreshContentFromTextBlocksModel() {
         final String text = model.get(0, model.getLength());
-        Display.getDefault().asyncExec(new Runnable() {
+        Display.getDefault().syncExec(new Runnable() {
             @Override
             public void run() {
                 synchronized (getLockObject()) {
