@@ -183,8 +183,34 @@ public class AbstractFurcasEditor extends UniversalEditor {
         // re-run IMP setup procedure with our fully configured services
         fParserScheduler.cancel();
         fParserScheduler.schedule();
+        
+        updateVisuals();
     }
     
+    private void updateVisuals() {
+        EObject rootObject = getParseController().getCurrentRootObject();
+        if (rootObject != null) { // better save then sorry
+            AdapterFactoryLabelProvider provider = new AdapterFactoryLabelProvider(adapterFactory);
+            setPartName(provider.getText(rootObject));
+            setTitleImage(provider.getImage(rootObject));
+        }
+    }
+    
+    @Override
+    public void doSave(IProgressMonitor progressMonitor) {
+        super.doSave(progressMonitor);
+        updateVisuals();
+        postSaveHook(progressMonitor);
+    }
+
+    /**
+     * Can be overwritten by subclasses if needed.
+     * @param progressMonitor 
+     */
+    protected void postSaveHook(IProgressMonitor progressMonitor) {
+        
+    }
+
     /**
      * Can be overwritten by subclasses if needed.
      */
