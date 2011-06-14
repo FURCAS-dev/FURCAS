@@ -111,9 +111,6 @@ Iteration [iteration.getSymbolName()/] = PivotFactory.eINSTANCE.createIteration(
 [emitTemplateSignature(iteration.ownedTemplateSignature)/]
 [iteration.getSymbolName()/].setOwnedTemplateSignature([iteration.ownedTemplateSignature.getSymbolName()/]);
 [/if]
-[if (iteration.unspecializedElement->notEmpty())]
-[iteration.getSymbolName()/].setUnspecializedElement([iteration.unspecializedElement.getSymbolName()/]);
-[/if]
 [iteration.getSymbolName()/].setName("[iteration.name/]");
 //[iteration.getSymbolName()/].setMoniker("[iteration.moniker/]");
 [iteration.getSymbolName()/].setType([iteration.type.getSymbolName()/]);  // [iteration.type.moniker/]
@@ -142,9 +139,6 @@ Operation [operation.getSymbolName()/] = PivotFactory.eINSTANCE.createOperation(
 [if (operation.ownedTemplateSignature->notEmpty())]
 [emitTemplateSignature(operation.ownedTemplateSignature)/]
 [operation.getSymbolName()/].setOwnedTemplateSignature([operation.ownedTemplateSignature.getSymbolName()/]);
-[/if]
-[if (operation.unspecializedElement->notEmpty())]
-[operation.getSymbolName()/].setUnspecializedElement([operation.unspecializedElement.getSymbolName()/]);
 [/if]
 [operation.getSymbolName()/].setName("[operation.name/]");
 //[operation.getSymbolName()/].setMoniker("[operation.moniker/]");

@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractNullVisitor.java,v 1.15 2011/05/19 16:55:39 ewillink Exp $
+ * $Id$
  */
 package	org.eclipse.ocl.examples.pivot.util;
 
@@ -290,6 +290,10 @@ public abstract class AbstractNullVisitor<R, C>
 	}
 
 	public R visitRealLiteralExp(org.eclipse.ocl.examples.pivot.RealLiteralExp object) {
+		return null;
+	}
+
+	public R visitSelfType(org.eclipse.ocl.examples.pivot.SelfType object) {
 		return null;
 	}
 

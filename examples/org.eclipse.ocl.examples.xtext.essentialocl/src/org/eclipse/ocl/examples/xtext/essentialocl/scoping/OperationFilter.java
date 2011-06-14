@@ -147,7 +147,6 @@ public class OperationFilter extends AbstractOperationFilter
 	@Override
 	protected void installBindings(EnvironmentView environmentView, Type forType, EObject eObject,
 			Map<TemplateParameter, ParameterableElement> bindings) {
-		installOclSelfBinding(forType, eObject, bindings);
 		List<Parameter> parameters = ((Operation)eObject).getOwnedParameters();
 		int iMax = parameters.size();
 		if (iMax > 0) {

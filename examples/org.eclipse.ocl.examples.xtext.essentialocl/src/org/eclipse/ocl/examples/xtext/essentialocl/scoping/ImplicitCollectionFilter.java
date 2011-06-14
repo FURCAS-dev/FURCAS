@@ -37,13 +37,6 @@ public class ImplicitCollectionFilter extends AbstractOperationFilter
 	public ImplicitCollectionFilter(TypeManager typeManager, Type sourceType) {
 		super(typeManager, sourceType);
 	}
-	
-	@Override
-	protected void installBindings(EnvironmentView environmentView, Type forType, EObject eObject,
-			Map<TemplateParameter, ParameterableElement> bindings) {
-		installOclSelfBinding(forType, eObject, bindings);
-		super.installBindings(environmentView, forType, eObject, bindings);
-	}
 
 	public boolean matches(EnvironmentView environmentView, Type forType, EObject eObject) {
 		if (eObject instanceof Iteration) {		

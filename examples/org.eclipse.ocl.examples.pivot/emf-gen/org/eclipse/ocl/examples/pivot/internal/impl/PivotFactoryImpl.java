@@ -73,6 +73,7 @@ import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
+import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.SendSignalAction;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
@@ -196,6 +197,7 @@ public class PivotFactoryImpl
 			case PivotPackage.PROPERTY: return (EObject)createProperty();
 			case PivotPackage.PROPERTY_CALL_EXP: return (EObject)createPropertyCallExp();
 			case PivotPackage.REAL_LITERAL_EXP: return (EObject)createRealLiteralExp();
+			case PivotPackage.SELF_TYPE: return (EObject)createSelfType();
 			case PivotPackage.SEND_SIGNAL_ACTION: return (EObject)createSendSignalAction();
 			case PivotPackage.SEQUENCE_TYPE: return (EObject)createSequenceType();
 			case PivotPackage.SET_TYPE: return (EObject)createSetType();
@@ -841,6 +843,17 @@ public class PivotFactoryImpl
 	public RealLiteralExp createRealLiteralExp() {
 		RealLiteralExpImpl realLiteralExp = new RealLiteralExpImpl();
 		return realLiteralExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SelfType createSelfType()
+	{
+		SelfTypeImpl selfType = new SelfTypeImpl();
+		return selfType;
 	}
 
 	/**

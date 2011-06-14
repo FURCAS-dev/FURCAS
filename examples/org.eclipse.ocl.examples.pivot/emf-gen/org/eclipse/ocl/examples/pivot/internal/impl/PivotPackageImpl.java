@@ -95,6 +95,7 @@ import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
+import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.SendSignalAction;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
@@ -455,6 +456,13 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EClass realLiteralExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass selfTypeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1953,6 +1961,16 @@ public class PivotPackageImpl
 	 */
 	public EAttribute getRealLiteralExp_RealSymbol() {
 		return (EAttribute)realLiteralExpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSelfType()
+	{
+		return selfTypeEClass;
 	}
 
 	/**
@@ -3874,6 +3892,8 @@ public class PivotPackageImpl
 		realLiteralExpEClass = createEClass(REAL_LITERAL_EXP);
 		createEAttribute(realLiteralExpEClass, REAL_LITERAL_EXP__REAL_SYMBOL);
 
+		selfTypeEClass = createEClass(SELF_TYPE);
+
 		sendSignalActionEClass = createEClass(SEND_SIGNAL_ACTION);
 		createEReference(sendSignalActionEClass, SEND_SIGNAL_ACTION__SIGNAL);
 
@@ -4106,6 +4126,7 @@ public class PivotPackageImpl
 		propertyEClass.getESuperTypes().add(this.getParameterableElement());
 		propertyCallExpEClass.getESuperTypes().add(this.getNavigationCallExp());
 		realLiteralExpEClass.getESuperTypes().add(this.getNumericLiteralExp());
+		selfTypeEClass.getESuperTypes().add(this.getClass_());
 		sendSignalActionEClass.getESuperTypes().add(this.getNamedElement());
 		sequenceTypeEClass.getESuperTypes().add(this.getCollectionType());
 		setTypeEClass.getESuperTypes().add(this.getCollectionType());
@@ -4463,6 +4484,8 @@ public class PivotPackageImpl
 
 		initEClass(realLiteralExpEClass, RealLiteralExp.class, "RealLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getRealLiteralExp_RealSymbol(), this.getReal(), "realSymbol", null, 1, 1, RealLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(selfTypeEClass, SelfType.class, "SelfType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(sendSignalActionEClass, SendSignalAction.class, "SendSignalAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getSendSignalAction_Signal(), this.getSignal(), null, "signal", null, 1, 1, SendSignalAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$

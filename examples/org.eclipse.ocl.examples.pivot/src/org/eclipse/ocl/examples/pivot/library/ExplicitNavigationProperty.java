@@ -26,6 +26,8 @@ import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
+import org.eclipse.ocl.examples.pivot.TemplateableElement;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -48,15 +50,20 @@ public class ExplicitNavigationProperty extends AbstractCallableImplementation
 		Property property = propertyCall.getReferredProperty();
 		Object object = sourceValue.asObject();
 		if ((object instanceof ClassifierType) && !(property.getClass_() instanceof ClassifierType)) {
-			object = ((ClassifierType)object).getInstanceType(); // FIXME ?? Classifier property call of something	
+			object = ((ClassifierType)object).getInstanceType();	
 		}
 		if (object instanceof EObject) {
 			EObject eObject = (EObject)object;
 			EClass eClass = eObject.eClass();
 			EStructuralFeature eFeature = eClass.getEStructuralFeature(property.getName());
-			// FIXME Cache a source specific implementation in a CompleteProperty
-//			implementation = new EObjectProperty(eFeature, null);
-//			property.setImplementation(implementation);
+			// A specialized property such as CollectionType.elementType is returned from the specialized type
+			// An unspecialized property such as CollectionType.ownedOperation is returned from the unspecialized type
+			if ((eObject instanceof Type) && !eObject.eIsSet(eFeature)) {
+				TemplateableElement rawType = ((Type)eObject).getUnspecializedElement();
+				if (rawType != null) {
+					eObject = rawType;
+				}
+			}
 			Object eValue = eObject.eGet(eFeature);
 			if (eValue instanceof Enumerator) {
 				Enumerator eEnumerator = (Enumerator) eValue;

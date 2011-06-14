@@ -47,7 +47,7 @@ type Boolean : PrimitiveType conformsTo OclAny {
 	/**
 	Returns Set{false, true}.
 	*/
-	static operation allInstances<OclSelf>() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.logical.BooleanAllInstancesOperation';
+	static operation allInstances() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.logical.BooleanAllInstancesOperation';
 	/**
 	True if both b1 and b are true.
 	**/
@@ -78,7 +78,7 @@ type Classifier<T> : ClassifierType conformsTo OclAny {
 	/**
 	Return a set of all instances of the type and derived types of self.
 	*/
-	static operation allInstances<OclSelf>() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.classifier.ClassifierAllInstancesOperation';
+	static operation allInstances() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.classifier.ClassifierAllInstancesOperation';
 	/**
 	Returns the object for which self is a composed content or null if there is no such object.
 	*/
@@ -261,7 +261,7 @@ type Enumeration conformsTo OclAny {
 	/**
 	Return a set of all enumeration values of self.
 	*/
-	static operation allInstances<OclSelf>() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.enumeration.EnumerationAllInstancesOperation';
+	static operation allInstances() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.enumeration.EnumerationAllInstancesOperation';
 }
 
 /**
@@ -392,7 +392,7 @@ type OclAny : AnyType {
 	/**
 	Returns a Set with self as the sole content, unless self is null in which case returns an empty set,
 	*/
-	operation oclAsSet<OclSelf>() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclAsSetOperation';
+	operation oclAsSet() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclAsSetOperation';
 	/**
 	Evaluates to self, where self is of the type identified by T.
 	The type T may be any classifier defined in the UML model;
@@ -435,7 +435,7 @@ type OclAny : AnyType {
 	/**
 	Evaluates to the type of which self is an instance.
 	**/
-	operation oclType<OclSelf>() : Classifier<OclSelf> => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclTypeOperation';
+	operation oclType() : Classifier<OclSelf> => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclTypeOperation';
 --	operation "."<T>(object2 : OclAny) : T precedence=NAVIGATION => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
 }
 
@@ -449,7 +449,7 @@ type OclInvalid : InvalidType conformsTo OclVoid {
 	/**
 	Returns invalid.
 	*/
-	static operation allInstances<OclSelf>() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.oclinvalid.OclInvalidAllInstancesOperation';
+	static operation allInstances() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.oclinvalid.OclInvalidAllInstancesOperation';
 	/**
 	Returns invalid.
 	*/
@@ -504,6 +504,12 @@ type OclMessage conformsTo OclAny {
 	operation isSignalSent() : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
 }
 
+/**
+The pseudo-type OclSelf denotes the statically determinate type of self in Operation
+and Iteration signatures. Instances of OclSelf are never created. 
+**/
+type OclSelf : SelfType conformsTo OclAny {}
+
 type OclState conformsTo OclAny {
 }
 
@@ -527,7 +533,7 @@ type OclVoid : VoidType conformsTo OclAny {
 	/**
 	Returns Set{null}.
 	*/
-	static operation allInstances<OclSelf>() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.oclvoid.OclVoidAllInstancesOperation';
+	static operation allInstances() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.oclvoid.OclVoidAllInstancesOperation';
 	/**
 	Redefines the OclAny operation, returning true if object is null, invalid
 	if object is invalid, false otherwise.

@@ -28,7 +28,7 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.TemplateableElement;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
@@ -137,8 +137,8 @@ public class AliasAnalysis extends AdapterImpl
 							otherPackages.add((org.eclipse.ocl.examples.pivot.Package)eContainer);
 							break;
 						}
-						if (eContainer instanceof TemplateableElement) {
-							eContainer = PivotUtil.getUnspecializedTemplateableElement((TemplateableElement)eContainer);
+						if (eContainer instanceof Type) {
+							eContainer = PivotUtil.getUnspecializedTemplateableElement((Type)eContainer);
 						}
 					}
 				}

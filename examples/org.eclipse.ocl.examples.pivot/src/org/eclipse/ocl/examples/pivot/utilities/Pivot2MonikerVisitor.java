@@ -58,6 +58,7 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
 import org.eclipse.ocl.examples.pivot.TupleType;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.Variable;
@@ -190,7 +191,7 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 			context.appendName(object);
 		}
 		else if (!object.getTemplateBindings().isEmpty()) {
-			org.eclipse.ocl.examples.pivot.Class templateableClass = PivotUtil.getUnspecializedTemplateableElement(object);
+			Type templateableClass = PivotUtil.getUnspecializedTemplateableElement(object);
 			context.appendParent(templateableClass, MONIKER_SCOPE_SEPARATOR);
 //			context.append(((MonikeredElement) templateableClass.eContainer()).getMoniker());
 //			context.append(SCOPE_SEPARATOR);
@@ -373,8 +374,7 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 			context.appendName(object);
 		}
 		else if (!object.getTemplateBindings().isEmpty()) {
-			Operation templateableOperation = PivotUtil.getUnspecializedTemplateableElement(object);
-			context.appendParent(templateableOperation, MONIKER_SCOPE_SEPARATOR);
+			context.appendParent(object, MONIKER_SCOPE_SEPARATOR);
 //			context.append(((MonikeredElement) templateableClass.eContainer()).getMoniker());
 //			context.append(SCOPE_SEPARATOR);
 			context.appendName(object);

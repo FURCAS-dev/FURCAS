@@ -385,24 +385,21 @@ public class OperationImpl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public TemplateableElement getUnspecializedElement()
 	{
-		return unspecializedElement;
+		throw new UnsupportedOperationException();	// FIXME Eliminate this feature once Acceleo bug 349278 fixed
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setUnspecializedElement(TemplateableElement newUnspecializedElement)
 	{
-		TemplateableElement oldUnspecializedElement = unspecializedElement;
-		unspecializedElement = newUnspecializedElement;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OPERATION__UNSPECIALIZED_ELEMENT, oldUnspecializedElement, unspecializedElement));
+		throw new UnsupportedOperationException();	// FIXME Eliminate this feature once Acceleo bug 349278 fixed
 	}
 
 	/**

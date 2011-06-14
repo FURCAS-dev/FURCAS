@@ -267,6 +267,9 @@ public class PivotUtil
 	 * {@link org.eclipse.xtext.util.Strings#convertToJavaString}
 	 */
 	public static String convertToOCLString(String theString) {
+		if (theString == null) {
+			return null;
+		}
 		int len = theString.length();
 		int bufLen = len * 2;
 		if (bufLen < 0) {
@@ -441,7 +444,10 @@ public class PivotUtil
 			result = getAllTemplateParameterLists(eContainer);
 		}
 		if (eObject instanceof TemplateableElement) {
-			TemplateableElement unspecializedTemplateableElement = getUnspecializedTemplateableElement((TemplateableElement)eObject);
+			TemplateableElement unspecializedTemplateableElement = (TemplateableElement)eObject;
+			if (eObject instanceof Type) {
+				eObject = getUnspecializedTemplateableElement((Type)eObject);
+			}
 			TemplateSignature templateSignature = unspecializedTemplateableElement.getOwnedTemplateSignature();
 			if (templateSignature != null) {
 				List<TemplateParameter> templateParameters = templateSignature.getParameters();
@@ -463,7 +469,10 @@ public class PivotUtil
 			result = getAllTemplateParameters(eContainer);
 		}
 		if (eObject instanceof TemplateableElement) {
-			TemplateableElement unspecializedTemplateableElement = getUnspecializedTemplateableElement((TemplateableElement)eObject);
+			TemplateableElement unspecializedTemplateableElement = (TemplateableElement)eObject;
+			if (eObject instanceof Type) {
+				eObject = getUnspecializedTemplateableElement((Type)eObject);
+			}
 			TemplateSignature templateSignature = unspecializedTemplateableElement.getOwnedTemplateSignature();
 			if (templateSignature != null) {
 				List<TemplateParameter> templateParameters = templateSignature.getParameters();
@@ -479,8 +488,8 @@ public class PivotUtil
 	}
 
 	public static Map<TemplateParameter, ParameterableElement> getAllTemplateParametersAsBindings(EObject eObject) {
-		if (eObject instanceof TemplateableElement) {
-			eObject = getUnspecializedTemplateableElement((TemplateableElement)eObject);
+		if (eObject instanceof Type) {
+			eObject = getUnspecializedTemplateableElement((Type)eObject);
 		}
 		Map<TemplateParameter, ParameterableElement> result = null;
 		EObject eContainer = eObject.eContainer();
@@ -592,14 +601,8 @@ public class PivotUtil
 			owner = ((Property)feature).getClass_();
 		}
 		else if (feature instanceof Operation) {
-			if (feature instanceof Operation) {
-				feature = getUnspecializedTemplateableElement((Operation)feature);
-			}
 			owner = ((Operation)feature).getClass_();
 		}
-//		if (owner instanceof CompleteType) {
-//			owner = (org.eclipse.ocl.examples.pivot.Class)((CompleteType)owner).getModel(); // FIXME cast
-//		}
 		return owner;
 	}
 
@@ -772,24 +775,7 @@ public class PivotUtil
 		return results;
 	}
 
-//	public static org.eclipse.ocl.examples.pivot.Class getTemplateableClass(org.eclipse.ocl.examples.pivot.Class object) {
-//		TemplateBinding templateBinding = object.getTemplateBindings().get(0);
-//		TemplateSignature templateSignature = templateBinding.getSignature();
-//		TemplateableElement unspecializedClass = templateSignature.getTemplate();
-//		return (org.eclipse.ocl.examples.pivot.Class)unspecializedClass;
-//	}
-
-/*	private static Operation getUnspecializedOperation(org.eclipse.ocl.examples.pivot.Class unspecializedTemplate,
-			Operation anOperation) {
-		for (Operation operation : unspecializedTemplate.getOwnedOperations()) {
-			if (operation.getName().equals(anOperation.getName())) {
-				return operation;			// FIXME overload resolution etc
-			}	// this is only invoked when specializing an untemplated operation of a templated collection
-		}
-		return null;
-	} */
-
-	public static <T extends TemplateableElement> T getUnspecializedTemplateableElement(T templateableElement) {
+	public static <T extends Type> T getUnspecializedTemplateableElement(T templateableElement) {
 		if (templateableElement == null) {
 			return null;
 		}
@@ -800,28 +786,6 @@ public class PivotUtil
 		@SuppressWarnings("unchecked")
 		T castUnspecializedElement = (T) unspecializedElement;
 		return (T) castUnspecializedElement;
-/*		List<TemplateBinding> templateBindings = templateableElement.getTemplateBindings();
-		if (templateBindings.size() <= 0) {
-			assert templateableElement.getUnspecializedElement() == null;
-			return templateableElement;			
-		}
-		TemplateBinding templateBinding = templateBindings.get(templateBindings.size()-1);		// FIXME ordering so that most derived is last
-		TemplateSignature templateSignature = templateBinding.getSignature();
-		if (templateSignature == null) {
-			assert templateableElement.getUnspecializedElement() == null;
-			return templateableElement;
-		}
-		TemplateableElement unspecializedTemplate = templateSignature.getTemplate();
-		if (!unspecializedTemplate.getClass().isAssignableFrom(templateableElement.getClass())) {
-			if ((templateableElement instanceof Operation) && (unspecializedTemplate instanceof org.eclipse.ocl.examples.pivot.Class)) {
-				unspecializedTemplate = getUnspecializedOperation((org.eclipse.ocl.examples.pivot.Class)unspecializedTemplate, (Operation) templateableElement);
-			}
-		}
-		@SuppressWarnings("unchecked")
-		T unspecializedTemplateableElement = (T) unspecializedTemplate;
-//		assert templateableElement.getUnspecializedElement() == unspecializedTemplateableElement;
-//		return unspecializedTemplateableElement;
-		return (T) templateableElement.getUnspecializedElement(); */
 	}
 
 	public static boolean isPivotURI(URI uri) {

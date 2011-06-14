@@ -175,8 +175,8 @@ public abstract class Abstract2Moniker implements PivotConstants
 	}
 
 	public void appendName(MonikeredElement monikeredElement) {
-		if (monikeredElement instanceof TemplateableElement) {
-			TemplateableElement unspecializedElement = ((TemplateableElement)monikeredElement).getUnspecializedElement();
+		if (monikeredElement instanceof Type) {		// FIXME migrate to more specific location
+			TemplateableElement unspecializedElement = ((Type)monikeredElement).getUnspecializedElement();
 			if (unspecializedElement != null) {
 				appendName(unspecializedElement);
 				return;
