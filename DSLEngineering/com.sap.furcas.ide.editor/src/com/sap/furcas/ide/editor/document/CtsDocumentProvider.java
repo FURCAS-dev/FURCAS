@@ -55,9 +55,9 @@ public class CtsDocumentProvider extends AbstractDocumentProvider {
      * @author Stephan Erb
      *
      */
-    private final class ResourceMarkerAnnotationModelExtension extends ResourceMarkerAnnotationModel {
+    private final class TextAwareResourceMarkerAnnotationModel extends ResourceMarkerAnnotationModel {
 
-        private ResourceMarkerAnnotationModelExtension(IResource resource) {
+        private TextAwareResourceMarkerAnnotationModel(IResource resource) {
             super(resource);
         }
 
@@ -86,14 +86,17 @@ public class CtsDocumentProvider extends AbstractDocumentProvider {
                         @Override
                         public void run() {
                             EObject modelElementWithMarker = editingDomain.getResourceSet().getEObject(URI.createURI(uriAttribute), true);
-                            TextBlock rootBlock = ((CtsDocument) fDocument).getRootBlock();
-                            TextBlock tb = locator.findTextBlockOf(rootBlock, modelElementWithMarker, editingDomain.getResourceSet());
-                            if (tb != null) {
-                                int offset = locator.getStartOffset(tb);
-                                int length = locator.getLength(tb);
-                                positions[0] = new Position(offset, length);
-                            } else {
-                                // element not represented in this view
+                            if (modelElementWithMarker != null) {
+                                TextBlock rootBlock = ((CtsDocument) fDocument).getRootBlock();
+                                TextBlock tb = locator.findTextBlockOf(rootBlock, modelElementWithMarker,
+                                        editingDomain.getResourceSet());
+                                if (tb != null) {
+                                    int offset = locator.getStartOffset(tb);
+                                    int length = locator.getLength(tb);
+                                    positions[0] = new Position(offset, length);
+                                } else {
+                                    // element not represented in this view
+                                }
                             }
                         }
                     });
@@ -174,7 +177,7 @@ public class CtsDocumentProvider extends AbstractDocumentProvider {
     protected IAnnotationModel createAnnotationModel(Object element) throws CoreException {
         assert element.equals(editorInput.asLightWeightEditorInput());
         
-        return new ResourceMarkerAnnotationModelExtension(WorkspaceSynchronizer.getFile(
+        return new TextAwareResourceMarkerAnnotationModel(WorkspaceSynchronizer.getFile(
                 editorInput.getRootObject().eResource()));
     }
     
