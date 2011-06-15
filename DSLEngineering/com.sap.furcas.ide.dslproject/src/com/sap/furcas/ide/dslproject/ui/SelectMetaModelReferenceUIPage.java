@@ -31,7 +31,6 @@ import com.sap.furcas.ide.dslproject.Messages;
 import com.sap.furcas.ide.dslproject.builder.SyntaxGenerationNature;
 import com.sap.furcas.ide.dslproject.conf.DeployedMetaProjectConf;
 import com.sap.furcas.ide.dslproject.conf.IProjectMetaRefConf;
-import com.sap.furcas.ide.dslproject.conf.OpenMOF14MetaProjectConf;
 
 /**
  * reusable collection of controls, providers and listeners for selecting a
@@ -142,11 +141,7 @@ public class SelectMetaModelReferenceUIPage {
 		deployedMMChoiceButton.setSelection(true);
 		selectGroup(DEP_META);
 		metamodelName = ((DeployedMetaProjectConf) myCurrentlySelectedMMConf).getContainerName();
-	    } else if (myCurrentlySelectedMMConf instanceof OpenMOF14MetaProjectConf) {
-		refProjectChoiceButton.setSelection(true);
-		selectGroup(REF_PROJ);
-		refProjectName = ((OpenMOF14MetaProjectConf) myCurrentlySelectedMMConf).getRefProjectName();
-	    }
+	    } 
 	}
 
 	setupDeployedProjectGroup(deployedMMGroup, metamodelName, project);
@@ -157,10 +152,7 @@ public class SelectMetaModelReferenceUIPage {
 	    if (myCurrentlySelectedMMConf instanceof DeployedMetaProjectConf) {
 		setControlsEnabled(myDeployedMMGroupControls, true);
 		setControlsEnabled(myRefProjectMMGroupControls, false);
-	    } else if (myCurrentlySelectedMMConf instanceof OpenMOF14MetaProjectConf) {
-		setControlsEnabled(myDeployedMMGroupControls, false);
-		setControlsEnabled(myRefProjectMMGroupControls, true);
-	    }
+	    } 
 
 	} else {
 	    setControlsEnabled(myDeployedMMGroupControls, false);
@@ -302,7 +294,6 @@ public class SelectMetaModelReferenceUIPage {
 		    if (result.length == 1) {
 			// should be guaranteed by Dialog?
 			IProject proj = (IProject) result[0];
-			myCurrentlySelectedMMConf = new OpenMOF14MetaProjectConf(proj);
 			metamodelText.setText(proj.getName());
 			group.update();
 		    }
@@ -609,11 +600,7 @@ public class SelectMetaModelReferenceUIPage {
     public boolean isValidSelection() {
 	if (myCurrentlySelectedMMConf != null) {
 	    // check that current conf type is same as enabled button
-	    if (myCurrentlySelectedMMConf instanceof OpenMOF14MetaProjectConf) {
-		// in this case, the first group of controls must be selected
-		return myCurrentSelection == REF_PROJ; // return true if first
-						       // button is selected
-	    } else if (myCurrentlySelectedMMConf instanceof DeployedMetaProjectConf) {
+	   if (myCurrentlySelectedMMConf instanceof DeployedMetaProjectConf) {
 		return myCurrentSelection == DEP_META; // return if second
 						       // button is selected
 	    }
