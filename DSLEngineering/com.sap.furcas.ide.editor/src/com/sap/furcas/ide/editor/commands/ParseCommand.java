@@ -91,7 +91,9 @@ public class ParseCommand extends RecordingCommand {
         synchronized (document.getLockObject()) {
             document.setRootBlock(result);
         }
-        document.refreshContentFromTextBlocksModel(shortPrettyPrinter);
+        // TODO: Disabled because of invalid thread access problems
+        //      Stephan Erb, Jun 15 2011.
+        // document.refreshContentFromTextBlocksModel(shortPrettyPrinter);
     }
     
     private TextBlock parse(TextBlock oldBlock) {
