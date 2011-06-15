@@ -9,7 +9,6 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
@@ -19,7 +18,6 @@ import org.eclipse.ui.IWorkbenchPart;
 import com.sap.furcas.ide.dslproject.Activator;
 import com.sap.furcas.ide.dslproject.Messages;
 import com.sap.furcas.ide.dslproject.conf.ProjectMetaRefConfFactory;
-import com.sap.furcas.ide.dslproject.ui.AddSyntaxNatureWizard;
 
 /**
  * The Class ToggleNatureAction.
@@ -123,20 +121,7 @@ public class ToggleNatureAction implements IObjectActionDelegate {
 		    return;
 		}
 	    }
-	    AddSyntaxNatureWizard wizard = new AddSyntaxNatureWizard(project);
-	    WizardDialog wizardDialog = new WizardDialog(shell, wizard);
-	    wizardDialog.setHelpAvailable(false);
 
-	    if (wizardDialog.open() == WizardDialog.OK) {
-
-		String[] newNatures = new String[natures.length + 1];
-		System.arraycopy(natures, 0, newNatures, 0, natures.length);
-		newNatures[natures.length] = SyntaxGenerationNature.NATURE_ID;
-		// newNatures[natures.length] = "syntaxGenerationNature;";
-		description.setNatureIds(newNatures);
-		project.setDescription(description, null);
-		ProjectMetaRefConfFactory.configure(project, wizard.getSelectedReferenceConf());
-	    }
 	} catch (CoreException e) {
 	    Activator.logger.logError("Failed to toggle nature", e);
 	}
