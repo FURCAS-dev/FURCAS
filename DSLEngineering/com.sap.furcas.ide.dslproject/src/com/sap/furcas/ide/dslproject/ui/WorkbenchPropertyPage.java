@@ -21,7 +21,6 @@ import com.sap.furcas.ide.dslproject.conf.IProjectMetaRefConf;
 public class WorkbenchPropertyPage extends PropertyPage implements IWorkbenchPropertyPage {
 
     /** The page. */
-    private SelectMetaModelReferenceUIPage page;
 
     /** The _syntax gen nature. */
     private SyntaxGenerationNature mySyntaxGenNature;
@@ -59,7 +58,6 @@ public class WorkbenchPropertyPage extends PropertyPage implements IWorkbenchPro
 	if (project != null) {
 	    mySyntaxGenNature = SyntaxGenerationNature.getNatureFromProject(project);
 
-	    page = new SelectMetaModelReferenceUIPage(pageComposite, project);
 	} else {
 	    // should never happen
 	    Activator.logger.logWarning("Bug: PropertyPage invoked without IProject as Element, check plugin.xml.");
@@ -76,27 +74,17 @@ public class WorkbenchPropertyPage extends PropertyPage implements IWorkbenchPro
      */
     @Override
     public boolean performOk() {
-	if (page == null) {
-	    return true;
-	}
-	if (page.isValidSelection()) {
+	
+	
 	    if (mySyntaxGenNature != null) {
-		if (page.hasConfigChanged()) {
-		    IProjectMetaRefConf conf = page.getCurrentlySelectedMMConf();
-		    mySyntaxGenNature.setMetaModel(conf);
-
-		    EclipseProjectBuildStarter.buildProject(project, getShell());
-
-		}
+		
 		this.setMessage(null, IMessageProvider.NONE);
 	    } else {
 		// should never happen
 		this.setMessage(Messages.WorkbenchPropertyPage_NoDSLNature, IMessageProvider.ERROR);
 	    }
-	    return true;
-	} else {
-	    this.setMessage(Messages.WorkbenchPropertyPage_IncompleteSelection, IMessageProvider.ERROR);
-	}
+	   
+	 
 	return false;
     }
 
