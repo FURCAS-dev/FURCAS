@@ -55,7 +55,7 @@ public class PrettyPrintAssertionUtil {
     }
 
     public static void assertEqualsByLines(TextBlock textBlock, String referenceOutput) {
-        TextBlocksModel model = new TextBlocksModel(textBlock, /*modelAdapter*/ null);
+        TextBlocksModel model = new TextBlocksModel(textBlock);
         String output = model.get(0, model.getLength());
         assertEqualsByLines(output, referenceOutput);
         

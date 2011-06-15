@@ -142,7 +142,7 @@ public class CtsContentAssistProcessor {
         TextBlocksModel tbModel = null;
         IDocument doc = viewer.getDocument();
         if (doc instanceof CtsDocument) {
-            tbModel = new TextBlocksModel(((CtsDocument) doc).getRootBlock(), null);
+            tbModel = new TextBlocksModel(((CtsDocument) doc).getRootBlock());
         }
 
         return computeCompletionProposals(viewer, line, charPositionInLine, tbModel);

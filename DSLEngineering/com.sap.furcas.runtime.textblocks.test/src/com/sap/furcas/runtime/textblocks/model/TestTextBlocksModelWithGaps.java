@@ -20,7 +20,7 @@ public class TestTextBlocksModelWithGaps extends FixtureWithGapsProvidingTextBlo
 
     @Before
     public void setupTbModel() {
-	tbModel = new TextBlocksModel(main, null);
+	tbModel = new TextBlocksModel(main);
 
 	// has to match the fixture model
 	completeFixtureText = "   aaaaa   * bbbbcccc     +     ddddd   ";

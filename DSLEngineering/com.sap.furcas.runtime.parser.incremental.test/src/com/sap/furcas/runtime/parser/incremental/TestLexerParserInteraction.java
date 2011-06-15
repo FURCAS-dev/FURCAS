@@ -73,7 +73,7 @@ public class TestLexerParserInteraction extends FixtureProvidingTextBlockTest {
         eostoken.setOffsetRelative(true);
         root.getSubNodes().add(eostoken);
 
-        TextBlocksModel model = new TextBlocksModel(root, null);
+        TextBlocksModel model = new TextBlocksModel(root);
 
         model.replace(0, 0, "syntax test{template ->bla:;}");
 
@@ -133,7 +133,7 @@ public class TestLexerParserInteraction extends FixtureProvidingTextBlockTest {
         eostoken.setOffsetRelative(true);
         root.getSubNodes().add(eostoken);
 
-        TextBlocksModel model = new TextBlocksModel(root, null);
+        TextBlocksModel model = new TextBlocksModel(root);
 
         model.replace(0, 0, "syntax test{template bla:;}");
 

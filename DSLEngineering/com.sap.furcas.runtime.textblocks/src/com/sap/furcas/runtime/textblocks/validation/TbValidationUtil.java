@@ -61,7 +61,7 @@ public class TbValidationUtil {
 	}
 	
 	public static void assertCacheIsUpToDate(TextBlock rootBlock) {
-	    TextBlocksModel model = new TextBlocksModel(rootBlock, /*modelAdapter*/ null);
+	    TextBlocksModel model = new TextBlocksModel(rootBlock);
 	    model.setUsecache(false);
 	    String uncached = model.get(0, model.getLength());
 	    model.setUsecache(true);

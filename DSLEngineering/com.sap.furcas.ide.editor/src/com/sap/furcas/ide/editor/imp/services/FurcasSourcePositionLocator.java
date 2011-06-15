@@ -78,7 +78,7 @@ public class FurcasSourcePositionLocator implements ISourcePositionLocator {
     @Override
     public Object findNode(Object astRoot, int offset) {
         TextBlock rootBlock = (TextBlock) astRoot;
-        TextBlocksModel textBlockModel = new TextBlocksModel(rootBlock, /*modelAdapter*/ null);
+        TextBlocksModel textBlockModel = new TextBlocksModel(rootBlock);
         
         return textBlockModel.getFloorTokenInRoot(offset);
     }
@@ -86,7 +86,7 @@ public class FurcasSourcePositionLocator implements ISourcePositionLocator {
     @Override
     public Object findNode(Object astRoot, int startOffset, int endOffset) {
         TextBlock rootBlock = (TextBlock) astRoot;
-        TextBlocksModel textBlockModel = new TextBlocksModel(rootBlock, /*modelAdapter*/ null);
+        TextBlocksModel textBlockModel = new TextBlocksModel(rootBlock);
         
         DocumentNode leftMostSelectedNode = textBlockModel.getFloorTokenInRoot(startOffset);
         DocumentNode rightMostSelectedNode = textBlockModel.getFloorTokenInRoot(endOffset);
