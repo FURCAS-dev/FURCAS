@@ -21,7 +21,7 @@ public class AddSyntaxNatureWizard extends org.eclipse.jface.wizard.Wizard {
     private final IProject myTargetProject;
 
     /** The _page. */
-    private SelectMetaModelReferenceUIPage myPage;
+    
 
     /**
      * Instantiates a new adds the syntax nature wizard.
@@ -43,9 +43,7 @@ public class AddSyntaxNatureWizard extends org.eclipse.jface.wizard.Wizard {
      */
     @Override
     public void addPages() {
-	ReferenceMetaModelSelectionWizardPage page2 = new ReferenceMetaModelSelectionWizardPage(Messages.AddNatureWizardTitle,
-		myTargetProject);
-	addPage(page2);
+	
     }
 
     /*
@@ -55,16 +53,7 @@ public class AddSyntaxNatureWizard extends org.eclipse.jface.wizard.Wizard {
      */
     @Override
     public boolean performFinish() {
-	if (myPage.isValidSelection()) {
-	    IProjectMetaRefConf conf = myPage.getCurrentlySelectedMMConf();
-	    try {
-		conf.configureProject(myTargetProject);
-	    } catch (CoreException e) {
-		Activator.logger.logError("", e);
-		return false;
-	    }
-	    return true;
-	}
+
 	return false;
     }
 
@@ -74,48 +63,8 @@ public class AddSyntaxNatureWizard extends org.eclipse.jface.wizard.Wizard {
      * @return the selected reference conf
      */
     public IProjectMetaRefConf getSelectedReferenceConf() {
-	return myPage.getCurrentlySelectedMMConf();
+	return null;
     }
 
-    /**
-     * The Class ReferenceMetaModelSelectionWizardPage.
-     */
-    private class ReferenceMetaModelSelectionWizardPage extends WizardPage implements IWizardPage {
-
-	/** The target project. */
-	private final IProject targetProject;
-
-	/**
-	 * Instantiates a new reference meta model selection wizard page.
-	 * 
-	 * @param pageName
-	 *            the page name
-	 * @param targetProject
-	 *            the target project
-	 */
-	public ReferenceMetaModelSelectionWizardPage(String pageName, IProject targetProject) {
-	    super(pageName);
-	    this.targetProject = targetProject;
-	    this.setTitle(Messages.AddNatureWizardTitle);
-
-	    this.setDescription(Messages.AddNatureWizardMMPageDescription);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt
-	 * .widgets.Composite)
-	 */
-	@Override
-	public void createControl(Composite parent) {
-	    Composite pageComposite = new Composite(parent, SWT.NULL);
-	    pageComposite.setLayout(new GridLayout());
-	    myPage = new SelectMetaModelReferenceUIPage(pageComposite, targetProject);
-	    setControl(pageComposite);
-	}
-
-    }
 
 }
