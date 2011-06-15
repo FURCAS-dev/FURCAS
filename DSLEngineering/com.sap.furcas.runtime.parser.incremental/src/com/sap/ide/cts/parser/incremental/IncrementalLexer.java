@@ -164,11 +164,15 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
         } catch (Exception ex) {
             success = false;
             TextBlock referenceVersion = getOtherVersion(root, Version.REFERENCE);
+            TextBlock previousVersion = getOtherVersion(root, Version.PREVIOUS);
+            TextBlock currentVersion = getOtherVersion(root, Version.CURRENT);
             Activator.logError("Unexpected Exception during incremental lexing! Check the following exception:\n"
-                            + "Text before:\n"
+                            + "Reference Block:\n"
                             + referenceVersion == null ? "<none>" : TbDebugUtil.getTextBlockAsAnnotatedString(referenceVersion)
-                            + "\n\nText after change:\n"
-                            + TbDebugUtil.getTextBlockAsAnnotatedString(referenceVersion));
+                            + "\n\nPrevious Block:\n"
+                            + previousVersion == null ? "<none>" : TbDebugUtil.getTextBlockAsAnnotatedString(previousVersion)
+                            + "\n\nCurrent Block:\n"
+                            + currentVersion == null ? "<none>" : TbDebugUtil.getTextBlockAsAnnotatedString(currentVersion));       
             Activator.logError(ex);
             
         } finally {

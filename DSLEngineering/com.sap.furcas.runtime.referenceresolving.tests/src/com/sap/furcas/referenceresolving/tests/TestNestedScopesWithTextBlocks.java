@@ -381,7 +381,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
     }
     
     private void renameElementOnTextBlock(int replacedRegionOffset, int replacedRegionLength, String newText) throws SemanticParserException {
-        TextBlocksModel model = new TextBlocksModel(rootTextBlock, null);
+        TextBlocksModel model = new TextBlocksModel(rootTextBlock);
         model.replace(replacedRegionOffset, replacedRegionLength, newText);
         TextBlock currentVersionTb = incrementalParserFacade.parseIncrementally(rootTextBlock);
         rootTextBlock = (TextBlock) TbChangeUtil.cleanUp(currentVersionTb);

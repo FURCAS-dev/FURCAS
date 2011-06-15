@@ -189,21 +189,21 @@ public class TestTextBlocksModelManual {
 
     @Test
     public void testGetChar() throws Exception {
-	TextBlocksModel tbModel = new TextBlocksModel(rootBlock, null);
+	TextBlocksModel tbModel = new TextBlocksModel(rootBlock);
 	char c = tbModel.get(8);
 	assertEquals('e', c);
     }
 
     @Test
     public void testGetString() throws Exception {
-	TextBlocksModel tbModel = new TextBlocksModel(rootBlock, null);
+	TextBlocksModel tbModel = new TextBlocksModel(rootBlock);
 	String c = tbModel.get(2, 5);
 	assertEquals("c - d", c);
     }
 
     @Test
     public void testReplaceString() throws Exception {
-	TextBlocksModel tbModel = new TextBlocksModel(rootBlock, null);
+	TextBlocksModel tbModel = new TextBlocksModel(rootBlock);
 	tbModel.replace(2, 0, "c");
 	String c = tbModel.get(2, 5);
 	assertEquals("cc - ", c);

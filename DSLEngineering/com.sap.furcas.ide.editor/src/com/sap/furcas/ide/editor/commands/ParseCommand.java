@@ -21,6 +21,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.parser.ParsingError;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
+import com.sap.furcas.runtime.textblocks.shortprettyprint.ShortPrettyPrinter;
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException.Component;
 import com.sap.ide.cts.parser.incremental.IncrementalParserFacade;
@@ -45,6 +46,7 @@ public class ParseCommand extends RecordingCommand {
     private TextBlock result;
     private final IMessageHandler handler;
     private boolean wasEffective;
+    private final ShortPrettyPrinter shortPrettyPrinter;
 
     public ParseCommand(TransactionalEditingDomain domain, CtsDocument document, IncrementalParserFacade parserFacade, IMessageHandler handler) {
         super(domain, "Parse document");
@@ -52,6 +54,7 @@ public class ParseCommand extends RecordingCommand {
         this.parserFacade = parserFacade;
         this.handler = handler;
         this.result = document.getRootBlock();
+        this.shortPrettyPrinter = new ShortPrettyPrinter(parserFacade.getModelElementInvestigator());
     }
 
     @Override
@@ -87,15 +90,8 @@ public class ParseCommand extends RecordingCommand {
         //    the offsets of the user's text edits are already invalid. 
         synchronized (document.getLockObject()) {
             document.setRootBlock(result);
-            document.flushUserEditsToTextBlocskModel();
-            // FIXME: For now, disable the refresh of all tokens. It invalidates our curser position
-            //        This will be easier once we have implemented the TokenValueChanger
-            //        Stephan Erb, 19.05.2011
-            //document.expandToEditableVersion();
-            //document.refreshContentFromTextBlocksModel();
         }
-        
-
+        document.refreshContentFromTextBlocksModel(shortPrettyPrinter);
     }
     
     private TextBlock parse(TextBlock oldBlock) {

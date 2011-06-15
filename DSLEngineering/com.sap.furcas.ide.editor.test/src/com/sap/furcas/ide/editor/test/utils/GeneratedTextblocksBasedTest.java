@@ -35,7 +35,7 @@ public abstract class GeneratedTextblocksBasedTest extends GeneratedParserAndFac
         AbstractToken content = createToken("");
         TextBlock rootBlock = initialiseTextBlocksWithContentToken(content);
 
-        tbModel = new TextBlocksModel(rootBlock, null);
+        tbModel = new TextBlocksModel(rootBlock);
 
         String fixtureContents = TcsTestHelper.getStreamContents(contentStream);
         tbModel.replace(0, 0, fixtureContents);
@@ -63,7 +63,7 @@ public abstract class GeneratedTextblocksBasedTest extends GeneratedParserAndFac
             // re-create tbModel
             TbChangeUtil.cleanUp(result);
             // add a new template
-            tbModel = new TextBlocksModel(rootBlock, null);
+            tbModel = new TextBlocksModel(rootBlock);
 
             // add post-parse replacement
             // this is used for strings that would otherwise throw parse errors

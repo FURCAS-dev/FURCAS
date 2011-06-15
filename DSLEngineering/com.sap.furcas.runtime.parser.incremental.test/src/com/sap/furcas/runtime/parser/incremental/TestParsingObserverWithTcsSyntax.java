@@ -95,7 +95,7 @@ public class TestParsingObserverWithTcsSyntax {
         AbstractToken content = modelFactory.createToken("");
         TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, content);
 
-        TextBlocksModel tbModel = new TextBlocksModel(root, null);
+        TextBlocksModel tbModel = new TextBlocksModel(root);
         tbModel.replace(0, 0, getTcsFileContent(ScenarioFixtureData.TCS_OBSOLETE_TCS));
 
         TextBlock currentVersionTb = incrementalParserFacade.parseIncrementally(root);
@@ -119,7 +119,7 @@ public class TestParsingObserverWithTcsSyntax {
         AbstractToken content = modelFactory.createToken("");
         TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, content);
 
-        TextBlocksModel tbModel = new TextBlocksModel(root, null);
+        TextBlocksModel tbModel = new TextBlocksModel(root);
         tbModel.replace(0, 0, getTcsFileContent(ScenarioFixtureData.BIBTEXT_TCS));
 
         TextBlock currentVersionTb = incrementalParserFacade.parseIncrementally(root);
@@ -145,7 +145,7 @@ public class TestParsingObserverWithTcsSyntax {
         AbstractToken content = modelFactory.createToken("");
         TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, content);
 
-        TextBlocksModel tbModel = new TextBlocksModel(root, null);
+        TextBlocksModel tbModel = new TextBlocksModel(root);
         tbModel.replace(0, 0, syntaxString);
 
         TextBlock tb = incrementalParserFacade.parseIncrementally(root);
@@ -169,7 +169,7 @@ public class TestParsingObserverWithTcsSyntax {
         AbstractToken content = modelFactory.createToken("");
         TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, content);
 
-        TextBlocksModel tbModel = new TextBlocksModel(root, null);
+        TextBlocksModel tbModel = new TextBlocksModel(root);
         tbModel.replace(0, 0, syntaxString);
 
         TextBlock tb = incrementalParserFacade.parseIncrementally(root);
@@ -198,7 +198,7 @@ public class TestParsingObserverWithTcsSyntax {
         AbstractToken content = modelFactory.createToken("");
         TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, content);
 
-        TextBlocksModel tbModel = new TextBlocksModel(root, null);
+        TextBlocksModel tbModel = new TextBlocksModel(root);
         tbModel.replace(0, 0, syntaxString);
 
         TextBlock tb = incrementalParserFacade.parseIncrementally(root);
@@ -227,7 +227,7 @@ public class TestParsingObserverWithTcsSyntax {
         AbstractToken content = modelFactory.createToken("");
         TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, content);
 
-        TextBlocksModel tbModel = new TextBlocksModel(root, null);
+        TextBlocksModel tbModel = new TextBlocksModel(root);
         tbModel.replace(0, 0, syntaxString);
 
         TextBlock tb = incrementalParserFacade.parseIncrementally(root);
@@ -254,7 +254,7 @@ public class TestParsingObserverWithTcsSyntax {
         AbstractToken content = modelFactory.createToken("");
         TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, content);
 
-        TextBlocksModel tbModel = new TextBlocksModel(root, null);
+        TextBlocksModel tbModel = new TextBlocksModel(root);
         tbModel.replace(0, 0, getTcsFileContent(syntaxDefFile));
 
         TextBlock currentVersionTb = incrementalParserFacade.parseIncrementally(root);
@@ -284,7 +284,7 @@ public class TestParsingObserverWithTcsSyntax {
         TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, content);
         transientParsingResource.getContents().add(root);
 
-        TextBlocksModel tbModel = new TextBlocksModel(root, null);
+        TextBlocksModel tbModel = new TextBlocksModel(root);
         String tcsContent = getTcsFileContent(ScenarioFixtureData.BIBTEXT_TCS);
         tbModel.replace(0, 0, tcsContent);
 
@@ -304,7 +304,7 @@ public class TestParsingObserverWithTcsSyntax {
         TbChangeUtil.cleanUp(currentVersionTb);
         // replace a reference that referred to the "." token with one that
         // refers to the "{" token
-        tbModel = new TextBlocksModel(currentVersionTb, null);
+        tbModel = new TextBlocksModel(currentVersionTb);
         tbModel.replace(tcsContent.indexOf("."), 1, "{");
         TextBlock currentVersionTbNew = incrementalParserFacade.parseIncrementally(currentVersionTb);
         // textBlock shouldn't have changed

@@ -821,7 +821,7 @@ public class CtsCompletionCalculator {
         
         TextBlock currentVersion = TbVersionUtil.getOtherVersion(textBlocksModel.getRoot(), Version.CURRENT);
         if (currentVersion != null) {
-            textBlocksModel = new TextBlocksModel(currentVersion, null);
+            textBlocksModel = new TextBlocksModel(currentVersion);
         }
         // currentTbModel is non-null at this point
         if (textBlocksModel.getRoot() != null) {

@@ -65,16 +65,17 @@ public class TbUtil {
      * @param tb
      * @return
      */
-    public static DocumentNode getNewestVersion(DocumentNode tb) {
+    @SuppressWarnings("unchecked")
+    public static <T extends DocumentNode> T getNewestVersion(T tb) {
 	// TODO is it possible that there is already a CURRENT version?
 	if (Version.CURRENT.equals(tb.getVersion())) {
 		return tb;
 	}
 	for (DocumentNode tbv : tb.getOtherVersions()) {
 	    if (tbv.getVersion().equals(Version.CURRENT)) {
-		return tbv;
+		return (T) tbv;
 	    } else if (tbv.getVersion().equals(Version.PREVIOUS)) {
-		tb = tbv;
+		tb = (T) tbv;
 	    }
 	}
 	return tb;
