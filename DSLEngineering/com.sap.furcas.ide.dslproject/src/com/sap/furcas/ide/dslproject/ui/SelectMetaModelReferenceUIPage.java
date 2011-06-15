@@ -4,32 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IWorkspace;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.jface.viewers.IStructuredContentProvider;
-import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.dialogs.ListDialog;
 
-import com.sap.furcas.ide.dslproject.Activator;
-import com.sap.furcas.ide.dslproject.Constants;
 import com.sap.furcas.ide.dslproject.Messages;
 import com.sap.furcas.ide.dslproject.builder.SyntaxGenerationNature;
-import com.sap.furcas.ide.dslproject.conf.DeployedMetaProjectConf;
 import com.sap.furcas.ide.dslproject.conf.IProjectMetaRefConf;
 
 /**
@@ -65,10 +50,6 @@ public class SelectMetaModelReferenceUIPage {
     /** The _ref project mm group controls. */
     private final List<Control> myRefProjectMMGroupControls = new ArrayList<Control>();
 
-    // private SyntaxGenerationNature _syntaxGenNature;
-    /** The ws root. */
-    private final IWorkspaceRoot wsRoot;
-
     /**
      * Instantiates a new select meta model reference ui page.
      * 
@@ -78,13 +59,7 @@ public class SelectMetaModelReferenceUIPage {
      *            the project
      */
     public SelectMetaModelReferenceUIPage(Composite pageComposite, IProject project) {
-
-	// wsRoot = project.getWorkspace().getRoot();
-	IWorkspace workspace = ResourcesPlugin.getWorkspace();
-	wsRoot = workspace.getRoot();
-
 	doCreatePage(pageComposite, project);
-
     }
 
     /**
@@ -131,33 +106,14 @@ public class SelectMetaModelReferenceUIPage {
 	layout.numColumns = 2;
 	deployedMMGroup.setLayout(layout);
 
-	String metamodelName = Messages.WorkbenchPropertyPage_NoMetaModelSetMessage;
-	String refProjectName = Messages.WorkbenchPropertyPage_NoRefProjectSetMessage;
 	// String ecoreFileName =
 	// Messages.WorkbenchPropertyPage_NoEcoreFileSetMessage;
 
-	if (myCurrentlySelectedMMConf != null) {
-	    if (myCurrentlySelectedMMConf instanceof DeployedMetaProjectConf) {
-		deployedMMChoiceButton.setSelection(true);
-		selectGroup(DEP_META);
-		metamodelName = ((DeployedMetaProjectConf) myCurrentlySelectedMMConf).getContainerName();
-	    } 
-	}
 
-	setupDeployedProjectGroup(deployedMMGroup, metamodelName, project);
-	setupRefProjectGroup(refProjectGroup, refProjectName);
-	// setupEcoreGroup(ecoreMMGroup, ecoreFileName);
 
-	if (myCurrentlySelectedMMConf != null) {
-	    if (myCurrentlySelectedMMConf instanceof DeployedMetaProjectConf) {
-		setControlsEnabled(myDeployedMMGroupControls, true);
-		setControlsEnabled(myRefProjectMMGroupControls, false);
-	    } 
-
-	} else {
+	if (myCurrentlySelectedMMConf == null) {
 	    setControlsEnabled(myDeployedMMGroupControls, false);
 	    setControlsEnabled(myRefProjectMMGroupControls, false);
-
 	}
 
 	GroupEnableListener listener = new GroupEnableListener(refProjectChoiceButton, deployedMMChoiceButton);
@@ -166,143 +122,7 @@ public class SelectMetaModelReferenceUIPage {
 
     }
 
-    /**
-     * Setup deployed project group.
-     * 
-     * @param group
-     *            the group
-     * @param metamodelName
-     *            the metamodel name
-     * @param project
-     *            the current project that is going to be configured
-     */
-    private void setupDeployedProjectGroup(final Group group, String metamodelName, final IProject project) {
-	myDeployedMMGroupControls.add(group);
 
-	GridData gridData1 = new GridData();
-	gridData1.grabExcessHorizontalSpace = true;
-	gridData1.horizontalAlignment = SWT.FILL;
-	group.setLayoutData(gridData1);
-
-	// Label label = new Label(group, SWT.NULL);
-	// _deployedMMGroupControls.add(label);
-	// label.setText(Messages.MetaModelLabel);
-	group.setText(Messages.MetaModelLabel);
-
-	final Text metamodelText = new Text(group, SWT.READ_ONLY);
-
-	GridData gridData = new GridData();
-	gridData.grabExcessHorizontalSpace = true;
-	gridData.horizontalAlignment = SWT.FILL;
-
-	metamodelText.setLayoutData(gridData);
-	metamodelText.setText(metamodelName);
-	metamodelText.setEditable(false);
-	myDeployedMMGroupControls.add(metamodelText);
-
-	Button changeButton = new Button(group, SWT.NULL);
-	myDeployedMMGroupControls.add(changeButton);
-	changeButton.setText(Messages.ChangeLabel);
-
-	final ListDialog dialog = new ListDialog(group.getShell());
-
-	IStructuredContentProvider cp = new MetaModelListContentProvider();
-
-	dialog.setContentProvider(cp);
-	dialog.setLabelProvider(new MetaModelListLabelProvider());
-	dialog.setTitle(Messages.SelectDeployedMetamodelDialogTitle);
-	// must set something not null, just for inputChanged to be called.
-	dialog.setInput(this);
-
-	// ArrayList<Object> initialElements = new ArrayList<Object>(1);
-	// dialog.setInitialElementSelections(initialElements);
-
-	Listener buttonListener = new Listener() {
-	    @Override
-	    public void handleEvent(Event event) {
-		if (dialog.open() == ListDialog.OK) {
-
-		    Object[] result = dialog.getResult();
-		    if (result.length == 1) { // should be guaranteed by
-					      // Dialog?
-			String containerName = (String) result[0];
-			myCurrentlySelectedMMConf = new DeployedMetaProjectConf(containerName, project);
-			metamodelText.setText(containerName);
-			group.update();
-		    }
-		}
-	    }
-	};
-
-	changeButton.addListener(SWT.Selection, buttonListener);
-    }
-
-    /**
-     * Setup ref project group.
-     * 
-     * @param group
-     *            the group
-     * @param refProjectName
-     *            the ref project name
-     */
-    private void setupRefProjectGroup(final Group group, String refProjectName) {
-	myRefProjectMMGroupControls.add(group);
-	GridData gridData1 = new GridData();
-	gridData1.grabExcessHorizontalSpace = true;
-	gridData1.horizontalAlignment = SWT.FILL;
-	group.setLayoutData(gridData1);
-	group.setText(Messages.RefProjectLabel);
-
-	Label label = new Label(group, SWT.NULL);
-	label.setText(Messages.MessageRefProjectLabel);
-	myRefProjectMMGroupControls.add(label);
-
-	final Text metamodelText = new Text(group, SWT.READ_ONLY);
-	myRefProjectMMGroupControls.add(metamodelText);
-	GridData gridData = new GridData();
-	gridData.grabExcessHorizontalSpace = true;
-	gridData.horizontalAlignment = SWT.FILL;
-	metamodelText.setLayoutData(gridData);
-
-	metamodelText.setText(refProjectName);
-	metamodelText.setEditable(false);
-
-	Button changeButton = new Button(group, SWT.NULL);
-	changeButton.setText(Messages.ChangeLabel);
-	myRefProjectMMGroupControls.add(changeButton);
-
-	final ListDialog dialog = new ListDialog(group.getShell());
-
-	IStructuredContentProvider cp = new MoinMetaProjectListContentProvider();
-
-	dialog.setContentProvider(cp);
-	dialog.setLabelProvider(new MoinMetaProjectListLabelProvider());
-	dialog.setTitle(Messages.SelectRefProjectDialogTitle);
-
-	// must set something not null, just for inputChanged to be called.
-	dialog.setInput(wsRoot);
-
-	// ArrayList<Object> initialElements = new ArrayList<Object>(1);
-	// dialog.setInitialElementSelections(initialElements);
-
-	Listener buttonListener = new Listener() {
-	    @Override
-	    public void handleEvent(Event event) {
-		if (dialog.open() == ListDialog.OK) {
-
-		    Object[] result = dialog.getResult();
-		    if (result.length == 1) {
-			// should be guaranteed by Dialog?
-			IProject proj = (IProject) result[0];
-			metamodelText.setText(proj.getName());
-			group.update();
-		    }
-		}
-	    }
-	};
-
-	changeButton.addListener(SWT.Selection, buttonListener);
-    }
 
     /**
      * handles event on the radio buttons, assumes only 2 such buttons exist.
@@ -343,187 +163,6 @@ public class SelectMetaModelReferenceUIPage {
 	    }
 	}
     };
-
-    /**
-     * The Class MetaModelListContentProvider.
-     */
-    private final class MetaModelListContentProvider implements IStructuredContentProvider {
-
-	// private Viewer mViewer;
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.jface.viewers.IStructuredContentProvider#getElements(
-	 * java.lang.Object)
-	 */
-	@Override
-	public Object[] getElements(Object inputElement) {
-
-	    throw new RuntimeException("Not yet migrated to EMF");
-//	    Set<String> nameSet = new HashSet<String>();
-//
-//	    Collection<MmDeploymentInfo> metamodels = MetamodelManager.getInstance().getDeployedMetamodels();
-//
-//	    for (MmDeploymentInfo metamodel : metamodels) {
-//		nameSet.add(metamodel.getContainerName());
-//	    }
-//	    Collection<MmDeploymentInfo> importedMetamodels = MetamodelManager.getInstance().getImportedMetamodels();
-//	    for (MmDeploymentInfo metamodel : importedMetamodels) {
-//		nameSet.add(metamodel.getContainerName());
-//	    }
-//	    nameSet.add("sap.com/tc/moin/mof_1.4");
-//
-//	    String[] result = new String[nameSet.size()];
-//	    int i = 0;
-//	    for (Iterator<String> iterator = nameSet.iterator(); iterator.hasNext();) {
-//		String contName = iterator.next();
-//		result[i] = contName;
-//		i++;
-//	    }
-//	    return result;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.jface.viewers.IContentProvider#dispose()
-	 */
-	@Override
-	public void dispose() {
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.jface.viewers.IContentProvider#inputChanged(org.eclipse
-	 * .jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-	 */
-	@Override
-	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-	    // mViewer= viewer;
-	}
-
-    }
-
-    /**
-     * The Class MetaModelListLabelProvider.
-     */
-    private static final class MetaModelListLabelProvider extends LabelProvider {
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.jface.viewers.LabelProvider#getText(java.lang.Object)
-	 */
-	@Override
-	public String getText(Object element) {
-	    throw new RuntimeException("Not yet migrated to EMF");
-
-//	    if (element instanceof MmDeploymentInfo) {
-//		MmDeploymentInfo mm = (MmDeploymentInfo) element;
-//		return mm.getContainerName();
-//	    }
-//
-//	    String label = super.getText(element);
-//	    if (label == null) {
-//
-//	    }
-//	    return label;
-	}
-    }
-
-    /**
-     * The Class MoinMetaProjectListContentProvider.
-     */
-    private final class MoinMetaProjectListContentProvider implements IStructuredContentProvider {
-
-	// private Viewer mViewer;
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.jface.viewers.IStructuredContentProvider#getElements(
-	 * java.lang.Object)
-	 */
-	@Override
-	public Object[] getElements(Object inputElement) {
-
-	    Object[] result = null;
-	    if (inputElement instanceof IResource) {
-		IResource res = (IResource) inputElement;
-		IProject[] allProjects = null;
-		allProjects = res.getWorkspace().getRoot().getProjects();
-		ArrayList<IProject> filteredList = new ArrayList<IProject>(allProjects.length);
-		for (IProject project : allProjects) {
-		    try {
-			if (project.isOpen()) {
-			    if (project.hasNature(Constants.MOIN_METAMODEL_NATURE_ID)) {
-				filteredList.add(project);
-			    }
-			}
-		    } catch (CoreException e) {
-			Activator.logger.logError("", e);
-		    }
-		}
-		result = filteredList.toArray();
-	    }
-	    return result;
-
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.jface.viewers.IContentProvider#dispose()
-	 */
-	@Override
-	public void dispose() {
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.jface.viewers.IContentProvider#inputChanged(org.eclipse
-	 * .jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-	 */
-	@Override
-	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-	    // mViewer= viewer;
-	}
-
-    }
-
-    /**
-     * The Class MoinMetaProjectListLabelProvider.
-     */
-    private static final class MoinMetaProjectListLabelProvider extends LabelProvider {
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.jface.viewers.LabelProvider#getText(java.lang.Object)
-	 */
-	@Override
-	public String getText(Object element) {
-	    if (element instanceof IProject) {
-		IProject project = (IProject) element;
-		return project.getName();
-	    }
-
-	    String label = super.getText(element);
-	    if (label == null) {
-
-	    }
-	    return label;
-	}
-    }
 
     /**
      * Sets the controls enabled.
@@ -598,13 +237,6 @@ public class SelectMetaModelReferenceUIPage {
      * @return true, if is valid selection
      */
     public boolean isValidSelection() {
-	if (myCurrentlySelectedMMConf != null) {
-	    // check that current conf type is same as enabled button
-	   if (myCurrentlySelectedMMConf instanceof DeployedMetaProjectConf) {
-		return myCurrentSelection == DEP_META; // return if second
-						       // button is selected
-	    }
-	}
 	return false;
     }
 }
