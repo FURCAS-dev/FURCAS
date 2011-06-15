@@ -153,14 +153,19 @@ public class IncrementalParser extends IncrementalRecognizer {
                 }
                 AbstractToken rightBoundary = tok;
                 tok = nextToken(tok);
-                while (!isEOS(tok)
-                        && (wasReLexed(tok) || tok instanceof OmittedToken)) {
+                while ((wasReLexed(tok) || tok instanceof OmittedToken )) {
                     rightBoundary = tok;
                     // TODO would it be possible to track the common ancestor
                     // directly in this
                     // routine?
                     // should be, so no further algorithm would be needed!
                     tok = nextToken(tok);
+                }
+                if(isEOS(tok)) {
+                    //We are at the end of the stream. Tokens were touched until here
+                    //to make sure the whole stream is valid we need to call the 
+                    //batch parser from the root block
+                    rightBoundary = tok;
                 }
                 DocumentNode commonAncestorNode = getCommonAncestor(root,
                         leftBoundary, rightBoundary);
@@ -198,14 +203,20 @@ public class IncrementalParser extends IncrementalRecognizer {
                                     parserTextBlocksHandler);
                             callBatchParser(commonAncestor);
                         } else {
-                            //There is no parent block and there are still unconsumed tokens 
-                            //so we have an error in the input
-                            ANTLRIncrementalTokenStream tokenStream = (ANTLRIncrementalTokenStream) batchParser
-                                    .getTokenStream();
-                            AbstractToken unconsumedToken = TbNavigationUtil.nextToken(tokenStream.getLastConsumedToken());
-                            getErrorList().add(new ParsingError("There were uconsumed tokens: " + unconsumedToken.getValue(), unconsumedToken));
-                            errornous = true;
-                            break;
+                            if(getErrorList().size() == 0) {
+                                //There is no parent block but and we could parse the block correctly
+                                //however, there are still unconsumed tokens 
+                                //so we have an error in the input
+                                 ANTLRIncrementalTokenStream tokenStream = (ANTLRIncrementalTokenStream) batchParser
+                                        .getTokenStream();
+                                AbstractToken unconsumedToken = TbNavigationUtil.nextToken(tokenStream.getLastConsumedToken());
+                                getErrorList().add(new ParsingError("There were uconsumed tokens: " + unconsumedToken.getValue(), unconsumedToken));
+                                errornous = true;
+                                break;
+                            } else {
+                                errornous = true;
+                                break;
+                            }
                         }
                     }
 

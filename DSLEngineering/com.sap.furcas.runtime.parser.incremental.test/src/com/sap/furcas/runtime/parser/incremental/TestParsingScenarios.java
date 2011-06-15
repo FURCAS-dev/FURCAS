@@ -174,7 +174,6 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
     
-    @Ignore("Parxer accepting invalid syntax? Or is there some error recovery going on?")
     @Test
     public void testDeleteBlock() throws Exception {
         model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
@@ -275,7 +274,6 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
     
-    @Ignore("TB merge produces invalid textblock")
     @Test
     public void testMergeTwoBlocksInstantious() throws Exception {
         model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
@@ -292,7 +290,7 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
     
-    @Ignore("TB merge produces invalid textblock")
+    //@Ignore("TB merge produces invalid textblock")
     @Test
     public void testMergeTwoBlocksInstantious2() throws Exception {
         model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
