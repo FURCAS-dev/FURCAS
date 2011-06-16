@@ -155,17 +155,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 									original, referenceHandler);
 							}
 						}
-						IncrementalParsingUtil
-							.deleteEmptyBlocksIncludingAdjecentBlocks(oldVersion);
-						deleteElementsForRemovedSubBlocks(oldVersion);
-						// ensure offset and length are correctly computed
-						// for
-						// the new node
-						TokenRelocationUtil
-							.makeRelativeOffsetRecursively(oldVersion);
-
-						TbValidationUtil
-							.assertTextBlockConsistency(oldVersion);
+						//orig
 
 						if (newFeatureBean != null) {
 							// it might be null in the case of operator
@@ -199,6 +189,18 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 				}
 				endIndex++;
 			}
+			
+			IncrementalParsingUtil
+                                .deleteEmptyBlocksIncludingAdjecentBlocks(oldVersion);
+                        deleteElementsForRemovedSubBlocks(oldVersion);
+                        // ensure offset and length are correctly computed
+                        // for
+                        // the new node
+                        TokenRelocationUtil
+                                .makeRelativeOffsetRecursively(oldVersion);
+            
+                        TbValidationUtil
+                                .assertTextBlockConsistency(oldVersion);
 
 			for (DocumentNode node : TbNavigationUtil.getSubNodes(getOtherVersion(
 				oldVersion, Version.REFERENCE))) {
