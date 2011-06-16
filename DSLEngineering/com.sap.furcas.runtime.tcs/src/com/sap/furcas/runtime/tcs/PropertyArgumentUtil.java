@@ -286,5 +286,17 @@ public class PropertyArgumentUtil {
     public static boolean containsReferenceByPArg(Property p) {
         return PropertyArgumentUtil.getReferenceByPArg(p) != null;
     }
+    
+    public static boolean containsForcedLowerArg(Property prop) {
+        return (PropertyArgumentUtil.getForcedLowerPArg(prop) != null);
+    }
+    
+    public static boolean containsForcedUpperArgOfOne(Property prop) {
+        ForcedUpperPArg upperArg = PropertyArgumentUtil.getForcedUpperPArg(prop);
+        if (upperArg != null && upperArg.getValue() == 1) {
+            return true;
+        }
+        return false;
+    }
 
 }

@@ -269,7 +269,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
     @Test
     public void testModifyInSimpleTree() throws Exception {
 	TextBlock root = createSimpleTree("012345");
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 0, 0, "test");
 	assertEquals(10, getWorkingCopy(root).getLength());
 	assertEquals(3, getWorkingCopy(root).getSubNodes().size());
@@ -289,7 +289,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
     @Test
     public void testModifyInSimpleTreeMultiTokens() throws Exception {
 	TextBlock root = createSimpleTree("012", "345");
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 0, 0, "test");
 	assertEquals(10, getWorkingCopy(root).getLength());
 	assertEquals(4, getWorkingCopy(root).getSubNodes().size());
@@ -358,7 +358,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "     012          345   "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 0, 0, "test"); // should create a new token at
 					   // beginning of text
 	assertEquals(30, getWorkingCopy(root).getLength());
@@ -386,7 +386,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "     012          345   "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 13, 0, "test"); // should create a new token in
 					    // middle of text
 	assertEquals(30, getWorkingCopy(root).getLength());
@@ -413,7 +413,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "     012          345   "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 26, 0, "test"); // should create a new token in
 					    // middle of text
 	assertEquals(30, getWorkingCopy(root).getLength());
@@ -440,7 +440,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "     012          345   "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 4, 0, "test"); // should create a new token within
 					   // first subblock
 	assertEquals(30, getWorkingCopy(root).getLength());
@@ -470,7 +470,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "     012          345   "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 5, 0, "test"); // should extend existing token at
 					   // start
 	assertEquals(30, getWorkingCopy(root).getLength());
@@ -498,7 +498,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "     012          345   "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 8, 0, "test"); // should extend existing token at
 					   // start
 	assertEquals(30, getWorkingCopy(root).getLength());
@@ -526,7 +526,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "     012          345   "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 26, 0, "test"); // should create a new token at
 					    // beginning of text
 	assertEquals(30, getWorkingCopy(root).getLength());
@@ -553,7 +553,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "     012          345   "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 24, 0, "test"); // should create a new token at
 					    // beginning of text
 	assertEquals(30, getWorkingCopy(root).getLength());
@@ -580,7 +580,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "     012          345   "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 5, 3, "test"); // should replace complete first
 					   // token
 	assertEquals(27, getWorkingCopy(root).getLength());
@@ -607,7 +607,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "     012          345   "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 18, 3, "test");// should replace complete second
 					   // token
 	assertEquals(27, getWorkingCopy(root).getLength());
@@ -634,7 +634,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "     012          345   "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 0, 5, "test");// should replace complete second
 					  // token
 	assertEquals(25, getWorkingCopy(root).getLength());
@@ -662,7 +662,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "     012          345   "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 21, 5, "test");// should add to second token
 	assertEquals(25, getWorkingCopy(root).getLength());
 	assertEquals(4, getWorkingCopy(root).getSubNodes().size()); // BOS, tb1,
@@ -688,7 +688,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "     012          345   "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 0, 13, "test");// should replace first textBlock
 	assertEquals(17, getWorkingCopy(root).getLength());
 	assertEquals(4, getWorkingCopy(root).getSubNodes().size()); // BOS, tb1,
@@ -713,7 +713,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "     012          345   "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 13, 13, "test");// should replace first textBlock
 	assertEquals(17, getWorkingCopy(root).getLength());
 	assertEquals(3, getWorkingCopy(root).getSubNodes().size()); // BOS, tb1,
@@ -733,7 +733,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "  ___012___    ___345___  "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 9, 8, "test");// should create new token in first
 					  // subBlock
 	assertEquals(22, getWorkingCopy(root).getLength());
@@ -760,7 +760,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "  ___012___    ___345___  "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 6, 14, "test");// should create new token in first
 					   // subBlock
 	assertEquals(16, getWorkingCopy(root).getLength());
@@ -787,7 +787,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "  ___012___    ___345___  "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 8, 10, "test");// should create new token in first
 					   // subBlock
 	assertEquals(20, getWorkingCopy(root).getLength());
@@ -814,7 +814,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "  ___012___    ___345___  "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 0, 26, "test");// should create new token in first
 					   // subBlock
 	assertEquals(4, getWorkingCopy(root).getLength());
@@ -837,7 +837,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "  ___012___    ___345___  "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 0, 26, "");// should create new token in first
 				       // subBlock
 	assertEquals(0, getWorkingCopy(root).getLength());
@@ -852,7 +852,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "     012          345   "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 13, 13, "");// should replace first textBlock
 	assertEquals(13, getWorkingCopy(root).getLength());
 	assertEquals(3, getWorkingCopy(root).getSubNodes().size()); // BOS, tb2,
@@ -872,7 +872,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "     012          345   "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 15, 9, "");// should replace first textBlock
 	assertEquals(17, getWorkingCopy(root).getLength());
 	assertEquals(3, getWorkingCopy(root).getSubNodes().size()); // BOS, tb2,
@@ -892,7 +892,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "     012          345   "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 18, 3, "");// should replace first textBlock
 	assertEquals(23, getWorkingCopy(root).getLength());
 	assertEquals(3, getWorkingCopy(root).getSubNodes().size()); // BOS, tb2,
@@ -911,7 +911,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createSimpleTreeWithGaps("012345"); // creates tree
 							     // with length 16:
 							     // "     012345     "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 5, 0, "test");
 	assertEquals(20, getWorkingCopy(root).getLength());
 	assertEquals(3, getWorkingCopy(root).getSubNodes().size());
@@ -959,7 +959,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 							  // inner textBlock
 							  // with length 16:
 							  // "     012345     "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 5, 0, "test");
 	assertEquals(20, getWorkingCopy(root).getLength());
 	assertEquals(3, getWorkingCopy(root).getSubNodes().size());
@@ -1014,7 +1014,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createVeryDeepTreeWithGaps("012345"); // creates tree
 							       // of length 18
 							       // "      012345      "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 0, 0, "test");
 	assertEquals(22, getWorkingCopy(root).getLength());
 	assertEquals(3, getWorkingCopy(root).getSubNodes().size());
@@ -1089,7 +1089,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
     @Test
     public void testAddInEmptyTree1() throws Exception {
 	TextBlock root = createEmptyTree(false);
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 0, 0, "test");
 	assertEquals(3, getWorkingCopy(root).getSubNodes().size()); // BOS, tb2,
 								    // eos
@@ -1107,7 +1107,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
     public void testAddInEmptyTree2() throws Exception {
 	TextBlock root = createEmptyTree(true); // creates an empty tree with an
 						// existing empty token inside
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 0, 0, "test");
 	assertEquals(3, getWorkingCopy(root).getSubNodes().size()); // BOS, tb2,
 								    // eos
@@ -1127,7 +1127,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "     012          345   "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 5, 3, ""); // should replace complete first token
 	assertEquals(23, getWorkingCopy(root).getLength());
 	assertEquals(3, getWorkingCopy(root).getSubNodes().size()); // BOS, tb2,
@@ -1147,7 +1147,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "     012          345   "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 18, 3, "");// should replace complete second token
 	assertEquals(23, getWorkingCopy(root).getLength());
 	assertEquals(3, getWorkingCopy(root).getSubNodes().size()); // BOS, tb1,
@@ -1169,7 +1169,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "     012          345   "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 0, 5, "");// should replace complete second token
 	assertEquals(21, getWorkingCopy(root).getLength());
 	assertEquals(4, getWorkingCopy(root).getSubNodes().size()); // BOS, tb1,
@@ -1196,7 +1196,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "     012          345   "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 21, 5, "");// should add to second token
 	assertEquals(21, getWorkingCopy(root).getLength());
 	assertEquals(4, getWorkingCopy(root).getSubNodes().size()); // BOS, tb1,
@@ -1222,7 +1222,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "     012          345   "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 0, 13, "");// should replace first textBlock
 	assertEquals(13, getWorkingCopy(root).getLength());
 	assertEquals(3, getWorkingCopy(root).getSubNodes().size()); // BOS, tb1,
@@ -1242,7 +1242,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "     012          345   "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 13, 13, "");// should replace first textBlock
 	assertEquals(13, getWorkingCopy(root).getLength());
 	assertEquals(3, getWorkingCopy(root).getSubNodes().size()); // BOS, tb1,
@@ -1263,7 +1263,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 							       // of length 26:
 							       // "  ___012___    ___345___  "
 	// expect "  ___012_|_345___  "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 9, 8, "");// should create new token in first
 				      // subBlock
 	assertEquals(18, getWorkingCopy(root).getLength());
@@ -1291,7 +1291,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "  ___012___    ___345___  "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 6, 14, "");// should create new token in first
 				       // subBlock
 	assertEquals(12, getWorkingCopy(root).getLength());
@@ -1318,7 +1318,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 	TextBlock root = createDeepTreeWithGaps("012", "345"); // creates tree
 							       // of length 26:
 							       // "  ___012___    ___345___  "
-	TextBlocksModel model = new TextBlocksModel(root, null);
+	TextBlocksModel model = new TextBlocksModel(root);
 	model.replace(root, 8, 10, "");// should create new token in first
 				       // subBlock
 	assertEquals(16, getWorkingCopy(root).getLength());

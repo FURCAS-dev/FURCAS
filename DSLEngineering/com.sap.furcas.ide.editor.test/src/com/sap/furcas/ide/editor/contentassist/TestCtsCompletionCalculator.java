@@ -39,7 +39,7 @@ import com.sap.furcas.runtime.tcs.PropertyArgumentUtil;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.tcs.testbase.TCSFixtureTestBase;
 
-public class TestTcsUtil extends TCSFixtureTestBase {
+public class TestCtsCompletionCalculator extends TCSFixtureTestBase {
 
     @Test
     public void testContainsRefersToArg() {
@@ -66,7 +66,7 @@ public class TestTcsUtil extends TCSFixtureTestBase {
         // main3Prop, as main2Cond else branch is null
         expected.add(main3Prop);
 
-        assertEquals(expected, TcsUtil.getPossibleAtomicFollows(main1Lit, null, null, null, false, null));
+        assertEquals(expected, CtsCompletionCalculator.getPossibleAtomicFollows(main1Lit, null, null, null, false, null));
     }
 
     @Test
@@ -75,7 +75,7 @@ public class TestTcsUtil extends TCSFixtureTestBase {
 
         expected.add(main3Prop);
 
-        assertEquals(expected, TcsUtil.getPossibleAtomicFollows(main2CondThenLit, null, null, null, false, null));
+        assertEquals(expected, CtsCompletionCalculator.getPossibleAtomicFollows(main2CondThenLit, null, null, null, false, null));
     }
 
     @Test
@@ -84,7 +84,7 @@ public class TestTcsUtil extends TCSFixtureTestBase {
         expected.add(main4AltCase1Lit);
         expected.add(main4AltCase2Lit);
 
-        assertEquals(expected, TcsUtil.getPossibleAtomicFollows(main3Prop, null, null, null, false, null));
+        assertEquals(expected, CtsCompletionCalculator.getPossibleAtomicFollows(main3Prop, null, null, null, false, null));
     }
 
     @Ignore("Failing after the EMF migration. Failing for unknown reasons")
@@ -101,7 +101,7 @@ public class TestTcsUtil extends TCSFixtureTestBase {
 
         expected.add(funcTemplateLit);
 
-        assertEquals(expected, TcsUtil.getPossibleAtomicFollows(main4AltCase1Lit, null, classTemplateMap, null, false, null));
+        assertEquals(expected, CtsCompletionCalculator.getPossibleAtomicFollows(main4AltCase1Lit, null, classTemplateMap, null, false, null));
     }
 
     @Ignore("Failing after the EMF migration. Failing for unknown reasons")
@@ -117,7 +117,7 @@ public class TestTcsUtil extends TCSFixtureTestBase {
 
         expected.add(funcTemplateLit);
 
-        assertEquals(expected, TcsUtil.getPossibleAtomicFollows(main5BlockProp, null, classTemplateMap, null, false, null));
+        assertEquals(expected, CtsCompletionCalculator.getPossibleAtomicFollows(main5BlockProp, null, classTemplateMap, null, false, null));
     }
 
     @Test
@@ -131,7 +131,7 @@ public class TestTcsUtil extends TCSFixtureTestBase {
         parentFunctionCallStack.push(main6Call);
 
         assertEquals(expected,
-                TcsUtil.getPossibleAtomicFollows(funcTemplateLit, parentFunctionCallStack, null, null, false, null));
+                CtsCompletionCalculator.getPossibleAtomicFollows(funcTemplateLit, parentFunctionCallStack, null, null, false, null));
     }
 
     @Test
@@ -141,7 +141,7 @@ public class TestTcsUtil extends TCSFixtureTestBase {
 
         expected.add(funcTemplateLit);
 
-        assertEquals(expected, TcsUtil.getPossibleAtomicFollows(main7Lit, null, null, null, false, null));
+        assertEquals(expected, CtsCompletionCalculator.getPossibleAtomicFollows(main7Lit, null, null, null, false, null));
     }
 
     @Test
@@ -155,7 +155,7 @@ public class TestTcsUtil extends TCSFixtureTestBase {
         parentFunctionCallStack.push(main8Call);
 
         assertEquals(expected,
-                TcsUtil.getPossibleAtomicFollows(funcTemplateLit, parentFunctionCallStack, null, null, false, null));
+                CtsCompletionCalculator.getPossibleAtomicFollows(funcTemplateLit, parentFunctionCallStack, null, null, false, null));
     }
 
     @Test
@@ -163,7 +163,8 @@ public class TestTcsUtil extends TCSFixtureTestBase {
 
         List<SequenceElement> expected = new ArrayList<SequenceElement>();
 
-        assertEquals(expected, TcsUtil.getPossibleAtomicFollows(null, null, null, null, false, null));
+        assertEquals(expected,
+                CtsCompletionCalculator.getPossibleAtomicFollows(null, null, null, null, false, null));
     }
 
     @Test
@@ -173,7 +174,8 @@ public class TestTcsUtil extends TCSFixtureTestBase {
 
         Set<Template> visitedTemplates = new HashSet<Template>();
 
-        assertEquals(expected, TcsUtil.getPossibleFirstAtomicSequenceElements(main1Lit, null, visitedTemplates, null));
+        assertEquals(expected,
+                CtsCompletionCalculator.getPossibleFirstAtomicSequenceElements(main1Lit, null, visitedTemplates, null));
     }
 
     @Test
@@ -184,7 +186,8 @@ public class TestTcsUtil extends TCSFixtureTestBase {
 
         Set<Template> visitedTemplates = new HashSet<Template>();
 
-        assertEquals(expected, TcsUtil.getPossibleFirstAtomicSequenceElements(main2Cond, null, visitedTemplates, null));
+        assertEquals(expected,
+                CtsCompletionCalculator.getPossibleFirstAtomicSequenceElements(main2Cond, null, visitedTemplates, null));
     }
 
     @Test
@@ -194,7 +197,8 @@ public class TestTcsUtil extends TCSFixtureTestBase {
 
         Set<Template> visitedTemplates = new HashSet<Template>();
 
-        assertEquals(expected, TcsUtil.getPossibleFirstAtomicSequenceElements(main3Prop, null, visitedTemplates, null));
+        assertEquals(expected,
+                CtsCompletionCalculator.getPossibleFirstAtomicSequenceElements(main3Prop, null, visitedTemplates, null));
     }
 
     @Test
@@ -205,7 +209,8 @@ public class TestTcsUtil extends TCSFixtureTestBase {
 
         Set<Template> visitedTemplates = new HashSet<Template>();
 
-        assertEquals(expected, TcsUtil.getPossibleFirstAtomicSequenceElements(main4Alt, null, visitedTemplates, null));
+        assertEquals(expected,
+                CtsCompletionCalculator.getPossibleFirstAtomicSequenceElements(main4Alt, null, visitedTemplates, null));
     }
 
     @Ignore("Failing after the EMF migration. Failing for unknown reasons")
@@ -220,7 +225,7 @@ public class TestTcsUtil extends TCSFixtureTestBase {
         Set<Template> visitedTemplates = new HashSet<Template>();
 
         assertEquals(expected,
-                TcsUtil.getPossibleFirstAtomicSequenceElements(main5Block, classTemplateMap, visitedTemplates, null));
+                CtsCompletionCalculator.getPossibleFirstAtomicSequenceElements(main5Block, classTemplateMap, visitedTemplates, null));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -231,7 +236,8 @@ public class TestTcsUtil extends TCSFixtureTestBase {
 
         Set<Template> visitedTemplates = new HashSet<Template>();
 
-        assertEquals(expected, TcsUtil.getPossibleFirstAtomicSequenceElements(main5Block, null, visitedTemplates, null));
+        assertEquals(expected,
+                CtsCompletionCalculator.getPossibleFirstAtomicSequenceElements(main5Block, null, visitedTemplates, null));
     }
 
     @Test
@@ -242,7 +248,7 @@ public class TestTcsUtil extends TCSFixtureTestBase {
         Set<Template> visitedTemplates = new HashSet<Template>();
 
         assertEquals(expected,
-                TcsUtil.getPossibleFirstAtomicSequenceElements((SequenceElement) null, null, visitedTemplates, null));
+                CtsCompletionCalculator.getPossibleFirstAtomicSequenceElements((SequenceElement) null, null, visitedTemplates, null));
     }
 
     @Test
@@ -272,7 +278,8 @@ public class TestTcsUtil extends TCSFixtureTestBase {
 
         Set<Template> visitedTemplates = new HashSet<Template>();
 
-        assertEquals(expected, TcsUtil.getPossibleFirstAtomicSequenceElements(s, null, visitedTemplates, null));
+        assertEquals(expected,
+                CtsCompletionCalculator.getPossibleFirstAtomicSequenceElements(s, null, visitedTemplates, null));
     }
 
     @Test

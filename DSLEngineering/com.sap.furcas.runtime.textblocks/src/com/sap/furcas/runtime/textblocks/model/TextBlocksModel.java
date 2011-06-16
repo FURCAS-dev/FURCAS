@@ -23,7 +23,6 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
-import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
 import com.sap.furcas.runtime.textblocks.CoverageBean;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
@@ -35,14 +34,24 @@ import com.sap.furcas.runtime.textblocks.shortprettyprint.ShortPrettyPrinter;
  * A model of a textBlocks tree.
  */
 public class TextBlocksModel {
+    
+    public static class TokenChange {
+        public final LexedToken token;
+        public final int oldOffset;
+        public final int oldLength;
+        
+        public TokenChange(LexedToken token, int oldOffset, int oldLength) {
+            this.token = token;
+            this.oldOffset = oldOffset;
+            this.oldLength = oldLength;
+        }
+    }
 
     private TextBlock rootBlock;
 
     private final VersionedTextBlockNavigator navigator;
 
     private Version activeVersion = Version.REFERENCE;
-
-    private final ShortPrettyPrinter shortPrettyPrinter;
 
     private boolean usecache = false;
 
@@ -54,15 +63,14 @@ public class TextBlocksModel {
 	this.usecache = usecache;
     }
 
-    public TextBlocksModel(TextBlock rootBlock, IModelElementInvestigator modelAdapter) {
-	this(rootBlock, Version.REFERENCE, modelAdapter);
+    public TextBlocksModel(TextBlock rootBlock) {
+	this(rootBlock, Version.REFERENCE);
     }
 
-    public TextBlocksModel(TextBlock rootBlock2, Version activeVersion, IModelElementInvestigator modelAdapter) {
+    public TextBlocksModel(TextBlock rootBlock2, Version activeVersion) {
 	this.activeVersion = activeVersion;
 	this.navigator = new VersionedTextBlockNavigator(activeVersion);
 	setRootTextBlock(rootBlock2);
-	this.shortPrettyPrinter = new ShortPrettyPrinter(modelAdapter);
     }
 
     public Version getActiveVersion() {
@@ -347,12 +355,10 @@ public class TextBlocksModel {
         replace(workingcopy, replacedRegionOffset, replacedRegionLength, newText);
     }
 
-    public void doShortPrettyPrintToEditableVersion() {
+    public ArrayList<TokenChange> doShortPrettyPrintToEditableVersion(ShortPrettyPrinter shortPrettyPrinter) {
+        ArrayList<TokenChange> updatedTokens = new ArrayList<TokenChange>();
         AbstractToken tok = getStartToken();
-        while (tok != null && !(tok instanceof Eostoken)
-        /*
-         * * && tok. is___Alive ()
-         */) {
+        while (tok != null && !(tok instanceof Eostoken)) {
             if (tok instanceof LexedToken) {
                 String newValue = shortPrettyPrinter.resynchronizeToEditableState(tok);
                 // TODO check what to do with the empty string case!
@@ -366,14 +372,12 @@ public class TextBlocksModel {
                     }
                     rootBlock.setCachedString(rootBlock.getCachedString().substring(0, offset) + newValue
                             + rootBlock.getCachedString().substring(offset + length, rootBlock.getCachedString().length()));
+                    updatedTokens.add(new TokenChange((LexedToken) tok, offset, length));
                 }
             }
             tok = TbNavigationUtil.nextToken(tok);
         }
-    }
-
-    public void reduceToMinimalVersion() {
-	shortPrettyPrinter.makeFlyweight(rootBlock);
+        return updatedTokens;
     }
 
     private void replaceInNonEmptyTree(int replacedRegionAbsoluteOffset, int replacedRegionLength, String newText,
@@ -632,7 +636,7 @@ public class TextBlocksModel {
 		// do nothing ever
 	    } else {
 		boolean needsDeleting = TbReplacingHelper.modifyTokenOnOverlap(abstractToken, currentBlockAbsoluteOffset,
-			replacedRegionRelativeOffset, replacedRegionLength, newText, shortPrettyPrinter);
+			replacedRegionRelativeOffset, replacedRegionLength, newText, /*shortPrettyPrinter*/ null);
 		if (needsDeleting) {
 		    toBeDeleted.add(abstractToken);
 		}

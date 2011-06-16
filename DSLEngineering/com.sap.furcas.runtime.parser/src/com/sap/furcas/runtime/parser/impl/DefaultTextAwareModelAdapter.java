@@ -8,9 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-
 import com.sap.furcas.runtime.common.exceptions.DeferredActionResolvingException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.ReferenceSettingException;
@@ -18,7 +15,6 @@ import com.sap.furcas.runtime.common.interfaces.IBareModelAdapter;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ModelElementCreationException;
-import com.sap.furcas.runtime.tcs.TcsUtil;
 
 /**
  * simple implementation using a simple resolution strategy and a
@@ -239,11 +235,6 @@ public class DefaultTextAwareModelAdapter implements IModelAdapter {
     @Override
     public boolean instanceOf(Object instance, Object metaType) throws ModelAdapterException {
         return modelAdapter.instanceOf(instance, metaType);
-    }
-
-    @Override
-    public Collection<URI> getPRIPartitions(ResourceSet conn, String languageId) {
-        return TcsUtil.getSyntaxPartitions(conn, languageId);
     }
 
     @Override

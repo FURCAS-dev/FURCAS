@@ -18,7 +18,12 @@ import com.sap.furcas.parser.tcs.TCSParserFactory;
 public class TCSParseController extends FurcasParseController {
 
     public TCSParseController() {
-        super(new TCSParserFactory(), new DefaultLanguageSyntaxProperties(new TCSParserFactory()) {
+        super(new TCSParserFactory(), new DefaultLanguageSyntaxProperties() {
+            
+            @Override
+            public String getSingleLineCommentPrefix() {
+                return "--";
+            }
             
             @Override
             public String[][] getFences() {

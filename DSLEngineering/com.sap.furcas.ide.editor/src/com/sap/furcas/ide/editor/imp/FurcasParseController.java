@@ -15,6 +15,8 @@ import java.util.Iterator;
 
 import org.antlr.runtime.Lexer;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.parser.ISourcePositionLocator;
@@ -90,8 +92,16 @@ public abstract class FurcasParseController extends ParseControllerBase {
             monitor.setCanceled(true);
             return null; // IMP will call us before we are done initializing
         }
+        
+        boolean saveNeeded = ((BasicCommandStack) editingDomain.getCommandStack()).isSaveNeeded();
+        
         ParseCommand command = new ParseCommand(editingDomain, contentProvider.getDocument(), parserFacade, handler);
         editingDomain.getCommandStack().execute(command);
+        
+        if (!saveNeeded && !command.wasEffective()) {
+            // the command changed nothing. Reset dirty state.
+            ((BasicCommandStack) editingDomain.getCommandStack()).saveIsDone();
+        }
         
         setCurrentAst(command.getParsingResult());
         return getCurrentAst();
@@ -148,6 +158,10 @@ public abstract class FurcasParseController extends ParseControllerBase {
     private void setCurrentAst(TextBlock rootBlock) {
         fCurrentAst = rootBlock;
     }
+    
+    public EObject getCurrentRootObject() {
+        return IncrementalParserFacade.getParsingResult(getCurrentAst());
+    }
 
     @Override
     public ISourcePositionLocator getSourcePositionLocator() {
@@ -163,5 +177,11 @@ public abstract class FurcasParseController extends ParseControllerBase {
     public IAnnotationTypeInfo getAnnotationTypeInfo() {
         return annotationTypeInfo;
     }
+
+    public IncrementalParserFacade getParserFacade() {
+        return parserFacade;
+    }
+
+
     
 }

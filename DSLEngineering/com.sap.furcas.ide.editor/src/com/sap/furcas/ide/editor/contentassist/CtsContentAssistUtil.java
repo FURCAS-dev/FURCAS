@@ -1,57 +1,37 @@
 package com.sap.furcas.ide.editor.contentassist;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Stack;
 
 import org.antlr.runtime.Token;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.swt.graphics.Image;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
-import com.sap.furcas.metamodel.FURCAS.TCS.Block;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
-import com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement;
-import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralMapping;
 import com.sap.furcas.metamodel.FURCAS.TCS.FunctionCall;
-import com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
-import com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
-import com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
-import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
-import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
-import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 import com.sap.furcas.runtime.tcs.PropertyArgumentUtil;
 import com.sap.furcas.runtime.tcs.TcsUtil;
-import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
-import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
 
 public class CtsContentAssistUtil {
 
-    static Image keywordImage = null;
-    static Image propertyImage = null;
-    static Image propValueImage = null;
-    static Image templateImage = null;
-    static ITextViewer imageHostViewer = null;
+    private static Image keywordImage = null;
+    private static Image propertyImage = null;
+    private static Image propValueImage = null;
+    private static Image templateImage = null;
+    private static ITextViewer imageHostViewer = null;
 
-    public static ICompletionProposal createProposal(String displayString, String replacementString, Image img,
+    private static ICompletionProposal createProposal(String displayString, String replacementString, Image img,
             ITextViewer viewer, int line, int charPositionInLine, Token token) {
 
         int cursorPosition = getOffset(viewer, line, charPositionInLine);
@@ -85,7 +65,6 @@ public class CtsContentAssistUtil {
                 }
 
                 String prefix = "";
-
                 try {
                     prefix = computeNonWhitespacePrefix(viewer.getDocument().get(), viewer.getDocument().getLineInformation(line)
                             .getOffset()
@@ -99,18 +78,13 @@ public class CtsContentAssistUtil {
                     replacementOffset = cursorPosition - prefix.length();
                     replacementLength = Math.min(displayString.length(),
                             Math.min(prefix.length(), getCommonPrefix(prefix, replacementString).length()));
-
                 }
 
                 // end workaround
-
             }
-
         }
-
         return new CompletionProposal(replacementString, replacementOffset, replacementLength, replacementString.length(), img,
                 displayString, null, null);
-
     }
 
     /**
@@ -150,7 +124,7 @@ public class CtsContentAssistUtil {
         return a.substring(0, prefixLength);
     }
 
-    public static Image getKeywordImage(ITextViewer currentViewer) {
+    private static Image getKeywordImage(ITextViewer currentViewer) {
         if (imageHostViewer != currentViewer || keywordImage == null) {
             imageHostViewer = currentViewer;
             keywordImage = new Image(imageHostViewer.getTextWidget().getDisplay(),
@@ -160,7 +134,7 @@ public class CtsContentAssistUtil {
         return keywordImage;
     }
 
-    public static Image getPropertyImage(ITextViewer currentViewer) {
+    private static Image getPropertyImage(ITextViewer currentViewer) {
         if (imageHostViewer != currentViewer || propertyImage == null) {
             imageHostViewer = currentViewer;
             propertyImage = new Image(imageHostViewer.getTextWidget().getDisplay(),
@@ -170,7 +144,7 @@ public class CtsContentAssistUtil {
         return propertyImage;
     }
 
-    public static Image getPropValueImage(ITextViewer currentViewer) {
+    private static Image getPropValueImage(ITextViewer currentViewer) {
         if (imageHostViewer != currentViewer || propValueImage == null) {
             imageHostViewer = currentViewer;
             propValueImage = new Image(imageHostViewer.getTextWidget().getDisplay(),
@@ -180,7 +154,7 @@ public class CtsContentAssistUtil {
         return propValueImage;
     }
 
-    public static Image getTemplateImage(ITextViewer currentViewer) {
+    private static Image getTemplateImage(ITextViewer currentViewer) {
         if (imageHostViewer != currentViewer || templateImage == null) {
             imageHostViewer = currentViewer;
             templateImage = new Image(imageHostViewer.getTextWidget().getDisplay(),
@@ -234,579 +208,56 @@ public class CtsContentAssistUtil {
         return createProposal(displayString, replacementString, img, viewer, line, charPositionInLine, token);
     }
 
-    public static List<ICompletionProposal> createFirstPossibleProposals(ConcreteSyntax syntax,
-            Map<List<String>, Map<String, ClassTemplate>> classTemplateMap, ITextViewer viewer, int line, int charPositionInLine,
-            Token token, TextBlocksModel tbModel, TCSSpecificOCLEvaluator oclEvaluator) {
-        List<ICompletionProposal> results = new ArrayList<ICompletionProposal>();
-
-        for (SequenceElement atomic : TcsUtil.getMainTemplatePossibleFirstAtomicSequenceElements(syntax, classTemplateMap)) {
-            results.addAll(createProposalsFromAtomicSequenceElement(syntax, classTemplateMap, atomic, viewer, line,
-                    charPositionInLine, token, tbModel, oclEvaluator));
-        }
-
-        return results;
-    }
-
-    public static List<ICompletionProposal> createFollowProposalsFromContext(ConcreteSyntax syntax,
-            CtsContentAssistContext context, Map<List<String>, Map<String, ClassTemplate>> classTemplateMap, ITextViewer viewer,
-            int line, int charPositionInLine, Token token, TextBlocksModel tbModel, TCSSpecificOCLEvaluator oclEvaluator) {
-        List<ICompletionProposal> results = new ArrayList<ICompletionProposal>();
-
-        if (context == null) {
-            return results;
-        }
-
-        for (SequenceElement atomic : TcsUtil.getPossibleAtomicFollows(context.getSequenceElement(),
-                context.getParentFunctionCallStack(), classTemplateMap, context.getParentPropertyStack(), context.isOperator(),
-                syntax)) {
-
-            results.addAll(createProposalsFromAtomicSequenceElement(syntax, classTemplateMap, atomic, viewer, line,
-                    charPositionInLine, token, tbModel, oclEvaluator));
-        }
-
-        return results;
-    }
-
-    static int getOffset(ITextViewer viewer, int line, int charPositionInLine) {
-
+    public static int getOffset(ITextViewer viewer, int line, int charPositionInLine) {
         if (viewer != null) {
-
             try {
                 return viewer.getDocument().getLineOffset(line) + charPositionInLine;
             } catch (BadLocationException e) {
                 e.printStackTrace();
             }
         }
-
         return 0;
     }
 
-    static Template getParentTemplate(SequenceElement e, ConcreteSyntax syntax) {
-
-        EObject parent = e.eContainer();
-        while (parent != null && !(parent instanceof ConcreteSyntax)) {
-            if (parent instanceof ClassTemplate || parent instanceof OperatorTemplate || parent instanceof FunctionTemplate) {
-                return (Template) parent;
-            } else {
-                if (parent instanceof EObject) {
-                    EObject r = parent;
-                    parent = r.eContainer();
-                } else {
-                    parent = null;
-                }
-            }
-        }
-
-        return TcsUtil.getMainClassTemplate(syntax);
-
-    }
-
-    static Alternative getParentAlternative(SequenceElement e) {
-
-        EObject parent = e.eContainer();
-        while (parent != null && !(parent instanceof ConcreteSyntax)) {
-            if (parent instanceof Alternative) {
-                return (Alternative) parent;
-            } else {
-                if (parent instanceof EObject) {
-                    EObject r = parent;
-                    parent = r.eContainer();
-                } else {
-                    parent = null;
-                }
-            }
-        }
-
-        return null;
-
-    }
-
-    static boolean isContained(SequenceElement e, Set<SequenceElement> templateFirstAtomicSet) {
+    public static boolean isContained(SequenceElement e, Set<SequenceElement> templateFirstAtomicSet) {
         if (e != null) {
             return templateFirstAtomicSet.contains(e);
         }
-
         return false;
     }
 
-    private static Sequence getSequence(Template t) {
-        if (t instanceof ClassTemplate) {
-            ClassTemplate ct = (ClassTemplate) t;
-            return ct.getTemplateSequence();
-        }
-        if (t instanceof OperatorTemplate) {
-            OperatorTemplate ot = (OperatorTemplate) t;
-            return ot.getTemplateSequence();
-        }
-
-        if (t instanceof FunctionTemplate) {
-            FunctionTemplate ft = (FunctionTemplate) t;
-            return ft.getFunctionSequence();
-        }
-
-        return null;
-    }
-
-    public static List<ICompletionProposal> createProposalsFromAtomicSequenceElement(ConcreteSyntax syntax,
-            Map<List<String>, Map<String, ClassTemplate>> classTemplateMap, SequenceElement e, ITextViewer viewer, int line,
-            int charPositionInLine, Token token, TextBlocksModel tbModel, TCSSpecificOCLEvaluator oclEvaluator) {
-
-        List<ICompletionProposal> results = new ArrayList<ICompletionProposal>();
-
-        if (e != null && syntax != null) {
-
-            List<String> templateStrings = new ArrayList<String>();
-
-            Template parentTemplate = getParentTemplate(e, syntax);
-            Sequence parentSequence = getSequence(parentTemplate);
-            Set<SequenceElement> templateFirstAtomicSet = new HashSet<SequenceElement>(
-                    TcsUtil.getPossibleFirstAtomicSequenceElements(parentSequence, classTemplateMap, new HashSet<Template>(),
-                            syntax));
-
-            if (isContained(e, templateFirstAtomicSet)) {
-                // add template proposals starting at the parent template
-                templateStrings.addAll(generateFollowTemplateProposalStrings(parentSequence, classTemplateMap, syntax,
-                        new HashSet<Template>()));
-            }
-
-            Alternative parentAlternative = getParentAlternative(e);
-            if (parentAlternative != null) {
-                Set<SequenceElement> alternativeFirstAtomicSet = new HashSet<SequenceElement>(
-                        TcsUtil.getPossibleFirstAtomicSequenceElements(parentAlternative, classTemplateMap,
-                                new HashSet<Template>(), syntax));
-
-                if (isContained(e, alternativeFirstAtomicSet)) {
-                    // add template proposals starting at each alternative
-                    for (Sequence s : parentAlternative.getSequences()) {
-                        templateStrings.addAll(generateFollowTemplateProposalStrings(s, classTemplateMap, syntax,
-                                new HashSet<Template>()));
-                    }
-                }
-
-            }
-
-            for (String templateString : templateStrings) {
-                // check if we actually have a template proposal and not
-                // just a single keyword
-                if (templateString.contains(" ")) {
-                    String displayString = templateString;
-                    String replacementString = displayString;
-                    results.add(createTemplateProposal(displayString, replacementString, viewer, line, charPositionInLine, token));
-                }
-            }
-
-        }
-
-        if (e instanceof LiteralRef) {
-            LiteralRef lit = (LiteralRef) e;
-            if (lit.getReferredLiteral() != null) {
-                String literalValue = lit.getReferredLiteral().getValue();
-                String displayString = literalValue;
-                String replacementString = displayString;
-                results.add(createKeywordProposal(displayString, replacementString, viewer, line, charPositionInLine, token));
-            }
-        } else if (e instanceof Property) {
-            Property prop = (Property) e;
-
-            assert (TcsUtil.isAtomic(prop, classTemplateMap));
-
-            if (TcsUtil.isEnumeration(prop)) {
-                // propose the enum values
-
-                for (EnumLiteralMapping mapping : TcsUtil.getEnumTemplateForType(syntax, prop.getPropertyReference()
-                        .getStrucfeature().getEType())) {
-
-                    LiteralRef ref = (LiteralRef) mapping.getElement();
-                    if (ref.getReferredLiteral() != null) {
-                        String displayString = ref.getReferredLiteral().getValue();
-                        String replacementString = displayString;
-                        results.add(createPropValueProposal(displayString, replacementString, viewer, line, charPositionInLine,
-                                token));
-                    }
-                }
-            }
-
-            RefersToPArg refersToArg = PropertyArgumentUtil.getRefersToPArg(prop);
-            ReferenceByPArg referenceByArg = PropertyArgumentUtil.getReferenceByPArg(prop);
-            LookupScopePArg queryArg = PropertyArgumentUtil.getLookupScopePArg(prop);
-
-            if (referenceByArg != null) {
-                if (queryArg != null) {
-                    // first execute query, then apply invert OCL expression to
-                    // each result to generate proposal strings
-                    String invert = PropertyArgumentUtil.getReferenceByAsOCL(referenceByArg);
-                    // if invert is null, we don't really know how to derive
-                    // the proposal string as the filter could be any OCL
-                    // expression using the ? placeholder
-
-                    List<EObject> oclElements = getQueryResult(viewer, line, charPositionInLine, tbModel, prop, queryArg,
-                            oclEvaluator);
-
-                    for (EObject refObj : oclElements) {
-                        String displayString = null;
-                        String replacementString = null;
-                        try {
-                            Object result = TcsUtil.executeOclQuery(oclEvaluator, refObj, invert, null, null, null);
-
-                            if (result instanceof Collection<?>) {
-                                result = ((Collection<?>) result).iterator().next();
-                            }
-                            if (result instanceof String) {
-                                replacementString = (String) result;
-                                displayString = replacementString + " : " + refObj.eClass().getName() + " (by: " + invert + ")";
-                            }
-                        } catch (Exception e1) {
-                            //this is not necessarily an error
-                            //as we investigate whether the current property fits the element
-                            //if this is not the case this caught exception may occur
-                        }
-                        if (displayString != null) {
-                            results.add(createPropValueProposal(displayString, replacementString, viewer, line,
-                                    charPositionInLine, token));
-                        }
-                    }
-                }
-            }
-
-            if (refersToArg != null) {
-
-                if (queryArg != null) {
-                    // first execute query, then use refersTo property name to
-                    // generate proposal strings
-
-                    List<EObject> oclElements = getQueryResult(viewer, line, charPositionInLine, tbModel, prop, queryArg,
-                            oclEvaluator);
-
-                    for (EObject refObj : oclElements) {
-                        String displayString = refObj.eGet(refObj.eClass().getEStructuralFeature(refersToArg.getPropertyName()))
-                                .toString();
-                        String replacementString = displayString;
-                        results.add(createPropValueProposal(displayString, replacementString, viewer, line, charPositionInLine,
-                                token));
-                    }
-
-                } else {
-                    // propose referenced feature of model elements queried by
-                    // type
-                    EStructuralFeature propFeature = TcsUtil.getStructuralFeature(prop);
-                    if (propFeature != null) {
-                        String featureName = PropertyArgumentUtil.getRefersToPArg(prop).getPropertyName();
-                        List<String> propValues = TcsUtil.queryPropertyValues(propFeature.getEType(), featureName, prop
-                                .eResource().getResourceSet());
-
-                        for (String propValue : propValues) {
-                            String displayString = propValue + " : " + propFeature.getEType().getName();
-                            String replacementString = propValue;
-                            results.add(createPropValueProposal(displayString, replacementString, viewer, line,
-                                    charPositionInLine, token));
-                        }
-
-                    }
-                }
-            }
-
-            if (TcsUtil.isMultiValued(prop)) {
-                // we have a multivalued primitive types property
-                // name is likely to be plural so we add Entry to make the
-                // proposal singular
-
-                String displayString = TcsUtil.getPropertyName(prop.getPropertyReference()) + "Entry";
-                String replacementString = displayString;
-                results.add(createPropertyProposal(displayString, replacementString, viewer, line, charPositionInLine, token));
-            } else {
-                String displayString = TcsUtil.getPropertyName(prop.getPropertyReference());
-                String replacementString = displayString;
-                results.add(createPropertyProposal(displayString, replacementString, viewer, line, charPositionInLine, token));
-            }
-
-        }
-
-        return results;
-    }
-
-    private static List<EObject> getQueryResult(ITextViewer viewer, int line, int charPositionInLine,
-            TextBlocksModel textBlocksModel, Property prop, LookupScopePArg queryArg, TCSSpecificOCLEvaluator oclEvaluator) {
-        TextBlocksModel currentTbModel = textBlocksModel;
-        List<EObject> oclElements = new ArrayList<EObject>();
-        TextBlock currentVersion = TbVersionUtil.getOtherVersion(currentTbModel.getRoot(), Version.CURRENT);
-        if (currentVersion != null) {
-            currentTbModel = new TextBlocksModel(currentVersion, null);
-        }
-        // currentTbModel is non-null at this point
-        if (currentTbModel.getRoot() != null) {
-            AbstractToken floorToken = currentTbModel.getFloorTokenInRoot(getOffset(viewer, line, charPositionInLine));
-            TextBlock parentBlock = floorToken.getParent();
-            while (parentBlock != null && parentBlock.getCorrespondingModelElements().size() < 1) {
-                parentBlock = parentBlock.getParent();
-            }
-
-            if (parentBlock != null) {
-                // we found a parent block with attached model
-                // element(s)
-
-                EObject element = parentBlock.getCorrespondingModelElements().get(0);
-                EObject contextElement = getContextElement(element, parentBlock, TcsUtil.getContextTag(queryArg.getQuery()));
-                EObject foreachObject = getForeachElement(TcsUtil.getContextTag(queryArg.getQuery()));
-
-                Object oclResult = null;
-
-                try {
-                    // prefix is null as refersTo/query does not use
-                    // ? in query
-                    oclResult = TcsUtil.executeOclQuery(oclEvaluator, element, queryArg.getQuery(), contextElement,
-                            foreachObject, null);
-
-                } catch (Exception e1) {
-                    System.out.println("Error executing ocl query: " + e1.getMessage());
-                    // do nothing, just omit proposals
-                }
-
-                // create proposals for each returned element using
-                // the refersTo structural feature
-                if (oclResult instanceof EObject) {
-                    oclElements.add((EObject) oclResult);
-                }
-                if (oclResult instanceof Collection) {
-                    for (Object o : (Collection<?>) oclResult) {
-                        if (o instanceof EObject) {
-                            oclElements.add((EObject) o);
-                        }
-                    }
-                }
-            }
-        }
-        return oclElements;
-    }
-
-    private static EObject getForeachElement(String contextTag) {
-        // currently the ForeachElement is only used in queries of model elements without
-        // syntactical elements and is thus currently irrelevant for content assist
-
-        // once this changes a new testcase needs to be created and this implementation
-        // can be derived from getContextElement()
-
-        // do nothing
-        return null;
-    }
-
-    private static EObject getContextElement(EObject element, TextBlock parentBlock, String tag) {
-        TextBlock curBlock = parentBlock;
-        while (curBlock != null && curBlock.getCorrespondingModelElements().size() > 0) {
-            Template t = curBlock.getType();
-            if (t instanceof ClassTemplate) {
-                ClassTemplate ct = (ClassTemplate) t;
-                if (TcsUtil.matchesContext(ct, tag)) {
-                    return curBlock.getCorrespondingModelElements().get(0);
-                }
-            }
-
-            if (t instanceof OperatorTemplate) {
-                OperatorTemplate ot = (OperatorTemplate) t;
-                if (TcsUtil.matchesContext(ot, tag)) {
-                    return curBlock.getCorrespondingModelElements().get(0);
-                }
-            }
-
-            curBlock = curBlock.getParent();
-        }
-
-        return null;
-    }
-
-    /**
-     * generate all possible template strings of this sequence
-     * 
-     * @param s
-     * @return
-     */
-    static List<String> generateFollowTemplateProposalStrings(Sequence s,
-            Map<List<String>, Map<String, ClassTemplate>> classTemplateMap, ConcreteSyntax syntax,
-            HashSet<Template> visitedTemplates) {
-
-        List<String> results = new ArrayList<String>();
-
-        if (s == null) {
-            return results;
-        }
-
-        results.add("");
-
-        for (SequenceElement e : s.getElements()) {
-            List<String> newResults = new ArrayList<String>();
-            for (String result : results) {
-                for (String templateProposal : generateFollowTemplateProposalStrings(e, classTemplateMap, syntax,
-                        new HashSet<Template>(visitedTemplates))) {
-                    String newResult = result + " " + templateProposal;
-                    newResults.add(newResult.trim());
-                }
-            }
-            if (!newResults.isEmpty()) {
-                results = newResults;
-            }
-        }
-
-        return results;
-
-    }
-
-    /**
-     * generate all possible template strings of this sequence element
-     * 
-     * @param e
-     * @return
-     */
-    static List<String> generateFollowTemplateProposalStrings(SequenceElement e,
-            Map<List<String>, Map<String, ClassTemplate>> classTemplateMap, ConcreteSyntax syntax,
-            HashSet<Template> visitedTemplates) {
-        List<String> results = new ArrayList<String>();
-
-        if (e == null) {
-            results.add("");
-            return results;
-        }
-
-        List<SequenceElement> firstElements = TcsUtil.getPossibleFirstAtomicSequenceElements(e, classTemplateMap,
-                new HashSet<Template>(), syntax);
-        if (!firstElements.contains(null)) {
-            // we have a required SequenceElement
-
-            // special handling of container sequence elements
-            if (e instanceof Alternative) {
-                Alternative alt = (Alternative) e;
-                for (Sequence s : alt.getSequences()) {
-                    results.addAll(generateFollowTemplateProposalStrings(s, classTemplateMap, syntax, new HashSet<Template>(
-                            visitedTemplates)));
-                }
-
-                return results;
-            }
-
-            if (e instanceof ConditionalElement) {
-                ConditionalElement cond = (ConditionalElement) e;
-                results.addAll(generateFollowTemplateProposalStrings(cond.getThenSequence(), classTemplateMap, syntax,
-                        new HashSet<Template>(visitedTemplates)));
-                results.addAll(generateFollowTemplateProposalStrings(cond.getElseSequence(), classTemplateMap, syntax,
-                        new HashSet<Template>(visitedTemplates)));
-
-                return results;
-            }
-
-            if (e instanceof Block) {
-                Block b = (Block) e;
-                return generateFollowTemplateProposalStrings(b.getBlockSequence(), classTemplateMap, syntax, visitedTemplates);
-            }
-
-            if (e instanceof FunctionCall) {
-                FunctionCall call = (FunctionCall) e;
-                FunctionTemplate func = call.getCalledFunction();
-                if (!visitedTemplates.contains(func)) {
-                    visitedTemplates.add(func);
-                    return generateFollowTemplateProposalStrings(func.getFunctionSequence(), classTemplateMap, syntax,
-                            visitedTemplates);
-                }
-            }
-
-            if (e instanceof Property) {
-                Property p = (Property) e;
-                if (!TcsUtil.isAtomic(p, classTemplateMap)) {
-                    for (ClassTemplate ct : TcsUtil.getClassTemplates((EClass) TcsUtil.getType(p), TcsUtil.getMode(p),
-                            classTemplateMap, p.eResource().getResourceSet())) {
-                        HashSet<Template> subVisited = new HashSet<Template>(visitedTemplates);
-                        if (!subVisited.contains(ct)) {
-                            subVisited.add(ct);
-                            results.addAll(generateFollowTemplateProposalStrings(ct.getTemplateSequence(), classTemplateMap,
-                                    syntax, subVisited));
-                        }
-                    }
-
-                    return results;
-                }
-            }
-
-            // no composite
-            String firstElemDisplayString = "";
-            if (e instanceof LiteralRef) {
-                LiteralRef ref = (LiteralRef) e;
-                if (ref.getReferredLiteral() != null) {
-                    firstElemDisplayString = ref.getReferredLiteral().getValue();
-                }
-
-            } else if (e instanceof Property) {
-                Property prop = (Property) e;
-
-                if (TcsUtil.isMultiValued(prop)) {
-                    firstElemDisplayString = TcsUtil.getPropertyName(prop.getPropertyReference()) + "Entry";
-
-                } else {
-                    firstElemDisplayString = TcsUtil.getPropertyName(prop.getPropertyReference());
-                }
-            }
-
-            results.add(firstElemDisplayString);
-
-        }
-
-        return results;
-    }
-
-    public static List<String> collectDisplayStrings(List<ICompletionProposal> proposals) {
-        List<String> results = new ArrayList<String>();
-        if (proposals != null) {
-
-            for (ICompletionProposal p : proposals) {
-                results.add(p.getDisplayString());
-            }
-        }
-        return results;
-    }
-
-    public static List<String> collectDisplayStrings(ICompletionProposal[] proposals) {
-        List<String> results = new ArrayList<String>();
-        if (proposals != null) {
-
-            for (ICompletionProposal p : proposals) {
-                results.add(p.getDisplayString());
-            }
-        }
-
-        return results;
-    }
-
-    static boolean isInToken(int line, int charPositionInLine, Token t) {
+    public static boolean isInToken(int line, int charPositionInLine, Token t) {
         if (line != getLine(t)) {
             return false;
         }
-
         if (charPositionInLine < getCharPositionInLine(t)) {
             return false;
         }
-
         if (charPositionInLine > getCharPositionInLine(t) + getLength(t)) {
             return false;
         }
-
         return true;
     }
 
-    static int getAbsoluteOffset(ITextViewer viewer, int line, int charPositionInLine) throws BadLocationException {
+    public static int getAbsoluteOffset(ITextViewer viewer, int line, int charPositionInLine) throws BadLocationException {
         return viewer.getDocument().getLineInformation(line).getOffset() + charPositionInLine;
     }
 
-    static String getDocumentContents(ITextViewer viewer) {
+    public static String getDocumentContents(ITextViewer viewer) {
         return viewer.getDocument().get();
     }
 
-    static int getCharPositionInLine(Token token) {
+    public static int getCharPositionInLine(Token token) {
         // ANTRL line positions start at 0
         return token.getCharPositionInLine();
     }
 
-    static int getLine(Token token) {
+    public static int getLine(Token token) {
         // ANTRL lines start at 1
         return token.getLine() - 1;
     }
 
-    static int getLength(Token token) {
+    public static int getLength(Token token) {
         int length = 0;
         if (token.getText() != null) {
             length = token.getText().length();
@@ -814,7 +265,7 @@ public class CtsContentAssistUtil {
         return length;
     }
 
-    static boolean isContextAtWhitespace(ITextViewer viewer, CtsContentAssistContext context) throws BadLocationException {
+    public static boolean isContextAtWhitespace(ITextViewer viewer, CtsContentAssistContext context) throws BadLocationException {
         if (context != null) {
             if (context.getToken() != null) {
                 String contents = getDocumentContents(viewer);
@@ -826,11 +277,10 @@ public class CtsContentAssistUtil {
                 }
             }
         }
-
         return false;
     }
 
-    static void fixTokenText(ITextViewer viewer, Token t) throws BadLocationException {
+    public static void fixTokenText(ITextViewer viewer, Token t) throws BadLocationException {
         // assumes the tokens line and charPositionInLine point to its start
         // location
 
@@ -861,7 +311,6 @@ public class CtsContentAssistUtil {
             }
             curOffset++;
         }
-
         t.setText(newText);
     }
 
@@ -873,19 +322,71 @@ public class CtsContentAssistUtil {
      * @return
      * @throws BadLocationException
      */
-    static int getLine(ITextViewer viewer, int offset) throws BadLocationException {
+    public static int getLine(ITextViewer viewer, int offset) throws BadLocationException {
         return viewer.getDocument().getLineOfOffset(offset);
     }
 
-    static boolean isAtEndOfToken(int line, int charPositionInLine, Token t) {
+    public static boolean isAtEndOfToken(int line, int charPositionInLine, Token t) {
         if (line != getLine(t)) {
             return false;
         }
-
         if (charPositionInLine == getCharPositionInLine(t) + getLength(t)) {
             return true;
         }
-
         return false;
+    }
+    
+    public static boolean isAtomic(Property p, Map<List<String>, Map<String, ClassTemplate>> classTemplateMap) {
+        ETypedElement s = TcsUtil.getStructuralFeature(p);
+        if (s != null) {
+            if (s instanceof EReference) {
+                if (!PropertyArgumentUtil.containsRefersToArg(p) && !PropertyArgumentUtil.containsAsArg(p) && !PropertyArgumentUtil.containsLookupScopePArg(p)) {
+                    return false;
+                }
+
+            }
+            if (s instanceof EAttribute && classTemplateMap != null) {
+                // check if we have a non-primitive type attribute by querying
+                // classTemplateMap
+                List<String> typeName = TcsUtil.getQualifiedName(TcsUtil.getType(p));
+                if (classTemplateMap.containsKey(typeName)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    
+    public static Stack<Property> duplicatePropertyStack(Stack<Property> source) {
+        if (source == null) {
+            return null;
+        }
+        Stack<Property> copiedPropertyStack = new Stack<Property>();
+        for (Property p : source) {
+            copiedPropertyStack.push(p);
+        }
+        return copiedPropertyStack;
+    }
+
+    public static Stack<FunctionCall> duplicateFunctionCallStack(Stack<FunctionCall> source) {
+        if (source == null) {
+            return null;
+        }
+        Stack<FunctionCall> copiedFunctionCallStack = new Stack<FunctionCall>();
+        for (FunctionCall p : source) {
+            copiedFunctionCallStack.push(p);
+        }
+        return copiedFunctionCallStack;
+    }
+
+    public static Stack<Template> duplicateTemplateStack(Stack<Template> source) {
+        if (source == null) {
+            return null;
+        }
+        Stack<Template> copiedTemplateStack = new Stack<Template>();
+        for (Template p : source) {
+            copiedTemplateStack.push(p);
+        }
+        return copiedTemplateStack;
     }
 }

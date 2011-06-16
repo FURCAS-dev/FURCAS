@@ -10,14 +10,7 @@
  ******************************************************************************/
 package com.sap.furcas.ide.editor.imp.services;
 
-import org.antlr.runtime.Lexer;
 import org.eclipse.imp.services.ILanguageSyntaxProperties;
-
-import com.sap.furcas.ide.editor.EditorUtil;
-import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
-import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
-import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
-import com.sap.furcas.runtime.tcs.TcsUtil;
 
 /**
  * This class <b>can</b>  be extended by clients in order to provide languge specific
@@ -28,17 +21,9 @@ import com.sap.furcas.runtime.tcs.TcsUtil;
  */
 public class DefaultLanguageSyntaxProperties implements ILanguageSyntaxProperties {
     
-    private final ConcreteSyntax syntax;
-
-    public DefaultLanguageSyntaxProperties(AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) {
-        this.syntax = EditorUtil.loadConcreteSyntax(parserFactory);
-    }
-
     @Override
     public String getSingleLineCommentPrefix() {
-        // FIXME: This should actually be inverted. The content assist should call this method
-        // to find out about comments. Not the other way around.
-        return TcsUtil.getEndOfLineCommentPrefix(TcsUtil.getCommentToken(syntax));
+        return null;
     }
 
     @Override

@@ -80,7 +80,7 @@ public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
         TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, content);
         transientParsingResource.getContents().add(root);
 
-        TextBlocksModel tbModel = new TextBlocksModel(root, null);
+        TextBlocksModel tbModel = new TextBlocksModel(root);
         tbModel.replace(0, 0,
                 "article{  Testing, \"John Doe\",  year = \"2002\" } author = \"John Doe\".");
 
@@ -107,7 +107,7 @@ public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
          TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, content);
          transientParsingResource.getContents().add(root);
 
-         TextBlocksModel tbModel = new TextBlocksModel(root, null);
+         TextBlocksModel tbModel = new TextBlocksModel(root);
          tbModel.replace(0, 0, "article{  Testing, \"John Doe\",  year = \"2002\" } author = \"John Doe\".");
 
          TextBlock currentVersionTb = incrementalParserFacade.parseIncrementally(root);
@@ -125,7 +125,7 @@ public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
          TbChangeUtil.cleanUp(currentVersionTb);
          
          // add a new year to article
-         tbModel = new TextBlocksModel(currentVersionTb, null);
+         tbModel = new TextBlocksModel(currentVersionTb);
          tbModel.replace(31, 0, "year = \"2010\",");
          TextBlock currentVersionTbNew = incrementalParserFacade.parseIncrementally(currentVersionTb);
          

@@ -54,7 +54,7 @@ public class TestIncrementalLexer extends TextBlockTest {
         TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, contentToken);
         transientParsingResource.getContents().add(root);
         TbChangeUtil.makeVersion(root, Version.REFERENCE);
-        TextBlocksModel tbModel = new TextBlocksModel(root, null);
+        TextBlocksModel tbModel = new TextBlocksModel(root);
 
         // Do actually nothing
         tbModel.replace(0, 0, "");
@@ -90,7 +90,7 @@ public class TestIncrementalLexer extends TextBlockTest {
         transientParsingResource.getContents().add(root);
         TbChangeUtil.makeVersion(root, Version.REFERENCE);
 
-        TextBlocksModel tbModel = new TextBlocksModel(root, null);
+        TextBlocksModel tbModel = new TextBlocksModel(root);
 
         // Add "1" to end of token
         tbModel.replace(4, 0, "1");
@@ -161,7 +161,7 @@ public class TestIncrementalLexer extends TextBlockTest {
         transientParsingResource.getContents().add(root);
         TbChangeUtil.makeVersion(root, Version.REFERENCE);
 
-        TextBlocksModel tbModel = new TextBlocksModel(root, null);
+        TextBlocksModel tbModel = new TextBlocksModel(root);
 
         // Add "1" to end of token
         tbModel.replace(4, 0, "1");
@@ -237,7 +237,7 @@ public class TestIncrementalLexer extends TextBlockTest {
 
         root.setCachedString("tok1tok2tok3");
         root.setLength(12);
-        TextBlocksModel tbModel = new TextBlocksModel(root, null);
+        TextBlocksModel tbModel = new TextBlocksModel(root);
 
         // Add "x" to end of tok3
         tbModel.replace(12, 0, "x");
@@ -328,7 +328,7 @@ public class TestIncrementalLexer extends TextBlockTest {
 
         root.setCachedString("tok1tok2tok3");
         root.setLength(12);
-        TextBlocksModel tbModel = new TextBlocksModel(root, null);
+        TextBlocksModel tbModel = new TextBlocksModel(root);
 
         // Add "x" to end of tok3
         tbModel.replace(12, 0, "xy");
@@ -471,7 +471,7 @@ public class TestIncrementalLexer extends TextBlockTest {
         root.getTokens().get(root.getTokens().size() - 1).setOffset(12);
         root.setCachedString("tok1tok2tok3");
         root.setLength(12);
-        TextBlocksModel tbModel = new TextBlocksModel(root, null);
+        TextBlocksModel tbModel = new TextBlocksModel(root);
 
         // Add "x" to beginning of tok2
         tbModel.replace(4, 0, "x");

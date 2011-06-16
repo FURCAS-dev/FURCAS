@@ -17,7 +17,12 @@ import com.sap.furcas.ide.editor.imp.services.DefaultLanguageSyntaxProperties;
 public class BibtextLibraryViewParseController extends FurcasParseController {
 
     public BibtextLibraryViewParseController() {
-        super(new BibtexLibraryViewParserFactory(), new DefaultLanguageSyntaxProperties(new BibtexLibraryViewParserFactory()) {
+        super(new BibtexLibraryViewParserFactory(), new DefaultLanguageSyntaxProperties() {
+            
+            @Override
+            public String getSingleLineCommentPrefix() {
+                return "//";
+            }
             
             @Override
             public String[][] getFences() {
