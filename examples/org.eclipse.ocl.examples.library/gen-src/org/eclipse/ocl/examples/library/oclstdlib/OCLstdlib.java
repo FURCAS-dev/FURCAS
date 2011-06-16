@@ -1531,8 +1531,8 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_359.getOwnedParameters().add(symbol_360);
 			symbol_359.setPrecedence(symbol_5);
-			symbol_359.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericPlusOperation");
-			symbol_359.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericPlusOperation.INSTANCE);
+			symbol_359.setImplementationClass("org.eclipse.ocl.examples.library.integer.IntegerPlusOperation");
+			symbol_359.setImplementation(org.eclipse.ocl.examples.library.integer.IntegerPlusOperation.INSTANCE);
 			symbol_56.getOwnedOperations().add(symbol_359);
 		}
 		{	// ocl::Integer::-() Integer!-()
@@ -1559,8 +1559,8 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_362.getOwnedParameters().add(symbol_363);
 			symbol_362.setPrecedence(symbol_5);
-			symbol_362.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericMinusOperation");
-			symbol_362.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericMinusOperation.INSTANCE);
+			symbol_362.setImplementationClass("org.eclipse.ocl.examples.library.integer.IntegerMinusOperation");
+			symbol_362.setImplementation(org.eclipse.ocl.examples.library.integer.IntegerMinusOperation.INSTANCE);
 			symbol_56.getOwnedOperations().add(symbol_362);
 		}
 		{	// ocl::Integer::/() Integer!/($ocl!OclSelf)
@@ -2789,8 +2789,8 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_494.getOwnedParameters().add(symbol_495);
 			symbol_494.setPrecedence(symbol_5);
-			symbol_494.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericPlusOperation");
-			symbol_494.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericPlusOperation.INSTANCE);
+			symbol_494.setImplementationClass("org.eclipse.ocl.examples.library.real.RealPlusOperation");
+			symbol_494.setImplementation(org.eclipse.ocl.examples.library.real.RealPlusOperation.INSTANCE);
 			symbol_105.getOwnedOperations().add(symbol_494);
 		}
 		{	// ocl::Real::-() Real!-($ocl!OclSelf)
@@ -2806,8 +2806,8 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_496.getOwnedParameters().add(symbol_497);
 			symbol_496.setPrecedence(symbol_5);
-			symbol_496.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericMinusOperation");
-			symbol_496.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericMinusOperation.INSTANCE);
+			symbol_496.setImplementationClass("org.eclipse.ocl.examples.library.real.RealMinusOperation");
+			symbol_496.setImplementation(org.eclipse.ocl.examples.library.real.RealMinusOperation.INSTANCE);
 			symbol_105.getOwnedOperations().add(symbol_496);
 		}
 		{	// ocl::Real::-() Real!-()
@@ -5336,8 +5336,8 @@ public class OCLstdlib extends XMLResourceImpl
 			}
 			symbol_216.getTemplateBindings().add(symbol_746);
 		}
-		symbol_216.getSuperClasses().add(symbol_213); // $ocl!OrderedCollection[$ocl!UniqueCollection{T}?T]
 		symbol_216.getSuperClasses().add(symbol_125); // $ocl!UniqueCollection{T}
+		symbol_216.getSuperClasses().add(symbol_213); // $ocl!OrderedCollection[$ocl!UniqueCollection{T}?T]
 		symbol_130.getOwnedTypes().add(symbol_216);
 		//
 		// ocl::$$::OrderedSet $ocl!OrderedSet[$ocl!OrderedSet{T}!flatten{T2}()?T2]
@@ -5441,8 +5441,8 @@ public class OCLstdlib extends XMLResourceImpl
 			}
 			symbol_221.getTemplateBindings().add(symbol_756);
 		}
-		symbol_221.getSuperClasses().add(symbol_214); // $ocl!OrderedCollection[$ocl!NonUniqueCollection{T}?T]
 		symbol_221.getSuperClasses().add(symbol_67); // $ocl!NonUniqueCollection{T}
+		symbol_221.getSuperClasses().add(symbol_214); // $ocl!OrderedCollection[$ocl!NonUniqueCollection{T}?T]
 		symbol_130.getOwnedTypes().add(symbol_221);
 		//
 		// ocl::$$::Sequence $ocl!Sequence[$ocl!Sequence{T}!flatten{T2}()?T2]
@@ -5504,8 +5504,8 @@ public class OCLstdlib extends XMLResourceImpl
 			}
 			symbol_224.getTemplateBindings().add(symbol_762);
 		}
-		symbol_224.getSuperClasses().add(symbol_88); // $ocl!OrderedCollection{T}
 		symbol_224.getSuperClasses().add(symbol_196); // $ocl!NonUniqueCollection[$ocl!OrderedCollection{T}?T]
+		symbol_224.getSuperClasses().add(symbol_88); // $ocl!OrderedCollection{T}
 		symbol_130.getOwnedTypes().add(symbol_224);
 		//
 		// ocl::$$::Sequence $ocl!Sequence[$ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]

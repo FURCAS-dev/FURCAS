@@ -278,11 +278,11 @@ type Integer : PrimitiveType conformsTo Real {
 	/**
 	The value of the addition of self and i.
 	**/
-	operation "+"(i : OclSelf) : Integer precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.numeric.NumericPlusOperation';
+	operation "+"(i : OclSelf) : Integer precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.integer.IntegerPlusOperation';
 	/**
 	The value of the subtraction of i from self.
 	**/
-	operation "-"(i : OclSelf) : Integer precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.numeric.NumericMinusOperation';
+	operation "-"(i : OclSelf) : Integer precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.integer.IntegerMinusOperation';
 	/**
 	The value of the multiplication of self and i.
 	**/
@@ -675,11 +675,11 @@ type Real : PrimitiveType conformsTo OclAny {
 	/**
 	The value of the addition of self and r.
 	**/
-	operation "+"(r : OclSelf) : Real precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.numeric.NumericPlusOperation';
+	operation "+"(r : OclSelf) : Real precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.real.RealPlusOperation';
 	/**
 	The value of the subtraction of r from self.
 	**/
-	operation "-"(r : OclSelf) : Real precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.numeric.NumericMinusOperation';
+	operation "-"(r : OclSelf) : Real precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.real.RealMinusOperation';
 	/**
 	The value of the multiplication of self and r.
 	**/

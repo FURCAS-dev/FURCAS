@@ -17,15 +17,14 @@
 package org.eclipse.ocl.examples.library;
 
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * @since 3.1
  */
-public interface LibraryBinaryOperation extends LibraryOperation, CollectionValue.BinaryOperation
- {
+public interface LibraryBinaryOperation extends LibraryOperation, Value.BinaryOperation
+{
 	/**
 	 * Return the result of evaluating the operation on left and right arguments.
 	 * An invalid return may be indicated by throwing an exception returning Java null or OCL invalid.

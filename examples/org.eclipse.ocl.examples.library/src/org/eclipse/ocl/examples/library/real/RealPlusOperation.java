@@ -14,31 +14,29 @@
  *
  * $Id: NumericPlusOperation.java,v 1.3 2011/02/21 08:37:47 ewillink Exp $
  */
-package org.eclipse.ocl.examples.library.numeric;
+package org.eclipse.ocl.examples.library.real;
 
+import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.RealValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
-
 /**
- * PlusOperation realises the +() library operation.
+ * RealPlusOperation realizes the Real::+() library operation.
  * 
  * @since 3.1
  */
-@Deprecated
-public class NumericPlusOperation extends AbstractNumericBinaryOperation
+public class RealPlusOperation extends AbstractBinaryOperation
 {
-	public static final NumericPlusOperation INSTANCE = new NumericPlusOperation();
+	public static final RealPlusOperation INSTANCE = new RealPlusOperation();
 
-	@Override
-	protected IntegerValue evaluateInteger(ValueFactory valueFactory, IntegerValue left, IntegerValue right) throws InvalidValueException {
-		return left.add(right);
-	}
-
-	@Override
-	protected RealValue evaluateReal(ValueFactory valueFactory, RealValue left, RealValue right) throws InvalidValueException {
-		return left.add(right);
+	public Value evaluate(ValueFactory valueFactory, Value left, Value right) throws InvalidValueException {
+		RealValue leftValue = left.toRealValue();
+		RealValue rightValue = right.toRealValue();
+		if ((leftValue != null) && (rightValue != null)) {
+			return leftValue.add(rightValue);
+		}
+		return null;
 	}
 }

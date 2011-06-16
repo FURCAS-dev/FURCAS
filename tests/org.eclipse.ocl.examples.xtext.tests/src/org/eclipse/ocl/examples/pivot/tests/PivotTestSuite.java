@@ -55,6 +55,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
+import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Enumeration;
@@ -1087,6 +1088,12 @@ public abstract class PivotTestSuite
 			return null;
 		// check type
 		return feature;
+	}
+
+	public ClassifierType getClassifierType(Type type) {
+		ClassifierType classifierType = typeManager.getClassifierType(type);
+		typeManager.addLockedElement(classifierType);
+		return classifierType;
 	}
    
     /**

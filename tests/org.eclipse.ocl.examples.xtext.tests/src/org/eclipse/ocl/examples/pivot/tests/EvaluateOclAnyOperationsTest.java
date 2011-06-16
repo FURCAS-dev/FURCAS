@@ -659,12 +659,6 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
     	assertSemanticErrorQuery("3.oclType(OclAny)", OCLMessages.UnresolvedOperationCall_ERROR_, "oclType", "UnlimitedNatural", "Classifier<OclAny>");
     }
 
-	public ClassifierType getClassifierType(Type type) {
-		ClassifierType classifierType = typeManager.getClassifierType(type);
-		typeManager.addLockedElement(classifierType);
-		return classifierType;
-	}
-
 	public Type getCollectionType(String collectionName, Type type) {
 		Type collectionType = typeManager.getCollectionType(collectionName, type);
 		typeManager.addLockedElement(collectionType);

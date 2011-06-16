@@ -17,10 +17,13 @@
 package org.eclipse.ocl.examples.library.collection;
 
 import org.eclipse.ocl.examples.library.AbstractOperation;
-import org.eclipse.ocl.examples.library.numeric.NumericPlusOperation;
+import org.eclipse.ocl.examples.library.integer.IntegerPlusOperation;
+import org.eclipse.ocl.examples.library.real.RealPlusOperation;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
@@ -36,10 +39,16 @@ public class CollectionSumOperation extends AbstractOperation
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) throws InvalidValueException {
 		CollectionValue collectionValue = sourceVal.asCollectionValue();
-		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
+		TypeManager typeManager = evaluationVisitor.getTypeManager();
+		ValueFactory valueFactory = typeManager.getValueFactory();
 		// FIXME Bug 301351 Look for user-defined zero
-//		Type resultType = operationCall.getType();	
+		Type resultType = operationCall.getType();
 //		resultType.getZero();
-		return collectionValue.sum(NumericPlusOperation.INSTANCE, valueFactory.getZero());
+		if (typeManager.conformsTo(resultType, typeManager.getIntegerType(), null)) {
+			return collectionValue.sum(IntegerPlusOperation.INSTANCE, valueFactory.integerValueOf(0));
+		}
+		else {
+			return collectionValue.sum(RealPlusOperation.INSTANCE, valueFactory.realValueOf(0.0));
+		}
 	}
 }
