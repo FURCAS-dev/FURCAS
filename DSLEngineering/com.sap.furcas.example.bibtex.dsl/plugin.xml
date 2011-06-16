@@ -43,7 +43,7 @@
    <extension
          point="org.eclipse.imp.runtime.contentProposer">
       <proposer
-            class="com.sap.furcas.example.bibtex.dsl.editor.BibtexLibraryViewContentProposer"
+            class="com.sap.furcas.ide.editor.imp.services.FurcasContentProposer"
             language="BibtexLibraryView">
       </proposer>
    </extension>
@@ -103,7 +103,7 @@
    <extension
          point="org.eclipse.imp.runtime.contentProposer">
       <proposer
-            class="com.sap.furcas.example.bibtex.dsl.editor.BibtexAuthorViewContentProposer"
+            class="com.sap.furcas.ide.editor.imp.services.FurcasContentProposer"
             language="BibtexAuthorView">
       </proposer>
    </extension>

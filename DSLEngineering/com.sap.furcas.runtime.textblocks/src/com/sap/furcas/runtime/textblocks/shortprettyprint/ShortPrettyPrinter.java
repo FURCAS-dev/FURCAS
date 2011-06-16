@@ -5,11 +5,9 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.AsPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
 import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
-import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
@@ -19,6 +17,7 @@ import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
 import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 import com.sap.furcas.runtime.tcs.PropertyArgumentUtil;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
+import com.sap.furcas.utils.Activator;
 
 public class ShortPrettyPrinter {
 
@@ -76,77 +75,51 @@ public class ShortPrettyPrinter {
     }
 
     private String handlePropertyElement(Property se, LexedToken token) {
-	String newvalue = token.getValue();
-	if (PropertyArgumentUtil.containsRefersToArg(se) || PropertyArgumentUtil.containsReferenceByPArg(se)) {
-	    // the new value comes from the value of the referenced element;
-	    for (EObject referencedObject : token.getReferencedElements()) {
-	        if(referencedObject != null &&
-	                referencedObject.eClass().equals(se.getPropertyReference().getStrucfeature().getEType())
-	        		|| referencedObject.eClass().getEAllSuperTypes().contains(se.getPropertyReference().getStrucfeature().getEType())) {
-        		try {
-        		    if (PropertyArgumentUtil.containsReferenceByPArg(se)) {
-        			// if the string given in the token is changed
-        			// within the query to do the matching
-        			// with the target element we need to invert this
-        			// change to get the actual value
-        		        AsPArg asParg = PropertyArgumentUtil.getAsPArg(se);
-        		        PrimitiveTemplate template = PropertyArgumentUtil.getAsTemplate(asParg);
-        			return PrettyPrinterUtil.escapeUsingSerializer(PrettyPrinterUtil.invertReferenceByQuery(referencedObject, se, oclEvaluator), template);
-        		    } else {
-        		        // refersTo case
-        		        RefersToPArg refersToArg = PropertyArgumentUtil.getRefersToPArg(se);
-        		        Object value = investigator.get(referencedObject, refersToArg.getPropertyName());
-        		        if (value instanceof Collection<?> && ((Collection<?>)value).size() > 0) {
-        		            value = ((Collection<?>) value).iterator().next();
-        		        }
-        		        if (value != null && !(value instanceof EObject) && !(value instanceof Collection<?>)) {
-        		            newvalue = value.toString();
-        		        }
-        		        
-        		        AsPArg asParg = PropertyArgumentUtil.getAsPArg(se);
-        		        PrimitiveTemplate template = PropertyArgumentUtil.getAsTemplate(asParg);
-        		        return PrettyPrinterUtil.escapeUsingSerializer(newvalue, template);
-        		    }
-        		} catch (ModelAdapterException e) {
-        		    // element does not have this property
-        		    e.printStackTrace();
-        		    continue;
-        		}
-	        }
-	    }	    
-	} else {
-	    //it is always the first element as all others do not have a syntax contribution!
-	    EObject referencedObject = null;
-	    List<EObject> correspondingElements = token.getParent().getCorrespondingModelElements();
-	    if (!correspondingElements.isEmpty()) {
-	    	referencedObject = correspondingElements.get(0);
-	    }
-            try {
-            	if(referencedObject != null) {
-	                Object value = investigator.get(referencedObject, se.getPropertyReference().getStrucfeature().getName());
-	                // TODO handle pretty printing and escaping according to
-	                // syntax
-	                if (value instanceof Collection<?> && ((Collection<?>) value).size() > 0) {
-	                    value = ((Collection<?>) value).iterator().next();
-	                }
-	                if (value != null && !(value instanceof EObject) && !(value instanceof Collection<?>)) {
-	                    newvalue = value.toString();
-	                }
-	                // break;
-            	}
-            } catch (ModelAdapterException e) {
-                // element does not have such a property
-                // continue;
-            }
-	}
-	AsPArg asParg = PropertyArgumentUtil.getAsPArg(se);
-        PrimitiveTemplate template = PropertyArgumentUtil.getAsTemplate(asParg);
-        if(newvalue.equals(token.getValue())) {
-            return newvalue;
+        EObject contextObject = null;
+        // it is always the first element as all others do not have a syntax contribution!
+        List<EObject> correspondingElements = token.getParent().getCorrespondingModelElements();
+        if (!correspondingElements.isEmpty()) {
+            contextObject = correspondingElements.get(0);
         } else {
-            return PrettyPrinterUtil.escapeUsingSerializer(newvalue, template);
+            return token.getValue();
+        }
+
+        Object propertyValue = null;
+        try {
+            propertyValue = investigator.get(contextObject, se.getPropertyReference().getStrucfeature().getName());
+            if (propertyValue instanceof Collection<?> && ((Collection<?>) propertyValue).size() > 0) {
+                propertyValue = ((Collection<?>) propertyValue).iterator().next();
+            }
+        } catch (ModelAdapterException e) {
+            // element does not have such a property
+        }
+
+        String newValue = null;
+        try {
+            if (PropertyArgumentUtil.containsReferenceByPArg(se) && propertyValue instanceof EObject) {
+                newValue = PrettyPrinterUtil.invertReferenceByQuery((EObject) propertyValue, se, oclEvaluator);
+            } else {
+                if (PropertyArgumentUtil.containsRefersToArg(se) && propertyValue instanceof EObject) {
+                    propertyValue = investigator.get(contextObject, PropertyArgumentUtil.getRefersToPArg(se).getPropertyName());
+                    
+                    if (propertyValue instanceof Collection<?> && ((Collection<?>) propertyValue).size() > 0) {
+                        propertyValue = ((Collection<?>) propertyValue).iterator().next();
+                    }
+                }
+                if (propertyValue != null && !(propertyValue instanceof EObject) && !(propertyValue instanceof Collection<?>)) {
+                    newValue = propertyValue.toString();
+                }
+            }
+        } catch (ModelAdapterException e) {
+            Activator.logger.logError("Failed to short prety print token value", e);
+        }
+        if (newValue == null) {
+            // Failed to retrieve proeprty. Return the same value to keep the textual view intact,
+            return token.getValue();
+        } else {
+            PrimitiveTemplate template = PropertyArgumentUtil.getAsTemplate(PropertyArgumentUtil.getAsPArg(se));
+            return PrettyPrinterUtil.escapeUsingSerializer(newValue, template);
         }
     }
-
 
 }

@@ -121,7 +121,7 @@ public abstract class AbstractReferenceResolvingTestWithTextBlocks extends Gener
         AbstractToken content = modelFactory.createToken("");
         rootTextBlock = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, content);
         transientParsingResource.getContents().add(rootTextBlock);
-        TextBlocksModel tbModel = new TextBlocksModel(rootTextBlock, null);
+        TextBlocksModel tbModel = new TextBlocksModel(rootTextBlock);
         tbModel.replace(0, 0, textToParse);
         TextBlock currentVersionTb = incrementalParserFacade.parseIncrementally(rootTextBlock);
         rootTextBlock = (TextBlock) TbChangeUtil.cleanUp(currentVersionTb);

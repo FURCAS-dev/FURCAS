@@ -5,9 +5,11 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
@@ -344,13 +346,9 @@ public class ForeachDelayedReference extends DelayedReference {
             if (singleForeachResult instanceof EObject) {
                 EClass foreachElementType = ((EObject) singleForeachResult).eClass();
                 // get the template
-                Template tmpl = TcsUtil.findTemplate(
-                        foreachElementType,
-                        mode,
-                        parser.getInjector()
-                                .getModelAdapter()
-                                .getPRIPartitions(foreachElementType.eResource().getResourceSet(),
-                                        parser.getLanguageId()));
+                
+                Template tmpl = TcsUtil.findTemplate(foreachElementType, mode, Collections.singletonList(URI.createURI(
+                        parser.getSyntaxUUID())));
                 // get the rule name from the template
                 ruleName = ruleNameFinder.getRuleName(tmpl, mode);
             } else {

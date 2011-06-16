@@ -2,7 +2,6 @@ package com.sap.furcas.runtime.tcs;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -17,7 +16,6 @@ import java.util.regex.Pattern;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
@@ -26,7 +24,6 @@ import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query.index.IndexFactory;
@@ -48,33 +45,20 @@ import org.eclipse.emf.query2.WhereRelationReference;
 import org.eclipse.emf.query2.WhereString;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
-import com.sap.furcas.metamodel.FURCAS.TCS.Associativity;
 import com.sap.furcas.metamodel.FURCAS.TCS.Block;
-import com.sap.furcas.metamodel.FURCAS.TCS.BlockArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.CustomSeparator;
-import com.sap.furcas.metamodel.FURCAS.TCS.EndNLBArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.EndOfLineRule;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralMapping;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.FunctionCall;
 import com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.IndentIncrBArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
-import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
-import com.sap.furcas.metamodel.FURCAS.TCS.Literal;
-import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
 import com.sap.furcas.metamodel.FURCAS.TCS.ModePArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.NbNLBArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.Operator;
-import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
 import com.sap.furcas.metamodel.FURCAS.TCS.Rule;
@@ -83,264 +67,24 @@ import com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.SimplePattern;
-import com.sap.furcas.metamodel.FURCAS.TCS.StartNLBArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.StartNbNLBArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.StringPattern;
-import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
-import com.sap.furcas.metamodel.FURCAS.TCS.TCSFactory;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.TCS.Token;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
-import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
-import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
-import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 
-/**
- * Utility class for the TcsPackage.
- * 
- * Used by the CtsContentAssistProcessor, to calculate possible inputs after a given SequenceElement.
- * 
- * Terminology: Atomic SequenceElement is one of: Property points to an Attribute or a Reference with the refersTo argument,
- * LiteralRef.
- * 
- * The other SequenceElements are composite in the sense, that they contain child-Sequences, and will not contain any input-tokens
- * directly.
- * 
- * CustomSeparators are ignored, as they do not contain any input-tokens and no child Sequences.
- * 
- * @author D052602
- * 
- */
+
 public class TcsUtil {
 
-    private static final URI TRANSIENT_PARTITION_NAME = URI.createURI("http://www.furcas.org/TcsUtilTransientPartition");
-	private static final String MQL_ALIAS_INSTANCE = "cs";
-
+    
     /**
-     * clears the TcsUtil transient partition on this connection
-     * 
-     * @param c
+     * TODO: Move to Syntax Lookup?
      */
-    public static void clearTransientPartition(ResourceSet c) {
-        Resource transientPartition = c.getResource(TRANSIENT_PARTITION_NAME, true);
-        transientPartition.getContents().clear();
-
-        // also clear operatorToLiteralRefMap which would otherwise refer to
-        // deleted elements
-        operatorToLiteralRefMap.clear();
-    }
-
-    /**
-     * caches LiteralRefs that are created to be returned as atomic sequence elements for each operator literal
-     */
-    private static Map<Operator, LiteralRef> operatorToLiteralRefMap = new HashMap<Operator, LiteralRef>();
-
-    /**
-     * Returns a list of all possible atomic SequenceElements, that directly follow the given SequenceElement, or indirectly
-     * follow it through SequenceElements that may have no tokens (i.e null Sequences in ConditionalElement).
-     * 
-     * The parentFunctionCallMap parameter is needed to disambiguate between the different FunctionCalls that reference the
-     * FunctionTemplate this SequenceElement is part of. The map is needed, as functions can contain other functions.
-     * 
-     * @param e
-     *            SequenceElement after which to look
-     * @param parentFunctionCallMap
-     *            maps the correct parent FunctionCall for each FunctionTemplate this SequenceElement is part of
-     * @return all possible SequenceElements that are directly following
-     */
-    public static List<SequenceElement> getPossibleAtomicFollows(SequenceElement e, Stack<FunctionCall> parentFunctionCallStack,
-            Map<List<String>, Map<String, ClassTemplate>> classTemplateMap, Stack<Property> parentPropertyStack,
-            boolean isOperator, ConcreteSyntax syntax) {
-
-        // we will modify the stack, make a copy first
-        Stack<Property> copiedParentPropertyStack = duplicatePropertyStack(parentPropertyStack);
-        Stack<FunctionCall> copiedParentFunctionCallStack = duplicateFunctionCallStack(parentFunctionCallStack);
-
-        String operatorValue = null;
-        if (isOperator) {
-            // e is a literal ref referring to the operator value
-            LiteralRef ref = (LiteralRef) e;
-            operatorValue = ref.getReferredLiteral().getValue();
-        }
-
-        List<SequenceElement> results = new ArrayList<SequenceElement>();
-
-        // counts how often getParent() has been called
-        int orderOfParent = 0;
-
-        SequenceElement current = e;
-        while (current != null) {
-
-            if (current instanceof Property) {
-                Property prop = (Property) current;
-
-                SeparatorPArg sepArg = PropertyArgumentUtil.getSeparatorPArg(prop);
-                if (sepArg != null) {
-                    // add separator sequence proposals as well
-                    Sequence sepSeq = sepArg.getSeparatorSequence();
-                    results.addAll(TcsUtil.getPossibleFirstAtomicSequenceElements(sepSeq, classTemplateMap,
-                            new HashSet<Template>(), syntax));
-                } else {
-                    if (isMultiValued(prop) && !containsForcedUpperArgOfOne(prop)) {
-
-                        // add the first elements of this property to
-                        // the follows-set
-
-                        addAllIfNotNull(results,
-                                getPossibleFirstAtomicSequenceElements(prop, classTemplateMap, new HashSet<Template>(), syntax));
-                    }
-                }
-
-                // operator handling
-                if (isOperatored(prop, classTemplateMap)) {
-                    if (isOperator && orderOfParent == 1) {
-                        // we are at an operator
-                        // if the corresponding OperatorTemplates have a sequence, add the possible first atomic of that sequence.
-                        // if this is not the case for at least one matching OperatorTemplate, add first elements of parent
-                        // property
-
-                        boolean otWithoutSequenceFound = false;
-
-                        for (OperatorTemplate ot : findOperatorTemplatesByOperatorLiteralValue(operatorValue,
-                                (EClass) getType(prop), syntax)) {
-                            if (ot.getTemplateSequence() != null) {
-                                addAllIfNotNull(
-                                        results,
-                                        getPossibleFirstAtomicSequenceElements(ot.getTemplateSequence(), classTemplateMap,
-                                                new HashSet<Template>(), syntax));
-                            } else {
-                                otWithoutSequenceFound = true;
-                            }
-                        }
-
-                        if (otWithoutSequenceFound) {
-
-                            addAllIfNotNull(
-                                    results,
-                                    getPossibleFirstAtomicSequenceElements(prop, classTemplateMap, new HashSet<Template>(),
-                                            syntax));
-                        }
-
-                    } else {
-                        // we are before or past an operator and thus add all
-                        // valid operators to the proposals
-                        for (ClassTemplate ct : getClassTemplates((EClass) getType(prop), getMode(prop), classTemplateMap,
-                                getResourceSetFromEObject(prop))) {
-                            addAllIfNotNull(results, getOperatorsAsAtomicSequenceElements(getOperatorList(ct, syntax)));
-                        }
-                    }
-                }
-            }
-
-            if (current instanceof Alternative) {
-                Alternative alt = (Alternative) current;
-                if (alt.isIsMulti()) {
-                    addAllIfNotNull(results,
-                            getPossibleFirstAtomicSequenceElements(alt, classTemplateMap, new HashSet<Template>(), syntax));
-                }
-            }
-
-            Sequence parentSeq = current.getElementSequence();
-            if (parentSeq.getSeparatorContainer() != null) {
-                // we are in a separator sequence, add parent property to
-                // proposals
-
-                try {
-                    Property parentProp = copiedParentPropertyStack.peek();
-                    addAllIfNotNull(results, TcsUtil.getPossibleFirstAtomicSequenceElements(parentProp, classTemplateMap,
-                            new HashSet<Template>(), syntax));
-                    // after separator, no other tokens are possible
-                    return results;
-                } catch (Exception ex) {
-                    // do nothing
-                }
-            }
-
-            SequenceElement next = getNextSequenceElement(current);
-
-            while (next != null) {
-                List<SequenceElement> nextElementResults = new ArrayList<SequenceElement>();
-
-                addAllIfNotNull(nextElementResults,
-                        getPossibleFirstAtomicSequenceElements(next, classTemplateMap, new HashSet<Template>(), syntax));
-
-                results.addAll(nextElementResults);
-                if (nextElementResults.contains(null)) {
-                    next = getNextSequenceElement(next);
-
-                } else {
-                    // next SequenceElement is guaranteed to need a Token
-                    return results;
-                }
-            }
-
-            current = getParentSequenceElement(current, copiedParentFunctionCallStack, copiedParentPropertyStack,
-                    classTemplateMap);
-
-            orderOfParent++;
-        }
-
-        // special handling of operatored main template
-        // don't need to check current == null because current has been used before
-        if (syntax != null) {
-            ClassTemplate main = TcsUtil.getMainClassTemplate(syntax);
-            if (main.isIsOperatored()) {
-
-                if (isOperator && orderOfParent == 1) {
-                    // we are at an operator, add first elements of parent
-                    // property
-                    addAllIfNotNull(
-                            results,
-                            getPossibleFirstAtomicSequenceElements((EClass) main.getMetaReference(), main.getMode(), classTemplateMap,
-                                    new HashSet<Template>(), syntax, getResourceSetFromEObject(main)));
-
-                    // also add prefix operators
-                    addAllIfNotNull(results, getPrefixOperatorsAsAtomicSequenceElements(getOperatorList(main, syntax)));
-
-                } else {
-                    // we are before or past an operator and thus add all
-                    // valid operators to the proposals
-                    addAllIfNotNull(results, getOperatorsAsAtomicSequenceElements(getOperatorList(main, syntax)));
-                }
-            }
-
-        }
-
-        return results;
-    }
-
-    private static Collection<OperatorTemplate> findOperatorTemplatesByOperatorLiteralValue(String operatorValue, EClass type,
-            ConcreteSyntax syntax) {
-        List<OperatorTemplate> result = new ArrayList<OperatorTemplate>();
-        Collection<EClass> subTypes = getAllSubtypes(type);
-        for (Template t : syntax.getTemplates()) {
-            if (t instanceof OperatorTemplate) {
-                OperatorTemplate ot = (OperatorTemplate) t;
-                for (EClass subType : subTypes) {
-                    if (ot.getMetaReference() != null && ot.getMetaReference().equals(subType)) {
-                        if (ot.getOperators() != null) {
-                            for (Operator op : ot.getOperators()) {
-                                // assumes that not two operators within the
-                                // used
-                                // operator list have the same literal
-                                if (op.getLiteral().getValue().equals(operatorValue)) {
-                                    result.add(ot);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        return result;
-    }
-
+    @Deprecated
     public static Collection<EClass> getAllSubtypes(EClass clazz) {
         // TODO use query for this to have a greater scope
         Collection<EClass> subTypes = new ArrayList<EClass>();
@@ -353,146 +97,6 @@ public class TcsUtil {
             }
         }
         return subTypes;
-    }
-
-    private static OperatorList getOperatorList(ClassTemplate ct, ConcreteSyntax syntax) {
-        OperatorList mainClassOpList = ct.getOperatorList();
-        if (mainClassOpList != null) {
-            return mainClassOpList;
-        }
-
-        // no operator list name specified, query operator lists of syntax
-        // instead
-        for (OperatorList opList : syntax.getOperatorLists()) {
-            if (opList.getName() == null) {
-                return opList;
-            }
-        }
-
-        return null;
-    }
-
-    private static List<SequenceElement> getOperatorsAsAtomicSequenceElements(OperatorList operatorList) {
-        if (operatorList == null) {
-            return null;
-        }
-
-        List<SequenceElement> results = new ArrayList<SequenceElement>();
-        for (Priority prio : operatorList.getPriorities()) {
-            for (Operator op : prio.getOperators()) {
-                if (!operatorToLiteralRefMap.containsKey(op)) {
-                    cacheOperatorLiteral(operatorList, op);
-
-                }
-                results.add(operatorToLiteralRefMap.get(op));
-            }
-        }
-
-        return results;
-    }
-
-    private static List<SequenceElement> getPrefixOperatorsAsAtomicSequenceElements(OperatorList operatorList) {
-        if (operatorList == null) {
-            return null;
-        }
-
-        // prefix means arity of 1 and left associativity and not postfix
-
-        List<SequenceElement> results = new ArrayList<SequenceElement>();
-        for (Priority prio : operatorList.getPriorities()) {
-            if (prio.getAssociativity() == Associativity.LEFT) {
-                for (Operator op : prio.getOperators()) {
-                    if (op.getArity() == 1 && !op.isPostfix()) {
-                        if (!operatorToLiteralRefMap.containsKey(op)) {
-                            cacheOperatorLiteral(operatorList, op);
-
-                        }
-                        results.add(operatorToLiteralRefMap.get(op));
-                    }
-                }
-            }
-        }
-
-        return results;
-    }
-
-    private static void cacheOperatorLiteral(OperatorList operatorList, Operator op) {
-        ResourceSet c = TcsUtil.getResourceSetFromEObject(operatorList);
-        Resource transientPartition = c.getResource(TRANSIENT_PARTITION_NAME, true);
-        LiteralRef litRef = TCSFactory.eINSTANCE.createLiteralRef();
-        transientPartition.getContents().add(litRef);
-        litRef.setReferredLiteral(op.getLiteral());
-        operatorToLiteralRefMap.put(op, litRef);
-    }
-
-    private static boolean containsForcedUpperArgOfOne(Property prop) {
-        ForcedUpperPArg upperArg = PropertyArgumentUtil.getForcedUpperPArg(prop);
-        if (upperArg != null && upperArg.getValue() == 1) {
-            return true;
-        }
-
-        return false;
-    }
-
-    private static boolean containsForcedLowerArg(Property prop) {
-        return (PropertyArgumentUtil.getForcedLowerPArg(prop) != null);
-
-    }
-
-    public static List<SequenceElement> getMainTemplatePossibleFirstAtomicSequenceElements(ConcreteSyntax syntax,
-            Map<List<String>, Map<String, ClassTemplate>> classTemplateMap) {
-
-        ClassTemplate main = getMainClassTemplate(syntax);
-        if (main.isIsAbstract()) {
-            return getPossibleFirstAtomicSequenceElements((EClass) main.getMetaReference(), main.getMode(), classTemplateMap,
-                    new HashSet<Template>(), syntax, getResourceSetFromEObject(main));
-
-        } else {
-            return getPossibleFirstAtomicSequenceElements(getMainClassTemplate(syntax), classTemplateMap,
-                    new HashSet<Template>(), syntax);
-        }
-    }
-
-    public static Stack<Property> duplicatePropertyStack(Stack<Property> source) {
-        if (source == null) {
-            return null;
-        }
-
-        Stack<Property> copiedPropertyStack = new Stack<Property>();
-        for (Property p : source) {
-            copiedPropertyStack.push(p);
-        }
-
-        return copiedPropertyStack;
-
-    }
-
-    public static Stack<FunctionCall> duplicateFunctionCallStack(Stack<FunctionCall> source) {
-        if (source == null) {
-            return null;
-        }
-
-        Stack<FunctionCall> copiedFunctionCallStack = new Stack<FunctionCall>();
-        for (FunctionCall p : source) {
-            copiedFunctionCallStack.push(p);
-        }
-
-        return copiedFunctionCallStack;
-
-    }
-
-    public static Stack<Template> duplicateTemplateStack(Stack<Template> source) {
-        if (source == null) {
-            return null;
-        }
-
-        Stack<Template> copiedTemplateStack = new Stack<Template>();
-        for (Template p : source) {
-            copiedTemplateStack.push(p);
-        }
-
-        return copiedTemplateStack;
-
     }
 
     /**
@@ -514,135 +118,6 @@ public class TcsUtil {
         return false;
     }
 
-    private static void addAllIfNotNull(List<SequenceElement> output, List<SequenceElement> input) {
-        if (input != null) {
-            output.addAll(input);
-        }
-    }
-
-    /**
-     * Returns a list of the first possible atomic SequenceElements of the given SequenceElement.
-     * 
-     * Composite SequenceElements return the possible first atomic SequenceElements of each of their children merged into a single
-     * list, atomic SequenceElements return a list containing themselves.
-     * 
-     * @param e
-     *            SequenceElement to get the first possible atomic SequenceElements from
-     * @param visitedTemplates
-     * @return first possible atomic SequenceElements
-     */
-    public static List<SequenceElement> getPossibleFirstAtomicSequenceElements(SequenceElement e,
-            Map<List<String>, Map<String, ClassTemplate>> classTemplateMap, Set<Template> visitedTemplates, ConcreteSyntax syntax) {
-
-        assert (visitedTemplates != null);
-
-        List<SequenceElement> results = new ArrayList<SequenceElement>();
-
-        // check for composite SequenceElements
-        if (e instanceof Alternative) {
-            Alternative alt = (Alternative) e;
-
-            if (alt.isIsMulti()) {
-                // isMulti Alternative is optional
-                results.add(null);
-            }
-
-            for (Sequence s : alt.getSequences()) {
-                addAllIfNotNull(
-                        results,
-                        getPossibleFirstAtomicSequenceElements(s, classTemplateMap, new HashSet<Template>(visitedTemplates),
-                                syntax));
-            }
-            return results;
-        }
-
-        else if (e instanceof ConditionalElement) {
-            ConditionalElement cond = (ConditionalElement) e;
-            addAllIfNotNull(
-                    results,
-                    getPossibleFirstAtomicSequenceElements(cond.getThenSequence(), classTemplateMap, new HashSet<Template>(
-                            visitedTemplates), syntax));
-            addAllIfNotNull(
-                    results,
-                    getPossibleFirstAtomicSequenceElements(cond.getElseSequence(), classTemplateMap, new HashSet<Template>(
-                            visitedTemplates), syntax));
-            return results;
-        }
-
-        else if (e instanceof Block) {
-            Block block = (Block) e;
-            addAllIfNotNull(results,
-                    getPossibleFirstAtomicSequenceElements(block.getBlockSequence(), classTemplateMap, visitedTemplates, syntax));
-            return results;
-        }
-
-        else if (e instanceof FunctionCall) {
-            FunctionCall call = (FunctionCall) e;
-            addAllIfNotNull(results,
-                    getPossibleFirstAtomicSequenceElements(call.getCalledFunction(), classTemplateMap, visitedTemplates, syntax));
-            return results;
-        }
-
-        else if (e instanceof CustomSeparator) {
-            // CustomSeparators do not contain any SequenceElements
-            results.add(null);
-            return results;
-        }
-
-        else if (e instanceof InjectorActionsBlock) {
-            // InjectorActionsBlocks do not contain any SequenceElements
-            results.add(null);
-            return results;
-        }
-
-        else if (e instanceof Property) {
-            Property prop = (Property) e;
-
-            // if we have a multi-valued Property, add corresponding
-            // elements as well
-            if (isMultiValued(prop) && !containsForcedLowerArg(prop)) {
-
-                results.add(null);
-            }
-
-            if (isAtomic(prop, classTemplateMap)) {
-                results.add(e);
-                return results;
-            } else {
-                addAllIfNotNull(
-                        results,
-                        getPossibleFirstAtomicSequenceElements((EClass) getType(prop), getMode(prop), classTemplateMap,
-                                visitedTemplates, syntax, getResourceSetFromEObject(prop)));
-                return results;
-            }
-        }
-
-        else {
-            // atomic SequenceElement or null
-            results.add(e);
-
-            return results;
-        }
-
-    }
-
-    public static List<SequenceElement> getPossibleFirstAtomicSequenceElements(EClass type, String mode,
-            Map<List<String>, Map<String, ClassTemplate>> classTemplateMap, Set<Template> visitedTemplates,
-            ConcreteSyntax syntax, ResourceSet connection) {
-        List<SequenceElement> results = new ArrayList<SequenceElement>();
-        for (ClassTemplate ct : getClassTemplates(type, mode, classTemplateMap, connection)) {
-            if (!ct.isIsAbstract()) {
-                addAllIfNotNull(results, getPossibleFirstAtomicSequenceElements(ct, classTemplateMap, visitedTemplates, syntax));
-            } else {
-                if (ct.isIsOperatored()) {
-                    // add prefix operators
-                    addAllIfNotNull(results, getPrefixOperatorsAsAtomicSequenceElements(getOperatorList(ct, syntax)));
-                }
-            }
-        }
-
-        return results;
-    }
 
     public static EClassifier getType(Property p) {
         ETypedElement e = getStructuralFeature(p);
@@ -662,27 +137,6 @@ public class TcsUtil {
         return null;
     }
 
-    public static boolean isAtomic(Property p, Map<List<String>, Map<String, ClassTemplate>> classTemplateMap) {
-        ETypedElement s = getStructuralFeature(p);
-        if (s != null) {
-            if (s instanceof EReference) {
-                if (!PropertyArgumentUtil.containsRefersToArg(p) && !PropertyArgumentUtil.containsAsArg(p) && !PropertyArgumentUtil.containsLookupScopePArg(p)) {
-                    return false;
-                }
-
-            }
-            if (s instanceof EAttribute && classTemplateMap != null) {
-                // check if we have a non-primitive type attribute by querying
-                // classTemplateMap
-                List<String> typeName = getQualifiedName(getType(p));
-                if (classTemplateMap.containsKey(typeName)) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
 
     /**
      * Computes the fully qualified name of the given {@link EClassifier}.
@@ -708,55 +162,13 @@ public class TcsUtil {
                 }
             }
         }
-
         return false;
     }
     
-    public static NbNLBArg getNbNLBArg(Block block) {
-        for (BlockArg arg : block.getBlockArgs()) {
-            if (arg instanceof NbNLBArg) {
-                return (NbNLBArg) arg;
-            }
-        }
-        return null;
-    }
-    
-    public static StartNbNLBArg getStartNbNLBArg(Block block) {
-        for (BlockArg arg : block.getBlockArgs()) {
-            if (arg instanceof StartNbNLBArg) {
-                return (StartNbNLBArg) arg;
-            }
-        }
-        return null;
-    }
-    
-    public static IndentIncrBArg getIndentIncrBArg(Block block) {
-        for (BlockArg arg : block.getBlockArgs()) {
-            if (arg instanceof IndentIncrBArg) {
-                return (IndentIncrBArg) arg;
-            }
-        }
-        return null;
-    }
-    
-    public static StartNLBArg getStartNLBArg(Block block) {
-        for (BlockArg arg : block.getBlockArgs()) {
-            if (arg instanceof StartNLBArg) {
-                return (StartNLBArg) arg;
-            }
-        }
-        return null;
-    }
-    
-    public static EndNLBArg getEndNLBArg(Block block) {
-        for (BlockArg arg : block.getBlockArgs()) {
-            if (arg instanceof EndNLBArg) {
-                return (EndNLBArg) arg;
-            }
-        }
-        return null;
-    }
-    
+    /**
+     * TODO: Move to Syntax Lookup?
+     */
+    @Deprecated
     public static Collection<ClassTemplate> getClassTemplates(EClass type, String mode,
             Map<List<String>, Map<String, ClassTemplate>> classTemplateMap, ResourceSet connection) {
         Assert.isLegal(classTemplateMap != null, "could not resolve class template for Reference, classTemplateMap is null");
@@ -776,114 +188,11 @@ public class TcsUtil {
                 }
             }
         }
-
         return results;
     }
 
     public static ResourceSet getResourceSetFromEObject(EObject ref) {
         return ref.eResource().getResourceSet();
-    }
-
-    // TODO still needed?
-    public static Literal findLiteralByName(ConcreteSyntax syntax, String literalName) {
-        for (Keyword k : syntax.getKeywords()) {
-            if (k.getValue().equals(literalName)) {
-                return k;
-            }
-        }
-
-        for (Symbol s : syntax.getSymbols()) {
-            if (s.getValue().equals(literalName)) {
-                return s;
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * Returns a list of the first possible atomic SequenceElements of the given FunctionTemplate.
-     * 
-     * @param t
-     *            FunctionTemplate to get the first possible atomic SequenceElements from
-     * @return first possible atomic SequenceElements
-     */
-    static List<SequenceElement> getPossibleFirstAtomicSequenceElements(FunctionTemplate t,
-            Map<List<String>, Map<String, ClassTemplate>> classTemplateMap, Set<Template> visitedTemplates, ConcreteSyntax syntax) {
-
-        assert (visitedTemplates != null);
-
-        if (t != null) {
-            if (!visitedTemplates.contains(t)) {
-                visitedTemplates.add(t);
-                return getPossibleFirstAtomicSequenceElements(t.getFunctionSequence(), classTemplateMap, visitedTemplates, syntax);
-            } else {
-                return null;
-            }
-
-        }
-
-        return createListWithEntry(null);
-    }
-
-    /**
-     * Returns a list of the first possible atomic SequenceElements of the given ClassTemplate.
-     * 
-     * If the ClassTemplate is abstract, compute subtypes and add all possible first atomic elements for each non-abstract
-     * subtype.
-     * 
-     * @param t
-     *            ClassTemplate to get the first possible atomic SequenceElements from
-     * @return first possible atomic SequenceElements
-     */
-    static List<SequenceElement> getPossibleFirstAtomicSequenceElements(ClassTemplate t,
-            Map<List<String>, Map<String, ClassTemplate>> classTemplateMap, Set<Template> visitedTemplates, ConcreteSyntax syntax) {
-
-        assert (visitedTemplates != null);
-
-        if (t != null) {
-            if (!visitedTemplates.contains(t)) {
-                visitedTemplates.add(t);
-                return getPossibleFirstAtomicSequenceElements(t.getTemplateSequence(), classTemplateMap, visitedTemplates, syntax);
-            } else {
-                return null;
-            }
-        }
-
-        return createListWithEntry(null);
-    }
-
-    private static List<SequenceElement> createListWithEntry(SequenceElement e) {
-        List<SequenceElement> result = new ArrayList<SequenceElement>();
-        result.add(e);
-        return result;
-    }
-
-    /**
-     * Returns a list of the first possible atomic SequenceElements of the given Sequence.
-     * 
-     * @param s
-     *            Sequence to get the first possible atomic SequenceElements from
-     * @return first possible atomic SequenceElements
-     */
-    public static List<SequenceElement> getPossibleFirstAtomicSequenceElements(Sequence s,
-            Map<List<String>, Map<String, ClassTemplate>> classTemplateMap, Set<Template> visitedTemplates, ConcreteSyntax syntax) {
-
-        assert (visitedTemplates != null);
-
-        SequenceElement e = getFirstSequenceElement(s);
-
-        List<SequenceElement> results = new ArrayList<SequenceElement>();
-
-        List<SequenceElement> elementResults;
-        do {
-            elementResults = getPossibleFirstAtomicSequenceElements(e, classTemplateMap, new HashSet<Template>(visitedTemplates),
-                    syntax);
-            addAllIfNotNull(results, elementResults);
-            e = getNextSequenceElement(e);
-        } while (elementResults.contains(null) && e != null);
-
-        return results;
     }
 
     /**
@@ -901,7 +210,6 @@ public class TcsUtil {
                 }
             }
         }
-
         return null;
     }
 
@@ -909,7 +217,6 @@ public class TcsUtil {
         if (e == null) {
             return false;
         }
-
         return getNextSequenceElement(e) == null;
     }
 
@@ -1042,100 +349,7 @@ public class TcsUtil {
 
         return null;
     }
-
-    public static ResultSet queryConn(ResourceSet resourceSet, String query) {
-        try {
-            return EcoreHelper.executeQuery(query, EcoreHelper.getQueryContext(resourceSet));
-        } catch (MetaModelLookupException e) {
-            throw new RuntimeException(e);
-        }
-    }
     
-    public static ResultSet queryConn(ResourceSet resourceSet, Query query) {
-        try {
-            return EcoreHelper.executeQuery(query, EcoreHelper.getQueryContext(resourceSet));
-        } catch (MetaModelLookupException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static ResultSet querySameConn(EObject r, String query) {
-        ResourceSet conn = getResourceSetFromEObject(r);
-        return queryConn(conn, query);
-    }
-
-    public static List<ConcreteSyntax> getSyntaxesInResourceSet(ResourceSet connection) {
-
-        String query = "select cs from [" + EcoreUtil.getURI(TCSPackage.eINSTANCE.getConcreteSyntax()) + "] withoutsubtypes as cs";
-
-        ResultSet resultSet = queryConn(connection, query);
-        URI[] resultElements = resultSet.getUris("cs");
-
-        List<ConcreteSyntax> results = new ArrayList<ConcreteSyntax>();
-
-        for (URI elem : resultElements) {
-            results.add((ConcreteSyntax) connection.getEObject(elem, false));
-        }
-
-        return results;
-    }
-
-    public static List<ConcreteSyntax> getSyntaxesInResourceSetWithName(ResourceSet connection, String syntaxName) {
-    	SelectEntry se = new SelectAlias(MQL_ALIAS_INSTANCE);
-        FromEntry fe = new FromType(MQL_ALIAS_INSTANCE, EcoreUtil.getURI(TCSPackage.eINSTANCE.getConcreteSyntax()), /*withoutSubtypes*/ false);
-        WhereString whereName = new WhereString("name", Operation.EQUAL, syntaxName);
-        LocalWhereEntry where = new LocalWhereEntry(MQL_ALIAS_INSTANCE, whereName);
-        Query query = new Query(new SelectEntry[] { se }, new FromEntry[] { fe }, new WhereEntry[] { where });
-        ResultSet resultSet = queryConn(connection, query);
-        URI[] resultElements = resultSet.getUris("cs");
-
-        List<ConcreteSyntax> results = new ArrayList<ConcreteSyntax>();
- 
-        for (URI elem : resultElements) {
-            results.add((ConcreteSyntax) connection.getEObject(elem, false));
-        }
-        return results;
-    }
-
-    /**
-     * Get the build-in TCS ConcreteSyntax.
-     * 
-     * @param connection
-     *            ResourceSet to look in
-     * @return build-in TCS ConcreteSyntax
-     */
-    public static ConcreteSyntax getTcsSyntax(ResourceSet connection) {
-        // TODO implement some real way of identifying the build-in TCS
-        // ConcreteSyntax.
-        // note that the name will not suffice, as a new TCS syntax can be build
-        // using the build-in TCS syntax (after bootstrapping)
-
-        List<ConcreteSyntax> syntaxList = getSyntaxesInResourceSet(connection);
-
-        for (ConcreteSyntax syntax : syntaxList) {
-            if (syntax.getName().equals("TCS")) {
-                return syntax;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Get the first ConcreteSyntax with the given name.
-     * 
-     * @param connection
-     *            ResourceSet to look in
-     * @return the ConcreteSyntax with the given name.
-     */
-    public static ConcreteSyntax getSyntaxByName(ResourceSet connection, String languageId) {
-        List<ConcreteSyntax> syntaxList = getSyntaxesInResourceSetWithName(connection, languageId);
-        if (syntaxList == null || syntaxList.size() == 0) {
-            return null;
-        } else {
-            return syntaxList.get(0);
-        }
-    }
-
     /**
      * Creates a map of qualifiedName + Mode to ClassTemplate of all ClassTemplates contained in the syntax
      * 
@@ -1363,50 +577,15 @@ public class TcsUtil {
             }
 
         }
-
         return result;
     }
 
-    public static List<String> queryPropertyValues(EClassifier type, String featureName, ResourceSet conn) {
 
-        // TODO limit query to a single partition or use model information from
-        // parsing handler instead?
-
-        String query = "select ofClass from [" + EcoreUtil.getURI(type) + "] as ofClass";
-
-        ResultSet resultSet = queryConn(conn, query);
-        URI[] resultElements = resultSet.getUris("ofClass");
-
-        List<String> results = new ArrayList<String>();
-
-        for (URI elemURI : resultElements) {
-            try {
-                EObject element = conn.getEObject(elemURI, false);
-                Object featureValue = element.eGet(element.eClass().getEStructuralFeature(featureName));
-                if (featureValue instanceof Integer) {
-                    results.add("" + featureValue);
-                }
-
-                if (featureValue instanceof String) {
-                    results.add((String) featureValue);
-                }
-            } catch (Exception e) {
-                System.err.println("TcsUtil.queryPropertyValues encountered the following error: cannot read feature "
-                        + featureName + " from element " + elemURI.toString());
-            }
-
-            // TODO need to add more type checks?
-        }
-
-        /*
-         * System.out.println("TcsUtil.queryPropertyValues(" + joinNameList(type.getQualifiedName()) + ", " + featureName + ");");
-         * System.out.println(query); System.out.println(results);
-         */
-
-        return results;
-
-    }
-
+    /**
+     * TODO: Move to Syntax Lookup? Furhtermore, the pretty printer does seem to implement a very
+     * similar method. 
+     */
+    @Deprecated
     public static List<EnumLiteralMapping> getEnumTemplateForType(ConcreteSyntax syntax, EClassifier type) {
 
         // TODO if too slow, also build map like for class and operator
@@ -1426,16 +605,6 @@ public class TcsUtil {
         }
 
         return results;
-    }
-
-    public static Set<URI> getSyntaxPartitions(ResourceSet connection, String languageId) {
-        ConcreteSyntax cs = getSyntaxByName(connection, languageId);
-        if (cs == null) {
-            throw new RuntimeException("Concrete syntax with id '" + languageId + "' not found.");
-        }
-        // TODO for language composition return also all partitions of
-        // dependencies
-        return Collections.singleton(((EObject) cs).eResource().getURI());
     }
 
     public static boolean isContext(Template template) {
@@ -1597,44 +766,9 @@ public class TcsUtil {
                 }
             }
         }
-
         return null;
     }
-
-    /** 
-     * Use {@link #executeOclQuery(TCSSpecificOCLEvaluator, EObject, String, EObject, EObject, Object)} 
-     * instead and provide a scope specific {@link TCSSpecificOCLEvaluator}.
-     * 
-     * @param element
-     * @param oclQuery
-     * @param contextObject
-     * @param foreachObject
-     * @param keyValue
-     * @return
-     * @throws ModelAdapterException
-     */
-    @Deprecated
-    public static Collection<?> executeOclQuery(EObject element,
-            String oclQuery, EObject contextObject, EObject foreachObject,
-            String keyValue) throws ModelAdapterException {
-
-        TCSSpecificOCLEvaluator oclHelper = new TCSSpecificOCLEvaluator();
-
-        return executeOclQuery(oclHelper, element, oclQuery, contextObject,
-                foreachObject, keyValue);
-
-    }
-    
-    public static Collection<?> executeOclQuery(TCSSpecificOCLEvaluator oclEvaluator,
-            EObject element, String oclQuery, EObject contextObject,
-            EObject foreachObject, Object keyValue) throws ModelAdapterException {
-        if (oclQuery != null) {
-            return oclEvaluator.findElementsWithOCLQuery(element, keyValue, oclQuery, contextObject, foreachObject);
-        }
-
-        return null;
-    }
-
+   
     public static boolean isPropValueAndOclResultEqual(Object propValue, Collection<?> oclResult) {
         // oclHelper.findElementWithOCLQuery returns null for empty collections
         if (propValue == null) {
@@ -1699,6 +833,12 @@ public class TcsUtil {
         }
     }
 
+    /**
+     * FIXME: What does this what a SyntaxLookup can't do? Why do we need it?
+     * If it does a little bit more, should't we enhance the syntax lookup? It will
+     * give us a central place where we can do caching and other optimizations.
+     */
+    @Deprecated
     public static Template findTemplate(EClass foreachElementType, String mode, Collection<URI> partitionScope) {
     
         // TODO query fully qualified name!
@@ -1718,7 +858,7 @@ public class TcsUtil {
             Query queryForClassTemplate = new Query(new SelectEntry[] { select }, new FromEntry[] { fromClassTemplate, fromClass },
                     new WhereEntry[] { whereMetaReference, whereMode });
             if (true /* template == null */) { // TODO
-                QueryProcessor queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(getIndex());
+                QueryProcessor queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
                 TypeScopeProvider mappingQueryScope = queryProcessor.getInclusiveQueryScopeProvider(partitionScope
                         .toArray(new URI[] {}));
                 QueryContext context = getQueryScope(rs, mappingQueryScope);
@@ -1740,7 +880,6 @@ public class TcsUtil {
     
             }
         }
-    
         return template;
     }
 
@@ -1762,27 +901,6 @@ public class TcsUtil {
             resourcesInScope.add(uri);
         }
         return com.sap.furcas.runtime.common.util.EcoreHelper.getQueryContext(rs, resourcesInScope);
-    }
-
-    private static org.eclipse.emf.query.index.Index getIndex() {
-        return IndexFactory.getInstance();
-    }
-
-    /**
-     * By ascending the containment hierarchy of the {@link ConcreteSyntax} containing this injector
-     * action, determines this language's ID. If for some reason the <code>injectorAction</code> is not
-     * contained in a {@link ConcreteSyntax} element, <code>null</code> is returned.
-     */
-    public static String getLanguageId(InjectorAction injectorAction) {
-        EObject e = injectorAction;
-        while (e != null && !(e instanceof ConcreteSyntax)) {
-            e = e.eContainer();
-        }
-        if (e instanceof ConcreteSyntax) {
-            return ((ConcreteSyntax) e).getName();
-        } else {
-            return null;
-        }
     }
 
     /**
@@ -1873,6 +991,55 @@ public class TcsUtil {
         return subSequence;
     }
 
+    public static Template getParentTemplate(SequenceElement e, ConcreteSyntax syntax) {
+        EObject parent = e.eContainer();
+        while (parent != null && !(parent instanceof ConcreteSyntax)) {
+            if (parent instanceof ClassTemplate || parent instanceof OperatorTemplate || parent instanceof FunctionTemplate) {
+                return (Template) parent;
+            } else {
+                if (parent instanceof EObject) {
+                    EObject r = parent;
+                    parent = r.eContainer();
+                } else {
+                    parent = null;
+                }
+            }
+        }
+        return TcsUtil.getMainClassTemplate(syntax);
+    }
+
+    public static Alternative getParentAlternative(SequenceElement e) {
+        EObject parent = e.eContainer();
+        while (parent != null && !(parent instanceof ConcreteSyntax)) {
+            if (parent instanceof Alternative) {
+                return (Alternative) parent;
+            } else {
+                if (parent instanceof EObject) {
+                    EObject r = parent;
+                    parent = r.eContainer();
+                } else {
+                    parent = null;
+                }
+            }
+        }
+        return null;
+    }
     
+    public static Sequence getSequence(Template t) {
+        if (t instanceof ClassTemplate) {
+            ClassTemplate ct = (ClassTemplate) t;
+            return ct.getTemplateSequence();
+        }
+        if (t instanceof OperatorTemplate) {
+            OperatorTemplate ot = (OperatorTemplate) t;
+            return ot.getTemplateSequence();
+        }
+
+        if (t instanceof FunctionTemplate) {
+            FunctionTemplate ft = (FunctionTemplate) t;
+            return ft.getFunctionSequence();
+        }
+        return null;
+    }
 
 }

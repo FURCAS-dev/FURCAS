@@ -21,6 +21,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.parser.ParsingError;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
+import com.sap.furcas.runtime.textblocks.shortprettyprint.ShortPrettyPrinter;
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException.Component;
 import com.sap.ide.cts.parser.incremental.IncrementalParserFacade;
@@ -44,6 +45,8 @@ public class ParseCommand extends RecordingCommand {
     private final IncrementalParserFacade parserFacade;
     private TextBlock result;
     private final IMessageHandler handler;
+    private boolean wasEffective;
+    private final ShortPrettyPrinter shortPrettyPrinter;
 
     public ParseCommand(TransactionalEditingDomain domain, CtsDocument document, IncrementalParserFacade parserFacade, IMessageHandler handler) {
         super(domain, "Parse document");
@@ -51,10 +54,13 @@ public class ParseCommand extends RecordingCommand {
         this.parserFacade = parserFacade;
         this.handler = handler;
         this.result = document.getRootBlock();
+        this.shortPrettyPrinter = new ShortPrettyPrinter(parserFacade.getModelElementInvestigator());
     }
 
     @Override
     protected void doExecute() {
+        wasEffective = false;
+        
         // 1) Write all buffered user edits to the underlying 
         //    textblocks model. Synchronize to prevent concurrent
         //    editing from within the UI thread.
@@ -71,6 +77,10 @@ public class ParseCommand extends RecordingCommand {
         }
         result = parse(blockWithUnparsedEdits);
         
+        // Succeded without an exception. The command will not be rolled back and the
+        // model changes will remain in effect
+        wasEffective = true; 
+        
         if (result == null || Version.REFERENCE != result.getVersion()) {
             return;
         }
@@ -80,13 +90,10 @@ public class ParseCommand extends RecordingCommand {
         //    the offsets of the user's text edits are already invalid. 
         synchronized (document.getLockObject()) {
             document.setRootBlock(result);
-            document.flushUserEditsToTextBlocskModel();
-            // FIXME: For now, disable the refresh of all tokens. It invalidates our curser position
-            //        This will be easier once we have implemented the TokenValueChanger
-            //        Stephan Erb, 19.05.2011
-            //document.expandToEditableVersion();
-            //document.refreshContentFromTextBlocksModel();
         }
+        // TODO: Disabled because of invalid thread access problems
+        //      Stephan Erb, Jun 15 2011.
+        // document.refreshContentFromTextBlocksModel(shortPrettyPrinter);
     }
     
     private TextBlock parse(TextBlock oldBlock) {
@@ -119,6 +126,13 @@ public class ParseCommand extends RecordingCommand {
     
     public TextBlock getParsingResult() {
         return result;
+    }
+    
+    /**
+     * True if some actual work was done. False if the command did not change anything. 
+     */
+    public boolean wasEffective() {
+        return wasEffective;
     }
     
 }

@@ -12,6 +12,8 @@ package com.sap.furcas.example.bibtex.dsl.editor;
 
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
+import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 
 import Bibtex.util.BibtexAdapterFactory;
 
@@ -26,8 +28,10 @@ public class BibtexAuthorViewEditor extends AbstractFurcasEditor {
     
     @Override
     protected ComposedAdapterFactory createAdapterFactory() {
-        ComposedAdapterFactory adapterFactory = super.createAdapterFactory();
+        ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory();
         adapterFactory.addAdapterFactory(new BibtexAdapterFactory());
+        adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
+        adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
         return adapterFactory;
     }
 

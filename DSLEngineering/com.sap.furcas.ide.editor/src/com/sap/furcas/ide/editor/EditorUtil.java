@@ -6,8 +6,6 @@ import org.antlr.runtime.Lexer;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IEditorPart;
@@ -16,19 +14,11 @@ import org.eclipse.ui.PlatformUI;
 import com.sap.furcas.ide.editor.imp.AbstractFurcasEditor;
 import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
-import com.sap.furcas.runtime.parser.ParserFactory;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
-import com.sap.furcas.runtime.tcs.TcsUtil;
 
 
 public class EditorUtil {
     
-    public static ConcreteSyntax loadConcreteSyntax(ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) {
-        ResourceSet resourceSet = new ResourceSetImpl();
-        resourceSet.getResource(parserFactory.getSyntaxResourceURI(), /*load*/ true);
-        return TcsUtil.getSyntaxByName(resourceSet, parserFactory.getLanguageId());
-    }
-
     public static AbstractFurcasEditor getCurrentEditor() {
         IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
         if(activeEditor instanceof AbstractFurcasEditor) {
@@ -100,4 +90,5 @@ public class EditorUtil {
 	}
 	throw new RuntimeException("No Parser Factory registered for syntax: " + syntax.getName());
     }
+    
 }

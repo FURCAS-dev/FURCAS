@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.jface.text.AbstractDocument;
+import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.DefaultLineTracker;
 import org.eclipse.jface.text.DocumentEvent;
 import org.eclipse.jface.text.GapTextStore;
@@ -15,6 +16,8 @@ import com.sap.furcas.ide.editor.CtsActivator;
 import com.sap.furcas.ide.editor.imp.FurcasParseController;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
+import com.sap.furcas.runtime.textblocks.model.TextBlocksModel.TokenChange;
+import com.sap.furcas.runtime.textblocks.shortprettyprint.ShortPrettyPrinter;
 
 /**
  * A document implementation that is responsible for presenting a text blocks
@@ -54,7 +57,7 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
         setTextStore(new GapTextStore());
         setLineTracker(new DefaultLineTracker());
         
-        model = new TextBlocksModel(editorInput.getRootBlock(), /*model investigator*/ null);
+        model = new TextBlocksModel(editorInput.getRootBlock());
         model.setUsecache(true); 
         
 	completeInitialization();
@@ -106,24 +109,28 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
      * Has to be called whenever the textual content of the block
      * returned by {@link #getRootBlock()} has been modified.
      */
-    public void refreshContentFromTextBlocksModel() {
-        final String text = model.get(0, model.getLength());
-        Display.getDefault().asyncExec(new Runnable() {
+    public void refreshContentFromTextBlocksModel(final ShortPrettyPrinter shortPrettyPrinter) {
+        Display.getDefault().syncExec(new Runnable() {
             @Override
             public void run() {
                 synchronized (getLockObject()) {
-                    if (!bufferedChanges.isEmpty()) {
-                        CtsActivator.logger.logWarning("Overwriting user edits when refreshing the " +
-                        	"document content. User might get confused");
-                        bufferedChanges.clear();
-                    }
+                    flushUserEditsToTextBlocskModel();
                     inDocumentRefreshMode = true;
-                    set(text);
+                    
+                    for (TokenChange change : model.doShortPrettyPrintToEditableVersion(shortPrettyPrinter)) {
+                        try {
+                            replace(change.oldOffset, change.oldLength, change.token.getValue());
+                        } catch (BadLocationException e) {
+                            CtsActivator.logger.logError("Invalidated textblocks model on refresh", e);
+                            throw new RuntimeException(e);
+                        }
+                    }
                     inDocumentRefreshMode = false;
                 }
             }
         });
     }
+    
     
     /**
      * Returns a lock object for synchronization<p>

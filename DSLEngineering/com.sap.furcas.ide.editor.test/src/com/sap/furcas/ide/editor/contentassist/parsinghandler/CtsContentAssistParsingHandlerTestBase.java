@@ -19,6 +19,7 @@ import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.impl.DelegationParsingObserver;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.textblocks.TextBlocksAwareModelAdapter;
+import com.sap.furcas.runtime.tcs.TcsUtil;
 
 public abstract class CtsContentAssistParsingHandlerTestBase extends GeneratedParserBasedTest {
 
@@ -38,7 +39,8 @@ public abstract class CtsContentAssistParsingHandlerTestBase extends GeneratedPa
 
         // use delegator to monitor exceptions
         DelegationParsingObserver delegator = new DelegationParsingObserver();
-        observer = new CtsContentAssistParsingHandler(syntax, resourceSet);
+        observer = new CtsContentAssistParsingHandler(resourceSet, TcsUtil.createClassTemplateMap(syntax),
+                TcsUtil.createOperatorTemplateMap(syntax));
         delegator.addParsingObserver(observer);
 
         facade.parseProductionRule(in, modelHandler, null, null, delegator);

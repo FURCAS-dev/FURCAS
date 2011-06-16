@@ -245,7 +245,7 @@ public class TestTextBlockTCSExtractorStream {
 
 		TextblocksTestHelper.assertTextBlockAndChildren(rootBlock);
 
-		TextBlocksModel model = new TextBlocksModel(rootBlock, null);
+		TextBlocksModel model = new TextBlocksModel(rootBlock);
 		assertEquals(refString, model.get(0, model.getLength()));
 	}
 
@@ -570,7 +570,7 @@ public class TestTextBlockTCSExtractorStream {
 
 		TextblocksTestHelper.assertTextBlockAndChildren(rootBlock);
 
-		TextBlocksModel model = new TextBlocksModel(rootBlock, null);
+		TextBlocksModel model = new TextBlocksModel(rootBlock);
 		assertEquals(refString, model.get(0, model.getLength()));
 	}
 
@@ -797,7 +797,7 @@ public class TestTextBlockTCSExtractorStream {
 
 		TextblocksTestHelper.assertTextBlockAndChildren(rootBlock);
 
-		TextBlocksModel model = new TextBlocksModel(rootBlock, null);
+		TextBlocksModel model = new TextBlocksModel(rootBlock);
 		assertEquals(refString, model.get(0, model.getLength()));
 	}
 }

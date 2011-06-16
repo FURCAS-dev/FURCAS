@@ -19,7 +19,7 @@
  <extension
        point="org.eclipse.imp.runtime.contentProposer">
     <proposer
-          class="com.sap.furcas.metamodel.texteditor.editor.TCSContentProposer"
+          class="com.sap.furcas.ide.editor.imp.services.FurcasContentProposer"
           language="TCS">
     </proposer>
  </extension>

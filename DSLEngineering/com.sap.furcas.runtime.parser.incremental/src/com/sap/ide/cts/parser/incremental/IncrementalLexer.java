@@ -27,13 +27,13 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksFactory;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
+import com.sap.furcas.runtime.textblocks.TbDebugUtil;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 import com.sap.furcas.runtime.textblocks.TokenLocation;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
 import com.sap.furcas.runtime.textblocks.shortprettyprint.ShortPrettyPrinter;
-import com.sap.furcas.runtime.textblocks.validation.IllegalTextBlocksStateException;
 import com.sap.furcas.runtime.textblocks.validation.TbValidationUtil;
 import com.sap.ide.cts.parser.Activator;
 
@@ -150,38 +150,37 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
             // so return successfully!
             return true;
         }
-        // mark real changes
-        applyMarking(root);
 
         boolean success = false;
         try {
+            // mark real changes
+            applyMarking(root);
             // lex all changed tokens,
             success = lexPhase(root);
             // textBlock hierarchy not changed, textBlock token contents updated
+            if (success) {
+                updateLookbacks(root);
+            }
         } catch (Exception ex) {
+            success = false;
             TextBlock referenceVersion = getOtherVersion(root, Version.REFERENCE);
+            TextBlock previousVersion = getOtherVersion(root, Version.PREVIOUS);
+            TextBlock currentVersion = getOtherVersion(root, Version.CURRENT);
             Activator.logError("Unexpected Exception during incremental lexing! Check the following exception:\n"
-                            + "Text before:\n"
-                            + referenceVersion == null ? "<none>" : referenceVersion.getCachedString()
-                            + "\n\nText after change:\n"
-                            + root.getCachedString());
+                            + "Reference Block:\n"
+                            + referenceVersion == null ? "<none>" : TbDebugUtil.getTextBlockAsAnnotatedString(referenceVersion)
+                            + "\n\nPrevious Block:\n"
+                            + previousVersion == null ? "<none>" : TbDebugUtil.getTextBlockAsAnnotatedString(previousVersion)
+                            + "\n\nCurrent Block:\n"
+                            + currentVersion == null ? "<none>" : TbDebugUtil.getTextBlockAsAnnotatedString(currentVersion));       
             Activator.logError(ex);
             
-            success = false;
-            if (ex instanceof IllegalTextBlocksStateException) {
-                // some tokens may have already been created before the lexer crashed. Remove those.
+        } finally {
+            if (!success) {
+                // lexing didn't work so go back to previous version. It should not have been affected.
                 TbChangeUtil.revertToVersion(root, Version.PREVIOUS);
-                throw (IllegalTextBlocksStateException) ex;
             }
         }
-
-        if (success) {
-            updateLookbacks(root);
-        } else {
-            // lexing didn't work so go back to previous version
-            TbChangeUtil.revertToVersion(root, Version.PREVIOUS);
-        }
-
         return success;
     }
 

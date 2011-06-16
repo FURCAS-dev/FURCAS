@@ -67,7 +67,7 @@ public abstract class IncrementalParserBasedTest extends GeneratedParserAndFacto
         TextBlocksModelElementFactory  modelFactory = new EMFTextBlocksModelElementFactory();
         AbstractToken emptyToken = modelFactory.createToken("");
         TextBlock rootBlock = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, emptyToken);
-        model = new TextBlocksModel(rootBlock, null);
+        model = new TextBlocksModel(rootBlock);
     }
     
     /**

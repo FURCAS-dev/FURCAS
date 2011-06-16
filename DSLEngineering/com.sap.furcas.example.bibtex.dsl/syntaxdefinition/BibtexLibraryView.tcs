@@ -1,7 +1,7 @@
 /**
  * A view on the Bibtex Model which presents
- * the library an all its entries
- */ 
+ * the library and all its entries
+ */
 syntax BibtexLibraryView {
  
   primitiveTemplate identifier for EString default using NAME

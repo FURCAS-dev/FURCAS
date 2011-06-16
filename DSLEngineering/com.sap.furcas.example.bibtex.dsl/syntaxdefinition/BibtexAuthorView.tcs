@@ -1,7 +1,7 @@
 /**
  * A view on the Bibtex Model which presents
  * an individual author and his publications.
- */ 
+ */
 syntax BibtexAuthorView {
 
   primitiveTemplate identifier for EString default using NAME
