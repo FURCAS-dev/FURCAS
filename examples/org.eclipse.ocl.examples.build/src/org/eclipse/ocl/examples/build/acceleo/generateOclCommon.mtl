@@ -26,7 +26,7 @@ operation.ownedParameter->select(p : Parameter
 
 [template public declarePackage(pkg : Package)]
 Package [pkg.getSymbolName()/] = PivotFactory.eINSTANCE.createPackage(); // [pkg.moniker/]
-[for (ownedType : Type | pkg.ownedType->sortedBy(name))]
+[for (ownedType : Type | pkg.ownedType->sortedBy(moniker))]
 [declareType(ownedType)/]
 [/for]
 [for (nestedPackage : Package | pkg.nestedPackage->sortedBy(name))]
@@ -172,7 +172,7 @@ Operation [operation.getSymbolName()/] = PivotFactory.eINSTANCE.createOperation(
 [if (pkg.nsURI <> null)]
 [pkg.getSymbolName()/].setNsURI("[pkg.nsURI/]");
 [/if]
-[for (ownedType : Type | pkg.ownedType->sortedBy(name))]
+[for (ownedType : Type | pkg.ownedType->sortedBy(moniker))]
 [emitType(ownedType)/]
 [/for]
 [for (nestedPackage : Package | pkg.nestedPackage->sortedBy(name))]
