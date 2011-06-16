@@ -1997,7 +1997,10 @@ public class TypeManager extends TypeCaches implements Adapter
 					for (int i = 0; i < pivotArguments.length; i++) {
 						Type argumentType = pivotArguments[i];
 						Parameter pivotParameter = pivotParameters.get(i);
-						Type parameterType = pivotParameter.getType();
+						Type parameterType = getTypeWithMultiplicity(pivotParameter);
+						if (parameterType instanceof SelfType) {
+							parameterType = pivotOperation.getClass_();
+						}
 						if (!conformsTo(argumentType, parameterType, templateParameterSubstitutions)) {
 							typesConform = false;
 							break;

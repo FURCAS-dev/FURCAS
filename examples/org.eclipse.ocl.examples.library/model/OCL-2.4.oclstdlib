@@ -14,8 +14,8 @@ type Bag<T> : BagType conformsTo NonOrderedCollection<T>,NonUniqueCollection<T> 
 	/**
 	True if self and bag contain the same elements, the same number of times.
 	**/
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	operation "="(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "<>"(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	/**
 	The bag containing all elements of self apart from all occurrences of object.
 	**/
@@ -39,11 +39,11 @@ type Boolean : PrimitiveType conformsTo OclAny {
 	/**
 	Returns true if the logical value of self is the same as the numeric value of object2, false otherwise.
 	*/
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "="(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
 	/**
 	Returns true if the logical value of self is the not same as the numeric value of object2, false otherwise.
 	*/
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	operation "<>"(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	/**
 	Returns Set{false, true}.
 	*/
@@ -149,11 +149,11 @@ type Collection<T> : CollectionType conformsTo OclAny {
 	True if c is a collection of the same kind as self and contains the same elements in the same quantities and in the same order,
 	in the case of an ordered collection type.
 	**/
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "="(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
 	/**
 	True if c is not equal to self.
 	**/
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	operation "<>"(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	/**
 	The Bag that contains all the elements from self. 
 	**/
@@ -278,20 +278,20 @@ type Integer : PrimitiveType conformsTo Real {
 	/**
 	The value of the addition of self and i.
 	**/
-	operation "+"(i : Integer) : Integer precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.numeric.NumericPlusOperation';
+	operation "+"(i : OclSelf) : Integer precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.numeric.NumericPlusOperation';
 	/**
 	The value of the subtraction of i from self.
 	**/
-	operation "-"(i : Integer) : Integer precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.numeric.NumericMinusOperation';
+	operation "-"(i : OclSelf) : Integer precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.numeric.NumericMinusOperation';
 	/**
 	The value of the multiplication of self and i.
 	**/
-	operation "*"(i : Integer) : Integer precedence=MULTIPLICATIVE => 'org.eclipse.ocl.examples.library.numeric.NumericTimesOperation';
+	operation "*"(i : OclSelf) : Integer precedence=MULTIPLICATIVE => 'org.eclipse.ocl.examples.library.numeric.NumericTimesOperation';
 	/**
 	The value of self divided by i.
 	Evaluates to invalid if r is equal to zero.
 	**/
-	operation "/"(i : Integer) : Real precedence=MULTIPLICATIVE => 'org.eclipse.ocl.examples.library.numeric.NumericDivideOperation';
+	operation "/"(i : OclSelf) : Real precedence=MULTIPLICATIVE => 'org.eclipse.ocl.examples.library.numeric.NumericDivideOperation';
 	/**
 	The absolute value of self.
 	**/
@@ -307,11 +307,11 @@ type Integer : PrimitiveType conformsTo Real {
 	/**
 	The maximum of self an i.
 	**/
-	operation max(i : Integer) : Integer => 'org.eclipse.ocl.examples.library.numeric.NumericMaxOperation';
+	operation max(i : OclSelf) : Integer => 'org.eclipse.ocl.examples.library.numeric.NumericMaxOperation';
 	/**
 	The minimum of self an i.
 	**/
-	operation min(i : Integer) : Integer => 'org.eclipse.ocl.examples.library.numeric.NumericMinOperation';
+	operation min(i : OclSelf) : Integer => 'org.eclipse.ocl.examples.library.numeric.NumericMinOperation';
 	/**
 	Converts self to a string value.
 	**/
@@ -384,11 +384,11 @@ type OclAny : AnyType {
 	/**
 	True if self is the same object as object2. Infix operator.
 	**/
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "="(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
 	/**
 	True if self is a different object from object2. Infix operator.
 	**/
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	operation "<>"(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	/**
 	Returns a Set with self as the sole content, unless self is null in which case returns an empty set,
 	*/
@@ -453,11 +453,11 @@ type OclInvalid : InvalidType conformsTo OclVoid {
 	/**
 	Returns invalid.
 	*/
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "="(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
 	/**
 	Returns invalid.
 	*/
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	operation "<>"(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	operation oclBadOperation() : OclInvalid;
 	property oclBadProperty : OclInvalid;
 	/**
@@ -514,8 +514,8 @@ type OclState conformsTo OclAny {
 }
 
 type OclTuple conformsTo OclAny {
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	operation "="(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "<>"(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 }
 
 /**
@@ -538,8 +538,8 @@ type OclVoid : VoidType conformsTo OclAny {
 	Redefines the OclAny operation, returning true if object is null, invalid
 	if object is invalid, false otherwise.
 	**/
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	operation "="(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "<>"(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	operation and(b : Boolean) : Boolean precedence=AND => 'org.eclipse.ocl.examples.library.oclvoid.OclVoidAndOperation';
 	operation implies(b : Boolean) : Boolean precedence=IMPLIES => 'org.eclipse.ocl.examples.library.oclvoid.OclVoidImpliesOperation';
 	operation or(b : Boolean) : Boolean precedence=OR => 'org.eclipse.ocl.examples.library.oclvoid.OclVoidOrOperation';
@@ -601,8 +601,8 @@ type OrderedSet<T> : OrderedSetType conformsTo OrderedCollection<T>,UniqueCollec
 	The ordered set of the source ordered set for which body is true
 	**/
 	iteration select(i : T | body : Lambda T() : Boolean) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	operation "="(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "<>"(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	operation "-"(s : Set<OclAny>) : OrderedSet<T> precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.collection.SetMinusOperation';
 	/**
 	The set of elements, consisting of all elements of self, followed by object.
@@ -667,23 +667,23 @@ type Real : PrimitiveType conformsTo OclAny {
 	/**
 	Returns true if the numeric value of self is the same as the numeric value of object2, false otherwise.
 	*/
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "="(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
 	/**
 	Returns true if the numeric value of self is the not the same as the numeric value of object2, false otherwise.
 	*/
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	operation "<>"(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	/**
 	The value of the addition of self and r.
 	**/
-	operation "+"(r : Real) : Real precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.numeric.NumericPlusOperation';
+	operation "+"(r : OclSelf) : Real precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.numeric.NumericPlusOperation';
 	/**
 	The value of the subtraction of r from self.
 	**/
-	operation "-"(r : Real) : Real precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.numeric.NumericMinusOperation';
+	operation "-"(r : OclSelf) : Real precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.numeric.NumericMinusOperation';
 	/**
 	The value of the multiplication of self and r.
 	**/
-	operation "*"(r : Real) : Real precedence=MULTIPLICATIVE => 'org.eclipse.ocl.examples.library.numeric.NumericTimesOperation';
+	operation "*"(r : OclSelf) : Real precedence=MULTIPLICATIVE => 'org.eclipse.ocl.examples.library.numeric.NumericTimesOperation';
 	/**
 	The negative value of self.
 	**/
@@ -691,23 +691,23 @@ type Real : PrimitiveType conformsTo OclAny {
 	/**
 	The value of self divided by r. Evaluates to invalid if r is equal to zero.
 	**/
-	operation "/"(r : Real) : Real precedence=MULTIPLICATIVE => 'org.eclipse.ocl.examples.library.numeric.NumericDivideOperation';
+	operation "/"(r : OclSelf) : Real precedence=MULTIPLICATIVE => 'org.eclipse.ocl.examples.library.numeric.NumericDivideOperation';
 	/**
 	True if self is greater than r.
 	**/
-	operation ">"(r : Real) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.numeric.NumericGreaterThanOperation';
+	operation ">"(r : OclSelf) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.numeric.NumericGreaterThanOperation';
 	/**
 	True if self is less than r.
 	**/
-	operation "<"(r : Real) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.numeric.NumericLessThanOperation';
+	operation "<"(r : OclSelf) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.numeric.NumericLessThanOperation';
 	/**
 	True if self is less than or equal to r.
 	**/
-	operation "<="(r : Real) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.numeric.NumericLessThanEqualOperation';
+	operation "<="(r : OclSelf) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.numeric.NumericLessThanEqualOperation';
 	/**
 	True if self is greater than or equal to r.
 	**/
-	operation ">="(r : Real) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.numeric.NumericGreaterThanEqualOperation';
+	operation ">="(r : OclSelf) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.numeric.NumericGreaterThanEqualOperation';
 	/**
 	The absolute value of self.
 	**/
@@ -719,11 +719,11 @@ type Real : PrimitiveType conformsTo OclAny {
 	/**
 	The maximum of self and r.
 	**/
-	operation max(r : Real) : Real => 'org.eclipse.ocl.examples.library.numeric.NumericMaxOperation';
+	operation max(r : OclSelf) : Real => 'org.eclipse.ocl.examples.library.numeric.NumericMaxOperation';
 	/**
 	The minimum of self and r.
 	**/
-	operation min(r : Real) : Real => 'org.eclipse.ocl.examples.library.numeric.NumericMinOperation';
+	operation min(r : OclSelf) : Real => 'org.eclipse.ocl.examples.library.numeric.NumericMinOperation';
 	operation oclAsType<TT>(type : Classifier<TT>) : TT => 'org.eclipse.ocl.examples.library.numeric.NumericOclAsTypeOperation';
 	/**
 	The integer that is closest to self. When there are two such integers, the largest one.
@@ -754,8 +754,8 @@ type Sequence<T> : SequenceType conformsTo OrderedCollection<T>,NonUniqueCollect
 	/**
 	True if self contains the same elements as s in the same order.
 	**/
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	operation "="(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "<>"(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	/**
 	The sequence of elements, consisting of all elements of self, followed by object.
 	**/
@@ -810,8 +810,8 @@ type Set<T> : SetType conformsTo NonOrderedCollection<T>,UniqueCollection<T> {
 	/**
 	Evaluates to true if self and s contain the same elements.
 	**/
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	operation "="(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "<>"(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	/**
 	The elements of self, which are not in s.
 	**/
@@ -844,8 +844,8 @@ The standard type String represents strings, which can be both ASCII or Unicode.
 String is itself an instance of the metatype PrimitiveType (from UML).
 **/
 type String : PrimitiveType conformsTo OclAny {
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	operation "="(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "<>"(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	/**
 	The concatenation of self and s.
 	**/
@@ -917,19 +917,19 @@ type String : PrimitiveType conformsTo OclAny {
 	/**
 	True if self is greater than s, using the locale defined by looking up oclLocale in the current environment.
 	**/
-	operation ">"(s : String) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.string.StringGreaterThanOperation';
+	operation ">"(s : OclSelf) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.string.StringGreaterThanOperation';
 	/**
 	True if self is less than s, using the locale defined by looking up oclLocale in the current environment.
 	**/
-	operation "<"(s : String) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.string.StringLessThanOperation';
+	operation "<"(s : OclSelf) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.string.StringLessThanOperation';
 	/**
 	True if self is less than or equal to s, using the locale defined by looking up oclLocale in the current environment.
 	**/
-	operation "<="(s : String) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.string.StringLessThanEqualOperation';
+	operation "<="(s : OclSelf) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.string.StringLessThanEqualOperation';
 	/**
 	True if self is greater than or equal to s, using the locale defined by looking up oclLocale in the current environment.
 	**/
-	operation ">="(s : String) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.string.StringGreaterThanEqualOperation';
+	operation ">="(s : OclSelf) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.string.StringGreaterThanEqualOperation';
 }
 
 type Tuple : TupleType conformsTo OclAny {}
