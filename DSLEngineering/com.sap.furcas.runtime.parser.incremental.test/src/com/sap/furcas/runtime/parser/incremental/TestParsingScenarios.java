@@ -290,7 +290,6 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
     
-    //@Ignore("TB merge produces invalid textblock")
     @Test
     public void testMergeTwoBlocksInstantious2() throws Exception {
         model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
@@ -381,7 +380,7 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
     
-    @Ignore("Lexer crashes with exception")
+    //@Ignore("Lexer crashes with exception")
     @Test
     public void testDeeplyNestedBlocks() throws Exception {
         model.replace(0, 0, "{ }");
@@ -405,7 +404,8 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
         
         // remove all blocks at once.
-        model.replace(0, model.getLength(), "{}");        
+        model.replace(0, model.getLength(), "{}");
+        triggerParser();
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
     
