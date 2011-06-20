@@ -17,5 +17,22 @@
             project="true">
       </wizard>
    </extension>
+   
+      <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            label="Furcas Wizard Action Set"
+            visible="true"
+            id="button.actionSet">
+         <action
+               label="Create a FURCAS project"
+               icon="icons/furclipse_transparent_16.png"
+               class="com.sap.furcas.ide.projectwizard.wizards.FurcasWizardWorkbenchWindowActionDelegate"
+               tooltip="Create a FURCAS project"
+               toolbarPath="sampleGroup"
+               id="button.actions.StartFurcasWizard">
+         </action>
+      </actionSet>
+   </extension>
 
 </plugin>
