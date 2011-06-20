@@ -30,7 +30,6 @@ public class ProjectMetaRefConfFactory {
      */
     public static IProjectMetaRefConf getConfig(IProject project) throws CoreException {
         String value = ProjectPropertiesStorageHelper.getProperty(project, Constants.PROJECT_METAREF_PROPERTY);
-        //check ecore confs
         if (ECORE_METAMODEL_CONF.equals(value)) {
             return EcoreMetaProjectConf.getConfigurationFromProject(project);
         } else if (value == null || value.trim().equals("")) {
@@ -54,7 +53,6 @@ public class ProjectMetaRefConfFactory {
      *             if an unknown implementation of IProjectMetaRefConf is passed
      */
     public static void configure(IProject project, IProjectMetaRefConf conf) throws CoreException {
-        //check ecore confs
         if (conf instanceof EcoreMetaProjectConf) {
             ProjectPropertiesStorageHelper.setProperty(project, Constants.PROJECT_METAREF_PROPERTY, ECORE_METAMODEL_CONF);
         } else {

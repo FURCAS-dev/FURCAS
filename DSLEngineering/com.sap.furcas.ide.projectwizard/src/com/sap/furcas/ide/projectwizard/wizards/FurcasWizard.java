@@ -37,6 +37,8 @@ import org.eclipse.ui.part.ISetSelectionTarget;
 import org.eclipse.ui.progress.UIJob;
 
 import com.sap.furcas.ide.dslproject.conf.EcoreMetaProjectConf;
+import com.sap.furcas.ide.dslproject.conf.RegisteredEcoreMetamodelProjectConf;
+import com.sap.furcas.ide.dslproject.conf.LocalEcoreMetamodelProjectConf;
 import com.sap.furcas.ide.dslproject.conf.ProjectMetaRefConfFactory;
 import com.sap.furcas.ide.projectwizard.util.CodeGenerationException;
 import com.sap.furcas.ide.projectwizard.util.CreateMMProject;
@@ -133,8 +135,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
 
     /**
      * This method is called, when pressing the finish button in the wizard. It calls the doFinish method.
-     * {@link #doFinish(ProjectInfo, IProgressMonitor) doFinish}
-     * TODO
+     * {@link #doFinish(ProjectInfo, IProgressMonitor) doFinish} TODO
      */
     @Override
     public boolean performFinish() {
@@ -321,12 +322,12 @@ public class FurcasWizard extends Wizard implements INewWizard {
                 // instantiates the configuration take a look at EcoreMetaProjectConf for more details
                 // uses the new URI list in the ReferenceScope to load the referenced metamodel from registered packages
                 //
-                conf = new EcoreMetaProjectConf(project, "", pi.getNsURI()+",http://www.eclipse.org/emf/2002/Ecore",pi.isAutoResolve()); //$NON-NLS-1$
+                conf = new RegisteredEcoreMetamodelProjectConf(project,pi.getNsURI() + ",http://www.eclipse.org/emf/2002/Ecore", pi.isAutoResolve()); //$NON-NLS-1$
             } else {
                 // instantiates the configuration, take a look at EcoreMetaProjectConf for more details
                 // uses the ResourceSet in the ReferenceScope to load the referenced metamodel in the workspace
                 //
-                conf = new EcoreMetaProjectConf(project, pi.getModelPath(), pi.getNsURI(),pi.isAutoResolve());
+                conf = new LocalEcoreMetamodelProjectConf(project, pi.getModelPath(), pi.isAutoResolve());
             }
             ;
 
@@ -348,7 +349,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
 
             } catch (CoreException e) {
                 throw new CodeGenerationException(Messages.FurcasWizard_18, e.getCause());
-            } 
+            }
 
         }
     }
@@ -373,7 +374,6 @@ public class FurcasWizard extends Wizard implements INewWizard {
         setWindowTitle(EcoreEditorPlugin.INSTANCE.getString("_UI_Wizard_label")); //$NON-NLS-1$
         setDefaultPageImageDescriptor(getDefaultImageDescriptor());
     }
-
 
     public void structuredProcess(final ProjectInfo pi, IProgressMonitor monitor) {
         CreateProjectOperation cP = new CreateProjectOperation(pi, getShell(), getFurcasWizard());
