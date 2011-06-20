@@ -155,4 +155,33 @@
            </includes>
         </viewerActionBinding>
      </extension>
+     <extension
+           point="org.eclipse.imp.runtime.contentProposer">
+        <proposer
+              class="com.sap.furcas.ide.editor.imp.services.FurcasContentProposer"
+              language="FURCAS_BASE">
+        </proposer>
+     </extension>
+     <extension
+           point="org.eclipse.imp.runtime.modelTreeBuilder">
+        <treeBuilder
+              class="com.sap.furcas.ide.editor.imp.services.FurcasTreeModelBuilder"
+              language="FURCAS_BASE">
+        </treeBuilder>
+     </extension>
+     <extension
+           point="org.eclipse.imp.runtime.labelProvider">
+        <labelProvider
+              class="com.sap.furcas.ide.editor.imp.services.FurcasLabelProvider"
+              language="FURCAS_BASE">
+        </labelProvider>
+     </extension>
+     <extension
+           point="org.eclipse.imp.runtime.languageDescription">
+        <language
+              description="Generic services for languages defined in FURCAS"
+              extensions="furcasgeneric"
+              language="FURCAS_BASE">
+        </language>
+     </extension>
 </plugin>

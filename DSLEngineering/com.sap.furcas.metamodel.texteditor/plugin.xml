@@ -17,20 +17,6 @@
     </tokenColorer>
  </extension>
  <extension
-       point="org.eclipse.imp.runtime.contentProposer">
-    <proposer
-          class="com.sap.furcas.ide.editor.imp.services.FurcasContentProposer"
-          language="TCS">
-    </proposer>
- </extension>
- <extension
-       point="org.eclipse.imp.runtime.labelProvider">
-    <labelProvider
-          class="com.sap.furcas.metamodel.texteditor.tree.TCSLabelProvider"
-          language="TCS">
-    </labelProvider>
- </extension>
- <extension
        point="org.eclipse.imp.runtime.parser">
     <parser
           class="com.sap.furcas.metamodel.texteditor.parser.TCSParseController"
@@ -38,15 +24,9 @@
     </parser>
  </extension>
  <extension
-       point="org.eclipse.imp.runtime.modelTreeBuilder">
-    <treeBuilder
-          class="com.sap.furcas.ide.editor.imp.services.FurcasTreeModelBuilder"
-          language="TCS">
-    </treeBuilder>
- </extension>
- <extension
        point="org.eclipse.imp.runtime.languageDescription">
     <language
+          derivedFrom="FURCAS_BASE"
           description="TCS"
           extensions="tcs"
           language="TCS">
