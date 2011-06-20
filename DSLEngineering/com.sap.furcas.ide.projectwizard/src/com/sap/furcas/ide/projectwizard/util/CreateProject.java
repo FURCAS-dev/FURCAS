@@ -155,8 +155,6 @@ public class CreateProject {
                 codeFactory.createColorerCode(pi), monitor);
         WizardProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "ParseController.java", editorFolder,
                 codeFactory.crateParseController(pi), monitor);
-        WizardProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "ContentProposer.java", editorFolder,
-                codeFactory.createContentProposer(pi), monitor);
         return editorFolder;
     }
 

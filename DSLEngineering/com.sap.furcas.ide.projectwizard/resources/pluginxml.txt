@@ -35,6 +35,7 @@
    <extension
          point="org.eclipse.imp.runtime.languageDescription">
       <language
+            derivedFrom="FURCAS_BASE"
             extensions="$Ext$"
             description="$CapLangName$: a textual DSL for $URI$"
             language="$CapLangName$">
@@ -46,13 +47,6 @@
             class="$ProjectName$.editor.$CapLangName$TokenColorer"
             language="$CapLangName$">
       </tokenColorer>
-   </extension>
-   <extension
-         point="org.eclipse.imp.runtime.contentProposer">
-      <proposer
-            class="$ProjectName$.editor.$CapLangName$ContentProposer"
-            language="$CapLangName$">
-      </proposer>
    </extension>
    
 </plugin> 

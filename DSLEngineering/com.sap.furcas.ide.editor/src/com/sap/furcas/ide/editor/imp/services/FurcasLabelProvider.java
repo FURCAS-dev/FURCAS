@@ -1,17 +1,12 @@
 package com.sap.furcas.ide.editor.imp.services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
-import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
-import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.imp.editor.ModelTreeNode;
 import org.eclipse.imp.services.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.ocl.types.provider.TypesItemProviderAdapterFactory;
 import org.eclipse.swt.graphics.Image;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
@@ -27,24 +22,23 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
  */
 public class FurcasLabelProvider implements ILabelProvider {
     
-    private final org.eclipse.jface.viewers.ILabelProvider labelProvider;
+    private org.eclipse.jface.viewers.ILabelProvider labelProvider;
+    private final Collection<ILabelProviderListener> deferredListeners = new ArrayList<ILabelProviderListener>(1);    
     
-    public FurcasLabelProvider(Collection<ComposeableAdapterFactory> adapterFactories) {
-        ComposedAdapterFactory composite = createDefaultCompositeAdapterFactory();
-        for (ComposeableAdapterFactory factory : adapterFactories) {
-            composite.addAdapterFactory(factory);
+    /**
+     * Set a label provider that this provider shall delegate to.
+     * 
+     * We use this deferred initalization because then language implementations don't
+     * have to register their own label provider. They can use this generic implementation. 
+     */
+    public void plugProvider(org.eclipse.jface.viewers.ILabelProvider provider) {
+        Assert.isLegal(labelProvider == null, "Re-plugging not supported");
+        this.labelProvider = provider;
+        
+        for (ILabelProviderListener listener : deferredListeners) {
+            labelProvider.addListener(listener);
         }
-        this.labelProvider = new AdapterFactoryLabelProvider(composite);
-    }
-
-    private ComposedAdapterFactory createDefaultCompositeAdapterFactory() {
-        ComposedAdapterFactory composite = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-        composite.addAdapterFactory(new ResourceItemProviderAdapterFactory());
-        composite.addAdapterFactory(new EcoreItemProviderAdapterFactory());
-        composite.addAdapterFactory(new TypesItemProviderAdapterFactory());
-        composite.addAdapterFactory(new org.eclipse.ocl.ecore.provider.EcoreItemProviderAdapterFactory());
-        composite.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
-        return composite;
+        deferredListeners.clear();
     }
     
     private Object unwrap(Object object) {
@@ -69,32 +63,56 @@ public class FurcasLabelProvider implements ILabelProvider {
 
     @Override
     public Image getImage(Object element) {
-        return labelProvider.getImage(unwrap(element));
+        if (labelProvider != null) {
+            return labelProvider.getImage(unwrap(element));
+        } else {
+            return null;
+        }
     }
 
     @Override
     public String getText(Object element) {
-        return labelProvider.getText(unwrap(element));
+        if (labelProvider != null) {
+            return labelProvider.getText(unwrap(element));
+        } else {
+            return null;
+        }
     }
 
     @Override
     public void addListener(ILabelProviderListener listener) {
-        labelProvider.addListener(listener);
+        if (labelProvider != null) {
+            labelProvider.addListener(listener);
+        } else {
+            this.deferredListeners.add(listener);
+        }
     }
 
     @Override
     public void dispose() {
-        labelProvider.dispose();
+        if (labelProvider != null) {
+            labelProvider.dispose();
+        } 
+        labelProvider = null;
+        deferredListeners.clear();
     }
 
     @Override
     public boolean isLabelProperty(Object element, String property) {
-        return labelProvider.isLabelProperty(unwrap(element), property);
+        if (labelProvider != null) {
+            return labelProvider.isLabelProperty(unwrap(element), property);
+        } else {
+            return false;
+        }
     }
 
     @Override
     public void removeListener(ILabelProviderListener listener) {
-        labelProvider.removeListener(listener);
+        if (labelProvider != null) {
+            labelProvider.removeListener(listener);
+        } else {
+            this.deferredListeners.remove(listener);
+        }
     }
     
 }

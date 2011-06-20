@@ -186,6 +186,8 @@ public class AbstractFurcasEditor extends UniversalEditor {
         // The initialization of most other serivices cannot be delayed because
         // those are already required during super.createPartControl.
         getParseController().completeInit(editingDomain, new ContentProvider(), parserFacade);
+        ((FurcasLabelProvider) fLanguageServiceManager.getLabelProvider()).plugProvider(
+                new AdapterFactoryLabelProvider(adapterFactory));
         
         // re-run IMP setup procedure with our fully configured services
         fParserScheduler.cancel();
