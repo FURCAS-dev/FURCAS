@@ -28,7 +28,4 @@ public interface Constants {
      */
     String PROJECT_METAREF_PROPERTY = "MetaModelRefProperty";
 
-    /** The Constant MOIN_METAMODEL_NATURE_ID. */
-    String MOIN_METAMODEL_NATURE_ID = "com.sap.tc.moin.nwdi.dctype.mm.MoinMetaModelNature";
-
 }
