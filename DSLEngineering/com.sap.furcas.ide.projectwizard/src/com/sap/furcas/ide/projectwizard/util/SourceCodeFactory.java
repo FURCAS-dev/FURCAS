@@ -192,20 +192,7 @@ public class SourceCodeFactory {
     	String filename = "tokencolorer.txt";
         return createFileContents(pi, filename);
     }
-    
-    /**
-     * Creates a content assist from the resources/contentproposer.txt file
-     * 
-     * @param pi
-     *            User input
-     * @return The content of the contenpropser class.
-     * @throws CodeGenerationException
-     */
-    public String createContentProposer(ProjectInfo pi) throws CodeGenerationException {
-        String filename = "contentproposer.txt";
-        return createFileContents(pi, filename);
-    }
-    
+        
     /**
      * Creates a token color mapper class from the resources/parsecontroller.txt file
      * 

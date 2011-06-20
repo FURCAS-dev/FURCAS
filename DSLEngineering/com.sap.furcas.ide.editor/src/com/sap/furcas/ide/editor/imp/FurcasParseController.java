@@ -53,7 +53,6 @@ public abstract class FurcasParseController extends ParseControllerBase {
     protected TransactionalEditingDomain editingDomain;
     protected ContentProvider contentProvider;
     protected IncrementalParserFacade parserFacade;
-    protected final AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory;
     
     protected final IAnnotationTypeInfo annotationTypeInfo;
     protected final FurcasSourcePositionLocator sourcePositionLocator;
@@ -63,7 +62,6 @@ public abstract class FurcasParseController extends ParseControllerBase {
 
     public FurcasParseController(AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>  parserFactory, ILanguageSyntaxProperties languageSyntaxProperties) {
         super(parserFactory.getLanguageId());
-        this.parserFactory = parserFactory;
         this.sourcePositionLocator = new FurcasSourcePositionLocator();
         this.annotationTypeInfo = new SimpleAnnotationTypeInfo();
         this.languageSyntaxProperties = languageSyntaxProperties;
