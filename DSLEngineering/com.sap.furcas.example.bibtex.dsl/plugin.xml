@@ -28,8 +28,9 @@
    <extension
          point="org.eclipse.imp.runtime.languageDescription">
       <language
+            derivedFrom="FURCAS_BASE"
+            description="Library centric view of bibtex files."
             extensions="bib"
-            description=""
             language="BibtexLibraryView">
       </language>
    </extension>
@@ -39,27 +40,6 @@
             class="com.sap.furcas.example.bibtex.dsl.imp.tokenColorer.BibtexLibraryViewTokenColorer"
             language="BibtexLibraryView">
       </tokenColorer>
-   </extension>
-   <extension
-         point="org.eclipse.imp.runtime.contentProposer">
-      <proposer
-            class="com.sap.furcas.ide.editor.imp.services.FurcasContentProposer"
-            language="BibtexLibraryView">
-      </proposer>
-   </extension>
-   <extension
-         point="org.eclipse.imp.runtime.modelTreeBuilder">
-      <treeBuilder
-            class="com.sap.furcas.ide.editor.imp.services.FurcasTreeModelBuilder"
-            language="BibtexLibraryView">
-      </treeBuilder>
-   </extension>
-   <extension
-         point="org.eclipse.imp.runtime.labelProvider">
-      <labelProvider
-            class="com.sap.furcas.example.bibtex.dsl.imp.treeModelBuilder.BibtexLabelProvider"
-            language="BibtexLibraryView">
-      </labelProvider>
    </extension>
    
       <extension
@@ -88,8 +68,9 @@
    <extension
          point="org.eclipse.imp.runtime.languageDescription">
       <language
+            derivedFrom="FURCAS_BASE"
+            description="Author centric view of bibtex files."
             extensions="bib"
-            description=""
             language="BibtexAuthorView">
       </language>
    </extension>
@@ -99,27 +80,6 @@
             class="com.sap.furcas.example.bibtex.dsl.imp.tokenColorer.BibtexAuthorViewTokenColorer"
             language="BibtexAuthorView">
       </tokenColorer>
-   </extension>
-   <extension
-         point="org.eclipse.imp.runtime.contentProposer">
-      <proposer
-            class="com.sap.furcas.ide.editor.imp.services.FurcasContentProposer"
-            language="BibtexAuthorView">
-      </proposer>
-   </extension>
-   <extension
-         point="org.eclipse.imp.runtime.modelTreeBuilder">
-      <treeBuilder
-            class="com.sap.furcas.ide.editor.imp.services.FurcasTreeModelBuilder"
-            language="BibtexAuthorView">
-      </treeBuilder>
-   </extension>
-   <extension
-         point="org.eclipse.imp.runtime.labelProvider">
-      <labelProvider
-            class="com.sap.furcas.example.bibtex.dsl.imp.treeModelBuilder.BibtexLabelProvider"
-            language="BibtexAuthorView">
-      </labelProvider>
    </extension>
    
     <extension point="com.sap.furcas.runtime.referenceresolving.furcas_syntax">
