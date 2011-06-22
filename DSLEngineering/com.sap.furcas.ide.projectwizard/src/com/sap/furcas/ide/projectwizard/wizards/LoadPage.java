@@ -31,6 +31,7 @@ import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -133,6 +134,7 @@ public class LoadPage extends WizardPage {
                 // Call the dialog that shows the registered EPackages
                 // Multiplicity?
                 //
+                setErrorMessage(null);
                 RegisteredPackageDialog registeredPackageDialog = new RegisteredPackageDialog(getShell());
                 registeredPackageDialog.open();
                 // Save the result
@@ -155,10 +157,16 @@ public class LoadPage extends WizardPage {
                 Map<String, URI> ePackageNsURItoGenModelLocationMap = EcorePlugin.getEPackageNsURIToGenModelLocationMap();
                 for (int i = 0, length = result.length; i < length; i++) {
                     URI location = ePackageNsURItoGenModelLocationMap.get(result[i]);
-                    // TODO: Investigate why this call fails e.g for http://www.eclipse.org/ocl/1.1.0/OCL/Types!
-                    Resource resource = resourceSet.getResource(location, true);
-                    setMMBundleName(location);
-                    EcoreUtil.resolveAll(resource);
+                    try {
+                        Resource resource = resourceSet.getResource(location, true);
+                        setMMBundleName(location);
+                        EcoreUtil.resolveAll(resource);
+                    } catch (WrappedException e) {
+                        setErrorMessage("URI " + location+" could not be resolved.");
+                        uriField.setText("");
+                        resourceSet.getResources().clear();
+                    }
+
                 }
                 for (Resource resource : resourceSet.getResources()) {
                     for (EPackage ePackage : getAllPackages(resource)) {
@@ -168,8 +176,6 @@ public class LoadPage extends WizardPage {
                             EPackage outerMostPackage = getOuterMostEPackage(ePackage);
                             seteP(outerMostPackage);
                             pi.setNsURI(outerMostPackage.getNsURI());
-                            // Not really necessary, as it's not used.
-                            // Weg
                             uriField.setText(resource.getURI().toString());
                             break;
                         }
@@ -212,6 +218,7 @@ public class LoadPage extends WizardPage {
         button3.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
+                setErrorMessage(null);
                 // This filter filters out all non .ecore files.
                 //
                 class EcoreFilter extends ViewerFilter {
