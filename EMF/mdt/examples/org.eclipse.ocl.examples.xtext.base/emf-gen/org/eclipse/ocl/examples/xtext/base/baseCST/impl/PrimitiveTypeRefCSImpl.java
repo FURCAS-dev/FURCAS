@@ -1,22 +1,29 @@
 /**
  * <copyright>
+ *
+ * Copyright (c) 2010 E.D.Willink and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   E.D.Willink - Initial API and implementation
+ *
  * </copyright>
  *
- * $Id: PrimitiveTypeRefCSImpl.java,v 1.4 2010/05/24 08:59:31 ewillink Exp $
+ * $Id: PrimitiveTypeRefCSImpl.java,v 1.5 2011/01/24 20:59:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
+import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
-import org.eclipse.ocl.examples.xtext.base.util.Signature;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -99,7 +106,8 @@ public class PrimitiveTypeRefCSImpl extends TypedRefCSImpl implements PrimitiveT
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.PRIMITIVE_TYPE_REF_CS__NAME:
 				return getName();
 		}
@@ -113,7 +121,8 @@ public class PrimitiveTypeRefCSImpl extends TypedRefCSImpl implements PrimitiveT
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.PRIMITIVE_TYPE_REF_CS__NAME:
 				setName((String)newValue);
 				return;
@@ -128,7 +137,8 @@ public class PrimitiveTypeRefCSImpl extends TypedRefCSImpl implements PrimitiveT
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.PRIMITIVE_TYPE_REF_CS__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -143,7 +153,8 @@ public class PrimitiveTypeRefCSImpl extends TypedRefCSImpl implements PrimitiveT
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.PRIMITIVE_TYPE_REF_CS__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
@@ -157,8 +168,17 @@ public class PrimitiveTypeRefCSImpl extends TypedRefCSImpl implements PrimitiveT
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == NamedElementCS.class) {
-			switch (derivedFeatureID) {
+		if (baseClass == Nameable.class)
+		{
+			switch (derivedFeatureID)
+			{
+				default: return -1;
+			}
+		}
+		if (baseClass == NamedElementCS.class)
+		{
+			switch (derivedFeatureID)
+			{
 				case BaseCSTPackage.PRIMITIVE_TYPE_REF_CS__NAME: return BaseCSTPackage.NAMED_ELEMENT_CS__NAME;
 				default: return -1;
 			}
@@ -173,8 +193,17 @@ public class PrimitiveTypeRefCSImpl extends TypedRefCSImpl implements PrimitiveT
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == NamedElementCS.class) {
-			switch (baseFeatureID) {
+		if (baseClass == Nameable.class)
+		{
+			switch (baseFeatureID)
+			{
+				default: return -1;
+			}
+		}
+		if (baseClass == NamedElementCS.class)
+		{
+			switch (baseFeatureID)
+			{
 				case BaseCSTPackage.NAMED_ELEMENT_CS__NAME: return BaseCSTPackage.PRIMITIVE_TYPE_REF_CS__NAME;
 				default: return -1;
 			}
@@ -193,7 +222,7 @@ public class PrimitiveTypeRefCSImpl extends TypedRefCSImpl implements PrimitiveT
 	}
 
 	@Override
-	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
-		signature.appendName(this);
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitPrimitiveTypeRefCS(this);
 	}
 } //PrimitiveTypeRefCSImpl

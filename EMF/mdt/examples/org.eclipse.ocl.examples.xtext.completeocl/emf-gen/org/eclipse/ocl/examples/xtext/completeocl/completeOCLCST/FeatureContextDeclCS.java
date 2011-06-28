@@ -12,13 +12,13 @@
  *
  * </copyright>
  *
- * $Id: FeatureContextDeclCS.java,v 1.1 2010/05/03 05:58:33 ewillink Exp $
+ * $Id: FeatureContextDeclCS.java,v 1.2 2011/01/24 21:08:25 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,7 +29,7 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassCS
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.FeatureContextDeclCS#getClass_ <em>Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.FeatureContextDeclCS#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.FeatureContextDeclCS#getOwnedType <em>Owned Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -47,12 +47,12 @@ public interface FeatureContextDeclCS extends ContextDeclCS {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Class</em>' reference.
-	 * @see #setClass(OCLinEcoreClassCS)
+	 * @see #setClass(ClassCS)
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getFeatureContextDeclCS_Class()
 	 * @model
 	 * @generated
 	 */
-	OCLinEcoreClassCS getClass_();
+	ClassCS getClass_();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.FeatureContextDeclCS#getClass_ <em>Class</em>}' reference.
@@ -62,32 +62,32 @@ public interface FeatureContextDeclCS extends ContextDeclCS {
 	 * @see #getClass_()
 	 * @generated
 	 */
-	void setClass(OCLinEcoreClassCS value);
+	void setClass(ClassCS value);
 
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Owned Type</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' containment reference.
-	 * @see #setType(TypeCS)
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getFeatureContextDeclCS_Type()
+	 * @return the value of the '<em>Owned Type</em>' containment reference.
+	 * @see #setOwnedType(TypedRefCS)
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getFeatureContextDeclCS_OwnedType()
 	 * @model containment="true"
 	 * @generated
 	 */
-	TypeCS getType();
+	TypedRefCS getOwnedType();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.FeatureContextDeclCS#getType <em>Type</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.FeatureContextDeclCS#getOwnedType <em>Owned Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' containment reference.
-	 * @see #getType()
+	 * @param value the new value of the '<em>Owned Type</em>' containment reference.
+	 * @see #getOwnedType()
 	 * @generated
 	 */
-	void setType(TypeCS value);
+	void setOwnedType(TypedRefCS value);
 
 } // FeatureContextDeclCS

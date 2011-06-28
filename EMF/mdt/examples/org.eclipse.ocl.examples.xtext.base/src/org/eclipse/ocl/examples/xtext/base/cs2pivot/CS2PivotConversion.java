@@ -50,7 +50,6 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.Iteration;
-import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
@@ -60,7 +59,6 @@ import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
@@ -76,7 +74,6 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
-import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
@@ -407,6 +404,22 @@ public class CS2PivotConversion extends AbstractConversion
 	}
 	
 	/**
+	 * Return a set of all pivot elements marked as locked. 
+	 */
+	private Set<Element> computeLockedPivotElements() {
+		Set<Element> lockedElements = new HashSet<Element>(typeManager.getLockedElements());
+		for (Element lockedElement  : typeManager.getLockedElements()) {
+			for (Iterator<EObject> tit = lockedElement.eAllContents(); tit.hasNext(); ) {
+				EObject eObject = tit.next();
+				if (eObject instanceof Element) {
+					lockedElements.add((Element) eObject);
+				}			
+			}
+		}
+		return lockedElements;
+	}
+	
+	/**
 	 * Return a mapping of moniker to element for every pivot element referenced by the
 	 * Concrete syntax model given the directlyReferencedElements as a starting point. 
 	 */
@@ -562,6 +575,7 @@ public class CS2PivotConversion extends AbstractConversion
 //		}
 		Set<Element> directlyReferencedContents = computeDirectlyReferencedPivotElements();
 		Set<Element> libraryElements = computeLibraryPivotElements();
+		Set<Element> lockedElements = computeLockedPivotElements();
 		Set<Element> referencedContents = computeReferencedPivotElements(directlyReferencedContents, pivotCrossUsages);
 //		for (Element referencedContent : referencedContents) {
 //			debugObjectUsage("refd ", referencedContent);
@@ -584,6 +598,7 @@ public class CS2PivotConversion extends AbstractConversion
 		Set<Element> unreferencedElements = new HashSet<Element>(actualContents);
 		unreferencedElements.removeAll(referencedElements);
 		unreferencedElements.removeAll(libraryElements);
+		unreferencedElements.removeAll(lockedElements);
 		killElements.addAll(unreferencedElements);
 		Set<Element> referencedOrphanElements = new HashSet<Element>();
 		for (Element referencedElement : referencedElements) {
@@ -1272,157 +1287,6 @@ public class CS2PivotConversion extends AbstractConversion
 		}
 	}
 
-	/**
-	 * The iteration was initially specialized without knowledge of the body type. It may therefore
-	 * need respecialization to correct typing providing by LambdaType bodies, such as those that
-	 * propagate collect typing. It is also necessary to fudge the unmodelled collect flattening.
-	 */
-	public void resolveIterationSpecialization(LoopExp expression) {
-		Iteration specializedIteration = expression.getReferredIteration();
-		List<TemplateBinding> specializedTemplateBindings = specializedIteration.getTemplateBindings();
-		if (specializedTemplateBindings.size() <= 0) {
-			return;
-		}
-		Iteration unspecializedIteration = PivotUtil.getUnspecializedTemplateableElement(specializedIteration);
-		List<Parameter> unspecializedParameters = unspecializedIteration.getOwnedParameters();
-		if (unspecializedParameters.size() <= 0) {
-			return;															// Shouldn't happen but lazy declaration omit the body
-		}
-		Parameter parameter = unspecializedParameters.get(0);
-		Type parameterType = parameter.getType();
-		if (!(parameterType instanceof LambdaType)) {
-			return;
-		}
-		Type bodyType = expression.getBody().getType();
-		if ("collect".equals(unspecializedIteration.getName())) {			// FIXME use a Flat<T> template to model this fudge
-			while (bodyType instanceof CollectionType) {
-				bodyType = ((CollectionType)bodyType).getElementType();
-			}
-		}
-		Map<TemplateParameter, ParameterableElement> bindings = 
-			PivotUtil.getAllTemplateParameterSubstitutions(null, bodyType, (LambdaType) parameterType);
-		if (bindings == null) {
-			return;
-		}
-		boolean bindingsChanged = false;
-		for (TemplateBinding templateBinding : specializedTemplateBindings) {
-			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
-				ParameterableElement actual = templateParameterSubstitution.getActual();
-				if (actual == null) {
-					TemplateParameter formal = templateParameterSubstitution.getFormal();
-					actual = bindings.get(formal);
-					if (actual != null) {
-//						templateParameterSubstitution.setActual(actual);
-						bindingsChanged = true;
-					}
-				}
-			}
-		}
-		if (!bindingsChanged) {
-			return;
-		}
-		Map<TemplateParameter, ParameterableElement> rebindings = new HashMap<TemplateParameter, ParameterableElement>();
-		for (TemplateBinding templateBinding : specializedTemplateBindings) {
-			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
-				TemplateParameter formal = templateParameterSubstitution.getFormal();
-				ParameterableElement actual = templateParameterSubstitution.getActual();
-				if (actual == null) {
-					actual = bindings.get(formal);
-				}
-				rebindings.put(formal, actual);
-			}
-		}
-//		PivotUtil.getAllTemplateParameterSubstitutions(bindings, specializedIteration);
-		Iteration respecializedIteration = typeManager.getSpecializedOperation(unspecializedIteration, rebindings);
-		setReferredIteration(expression, respecializedIteration);
-		setType(expression, respecializedIteration.getType());
-		Parameter specializedIterator = specializedIteration.getOwnedIterators().get(0);
-		for (TreeIterator<EObject> tit = expression.eAllContents(); tit.hasNext(); ) {
-			EObject eObject = tit.next();
-			if (eObject instanceof Variable) {
-				Variable variable = (Variable)eObject;
-				if (variable.getRepresentedParameter() == specializedIterator) {
-					variable.setRepresentedParameter(respecializedIteration.getOwnedIterators().get(0));
-				}
-			}
-		}
-	}
-
-	/**
-	 * The iteration was initially specialized without knowledge of the body type. It may therefore
-	 * need respecialization to correct typing providing by LambdaType bodies, such as those that
-	 * propagate collect typing. It is also necessary to fudge the unmodelled collect flattening.
-	 */
-	public void resolveIterationUnderspecification(LoopExp expression) {
-		Iteration specializedIteration = expression.getReferredIteration();
-		List<TemplateBinding> specializedTemplateBindings = specializedIteration.getTemplateBindings();
-		if (specializedTemplateBindings.size() <= 0) {
-			return;
-		}
-		Iteration unspecializedIteration = PivotUtil.getUnspecializedTemplateableElement(specializedIteration);
-		Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParametersAsBindings(unspecializedIteration);
-		if (bindings == null) {
-			return;
-		}
-		boolean bindingsChanged = false;
-		for (TemplateBinding templateBinding : specializedTemplateBindings) {
-			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
-				ParameterableElement actual = templateParameterSubstitution.getActual();
-				if (typeManager.isUnderspecified(actual)) {
-					actual = resolveUnderspecifiedType((Type) actual);
-					if (actual != null) {
-						templateParameterSubstitution.setActual(actual);
-						bindingsChanged = true;
-					}
-				}
-			}
-		}
-		if (!bindingsChanged) {
-			return;
-		}
-		Map<TemplateParameter, ParameterableElement> rebindings = new HashMap<TemplateParameter, ParameterableElement>();
-		for (TemplateBinding templateBinding : specializedTemplateBindings) {
-			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
-				TemplateParameter formal = templateParameterSubstitution.getFormal();
-				ParameterableElement actual = templateParameterSubstitution.getActual();
-				if (actual == null) {
-					actual = bindings.get(formal);
-				}
-				rebindings.put(formal, actual);
-			}
-		}
-//		PivotUtil.getAllTemplateParameterSubstitutions(bindings, specializedIteration);
-		Iteration respecializedIteration = typeManager.getSpecializedOperation(unspecializedIteration, rebindings);
-		setReferredIteration(expression, respecializedIteration);
-		setType(expression, respecializedIteration.getType());
-		Map<Parameter, Parameter> mappings = new HashMap<Parameter, Parameter>();
-		for (int i = respecializedIteration.getOwnedIterators().size(); --i >= 0; ) {
-			Parameter specializedIterator = specializedIteration.getOwnedIterators().get(i);
-			Parameter respecializedIterator = respecializedIteration.getOwnedIterators().get(i);
-			mappings.put(specializedIterator, respecializedIterator);
-		}
-		for (int i = respecializedIteration.getOwnedAccumulators().size(); --i >= 0; ) {
-			Parameter specializedIterator = specializedIteration.getOwnedAccumulators().get(i);
-			Parameter respecializedIterator = respecializedIteration.getOwnedAccumulators().get(i);
-			mappings.put(specializedIterator, respecializedIterator);
-		}
-		for (int i = respecializedIteration.getOwnedParameters().size(); --i >= 0; ) {
-			Parameter specializedIterator = specializedIteration.getOwnedParameters().get(i);
-			Parameter respecializedIterator = respecializedIteration.getOwnedParameters().get(i);
-			mappings.put(specializedIterator, respecializedIterator);
-		}
-		for (TreeIterator<EObject> tit = expression.eAllContents(); tit.hasNext(); ) {
-			EObject eObject = tit.next();
-			if (eObject instanceof Variable) {
-				Variable variable = (Variable)eObject;
-				Parameter respecializedParameter = mappings.get(variable.getRepresentedParameter());
-				if (respecializedParameter != null) {
-					variable.setRepresentedParameter(respecializedParameter);
-				}
-			}
-		}
-	}
-
 	public void resolveNamespaces(List<Namespace> namespaces) {
 		for (Namespace namespace : namespaces) {
 			@SuppressWarnings("unused")
@@ -1435,16 +1299,6 @@ public class CS2PivotConversion extends AbstractConversion
 			Type underspecifiedType = underspecifiedTypedElement.getType();
 			Type resolvedType = resolveUnderspecifiedType(underspecifiedType);
 			underspecifiedTypedElement.setType(resolvedType);
-		}		
-		for (TypedElement underspecifiedTypedElement : underspecifiedTypedElements) {
-			if (underspecifiedTypedElement instanceof LoopExp) {
-				LoopExp underspecifiedIterationCall = (LoopExp)underspecifiedTypedElement;
-				resolveIterationUnderspecification(underspecifiedIterationCall);
-			}
-			else if (underspecifiedTypedElement instanceof OperationCallExp) {
-				OperationCallExp underspecifiedOperationCall = (OperationCallExp)underspecifiedTypedElement;
-// FIXME				resolveOperationUnderspecification(underspecifiedOperationCall);
-			}
 		}		
 	}
 	
@@ -1507,34 +1361,10 @@ public class CS2PivotConversion extends AbstractConversion
 
 	public void setReferredIteration(LoopExp expression, Iteration iteration) {
 		expression.setReferredIteration(iteration);
-		if (iteration != null) {
-			for (Parameter parameter : iteration.getOwnedIterators()) {
-				if (typeManager.isUnderspecified(parameter.getType())) {
-					addUnderspecifiedTypedElement(expression);
-				}
-			}
-			for (Parameter parameter : iteration.getOwnedAccumulators()) {
-				if (typeManager.isUnderspecified(parameter.getType())) {
-					addUnderspecifiedTypedElement(expression);
-				}
-			}
-			for (Parameter parameter : iteration.getOwnedParameters()) {
-				if (typeManager.isUnderspecified(parameter.getType())) {
-					addUnderspecifiedTypedElement(expression);
-				}
-			}
-		}
 	}
 
 	public void setReferredOperation(OperationCallExp expression, Operation operation) {
 		expression.setReferredOperation(operation);
-		if (operation != null) {
-			for (Parameter parameter : operation.getOwnedParameters()) {
-				if (typeManager.isUnderspecified(parameter.getType())) {
-					addUnderspecifiedTypedElement(expression);
-				}
-			}
-		}
 	}
 
 	/**
@@ -1695,7 +1525,7 @@ public class CS2PivotConversion extends AbstractConversion
 	protected TemplateableElement specializeTemplates(/*Map<TemplateableElement, Set<TemplateableElement>> specializations,*/ TypedTypeRefCS csElement) {
 		TemplateBindingCS ownedTemplateBinding = csElement.getOwnedTemplateBinding();
 		assert ownedTemplateBinding != null;
-		TemplateableElement unspecializedPivotElement = csElement.getType();
+		Type unspecializedPivotElement = csElement.getType();
 		String moniker = csElement.getMoniker();
 		logger.trace("Specializing " + moniker); //$NON-NLS-1$
 		if ((unspecializedPivotElement == null) || unspecializedPivotElement.eIsProxy()) {
@@ -1705,31 +1535,25 @@ public class CS2PivotConversion extends AbstractConversion
 		//
 		//	Refresh the pivot specialization root
 		//
-		TemplateableElement specializedPivotElement = getPivotElement(TemplateableElement.class, moniker);
+		Type specializedPivotElement = getPivotElement(Type.class, moniker);
 		if (specializedPivotElement == null) {
-			if (unspecializedPivotElement instanceof Type) {
-				EClass eClass = unspecializedPivotElement.eClass();
-				@SuppressWarnings("unchecked")
-				Class<? extends Type> pivotClazz = (Class<? extends Type>) eClass.getInstanceClass();
-				Type pivotClass = refreshMonikeredElement(pivotClazz, eClass, csElement);
-				refreshName(pivotClass, ((Type)unspecializedPivotElement).getName());
-				pivotClass.setMoniker(moniker);
-				specializedPivotElement = pivotClass;
-				if (pivotClass instanceof CollectionType) {
-					Type elementType = PivotUtil.getPivot(Type.class, ownedTemplateBinding.getOwnedParameterSubstitution().get(0).getOwnedActualParameter());
-					((CollectionType)pivotClass).setElementType(elementType);
-				}
-				else if (pivotClass instanceof ClassifierType) {
-					Type instanceType = PivotUtil.getPivot(Type.class, ownedTemplateBinding.getOwnedParameterSubstitution().get(0).getOwnedActualParameter());
-					((ClassifierType)pivotClass).setInstanceType(instanceType);
-				}
+			EClass eClass = unspecializedPivotElement.eClass();
+			@SuppressWarnings("unchecked")
+			Class<? extends Type> pivotClazz = (Class<? extends Type>) eClass.getInstanceClass();
+			Type pivotClass = refreshMonikeredElement(pivotClazz, eClass, csElement);
+			refreshName(pivotClass, unspecializedPivotElement.getName());
+			pivotClass.setMoniker(moniker);
+			specializedPivotElement = pivotClass;
+			if (pivotClass instanceof CollectionType) {
+				Type elementType = PivotUtil.getPivot(Type.class, ownedTemplateBinding.getOwnedParameterSubstitution().get(0).getOwnedActualParameter());
+				((CollectionType)pivotClass).setElementType(elementType);
 			}
-			else {							// FIXME Non-Type TemplateParameters
-				logger.error("Missing support for non-type specialization " + moniker); //$NON-NLS-1$
-				return null;
+			else if (pivotClass instanceof ClassifierType) {
+				Type instanceType = PivotUtil.getPivot(Type.class, ownedTemplateBinding.getOwnedParameterSubstitution().get(0).getOwnedActualParameter());
+				((ClassifierType)pivotClass).setInstanceType(instanceType);
 			}
 			specializedPivotElement.setUnspecializedElement(unspecializedPivotElement);
-			typeManager.addOrphanClass((Type) specializedPivotElement);
+			typeManager.addOrphanClass(specializedPivotElement);
 		}
 		installPivotElement(csElement, specializedPivotElement);
 //		specializedPivotElement.toString();			// FIXME debugging

@@ -1,0 +1,55 @@
+import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';
+
+package tutorial : tut = 'http://www.eclipse.org/mdt/ocl/oclinecore/tutorial'
+{
+  class Library
+  {
+    attribute name : String;
+    property books#library : Book[*] { composes };
+    property loans : Loan[*] { composes };
+    property members#library : Member[*] { composes };
+  }
+  
+  class Book
+  {
+    invariant SufficientCopies:
+      library.loans->select(book=self)->size() <= copies;
+    attribute name : String;
+    attribute copies : Integer;
+    property library#books : Library[?];
+    property loans : Loan[*] { derived,volatile }
+    {
+      derivation: library.loans->select(book=self);
+    }
+    operation isAvailable() : Boolean[?]
+    {
+      body: loans->size() < copies;
+    }
+  }
+  
+  class Member
+  {
+    invariant AtMostTwoLoans: 
+      loans->size() <= 2;
+    invariant UniqueLoans: 
+      loans->isUnique(book);
+    attribute name : String;
+    property library#members : Library[?];
+    property loans : Loan[*] { derived,volatile }
+    {
+      derivation: library.loans->select(member=self);
+    }
+    property books : Book[*] { derived,volatile,!unique }
+    {
+      derivation: loans->collect(book);
+    }
+  }
+  
+  class Loan
+  {
+    property book : Book;
+    property member : Member;
+    attribute date : ecore::EDate[?];
+  }
+}
+

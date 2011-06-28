@@ -12,13 +12,13 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLSemanticHighlightingCalculator.java,v 1.1 2010/05/24 19:36:33 ewillink Exp $
+ * $Id: EssentialOCLSemanticHighlightingCalculator.java,v 1.2 2011/01/24 21:30:14 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring;
 
 import org.eclipse.xtext.CrossReference;
-import org.eclipse.xtext.parsetree.AbstractNode;
-import org.eclipse.xtext.parsetree.NodeUtil;
+import org.eclipse.xtext.nodemodel.ICompositeNode;
+import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightedPositionAcceptor;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
@@ -28,8 +28,8 @@ public class EssentialOCLSemanticHighlightingCalculator implements ISemanticHigh
 	public void provideHighlightingFor(XtextResource resource, IHighlightedPositionAcceptor acceptor) {
 		if (resource == null)
 			return;
-		Iterable<AbstractNode> allNodes = NodeUtil.getAllContents(resource.getParseResult().getRootNode());
-		for (AbstractNode abstractNode : allNodes) {
+		ICompositeNode rootNode = resource.getParseResult().getRootNode();
+		for (INode abstractNode : rootNode.getAsTreeIterable()) {
 			if (abstractNode.getGrammarElement() instanceof CrossReference) {
 				acceptor.addPosition(abstractNode.getOffset(), abstractNode.getLength(),
 					EssentialOCLHighlightingConfiguration.CROSS_REF);

@@ -9,7 +9,7 @@
 <xsl:import href="chunk.xsl"/>
 
 <!-- ********************************************************************
-     $Id: eclipse.xsl,v 1.1 2011/05/25 19:24:34 ewillink Exp $
+     $Id: eclipse.xsl,v 1.2 2011/05/29 16:38:06 ewillink Exp $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
@@ -186,8 +186,13 @@
       <xsl:with-param name="context" select="/"/>        <!-- Generate links relative to the location of root file/toc.xml file -->
     </xsl:call-template>
   </xsl:variable>
+  <xsl:variable name="label">
+    <xsl:call-template name="normalize-xml">
+        <xsl:with-param name="original" select="$title"/>
+    </xsl:call-template>
+  </xsl:variable>
 
-  <topic label="{normalize-space($title)}" href="{$href}">
+  <topic label="{normalize-space($label)}" href="{$href}">
     <xsl:apply-templates select="part|reference|preface|chapter|bibliography|appendix|article|glossary|section|sect1|sect2|sect3|sect4|sect5|refentry|colophon|bibliodiv|index" mode="etoc"/>
   </topic>
 
@@ -302,6 +307,55 @@
 	  </xsl:otherwise>
 	</xsl:choose>
   </xsl:template>
+
+<xsl:template name="normalize-xml">
+<xsl:param name="original"/>
+<xsl:choose>
+    <xsl:when test="contains($original, '&lt;')">
+        <xsl:value-of select="substring-before($original, '&lt;')"/>
+        <xsl:copy-of select="'_lt_'"/>
+        <xsl:call-template name="normalize-xml">
+            <xsl:with-param name="original" select="substring-after($original, '&lt;')"/>
+        </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+		<xsl:choose>
+		    <xsl:when test="contains($original, '&gt;')">
+		        <xsl:value-of select="substring-before($original, '&gt;')"/>
+		        <xsl:copy-of select="'_gt_'"/>
+		        <xsl:call-template name="normalize-xml">
+		            <xsl:with-param name="original" select="substring-after($original, '&gt;')"/>
+		        </xsl:call-template>
+		    </xsl:when>
+		    <xsl:otherwise>
+				<xsl:choose>
+				    <xsl:when test='contains($original, "&apos;")'>
+				        <xsl:value-of select='substring-before($original, "&apos;")'/>
+				        <xsl:copy-of select="'_apos_'"/>
+				        <xsl:call-template name="normalize-xml">
+				            <xsl:with-param name="original" select='substring-after($original, "&apos;")'/>
+				        </xsl:call-template>
+				    </xsl:when>
+				    <xsl:otherwise>
+						<xsl:choose>
+						    <xsl:when test="contains($original, '&quot;')">
+						        <xsl:value-of select="substring-before($original, '&quot;')"/>
+						        <xsl:copy-of select="'_quot_'"/>
+						        <xsl:call-template name="normalize-xml">
+						            <xsl:with-param name="original" select="substring-after($original, '&quot;')"/>
+						        </xsl:call-template>
+						    </xsl:when>
+						    <xsl:otherwise>
+						        <xsl:value-of select="$original"/>
+						    </xsl:otherwise>
+						</xsl:choose>
+				    </xsl:otherwise>
+				</xsl:choose>
+		    </xsl:otherwise>
+		</xsl:choose>
+    </xsl:otherwise>
+</xsl:choose>
+</xsl:template>
 
   <!-- ==================================================================== -->
 

@@ -81,7 +81,6 @@ public interface PivotConstants
 	
 	static final String OCL_LANGUAGE = "OCL";
 	static final String OCL_NAME = "ocl";
-	static final String OCL_SELF_NAME = "OclSelf";
 	
 	public static Map<EStructuralFeature,String> roleNames = new HashMap<EStructuralFeature,String>();
 }

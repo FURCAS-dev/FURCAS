@@ -26,6 +26,9 @@
 		<zip destfile="zips/empty.zip" basedir="${nonBundlesDir}/org.eclipse.ocl.examples.project.empty">
 			<patternset refid="zip.excludes"/>
 		</zip>
+		<zip destfile="zips/oclinecoretutorial.zip" basedir="${nonBundlesDir}/org.eclipse.ocl.examples.project.oclinecoretutorial">
+			<patternset refid="zip.excludes"/>
+		</zip>
 		<zip destfile="zips/royalandloyal.zip" basedir="${nonBundlesDir}/org.eclipse.ocl.examples.project.royalandloyal">
 			<patternset refid="zip.excludes"/>
 		</zip>

@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: Visitor.java,v 1.15 2011/05/19 16:55:39 ewillink Exp $
+ * $Id$
  */
 package	org.eclipse.ocl.examples.pivot.util;
 
@@ -110,6 +110,7 @@ public interface Visitor<R, C>
 	R visitProperty(org.eclipse.ocl.examples.pivot.Property object);
 	R visitPropertyCallExp(org.eclipse.ocl.examples.pivot.PropertyCallExp object);
 	R visitRealLiteralExp(org.eclipse.ocl.examples.pivot.RealLiteralExp object);
+	R visitSelfType(org.eclipse.ocl.examples.pivot.SelfType object);
 	R visitSendSignalAction(org.eclipse.ocl.examples.pivot.SendSignalAction object);
 	R visitSequenceType(org.eclipse.ocl.examples.pivot.SequenceType object);
 	R visitSetType(org.eclipse.ocl.examples.pivot.SetType object);

@@ -51,7 +51,6 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
-import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
@@ -608,20 +607,6 @@ public abstract class TypeCaches extends PivotStandardLibrary
 //		}
 		getOrphanNode(pivotElement);
 	}
-	
-	public void addOrphanOperation(Operation pivotElement) {
-		TemplateableElement unspecializedElement = pivotElement.getUnspecializedElement();
-		assert (unspecializedElement != null) && (unspecializedElement.getUnspecializedElement() == null);
-		org.eclipse.ocl.examples.pivot.Class orphanClass = getOrphanClass();
-		orphanClass.getOwnedOperations().add(pivotElement);
-//		addOperation(pivotElement);
-		getOrphanNode(pivotElement);
-	}
-
-//	public void addOrphanPackage(CompletePackage pivotElement) {
-//		org.eclipse.ocl.examples.pivot.Package orphans = getOrphanPackage();
-//		orphans.getNestedPackages().add(pivotElement);
-//	}
 
 	public void addPackage(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
 		String moniker = pivotPackage.getMoniker();
@@ -1295,7 +1280,7 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		}
 	}
 	
-	protected abstract Type getSpecializedType(Type type, Map<TemplateParameter, ParameterableElement> usageBindings);
+	public abstract Type getSpecializedType(Type type, Map<TemplateParameter, ParameterableElement> usageBindings);
 
 	public Iterable<org.eclipse.ocl.examples.pivot.Class> getSuperClasses(Type pivotType) {
 		return new CompleteClassSuperClassesIterable(getAllClasses(pivotType));

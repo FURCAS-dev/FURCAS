@@ -524,6 +524,15 @@ public interface PivotFactory
 	RealLiteralExp createRealLiteralExp();
 
 	/**
+	 * Returns a new object of class '<em>Self Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Self Type</em>'.
+	 * @generated
+	 */
+	SelfType createSelfType();
+
+	/**
 	 * Returns a new object of class '<em>Sequence Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

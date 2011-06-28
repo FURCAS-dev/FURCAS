@@ -3,264 +3,960 @@ library ocl : ocl = 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib'
 precedence left:NAVIGATION left:UNARY left:MULTIPLICATIVE left:ADDITIVE left:RELATIONAL left:EQUALITY left:AND left:OR left:XOR left:IMPLIES;
 
 type Bag<T> : BagType conformsTo NonOrderedCollection<T>,NonUniqueCollection<T> {
+	/**
+	The sub-bag of the source bag for which body is false.
+	**/
 	iteration reject(i : T | body : Lambda T() : Boolean) : Bag<T> => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
+	/**
+	The sub-bag of the source bag for which body is true.
+	**/
 	iteration select(i : T | body : Lambda T() : Boolean) : Bag<T> => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	/**
+	True if self and bag contain the same elements, the same number of times.
+	**/
+	operation "="(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "<>"(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	/**
+	The bag containing all elements of self apart from all occurrences of object.
+	**/
 	operation excluding(object : OclAny) : Bag<T> => 'org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation';
+	/**
+	Redefines the Collection operation. If the element type is not a collection type, this results in the same bag as self.
+	If the element type is a collection type, the result is the bag containing all the elements of all the recursively flattened elements of self. 
+	**/
 	operation flatten<T2>() : Bag<T2> => 'org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation';
+	/**
+	The bag containing all elements of self plus object.
+	**/
 	operation including(object : T) : Bag<T> => 'org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation';
 }
 
+/**
+The standard type Boolean represents the common true/false values.
+Boolean is itself an instance of the metatype PrimitiveType (from UML).
+**/
 type Boolean : PrimitiveType conformsTo OclAny {
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
-	static operation allInstances<OclSelf>() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.logical.BooleanAllInstancesOperation';
+	/**
+	Returns true if the logical value of self is the same as the numeric value of object2, false otherwise.
+	*/
+	operation "="(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	/**
+	Returns true if the logical value of self is the not same as the numeric value of object2, false otherwise.
+	*/
+	operation "<>"(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	/**
+	Returns Set{false, true}.
+	*/
+	static operation allInstances() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.logical.BooleanAllInstancesOperation';
+	/**
+	True if both b1 and b are true.
+	**/
 	operation and(b : Boolean) : Boolean precedence=AND => 'org.eclipse.ocl.examples.library.logical.BooleanAndOperation';
+	/**
+	True if self is false, or if self is true and b is true.
+	**/
 	operation implies(b : Boolean) : Boolean precedence=IMPLIES => 'org.eclipse.ocl.examples.library.logical.BooleanImpliesOperation';
+	/**
+	True if self is false.
+	**/
 	operation not() : Boolean precedence=UNARY => 'org.eclipse.ocl.examples.library.logical.BooleanNotOperation';
+	/**
+	True if either self or b is true.
+	**/
 	operation or(b : Boolean) : Boolean precedence=OR => 'org.eclipse.ocl.examples.library.logical.BooleanOrOperation';
+	/**
+	Converts self to a string value.
+	**/
 	operation toString() : String => 'org.eclipse.ocl.examples.library.oclany.OclAnyToStringOperation';
+	/**
+	True if either self or b is true, but not both.
+	**/
 	operation xor(b : Boolean) : Boolean precedence=XOR => 'org.eclipse.ocl.examples.library.logical.BooleanXorOperation';
 }
 
 type Classifier<T> : ClassifierType conformsTo OclAny {
-	static operation allInstances<OclSelf>() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.classifier.ClassifierAllInstancesOperation';
+	/**
+	Return a set of all instances of the type and derived types of self.
+	*/
+	static operation allInstances() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.classifier.ClassifierAllInstancesOperation';
+	/**
+	Returns the object for which self is a composed content or null if there is no such object.
+	*/
 	operation oclContainer<U>() : Classifier<U> => 'org.eclipse.ocl.examples.library.classifier.ClassifierOclContainerOperation';
+	/**
+	Returns the composed contents of self.
+	*/
 	operation oclContents<U>() : Set<Classifier<U>> => 'org.eclipse.ocl.examples.library.classifier.ClassifierOclContentsOperation';
 }
 
+/**
+Collection is the abstract supertype of all collection types in the OCL Standard Library.
+Each occurrence of an object in a collection is called an element.
+If an object occurs twice in a collection, there are two elements.
+*/
 type Collection<T> : CollectionType conformsTo OclAny {
+	/**
+	Returns any element in the source collection for which body evaluates to true.
+	If there is more than one element for which body is true, one of them is returned.
+	There must be at least one element fulfilling body, otherwise the result of this IteratorExp is null.
+	**/
 	iteration any(i : T | body : Lambda T() : Boolean) : T => 'org.eclipse.ocl.examples.library.iterator.AnyIteration';
+	/**
+	The Collection of elements that results from applying body to every member of the source set.
+	The result is flattened. Notice that this is based on collectNested, which can be of different type depending on the type of source.
+	collectNested is defined individually for each subclass of CollectionType.
+	**/
 	iteration collect<V>(i : T | body : Lambda T() : V) : Collection<V> => 'org.eclipse.ocl.examples.library.iterator.CollectIteration';
+	/**
+	The Collection of elements which results from applying body to every member of the source collection.
+	**/
 	iteration collectNested<V>(i : T | body : Lambda T() : V) : Collection<T> => 'org.eclipse.ocl.examples.library.iterator.CollectNestedIteration';
+	/**
+	Results in true if body evaluates to true for at least one element in the source collection.
+	**/
 	iteration exists(i : T | body : Lambda T() : Boolean) : Boolean => 'org.eclipse.ocl.examples.library.iterator.ExistsIteration';
 	iteration exists(i : T, j : T | body : Lambda T() : Boolean) : Boolean => 'org.eclipse.ocl.examples.library.iterator.ExistsIteration';
+	/**
+	Results in true if the body expression evaluates to true for each element in the source collection; otherwise, result is false.
+	**/
 	iteration forAll(i : T | body : Lambda T() : Boolean) : Boolean => 'org.eclipse.ocl.examples.library.iterator.ForAllIteration';
 	iteration forAll(i : T, j : T | body : Lambda T() : Boolean) : Boolean => 'org.eclipse.ocl.examples.library.iterator.ForAllIteration';
+	/**
+	Results in true if body evaluates to a different value for each element in the source collection; otherwise, result is false.
+	**/
 	iteration isUnique(i : T | body : Lambda T() : OclAny) : Boolean => 'org.eclipse.ocl.examples.library.iterator.IsUniqueIteration';
 	iteration iterate<Tacc>(i : T; acc : Tacc) : Tacc => 'org.eclipse.ocl.examples.library.iterator.IterateIteration';
+	/**
+	Results in true if there is exactly one element in the source collection for which body is true.
+	**/
 	iteration one(i : T | body : Lambda T() : Boolean) : Boolean => 'org.eclipse.ocl.examples.library.iterator.OneIteration';
+	/**
+	The sub-collection of the source collection for which body is false.
+	**/
 	iteration reject(i : T | body : Lambda T() : Boolean) : Collection<T> => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
+	/**
+	The sub-collection of the source collection for which body is true.
+	**/
 	iteration select(i : T | body : Lambda T() : Boolean) : Collection<T> => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
+	/**
+	Results in the Collection containing all elements of the source collection.
+	The element for which body has the lowest value comes first, and so on.
+	The type of the body expression must have the < operation defined.
+	The < operation must return a Boolean value and must be transitive (i.e., if a < b and b < c then a < c).
+	**/
 	iteration sortedBy(i : T | body : Lambda T() : OclAny) : OrderedCollection<T> => 'org.eclipse.ocl.examples.library.iterator.SortedByIteration';
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	/**
+	True if c is a collection of the same kind as self and contains the same elements in the same quantities and in the same order,
+	in the case of an ordered collection type.
+	**/
+	operation "="(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	/**
+	True if c is not equal to self.
+	**/
+	operation "<>"(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	/**
+	The Bag that contains all the elements from self. 
+	**/
 	operation asBag() : Bag<T> => 'org.eclipse.ocl.examples.library.collection.CollectionAsBagOperation';
+	/**
+	An OrderedSet that contains all the elements from self, with duplicates removed,
+	in an order dependent on the particular concrete collection type.
+	**/
 	operation asOrderedSet() : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.CollectionAsOrderedSetOperation';
+	/**
+	A Sequence that contains all the elements from self, in an order dependent on the particular concrete collection type. 
+	**/
 	operation asSequence() : Sequence<T> => 'org.eclipse.ocl.examples.library.collection.CollectionAsSequenceOperation';
+	/**
+	The Set containing all the elements from self, with duplicates removed.
+	**/
 	operation asSet() : Set<T> => 'org.eclipse.ocl.examples.library.collection.CollectionAsSetOperation';
+	/**
+	The number of times that object occurs in the collection self.
+	**/
 	operation count(object : OclAny) : Integer => 'org.eclipse.ocl.examples.library.collection.CollectionCountOperation';
+	/**
+	True if object is not an element of self, false otherwise.
+	**/
 	operation excludes(object : OclAny) : Boolean => 'org.eclipse.ocl.examples.library.collection.CollectionExcludesOperation';
+	/**
+	Does self contain none of the elements of c2 ?
+	**/
 	operation excludesAll<T2>(c2 : Collection<T2>) : Boolean => 'org.eclipse.ocl.examples.library.collection.CollectionExcludesAllOperation';
+	/**
+	The collection containing all elements of self apart from object.
+	**/
 	operation excluding(object : OclAny) : Collection<T> => 'org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation';
+	/**
+	If the element type is not a collection type, this results in the same collection as self.
+	If the element type is a collection type, the result is a collection containing all the elements of all the recursively flattened elements of self.
+	**/
 	operation flatten<T2>() : Collection<T2> => 'org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation';
+	/**
+	True if object is an element of self, false otherwise.
+	**/
 	operation includes(object : OclAny) : Boolean => 'org.eclipse.ocl.examples.library.collection.CollectionIncludesOperation';
+	/**
+	Does self contain all the elements of c2 ?
+	**/
 	operation includesAll<T2>(c2 : Collection<T2>) : Boolean => 'org.eclipse.ocl.examples.library.collection.CollectionIncludesAllOperation';
+	/**
+	The collection containing all elements of self plus object.
+	**/
 	operation including(object : T) : Collection<T> => 'org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation';
+	/**
+	Is self the empty collection?
+
+	Note: null->isEmpty() returns ‘true’ in virtue of the implicit casting from null to Bag{}
+	**/
 	operation isEmpty() : Boolean => 'org.eclipse.ocl.examples.library.collection.CollectionIsEmptyOperation';
+	/**
+	The element with the maximum value of all elements in self.
+	Elements must be of a type supporting the max operation.
+	The max operation - supported by the elements - must take one parameter of type T and be both associative and commutative.
+	UnlimitedNatural, Integer and Real fulfill this condition.
+	**/
 	operation max() : T => 'org.eclipse.ocl.examples.library.collection.CollectionMaxOperation';
+	/**
+	The element with the minimum value of all elements in self.
+	Elements must be of a type supporting the min operation.
+	The min operation - supported by the elements - must take one parameter of type T and be both associative and commutative.
+	UnlimitedNatural, Integer and Real fulfill this condition.
+	**/
 	operation min() : T => 'org.eclipse.ocl.examples.library.collection.CollectionMinOperation';
+	/**
+	Is self not the empty collection?
+	
+	null->notEmpty() returns ‘false’ in virtue of the implicit casting from null to Bag{}.
+	**/
 	operation notEmpty() : Boolean => 'org.eclipse.ocl.examples.library.collection.CollectionNotEmptyOperation';
+	/**
+	The cartesian product operation of self and c2.
+
+	**/
 	operation product<T2>(c2 : Collection<T2>) : Set<Tuple<first:T,second:T2>> => 'org.eclipse.ocl.examples.library.collection.CollectionProductOperation';
+	/**
+	The number of elements in the collection self.
+	**/
 	operation size() : Integer => 'org.eclipse.ocl.examples.library.collection.CollectionSizeOperation';
+	/**
+	The addition of all elements in self.
+	Elements must be of a type supporting the + operation.
+	The + operation must take one parameter of type T and be both associative: (a+b)+c = a+(b+c), and commutative: a+b = b+a.
+	UnlimitedNatural, Integer and Real fulfill this condition.
+
+	If the + operation is not both associative and commutative, the sum expression is not well-formed,
+	which may result in unpredictable results during evaluation.
+	If an implementation is able to detect a lack of associativity or commutativity,
+	the implementation may bypass the evaluation and return an invalid result.
+	**/
 	operation sum() : T => 'org.eclipse.ocl.examples.library.collection.CollectionSumOperation';
 --	operation "->"<T>(object2 : OclAny) : T precedence=NAVIGATION => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
 }
 
+/**
+ This is enum
+ **/
 type Enumeration conformsTo OclAny {
-	static operation allInstances<OclSelf>() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.enumeration.EnumerationAllInstancesOperation';
+	/**
+	Return a set of all enumeration values of self.
+	*/
+	static operation allInstances() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.enumeration.EnumerationAllInstancesOperation';
 }
 
+/**
+The standard type Integer represents the mathematical concept of integer.
+Note that UnlimitedNatural is a subclass of Integer, so for each parameter of type Integer,
+you can use an unlimited natural as the actual parameter.
+Integer is itself an instance of the metatype PrimitiveType (from UML).
+**/
 type Integer : PrimitiveType conformsTo Real {
+	/**
+	The negative value of self.
+	**/
 	operation "-"() : Integer precedence=UNARY => 'org.eclipse.ocl.examples.library.numeric.NumericNegateOperation';
-	operation "+"(i : Integer) : Integer precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.numeric.NumericPlusOperation';
-	operation "-"(i : Integer) : Integer precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.numeric.NumericMinusOperation';
-	operation "*"(i : Integer) : Integer precedence=MULTIPLICATIVE => 'org.eclipse.ocl.examples.library.numeric.NumericTimesOperation';
-	operation "/"(i : Integer) : Real precedence=MULTIPLICATIVE => 'org.eclipse.ocl.examples.library.numeric.NumericDivideOperation';
+	/**
+	The value of the addition of self and i.
+	**/
+	operation "+"(i : OclSelf) : Integer precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.integer.IntegerPlusOperation';
+	/**
+	The value of the subtraction of i from self.
+	**/
+	operation "-"(i : OclSelf) : Integer precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.integer.IntegerMinusOperation';
+	/**
+	The value of the multiplication of self and i.
+	**/
+	operation "*"(i : OclSelf) : Integer precedence=MULTIPLICATIVE => 'org.eclipse.ocl.examples.library.numeric.NumericTimesOperation';
+	/**
+	The value of self divided by i.
+	Evaluates to invalid if r is equal to zero.
+	**/
+	operation "/"(i : OclSelf) : Real precedence=MULTIPLICATIVE => 'org.eclipse.ocl.examples.library.numeric.NumericDivideOperation';
+	/**
+	The absolute value of self.
+	**/
 	operation abs() : Integer => 'org.eclipse.ocl.examples.library.numeric.NumericAbsOperation';
+	/**
+	The number of times that i fits completely within self.
+	**/
 	operation div(i : Integer) : Integer => 'org.eclipse.ocl.examples.library.numeric.NumericDivOperation';
+	/**
+	The result is self modulo i.
+	**/
 	operation mod(i : Integer) : Integer => 'org.eclipse.ocl.examples.library.numeric.NumericModOperation';
-	operation max(i : Integer) : Integer => 'org.eclipse.ocl.examples.library.numeric.NumericMaxOperation';
-	operation min(i : Integer) : Integer => 'org.eclipse.ocl.examples.library.numeric.NumericMinOperation';
+	/**
+	The maximum of self an i.
+	**/
+	operation max(i : OclSelf) : Integer => 'org.eclipse.ocl.examples.library.numeric.NumericMaxOperation';
+	/**
+	The minimum of self an i.
+	**/
+	operation min(i : OclSelf) : Integer => 'org.eclipse.ocl.examples.library.numeric.NumericMinOperation';
+	/**
+	Converts self to a string value.
+	**/
 	operation toString() : String => 'org.eclipse.ocl.examples.library.oclany.OclAnyToStringOperation';
 }
 
+/**
+The NonOrderedCollection type provides the shared functionality of the Bag and Set
+collections for which the elements are not ordered.
+The common supertype of NonOrderedCollection is Collection.
+**/
 type NonOrderedCollection<T> : CollectionType conformsTo Collection<T> {
+	/**
+	The closure of applying body transitively to every distinct element of the source collection.
+	**/
 	iteration closure(i : T | body : Lambda T() : Set<T>) : Set<T> => 'org.eclipse.ocl.examples.library.iterator.ClosureIteration';
 	iteration collect<V>(i : T | body : Lambda T() : V) : Bag<V> => 'org.eclipse.ocl.examples.library.iterator.CollectIteration';
+	/**
+	The Bag of elements which results from applying body to every member of the source nonordered collection.
+	**/
 	iteration collectNested<V>(i : T | body : Lambda T() : V) : Bag<T> => 'org.eclipse.ocl.examples.library.iterator.CollectNestedIteration';
+	/**
+	The intersection of self and bag.
+	**/
 	operation intersection(bag : Bag<T>) : Bag<T> => 'org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation';
+	/**
+	The intersection of self and s (i.e., the set of all elements that are in both self and s).
+	**/
 	operation intersection(s : Set<T>) : Set<T> => 'org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation';
+	/**
+	The union of self and bag. 
+	**/
 	operation union(bag : Bag<T>) : Bag<T> => 'org.eclipse.ocl.examples.library.collection.CollectionUnionOperation';
+	/**
+	The union of self and s.
+	**/
 	operation union(s : Set<T>) : Set<T> => 'org.eclipse.ocl.examples.library.collection.CollectionUnionOperation';
 }
 
+/**
+The NonUniqueCollection type provides the shared functionality of the Bag and Sequence
+collections for which the elements are not unique.
+The common supertype of NonUniqueCollection is Collection.
+**/
 type NonUniqueCollection<T> : CollectionType conformsTo Collection<T> {
+	/**
+	Results in the Sequence containing all elements of the source collection.
+	The element for which body has the lowest value comes first, and so on.
+	The type of the body expression must have the < operation defined.
+	The < operation must return a Boolean value and must be transitive (i.e., if a < b and b < c then a < c).
+	**/
 	iteration sortedBy(i : T | body : Lambda T() : OclAny) : Sequence<T> => 'org.eclipse.ocl.examples.library.iterator.SortedByIteration';
 }
 
+/**
+All types in the UML model and the primitive and collection types in the OCL standard library conforms to the type OclAny.
+Conceptually, OclAny behaves as a supertype for all the types.
+Features of OclAny are available on each object in all OCL expressions.
+OclAny is itself an instance of the metatype AnyType.
+
+All classes in a UML model inherit all operations defined on OclAny.
+To avoid name conflicts between properties in the model and the properties inherited from OclAny,
+all names on the properties of OclAny start with ‘ocl.’
+Although theoretically there may still be name conflicts, they can be avoided. 
+One can also use qualification by OclAny (name of the type) to explicitly refer to the OclAny properties.
+
+Operations of OclAny, where the instance of OclAny is called object.
+**/
 type OclAny : AnyType {
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
-	operation oclAsSet<OclSelf>() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclAsSetOperation';
+	/**
+	True if self is the same object as object2. Infix operator.
+	**/
+	operation "="(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	/**
+	True if self is a different object from object2. Infix operator.
+	**/
+	operation "<>"(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	/**
+	Returns a Set with self as the sole content, unless self is null in which case returns an empty set,
+	*/
+	operation oclAsSet() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclAsSetOperation';
+	/**
+	Evaluates to self, where self is of the type identified by T.
+	The type T may be any classifier defined in the UML model;
+	if the actual type of self at evaluation time does not conform to T,
+	then the oclAsType operation evaluates to invalid.
+
+	In the case of feature redefinition, casting an object to a supertype of its actual type
+	does not access the supertype’s definition of the feature;
+	according to the semantics of redefinition, the redefined feature simply does not exist for the object.
+	However, when casting to a supertype, any features additionally defined by the subtype are suppressed.
+	
+	**/
 	operation oclAsType<TT>(type : Classifier<TT>) : TT => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclAsTypeOperation';
+	/**
+	Evaluates to true if the self is in the state indentified by statespec. 
+	**/
 	operation oclIsInState(statespec : OclState) : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclIsInStateOperation';
+	/**
+	Evaluates to true if the self is equal to OclInvalid.
+	**/
 	operation oclIsInvalid() : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclIsInvalidOperation';
+	/**
+	Evaluates to true if the type of self conforms to t.
+	That is, self is of type t or a subtype of t. 
+	**/
 	operation oclIsKindOf<T>(type : Classifier<T>) : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclIsKindOfOperation';
+	/**
+	Can only be used in a postcondition.
+	Evaluates to true if the self is created during performing the operation (for instance, it didn’t exist at precondition time). 
+	**/
 	operation oclIsNew() : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
+	/**
+	Evaluates to true if self is of the type t but not a subtype of t 
+	*/
 	operation oclIsTypeOf<T>(type : Classifier<T>) : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclIsTypeOfOperation';
+	/**
+	Evaluates to true if the self is equal to invalid or equal to null. 
+	**/
 	operation oclIsUndefined() : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclIsUndefinedOperation';
-	operation oclType<OclSelf>() : Classifier<OclSelf> => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclTypeOperation';
+	/**
+	Evaluates to the type of which self is an instance.
+	**/
+	operation oclType() : Classifier<OclSelf> => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclTypeOperation';
 --	operation "."<T>(object2 : OclAny) : T precedence=NAVIGATION => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
 }
 
+/**
+The type OclInvalid is a type that conforms to all other types.
+It has one single instance, identified as  invalid.
+Any property call applied on invalid results in invalid, except for the operations oclIsUndefined() and oclIsInvalid().
+OclInvalid is itself an instance of the metatype InvalidType.
+**/
 type OclInvalid : InvalidType conformsTo OclVoid {
-	static operation allInstances<OclSelf>() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.oclinvalid.OclInvalidAllInstancesOperation';
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	/**
+	Returns invalid.
+	*/
+	static operation allInstances() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.oclinvalid.OclInvalidAllInstancesOperation';
+	/**
+	Returns invalid.
+	*/
+	operation "="(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	/**
+	Returns invalid.
+	*/
+	operation "<>"(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	operation oclBadOperation() : OclInvalid;
 	property oclBadProperty : OclInvalid;
+	/**
+	Returns 'invalid'.
+	*/
 	operation toString() : String => 'org.eclipse.ocl.examples.library.oclany.OclAnyToStringOperation';
 }
 
+/**
+OclMessage
+This sub clause contains the definition of the standard type OclMessage.
+As defined in this sub clause, each ocl message type is actually a template type with one parameter.
+‘T’ denotes the parameter.
+A concrete ocl message type is created by substituting an operation or signal for the T.
+
+The predefined type OclMessage is an instance of MessageType.
+Every OclMessage is fully determined by either the operation, or signal given as parameter.
+Note that there is conceptually an undefined (infinite) number of these types,
+as each is determined by a different operation or signal.
+These types are unnamed. Every type has as attributes the name of the operation or signal,
+and either all formal parameters of the operation, or all attributes of the signal.
+OclMessage is itself an instance of the metatype MessageType.
+
+OclMessage has a number of predefined operations, as shown in the OCL Standard Library.
+**/
 type OclMessage conformsTo OclAny {
+	/**
+	True if type of template parameter is an operation call, and the called operation has returned a value.
+	This implies the fact that the message has been sent. False in all other cases.
+	**/
 	operation hasReturned() : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
+	/**
+	Returns the result of the called operation, if type of template parameter is an operation call,
+	and the called operation has returned a value. Otherwise the invalid value is returned. 
+	**/
 	operation result() : OclAny => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
+	/**
+	Returns true if the OclMessage represents the sending of a UML Operation call. 
+	**/
 	operation isOperationCall() : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
+	/**
+	Returns true if the OclMessage represents the sending of a UML Signal. 
+	**/
 	operation isSignalSent() : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
 }
+
+/**
+The pseudo-type OclSelf denotes the statically determinate type of self in Operation
+and Iteration signatures. Instances of OclSelf are never created. 
+**/
+type OclSelf : SelfType conformsTo OclAny {}
 
 type OclState conformsTo OclAny {
 }
 
 type OclTuple conformsTo OclAny {
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	operation "="(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "<>"(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 }
 
+/**
+The type OclVoid is a type that conforms to all other types except OclInvalid.
+It has one single instance, identified as null, that corresponds with the UML LiteralNull value specification.
+Any property call applied on null results in invalid, except for the
+oclIsUndefined(), oclIsInvalid(), =(OclAny) and <>(OclAny) operations.
+However, by virtue of the implicit conversion to a collection literal,
+an expression evaluating to null can be used as source of collection operations (such as ‘isEmpty’).
+If the source is the null literal, it is implicitly converted to Bag{}.
+
+OclVoid is itself an instance of the metatype VoidType.
+**/
 type OclVoid : VoidType conformsTo OclAny {
-	static operation allInstances<OclSelf>() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.oclvoid.OclVoidAllInstancesOperation';
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	/**
+	Returns Set{null}.
+	*/
+	static operation allInstances() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.oclvoid.OclVoidAllInstancesOperation';
+	/**
+	Redefines the OclAny operation, returning true if object is null, invalid
+	if object is invalid, false otherwise.
+	**/
+	operation "="(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "<>"(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	operation and(b : Boolean) : Boolean precedence=AND => 'org.eclipse.ocl.examples.library.oclvoid.OclVoidAndOperation';
 	operation implies(b : Boolean) : Boolean precedence=IMPLIES => 'org.eclipse.ocl.examples.library.oclvoid.OclVoidImpliesOperation';
 	operation or(b : Boolean) : Boolean precedence=OR => 'org.eclipse.ocl.examples.library.oclvoid.OclVoidOrOperation';
+	/**
+	Returns 'null'.
+	*/
 	operation toString() : String => 'org.eclipse.ocl.examples.library.oclany.OclAnyToStringOperation';
 }
 
+/**
+The OrderedCollection type provides the shared functionality of the OrderedSet and Sequence
+collections for which the elements are ordered.
+The common supertype of OrderedCollection is Collection.
+**/
 type OrderedCollection<T> : CollectionType conformsTo Collection<T> {
+	/**
+	The closure of applying body transitively to every distinct element of the source collection.
+	**/
 	iteration closure(i : T | body : Lambda T() : OrderedSet<T>) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.iterator.ClosureIteration';
 	iteration collect<V>(i : T | body : Lambda T() : V) : Sequence<V> => 'org.eclipse.ocl.examples.library.iterator.CollectIteration';
+	/**
+	The sequence of elements that results from applying body to every member of the source ordered collection.
+	**/
 	iteration collectNested<V>(i : T | body : Lambda T() : V) : Sequence<T> => 'org.eclipse.ocl.examples.library.iterator.CollectNestedIteration';
+	/**
+	The i-th element of sequence.
+	**/
 	operation at(index : Integer) : T => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionAtOperation';
+	/**
+	The first element in self.
+	**/
 	operation first() : T => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionFirstOperation';
+	/**
+	The index of object obj in the ordered collection.
+	**/
 	operation indexOf(obj : OclAny) : Integer => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionIndexOfOperation';
+	/**
+	The last element in self.
+	**/
 	operation last() : T => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionLastOperation';
+	/**
+	The ordered collection of elements with same elements but with the opposite order.
+	**/
 	operation reverse() : OrderedCollection<T> => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionReverseOperation';
 }
 
+/**
+The OrderedSet is a Set, the elements of which are ordered.
+It contains no duplicates. OrderedSet is itself an instance of the metatype OrderedSetType.
+An OrderedSet is not a subtype of Set, neither a subtype of Sequence.
+The common supertype of Sets and OrderedSets is Collection.
+**/
 type OrderedSet<T> : OrderedSetType conformsTo OrderedCollection<T>,UniqueCollection<T> {
+	/**
+	The ordered set of the source ordered set for which body is false.
+	**/
 	iteration reject(i : T | body : Lambda T() : Boolean) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
+	/**
+	The ordered set of the source ordered set for which body is true
+	**/
 	iteration select(i : T | body : Lambda T() : Boolean) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	operation "="(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "<>"(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	operation "-"(s : Set<OclAny>) : OrderedSet<T> precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.collection.SetMinusOperation';
+	/**
+	The set of elements, consisting of all elements of self, followed by object.
+	**/
 	operation append(object : T) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionAppendOperation';
+	/**
+	The ordered set  containing all elements of self apart from object.
+
+	The order of the remaining elements is not changed.
+	**/
 	operation excluding(object : OclAny) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation';
 	operation flatten<T2>() : OrderedSet<T2> => 'org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation';
+	/**
+	The ordered set containing all elements of self plus object added as the last element if not already present.
+	**/
 	operation including(object : T) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation';
+	/**
+	The ordered set consisting of self with object present at position index.
+	**/
 	operation insertAt(index : Integer, object : T) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionInsertAtOperation';
 	operation intersection(o : Set<T>) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation';
+	/**
+	The sequence consisting of object, followed by all elements in self.
+
+	post: result->size = self->size() + 1
+
+	post: result->at(1) = object
+
+	post:   Sequence{1..self->size()}->forAll(index : Integer |
+        self->at(index) = result->at(index + 1))
+	**/
 	operation prepend(object : T) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionPrependOperation';
+	/**
+	The ordered set of elements with same elements but with the opposite order.
+	**/
 	operation reverse() : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionReverseOperation';
+	/**
+	The sub-set of self starting at number lower, up to and including element number upper.
+	**/
 	operation subOrderedSet(lower : Integer, upper : Integer) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.OrderedSetSubOrderedSetOperation';
+	/**
+	The ordered set containing all the elements that are in self after removal of all elements of s.
+	**/
 	operation symmetricDifference(s : Set<OclAny>) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.SetSymmetricDifferenceOperation';
+	/**
+	The ordered set consisting of all elements in self and all elements in o.
+	**/
 	operation union(o : OrderedSet<T>) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.collection.CollectionUnionOperation';
+	/**
+	The set consisting of all elements in self and all elements in s.
+	**/
 	operation union(s : Set<T>) : Set<T> => 'org.eclipse.ocl.examples.library.collection.CollectionUnionOperation';
 }
 
+/**
+The standard type Real represents the mathematical concept of real.
+Note that UnlimitedNatural is a subclass of Integer and that Integer is a subclass of Real,
+so for each parameter of type Real, you can use an unlimited natural or an integer as the actual parameter.
+Real is itself an instance of the metatype PrimitiveType (from UML).
+**/
 type Real : PrimitiveType conformsTo OclAny {
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
-	operation "+"(r : Real) : Real precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.numeric.NumericPlusOperation';
-	operation "-"(r : Real) : Real precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.numeric.NumericMinusOperation';
-	operation "*"(r : Real) : Real precedence=MULTIPLICATIVE => 'org.eclipse.ocl.examples.library.numeric.NumericTimesOperation';
+	/**
+	Returns true if the numeric value of self is the same as the numeric value of object2, false otherwise.
+	*/
+	operation "="(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	/**
+	Returns true if the numeric value of self is the not the same as the numeric value of object2, false otherwise.
+	*/
+	operation "<>"(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	/**
+	The value of the addition of self and r.
+	**/
+	operation "+"(r : OclSelf) : Real precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.real.RealPlusOperation';
+	/**
+	The value of the subtraction of r from self.
+	**/
+	operation "-"(r : OclSelf) : Real precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.real.RealMinusOperation';
+	/**
+	The value of the multiplication of self and r.
+	**/
+	operation "*"(r : OclSelf) : Real precedence=MULTIPLICATIVE => 'org.eclipse.ocl.examples.library.numeric.NumericTimesOperation';
+	/**
+	The negative value of self.
+	**/
 	operation "-"() : Real precedence=UNARY => 'org.eclipse.ocl.examples.library.numeric.NumericNegateOperation';
-	operation "/"(r : Real) : Real precedence=MULTIPLICATIVE => 'org.eclipse.ocl.examples.library.numeric.NumericDivideOperation';
-	operation ">"(r : Real) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.numeric.NumericGreaterThanOperation';
-	operation "<"(r : Real) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.numeric.NumericLessThanOperation';
-	operation "<="(r : Real) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.numeric.NumericLessThanEqualOperation';
-	operation ">="(r : Real) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.numeric.NumericGreaterThanEqualOperation';
+	/**
+	The value of self divided by r. Evaluates to invalid if r is equal to zero.
+	**/
+	operation "/"(r : OclSelf) : Real precedence=MULTIPLICATIVE => 'org.eclipse.ocl.examples.library.numeric.NumericDivideOperation';
+	/**
+	True if self is greater than r.
+	**/
+	operation ">"(r : OclSelf) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.numeric.NumericGreaterThanOperation';
+	/**
+	True if self is less than r.
+	**/
+	operation "<"(r : OclSelf) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.numeric.NumericLessThanOperation';
+	/**
+	True if self is less than or equal to r.
+	**/
+	operation "<="(r : OclSelf) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.numeric.NumericLessThanEqualOperation';
+	/**
+	True if self is greater than or equal to r.
+	**/
+	operation ">="(r : OclSelf) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.numeric.NumericGreaterThanEqualOperation';
+	/**
+	The absolute value of self.
+	**/
 	operation abs() : Real => 'org.eclipse.ocl.examples.library.numeric.NumericAbsOperation';
+	/**
+	The largest integer that is less than or equal to self.
+	**/
 	operation floor() : Integer => 'org.eclipse.ocl.examples.library.numeric.NumericFloorOperation';
-	operation max(r : Real) : Real => 'org.eclipse.ocl.examples.library.numeric.NumericMaxOperation';
-	operation min(r : Real) : Real => 'org.eclipse.ocl.examples.library.numeric.NumericMinOperation';
+	/**
+	The maximum of self and r.
+	**/
+	operation max(r : OclSelf) : Real => 'org.eclipse.ocl.examples.library.numeric.NumericMaxOperation';
+	/**
+	The minimum of self and r.
+	**/
+	operation min(r : OclSelf) : Real => 'org.eclipse.ocl.examples.library.numeric.NumericMinOperation';
 	operation oclAsType<TT>(type : Classifier<TT>) : TT => 'org.eclipse.ocl.examples.library.numeric.NumericOclAsTypeOperation';
+	/**
+	The integer that is closest to self. When there are two such integers, the largest one.
+	**/
 	operation round() : Integer => 'org.eclipse.ocl.examples.library.numeric.NumericRoundOperation';
+	/**
+	Converts self to a string value.
+	**/
 	operation toString() : String => 'org.eclipse.ocl.examples.library.oclany.OclAnyToStringOperation';
 }
 
+/**
+A sequence is a collection where the elements are ordered.
+An element may be part of a sequence more than once.
+Sequence is itself an instance of the metatype SequenceType.
+A Sentence is not a subtype of Bag.
+The common supertype of Sentence and Bags is Collection.
+**/
 type Sequence<T> : SequenceType conformsTo OrderedCollection<T>,NonUniqueCollection<T> {
+	/**
+	The subsequence of the source sequence for which body is false.
+	**/
 	iteration reject(i : T | body : Lambda T() : Boolean) : Sequence<T> => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
+	/**
+	The subsequence of the source sequence for which body is true.
+	**/
 	iteration select(i : T | body : Lambda T() : Boolean) : Sequence<T> => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	/**
+	True if self contains the same elements as s in the same order.
+	**/
+	operation "="(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "<>"(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	/**
+	The sequence of elements, consisting of all elements of self, followed by object.
+	**/
 	operation append(object : T) : Sequence<T> => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionAppendOperation';
+	/**
+	The sequence containing all elements of self apart from all occurrences of object.
+
+	The order of the remaining elements is not changed.
+	**/
 	operation excluding(object : OclAny) : Sequence<T> => 'org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation';
+	/**
+	Redefines the Collection operation. If the element type is not a collection type, this results in the same sequence as self.
+	If the element type is a collection type, the result is the sequence containing all the elements
+	of all the recursively flattened elements of self. The order of the elements is partial. 
+	**/
 	operation flatten<T2>() : Sequence<T2> => 'org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation';
+	/**
+	The sequence containing all elements of self plus object added as the last element.
+	**/
 	operation including(object : T) : Sequence<T> => 'org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation';
+	/**
+	The sequence consisting of self with object inserted at position index.
+	**/
 	operation insertAt(index : Integer, object : T) : Sequence<T> => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionInsertAtOperation';
+	/**
+	The sequence consisting of object, followed by all elements in self.
+	**/
 	operation prepend(object : T) : Sequence<T> => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionPrependOperation';
+	/**
+	The sequence containing the same elements but with the opposite order.
+	**/
 	operation reverse() : Sequence<T> => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionReverseOperation';
+	/**
+	The sub-sequence of self starting at number lower, up to and including element number upper.
+	**/
 	operation subSequence(lower : Integer, upper : Integer) : Sequence<T> => 'org.eclipse.ocl.examples.library.collection.SequenceSubSequenceOperation';
+	/**
+	The sequence consisting of all elements in self, followed by all elements in s.
+	**/
 	operation union(s : Sequence<T>) : Sequence<T> => 'org.eclipse.ocl.examples.library.collection.CollectionUnionOperation';
 }
 
 type Set<T> : SetType conformsTo NonOrderedCollection<T>,UniqueCollection<T> {
+	/**
+	The subset of the source set for which body is false.
+	**/
 	iteration reject(i : T | body : Lambda T() : Boolean) : Set<T> => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
+	/**
+	The subset of set for which expr is true.
+	**/
 	iteration select(i : T | body : Lambda T() : Boolean) : Set<T> => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	/**
+	Evaluates to true if self and s contain the same elements.
+	**/
+	operation "="(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "<>"(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	/**
+	The elements of self, which are not in s.
+	**/
 	operation "-"(s : Set<OclAny>) : Set<T> precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.collection.SetMinusOperation';
+	/**
+	The set containing all elements of self without object.
+	**/
 	operation excluding(object : OclAny) : Set<T> => 'org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation';
+	/**
+	Redefines the Collection operation. If the element type is not a collection type, this results in the same set as self.
+	If the element type is a collection type, the result is the set containing all the elements of all the recursively flattened elements of self.
+	**/
 	operation flatten<T2>() : Set<T2> => 'org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation';
+	/**
+	The set containing all elements of self plus object.
+	**/
 	operation including(object : T) : Set<T> => 'org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation';
+	/**
+	The intersection of self and s (i.e., the set of all elements that are in both self and s).
+	**/
 	operation intersection(s : Set<T>) : Set<T> => 'org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation';
+	/**
+	The sets containing all the elements that are in self or s, but not in both.
+	**/
 	operation symmetricDifference(s : Set<OclAny>) : Set<T> => 'org.eclipse.ocl.examples.library.collection.SetSymmetricDifferenceOperation';
 }
 
+/**
+The standard type String represents strings, which can be both ASCII or Unicode.
+String is itself an instance of the metatype PrimitiveType (from UML).
+**/
 type String : PrimitiveType conformsTo OclAny {
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	operation "="(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
+	operation "<>"(object2 : OclSelf) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
+	/**
+	The concatenation of self and s.
+	**/
 	operation "+"(s : String) : String precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.string.StringConcatOperation';
+	/**
+	Queries the character at position i in self.
+	**/
 	operation at(i : Integer) : String => 'org.eclipse.ocl.examples.library.string.StringAtOperation';
+	/**
+	Obtains the characters of self as a sequence.
+	**/
 	operation characters() : Sequence<String>  => 'org.eclipse.ocl.examples.library.string.StringCharactersOperation';
+	/**
+	The concatenation of self and s.
+	**/
 	operation concat(s : String) : String => 'org.eclipse.ocl.examples.library.string.StringConcatOperation';
+	/**
+	Queries whether s and self are equivalent under case-insensitive collation.
+	**/
 	operation equalsIgnoreCase(s : String) : Boolean => 'org.eclipse.ocl.examples.library.string.StringEqualsIgnoreCaseOperation';
+	/**
+	Queries the index in self at which s is a substring of self, or zero if s is not a substring of self.
+	The empty string is considered to be a substring of every string but the empty string, at index 1.
+	No string is a substring of the empty string.
+	**/
 	operation indexOf(s : String) : Integer => 'org.eclipse.ocl.examples.library.string.StringIndexOfOperation';
+	/**
+	The number of characters in self.
+	**/
 	operation size() : Integer => 'org.eclipse.ocl.examples.library.string.StringSizeOperation';
+	/**
+	The sub-string of self starting at character number lower, up to and including character number upper. Character numbers run from 1 to self.size().
+	**/
 	operation substring(lower : Integer, upper : Integer) : String => 'org.eclipse.ocl.examples.library.string.StringSubstringOperation';
+	/**
+	Converts self to a boolean value.
+	**/
 	operation toBoolean() : Boolean => 'org.eclipse.ocl.examples.library.string.StringToBooleanOperation';
+	/**
+	Converts self to an Integer value.
+	**/
 	operation toInteger() : Integer => 'org.eclipse.ocl.examples.library.string.StringToIntegerOperation';
+	/**
+	This is a deprecated variant of toLowerCase() preserving compatibility with traditional Eclipse OCL behaviour. 
+	**/
 	operation toLower() : String => 'org.eclipse.ocl.examples.library.string.StringToLowerCaseOperation';
+	/**
+	Converts self to lower case, using the locale defined by looking up oclLocale in the current environment.
+	Otherwise, returns the same string as self. 
+	**/
 	operation toLowerCase() : String => 'org.eclipse.ocl.examples.library.string.StringToLowerCaseOperation';
+	/**
+	Converts self to a Real value.
+	**/
 	operation toReal() : Real => 'org.eclipse.ocl.examples.library.string.StringToRealOperation';
+	/**
+	Returns self.
+	*/
 	operation toString() : String => 'org.eclipse.ocl.examples.library.oclany.OclAnyToStringOperation';
+	/**
+	This is a deprecated variant of toUpperCase() preserving compatibility with traditional Eclipse OCL behaviour. 
+	**/
 	operation toUpper() : String => 'org.eclipse.ocl.examples.library.string.StringToUpperCaseOperation';
+	/**
+	Converts self to upper case, using the locale defined by looking up oclLocale in the current environment.
+	Otherwise, returns the same string as self. 
+	**/
 	operation toUpperCase() : String => 'org.eclipse.ocl.examples.library.string.StringToUpperCaseOperation';
-	operation ">"(s : String) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.string.StringGreaterThanOperation';
-	operation "<"(s : String) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.string.StringLessThanOperation';
-	operation "<="(s : String) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.string.StringLessThanEqualOperation';
-	operation ">="(s : String) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.string.StringGreaterThanEqualOperation';
+	/**
+	True if self is greater than s, using the locale defined by looking up oclLocale in the current environment.
+	**/
+	operation ">"(s : OclSelf) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.string.StringGreaterThanOperation';
+	/**
+	True if self is less than s, using the locale defined by looking up oclLocale in the current environment.
+	**/
+	operation "<"(s : OclSelf) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.string.StringLessThanOperation';
+	/**
+	True if self is less than or equal to s, using the locale defined by looking up oclLocale in the current environment.
+	**/
+	operation "<="(s : OclSelf) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.string.StringLessThanEqualOperation';
+	/**
+	True if self is greater than or equal to s, using the locale defined by looking up oclLocale in the current environment.
+	**/
+	operation ">="(s : OclSelf) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.string.StringGreaterThanEqualOperation';
 }
 
 type Tuple : TupleType conformsTo OclAny {}
 
+/**
+The UniqueCollection type provides the shared functionality of the OrderedSet and Set
+collections for which the elements are unique.
+The common supertype of UniqueCollection is Collection.
+**/
 type UniqueCollection<T> : CollectionType conformsTo Collection<T> {
+	/**
+	Results in the ordered set containing all elements of the source collection.
+	The element for which body has the lowest value comes first, and so on.
+	The type of the body expression must have the < operation defined.
+	The < operation must return a Boolean value and must be transitive (i.e., if a < b and b < c, then a < c).
+	**/
 	iteration sortedBy(i : T | body : Lambda T() : OclAny) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.iterator.SortedByIteration';
 }
 
+/**
+The standard type UnlimitedNatural is used to encode the non-negative values of a multiplicity specification.
+This includes a special unlimited value (*) that encodes the upper value of  a multiplicity specification.
+UnlimitedNatural is itself an instance of the metatype UnlimitedNaturalType.
+
+Note that although UnlimitedNatural is a subclass of Integer, the unlimited value cannot be represented as an Integer.
+Any use of the unlimited value as an integer or real is replaced by the invalid value.
+**/
 type UnlimitedNatural : PrimitiveType conformsTo Integer {
 }
 

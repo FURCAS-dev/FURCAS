@@ -3,18 +3,7 @@
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.scoping;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scoping.BaseScopeProvider;
-import org.eclipse.ocl.examples.xtext.base.scoping.DefaultScopeAdapter;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibBoundClassCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibDocumentCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibOperationCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibPackageCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.util.OCLstdlibCSTSwitch;
+import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScopeProvider;
 
 /**
  * This class contains custom scoping description.
@@ -23,54 +12,6 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.util.OCLstdlibCSTSw
  * on how and when to use it 
  *
  */
-public class OCLstdlibScopeProvider extends BaseScopeProvider {
-	static {
-		OCLstdlibScopeAdapter.addSwitch(OCLstdlibCSTPackage.eINSTANCE, new OCLstdlibScopeSwitch());
-	}
-	
-	public static class OCLstdlibScopeSwitch 
-		extends OCLstdlibCSTSwitch<ScopeAdapter>
-		implements ScopeAdapter.Switch
-	{
-
-		@Override
-		public ScopeAdapter caseLibClassCS(LibClassCS eObject) {
-			return new LibClassScopeAdapter(eObject);
-		}
-
-		@Override
-		public ScopeAdapter caseLibDocumentCS(LibDocumentCS eObject) {
-			return new LibDocumentScopeAdapter(eObject);
-		}
-
-		@Override
-		public ScopeAdapter caseLibIterationCS(LibIterationCS eObject) {
-			return new LibOperationScopeAdapter(eObject);
-		}
-
-		@Override
-		public ScopeAdapter caseLibOperationCS(LibOperationCS eObject) {
-			return new LibOperationScopeAdapter(eObject);
-		}
-
-		@Override
-		public ScopeAdapter caseLibPackageCS(LibPackageCS eObject) {
-			return new LibPackageScopeAdapter(eObject);
-		}
-
-		@Override
-		public ScopeAdapter caseLibBoundClassCS(LibBoundClassCS eObject) {
-			return new LibBoundClassScopeAdapter(eObject);
-		}
-
-		@Override
-		public ScopeAdapter defaultCase(EObject eObject) {
-			return new DefaultScopeAdapter(eObject);
-		}
-
-		public ScopeAdapter doInPackageSwitch(EObject eObject) {
-			return doSwitch(eObject.eClass(), eObject);
-		}
-	}
-
+public class OCLstdlibScopeProvider extends EssentialOCLScopeProvider
+{
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: WildcardTypeRefCSImpl.java,v 1.3 2010/05/24 08:59:31 ewillink Exp $
+ * $Id: WildcardTypeRefCSImpl.java,v 1.4 2011/01/24 20:59:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -22,10 +22,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.util.Signature;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -98,7 +97,8 @@ public class WildcardTypeRefCSImpl extends TypeRefCSImpl implements WildcardType
 	public NotificationChain basicSetExtends(TypedRefCS newExtends, NotificationChain msgs) {
 		TypedRefCS oldExtends = extends_;
 		extends_ = newExtends;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSTPackage.WILDCARD_TYPE_REF_CS__EXTENDS, oldExtends, newExtends);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -111,7 +111,8 @@ public class WildcardTypeRefCSImpl extends TypeRefCSImpl implements WildcardType
 	 * @generated
 	 */
 	public void setExtends(TypedRefCS newExtends) {
-		if (newExtends != extends_) {
+		if (newExtends != extends_)
+		{
 			NotificationChain msgs = null;
 			if (extends_ != null)
 				msgs = ((InternalEObject)extends_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.WILDCARD_TYPE_REF_CS__EXTENDS, null, msgs);
@@ -141,7 +142,8 @@ public class WildcardTypeRefCSImpl extends TypeRefCSImpl implements WildcardType
 	public NotificationChain basicSetSuper(TypedRefCS newSuper, NotificationChain msgs) {
 		TypedRefCS oldSuper = super_;
 		super_ = newSuper;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSTPackage.WILDCARD_TYPE_REF_CS__SUPER, oldSuper, newSuper);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -154,7 +156,8 @@ public class WildcardTypeRefCSImpl extends TypeRefCSImpl implements WildcardType
 	 * @generated
 	 */
 	public void setSuper(TypedRefCS newSuper) {
-		if (newSuper != super_) {
+		if (newSuper != super_)
+		{
 			NotificationChain msgs = null;
 			if (super_ != null)
 				msgs = ((InternalEObject)super_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.WILDCARD_TYPE_REF_CS__SUPER, null, msgs);
@@ -174,7 +177,8 @@ public class WildcardTypeRefCSImpl extends TypeRefCSImpl implements WildcardType
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.WILDCARD_TYPE_REF_CS__EXTENDS:
 				return basicSetExtends(null, msgs);
 			case BaseCSTPackage.WILDCARD_TYPE_REF_CS__SUPER:
@@ -190,7 +194,8 @@ public class WildcardTypeRefCSImpl extends TypeRefCSImpl implements WildcardType
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.WILDCARD_TYPE_REF_CS__EXTENDS:
 				return getExtends();
 			case BaseCSTPackage.WILDCARD_TYPE_REF_CS__SUPER:
@@ -206,7 +211,8 @@ public class WildcardTypeRefCSImpl extends TypeRefCSImpl implements WildcardType
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.WILDCARD_TYPE_REF_CS__EXTENDS:
 				setExtends((TypedRefCS)newValue);
 				return;
@@ -224,7 +230,8 @@ public class WildcardTypeRefCSImpl extends TypeRefCSImpl implements WildcardType
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.WILDCARD_TYPE_REF_CS__EXTENDS:
 				setExtends((TypedRefCS)null);
 				return;
@@ -242,7 +249,8 @@ public class WildcardTypeRefCSImpl extends TypeRefCSImpl implements WildcardType
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.WILDCARD_TYPE_REF_CS__EXTENDS:
 				return extends_ != null;
 			case BaseCSTPackage.WILDCARD_TYPE_REF_CS__SUPER:
@@ -252,7 +260,7 @@ public class WildcardTypeRefCSImpl extends TypeRefCSImpl implements WildcardType
 	}
 
 	@Override
-	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
-		signature.append("?"); //$NON-NLS-1$
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitWildcardTypeRefCS(this);
 	}
 } //WildcardTypeRefCSImpl

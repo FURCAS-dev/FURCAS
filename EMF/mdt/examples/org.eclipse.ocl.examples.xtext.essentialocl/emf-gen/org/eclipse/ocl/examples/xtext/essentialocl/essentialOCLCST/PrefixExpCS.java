@@ -12,9 +12,11 @@
  *
  * </copyright>
  *
- * $Id: PrefixExpCS.java,v 1.1 2010/05/03 05:38:26 ewillink Exp $
+ * $Id: PrefixExpCS.java,v 1.2 2011/01/24 21:31:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
+
+import org.eclipse.emf.common.util.EList;
 
 
 /**
@@ -25,7 +27,8 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS#getOp <em>Op</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS#getOwnedOperator <em>Owned Operator</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS#getOwnedExpression <em>Owned Expression</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,32 +36,48 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
  * @model
  * @generated
  */
-public interface PrefixExpCS extends SubExpCS {
+public interface PrefixExpCS extends ExpCS {
 
 	/**
-	 * Returns the value of the '<em><b>Op</b></em>' attribute.
+	 * Returns the value of the '<em><b>Owned Operator</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryOperatorCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Op</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Owned Operator</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Op</em>' attribute.
-	 * @see #setOp(String)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getPrefixExpCS_Op()
-	 * @model
+	 * @return the value of the '<em>Owned Operator</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getPrefixExpCS_OwnedOperator()
+	 * @model containment="true"
 	 * @generated
 	 */
-	String getOp();
+	EList<UnaryOperatorCS> getOwnedOperator();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS#getOp <em>Op</em>}' attribute.
+	 * Returns the value of the '<em><b>Owned Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Expression</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Op</em>' attribute.
-	 * @see #getOp()
+	 * @return the value of the '<em>Owned Expression</em>' containment reference.
+	 * @see #setOwnedExpression(ExpCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getPrefixExpCS_OwnedExpression()
+	 * @model containment="true"
 	 * @generated
 	 */
-	void setOp(String value);
+	ExpCS getOwnedExpression();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS#getOwnedExpression <em>Owned Expression</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Expression</em>' containment reference.
+	 * @see #getOwnedExpression()
+	 * @generated
+	 */
+	void setOwnedExpression(ExpCS value);
 
 } // UnaryExpressionCS

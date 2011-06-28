@@ -296,7 +296,7 @@ public class PivotSaver
 		}
 
 		@Override
-		public Object visitOperationCallExp(OperationCallExp object) {
+		public Object visitOperationCallExp(OperationCallExp object) {	// FIXME Obsolete once referredOperation is not a specialization
 			Operation referredOperation = object.getReferredOperation();
 			Operation resolvedOperation = resolveOperation(referredOperation);
 			if (resolvedOperation != null) {

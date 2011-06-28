@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementCSImpl.java,v 1.4 2010/05/24 08:59:31 ewillink Exp $
+ * $Id: ElementCSImpl.java,v 1.5 2011/01/24 20:59:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -21,10 +21,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
-import org.eclipse.ocl.examples.xtext.base.util.ElementUtil;
-import org.eclipse.ocl.examples.xtext.base.util.Signature;
-import org.eclipse.xtext.parsetree.CompositeNode;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
+import org.eclipse.xtext.nodemodel.ICompositeNode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 /**
  * <!-- begin-user-doc -->
@@ -60,30 +59,21 @@ public abstract class ElementCSImpl extends EObjectImpl implements ElementCS {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public final String getSignature() {
-		Signature s = new Signature();
-		try {
-			getSignature(s, null);
-			return s.toString();
-		}
-		catch (Throwable e) {
-			return e.getMessage();
-		}
+	public String getDescription()
+	{
+		return eClass().getName();
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public abstract void getSignature(Signature signature, TypeBindingsCS typeBindings);
 
 	@Override
 	public String toString() {
-		CompositeNode parserNode = ElementUtil.getParserNode(this);
+		ICompositeNode parserNode = NodeModelUtils.getNode(this);
 		if (parserNode != null) {
-			return parserNode.serialize().trim();
+			return parserNode.getText().trim();
 		}
-		return getSignature();
+		return "<" + eClass().getName() + ">";
+	}
+
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitElementCS(this);
 	}
 } //ElementCSImpl

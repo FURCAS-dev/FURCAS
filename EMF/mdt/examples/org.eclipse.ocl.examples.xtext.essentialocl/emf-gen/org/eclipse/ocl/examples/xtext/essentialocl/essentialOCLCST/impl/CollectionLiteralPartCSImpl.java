@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralPartCSImpl.java,v 1.4 2010/05/24 08:55:47 ewillink Exp $
+ * $Id: CollectionLiteralPartCSImpl.java,v 1.5 2011/01/24 21:31:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -21,12 +21,12 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.impl.ElementCSImpl;
-import org.eclipse.ocl.examples.xtext.base.util.Signature;
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.MonikeredElementCSImpl;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,7 +42,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
  *
  * @generated
  */
-public class CollectionLiteralPartCSImpl extends ElementCSImpl implements CollectionLiteralPartCS {
+public class CollectionLiteralPartCSImpl extends MonikeredElementCSImpl implements CollectionLiteralPartCS {
 	/**
 	 * The cached value of the '{@link #getExpressionCS() <em>Expression CS</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -99,7 +99,8 @@ public class CollectionLiteralPartCSImpl extends ElementCSImpl implements Collec
 	public NotificationChain basicSetExpressionCS(ExpCS newExpressionCS, NotificationChain msgs) {
 		ExpCS oldExpressionCS = expressionCS;
 		expressionCS = newExpressionCS;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.COLLECTION_LITERAL_PART_CS__EXPRESSION_CS, oldExpressionCS, newExpressionCS);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -112,7 +113,8 @@ public class CollectionLiteralPartCSImpl extends ElementCSImpl implements Collec
 	 * @generated
 	 */
 	public void setExpressionCS(ExpCS newExpressionCS) {
-		if (newExpressionCS != expressionCS) {
+		if (newExpressionCS != expressionCS)
+		{
 			NotificationChain msgs = null;
 			if (expressionCS != null)
 				msgs = ((InternalEObject)expressionCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSTPackage.COLLECTION_LITERAL_PART_CS__EXPRESSION_CS, null, msgs);
@@ -142,7 +144,8 @@ public class CollectionLiteralPartCSImpl extends ElementCSImpl implements Collec
 	public NotificationChain basicSetLastExpressionCS(ExpCS newLastExpressionCS, NotificationChain msgs) {
 		ExpCS oldLastExpressionCS = lastExpressionCS;
 		lastExpressionCS = newLastExpressionCS;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.COLLECTION_LITERAL_PART_CS__LAST_EXPRESSION_CS, oldLastExpressionCS, newLastExpressionCS);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -155,7 +158,8 @@ public class CollectionLiteralPartCSImpl extends ElementCSImpl implements Collec
 	 * @generated
 	 */
 	public void setLastExpressionCS(ExpCS newLastExpressionCS) {
-		if (newLastExpressionCS != lastExpressionCS) {
+		if (newLastExpressionCS != lastExpressionCS)
+		{
 			NotificationChain msgs = null;
 			if (lastExpressionCS != null)
 				msgs = ((InternalEObject)lastExpressionCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSTPackage.COLLECTION_LITERAL_PART_CS__LAST_EXPRESSION_CS, null, msgs);
@@ -175,7 +179,8 @@ public class CollectionLiteralPartCSImpl extends ElementCSImpl implements Collec
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case EssentialOCLCSTPackage.COLLECTION_LITERAL_PART_CS__EXPRESSION_CS:
 				return basicSetExpressionCS(null, msgs);
 			case EssentialOCLCSTPackage.COLLECTION_LITERAL_PART_CS__LAST_EXPRESSION_CS:
@@ -191,7 +196,8 @@ public class CollectionLiteralPartCSImpl extends ElementCSImpl implements Collec
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case EssentialOCLCSTPackage.COLLECTION_LITERAL_PART_CS__EXPRESSION_CS:
 				return getExpressionCS();
 			case EssentialOCLCSTPackage.COLLECTION_LITERAL_PART_CS__LAST_EXPRESSION_CS:
@@ -207,7 +213,8 @@ public class CollectionLiteralPartCSImpl extends ElementCSImpl implements Collec
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case EssentialOCLCSTPackage.COLLECTION_LITERAL_PART_CS__EXPRESSION_CS:
 				setExpressionCS((ExpCS)newValue);
 				return;
@@ -225,7 +232,8 @@ public class CollectionLiteralPartCSImpl extends ElementCSImpl implements Collec
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case EssentialOCLCSTPackage.COLLECTION_LITERAL_PART_CS__EXPRESSION_CS:
 				setExpressionCS((ExpCS)null);
 				return;
@@ -243,7 +251,8 @@ public class CollectionLiteralPartCSImpl extends ElementCSImpl implements Collec
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case EssentialOCLCSTPackage.COLLECTION_LITERAL_PART_CS__EXPRESSION_CS:
 				return expressionCS != null;
 			case EssentialOCLCSTPackage.COLLECTION_LITERAL_PART_CS__LAST_EXPRESSION_CS:
@@ -252,9 +261,9 @@ public class CollectionLiteralPartCSImpl extends ElementCSImpl implements Collec
 		return super.eIsSet(featureID);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
-		signature.appendParent(this, "@", typeBindings);
-		signature.appendIndex(this);
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(EssentialOCLCSVisitor.class).visitCollectionLiteralPartCS(this);
 	}
 } //CollectionLiteralPartCSImpl

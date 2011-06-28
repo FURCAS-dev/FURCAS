@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IfExpCSImpl.java,v 1.2 2010/05/03 05:37:48 ewillink Exp $
+ * $Id: IfExpCSImpl.java,v 1.3 2011/01/24 21:31:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -21,9 +21,11 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IfExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -107,7 +109,8 @@ public class IfExpCSImpl extends ExpCSImpl implements IfExpCS {
 	public NotificationChain basicSetCondition(ExpCS newCondition, NotificationChain msgs) {
 		ExpCS oldCondition = condition;
 		condition = newCondition;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.IF_EXP_CS__CONDITION, oldCondition, newCondition);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -120,7 +123,8 @@ public class IfExpCSImpl extends ExpCSImpl implements IfExpCS {
 	 * @generated
 	 */
 	public void setCondition(ExpCS newCondition) {
-		if (newCondition != condition) {
+		if (newCondition != condition)
+		{
 			NotificationChain msgs = null;
 			if (condition != null)
 				msgs = ((InternalEObject)condition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSTPackage.IF_EXP_CS__CONDITION, null, msgs);
@@ -150,7 +154,8 @@ public class IfExpCSImpl extends ExpCSImpl implements IfExpCS {
 	public NotificationChain basicSetThenExpression(ExpCS newThenExpression, NotificationChain msgs) {
 		ExpCS oldThenExpression = thenExpression;
 		thenExpression = newThenExpression;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.IF_EXP_CS__THEN_EXPRESSION, oldThenExpression, newThenExpression);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -163,7 +168,8 @@ public class IfExpCSImpl extends ExpCSImpl implements IfExpCS {
 	 * @generated
 	 */
 	public void setThenExpression(ExpCS newThenExpression) {
-		if (newThenExpression != thenExpression) {
+		if (newThenExpression != thenExpression)
+		{
 			NotificationChain msgs = null;
 			if (thenExpression != null)
 				msgs = ((InternalEObject)thenExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSTPackage.IF_EXP_CS__THEN_EXPRESSION, null, msgs);
@@ -193,7 +199,8 @@ public class IfExpCSImpl extends ExpCSImpl implements IfExpCS {
 	public NotificationChain basicSetElseExpression(ExpCS newElseExpression, NotificationChain msgs) {
 		ExpCS oldElseExpression = elseExpression;
 		elseExpression = newElseExpression;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.IF_EXP_CS__ELSE_EXPRESSION, oldElseExpression, newElseExpression);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -206,7 +213,8 @@ public class IfExpCSImpl extends ExpCSImpl implements IfExpCS {
 	 * @generated
 	 */
 	public void setElseExpression(ExpCS newElseExpression) {
-		if (newElseExpression != elseExpression) {
+		if (newElseExpression != elseExpression)
+		{
 			NotificationChain msgs = null;
 			if (elseExpression != null)
 				msgs = ((InternalEObject)elseExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSTPackage.IF_EXP_CS__ELSE_EXPRESSION, null, msgs);
@@ -226,7 +234,8 @@ public class IfExpCSImpl extends ExpCSImpl implements IfExpCS {
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case EssentialOCLCSTPackage.IF_EXP_CS__CONDITION:
 				return basicSetCondition(null, msgs);
 			case EssentialOCLCSTPackage.IF_EXP_CS__THEN_EXPRESSION:
@@ -244,7 +253,8 @@ public class IfExpCSImpl extends ExpCSImpl implements IfExpCS {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case EssentialOCLCSTPackage.IF_EXP_CS__CONDITION:
 				return getCondition();
 			case EssentialOCLCSTPackage.IF_EXP_CS__THEN_EXPRESSION:
@@ -262,7 +272,8 @@ public class IfExpCSImpl extends ExpCSImpl implements IfExpCS {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case EssentialOCLCSTPackage.IF_EXP_CS__CONDITION:
 				setCondition((ExpCS)newValue);
 				return;
@@ -283,7 +294,8 @@ public class IfExpCSImpl extends ExpCSImpl implements IfExpCS {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case EssentialOCLCSTPackage.IF_EXP_CS__CONDITION:
 				setCondition((ExpCS)null);
 				return;
@@ -304,7 +316,8 @@ public class IfExpCSImpl extends ExpCSImpl implements IfExpCS {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case EssentialOCLCSTPackage.IF_EXP_CS__CONDITION:
 				return condition != null;
 			case EssentialOCLCSTPackage.IF_EXP_CS__THEN_EXPRESSION:
@@ -315,4 +328,9 @@ public class IfExpCSImpl extends ExpCSImpl implements IfExpCS {
 		return super.eIsSet(featureID);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(EssentialOCLCSVisitor.class).visitIfExpCS(this);
+	}
 } //IfExpCSImpl

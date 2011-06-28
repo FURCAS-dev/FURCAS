@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: EclipseCon 2011 Tutorial States OCL Constraints
-Bundle-SymbolicName: org.eclipse.ocl.tutorial.eclipsecon2011.states.ocl
-Bundle-Version: 1.0.0
-Bundle-Vendor: Eclipse Modeling Project

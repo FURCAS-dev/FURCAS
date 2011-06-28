@@ -12,13 +12,15 @@
  *
  * </copyright>
  *
- * $Id: NullLiteralExpCSImpl.java,v 1.2 2010/05/03 05:37:56 ewillink Exp $
+ * $Id: NullLiteralExpCSImpl.java,v 1.3 2011/01/24 21:31:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NullLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,4 +51,9 @@ public class NullLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implements N
 		return EssentialOCLCSTPackage.Literals.NULL_LITERAL_EXP_CS;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(EssentialOCLCSVisitor.class).visitNullLiteralExpCS(this);
+	}
 } //NullLiteralExpCSImpl

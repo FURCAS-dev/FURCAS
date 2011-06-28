@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StringLiteralExpCSImpl.java,v 1.2 2010/05/03 05:37:50 ewillink Exp $
+ * $Id: StringLiteralExpCSImpl.java,v 1.3 2011/01/24 21:31:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -21,8 +21,10 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.StringLiteralExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -72,7 +74,8 @@ public class StringLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implements
 	 * @generated
 	 */
 	public EList<String> getName() {
-		if (name == null) {
+		if (name == null)
+		{
 			name = new EDataTypeEList<String>(String.class, this, EssentialOCLCSTPackage.STRING_LITERAL_EXP_CS__NAME);
 		}
 		return name;
@@ -85,7 +88,8 @@ public class StringLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implements
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case EssentialOCLCSTPackage.STRING_LITERAL_EXP_CS__NAME:
 				return getName();
 		}
@@ -100,7 +104,8 @@ public class StringLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implements
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case EssentialOCLCSTPackage.STRING_LITERAL_EXP_CS__NAME:
 				getName().clear();
 				getName().addAll((Collection<? extends String>)newValue);
@@ -116,7 +121,8 @@ public class StringLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implements
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case EssentialOCLCSTPackage.STRING_LITERAL_EXP_CS__NAME:
 				getName().clear();
 				return;
@@ -131,7 +137,8 @@ public class StringLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implements
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case EssentialOCLCSTPackage.STRING_LITERAL_EXP_CS__NAME:
 				return name != null && !name.isEmpty();
 		}
@@ -148,4 +155,9 @@ public class StringLiteralExpCSImpl extends PrimitiveLiteralExpCSImpl implements
 		return super.toString();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(EssentialOCLCSVisitor.class).visitStringLiteralExpCS(this);
+	}
 } //StringLiteralExpCSImpl

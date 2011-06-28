@@ -69,6 +69,7 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
@@ -323,6 +324,11 @@ public class TypeManager extends TypeCaches implements Adapter
 	 * provided the object has exactly one associated OCL expression.
 	 */
 	private Map<Object,URI> uriMap = null;
+
+	/**
+	 * Elements protected from garbage collection
+	 */
+	private Set<Element> lockedElements = new HashSet<Element>();;
 	
 	public TypeManager() {
 		this(new ResourceSetImpl());
@@ -347,6 +353,10 @@ public class TypeManager extends TypeCaches implements Adapter
 
 	public boolean addGlobalTypes(Collection<Type> types) {
 		return globalTypes.addAll(types);
+	}
+
+	public boolean addLockedElement(Element lockedElement) {
+		return lockedElements.add(lockedElement);
 	}
 
 //	public void addPackage(String key, Package pivotPackage) {
@@ -1268,6 +1278,10 @@ public class TypeManager extends TypeCaches implements Adapter
 		addOrphanClass(specializedType);
 		return specializedType;
 	}
+
+	public Set<? extends Element> getLockedElements() {
+		return lockedElements ;
+	}
 	
 	public org.eclipse.ocl.examples.pivot.Package getPivotMetaModel() {
 		if (pivotMetaModel == null) {
@@ -1367,144 +1381,8 @@ public class TypeManager extends TypeCaches implements Adapter
 		return moniker;
 	}
 
-	public <T extends Operation> T getSpecializedOperation(T unspecializedOperation, Map<TemplateParameter, ParameterableElement> templateBindings) {
-		List<List<TemplateParameter>> templateParameterLists = PivotUtil.getAllTemplateParameterLists(unspecializedOperation);
-//		TemplateSignature templateSignature = unspecializedOperation.getOwnedTemplateSignature();
-//		List<TemplateParameter> templateParameters = templateSignature != null ? templateSignature.getParameters() : Collections.<TemplateParameter>emptyList();
-		if ((templateParameterLists == null) || templateParameterLists.isEmpty()) {
-//			if ((templateBindings == null) || templateBindings.isEmpty()) {
-				return unspecializedOperation;
-//			}
-//			throw new IllegalArgumentException(
-//				"Template bindings for non-template type");
-		}
-		boolean isSpecialized = false;
-		List<ParameterableElement> templateArguments = new ArrayList<ParameterableElement>();
-		for (List<TemplateParameter> templateParameters : templateParameterLists) {
-			for (TemplateParameter templateParameter : templateParameters) {
-				ParameterableElement binding = templateBindings.get(templateParameter);
-//				if (binding instanceof UnspecifiedType) {		// FIXME this is a pragmatic fudge
-//					binding = ((UnspecifiedType)binding).getLowerBound();
-//				}
-				if (binding != templateParameter.getParameteredElement()) {
-					isSpecialized = true;
-				}
-				templateArguments.add(binding);
-			}
-		}
-		if (!isSpecialized) {
-			return unspecializedOperation;
-		}
-//		int iMax = templateParameters.size();
-//		if (templateArguments.size() != iMax) {
-//			throw new IllegalArgumentException(
-//				"Incorrect template bindings for template type");
-//		}
-		Map<TemplateParameter, ParameterableElement> allBindings = templateBindings; //new HashMap<TemplateParameter, ParameterableElement>();
-		
-//		for (int i = 0; i < iMax; i++) {
-//			TemplateParameter formalParameter = templateParameters.get(i);
-//			ParameterableElement actualType = templateArguments.get(i);
-//			allBindings.put(formalParameter, actualType);
-//		}
-		String moniker = getSpecializedOperationMoniker(unspecializedOperation, templateArguments, allBindings);
-		T existingSpecializedOperation = findOrphanOperation(ClassUtils.getClass(unspecializedOperation), moniker);
-		if (existingSpecializedOperation != null) {
-			return existingSpecializedOperation;
-		}
-		EClass eClass = unspecializedOperation.eClass();
-		EFactory eFactoryInstance = eClass.getEPackage().getEFactoryInstance();
-		@SuppressWarnings("unchecked")
-		T specializedOperation = (T) eFactoryInstance.create(eClass);
-		specializedOperation.setName(unspecializedOperation.getName());
-		for (List<TemplateParameter> templateParameters : templateParameterLists) {
-			if (templateParameters.size() > 0) {
-				TemplateBinding templateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
-				templateBinding.setSignature(templateParameters.get(0).getSignature());
-				for (TemplateParameter formalParameter : templateParameters) {
-					ParameterableElement actualType = allBindings.get(formalParameter);
-					TemplateParameterSubstitution templateParameterSubstitution = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-					templateParameterSubstitution.setFormal(formalParameter);
-					templateParameterSubstitution.setActual(actualType);
-					templateBinding.getParameterSubstitutions().add(templateParameterSubstitution);
-				}
-				specializedOperation.getTemplateBindings().add(templateBinding);
-			}
-		}
-//		if (specializedOperation instanceof CollectionType) {
-//			((CollectionType)specializedOperation).setElementType((Type) templateArguments.get(0));
-//		}
-		if (unspecializedOperation instanceof Iteration) {
-			Iteration unspecializedIteration = (Iteration)unspecializedOperation;
-			Iteration specializedIteration = (Iteration)specializedOperation;
-			for (Parameter unspecializedIterator : unspecializedIteration.getOwnedIterators()) {
-				Parameter specializedIterator = PivotFactory.eINSTANCE.createParameter();
-				specializedIterator.setName(unspecializedIterator.getName());
-				specializedIterator.setLower(unspecializedIterator.getLower());
-				specializedIterator.setUpper(unspecializedIterator.getUpper());
-				specializedIterator.setIsOrdered(unspecializedIterator.isOrdered());
-				specializedIterator.setIsUnique(unspecializedIterator.isUnique());
-				specializedIterator.setType(getSpecializedType(unspecializedIterator.getType(), allBindings));
-				specializedIteration.getOwnedIterators().add(specializedIterator);
-			}
-			for (Parameter unspecializedAccumulator : unspecializedIteration.getOwnedAccumulators()) {
-				Parameter specializedAccumulator = PivotFactory.eINSTANCE.createParameter();
-				specializedAccumulator.setName(unspecializedAccumulator.getName());
-				specializedAccumulator.setLower(unspecializedAccumulator.getLower());
-				specializedAccumulator.setUpper(unspecializedAccumulator.getUpper());
-				specializedAccumulator.setIsOrdered(unspecializedAccumulator.isOrdered());
-				specializedAccumulator.setIsUnique(unspecializedAccumulator.isUnique());
-				specializedAccumulator.setType(getSpecializedType(unspecializedAccumulator.getType(), allBindings));
-				specializedIteration.getOwnedAccumulators().add(specializedAccumulator);
-			}
-		}
-		for (Parameter unspecializedParameter : unspecializedOperation.getOwnedParameters()) {
-			Parameter specializedParameter = PivotFactory.eINSTANCE.createParameter();
-			specializedParameter.setName(unspecializedParameter.getName());
-			specializedParameter.setLower(unspecializedParameter.getLower());
-			specializedParameter.setUpper(unspecializedParameter.getUpper());
-			specializedParameter.setIsOrdered(unspecializedParameter.isOrdered());
-			specializedParameter.setIsUnique(unspecializedParameter.isUnique());
-			specializedParameter.setType(getSpecializedType(unspecializedParameter.getType(), allBindings));
-			specializedOperation.getOwnedParameters().add(specializedParameter);
-		}
-		Type returnType = unspecializedOperation.getType();
-//		Type unspecializedReturnType = PivotUtil.getUnspecializedTemplateableElement(returnType);
-		Type specializedReturnType = getSpecializedType(returnType, allBindings);
-		specializedOperation.setType(specializedReturnType);
-		specializedOperation.setImplementation(unspecializedOperation.getImplementation());
-		specializedOperation.setImplementationClass(unspecializedOperation.getImplementationClass());
-		specializedOperation.setPrecedence(unspecializedOperation.getPrecedence());
-		specializedOperation.setIsStatic(unspecializedOperation.isStatic());
-		specializedOperation.setUnspecializedElement(unspecializedOperation);
-		addOrphanOperation(specializedOperation);
-		String specializedMoniker = specializedOperation.getMoniker();
-		if (!moniker.equals(specializedMoniker)) {				// FIXME Debugging
-//			System.out.println("C: " + moniker);
-//			System.out.println("P: " + specializedMoniker);
-			String moniker2 = getSpecializedOperationMoniker(unspecializedOperation, templateArguments, allBindings);
-			String specializedMoniker2 = Pivot2Moniker.toString(specializedOperation);
-			if (!moniker2.equals(specializedMoniker2)) {
-				logger.warn("Inconsistent monikers:\n\t" + moniker2 + "\n\t" + specializedMoniker2);
-			}
-		}
-		return specializedOperation;
-	}
-
-	protected String getSpecializedOperationMoniker(Operation operation, List<? extends ParameterableElement> templateArguments,
-			Map<TemplateParameter, ParameterableElement> templateBindings) {
-		Pivot2Moniker s = new Pivot2Moniker(null);
-		s.appendElement((Element) operation.eContainer(), templateBindings);
-		s.append(PivotConstants.MONIKER_SCOPE_SEPARATOR);
-		s.append(operation.getName());
-		s.appendTemplateArguments(templateArguments, templateBindings);
-		s.appendParameters(operation, templateBindings);
-		String moniker = s.toString();
-		return moniker;
-	}
-
 	@Override
-	protected Type getSpecializedType(Type type, Map<TemplateParameter, ParameterableElement> usageBindings) {
+	public Type getSpecializedType(Type type, Map<TemplateParameter, ParameterableElement> usageBindings) {
 		TemplateParameter owningTemplateParameter = type.getOwningTemplateParameter();
 		if (owningTemplateParameter != null) {
 			if (usageBindings == null) {
@@ -1540,6 +1418,12 @@ public class TypeManager extends TypeCaches implements Adapter
 						TemplateParameter aTemplateParameter = parameterableElement.getOwningTemplateParameter();
 						if (aTemplateParameter != null) {
 							ParameterableElement aParameterableElement = usageBindings.get(aTemplateParameter);
+							if (aParameterableElement != null) {
+								typeBindings.put(templateParameter, aParameterableElement);
+							}
+						}
+						else if (parameterableElement instanceof SelfType) {
+							ParameterableElement aParameterableElement = usageBindings.get(null);
 							if (aParameterableElement != null) {
 								typeBindings.put(templateParameter, aParameterableElement);
 							}
@@ -2113,7 +1997,10 @@ public class TypeManager extends TypeCaches implements Adapter
 					for (int i = 0; i < pivotArguments.length; i++) {
 						Type argumentType = pivotArguments[i];
 						Parameter pivotParameter = pivotParameters.get(i);
-						Type parameterType = pivotParameter.getType();
+						Type parameterType = getTypeWithMultiplicity(pivotParameter);
+						if (parameterType instanceof SelfType) {
+							parameterType = pivotOperation.getClass_();
+						}
 						if (!conformsTo(argumentType, parameterType, templateParameterSubstitutions)) {
 							typesConform = false;
 							break;

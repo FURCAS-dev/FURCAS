@@ -3,14 +3,9 @@
 */
 package org.eclipse.ocl.examples.xtext.oclinecore.parser.antlr;
 
-import org.antlr.runtime.CharStream;
-import org.antlr.runtime.TokenSource;
-import org.eclipse.xtext.parser.IParseResult;
-import org.eclipse.xtext.parser.ParseException;
-import org.eclipse.xtext.parser.antlr.XtextTokenStream;
-
 import com.google.inject.Inject;
 
+import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess;
 
 public class OCLinEcoreParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrParser {
@@ -19,30 +14,18 @@ public class OCLinEcoreParser extends org.eclipse.xtext.parser.antlr.AbstractAnt
 	private OCLinEcoreGrammarAccess grammarAccess;
 	
 	@Override
-	protected IParseResult parse(String ruleName, CharStream in) {
-		TokenSource tokenSource = createLexer(in);
-		XtextTokenStream tokenStream = createTokenStream(tokenSource);
-		tokenStream.setInitialHiddenTokens("RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT");
-		org.eclipse.ocl.examples.xtext.oclinecore.parser.antlr.internal.InternalOCLinEcoreParser parser = createParser(tokenStream);
-		parser.setTokenTypeMap(getTokenDefProvider().getTokenDefMap());
-		parser.setSyntaxErrorProvider(getSyntaxErrorProvider());
-		parser.setUnorderedGroupHelper(getUnorderedGroupHelper().get());
-		try {
-			if(ruleName != null)
-				return parser.parse(ruleName);
-			return parser.parse();
-		} catch (Exception re) {
-			throw new ParseException(re.getMessage(),re);
-		}
+	protected void setInitialHiddenTokens(XtextTokenStream tokenStream) {
+		tokenStream.setInitialHiddenTokens("RULE_WS", "RULE_DOCUMENTATION", "RULE_ML_COMMENT", "RULE_SL_COMMENT");
 	}
 	
+	@Override
 	protected org.eclipse.ocl.examples.xtext.oclinecore.parser.antlr.internal.InternalOCLinEcoreParser createParser(XtextTokenStream stream) {
-		return new org.eclipse.ocl.examples.xtext.oclinecore.parser.antlr.internal.InternalOCLinEcoreParser(stream, getElementFactory(), getGrammarAccess());
+		return new org.eclipse.ocl.examples.xtext.oclinecore.parser.antlr.internal.InternalOCLinEcoreParser(stream, getGrammarAccess());
 	}
 	
 	@Override 
 	protected String getDefaultRuleName() {
-		return "OCLinEcoreDocumentCS";
+		return "RootPackageCS";
 	}
 	
 	public OCLinEcoreGrammarAccess getGrammarAccess() {

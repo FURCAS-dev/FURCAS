@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<mreg:ModelRegistrySettings xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mreg="http://www.eclipse.org/ocl/1.0/ModelRegistry">
-  <resource name="">
-    <entry accessor="http://ocl.eclipse.org/tutorial/eclipsecon2011/States" kind="URI" uri="platform:/resource/org.eclipse.ocl.tutorial.eclipsecon2011.states/src-gen/org/eclipse/ocl/tutorial/eclipsecon2011/States.ecore"/>
-  </resource>
-</mreg:ModelRegistrySettings>

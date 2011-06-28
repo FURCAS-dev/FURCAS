@@ -1,0 +1,33 @@
+import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';
+
+package tutorial : tut = 'http://www.eclipse.org/mdt/ocl/oclinecore/tutorial'
+{
+  class Library
+  {
+    attribute name : String;
+    property books#library : Book[*] { composes };
+    property loans : Loan[*] { composes };
+    property members#library : Member[*] { composes };
+  }
+  
+  class Book
+  {
+    attribute name : String;
+    attribute copies : Integer;
+    property library#books : Library[?];
+  }
+  
+  class Member
+  {
+    attribute name : String;
+    property library#members : Library[?];
+  }
+  
+  class Loan
+  {
+    property book : Book;
+    property member : Member;
+    attribute date : ecore::EDate[?];
+  }
+}
+

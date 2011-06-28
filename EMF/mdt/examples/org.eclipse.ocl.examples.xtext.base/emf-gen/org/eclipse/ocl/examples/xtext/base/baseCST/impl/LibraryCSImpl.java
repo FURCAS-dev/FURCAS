@@ -12,18 +12,19 @@
  *
  * </copyright>
  *
- * $Id: LibraryCSImpl.java,v 1.1 2010/05/03 05:25:15 ewillink Exp $
+ * $Id: LibraryCSImpl.java,v 1.2 2011/01/24 20:59:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,7 +48,7 @@ public class LibraryCSImpl extends NamedElementCSImpl implements LibraryCS {
 	 * @generated
 	 * @ordered
 	 */
-	protected PackageCS package_;
+	protected org.eclipse.ocl.examples.pivot.Package package_;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -73,11 +74,13 @@ public class LibraryCSImpl extends NamedElementCSImpl implements LibraryCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PackageCS getPackage() {
-		if (package_ != null && package_.eIsProxy()) {
+	public org.eclipse.ocl.examples.pivot.Package getPackage() {
+		if (package_ != null && ((EObject)package_).eIsProxy())
+		{
 			InternalEObject oldPackage = (InternalEObject)package_;
-			package_ = (PackageCS)eResolveProxy(oldPackage);
-			if (package_ != oldPackage) {
+			package_ = (org.eclipse.ocl.examples.pivot.Package)eResolveProxy(oldPackage);
+			if (package_ != oldPackage)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BaseCSTPackage.LIBRARY_CS__PACKAGE, oldPackage, package_));
 			}
@@ -90,7 +93,7 @@ public class LibraryCSImpl extends NamedElementCSImpl implements LibraryCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PackageCS basicGetPackage() {
+	public org.eclipse.ocl.examples.pivot.Package basicGetPackage() {
 		return package_;
 	}
 
@@ -99,8 +102,9 @@ public class LibraryCSImpl extends NamedElementCSImpl implements LibraryCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPackage(PackageCS newPackage) {
-		PackageCS oldPackage = package_;
+	public void setPackage(org.eclipse.ocl.examples.pivot.Package newPackage)
+	{
+		org.eclipse.ocl.examples.pivot.Package oldPackage = package_;
 		package_ = newPackage;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.LIBRARY_CS__PACKAGE, oldPackage, package_));
@@ -113,7 +117,8 @@ public class LibraryCSImpl extends NamedElementCSImpl implements LibraryCS {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.LIBRARY_CS__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
@@ -128,9 +133,10 @@ public class LibraryCSImpl extends NamedElementCSImpl implements LibraryCS {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.LIBRARY_CS__PACKAGE:
-				setPackage((PackageCS)newValue);
+				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -143,9 +149,10 @@ public class LibraryCSImpl extends NamedElementCSImpl implements LibraryCS {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.LIBRARY_CS__PACKAGE:
-				setPackage((PackageCS)null);
+				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -158,7 +165,8 @@ public class LibraryCSImpl extends NamedElementCSImpl implements LibraryCS {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.LIBRARY_CS__PACKAGE:
 				return package_ != null;
 		}
@@ -175,4 +183,8 @@ public class LibraryCSImpl extends NamedElementCSImpl implements LibraryCS {
 		return super.toString();
 	}
 
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitLibraryCS(this);
+	}
 } //LibraryCSImpl

@@ -28,6 +28,7 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
  * 
  * @since 3.1
  */
+@Deprecated
 public class NumericMinusOperation extends AbstractNumericBinaryOperation
 {
 	public static final NumericMinusOperation INSTANCE = new NumericMinusOperation();

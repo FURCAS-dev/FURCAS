@@ -5,27 +5,26 @@
     editDirectory="/org.eclipse.ocl.examples.xtext.oclstdlib.edit/emf-gen" editorDirectory="/org.eclipse.ocl.examples.xtext.oclstdlib.editor/emf-gen"
     modelPluginID="org.eclipse.ocl.examples.xtext.oclstdlib" forceOverwrite="true"
     modelName="OCLstdlib" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    testsDirectory="/org.eclipse.ocl.examples.xtext.oclstdlib.tests/emf-gen" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.ocl.examples.xtext.oclstdlib.edit"
-    editorPluginID="org.eclipse.ocl.examples.xtext.oclstdlib.editor" usedGenPackages="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.genmodel#//baseCST">
+    codeFormatting="true" testsDirectory="/org.eclipse.ocl.examples.xtext.oclstdlib.tests/emf-gen"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    editPluginID="org.eclipse.ocl.examples.xtext.oclstdlib.edit" editorPluginID="org.eclipse.ocl.examples.xtext.oclstdlib.editor"
+    usedGenPackages="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.genmodel#//baseCST ../../org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.genmodel#//essentialOCLCST ../../org.eclipse.ocl.examples.pivot/model/Pivot.merged.genmodel#//pivot platform:/plugin/org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types">
   <foreignModel>OCLstdlibCST.ecore</foreignModel>
   <genPackages prefix="OCLstdlibCST" basePackage="org.eclipse.ocl.examples.xtext.oclstdlib"
       disposableProviderFactory="true" ecorePackage="OCLstdlibCST.ecore#/">
-    <genClasses ecoreClass="OCLstdlibCST.ecore#//LibClassCS">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLstdlibCST.ecore#//LibClassCS/class"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLstdlibCST.ecore#//LibClassCS/conformsTo"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLstdlibCST.ecore#//LibClassCS/iterations"/>
-    </genClasses>
-    <genClasses ecoreClass="OCLstdlibCST.ecore#//LibIterationCS">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLstdlibCST.ecore#//LibIterationCS/class"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLstdlibCST.ecore#//LibIterationCS/iterators"/>
-    </genClasses>
+    <genClasses ecoreClass="OCLstdlibCST.ecore#//LibIterationCS"/>
     <genClasses ecoreClass="OCLstdlibCST.ecore#//LibOperationCS">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLstdlibCST.ecore#//LibOperationCS/class"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OCLstdlibCST.ecore#//LibOperationCS/precedence"/>
     </genClasses>
-    <genClasses ecoreClass="OCLstdlibCST.ecore#//LibPropertyCS">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLstdlibCST.ecore#//LibPropertyCS/class"/>
+    <genClasses ecoreClass="OCLstdlibCST.ecore#//LibPropertyCS"/>
+    <genClasses ecoreClass="OCLstdlibCST.ecore#//LibRootPackageCS">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference OCLstdlibCST.ecore#//LibRootPackageCS/ownedPrecedence"/>
     </genClasses>
-    <genClasses ecoreClass="OCLstdlibCST.ecore#//LibRootCS"/>
+    <genClasses image="false" ecoreClass="OCLstdlibCST.ecore#//JavaImplementationCS">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference OCLstdlibCST.ecore#//JavaImplementationCS/implementation"/>
+    </genClasses>
+    <genClasses ecoreClass="OCLstdlibCST.ecore#//PrecedenceCS">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute OCLstdlibCST.ecore#//PrecedenceCS/rightAssociative"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

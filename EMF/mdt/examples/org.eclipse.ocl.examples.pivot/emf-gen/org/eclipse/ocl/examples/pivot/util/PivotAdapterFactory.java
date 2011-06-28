@@ -82,6 +82,7 @@ import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
+import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.SendSignalAction;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
@@ -497,6 +498,11 @@ public class PivotAdapterFactory
 			public Adapter caseRealLiteralExp(RealLiteralExp object)
 			{
 				return createRealLiteralExpAdapter();
+			}
+			@Override
+			public Adapter caseSelfType(SelfType object)
+			{
+				return createSelfTypeAdapter();
 			}
 			@Override
 			public Adapter caseSendSignalAction(SendSignalAction object)
@@ -1305,6 +1311,21 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createRealLiteralExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.SelfType <em>Self Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.pivot.SelfType
+	 * @generated
+	 */
+	public Adapter createSelfTypeAdapter()
+	{
 		return null;
 	}
 

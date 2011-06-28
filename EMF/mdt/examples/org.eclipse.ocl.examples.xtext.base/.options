@@ -5,3 +5,7 @@ org.eclipse.ocl.examples.xtext.base/lookup=false
 
 # Turn on general work tracing
 org.eclipse.ocl.examples.xtext.base/work=false
+
+# Turn on c2 2 pivot continuation tracing
+org.eclipse.ocl.examples.xtext.base/continuation=false
+

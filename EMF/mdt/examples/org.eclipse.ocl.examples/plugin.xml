@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: plugin.xml,v 1.1 2010/03/11 10:16:52 ewillink Exp $
+ * $Id: plugin.xml,v 1.2 2011/05/31 15:02:07 asanchez Exp $
  */
 -->
 <?eclipse version="3.0"?>
@@ -34,6 +34,16 @@
             name="%OCL_Interpreter_name"
             icon="$nl$/icons/elcl16/oclconsole_co.gif">
          <description>%OCL_Interpreter_description</description>
+      </wizard>
+     <wizard id="org.eclipse.ocl.examples.ocl.oclinecoretutorial"           
+            canFinishEarly="true"
+            category="org.eclipse.ui.Examples/org.eclipse.ocl.examples.category"
+            class="org.eclipse.ocl.examples.internal.wizard.OCLinEcoreTutorialWizard"
+            hasPages="false"
+            project="true"
+            name="%OCLinEcore_Tutorial_name"
+            icon="$nl$/icons/OCLModelFile.gif">
+         <description>%OCLinEcore_Tutorial_description</description>
       </wizard>
      <wizard id="org.eclipse.ocl.examples.ocl.royalandloyal"           
             canFinishEarly="true"

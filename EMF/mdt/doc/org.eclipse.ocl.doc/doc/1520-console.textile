@@ -1,0 +1,69 @@
+h2(#InteractiveOCL). Console
+
+There are two interactive OCL consoles that enable OCL expressions to be evaluated on a model.
+
+The mature *Interactive Console* may be created by invoking *Show OCL Console* from the right button menu of some model editors such as the *Sample Ecore Model Editor*. Alternatively the *Console* view may be created by *Window->Show View->Console* followed by selecting *Interactive OCL* from the *Open Console* pull-down in the *Console* View tool bar. See the "OCLinEcore Tutorial":#OCLinEcoreTutorial-Console for detailed step-by-step pictures.
+
+The pivot *Interactive Xtext Console* may be similarly created by *Show Xtext OCL Console* from the menu or *Interactive Xtext OCL* from the pull-down.
+
+The two consoles should exhibit similar behaviors, however not all facilities of the mature console have yet been reproduced on the new, and only the new console has the ability to load Complete OCL modules to complement the meta-models.
+
+!{width:100%}images/1520-console.png(Console)!
+
+The Console, shown in the bottom half of the figure, comprises a combined Title and Tool Bar, Results Panel and Entry Panel.
+
+h3. Context Object Selection
+
+Expressions are evaluated with respect to a context object @self@ that has a corresponding metamodel type. This object is defined by selecting any widget whose implementation is adaptable to an EObject. Therefore selecting an EAttribute in the Sample Ecore Editor will make the selected EAttribute @self@ and EAttribute the metamodel type. Inthe fugire selecting the Member named m2 in the Sample Reflective Ecore Model Editor has made Member the select type of @self@ and m2 the selected context object. For the pivot Console there is additional support to use selections from the Outline of an Xtext editor as the context object.
+
+The pivot Console displays the selected object and type in the Console title.
+
+The mature Console relies on the platform selection mechanism to show the selected object in the overall Eclipse Status display at the bottom left of the workspace window. This display may be lost when the selection is changed to a non-EObject selection.
+
+h3. Editing
+
+The bottom panel supports entry of a multi-line expression to be evaluated. The expression is evaluated when *Enter* is entered.
+
+The mature Console has hand-coded syntax highlighting and context assist that may be activated by typing *Ctrl* + *Space*.
+
+The pivot Console uses the Xtext EssentialOCL editor and largely auto-generated syntax highlighting, error indications, hover text, quick fixes and context assist that may be activated by typing *Ctrl* + *Space*.
+
+The content assist for the pivot Console has not yet been customized, so the mature Console content assist is probably more comprehensive, however the pivot Console shares the same library definitions as the other editors and so is more consistent.
+
+h3. Editor Keys
+
+The *Page-Up* and *Page-Down* keys may be used to scroll through the history of input commands enabling previous commands to be re-used. Use of the Page keys is necessary since the input is potentially multi-line and so *Up* and *Down* navigate over the multiple lines.
+
+h3. Results
+
+The larger middle panel displays the results of each evaluation in a scrolling window.
+
+h3. Tool Bar
+
+h4. Ecore/UML binding
+
+The mature Console provides a selection to determine whether the context object has a type defined by an Ecore or UML metamodel. This selection is not required for the pivot Console which automatically converts Ecore or UML models to Pivot models.
+
+h4. M1/M2
+
+The mature Console provides a selection to determine whether the selected metamodel binding is that for objects (M2) or types (M1). This selection is not needed for the Pivot Console since the pivot metamodel is an instance of itself.
+
+h4. Clear Console
+
+The standard clear console functionality clears the results pane.
+
+h4. Close Console
+
+The standard close console functionality closes the current console.
+
+h4. Load/Save an expression
+
+The mature Console provides an ability to save and reload edited expressions as XMI files. The XMI is a pragmatic Eclipse Ecore realisation of the OCL specification for which XMI interchange is not realisable.
+
+The pivot Console provides a similar ability to save and reload edited expressions as XMI files. The XMI is a prototype that might evolve and be adopted by a future version of the OCL specification. This functionality has not been properly tested for the Indigo release.
+
+h4. Load Resource
+
+The pivot Console supports loading additional modeling resources into the evaluator. This is useful primarily for loading Complete OCL documents, so that evaluation uses the complemented models. This functionality has not been properly tested for the Indigo release.
+
+ 
