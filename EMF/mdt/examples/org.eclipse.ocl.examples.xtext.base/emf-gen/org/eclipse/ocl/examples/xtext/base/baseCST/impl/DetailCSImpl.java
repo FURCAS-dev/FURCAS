@@ -12,21 +12,19 @@
  *
  * </copyright>
  *
- * $Id: DetailCSImpl.java,v 1.4 2010/08/17 18:53:39 ewillink Exp $
+ * $Id: DetailCSImpl.java,v 1.5 2011/01/24 20:59:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
 import java.util.Collection;
-import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
-import org.eclipse.ocl.examples.xtext.base.util.Signature;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,55 +33,13 @@ import org.eclipse.ocl.examples.xtext.base.util.Signature;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.DetailCSImpl#getIdName <em>Id Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.DetailCSImpl#getStringName <em>String Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.DetailCSImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class DetailCSImpl extends ElementCSImpl implements DetailCS {
-	/**
-	 * The default value of the '{@link #getIdName() <em>Id Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIdName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String ID_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getIdName() <em>Id Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIdName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String idName = ID_NAME_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getStringName() <em>String Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStringName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String STRING_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getStringName() <em>String Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStringName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String stringName = STRING_NAME_EDEFAULT;
-
+public class DetailCSImpl extends NamedElementCSImpl implements DetailCS {
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute list.
 	 * <!-- begin-user-doc -->
@@ -118,50 +74,9 @@ public class DetailCSImpl extends ElementCSImpl implements DetailCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getIdName() {
-		return idName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setIdName(String newIdName) {
-		String oldIdName = idName;
-		idName = newIdName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.DETAIL_CS__ID_NAME, oldIdName, idName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getStringName() {
-		return stringName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setStringName(String newStringName) {
-		String oldStringName = stringName;
-		stringName = newStringName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.DETAIL_CS__STRING_NAME, oldStringName, stringName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<String> getValue() {
-		if (value == null) {
+		if (value == null)
+		{
 			value = new EDataTypeUniqueEList<String>(String.class, this, BaseCSTPackage.DETAIL_CS__VALUE);
 		}
 		return value;
@@ -174,11 +89,8 @@ public class DetailCSImpl extends ElementCSImpl implements DetailCS {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case BaseCSTPackage.DETAIL_CS__ID_NAME:
-				return getIdName();
-			case BaseCSTPackage.DETAIL_CS__STRING_NAME:
-				return getStringName();
+		switch (featureID)
+		{
 			case BaseCSTPackage.DETAIL_CS__VALUE:
 				return getValue();
 		}
@@ -193,13 +105,8 @@ public class DetailCSImpl extends ElementCSImpl implements DetailCS {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case BaseCSTPackage.DETAIL_CS__ID_NAME:
-				setIdName((String)newValue);
-				return;
-			case BaseCSTPackage.DETAIL_CS__STRING_NAME:
-				setStringName((String)newValue);
-				return;
+		switch (featureID)
+		{
 			case BaseCSTPackage.DETAIL_CS__VALUE:
 				getValue().clear();
 				getValue().addAll((Collection<? extends String>)newValue);
@@ -215,13 +122,8 @@ public class DetailCSImpl extends ElementCSImpl implements DetailCS {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case BaseCSTPackage.DETAIL_CS__ID_NAME:
-				setIdName(ID_NAME_EDEFAULT);
-				return;
-			case BaseCSTPackage.DETAIL_CS__STRING_NAME:
-				setStringName(STRING_NAME_EDEFAULT);
-				return;
+		switch (featureID)
+		{
 			case BaseCSTPackage.DETAIL_CS__VALUE:
 				getValue().clear();
 				return;
@@ -236,11 +138,8 @@ public class DetailCSImpl extends ElementCSImpl implements DetailCS {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case BaseCSTPackage.DETAIL_CS__ID_NAME:
-				return ID_NAME_EDEFAULT == null ? idName != null : !ID_NAME_EDEFAULT.equals(idName);
-			case BaseCSTPackage.DETAIL_CS__STRING_NAME:
-				return STRING_NAME_EDEFAULT == null ? stringName != null : !STRING_NAME_EDEFAULT.equals(stringName);
+		switch (featureID)
+		{
 			case BaseCSTPackage.DETAIL_CS__VALUE:
 				return value != null && !value.isEmpty();
 		}
@@ -258,8 +157,7 @@ public class DetailCSImpl extends ElementCSImpl implements DetailCS {
 	}
 
 	@Override
-	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
-		signature.appendParent(this, "/", typeBindings); //$NON-NLS-1$
-		signature.append(getIdName());
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitDetailCS(this);
 	}
 } //DetailCSImpl

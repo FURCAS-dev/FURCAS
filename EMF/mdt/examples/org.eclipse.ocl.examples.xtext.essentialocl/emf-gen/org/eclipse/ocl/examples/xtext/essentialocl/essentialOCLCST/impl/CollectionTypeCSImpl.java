@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeCSImpl.java,v 1.5 2010/05/24 08:55:47 ewillink Exp $
+ * $Id: CollectionTypeCSImpl.java,v 1.6 2011/01/24 21:31:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -21,12 +21,12 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.NamedElementCSImpl;
-import org.eclipse.ocl.examples.xtext.base.util.Signature;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
+import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,7 +35,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLC
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.CollectionTypeCSImpl#getTypeCS <em>Type CS</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.CollectionTypeCSImpl#getOwnedType <em>Owned Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,15 +43,14 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLC
  */
 public class CollectionTypeCSImpl extends NamedElementCSImpl implements CollectionTypeCS {
 	/**
-	 * The cached value of the '{@link #getTypeCS() <em>Type CS</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedType() <em>Owned Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTypeCS()
+	 * @see #getOwnedType()
 	 * @generated
 	 * @ordered
 	 */
-	protected TypeCS typeCS;
-
+	protected TypedRefCS ownedType;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -76,8 +75,9 @@ public class CollectionTypeCSImpl extends NamedElementCSImpl implements Collecti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeCS getTypeCS() {
-		return typeCS;
+	public TypedRefCS getOwnedType()
+	{
+		return ownedType;
 	}
 
 	/**
@@ -85,11 +85,13 @@ public class CollectionTypeCSImpl extends NamedElementCSImpl implements Collecti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTypeCS(TypeCS newTypeCS, NotificationChain msgs) {
-		TypeCS oldTypeCS = typeCS;
-		typeCS = newTypeCS;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.COLLECTION_TYPE_CS__TYPE_CS, oldTypeCS, newTypeCS);
+	public NotificationChain basicSetOwnedType(TypedRefCS newOwnedType, NotificationChain msgs)
+	{
+		TypedRefCS oldOwnedType = ownedType;
+		ownedType = newOwnedType;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.COLLECTION_TYPE_CS__OWNED_TYPE, oldOwnedType, newOwnedType);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -100,18 +102,20 @@ public class CollectionTypeCSImpl extends NamedElementCSImpl implements Collecti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTypeCS(TypeCS newTypeCS) {
-		if (newTypeCS != typeCS) {
+	public void setOwnedType(TypedRefCS newOwnedType)
+	{
+		if (newOwnedType != ownedType)
+		{
 			NotificationChain msgs = null;
-			if (typeCS != null)
-				msgs = ((InternalEObject)typeCS).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSTPackage.COLLECTION_TYPE_CS__TYPE_CS, null, msgs);
-			if (newTypeCS != null)
-				msgs = ((InternalEObject)newTypeCS).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSTPackage.COLLECTION_TYPE_CS__TYPE_CS, null, msgs);
-			msgs = basicSetTypeCS(newTypeCS, msgs);
+			if (ownedType != null)
+				msgs = ((InternalEObject)ownedType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSTPackage.COLLECTION_TYPE_CS__OWNED_TYPE, null, msgs);
+			if (newOwnedType != null)
+				msgs = ((InternalEObject)newOwnedType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EssentialOCLCSTPackage.COLLECTION_TYPE_CS__OWNED_TYPE, null, msgs);
+			msgs = basicSetOwnedType(newOwnedType, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.COLLECTION_TYPE_CS__TYPE_CS, newTypeCS, newTypeCS));
+			eNotify(new ENotificationImpl(this, Notification.SET, EssentialOCLCSTPackage.COLLECTION_TYPE_CS__OWNED_TYPE, newOwnedType, newOwnedType));
 	}
 
 	/**
@@ -121,9 +125,10 @@ public class CollectionTypeCSImpl extends NamedElementCSImpl implements Collecti
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case EssentialOCLCSTPackage.COLLECTION_TYPE_CS__TYPE_CS:
-				return basicSetTypeCS(null, msgs);
+		switch (featureID)
+		{
+			case EssentialOCLCSTPackage.COLLECTION_TYPE_CS__OWNED_TYPE:
+				return basicSetOwnedType(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -135,9 +140,10 @@ public class CollectionTypeCSImpl extends NamedElementCSImpl implements Collecti
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case EssentialOCLCSTPackage.COLLECTION_TYPE_CS__TYPE_CS:
-				return getTypeCS();
+		switch (featureID)
+		{
+			case EssentialOCLCSTPackage.COLLECTION_TYPE_CS__OWNED_TYPE:
+				return getOwnedType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -149,9 +155,10 @@ public class CollectionTypeCSImpl extends NamedElementCSImpl implements Collecti
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case EssentialOCLCSTPackage.COLLECTION_TYPE_CS__TYPE_CS:
-				setTypeCS((TypeCS)newValue);
+		switch (featureID)
+		{
+			case EssentialOCLCSTPackage.COLLECTION_TYPE_CS__OWNED_TYPE:
+				setOwnedType((TypedRefCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -164,9 +171,10 @@ public class CollectionTypeCSImpl extends NamedElementCSImpl implements Collecti
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case EssentialOCLCSTPackage.COLLECTION_TYPE_CS__TYPE_CS:
-				setTypeCS((TypeCS)null);
+		switch (featureID)
+		{
+			case EssentialOCLCSTPackage.COLLECTION_TYPE_CS__OWNED_TYPE:
+				setOwnedType((TypedRefCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -179,35 +187,17 @@ public class CollectionTypeCSImpl extends NamedElementCSImpl implements Collecti
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case EssentialOCLCSTPackage.COLLECTION_TYPE_CS__TYPE_CS:
-				return typeCS != null;
+		switch (featureID)
+		{
+			case EssentialOCLCSTPackage.COLLECTION_TYPE_CS__OWNED_TYPE:
+				return ownedType != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-	private String signature = null;
-	
+	@SuppressWarnings("unchecked")
 	@Override
-	public void setName(String newName) {
-		signature = null;
-		super.setName(newName);
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(EssentialOCLCSVisitor.class).visitCollectionTypeCS(this);
 	}
-
-	@Override
-	public void getSignature(Signature resultSignature, TypeBindingsCS typeBindings) {
-		if (signature == null) {
-			Signature s = new Signature();
-			s.appendName(this);
-			s.append('(');
-			TypeCS type = getTypeCS();
-			if (type != null) {
-				type.getSignature(s, typeBindings);
-			}
-			s.append(')');
-			signature = s.toString();
-		}
-		resultSignature.append(signature);
-	}
-
 } //CollectionTypeCSImpl

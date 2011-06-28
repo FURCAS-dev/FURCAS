@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationCS.java,v 1.3 2010/05/22 18:49:59 ewillink Exp $
+ * $Id: OperationCS.java,v 1.4 2011/01/24 20:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -27,77 +27,77 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS#getParameters <em>Parameters</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS#getTypeParameters <em>Type Parameters</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS#getOwner <em>Owner</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS#getOwningClass <em>Owning Class</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS#getOwnedParameter <em>Owned Parameter</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS#getOwnedException <em>Owned Exception</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getOperationCS()
- * @model abstract="true"
+ * @model
  * @generated
  */
-public interface OperationCS extends FeatureCS {
+public interface OperationCS extends FeatureCS, TemplateableElementCS {
 	/**
-	 * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Parameter</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS}.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS#getOwner <em>Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Parameters</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Owned Parameter</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Parameters</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getOperationCS_Parameters()
+	 * @return the value of the '<em>Owned Parameter</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getOperationCS_OwnedParameter()
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS#getOwner
 	 * @model opposite="owner" containment="true"
 	 * @generated
 	 */
-	EList<ParameterCS> getParameters();
+	EList<ParameterCS> getOwnedParameter();
 
 	/**
-	 * Returns the value of the '<em><b>Type Parameters</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS}.
+	 * Returns the value of the '<em><b>Owned Exception</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type Parameters</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Owned Exception</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type Parameters</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getOperationCS_TypeParameters()
+	 * @return the value of the '<em>Owned Exception</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getOperationCS_OwnedException()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<TypeParameterCS> getTypeParameters();
+	EList<TypedRefCS> getOwnedException();
 
 	/**
-	 * Returns the value of the '<em><b>Owner</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS#getOperations <em>Operations</em>}'.
+	 * Returns the value of the '<em><b>Owning Class</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS#getOwnedOperation <em>Owned Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owner</em>' container reference isn't clear,
+	 * If the meaning of the '<em>Owning Class</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owner</em>' container reference.
-	 * @see #setOwner(ClassCS)
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getOperationCS_Owner()
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS#getOperations
-	 * @model opposite="operations" transient="false"
+	 * @return the value of the '<em>Owning Class</em>' container reference.
+	 * @see #setOwningClass(ClassCS)
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getOperationCS_OwningClass()
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS#getOwnedOperation
+	 * @model opposite="ownedOperation" transient="false"
 	 * @generated
 	 */
-	ClassCS getOwner();
+	ClassCS getOwningClass();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS#getOwner <em>Owner</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS#getOwningClass <em>Owning Class</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owner</em>' container reference.
-	 * @see #getOwner()
+	 * @param value the new value of the '<em>Owning Class</em>' container reference.
+	 * @see #getOwningClass()
 	 * @generated
 	 */
-	void setOwner(ClassCS value);
+	void setOwningClass(ClassCS value);
 
 } // OperationCS

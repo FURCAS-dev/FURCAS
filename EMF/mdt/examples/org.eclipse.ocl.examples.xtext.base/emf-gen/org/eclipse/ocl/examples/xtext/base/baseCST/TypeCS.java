@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeCS.java,v 1.2 2010/05/16 19:18:01 ewillink Exp $
+ * $Id: TypeCS.java,v 1.3 2011/01/24 20:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -28,13 +28,5 @@ package org.eclipse.ocl.examples.xtext.base.baseCST;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface TypeCS extends ElementCS {
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation"
-	 * @generated
-	 */
-	String getSignature();
+public interface TypeCS extends MonikeredElementCS {
 } // TypeCS

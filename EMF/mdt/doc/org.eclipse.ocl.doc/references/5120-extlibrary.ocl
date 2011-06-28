@@ -1,0 +1,19 @@
+import 'platform:/resource/org.eclipse.emf.examples.library/model/extlibrary.ecore'
+
+package extlibrary
+
+ context Library
+ -- get all books with a title in a library and its branches (recursively)
+ def: getBooks(title : String) : Set(Book) =
+     books->select(b | b.title = title)->asSet()->union(
+         branches.getBooks(title)->asSet())
+
+ context Book
+ -- the library containing a book
+ def: library : Library = Library.allInstances()->any(books->includes(self))
+
+ -- book titles are unique within their library branch (and its sub-branches)
+ inv unique_title: not library.oclIsUndefined() implies
+      library.getBooks(title) = Set{self}
+  
+ endpackage

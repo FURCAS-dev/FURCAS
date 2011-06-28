@@ -58,6 +58,7 @@ import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
+import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.StateExp;
 import org.eclipse.ocl.examples.pivot.StringLiteralExp;
 import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
@@ -80,11 +81,6 @@ import org.eclipse.ocl.examples.pivot.values.impl.IntegerRangeValueImpl;
 
 /**
  * An evaluation visitor implementation for OCL expressions.
- * 
- * @author Tim Klinger (tklinger)
- * @author Christian W. Damus (cdamus)
- * 
- * @since 1.3
  */
 public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 {
@@ -133,7 +129,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
  		Operation dynamicOperation = staticOperation;
 		if (!staticOperation.isStatic()) {
 			Type dynamicSourceType = sourceValue.getType(typeManager, staticSourceType);
-	 		dynamicOperation = typeManager.getDynamicOperation(dynamicSourceType, staticOperation);
+			dynamicOperation = typeManager.getDynamicOperation(dynamicSourceType, staticOperation);
 	 		if (dynamicOperation == null) {
 	 			dynamicOperation = staticOperation;
 	 		}
@@ -153,6 +149,57 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		Value result = null;
 		try {
 			result = implementation.evaluate(undecoratedVisitor, sourceValue, callExp);
+		}
+		catch (EvaluationException e) {
+			throw e;
+		}
+		catch (Exception e) {
+			// This is a backstop. Library operations should catch their own exceptions
+			//  and produce a better reason as a result.
+			return evaluationEnvironment.throwInvalidEvaluation(e, callExp, sourceValue, "Failed to evaluate '" + dynamicOperation + "'");
+		}
+		if (result == null) {
+			return evaluationEnvironment.throwInvalidEvaluation("Java-Null result from '" + dynamicOperation + "'", callExp, sourceValue);
+		}
+		return result;
+	}
+	
+	protected Value handleOclSelfCallExp(CallExp callExp, Operation staticOperation) throws InvalidEvaluationException {
+		EvaluationVisitor undecoratedVisitor = getUndecoratedVisitor();
+		OclExpression source = callExp.getSource();
+		Type staticSourceType = source.getType();
+		Value sourceValue;
+		try {
+			sourceValue = source.accept(undecoratedVisitor);
+		}
+		catch (InvalidEvaluationException e) {
+			sourceValue = typeManager.getValueFactory().getInvalid();	// FIXME ?? propagate part of environment
+		}
+ 		Type dynamicSourceType = sourceValue.getType(typeManager, staticSourceType);
+		List<OclExpression> args = ((OperationCallExp)callExp).getArguments();
+		OclExpression arg = args.get(0);
+		Value argValue =  arg.accept(undecoratedVisitor);
+		Type argType = argValue.getType(typeManager, arg.getType());
+		Type commonType = typeManager.getCommonType(dynamicSourceType, argType, null);
+		Operation dynamicOperation = typeManager.getDynamicOperation(commonType, staticOperation);
+ 		if (dynamicOperation == null) {
+ 			dynamicOperation = staticOperation;
+ 		}
+ 		Value.BinaryOperation implementation;
+		try {
+			implementation = (Value.BinaryOperation)typeManager.getImplementation(dynamicOperation);
+		} catch (Exception e) {
+			String implementationClass = dynamicOperation.getImplementationClass();
+			if (implementationClass != null) {
+				return evaluationEnvironment.throwInvalidEvaluation(e, callExp, null, EvaluatorMessages.ImplementationClassLoadFailure, implementationClass);
+			}
+			else {
+				return evaluationEnvironment.throwInvalidEvaluation(e, callExp, null, "Failed to load implementation for '" + dynamicOperation + "'");
+			}
+		}
+		Value result = null;
+		try {
+			result = implementation.evaluate(typeManager.getValueFactory(), sourceValue, argValue);
 		}
 		catch (EvaluationException e) {
 			throw e;
@@ -474,7 +521,13 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 */
 	@Override
     public Value visitOperationCallExp(OperationCallExp operationCallExp) {
-		return handleCallExp(operationCallExp, operationCallExp.getReferredOperation());
+		Operation referredOperation = operationCallExp.getReferredOperation();
+		List<Parameter> ownedParameters = referredOperation.getOwnedParameters();
+		if ((ownedParameters.size() == 1) && (ownedParameters.get(0).getType() instanceof SelfType)) {
+			return handleOclSelfCallExp(operationCallExp, referredOperation); }
+		else {
+			return handleCallExp(operationCallExp, referredOperation);
+		}
 	}
 
 	/**

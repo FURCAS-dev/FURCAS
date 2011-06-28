@@ -1,0 +1,14 @@
+// Copied from org.eclipse.ocl.ecore.tests.DocumentationExamples.java
+
+		// create an OCL helper object
+		OCLHelper<EClassifier, EOperation, EStructuralFeature, Constraint> helper =
+				ocl.createOCLHelper();
+
+		// set the OCL context classifier
+		helper.setContext(EXTLibraryPackage.Literals.LIBRARY);
+
+		Constraint invariant = helper.createInvariant(
+		    "books->forAll(b1, b2 | b1 <> b2 implies b1.title <> b2.title)");
+		   
+		OCLExpression<EClassifier> query = helper.createQuery(
+		    "books->collect(b : Book | b.category)->asSet()");

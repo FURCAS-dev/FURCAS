@@ -1,0 +1,9 @@
+// Copied from org.eclipse.ocl.ecore.tests.DocumentationExamples.java
+
+		// only print the set of book categories for valid libraries
+		for (Library next : constraintEval.select(libraries)) {
+		    @SuppressWarnings("unchecked")
+		    Set<BookCategory> categories = (Set<BookCategory>) queryEval.evaluate(next);
+		    
+		    System.out.printf("%s: %s%n", next.getName(), categories);
+		}

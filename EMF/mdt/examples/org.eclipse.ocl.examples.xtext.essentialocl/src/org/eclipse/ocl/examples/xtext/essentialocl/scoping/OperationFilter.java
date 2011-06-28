@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
+import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -147,7 +148,6 @@ public class OperationFilter extends AbstractOperationFilter
 	@Override
 	protected void installBindings(EnvironmentView environmentView, Type forType, EObject eObject,
 			Map<TemplateParameter, ParameterableElement> bindings) {
-		installOclSelfBinding(forType, eObject, bindings);
 		List<Parameter> parameters = ((Operation)eObject).getOwnedParameters();
 		int iMax = parameters.size();
 		if (iMax > 0) {
@@ -203,6 +203,9 @@ public class OperationFilter extends AbstractOperationFilter
 					return false;
 				}
 				Type candidateType = typeManager.getTypeWithMultiplicity(candidateParameter);
+				if (candidateType instanceof SelfType) {
+					candidateType = candidateOperation.getClass_();
+				}
 				Type expressionType = expression.getType();
 				expressionType = PivotUtil.getBehavioralType(expressionType);			// FIXME make this a general facility
 				if (!typeManager.conformsTo(expressionType, candidateType, bindings)) {

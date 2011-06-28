@@ -1,8 +1,7 @@
 h2(#OCLinEcoreTutorial). OCLinEcore tutorial
 
 This tutorial was updated for Eclipse Indigo; Eclipse 3.7, EMF 2.7, OCL 3.1.
-
-fn1. Since it was prepared before release, the precise 3.1.0.v20110nnnn qualification in screenshots is earlier than final release.
+* Since it was prepared before release, the precise 3.1.0.v20110nnnn qualification in screenshots is earlier than final release.
 
 h3. Overview 
 
@@ -23,7 +22,7 @@ You may then
 h3. References
 
 This tutorial assumes that the reader is familiar with generating models using EMF.
-The reader is referred to "Generating an EMF Model":../../../org.eclipse.emf.doc/tutorials/clibmod/clibmod.html.
+The reader is referred to "Generating an EMF Model":../../org.eclipse.emf.doc/tutorials/clibmod/clibmod.html.
 
 Other references:
 * The Object Constraint Language: Getting Your Models Ready for MDA. Jos Warmer and Anneke Kleppe. (Addison-Wesley Object Technology) 
@@ -114,9 +113,16 @@ Left-click on *Finish*.
 
 h4. Create a New Ecore Model
 
-We will now create a new model for this example; so right-click on the *model* folder
-in the *Tutorial* project to define the target folder and pop-up the context-sensitive menu
-and select *New->Other...*.
+We will now create a new model for this example.
+
+With many alternative editors for *.ecore files, the Eclipse platform is not always sure which to use; it seems to prefer the OCLinEcore editor over the Sample Ecore Editor, so there is an easy and harder way to create a new file.
+
+For either approach, first right-click on the *model* folder
+in the *Tutorial* project to define the target folder and pop-up the context-sensitive menu.
+
+The easy was is to select *New->File...* and enter *Tutorial.ecore*. If this opens up a text editor showing "package Tutorial" ... then the easy way works. You may skip the 'harder way' since you have already successfully opened your Ecore file with the OCLinEcore editor. 
+
+The harder way is to select *New->Other...*.
 
 In the *New* dialog left-click to expand *Eclipse Modeling Framework*, then left-click to select
 *Ecore Model*.
@@ -133,7 +139,7 @@ Left-click on *Finish*; The *Sample Ecore* editor for *Tutorial.ecore* may open 
 
 Close the editor by left-clicking the cross on the editor tab.
 
-h4. Edit Ecore Model as OCLinEcore
+h4(#OCLinEcoreMetamodel). Edit Ecore Model as OCLinEcore
 
 We will now open the Ecore model using the OCLinEcore text editor and provide some
 initial content.
@@ -147,40 +153,8 @@ An almost empty text file appears showing the module, the package keyword and an
 
 Now type (or cut and paste) the following text into the editor and save the file.
 
-bc.. 
-import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';
-
-package tutorial : tut = 'http://www.eclipse.org/mdt/ocl/oclinecore/tutorial'
-{
-  class Library
-  {
-    attribute name : String;
-    property books#_'library' : Book[*] { composes };
-    property loans : Loan[*] { composes };
-    property members#_'library' : Member[*] { composes };
-  }
-  
-  class Book
-  {
-    attribute name : String;
-    attribute copies : Integer;
-    property _'library'#books : Library;
-  }
-  
-  class Member
-  {
-    attribute name : String;
-    property _'library'#members : Library;
-  }
-  
-  class Loan
-  {
-    property book : Book;
-    property member : Member;
-    attribute date : ecore::EDate;
-  }
-}
-p. 
+!images/4100-metamodel.png(Example Metamodel)!
+"[Text for cut and paste]":../references/4100-metamodel.oclinecore
 
 The syntax is defined in "OCLinEcore":#OCLinEcore. It emulates OMG specifications with
 'name : type[multiplicity] { properties }'.
@@ -214,16 +188,24 @@ and loans of books to members. It may be viewed graphically using the Ecore Tool
 
 !{width:50%}images/4100-ecore_diagram.png(Ecore Diagram)!
 
-The OCL types @String@ and @Integer@ map
+Note that this diagram is an Ecore Diagram rather than a UML Diagram and so the default multiplicities for attributes is Ecore's [0..1] rather than OCLinEcore's and UML's [1..1].
+
+Note also that the OCL types @String@ and @Integer@ map
 to @EString@ and @EBigInteger@ in Ecore.
 
 h3. Create a Dynamic Model Instance
 
 At this point a corresponding EMF tutorial would show how to generate Java code for
-the meta-model and for an editor for the meta-model. Here we are concerned with modeling, so we will 
+the meta-model and an editor for the meta-model. Here we are concerned with modeling, so we will 
 continue with the models alone.
 
-In the outline, right-click on *Library* to show the context-sensitive menu
+In order to create a model from the meta-model, we require the meta-model to exist as a file so that both meta-model and model editors can reference it. Therefore  save the meta-model to a file  by clicking the close cross on the editor tab and answering *Yes* when prompted to save changes. Now reopen the metamodel by selecting *Tutorial.ecore* and selecting *Open With->OCLinEcore (Ecore) editor*.
+
+bq.. 
+It is necessary to explicitly specify *Open With->OCLinEcore (Ecore) editor* once to ensure that the Eclipse platform registers your preference for the OCLinEcore rather than Sample Ecore Editor.
+p. 
+
+In the outline, double-click on *Library* to select it and then right-click to show the context-sensitive menu
 and then left-click on *Create Dynamic Instance...* to start to create a
 new Dynamic Model with @Library@ at its root.
 
@@ -248,11 +230,9 @@ be seen in the Properties View.
 (If the Properties View is not visible, right-click within the editor and left-click on
 *Show Properties View*.)
 
-
 From the right-button menu for @Library@ use *New Child->Books Book* twice,
 use *New Child->Loans Loan* once and *New Child->Members Member* three times
 to populate the model with two books, one loan and three members. 
-
 
 Left-click to select each of the Books and Members in turn and enter a name
 such as @b1@ or @m2@ using the Properties View. Specify that b1
@@ -326,20 +306,11 @@ the model is loaded.)
 
 Add the invariant shown below to the meta-model.
 
-bc.. 
-  class Book
-  {
-    invariant SufficientCopies:
-      library.loans->select(book=self)->size() <= copies;
-    attribute name : String;
-    attribute copies : Integer;
-    property library#books : Library;
-  }
-p. 
+!images/4100-metamodel2.png(Example Metamodel with Invariant)!
+"[Text for cut and paste]":../references/4100-metamodel2.oclinecore
 
 The required semantic is expressed by the @SufficientCopies@ invariant constraint for a Book.
 For a valid model the SufficientCopies invariant must always be true.
-
 
 If you reopen the *Tutorial.xmi* editor and invoke *Validate* for the @Library@,
 you will now get a validation error. Left click *Details* for details.
@@ -349,11 +320,9 @@ you will now get a validation error. Left click *Details* for details.
 The *Details* identifies that the @SufficientCopies@ invariant is not
 satisfied for the @b2@ book. 
 
-
 If you now change the first loan so that @b1@ is borrowed and then validate
 again, the problem is resolved. It is alright for @m3@ to borrow
 the one copy of @b1@ and the two copies of @b2@.
-
 
 Before introducing a further constraint of no duplicate loans, we will show
 how OCL expressions can be exercised. OCL is a very powerful compact language;
@@ -363,7 +332,7 @@ easily have simple errors. It is therefore helpful to simplify expressions
 and use helper operations and properties to modularise them. These may then be
 exercised using the OCL Console.
 
-h3. The OCL Console
+h3(#OCLinEcoreTutorial-Console). The OCL Console
 
 The OCL Console supports interactive execution of an OCL expression in the
 context of a model instance.
@@ -384,7 +353,6 @@ Left-click to select the @Library@ in the *Tutorial.xmi* as the context
 for a query, and then type @books@ followed by a new line into the lower
 pane of the console. 
 
-
 The result of evaluating this query for the Library is shown.
 
 !{width:50%}images/4100-books_query.png(Books Query)!
@@ -397,7 +365,7 @@ You can examine the execution of the earlier query by selecting each of the book
 in turn and executing @library.loans->select(book=self)@, to see that @b1@
 has one Loan and @b2@ two.
 
-h3. Helper Features and Operations
+h3(#OCLinEcoreTutorialHelpers). Helper Features and Operations
 
 We will now introduce some helper attributes and operations to make
 the OCL clearer and provide a richer meta-model API.
@@ -405,28 +373,11 @@ Close the *Tutorial.xmi* editor and modify the meta-model to include
 the derived @loans@ property and the helper operation @isAvailable()@.
 Simplify the invariant to use the derived property.
 
-bc.. 
-  class Book
-  {
-    invariant SufficientCopies: 
-      loans->size() <= copies;
-    attribute name : String[?];
-    attribute copies : Integer[?];
-    property loans : Loan[*] { derived,volatile }
-    {
-      derivation: library.loans->select(book=self);
-    }
-    property _'library'#books : Library[?];
-    operation isAvailable() : Boolean[?]
-    {
-      body: loans->size() < copies;
-    }
-  }
-p. 
+!images/4100-metamodel3.png(Example Metamodel with Features)!
+"[Text for cut and paste]":../references/4100-metamodel3.oclinecore
 
 Note that the derived property must also be volatile to avoid problems when
 a model is loaded but has no content.
-
 
 The derived property is visible in the *Properties* view.
 
@@ -436,31 +387,13 @@ The helper operation can be evaluated in the *Console* view by selecting book @b
 
 !{width:50%}images/4100-helper_operation.png(Helper Operation)!
 
-
 We will now add further helpers and constraints to enforce an
 at most two loans per member policy and to require loans to be unique.
 
 (Don't forget to close *Tutorial.xmi* while changing its meta-model.)
 
-bc.. 
-  class Member
-  {
-    invariant AtMostTwoLoans: 
-      loans->size() <= 2;
-    invariant UniqueLoans: 
-      loans->isUnique(book);
-    attribute name : String[?];
-    property _'library'#members : Library[?];
-    property loans : Loan[*] { derived,volatile }
-    {
-      derivation: library.loans->select(member=self);
-    }
-    property books : Book[*] { derived,volatile,!unique }
-    {
-      derivation: loans->collect(book);
-    }
-  }
-p. 
+!images/4100-metamodel4.png(Example Metamodel with More Features)!
+"[Text for cut and paste]":../references/4100-metamodel4.oclinecore
 
 The additional @books@ property may be evaluated in the OCL
 Console to show which books each member has on loan. The property may also be seen in the *Properties* view. 
@@ -615,6 +548,4 @@ To illustrate how to work with the OCL and Ecore as models we have
 To use OCL and Ecore as generated Java models we have
 
 * Generated Java that exploits the embedded OCL.
-
-"Copyright (c) 2010,2011 E.D.Willink and others. All Rights Reserved.":http://www.eclipse.org/legal/epl-v10.html
 

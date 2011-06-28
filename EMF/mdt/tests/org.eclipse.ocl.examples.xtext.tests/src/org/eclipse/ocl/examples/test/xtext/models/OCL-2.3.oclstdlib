@@ -81,7 +81,7 @@ If this is done the semantics of a new iterator should be defined by mapping it 
 in the same way the semantics of pre-defined iterators is done (see sub clause 11.9)
 
 **/
-library ocl
+library ocl : ocl = 'http://www.omg.org/schema/OCL/2.3'
 {
 precedence left:NAVIGATION left:UNARY left:MULTIPLICATIVE left:ADDITIVE left:RELATIONAL left:EQUALITY left:AND left:OR left:XOR left:IMPLIES;
 

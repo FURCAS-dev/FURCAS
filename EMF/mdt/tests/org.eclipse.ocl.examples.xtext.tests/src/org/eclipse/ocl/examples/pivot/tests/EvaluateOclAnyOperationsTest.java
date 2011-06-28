@@ -222,9 +222,9 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 		assertQueryEquals(null, 1, "'1234'->size()");
 		//
 		PrimitiveType booleanType = typeManager.getBooleanType();
-		assertQueryEquals(null, typeManager.getClassifierType(booleanType), "true.oclType()");
-		Type collectionType = typeManager.getCollectionType("Set", booleanType);
-		assertQueryEquals(null, typeManager.getClassifierType(collectionType), "true->oclType()");		// Set{true}
+		assertQueryEquals(null, getClassifierType(booleanType), "true.oclType()");
+		Type collectionType = getCollectionType("Set", booleanType);
+		assertQueryEquals(null, getClassifierType(collectionType), "true->oclType()");		// Set{true}
 	}
 	
     /**
@@ -505,12 +505,12 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
      * Tests the oclType() operator for Booleans.
      */
     public void test_oclType_Boolean() {
-    	ClassifierType classifierType = typeManager.getClassifierType(typeManager.getBooleanType());
+    	ClassifierType classifierType = getClassifierType(typeManager.getBooleanType());
     	assertQueryEquals(null, classifierType, "true.oclType()");
     	assertQueryEquals(null, "Boolean", "true.oclType().name");
 		assertQueryEquals(null, classifierType, "Boolean");
     	assertQueryEquals(null, "Boolean", "Boolean.name");
-    	assertQueryEquals(null, typeManager.getClassifierType(classifierType), "Boolean.oclType()");
+    	assertQueryEquals(null, getClassifierType(classifierType), "Boolean.oclType()");
     	assertQueryResults(null, "Set{false,true}", "Boolean.allInstances()");
     	assertQueryResults(null, "Set{false,true}", "true.oclType().allInstances()");
     	assertQueryResults(null, "Set{}", "Boolean.oclType().allInstances()");
@@ -521,12 +521,12 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
      * Tests the oclType() operator for Classifiers.
      */
     public void test_oclType_Classifier() {
-    	ClassifierType classifierType = typeManager.getClassifierType(typeManager.getPivotType("Package"));
+    	ClassifierType classifierType = getClassifierType(typeManager.getPivotType("Package"));
        	assertQueryEquals(pkg1, classifierType, "self.oclType()");
     	assertQueryEquals(pkg1, "Package", "self.oclType().name");
 		assertQueryEquals(null, classifierType, "Package");
     	assertQueryEquals(null, "Package", "Package.name");
-    	assertQueryEquals(null, typeManager.getClassifierType(classifierType), "Package.oclType()");
+    	assertQueryEquals(null, getClassifierType(classifierType), "Package.oclType()");
     	assertQueryResults(null, "Set{}", "Package.allInstances()");
     	assertQueryEquals(pkg1, 8, "Package.allInstances()->size()");
        	assertQueryResults(pkg1, "self->closure(nestedPackage)->including(self)", "Package.allInstances()");
@@ -538,14 +538,14 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
      * Tests the oclType() operator for Collections.
      */
     public void test_oclType_Collection() {   	
-    	//FIXME fails because specialized type has no specialized operations    	assertQueryEquals(null, 1, "Set{1}->oclType().ownedOperation");
-    	assertQueryEquals(null, typeManager.getClassifierType(typeManager.getSetType(typeManager.getOclAnyType())), "Set{}->oclType()");
-    	assertQueryEquals(null, typeManager.getClassifierType(typeManager.getSetType(typeManager.getUnlimitedNaturalType())), "Set{1}->oclType()");
+    	assertQueryEquals(null, 1, "Set{1}->oclType().ownedOperation->select(name = 'flatten')->size()");
+    	assertQueryEquals(null, getClassifierType(typeManager.getSetType(typeManager.getOclAnyType())), "Set{}->oclType()");
+    	assertQueryEquals(null, getClassifierType(typeManager.getSetType(typeManager.getUnlimitedNaturalType())), "Set{1}->oclType()");
     	assertQueryResults(null, "Bag{'UnlimitedNatural'}", "Set{1}.oclType().name");
     	assertQueryEquals(null, "Set", "Set{1}->oclType().name");
     	assertSemanticErrorQuery("Set{1}.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Set<UnlimitedNatural>");
     	assertSemanticErrorQuery("Set{1}->allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Set<UnlimitedNatural>");
-    	assertSemanticErrorQuery("Set{1}.oclType().allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Bag<Classifier<Set<UnlimitedNatural>>>");
+    	assertSemanticErrorQuery("Set{1}.oclType().allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Bag<Classifier<UnlimitedNatural>>");
     	assertSemanticErrorQuery("Set{1}->oclType().allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Classifier<Set<UnlimitedNatural>>");
     	assertQueryResults(null, "Set{}", "Set.oclType().allInstances()");
     	assertQueryEquals(null, typeManager.getUnlimitedNaturalType(), "Set{1}->oclType().elementType");
@@ -555,12 +555,12 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
      * Tests the oclType() operator for Enumerations.
      */
     public void test_oclType_Enumeration() {
-    	ClassifierType classifierType = typeManager.getClassifierType(typeManager.getPivotType("CollectionKind"));
-    	assertQueryEquals(null, typeManager.getClassifierType(typeManager.getPivotType("EnumerationLiteral")), "CollectionKind::Set.oclType()");
+    	ClassifierType classifierType = getClassifierType(typeManager.getPivotType("CollectionKind"));
+    	assertQueryEquals(null, getClassifierType(typeManager.getPivotType("EnumerationLiteral")), "CollectionKind::Set.oclType()");
     	assertQueryEquals(null, "EnumerationLiteral", "CollectionKind::Set.oclType().name");
     	assertQueryEquals(null, classifierType, "CollectionKind");
     	assertQueryEquals(null, "CollectionKind", "CollectionKind.name");
-    	assertQueryEquals(null, typeManager.getClassifierType(classifierType), "CollectionKind.oclType()");
+    	assertQueryEquals(null, getClassifierType(classifierType), "CollectionKind.oclType()");
     	assertQueryEquals(null, 5, "CollectionKind.ownedLiteral->size()");
     	assertSemanticErrorQuery("CollectionKind.oclType().ownedLiteral", OCLMessages.UnresolvedProperty_ERROR_, "ownedLiteral", "Classifier<Classifier<CollectionKind>>");
     	assertQueryResults(null, "Set{CollectionKind::Bag,CollectionKind::Collection,CollectionKind::_'OrderedSet',CollectionKind::_'Sequence',CollectionKind::_'Set'}", "CollectionKind.allInstances()");
@@ -573,11 +573,11 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
      */
     public void test_oclType_Numeric() {
 //
-    	ClassifierType classifierType = typeManager.getClassifierType(typeManager.getIntegerType());
-    	assertQueryEquals(null, typeManager.getClassifierType(typeManager.getUnlimitedNaturalType()), "3.oclType()");
-    	assertQueryEquals(null, typeManager.getClassifierType(typeManager.getRealType()), "3.0.oclType()");
-    	assertQueryEquals(null, typeManager.getClassifierType(typeManager.getUnlimitedNaturalType()), "*.oclType()");
-		assertQueryEquals(null, typeManager.getClassifierType(classifierType), "Integer.oclType()");
+    	ClassifierType classifierType = getClassifierType(typeManager.getIntegerType());
+    	assertQueryEquals(null, getClassifierType(typeManager.getUnlimitedNaturalType()), "3.oclType()");
+    	assertQueryEquals(null, getClassifierType(typeManager.getRealType()), "3.0.oclType()");
+    	assertQueryEquals(null, getClassifierType(typeManager.getUnlimitedNaturalType()), "*.oclType()");
+		assertQueryEquals(null, getClassifierType(classifierType), "Integer.oclType()");
     	assertQueryEquals(null, classifierType, "Integer");
     	assertSemanticErrorQuery("Integer.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Classifier<Integer>");
     	assertSemanticErrorQuery("3.oclType().allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Classifier<UnlimitedNatural>");
@@ -588,12 +588,12 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
      * Tests the oclType() operator for OclAny.
      */
     public void test_oclType_OclAny() {
-    	ClassifierType classifierType = typeManager.getClassifierType(typeManager.getOclAnyType());
+    	ClassifierType classifierType = getClassifierType(typeManager.getOclAnyType());
     	assertQueryEquals(null, classifierType, "null.oclAsType(OclAny).oclType()");
 //    	assertQueryEquals(null, "OclAny", "null.oclAsType(OclAny).name");
 		assertQueryEquals(null, classifierType, "OclAny");
     	assertQueryEquals(null, "OclAny", "OclAny.name");
-    	assertQueryEquals(null, typeManager.getClassifierType(classifierType), "OclAny.oclType()");
+    	assertQueryEquals(null, getClassifierType(classifierType), "OclAny.oclType()");
     	assertSemanticErrorQuery("OclAny.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Classifier<OclAny>");
     	assertSemanticErrorQuery("null.oclAsType(OclAny).oclType().allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Classifier<OclAny>");
     	assertQueryResults(null, "Set{}", "OclAny.oclType().allInstances()");
@@ -603,12 +603,12 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
      * Tests the oclType() operator for OclInvalid.
      */
     public void test_oclType_OclInvalid() {
-    	ClassifierType classifierType = typeManager.getClassifierType(typeManager.getOclInvalidType());
+    	ClassifierType classifierType = getClassifierType(typeManager.getOclInvalidType());
     	assertQueryEquals(null, classifierType, "invalid.oclType()");
     	assertQueryEquals(null, "OclInvalid", "invalid.oclType().name");
 		assertQueryEquals(null, classifierType, "OclInvalid");
     	assertQueryEquals(null, "OclInvalid", "OclInvalid.name");
-    	assertQueryEquals(null, typeManager.getClassifierType(classifierType), "OclInvalid.oclType()");
+    	assertQueryEquals(null, getClassifierType(classifierType), "OclInvalid.oclType()");
     	assertQueryInvalid(null, "OclInvalid.allInstances()");
     	assertQueryInvalid(null, "invalid.oclType().allInstances()");
     	assertQueryResults(null, "Set{}", "OclInvalid.oclType().allInstances()");
@@ -619,12 +619,12 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
      * Tests the oclType() operator for OclVoid.
      */
     public void test_oclType_OclVoid() {
-    	ClassifierType classifierType = typeManager.getClassifierType(typeManager.getOclVoidType());
+    	ClassifierType classifierType = getClassifierType(typeManager.getOclVoidType());
     	assertQueryEquals(null, classifierType, "null.oclType()");
     	assertQueryEquals(null, "OclVoid", "null.oclType().name");
 		assertQueryEquals(null, classifierType, "OclVoid");
     	assertQueryEquals(null, "OclVoid", "OclVoid.name");
-    	assertQueryEquals(null, typeManager.getClassifierType(classifierType), "OclVoid.oclType()");
+    	assertQueryEquals(null, getClassifierType(classifierType), "OclVoid.oclType()");
     	assertQueryResults(null, "Set{null}", "OclVoid.allInstances()");
     	assertQueryResults(null, "Set{null}", "null.oclType().allInstances()");
     	assertQueryResults(null, "Set{}", "OclVoid.oclType().allInstances()");
@@ -637,10 +637,10 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
     public void test_oclType_Tuple() {
     	TypeManager.TuplePart part = new TypeManager.TuplePart("a", typeManager.getIntegerType());
     	TupleType tupleType = typeManager.getTupleType("Tuple", Collections.singletonList(part), null, null);
-    	ClassifierType tupleClassifierType = typeManager.getClassifierType(tupleType);
+    	ClassifierType tupleClassifierType = getClassifierType(tupleType);
 		assertQueryEquals(null, tupleClassifierType, "Tuple{a:Integer=3}.oclType()");
     	assertQueryEquals(null, tupleClassifierType, "Tuple(a:Integer)");
-		assertQueryEquals(null, typeManager.getClassifierType(tupleClassifierType), "Tuple(a:Integer).oclType()");
+		assertQueryEquals(null, getClassifierType(tupleClassifierType), "Tuple(a:Integer).oclType()");
     	assertSemanticErrorQuery("Tuple(a:Integer).allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Classifier<Tuple(a:Integer)>");
     	assertSemanticErrorQuery("Tuple{a:Integer=3}.oclType().allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Classifier<Tuple(a:Integer)>");	// FIXME
     	assertQueryResults(null, "Set{}", "Tuple(a:Integer).oclType().allInstances()");
@@ -650,13 +650,19 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
      * Tests the oclType() operator.
      */
     public void test_oclType() {
-    	assertQueryEquals(null, typeManager.getClassifierType(typeManager.getStringType()), "'string'.oclType()");
-    	assertQueryEquals(null, typeManager.getClassifierType(typeManager.getOclAnyType()), "self.oclType()");
-    	assertQueryEquals(null, typeManager.getClassifierType(typeManager.getClassifierType(typeManager.getUnlimitedNaturalType())), "3.oclType().oclType()");
-    	assertQueryEquals(null, typeManager.getClassifierType(typeManager.getClassifierType(typeManager.getClassifierType(typeManager.getUnlimitedNaturalType()))), "3.oclType().oclType().oclType()");
-    	assertQueryEquals(null, typeManager.getClassifierType(typeManager.getClassifierType(typeManager.getBooleanType())), "Boolean.oclType()");
+		assertQueryEquals(null, getClassifierType(typeManager.getStringType()), "'string'.oclType()");
+		assertQueryEquals(null, getClassifierType(typeManager.getOclAnyType()), "self.oclType()");
+    	assertQueryEquals(null, getClassifierType(getClassifierType(typeManager.getUnlimitedNaturalType())), "3.oclType().oclType()");
+    	assertQueryEquals(null, getClassifierType(getClassifierType(getClassifierType(typeManager.getUnlimitedNaturalType()))), "3.oclType().oclType().oclType()");
+    	assertQueryEquals(null, getClassifierType(getClassifierType(typeManager.getBooleanType())), "Boolean.oclType()");
     	assertQueryEquals(null, "Classifier", "Boolean.oclType().name");
     	assertSemanticErrorQuery("3.oclType(OclAny)", OCLMessages.UnresolvedOperationCall_ERROR_, "oclType", "UnlimitedNatural", "Classifier<OclAny>");
     }
+
+	public Type getCollectionType(String collectionName, Type type) {
+		Type collectionType = typeManager.getCollectionType(collectionName, type);
+		typeManager.addLockedElement(collectionType);
+		return collectionType;
+	}
 
 }

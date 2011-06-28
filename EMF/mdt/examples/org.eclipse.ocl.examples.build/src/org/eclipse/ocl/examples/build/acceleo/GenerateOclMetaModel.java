@@ -306,6 +306,9 @@ public class GenerateOclMetaModel extends AbstractAcceleoGenerator {
 	 */
 	public void registerPackagesGen(ResourceSet resourceSet) {
         super.registerPackages(resourceSet);
+        if (!isInWorkspace(org.eclipse.ocl.examples.pivot.PivotPackage.class)) {
+            resourceSet.getPackageRegistry().put(org.eclipse.ocl.examples.pivot.PivotPackage.eINSTANCE.getNsURI(), org.eclipse.ocl.examples.pivot.PivotPackage.eINSTANCE);
+        }
         if (!isInWorkspace(org.eclipse.emf.ecore.EcorePackage.class)) {
             resourceSet.getPackageRegistry().put(org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getNsURI(), org.eclipse.emf.ecore.EcorePackage.eINSTANCE);
         }
@@ -324,7 +327,7 @@ public class GenerateOclMetaModel extends AbstractAcceleoGenerator {
          *     resourceSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
          * } else {
          *     // The package registration that will be used if the metamodel is not deployed in a plugin.
-         *     // This should be used if your metamodel is in your workspace.
+         *     // This should be used if your metamodel is in your workspace and if you are using binary resource serialization.
          *     resourceSet.getPackageRegistry().put("/myproject/myfolder/mysubfolder/MyUMLMetamodel.ecore", UMLPackage.eINSTANCE);
          * }
          */

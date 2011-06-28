@@ -1,0 +1,45 @@
+h3(#HiddenOpposites). The OppositePropertyCallExp Extension
+
+In Ecore models, a reference may have defined an @opposite@ reference, usually owned by the class that is
+the type of the forward reference. An opposite reference has several, often undesirable or even
+prohibitive, implications on the class owning it:
+
+* A getter and, for settable features with upper multiplicity 1, a setter will be added, requiring the class to know the class owning the forward reference. This would create cyclic component references if the two classes lived in different components and would therefore not be possible.
+* The default serialization format and usually the storage format for non-default model stores changes to include the opposite reference.
+
+Yet, particularly for expressing constraints over the instance models it is often instrumental
+to be able to navigate such forward references also in reverse. The @OppositePropertyCallExp@
+class which inherits from @NavigationCallExp@ and is sibling of
+@PropertyCallExp@ allows for this reverse navigation in OCL. It
+points to the forward reference, and its semantics are to navigate this reference in reverse.
+
+To allow for convenient creation of such expressions in the OCL concrete syntax, the standard
+property call syntax, such as @self.x@ can be used, where @x@
+is not the name of a forward reference on @self@'s class but rather
+an annotated name on a reference using @self@'s class or any of its
+base classes as its type. To enable this feature, use the special environment factory class
+@EcoreEnvironmentFactoryWithHiddenOpposites@ when initializing the
+OCL environment, e.g., by passing such an object to the @OCL.newInstance(...)@
+method.
+
+The name for the reverse navigation can be specified by an
+"@EAnnotation@":http://download.eclipse.org/modeling/emf/emf/javadoc/2.6.0/org/eclipse/emf/ecore/EAnnotation.html with
+source @http://schema.omg.org/spec/MOF/2.0/emof.xml@ and with
+details key @Property.oppositeRoleName@. The details value
+contains the name by which the "hidden" opposite can be referred to in OCL
+expressions.
+
+If OCL delegates are to be used, the standard EPackage annotations with @invocationDelegate@, @settingDelegate@ and @validationDelegate@ details for the @http://www.eclipse.org/emf/2002/Ecore@ source must be augmented as shown by a further @hiddenOpposites@ detail for the @http://www.eclipse.org/emf/2002/Ecore/OCL@ source.
+
+!images/5155-hidden-opposites.png(Hidden Opposites Annotations)!
+
+This additional annotation causes the @EnvironmentFactory@
+functionality for the EPackage to be provided by an instance of the
+@EcoreEnvironmentFactoryWithHiddenOpposites@ class
+which uses the @DefaultOppositeEndFinder@ class will be used for finding
+and navigating the hidden opposites. More substantial customisation is possible by specifying
+an @environmentFactoryClass@ detail with the fully qualified
+name of a derived @EcoreEnvironmentFactory@ that
+provides a constructor taking an @EPackage.Registry@ argument.
+Note, that the class specified must be visible by your Ecore model's bundle.
+

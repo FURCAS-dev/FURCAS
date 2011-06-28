@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractExtendingVisitor.java,v 1.15 2011/05/19 16:55:39 ewillink Exp $
+ * $Id$
  */
 package	org.eclipse.ocl.examples.pivot.util;
 
@@ -295,6 +295,10 @@ public abstract class AbstractExtendingVisitor<R, C>
 
 	public R visitRealLiteralExp(org.eclipse.ocl.examples.pivot.RealLiteralExp object) {
 		return visitNumericLiteralExp(object);
+	}
+
+	public R visitSelfType(org.eclipse.ocl.examples.pivot.SelfType object) {
+		return visitClass(object);
 	}
 
 	public R visitSendSignalAction(org.eclipse.ocl.examples.pivot.SendSignalAction object) {

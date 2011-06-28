@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AnnotationElementCSImpl.java,v 1.1 2010/05/03 05:25:38 ewillink Exp $
+ * $Id: AnnotationElementCSImpl.java,v 1.2 2011/01/24 20:59:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -26,8 +26,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,23 +37,22 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.AnnotationElementCSImpl#getDetails <em>Details</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.AnnotationElementCSImpl#getOwnedDetail <em>Owned Detail</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class AnnotationElementCSImpl extends ModelElementCSImpl implements AnnotationElementCS {
+public abstract class AnnotationElementCSImpl extends NamedElementCSImpl implements AnnotationElementCS {
 	/**
-	 * The cached value of the '{@link #getDetails() <em>Details</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedDetail() <em>Owned Detail</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDetails()
+	 * @see #getOwnedDetail()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<DetailCS> details;
-
+	protected EList<DetailCS> ownedDetail;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77,11 +77,13 @@ public abstract class AnnotationElementCSImpl extends ModelElementCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<DetailCS> getDetails() {
-		if (details == null) {
-			details = new EObjectContainmentEList<DetailCS>(DetailCS.class, this, BaseCSTPackage.ANNOTATION_ELEMENT_CS__DETAILS);
+	public EList<DetailCS> getOwnedDetail()
+	{
+		if (ownedDetail == null)
+		{
+			ownedDetail = new EObjectContainmentEList<DetailCS>(DetailCS.class, this, BaseCSTPackage.ANNOTATION_ELEMENT_CS__OWNED_DETAIL);
 		}
-		return details;
+		return ownedDetail;
 	}
 
 	/**
@@ -91,9 +93,10 @@ public abstract class AnnotationElementCSImpl extends ModelElementCSImpl impleme
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case BaseCSTPackage.ANNOTATION_ELEMENT_CS__DETAILS:
-				return ((InternalEList<?>)getDetails()).basicRemove(otherEnd, msgs);
+		switch (featureID)
+		{
+			case BaseCSTPackage.ANNOTATION_ELEMENT_CS__OWNED_DETAIL:
+				return ((InternalEList<?>)getOwnedDetail()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -105,9 +108,10 @@ public abstract class AnnotationElementCSImpl extends ModelElementCSImpl impleme
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case BaseCSTPackage.ANNOTATION_ELEMENT_CS__DETAILS:
-				return getDetails();
+		switch (featureID)
+		{
+			case BaseCSTPackage.ANNOTATION_ELEMENT_CS__OWNED_DETAIL:
+				return getOwnedDetail();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -120,10 +124,11 @@ public abstract class AnnotationElementCSImpl extends ModelElementCSImpl impleme
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case BaseCSTPackage.ANNOTATION_ELEMENT_CS__DETAILS:
-				getDetails().clear();
-				getDetails().addAll((Collection<? extends DetailCS>)newValue);
+		switch (featureID)
+		{
+			case BaseCSTPackage.ANNOTATION_ELEMENT_CS__OWNED_DETAIL:
+				getOwnedDetail().clear();
+				getOwnedDetail().addAll((Collection<? extends DetailCS>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -136,9 +141,10 @@ public abstract class AnnotationElementCSImpl extends ModelElementCSImpl impleme
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case BaseCSTPackage.ANNOTATION_ELEMENT_CS__DETAILS:
-				getDetails().clear();
+		switch (featureID)
+		{
+			case BaseCSTPackage.ANNOTATION_ELEMENT_CS__OWNED_DETAIL:
+				getOwnedDetail().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -151,11 +157,16 @@ public abstract class AnnotationElementCSImpl extends ModelElementCSImpl impleme
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case BaseCSTPackage.ANNOTATION_ELEMENT_CS__DETAILS:
-				return details != null && !details.isEmpty();
+		switch (featureID)
+		{
+			case BaseCSTPackage.ANNOTATION_ELEMENT_CS__OWNED_DETAIL:
+				return ownedDetail != null && !ownedDetail.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitAnnotationElementCS(this);
+	}
 } //AnnotationElementCSImpl

@@ -12,17 +12,22 @@
  *
  * </copyright>
  *
- * $Id: LibPropertyCSImpl.java,v 1.2 2010/05/16 19:20:25 ewillink Exp $
+ * $Id: LibPropertyCSImpl.java,v 1.3 2011/01/24 22:28:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.ocl.examples.xtext.base.baseCST.impl.StructuralFeatureCSImpl;
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.AttributeCSImpl;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.JavaImplementationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibPropertyCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage;
+import org.eclipse.ocl.examples.xtext.oclstdlib.util.OCLstdlibCSVisitor;
+import org.eclipse.xtext.common.types.JvmType;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,31 +36,46 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibPropertyCSImpl#getClass_ <em>Class</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibPropertyCSImpl#getImplementation <em>Implementation</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.LibPropertyCSImpl#isStatic <em>Static</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class LibPropertyCSImpl extends StructuralFeatureCSImpl implements LibPropertyCS {
+public class LibPropertyCSImpl
+		extends AttributeCSImpl
+		implements LibPropertyCS {
+
 	/**
-	 * The default value of the '{@link #getClass_() <em>Class</em>}' attribute.
+	 * The cached value of the '{@link #getImplementation() <em>Implementation</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getClass_()
+	 * @see #getImplementation()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String CLASS_EDEFAULT = null;
+	protected JvmType implementation;
+
 	/**
-	 * The cached value of the '{@link #getClass_() <em>Class</em>}' attribute.
+	 * The default value of the '{@link #isStatic() <em>Static</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getClass_()
+	 * @see #isStatic()
 	 * @generated
 	 * @ordered
 	 */
-	protected String class_ = CLASS_EDEFAULT;
+	protected static final boolean STATIC_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isStatic() <em>Static</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isStatic()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean static_ = STATIC_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -81,8 +101,18 @@ public class LibPropertyCSImpl extends StructuralFeatureCSImpl implements LibPro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getClass_() {
-		return class_;
+	public JvmType getImplementation() {
+		if (implementation != null && implementation.eIsProxy())
+		{
+			InternalEObject oldImplementation = (InternalEObject)implementation;
+			implementation = (JvmType)eResolveProxy(oldImplementation);
+			if (implementation != oldImplementation)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OCLstdlibCSTPackage.LIB_PROPERTY_CS__IMPLEMENTATION, oldImplementation, implementation));
+			}
+		}
+		return implementation;
 	}
 
 	/**
@@ -90,11 +120,41 @@ public class LibPropertyCSImpl extends StructuralFeatureCSImpl implements LibPro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setClass(String newClass) {
-		String oldClass = class_;
-		class_ = newClass;
+	public JvmType basicGetImplementation() {
+		return implementation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setImplementation(JvmType newImplementation) {
+		JvmType oldImplementation = implementation;
+		implementation = newImplementation;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OCLstdlibCSTPackage.LIB_PROPERTY_CS__CLASS, oldClass, class_));
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLstdlibCSTPackage.LIB_PROPERTY_CS__IMPLEMENTATION, oldImplementation, implementation));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isStatic() {
+		return static_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStatic(boolean newStatic) {
+		boolean oldStatic = static_;
+		static_ = newStatic;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OCLstdlibCSTPackage.LIB_PROPERTY_CS__STATIC, oldStatic, static_));
 	}
 
 	/**
@@ -104,9 +164,13 @@ public class LibPropertyCSImpl extends StructuralFeatureCSImpl implements LibPro
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case OCLstdlibCSTPackage.LIB_PROPERTY_CS__CLASS:
-				return getClass_();
+		switch (featureID)
+		{
+			case OCLstdlibCSTPackage.LIB_PROPERTY_CS__IMPLEMENTATION:
+				if (resolve) return getImplementation();
+				return basicGetImplementation();
+			case OCLstdlibCSTPackage.LIB_PROPERTY_CS__STATIC:
+				return isStatic();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -118,9 +182,13 @@ public class LibPropertyCSImpl extends StructuralFeatureCSImpl implements LibPro
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case OCLstdlibCSTPackage.LIB_PROPERTY_CS__CLASS:
-				setClass((String)newValue);
+		switch (featureID)
+		{
+			case OCLstdlibCSTPackage.LIB_PROPERTY_CS__IMPLEMENTATION:
+				setImplementation((JvmType)newValue);
+				return;
+			case OCLstdlibCSTPackage.LIB_PROPERTY_CS__STATIC:
+				setStatic((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -133,9 +201,13 @@ public class LibPropertyCSImpl extends StructuralFeatureCSImpl implements LibPro
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case OCLstdlibCSTPackage.LIB_PROPERTY_CS__CLASS:
-				setClass(CLASS_EDEFAULT);
+		switch (featureID)
+		{
+			case OCLstdlibCSTPackage.LIB_PROPERTY_CS__IMPLEMENTATION:
+				setImplementation((JvmType)null);
+				return;
+			case OCLstdlibCSTPackage.LIB_PROPERTY_CS__STATIC:
+				setStatic(STATIC_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -148,11 +220,50 @@ public class LibPropertyCSImpl extends StructuralFeatureCSImpl implements LibPro
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case OCLstdlibCSTPackage.LIB_PROPERTY_CS__CLASS:
-				return CLASS_EDEFAULT == null ? class_ != null : !CLASS_EDEFAULT.equals(class_);
+		switch (featureID)
+		{
+			case OCLstdlibCSTPackage.LIB_PROPERTY_CS__IMPLEMENTATION:
+				return implementation != null;
+			case OCLstdlibCSTPackage.LIB_PROPERTY_CS__STATIC:
+				return static_ != STATIC_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == JavaImplementationCS.class)
+		{
+			switch (derivedFeatureID)
+			{
+				case OCLstdlibCSTPackage.LIB_PROPERTY_CS__IMPLEMENTATION: return OCLstdlibCSTPackage.JAVA_IMPLEMENTATION_CS__IMPLEMENTATION;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == JavaImplementationCS.class)
+		{
+			switch (baseFeatureID)
+			{
+				case OCLstdlibCSTPackage.JAVA_IMPLEMENTATION_CS__IMPLEMENTATION: return OCLstdlibCSTPackage.LIB_PROPERTY_CS__IMPLEMENTATION;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**
@@ -165,4 +276,10 @@ public class LibPropertyCSImpl extends StructuralFeatureCSImpl implements LibPro
 		return super.toString();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(OCLstdlibCSVisitor.class)
+			.visitLibPropertyCS(this);
+	}
 } //LibPropertyCSImpl

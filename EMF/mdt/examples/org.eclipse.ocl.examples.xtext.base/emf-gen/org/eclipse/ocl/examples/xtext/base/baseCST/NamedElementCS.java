@@ -12,10 +12,12 @@
  *
  * </copyright>
  *
- * $Id: NamedElementCS.java,v 1.1 2010/05/03 05:25:11 ewillink Exp $
+ * $Id: NamedElementCS.java,v 1.2 2011/01/24 20:59:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
+
+import org.eclipse.ocl.examples.pivot.util.Nameable;
 
 
 /**
@@ -31,10 +33,10 @@ package org.eclipse.ocl.examples.xtext.base.baseCST;
  * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getNamedElementCS()
- * @model abstract="true"
+ * @model abstract="true" superTypes="org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS org.eclipse.ocl.examples.pivot.Nameable"
  * @generated
  */
-public interface NamedElementCS extends ModelElementCS {
+public interface NamedElementCS extends MonikeredElementCS, Nameable {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

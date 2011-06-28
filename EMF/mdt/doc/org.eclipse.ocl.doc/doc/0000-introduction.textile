@@ -1,5 +1,7 @@
 h1. Overview
 
+For a quick demonstration of OCL enrichment of an Ecore meta-model with computed constraints go to "Getting Started":#GettingStarted.
+
 h2. What is OCL?
 
 * _EMF is Modeled Structure_
@@ -10,9 +12,61 @@ The Eclipse Modeling Framework (EMF(Eclipse Modeling Framework)) supports the de
 
 OCL(Object Constraint Language) provides a modeling language that allows the behavior to be embedded within the structural meta-models or provided as a complement to those meta-models. As a modeling language, OCL understands the models and so OCL code is much more compact than the equivalent Java. OCL code can be statically checked, where as the corresponding Java code often uses reflection and so cannot.  
 
-h2. Getting Started?
+Eclipse OCL is an implementation of the OMG OCL 2.3 specification for use with Ecore and UML meta-models.
+ 
+h2(#GettingStarted). Getting Started
 
-For a quick demonstration of the utility of OCL, you may create the "Simple Example project":#SimpleExample ........ or follow the "OCLinEcore tutorial":#OCLinEcoreTutorial, which also provides "Installation":#Installation instructions.
+For a very quick demonstration of OCL, you may follow this very abbreviated version of the "OCLinEcore tutorial":#OCLinEcoreTutorial, where you can find "Installation":#Installation instructions. Once you have the OCL Examples and Editors feature installed you may follow the following instructions to get an insight into the capabilities of OCL and the Eclipse OCL tooling.
+
+Invoke *File->New->Project...* then select *Examples.OCL (Object Constraint Language) Plugins.OCLinEcore Tutorial* and *Finish* to create a small example project called *OCLinEcoreTutorial*. It contains
+* *model/Tutorial.ecore* - a small Library meta-model
+* *model/Tutorial.xmi* - an even smaller Library model
+
+Select *model/Tutorial.ecore* and use the right button to invoke *Open With->OCLinEcore (Ecore) Editor*. This gives you a textual view of the Ecore file with embedded OCL invariants such as the Book constraint
+
+bc.. 
+invariant SufficientCopies:
+  library.loans->select((book = self))->size() <= copies;
+p. 
+
+This invariant is named SufficientCopies. It 
+* navigates from the implicit self (a Book)
+* via the library 
+* to its loans which it searches
+* to select those loans that satisfy the predicate
+** loaned book is equal to the self Book
+* the size (number) of loans is computed
+* and compared to the number of copies of the self Book
+
+The invariant is satisfied if it evaluates true; i.e. if the number of loans is less than or equal to the number of copies.
+
+You can see this invariant at work, by selecting *model/Tutorial.xmi* and using the right button to invoke *Open With->Sample Reflective Ecore Model Editor*. This gives you a tree view of a small library model.
+
+Select the "Library lib" element and use the right button menu to invoke *Validate*. You should get a pop-up reporting problems during Validation. Select *Details* and you will see that one of the problems is with the *SufficientCopies* invariant we have just looked at. If you browse the Properties View for *model/Tutorial.xmi*, you can verify that there are three loans but only two copies for the offending Book.
+
+You may evaluate custom OCL queries interactively. From the editor for *Tutorial.xmi*, invoke *Show Xtext OCL Console*. Select "Book b2" in the editor, then in the bottom line of the console enter the OCL expression *loans.member* and then Enter. The results are shown in the panel and identify that all three loans are by "Member m3".
+
+The expression *loans.member* is an abbreviated form of *self.loans->collect(l : Loan | l.member)* and demonstrates OCL's ability to perform many useful navigations over multi-element properties. The expression
+* navigates from self, the Book b2 selection
+* to its loans, using Book::loans which is a derived property defined in OCL
+* for each of the loans, the iterator variable, l, is assigned to the loan and
+** the body, l.member is evaluated to return the member making the loan
+* the resulting members are collected to return a collection result
+* the result is displayed on three lines in the results panel
+
+You have now seen
+* an Xtext editor that embeds OCL directly in Ecore models to provide programmed enrichment
+* execution of OCL while validating a model using conventional Ecore tooling
+* an interactive Console for custom OCL evaluations
+* execution of a derived property defined in OCL
+* the ability of OCL to express operations on multi-elements compactly
+
+You have not
+* written any Java code
+* generated any plugins
+* needed to start an additional Eclipse session
+
+Please follow the tutorials, examples and reference material for further information.
 
 h2. How Does It Work?
 
@@ -24,7 +78,7 @@ Eclipse OCL supports entry of semantically checked OCL expressions
 * embedded within Ecore using the "OCLinEcore":#OCLinEcore editor
 * as complementary documents using the "Complete OCL":#CompleteOCL editor
 * interactive entry and evaluation using the "Interactive OCL":#InteractiveOCL console.
-* programmatic entry and evaluation using the "Java API":#JavaAPI
+* programmatic entry and evaluation using the "Java API":#ProgrammersGuide
 
 EMF supports entry of unchecked OCL
 * embedded within Ecore using the Sample Ecore Editor properties view
@@ -36,10 +90,10 @@ h3. Execution
 
 Eclipse OCL supports OCL execution
 * interactive entry and evaluation using the "Interactive OCL":#InteractiveOCL console.
-* programmatic entry and evaluation using the "Java API":#JavaAPI
+* programmatic entry and evaluation using the "Java API":#ProgrammersGuide
 
 EMF support for generated models enables OCL execution of
-* constraints, operation bodies and property initializers using the "Java API":#JavaAPI
+* constraints, operation bodies and property initializers using the "Java API":#ProgrammersGuide
 
 EMF support for dynamic models enables OCL execution of
 * constraints using the "Validation Delegate":#ValidationDelegate API 
@@ -83,9 +137,9 @@ h2. Eclipse OCL is Extensible
 
 Eclipse OCL is used as a component in a variety of other Eclipse projects such as Acceleo, BIRT, GMF, Modisco, QVTo.
 
-The evolution from the mature to the UML-aligned models provides a choice between the mature APIs thta offer limited forward functionality, and the experimental new APIs that will be promoted to non-experimental form in the Juno release.
+The evolution from the mature to the UML-aligned models provides a choice between the mature APIs that offer limited forward functionality, and the experimental new APIs that will be promoted to non-experimental form in the Juno release.
 
-The new code already offers a fully modelled Standard Library that can be extended or replaced. The new OCL grammars are extended internally from Essential OCL to OCLinEcore or Complete OCL, but the associated Concrete Syntax to Abstract Syntax is not yet model-driven and so awkward to extend.
+The new code already offers a fully modeled Standard Library that can be extended or replaced. The new OCL grammars are extended internally from Essential OCL to OCLinEcore or Complete OCL, but the associated Concrete Syntax to Abstract Syntax is not yet model-driven and so awkward to extend.
 
 Full extensibility is planned for the Juno release with QVT Core and Relational editors demonstrating that extensibility.
 
@@ -97,7 +151,7 @@ Within the OMG context, OCL has been re-used as the foundation for the MOFM2T(Mo
 
 Eclipse OCL is an implementation of the OCL specification for use in conjunction with EMF and in particular Ecore and UML2 meta-models. As the behavioral extension for EMF, Eclipse OCL can be used wherever EMF can.
 
-As a specification language, OCL is frequently used when the behaviour of models is formally specified.
+As a specification language, OCL is frequently used when the behavior of models is formally specified.
 
 The use of OCL as an execution language has been hindered by the quality of tool support. Beyond the research domain, many usages have been proprietary. One advanced proprietary usage at SAP has been contributed to Eclipse OCL and is available as the "Impact Analyzer":#ImpactAnalyzer. This supports strategic planning of run-time notifications so that derived model properties can be updated efficiently in response to a change to a model. Thousand-fold speed improvements are achievable on large models using OCL rather than Java because OCL has a formal model-based semantics that is amenable to analysis.
 
@@ -121,3 +175,4 @@ h2. Table of Contents
 h2. Glossary
 
 {glossary}
+

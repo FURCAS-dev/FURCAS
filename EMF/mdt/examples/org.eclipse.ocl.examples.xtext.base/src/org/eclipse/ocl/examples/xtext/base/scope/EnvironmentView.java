@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -305,10 +304,6 @@ public class EnvironmentView
 				List<?> values = (List<?>) value;
 				value = values.get(values.size() - 1);
 			}
-			if ((templateBindings != null) && (value instanceof Operation)) {
-				Map<TemplateParameter, ParameterableElement> map = templateBindings.get(value);
-				value = typeManager.getSpecializedOperation((Operation)value, map);
-			}
 			if (value instanceof EObject) {
 				return EObjectDescription.create(entry.getKey(), (EObject) value);
 			}
@@ -345,20 +340,6 @@ public class EnvironmentView
 		return reference != null
 			? reference.getEType()
 			: null;
-	}
-
-	public EObject getResolvedContent() {
-		EObject eObject = getContent();
-		if (eObject == null) {
-			return null;
-		}
-		if (templateBindings != null) {
-			Map<TemplateParameter, ParameterableElement> map = templateBindings.get(eObject);
-			if ((map != null) && (eObject instanceof Operation)) {
-				eObject = typeManager.getSpecializedOperation((Operation) eObject, map);
-			}
-		}
-		return eObject;
 	}
 
 	public int getSize() {

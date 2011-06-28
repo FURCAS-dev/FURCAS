@@ -27,6 +27,20 @@
 	<property name="wikitext.url" value="http://download.eclipse.org/tools/mylyn/update/weekly/mylyn-wikitext-standalone-latest.zip"/>
 	<property name="wikitext.dir" value="${download.dir}${file.separator}wikitext"/>
 
+	<!-- adolfosbh: We expect to receive a target.location to provide some jars to the xslt ant tasks 
+	in the said target.location is not provided, we try to use the tipical ${eclipse.home} variable -->
+	<condition property="target.location" value="${eclipse.home}">
+		<not>
+			<isset property="target.location"/>
+			</not>		
+		</condition>
+	<path id="xslt.classpath">
+		<pathelement path="${java.class.path}"/>
+		<pathelement path="${target.location}/plugins/org.apache.xalan_2.7.1.v201005080400.jar"/>
+		<pathelement path="${target.location}/plugins/org.apache.xml.serializer_2.7.1.v201005080400.jar"/>
+	</path>
+
+	
 	<target name="check-wikitext">
 		<condition property="hasWikiText">
 			<and>
@@ -176,7 +190,8 @@
 		</copy>
 		<copy file="${html-css.file}" todir="${basedir}/html" />
 		
-		<xslt in="${build.dir}${file.separator}${document.name}.xml" extension="xml" out="${basedir}/html${file.separator}${document.name}.html" style="${document.stylesheet}">
+		<xslt classpathref="xslt.classpath" in="${build.dir}${file.separator}${document.name}.xml" extension="xml" out="${basedir}/html${file.separator}${document.name}.html" style="${document.stylesheet}">
+
 			<factory name="org.apache.xalan.processor.TransformerFactoryImpl">
 				<attribute name="http://xml.apache.org/xalan/features/optimize" value="true"/>
 			</factory>
@@ -207,7 +222,7 @@
 		</copy>
 
 		
-		<xslt in="${build.dir}${file.separator}${document.name}.xml" extension="xml" out="${build.dir}${file.separator}${document.name}.fo" style="${document.pdf.stylesheet}">
+		<xslt classpathref="xslt.classpath" in="${build.dir}${file.separator}${document.name}.xml" extension="xml" out="${build.dir}${file.separator}${document.name}.fo" style="${document.pdf.stylesheet}">
 			<factory name="org.apache.xalan.processor.TransformerFactoryImpl">
 				<attribute name="http://xml.apache.org/xalan/features/optimize" value="true"/>
 			</factory>
@@ -260,7 +275,7 @@
 		</copy>
 		<copy file="${eclipsehelp-css.file}" todir="${basedir}/help" />
 		
-		<xslt basedir="${build.dir}" destdir="${basedir}" style="${document.eclipse.stylesheet}">
+		<xslt classpathref="xslt.classpath" basedir="${build.dir}" destdir="${basedir}" style="${document.eclipse.stylesheet}">
 			<param name="chunk.quietly" expression="1"/>
 			<include name="ocl.xml"/>
 			<factory name="org.apache.xalan.processor.TransformerFactoryImpl">

@@ -7,7 +7,7 @@
 		<public name="buckminster.prebind" actor="ant">
 			<actorProperties>
 				<property key="buildFile" value="build.xml" />
-				<property key="targets" value="build.update.jar" />
+				<property key="targets" value="buckminster.build.textile.doc build.update.jar" />
 			</actorProperties>
 		</public>
 	</actions>

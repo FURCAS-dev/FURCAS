@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DetailCS.java,v 1.2 2010/08/17 18:53:39 ewillink Exp $
+ * $Id: DetailCS.java,v 1.3 2011/01/24 20:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -28,8 +28,6 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS#getIdName <em>Id Name</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS#getStringName <em>String Name</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
@@ -38,59 +36,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface DetailCS extends ElementCS {
-	/**
-	 * Returns the value of the '<em><b>Id Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Id Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Id Name</em>' attribute.
-	 * @see #setIdName(String)
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getDetailCS_IdName()
-	 * @model
-	 * @generated
-	 */
-	String getIdName();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS#getIdName <em>Id Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Id Name</em>' attribute.
-	 * @see #getIdName()
-	 * @generated
-	 */
-	void setIdName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>String Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>String Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>String Name</em>' attribute.
-	 * @see #setStringName(String)
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getDetailCS_StringName()
-	 * @model
-	 * @generated
-	 */
-	String getStringName();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS#getStringName <em>String Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>String Name</em>' attribute.
-	 * @see #getStringName()
-	 * @generated
-	 */
-	void setStringName(String value);
-
+public interface DetailCS extends NamedElementCS {
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute list.
 	 * The list contents are of type {@link java.lang.String}.

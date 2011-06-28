@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeRefCS.java,v 1.1 2010/05/03 05:25:01 ewillink Exp $
+ * $Id: TypeRefCS.java,v 1.2 2011/01/24 20:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -29,6 +29,6 @@ package org.eclipse.ocl.examples.xtext.base.baseCST;
  * @model abstract="true"
  * @generated
  */
-public interface TypeRefCS extends ModelElementCS {
+public interface TypeRefCS extends MonikeredElementCS, ParameterableElementCS {
 
 } // TypeCSRef

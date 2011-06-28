@@ -12,13 +12,13 @@
  *
  * </copyright>
  *
- * $Id: ElementCS.java,v 1.3 2010/05/24 08:59:31 ewillink Exp $
+ * $Id: ElementCS.java,v 1.4 2011/01/24 20:59:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.xtext.base.util.Signature;
+import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,10 +27,10 @@ import org.eclipse.ocl.examples.xtext.base.util.Signature;
  *
  *
  * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getElementCS()
- * @model abstract="true"
+ * @model abstract="true" superTypes="org.eclipse.ocl.examples.xtext.base.baseCST.VisitableCS"
  * @generated
  */
-public interface ElementCS extends EObject {
+public interface ElementCS extends EObject, VisitableCS {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -38,13 +38,5 @@ public interface ElementCS extends EObject {
 	 * @model kind="operation"
 	 * @generated
 	 */
-	String getSignature();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model sDataType="org.eclipse.ocl.examples.xtext.base.baseCST.Signature"
-	 * @generated
-	 */
-	void getSignature(Signature s, TypeBindingsCS bindings);
+	String getDescription();
 } // ElementCS

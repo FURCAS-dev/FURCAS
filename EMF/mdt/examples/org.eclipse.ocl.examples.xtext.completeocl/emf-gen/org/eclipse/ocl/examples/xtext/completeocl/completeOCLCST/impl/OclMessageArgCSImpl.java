@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclMessageArgCSImpl.java,v 1.2 2010/05/03 05:58:22 ewillink Exp $
+ * $Id: OclMessageArgCSImpl.java,v 1.3 2011/01/24 21:08:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -22,8 +22,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OclMessageArgCS;
+import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ExpCSImpl;
 
 /**
@@ -86,7 +88,8 @@ public class OclMessageArgCSImpl extends ExpCSImpl implements OclMessageArgCS {
 	public NotificationChain basicSetType(TypeCS newType, NotificationChain msgs) {
 		TypeCS oldType = type;
 		type = newType;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.OCL_MESSAGE_ARG_CS__TYPE, oldType, newType);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -99,7 +102,8 @@ public class OclMessageArgCSImpl extends ExpCSImpl implements OclMessageArgCS {
 	 * @generated
 	 */
 	public void setType(TypeCS newType) {
-		if (newType != type) {
+		if (newType != type)
+		{
 			NotificationChain msgs = null;
 			if (type != null)
 				msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.OCL_MESSAGE_ARG_CS__TYPE, null, msgs);
@@ -119,7 +123,8 @@ public class OclMessageArgCSImpl extends ExpCSImpl implements OclMessageArgCS {
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.OCL_MESSAGE_ARG_CS__TYPE:
 				return basicSetType(null, msgs);
 		}
@@ -133,7 +138,8 @@ public class OclMessageArgCSImpl extends ExpCSImpl implements OclMessageArgCS {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.OCL_MESSAGE_ARG_CS__TYPE:
 				return getType();
 		}
@@ -147,7 +153,8 @@ public class OclMessageArgCSImpl extends ExpCSImpl implements OclMessageArgCS {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.OCL_MESSAGE_ARG_CS__TYPE:
 				setType((TypeCS)newValue);
 				return;
@@ -162,7 +169,8 @@ public class OclMessageArgCSImpl extends ExpCSImpl implements OclMessageArgCS {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.OCL_MESSAGE_ARG_CS__TYPE:
 				setType((TypeCS)null);
 				return;
@@ -177,11 +185,17 @@ public class OclMessageArgCSImpl extends ExpCSImpl implements OclMessageArgCS {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.OCL_MESSAGE_ARG_CS__TYPE:
 				return type != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(CompleteOCLCSVisitor.class).visitOclMessageArgCS(this);
+	}
 } //OclMessageArgCSImpl

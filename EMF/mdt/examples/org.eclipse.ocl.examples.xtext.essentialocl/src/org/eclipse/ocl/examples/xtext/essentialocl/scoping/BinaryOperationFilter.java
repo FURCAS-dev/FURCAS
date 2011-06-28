@@ -24,6 +24,7 @@ import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
+import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -51,6 +52,9 @@ public class BinaryOperationFilter extends AbstractOperationFilter
 			}
 			Parameter candidateParameter = candidateParameters.get(0);
 			Type candidateType = candidateParameter.getType();
+			if (candidateType instanceof SelfType) {
+				candidateType = candidateOperation.getClass_();
+			}
 			if (!typeManager.conformsTo(argumentType, candidateType, null)) {
 				return false;
 			}

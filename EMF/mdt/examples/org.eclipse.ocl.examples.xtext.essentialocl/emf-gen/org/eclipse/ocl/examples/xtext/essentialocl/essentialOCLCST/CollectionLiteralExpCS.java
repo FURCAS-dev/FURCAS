@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralExpCS.java,v 1.2 2010/05/03 05:38:31 ewillink Exp $
+ * $Id: CollectionLiteralExpCS.java,v 1.3 2011/01/24 21:31:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
@@ -27,8 +27,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS#getTypeCS <em>Type CS</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS#getCollectionLiteralParts <em>Collection Literal Parts</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS#getOwnedType <em>Owned Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS#getOwnedParts <em>Owned Parts</em>}</li>
  * </ul>
  * </p>
  *
@@ -39,44 +39,44 @@ import org.eclipse.emf.common.util.EList;
 public interface CollectionLiteralExpCS extends LiteralExpCS {
 
 	/**
-	 * Returns the value of the '<em><b>Type CS</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type CS</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Owned Type</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type CS</em>' containment reference.
-	 * @see #setTypeCS(CollectionTypeCS)
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getCollectionLiteralExpCS_TypeCS()
+	 * @return the value of the '<em>Owned Type</em>' containment reference.
+	 * @see #setOwnedType(CollectionTypeCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getCollectionLiteralExpCS_OwnedType()
 	 * @model containment="true"
 	 * @generated
 	 */
-	CollectionTypeCS getTypeCS();
+	CollectionTypeCS getOwnedType();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS#getTypeCS <em>Type CS</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS#getOwnedType <em>Owned Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type CS</em>' containment reference.
-	 * @see #getTypeCS()
+	 * @param value the new value of the '<em>Owned Type</em>' containment reference.
+	 * @see #getOwnedType()
 	 * @generated
 	 */
-	void setTypeCS(CollectionTypeCS value);
+	void setOwnedType(CollectionTypeCS value);
 
 	/**
-	 * Returns the value of the '<em><b>Collection Literal Parts</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Parts</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Collection Literal Parts</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Owned Parts</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Collection Literal Parts</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getCollectionLiteralExpCS_CollectionLiteralParts()
+	 * @return the value of the '<em>Owned Parts</em>' containment reference list.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getCollectionLiteralExpCS_OwnedParts()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<CollectionLiteralPartCS> getCollectionLiteralParts();
+	EList<CollectionLiteralPartCS> getOwnedParts();
 } // CollectionLiteralExpCS

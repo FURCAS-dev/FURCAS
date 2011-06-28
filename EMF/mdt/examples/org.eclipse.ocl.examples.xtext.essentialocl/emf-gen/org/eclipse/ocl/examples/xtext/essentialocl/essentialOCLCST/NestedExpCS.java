@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NestedExpCS.java,v 1.1 2010/05/03 05:38:28 ewillink Exp $
+ * $Id: NestedExpCS.java,v 1.2 2011/01/24 21:31:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
@@ -23,10 +23,42 @@ package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
  * A representation of the model object '<em><b>Nested Exp CS</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS#getSource <em>Source</em>}</li>
+ * </ul>
+ * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getNestedExpCS()
  * @model
  * @generated
  */
-public interface NestedExpCS extends SubExpCS {
+public interface NestedExpCS extends ExpCS {
+
+	/**
+	 * Returns the value of the '<em><b>Source</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Source</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Source</em>' containment reference.
+	 * @see #setSource(ExpCS)
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage#getNestedExpCS_Source()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ExpCS getSource();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NestedExpCS#getSource <em>Source</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Source</em>' containment reference.
+	 * @see #getSource()
+	 * @generated
+	 */
+	void setSource(ExpCS value);
 } // NestedExpCS

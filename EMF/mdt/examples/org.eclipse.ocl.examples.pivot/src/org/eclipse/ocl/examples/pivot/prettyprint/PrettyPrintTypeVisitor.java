@@ -176,9 +176,9 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 			if ((element instanceof Operation) &&
 				(parent instanceof org.eclipse.ocl.examples.pivot.Class) &&
 					PivotConstants.ORPHANAGE_NAME.equals(((org.eclipse.ocl.examples.pivot.Class)parent).getName())) {
-				Operation unspecializedOperation = PivotUtil.getUnspecializedTemplateableElement((Operation)element);
-				append(unspecializedOperation.getClass_().getName());
-				appendTemplateBindings((Operation)element);
+				Operation operation = (Operation)element;
+				append(operation.getClass_().getName());
+				appendTemplateBindings(operation);
 				append(parentSeparator);
 				return;
 			}

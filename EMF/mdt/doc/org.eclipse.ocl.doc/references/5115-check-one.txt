@@ -1,0 +1,8 @@
+// Copied from org.eclipse.ocl.ecore.tests.DocumentationExamples.java
+
+		
+		// check a single library
+		Library lib = getLibrary();  // hypothetical source of a library
+
+		// check whether it satisfies the constraint
+		System.out.printf("%s valid: %b", lib.getName(), ocl.check(lib, invariant));
