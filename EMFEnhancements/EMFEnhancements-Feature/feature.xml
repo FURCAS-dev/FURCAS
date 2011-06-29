@@ -17,11 +17,6 @@
       [Enter License Description here.]
    </license>
 
-   <requires>
-      <import feature="org.eclipse.ocl.uml" version="3.1.0.qualifier" patch="true"/>
-      <import feature="org.eclipse.ocl" version="3.1.0.qualifier" patch="true"/>
-   </requires>
-
    <plugin
          id="com.sap.emf.ocl.attributegrammar"
          download-size="0"
