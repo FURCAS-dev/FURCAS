@@ -111,8 +111,13 @@
 	<repositories>
 		<repository>
 			<layout>p2</layout>
-			<id>eclipse</id>
+			<id>eclipse-helios</id>
 			<url>http://download.eclipse.org/releases/helios/</url>
+		</repository>
+		<repository>
+			<layout>p2</layout>
+			<id>eclipse-indigo</id>
+			<url>http://download.eclipse.org/releases/indigo/</url>
 		</repository>
 	</repositories>
 
