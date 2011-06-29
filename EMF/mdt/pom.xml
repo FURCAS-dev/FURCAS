@@ -16,7 +16,6 @@
 
   <modules>
     <module>plugins</module>
-    <module>feature</module>
     <module>tests</module>
     <module>examples</module>
   </modules>
