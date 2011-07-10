@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.CollectionType;
 import org.eclipse.ocl.ecore.OCL;
@@ -69,6 +68,7 @@ import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.parser.textblocks.TbParsingUtil;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
+import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 
 /**
  * Updates a model element property by evaluating a so-called <code>foreach</code> OCL expression. Based on the
@@ -251,7 +251,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                                     @SuppressWarnings("unchecked")
                                     List<EObject> l = (List<EObject>) elementToUpdate.eGet(getPropertyToUpdate());
                                     l.remove(foreachExecution.getResultModelElement());
-                                    EcoreUtil.delete(foreachExecution);
+                                    TbChangeUtil.delete(foreachExecution);
                                 } else {
                                     // the supposed change really led to a change in production rule; produce anew
                                     EObject newObject = produceWith(newTemplateToUse, affectedContextObject, textBlock,

@@ -13,7 +13,6 @@ package com.sap.furcas.ide.editor.commands;
 import java.io.ByteArrayOutputStream;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
@@ -143,7 +142,7 @@ public class SetupTextBlocksModelCommand extends RecordingCommand {
             if (prettyPrintAccepted) {
                 TextBlock newRootBlock = prettyPrintModelToTextBlock();
                 TbChangeUtil.deleteOtherVersions(rootBlock);
-                EcoreUtil.delete(rootBlock);
+                TbChangeUtil.delete(rootBlock);
                 return newRootBlock;
             } 
         }
