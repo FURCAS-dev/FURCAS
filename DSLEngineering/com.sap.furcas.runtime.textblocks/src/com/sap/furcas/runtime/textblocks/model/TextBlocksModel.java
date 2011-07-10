@@ -14,8 +14,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
-
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
@@ -26,6 +24,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.textblocks.CoverageBean;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
+import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbReplacingHelper;
 import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
 import com.sap.furcas.runtime.textblocks.shortprettyprint.ShortPrettyPrinter;
@@ -605,11 +604,9 @@ public class TextBlocksModel {
 		}
 	    }
 	}
-	for (Iterator<TextBlock> iterator = toBeDeleted.iterator(); iterator.hasNext();) {
-	    TextBlock block = iterator.next();
-	    EcoreUtil.delete(block, /*recursive*/ true);
-	}
-
+        for (DocumentNode node : toBeDeleted) {
+            TbChangeUtil.delete(node);
+        }
     }
 
     /**
@@ -643,11 +640,9 @@ public class TextBlocksModel {
 	    }
 	    isFirst = false;
 	}
-	for (Iterator<AbstractToken> iterator = toBeDeleted.iterator(); iterator.hasNext();) {
-	    AbstractToken abstractToken = iterator.next();
-	    EcoreUtil.delete(abstractToken);
-	}
-
+        for (DocumentNode node : toBeDeleted) {
+            TbChangeUtil.delete(node);
+        }
     }
 
     /**

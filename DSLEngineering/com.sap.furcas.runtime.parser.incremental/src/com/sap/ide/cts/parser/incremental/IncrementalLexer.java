@@ -16,8 +16,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
-
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
@@ -509,7 +507,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
                         if (EcoreHelper.isAlive(oldTokenInCurrentBlock)
                                 && !oldTokenInCurrentBlock.getParent().equals(currentTextBlock)) {
                             if (TbNavigationUtil.getSubNodesSize(currentTextBlock) == 0) {
-                                EcoreUtil.delete(currentTextBlock);
+                                TbChangeUtil.delete(currentTextBlock);
                             }
                             currentTextBlock = oldTokenInCurrentBlock.getParent();
                             changedBlocks.add(currentTextBlock);
@@ -535,7 +533,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
             // due to its "current" version status
             if (oldTokenInCurrentBlock instanceof Eostoken) {
                 if (!wasReUsed(oldTokenInCurrentBlock)) {
-                    EcoreUtil.delete(oldTokenInCurrentBlock);
+                    TbChangeUtil.delete(oldTokenInCurrentBlock);
                 }
             }
 
@@ -693,11 +691,11 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
                             -deleteToken.getLength());
                 }
 
-                EcoreUtil.delete(deleteToken);
+                TbChangeUtil.delete(deleteToken);
                 if (deleteTokenParent != null
                         && TbNavigationUtil.getSubNodesSize(deleteTokenParent) == 0) {
                     changedBlocks.remove(deleteTokenParent);
-                    EcoreUtil.delete(deleteTokenParent);
+                    TbChangeUtil.delete(deleteTokenParent);
                 }
             }
             if (currentToken != null) {

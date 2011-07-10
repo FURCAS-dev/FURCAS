@@ -523,7 +523,7 @@ public class IncrementalParser extends IncrementalRecognizer {
                 handleUltraRoot(result, oldVersion);
             }
             // the old textblocks should be empty now so delete them
-            EcoreUtil.delete(oldVersion);
+            TbChangeUtil.delete(oldVersion);
         }
         return result;
     }

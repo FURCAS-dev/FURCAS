@@ -40,6 +40,7 @@ import com.sap.furcas.runtime.parser.textblocks.observer.TextBlockProxy;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
+import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
 import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategy.ReuseType;
 
@@ -481,8 +482,7 @@ public class IncrementalParsingUtil {
                                 affectedModelElements.addAll(deleteTB
                                         .getCorrespondingModelElements());
                         }
-                        EcoreUtil.delete(deleteTB, true);
-               
+                        TbChangeUtil.delete(deleteTB);
 		}
 		return affectedModelElements;
 	}
@@ -542,7 +542,7 @@ public class IncrementalParsingUtil {
                                     .getCorrespondingModelElements());
                     }
                     tbDeletionCandidate = tbDeletionCandidate.getParent();
-                    EcoreUtil.delete(deleteTB, true);
+                    TbChangeUtil.delete(deleteTB);
             }
 	    return affectedModelElements;
 	}

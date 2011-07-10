@@ -38,17 +38,34 @@ public class TbChangeUtil {
         return currentVersion;
     }
 
+    public static void delete(DocumentNode node) {
+        // Only delete the given root node. Remove all its children from their resource, but keep the tree intact.
+        // This is required by the editor environment which might be concurrently iterating
+        // over an outdated tb version.
+        EcoreUtil.delete(node);
+        deleteRecursive(node);
+    }
+    
+    private static void deleteRecursive(DocumentNode node) {
+        if (node.eResource() != null) {
+            node.eResource().getContents().remove(node);
+        }
+        // A simple delete does not work here. It only deletes from 
+        // enclosing entities but not from other versions that still reference us. 
+        for (DocumentNode remainingVersion : new ArrayList<DocumentNode>(node.getOtherVersions())) {
+            remainingVersion.getOtherVersions().remove(node);
+        }
+        if (node instanceof TextBlock) {
+            for (DocumentNode subNode : ((TextBlock) node).getSubNodes()) {
+                deleteRecursive(subNode);
+            }
+        }
+    }
+
     public static void deleteOtherVersions(DocumentNode versionToKeep) {
         for (DocumentNode oldVersion : new ArrayList<DocumentNode>(versionToKeep.getOtherVersions())) {
             versionToKeep.getOtherVersions().remove(oldVersion);
-            if (TbNavigationUtil.isUltraRoot(oldVersion)) {
-                EcoreUtil.delete(oldVersion);
-            }
-        }
-        if (versionToKeep instanceof TextBlock) {
-            for (DocumentNode subNode : ((TextBlock) versionToKeep).getSubNodes()) {
-                cleanUp(subNode);
-            }
+            delete(oldVersion);
         }
     }
 
@@ -62,23 +79,13 @@ public class TbChangeUtil {
 
         for (DocumentNode outdatedVersion : new ArrayList<DocumentNode>(currentVersion.getOtherVersions())) {
             if (isNewer(outdatedVersion.getVersion(), revertToVersion)) {
-                // A simple delete does not work here. It only deletes from 
-                // enclosing entities but not from other versions that still reference us. 
-                for (DocumentNode remainingVersion : new ArrayList<DocumentNode>(outdatedVersion.getOtherVersions())) {
-                    remainingVersion.getOtherVersions().remove(outdatedVersion);
-                }
-                if (TbNavigationUtil.isUltraRoot(outdatedVersion)) {
-                    EcoreUtil.delete(outdatedVersion);
-                }
-            }
-        }
-        if (currentVersion instanceof TextBlock) {
-            for (DocumentNode subNode : TbNavigationUtil.getSubNodes((TextBlock) currentVersion)) {
-                revertToVersion(subNode, revertToVersion);
+                delete(outdatedVersion);
             }
         }
         return currentVersion;
     }
+    
+
 
     /**
      * checks whether the first given version is newer than the second one.
@@ -315,7 +322,7 @@ public class TbChangeUtil {
     public static void removeNode(DocumentNode node) {
         if (node != null) {
             TextBlock parent = node.getParent();
-            EcoreUtil.delete(node);
+            TbChangeUtil.delete(node);
             removeTextBlockIfEmpty(parent);
         }
     }
@@ -333,7 +340,7 @@ public class TbChangeUtil {
         if (textblock != null) {
             if (getSubNodesSize(textblock) == 0) {
                 TextBlock parent = textblock.getParent();
-                EcoreUtil.delete(textblock);
+                TbChangeUtil.delete(textblock);
                 removeTextBlockIfEmpty(parent);
             }
         }
