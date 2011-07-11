@@ -147,9 +147,7 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
      * @generated
      */
         public static TextblocksPackage init() {
-        if (isInited) {
-            return (TextblocksPackage)EPackage.Registry.INSTANCE.getEPackage(TextblocksPackage.eNS_URI);
-        }
+        if (isInited) return (TextblocksPackage)EPackage.Registry.INSTANCE.getEPackage(TextblocksPackage.eNS_URI);
 
         // Obtain or create and register package
         TextblocksPackageImpl theTextblocksPackage = (TextblocksPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof TextblocksPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new TextblocksPackageImpl());
@@ -627,9 +625,7 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
      * @generated
      */
         public void createPackageContents() {
-        if (isCreated) {
-            return;
-        }
+        if (isCreated) return;
         isCreated = true;
 
         // Create classes and their features
@@ -702,9 +698,7 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
      * @generated
      */
         public void initializePackageContents() {
-        if (isInitialized) {
-            return;
-        }
+        if (isInitialized) return;
         isInitialized = true;
 
         // Initialize package

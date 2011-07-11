@@ -26,7 +26,7 @@
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
       <parser
-            type="tcs"
+            type="furcas"
             class="com.sap.furcas.metamodel.FURCAS.TCS.util.TCSResourceFactoryImpl"/>
    </extension>
 

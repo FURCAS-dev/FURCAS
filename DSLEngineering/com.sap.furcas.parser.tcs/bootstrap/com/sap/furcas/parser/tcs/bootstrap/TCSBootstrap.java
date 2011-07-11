@@ -88,7 +88,7 @@ public class TCSBootstrap {
             // we want a platform plugin URI. Move again after parser generation to be
             // able to save.
             Resource mappingResource = sourceConfiguration.getResourceSet().createResource(URI.createPlatformPluginURI(
-                    "/com.sap.furcas.parser.tcs/"+MAPPINGS+"/"+LANGUAGE_NAME+".tcs", /* encode */ false));
+                    "/com.sap.furcas.parser.tcs/"+MAPPINGS+"/"+LANGUAGE_NAME+".furcas", /* encode */ false));
             mappingResource.getContents().add(syntaxBean.getSyntax());
             
             System.out.println(""); // spacing to make our generation report easier to spot.
@@ -96,7 +96,7 @@ public class TCSBootstrap {
             System.out.println(""); // spacing to make our generation report easier to spot.
             assertFalse("Must have completed without (critical) errors", errorHandler.hasFailedWithError());
             
-            FileOutputStream outputStream = new FileOutputStream(new File(GENERATIONDIR+LANGUAGE_NAME+".tcs"));
+            FileOutputStream outputStream = new FileOutputStream(new File(GENERATIONDIR+LANGUAGE_NAME+".furcas"));
             mappingResource.save(outputStream, null);
             outputStream.close();
         } catch (Exception e) {

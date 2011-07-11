@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <?eclipse version="3.4"?> 
 <plugin> 
-	<extension point="org.eclipse.ui.editors"> 
+	 <!-- <extension point="org.eclipse.ui.editors"> 
 		<editor
         class="com.sap.furcas.tcs.editor.editor.TCSEditor"
         extensions="tcs"
@@ -10,6 +10,6 @@
         matchingStrategy="com.sap.furcas.tcs.editor.editor.TCSEditorMatchingStrategy"
         name="TCS Editor"> 
 		</editor> 
-	</extension> 
+	</extension> -->
  
 </plugin> 
