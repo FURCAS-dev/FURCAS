@@ -34,7 +34,7 @@
             class="com.sap.furcas.metamodel.FURCAS.presentation.FURCASEditor"
             contributorClass="com.sap.furcas.metamodel.FURCAS.presentation.FURCASActionBarContributor">
       </editor>
-   </extension>
+   </extension> 
 
    <extension point="org.eclipse.ui.newWizards">
       <category
@@ -51,7 +51,7 @@
       </wizard>
    </extension>
 
-   <extension point="org.eclipse.ui.editors">
+   <!-- <extension point="org.eclipse.ui.editors">
       <editor
             id="com.sap.furcas.metamodel.FURCAS.TCS.presentation.TCSEditorID"
             name="%_UI_TCSEditor_label"
@@ -60,7 +60,7 @@
             class="com.sap.furcas.metamodel.FURCAS.TCS.presentation.TCSEditor"
             contributorClass="com.sap.furcas.metamodel.FURCAS.TCS.presentation.TCSActionBarContributor">
       </editor>
-   </extension>
+   </extension> -->
 
    <extension point="org.eclipse.ui.newWizards">
       <category
