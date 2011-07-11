@@ -53,7 +53,7 @@ public class BibtexAuthorViewParserFactory extends AbstractParserFactory<BibtexA
 
     @Override
     public URI getSyntaxResourceURI() {
-        return URI.createPlatformPluginURI("/com.sap.furcas.example.bibtex.dsl/mapping/BibtexAuthorView.tcs", /*encode*/ false);
+        return URI.createPlatformPluginURI("/com.sap.furcas.example.bibtex.dsl/mapping/BibtexAuthorView.furcas", /*encode*/ false);
     }
 
     @Override
