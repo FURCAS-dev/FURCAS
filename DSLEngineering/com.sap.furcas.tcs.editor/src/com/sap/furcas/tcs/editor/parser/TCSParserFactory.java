@@ -41,7 +41,7 @@ public class TCSParserFactory extends
 
     @Override
     public URI getSyntaxUri() {
-        return URI.createPlatformPluginURI("/com.sap.furcas.tcs.editor/mappings/TCS.tcs",
+        return URI.createPlatformPluginURI("/com.sap.furcas.tcs.editor/mappings/TCS.furcas",
                 true);
     }
 }
