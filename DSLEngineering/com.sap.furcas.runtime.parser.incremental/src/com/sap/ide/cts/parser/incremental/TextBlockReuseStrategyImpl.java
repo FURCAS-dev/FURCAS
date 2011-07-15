@@ -47,7 +47,6 @@ import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
 import com.sap.furcas.runtime.textblocks.shortprettyprint.ShortPrettyPrinter;
-import com.sap.furcas.runtime.textblocks.validation.TbValidationUtil;
 import com.sap.ide.cts.parser.Activator;
 
 /**
@@ -196,11 +195,11 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
                         // ensure offset and length are correctly computed
                         // for
                         // the new node
-                        TokenRelocationUtil
-                                .makeRelativeOffsetRecursively(oldVersion);
+                        //TokenRelocationUtil
+                        //        .makeRelativeOffsetRecursively(oldVersion);
             
-                        TbValidationUtil
-                                .assertTextBlockConsistency(oldVersion);
+                        //TbValidationUtil
+                        //        .assertTextBlockConsistency(oldVersion);
 
 			for (DocumentNode node : TbNavigationUtil.getSubNodes(getOtherVersion(
 				oldVersion, Version.REFERENCE))) {
