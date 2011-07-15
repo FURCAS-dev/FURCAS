@@ -19,7 +19,7 @@ public class BuildHelper {
     public static ResourceSet getResourceSetForProject(IProject project) {
         ResourceSet resourceSet = new ResourceSetImpl();
         resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new EcoreResourceFactoryImpl());
-        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("tcs", new TCSResourceFactoryImpl());
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("furcas", new TCSResourceFactoryImpl());
         resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("textblocks", new TextblocksResourceFactoryImpl());
         resourceSet.eAdapters().add(new Adapter() {
             

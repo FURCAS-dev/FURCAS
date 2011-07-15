@@ -51,7 +51,7 @@ public class TCSParserFactory extends AbstractParserFactory<TCSParser, TCSLexer>
 
     @Override
     public URI getSyntaxResourceURI() {
-        return URI.createPlatformPluginURI("/com.sap.furcas.parser.tcs/mapping/TCS.tcs", /*encode*/ false);
+        return URI.createPlatformPluginURI("/com.sap.furcas.parser.tcs/mapping/TCS.furcas", /*encode*/ false);
     }
 
     @Override
