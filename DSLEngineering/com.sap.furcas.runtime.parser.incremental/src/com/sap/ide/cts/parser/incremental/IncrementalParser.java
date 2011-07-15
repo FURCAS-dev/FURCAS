@@ -51,6 +51,7 @@ import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
+import com.sap.furcas.runtime.textblocks.validation.TbValidationUtil;
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException.Component;
 import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategy.ReuseType;
@@ -450,6 +451,8 @@ public class IncrementalParser extends IncrementalRecognizer {
         }
 
         TokenRelocationUtil.makeRelativeOffsetRecursively(resultBean.textBlock);
+        TbValidationUtil.assertTextBlockConsistencyRecursive(resultBean.textBlock);
+        
         result = resultBean.textBlock;
         if (result.eResource() == null) {
             partitionHandler.assignToDefaultTextBlocksPartition(result);

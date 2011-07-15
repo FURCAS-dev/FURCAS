@@ -522,7 +522,7 @@ public class TokenRelocationUtil {
 		}
 		updateTextBlockLocationUsingSubNodesAfterAdding(tb);
 		makeSubNodesRelative(tb);
-		TbValidationUtil.assertTextBlockConsistencyRecursive(tb);
+		//TbValidationUtil.assertTextBlockConsistencyRecursive(tb);
 	}
     /**
      * @param textBlock
