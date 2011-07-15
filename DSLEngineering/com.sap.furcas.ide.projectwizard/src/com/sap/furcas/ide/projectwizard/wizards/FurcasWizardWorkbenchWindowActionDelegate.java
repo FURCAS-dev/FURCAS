@@ -37,6 +37,7 @@ public class FurcasWizardWorkbenchWindowActionDelegate implements IWorkbenchWind
     public void run(IAction action) {
         Shell shell = window.getShell();
         FurcasWizard wizard = new FurcasWizard();
+        wizard.init(window.getWorkbench(), null);
         WizardDialog dialog = new WizardDialog(shell, wizard);
         dialog.open();
     }

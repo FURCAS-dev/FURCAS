@@ -63,7 +63,7 @@ public class FURCASExample {
         if (args.length == 0) {
             System.out.println("Enter a list of file paths or URIs that have content like this:");
             try {
-                Resource resource = resourceSet.createResource(URI.createURI("http:///My.furcas"));
+                Resource resource = resourceSet.createResource(URI.createURI("http:///My."));
                 EmptyDummyClassToWorkaroundGeneratorBug root = FURCASFactory.eINSTANCE.createEmptyDummyClassToWorkaroundGeneratorBug();
                 resource.getContents().add(root);
                 resource.save(System.out, null);
