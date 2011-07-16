@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
+import com.sap.furcas.ide.editor.CtsActivator;
 import com.sap.furcas.ide.editor.dialogs.PrettyPrintPreviewDialog;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
@@ -91,6 +92,7 @@ public class SetupTextBlocksModelCommand extends RecordingCommand {
             }
             
         } catch (Exception e) {
+            CtsActivator.logger.logError("Failed to initialize textual view", e);
             throw new RuntimeException("Failed to initialize textual view", e);
         }
     }
