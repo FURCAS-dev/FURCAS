@@ -10,6 +10,8 @@ import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.TokenSource;
 import org.antlr.runtime.TokenStream;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -105,7 +107,7 @@ public class IncrementalParserFacade {
             throw new RuntimeException(e);
         }
     }
-
+    
     /**
      * Uses the {@link IncrementalParser} to parse only the necessary parts of
      * the given root {@link TextBlock}. If lexing fails, the same old
@@ -114,15 +116,31 @@ public class IncrementalParserFacade {
      * @param rootBlock
      * @return
      */
-    public TextBlock parseIncrementally(TextBlock rootBlock) throws SemanticParserException {
+    public TextBlock parseIncrementally(TextBlock oldBlock) throws SemanticParserException {
+        return parseIncrementally(oldBlock, new NullProgressMonitor());
+    }
+
+    /**
+     * Uses the {@link IncrementalParser} to parse only the necessary parts of
+     * the given root {@link TextBlock}. If lexing fails, the same old
+     * TextBlock is returned.
+     * 
+     * @param rootBlock
+     * @param monitor
+     * @return
+     */
+    public TextBlock parseIncrementally(TextBlock rootBlock, IProgressMonitor monitor) throws SemanticParserException {
         setDefaultPartitionFromRoot(rootBlock);
-        
         if (lexAndPrepareParsing(rootBlock)) {
             TextBlock preparedTextBlock = getCurrentVersion(rootBlock);
             incrementalLexer.setCurrentTokenForParser((AbstractToken) preparedTextBlock.getSubNodes().get(0));
             observer.setRootBlock(preparedTextBlock);
-            TextBlock newRoot = incrementalParser.incrementalParse(preparedTextBlock);
-            return newRoot;
+            
+            if (monitor.isCanceled()) {
+                // Canceld during lexing. Save to return here.
+                return preparedTextBlock;
+            }
+            return incrementalParser.incrementalParse(preparedTextBlock, /*error mode*/ false, monitor);
         } else {
             throw new SemanticParserException(getErrors(), Component.LEXICAL_ANALYSIS);
         }
@@ -244,8 +262,5 @@ public class IncrementalParserFacade {
     /*package*/ ANTLRIncrementalLexerAdapter getIncrementalLexer() {
         return incrementalLexer;
     }
-
-
-
 
 }

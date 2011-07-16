@@ -15,6 +15,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -104,7 +106,7 @@ public class IncrementalParser extends IncrementalRecognizer {
     }
 
     public TextBlock incrementalParse(TextBlock root) throws SemanticParserException {
-        return incrementalParse(root, false);
+        return incrementalParse(root, false, new NullProgressMonitor());
     }
 
     /**
@@ -124,7 +126,8 @@ public class IncrementalParser extends IncrementalRecognizer {
      *         the parsing.
      * @throws IncrementalParsingException 
      */
-    public TextBlock incrementalParse(TextBlock root, boolean errorMode) throws SemanticParserException {
+    public TextBlock incrementalParse(TextBlock root, boolean errorMode, IProgressMonitor monitor) throws SemanticParserException {
+        monitor.beginTask("Incremental Parsing" , IProgressMonitor.UNKNOWN);
         reset();
         // get EOS and BOS from root block
         setEOSFromRoot(root);
@@ -145,6 +148,10 @@ public class IncrementalParser extends IncrementalRecognizer {
 
             // find the next changed region
             for (AbstractToken tok = findNextRegion(root); !isEOS(tok); tok = findNextRegion(tok)) {
+                if (monitor.isCanceled()) {
+                    // it is safe to skip entire regions if the user has canceld the parser.
+                    return root; 
+                }
                 AbstractToken leftBoundary = tok;
                 // left boundary has to be the element that is reachable by the
                 // lookback count of
@@ -230,6 +237,11 @@ public class IncrementalParser extends IncrementalRecognizer {
                             errornous = true;
                         }
                     }
+                    if (monitor.isCanceled()) {
+                        // we still haven't changed/created a model element for this region. 
+                        // It is safe to abort here if the user has canceld the parser.
+                        return root;
+                    }
 
                     TextBlockProxy tbProxy = parserTextBlocksHandler
                             .getCurrentTbProxy();
@@ -278,6 +290,10 @@ public class IncrementalParser extends IncrementalRecognizer {
                 // This is bad. Something went wrong while merging proxies / modifying the domain model
                 throw new IncrementalParsingException("Failed to perform model modifications", getErrorList());
             }
+            if (monitor.isCanceled()) {
+                // It is safe to abort here if the user has canceld the parser.
+                return root;
+            }
             
             // batchParser.setObserver(originalObserver);
             batchParser.setResolveProxies(originalResolveProxiesValue);
@@ -287,6 +303,7 @@ public class IncrementalParser extends IncrementalRecognizer {
                 throw new SemanticParserException(getErrorList(), Component.SEMANTIC_ANALYSIS);
             }
         }
+        monitor.done();
         return newRoot;
     }
 

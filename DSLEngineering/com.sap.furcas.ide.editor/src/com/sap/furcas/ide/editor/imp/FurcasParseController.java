@@ -92,8 +92,7 @@ public abstract class FurcasParseController extends ParseControllerBase {
         }
         
         boolean saveNeeded = ((BasicCommandStack) editingDomain.getCommandStack()).isSaveNeeded();
-        
-        ParseCommand command = new ParseCommand(editingDomain, contentProvider.getDocument(), parserFacade, handler);
+        ParseCommand command = new ParseCommand(editingDomain, contentProvider.getDocument(), parserFacade, handler, monitor);
         editingDomain.getCommandStack().execute(command);
         
         if (!saveNeeded && !command.wasEffective()) {
@@ -101,7 +100,11 @@ public abstract class FurcasParseController extends ParseControllerBase {
             ((BasicCommandStack) editingDomain.getCommandStack()).saveIsDone();
         }
         
-        setCurrentAst(command.getParsingResult());
+        if (command.wasEffective() && !monitor.isCanceled()) {
+            // only use the result if parsing was not aborted (most commonly if the user typed something new)
+            setCurrentAst(command.getParsingResult());
+        }
+        
         return getCurrentAst();
     }
 
