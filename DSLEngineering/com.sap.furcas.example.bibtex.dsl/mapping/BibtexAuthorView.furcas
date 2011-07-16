@@ -1,71 +1,71 @@
 <?xml version="1.0" encoding="ASCII"?>
-<com.sap.furcas.TCS:ConcreteSyntax xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.sap.furcas.TCS="http://www.furcas.org/TCS" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmi:id="_BGHpEJVREeCeBYqoHugzOA" name="BibtexAuthorView">
-  <templates xsi:type="com.sap.furcas.TCS:PrimitiveTemplate" xmi:id="_BGHpEZVREeCeBYqoHugzOA" templateName="identifier" default="true" tokenName="NAME" value="%token%">
+<com.sap.furcas.TCS:ConcreteSyntax xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.sap.furcas.TCS="http://www.furcas.org/TCS" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmi:id="_WHHWcLAHEeCt07rYGW4TkQ" name="BibtexAuthorView">
+  <templates xsi:type="com.sap.furcas.TCS:PrimitiveTemplate" xmi:id="_WHHWcbAHEeCt07rYGW4TkQ" templateName="identifier" default="true" tokenName="NAME" value="%token%">
     <metaReference xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </templates>
-  <templates xsi:type="com.sap.furcas.TCS:PrimitiveTemplate" xmi:id="_BGHpEpVREeCeBYqoHugzOA" templateName="stringSymbol" tokenName="STRING" value="unescapeString(%token%)" serializer="\'%value%\'">
+  <templates xsi:type="com.sap.furcas.TCS:PrimitiveTemplate" xmi:id="_WHHWcrAHEeCt07rYGW4TkQ" templateName="stringSymbol" tokenName="STRING" value="unescapeString(%token%)" serializer="\'%value%\'">
     <metaReference xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </templates>
-  <templates xsi:type="com.sap.furcas.TCS:PrimitiveTemplate" xmi:id="_BGHpE5VREeCeBYqoHugzOA" templateName="integerSymbol" default="true" tokenName="INT" value="Integer.valueOf(%token%)">
+  <templates xsi:type="com.sap.furcas.TCS:PrimitiveTemplate" xmi:id="_WHHWc7AHEeCt07rYGW4TkQ" templateName="integerSymbol" default="true" tokenName="INT" value="Integer.valueOf(%token%)">
     <metaReference xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </templates>
-  <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" xmi:id="_BGHpFJVREeCeBYqoHugzOA" isMain="true">
+  <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" xmi:id="_WHHWdLAHEeCt07rYGW4TkQ" isMain="true">
     <metaReference xsi:type="ecore:EClass" href="http://www.sap.com/furcas/examples/bibtex#//Author"/>
-    <templateSequence xmi:id="_BGHpFZVREeCeBYqoHugzOA">
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" xmi:id="_BGHpFpVREeCeBYqoHugzOA" parentTemplate="_BGHpFJVREeCeBYqoHugzOA" referredLiteral="_BGHpJ5VREeCeBYqoHugzOA"/>
-      <elements xsi:type="com.sap.furcas.TCS:Property" xmi:id="_BGHpF5VREeCeBYqoHugzOA" parentTemplate="_BGHpFJVREeCeBYqoHugzOA">
-        <propertyReference xmi:id="_BGHpGJVREeCeBYqoHugzOA">
+    <templateSequence xmi:id="_WHHWdbAHEeCt07rYGW4TkQ">
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" xmi:id="_WHHWdrAHEeCt07rYGW4TkQ" parentTemplate="_WHHWdLAHEeCt07rYGW4TkQ" referredLiteral="_WHHWh7AHEeCt07rYGW4TkQ"/>
+      <elements xsi:type="com.sap.furcas.TCS:Property" xmi:id="_WHHWd7AHEeCt07rYGW4TkQ" parentTemplate="_WHHWdLAHEeCt07rYGW4TkQ">
+        <propertyReference xmi:id="_WHHWeLAHEeCt07rYGW4TkQ">
           <strucfeature xsi:type="ecore:EAttribute" href="http://www.sap.com/furcas/examples/bibtex#//Author/name"/>
         </propertyReference>
       </elements>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" xmi:id="_BGHpGZVREeCeBYqoHugzOA" parentTemplate="_BGHpFJVREeCeBYqoHugzOA" referredLiteral="_BGHpKZVREeCeBYqoHugzOA"/>
-      <elements xsi:type="com.sap.furcas.TCS:Block" xmi:id="_BGHpGpVREeCeBYqoHugzOA" parentTemplate="_BGHpFJVREeCeBYqoHugzOA">
-        <blockSequence xmi:id="_BGHpG5VREeCeBYqoHugzOA">
-          <elements xsi:type="com.sap.furcas.TCS:Property" xmi:id="_BGHpHJVREeCeBYqoHugzOA" parentTemplate="_BGHpFJVREeCeBYqoHugzOA">
-            <propertyReference xmi:id="_BGHpHZVREeCeBYqoHugzOA">
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" xmi:id="_WHHWebAHEeCt07rYGW4TkQ" parentTemplate="_WHHWdLAHEeCt07rYGW4TkQ" referredLiteral="_WHH9gLAHEeCt07rYGW4TkQ"/>
+      <elements xsi:type="com.sap.furcas.TCS:Block" xmi:id="_WHHWerAHEeCt07rYGW4TkQ" parentTemplate="_WHHWdLAHEeCt07rYGW4TkQ">
+        <blockSequence xmi:id="_WHHWe7AHEeCt07rYGW4TkQ">
+          <elements xsi:type="com.sap.furcas.TCS:Property" xmi:id="_WHHWfLAHEeCt07rYGW4TkQ" parentTemplate="_WHHWdLAHEeCt07rYGW4TkQ">
+            <propertyReference xmi:id="_WHHWfbAHEeCt07rYGW4TkQ">
               <strucfeature xsi:type="ecore:EReference" href="http://www.sap.com/furcas/examples/bibtex#//Author/publications"/>
             </propertyReference>
           </elements>
         </blockSequence>
       </elements>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" xmi:id="_BGHpHpVREeCeBYqoHugzOA" parentTemplate="_BGHpFJVREeCeBYqoHugzOA" referredLiteral="_BGHpKpVREeCeBYqoHugzOA"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" xmi:id="_WHHWfrAHEeCt07rYGW4TkQ" parentTemplate="_WHHWdLAHEeCt07rYGW4TkQ" referredLiteral="_WHH9gbAHEeCt07rYGW4TkQ"/>
     </templateSequence>
   </templates>
-  <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" xmi:id="_BGHpH5VREeCeBYqoHugzOA">
+  <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" xmi:id="_WHHWf7AHEeCt07rYGW4TkQ">
     <metaReference xsi:type="ecore:EClass" href="http://www.sap.com/furcas/examples/bibtex#//Entry"/>
-    <templateSequence xmi:id="_BGHpIJVREeCeBYqoHugzOA">
-      <elements xsi:type="com.sap.furcas.TCS:Property" xmi:id="_BGHpIZVREeCeBYqoHugzOA" parentTemplate="_BGHpH5VREeCeBYqoHugzOA">
-        <propertyReference xmi:id="_BGHpIpVREeCeBYqoHugzOA">
+    <templateSequence xmi:id="_WHHWgLAHEeCt07rYGW4TkQ">
+      <elements xsi:type="com.sap.furcas.TCS:Property" xmi:id="_WHHWgbAHEeCt07rYGW4TkQ" parentTemplate="_WHHWf7AHEeCt07rYGW4TkQ">
+        <propertyReference xmi:id="_WHHWgrAHEeCt07rYGW4TkQ">
           <strucfeature xsi:type="ecore:EAttribute" href="http://www.sap.com/furcas/examples/bibtex#//Entry/id"/>
         </propertyReference>
       </elements>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" xmi:id="_BGHpI5VREeCeBYqoHugzOA" parentTemplate="_BGHpH5VREeCeBYqoHugzOA" referredLiteral="_BGHpKJVREeCeBYqoHugzOA"/>
-      <elements xsi:type="com.sap.furcas.TCS:Property" xmi:id="_BGHpJJVREeCeBYqoHugzOA" parentTemplate="_BGHpH5VREeCeBYqoHugzOA">
-        <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" xmi:id="_BGHpJZVREeCeBYqoHugzOA" template="_BGHpEpVREeCeBYqoHugzOA"/>
-        <propertyReference xmi:id="_BGHpJpVREeCeBYqoHugzOA">
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" xmi:id="_WHHWg7AHEeCt07rYGW4TkQ" parentTemplate="_WHHWf7AHEeCt07rYGW4TkQ" referredLiteral="_WHHWiLAHEeCt07rYGW4TkQ"/>
+      <elements xsi:type="com.sap.furcas.TCS:Property" xmi:id="_WHHWhLAHEeCt07rYGW4TkQ" parentTemplate="_WHHWf7AHEeCt07rYGW4TkQ">
+        <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" xmi:id="_WHHWhbAHEeCt07rYGW4TkQ" template="_WHHWcrAHEeCt07rYGW4TkQ"/>
+        <propertyReference xmi:id="_WHHWhrAHEeCt07rYGW4TkQ">
           <strucfeature xsi:type="ecore:EAttribute" href="http://www.sap.com/furcas/examples/bibtex#//Entry/title"/>
         </propertyReference>
       </elements>
     </templateSequence>
   </templates>
-  <keywords xmi:id="_BGHpJ5VREeCeBYqoHugzOA" literalRefs="_BGHpFpVREeCeBYqoHugzOA" value="Author:"/>
-  <symbols xmi:id="_BGHpKJVREeCeBYqoHugzOA" name="colon" literalRefs="_BGHpI5VREeCeBYqoHugzOA" value=":">
+  <keywords xmi:id="_WHHWh7AHEeCt07rYGW4TkQ" literalRefs="_WHHWdrAHEeCt07rYGW4TkQ" value="Author:"/>
+  <symbols xmi:id="_WHHWiLAHEeCt07rYGW4TkQ" name="colon" literalRefs="_WHHWg7AHEeCt07rYGW4TkQ" value=":">
     <spaces>leftNone</spaces>
     <spaces>rightSpace</spaces>
   </symbols>
-  <symbols xmi:id="_BGHpKZVREeCeBYqoHugzOA" name="lcurly" literalRefs="_BGHpGZVREeCeBYqoHugzOA" value="{">
+  <symbols xmi:id="_WHH9gLAHEeCt07rYGW4TkQ" name="lcurly" literalRefs="_WHHWebAHEeCt07rYGW4TkQ" value="{">
     <spaces>leftSpace</spaces>
     <spaces>rightSpace</spaces>
   </symbols>
-  <symbols xmi:id="_BGHpKpVREeCeBYqoHugzOA" name="rcurly" literalRefs="_BGHpHpVREeCeBYqoHugzOA" value="}">
+  <symbols xmi:id="_WHH9gbAHEeCt07rYGW4TkQ" name="rcurly" literalRefs="_WHHWfrAHEeCt07rYGW4TkQ" value="}">
     <spaces>leftSpace</spaces>
     <spaces>rightSpace</spaces>
   </symbols>
-  <tokens xmi:id="_BGHpK5VREeCeBYqoHugzOA" name="COMMENT" omitted="true">
-    <pattern xmi:id="_BGHpLJVREeCeBYqoHugzOA">
-      <simplePatterns xsi:type="com.sap.furcas.TCS:RulePattern" xmi:id="_BGHpLZVREeCeBYqoHugzOA">
-        <rule xsi:type="com.sap.furcas.TCS:EndOfLineRule" xmi:id="_BGHpLpVREeCeBYqoHugzOA">
-          <start xmi:id="_BGHpL5VREeCeBYqoHugzOA" name="//"/>
+  <tokens xmi:id="_WHH9grAHEeCt07rYGW4TkQ" name="COMMENT" omitted="true">
+    <pattern xmi:id="_WHH9g7AHEeCt07rYGW4TkQ">
+      <simplePatterns xsi:type="com.sap.furcas.TCS:RulePattern" xmi:id="_WHH9hLAHEeCt07rYGW4TkQ">
+        <rule xsi:type="com.sap.furcas.TCS:EndOfLineRule" xmi:id="_WHH9hbAHEeCt07rYGW4TkQ">
+          <start xmi:id="_WHH9hrAHEeCt07rYGW4TkQ" name="//"/>
         </rule>
       </simplePatterns>
     </pattern>

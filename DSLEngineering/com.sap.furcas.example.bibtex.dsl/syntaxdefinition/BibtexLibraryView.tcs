@@ -11,7 +11,7 @@ syntax BibtexLibraryView {
   primitiveTemplate stringSymbol for EString using STRING
   : value = "unescapeString(%token%)",
     serializer="\'%value%\'"
-  ;
+  ; 
         
   primitiveTemplate integerSymbol for EInt default using INT
   : value = "Integer.valueOf(%token%)"
