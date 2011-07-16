@@ -5,7 +5,9 @@ import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.getLevel;
 import java.util.List;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 
 public class TbDebugUtil {
@@ -15,7 +17,7 @@ public class TbDebugUtil {
             DocumentNode node = list.get(i);
             if (node instanceof AbstractToken) {
                 AbstractToken t = (AbstractToken) node;
-                System.out.println("list entry " + i + " " + " is token: " + t.getValue() + " at level " + getLevel(node));
+                System.out.println("list entry " + i + " " + " is token: " + getTokenValue(t) + " at level " + getLevel(node));
             } else {
                 TextBlock b = (TextBlock) node;
                 System.out.println("list entry " + i + " " + " is textblock: " + b.getCachedString() + " at level "
@@ -33,7 +35,7 @@ public class TbDebugUtil {
             }
             if (node instanceof AbstractToken) {
                 AbstractToken tok = (AbstractToken) node;
-                temp += tok.getValue();
+                temp += getTokenValue(tok);
             }
         }
         return temp + "[o:" + currentTextBlock.getOffset() + (currentTextBlock.isOffsetRelative() ? "r" : "a") + ",l:"
@@ -44,13 +46,23 @@ public class TbDebugUtil {
         String temp = "";
         if (currentNode instanceof AbstractToken) {
             AbstractToken tok = (AbstractToken) currentNode;
-            temp += tok.getValue();
+            temp += getTokenValue(tok);
         } else {
             for (DocumentNode node : TbNavigationUtil.getSubNodes((TextBlock) currentNode)) {
                 temp += getDocumentNodeAsPlainString(node);
             }
         }
         return temp;
+    }
+    
+    private static String getTokenValue(AbstractToken tok) {
+        if (tok instanceof Bostoken) {
+            return "BOS";
+        } else if (tok instanceof Eostoken) {
+            return "EOS";
+        } else {
+            return tok.getValue();
+        }
     }
 
 }
