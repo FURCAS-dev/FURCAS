@@ -281,7 +281,7 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
                         platformResourceURIPrefix.length(), uriAsString.indexOf('/', platformResourceURIPrefix.length()+1));
                 project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
             }
-            if (project == null) {
+            if (project == null && uri.isFile()) {
                 java.net.URI netUri = java.net.URI.create(uri.toString());
                 IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
                 IContainer[] result = root.findContainersForLocationURI(netUri);
