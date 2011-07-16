@@ -10,6 +10,7 @@ import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.TokenSource;
 import org.antlr.runtime.TokenStream;
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
@@ -34,6 +35,7 @@ import com.sap.furcas.runtime.parser.impl.ParserScope;
 import com.sap.furcas.runtime.parser.textblocks.ITextBlocksTokenStream;
 import com.sap.furcas.runtime.parser.textblocks.TextBlocksAwareModelAdapter;
 import com.sap.furcas.runtime.parser.textblocks.observer.ParserTextBlocksHandler;
+import com.sap.furcas.runtime.textblocks.TbDebugUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
 import com.sap.ide.cts.parser.Activator;
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
@@ -131,6 +133,7 @@ public class IncrementalParserFacade {
      */
     public TextBlock parseIncrementally(TextBlock rootBlock, IProgressMonitor monitor) throws SemanticParserException {
         setDefaultPartitionFromRoot(rootBlock);
+        
         if (lexAndPrepareParsing(rootBlock)) {
             TextBlock preparedTextBlock = getCurrentVersion(rootBlock);
             incrementalLexer.setCurrentTokenForParser((AbstractToken) preparedTextBlock.getSubNodes().get(0));
@@ -140,7 +143,14 @@ public class IncrementalParserFacade {
                 // Canceld during lexing. Save to return here.
                 return preparedTextBlock;
             }
-            return incrementalParser.incrementalParse(preparedTextBlock, /*error mode*/ false, monitor);
+            String preParseContent = TbDebugUtil.getDocumentNodeAsPlainString(preparedTextBlock);
+            TextBlock resultBlock = incrementalParser.incrementalParse(preparedTextBlock, /*error mode*/ false, monitor);
+            
+            String postParseContent = TbDebugUtil.getDocumentNodeAsPlainString(resultBlock);
+            Assert.isTrue(preParseContent.equals(postParseContent), "Content differs after parsing. \n" +
+                    "Before:\n "+ preParseContent + "\nAfter:\n " + postParseContent);
+            
+            return resultBlock;
         } else {
             throw new SemanticParserException(getErrors(), Component.LEXICAL_ANALYSIS);
         }
@@ -197,8 +207,16 @@ public class IncrementalParserFacade {
         // go back to beginning of stream
         tbTokenStream.reset();
         TextBlock previousVersionTb = TbVersionUtil.getOtherVersion(rootBlock, Version.PREVIOUS);
+        String preLexContent = TbDebugUtil.getDocumentNodeAsPlainString(previousVersionTb);
+        
         incrementalLexer.setSource((AbstractToken) previousVersionTb.getSubNodes().get(0));
         boolean lexingSuccessful = incrementalLexer.lex(previousVersionTb);
+        
+        if (lexingSuccessful) {
+            String postLexContent = TbDebugUtil.getDocumentNodeAsPlainString(getCurrentVersion(previousVersionTb));
+            Assert.isTrue(preLexContent.equals(postLexContent), "Content differs after lexing. \n" +
+                    "Before:\n "+ preLexContent + "\nAfter:\n " + postLexContent);
+        }
 
         return lexingSuccessful;
     }
