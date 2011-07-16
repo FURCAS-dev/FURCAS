@@ -10,6 +10,7 @@
  ******************************************************************************/
 package com.sap.furcas.ide.editor.commands;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.imp.parser.IMessageHandler;
@@ -47,12 +48,14 @@ public class ParseCommand extends RecordingCommand {
     private final IMessageHandler handler;
     private boolean wasEffective;
     private final ShortPrettyPrinter shortPrettyPrinter;
+    private final IProgressMonitor monitor;
 
-    public ParseCommand(TransactionalEditingDomain domain, CtsDocument document, IncrementalParserFacade parserFacade, IMessageHandler handler) {
+    public ParseCommand(TransactionalEditingDomain domain, CtsDocument document, IncrementalParserFacade parserFacade, IMessageHandler handler, IProgressMonitor monitor) {
         super(domain, "Parse document");
         this.document = document;
         this.parserFacade = parserFacade;
         this.handler = handler;
+        this.monitor = monitor;
         this.result = document.getRootBlock();
         this.shortPrettyPrinter = new ShortPrettyPrinter(parserFacade.getModelElementInvestigator());
     }
@@ -67,7 +70,7 @@ public class ParseCommand extends RecordingCommand {
         synchronized (document.getLockObject()) {
             document.flushUserEditsToTextBlocskModel();
         }
-        
+                
         // 2) Run the parser. This creates a new TextBlocks model
         //    Parsing runs in the background only.
         final TextBlock blockWithUnparsedEdits = TbVersionUtil.getOtherVersion(document.getRootBlock(), Version.PREVIOUS);
@@ -98,9 +101,13 @@ public class ParseCommand extends RecordingCommand {
     
     private TextBlock parse(TextBlock oldBlock) {
         try {
-            TextBlock newBlock = parserFacade.parseIncrementally(oldBlock);
-            // Both lexing and parsing were successfull. Make a new REFERENCE version. 
-            return (TextBlock) TbChangeUtil.cleanUp(newBlock);
+            TextBlock newBlock = parserFacade.parseIncrementally(oldBlock, monitor);
+            if (monitor.isCanceled()) {
+                return null;
+            } else {
+                // Both lexing and parsing were successfull. Make a new REFERENCE version. 
+                return (TextBlock) TbChangeUtil.cleanUp(newBlock);
+            }
             
         } catch (SemanticParserException e) {
             handleParseException(e);
