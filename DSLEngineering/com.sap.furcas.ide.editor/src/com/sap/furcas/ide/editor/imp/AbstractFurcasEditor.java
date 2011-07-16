@@ -61,14 +61,15 @@ import com.sap.ide.cts.parser.incremental.IncrementalParserFacade;
  *      <li>an IMP {@link Language} descriptor</li>
  *      <li>the {@link FurcasParseController}</li>
  *      <li>the editor itself</li>
- * </ul>
+ * </ul><br>
  * 
- * Clients that want to use this editor <b>should</b> register:
+ * Clients that want to use this editor <b>should</b> inherit from the FURCAS_BASE<
+ * language. It provides the following generic implementations:
  * <ul>
  *      <li>the {@link FurcasContentProposer}</li>
  *      <li>the {@link FurcasTreeModelBuilder}</li>
  *      <li>the {@link FurcasLabelProvider}</li>
- * </ul>
+ * </ul><br>
  * 
  * In addition, clients <b>can</b> implement and register other IMP services
  * such as the {@link ITokenColorer}.
