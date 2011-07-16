@@ -192,7 +192,7 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
                 syntaxBean = parseSyntax(resource, sourceConfig);
                 if (syntaxBean != null) {
                     IResource modelResource = resource.getProject().getFile("mapping" + File.separator + getFileNameBase(resource) + "." + "furcas");
-                    if (modelResource.getModificationStamp() > resource.getModificationStamp()) {
+                    if (modelResource.getLocalTimeStamp() > resource.getLocalTimeStamp()) {
                         // The plaintext file is older than the model. We do not want to overwrite the model file.
                         // (happens when the project is cleaned and a rebuilt is triggered)
                         return;
