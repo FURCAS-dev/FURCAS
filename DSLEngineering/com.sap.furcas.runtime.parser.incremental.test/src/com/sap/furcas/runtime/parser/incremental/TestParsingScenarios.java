@@ -275,7 +275,7 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
     }
     
     @Test
-    public void testMergeTwoBlocksInstantious() throws Exception {
+    public void testMergeTwoBlocksInstant() throws Exception {
         model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
         triggerParser();
 
@@ -291,11 +291,11 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
     }
     
     @Test
-    public void testMergeTwoBlocksInstantious2() throws Exception {
+    public void testMergeTwoBlocksInstant2() throws Exception {
         model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
         triggerParser();
 
-        // this is the same as #testMergeTwoBlocksInstantious() but
+        // this is the same as #testMergeTwoBlocksInstant() but
         // now the inner bracket is removed.
 
         // remove the { which starts the second block and the second last }
@@ -380,7 +380,6 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
     
-    //@Ignore("Lexer crashes with exception")
     @Test
     public void testDeeplyNestedBlocks() throws Exception {
         model.replace(0, 0, "{ }");
@@ -421,11 +420,186 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
         for (int i = 0; i < model.getLength(); i++) {
             model.replace(i, 1, model.get(i, 1));
             triggerParser();
+            assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
         }
         assertEquals(initialContent, model.get(0, model.getLength()));
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
+    
+    @Test
+    public void testReplaceCharactersWithWhiteSpace() throws Exception {
+        model.replace(0, 0, "{ def a; use a; { { def b; use b; } } {} {}  }");
+        triggerParser();
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
         
+        // Loop over the whole model. Replace each char with itself,
+        // except the first and last bracket. Keep the { } to still have a valid model
+        for (int i = 1; i < model.getLength()-1; i++) {
+            model.replace(i, 1, " ");
+            triggerParser();
+            // can have intermediate errors here
+        }
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+    }
+    
+    @Test
+    public void testReplaceTokenWithItself() throws Exception {
+        model.replace(0, 0, "{ { def a; } }");
+        triggerParser();
+        
+        // rename a to a
+        model.replace("{ { def ".length(), "a".length(), "a");
+        triggerParser();
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+        
+        // rename ; to ;
+        model.replace("{ { def a".length(), ";".length(), ";");
+        triggerParser();
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+    }
+    
+    @Test
+    public void testReplaceSubBlockWithItself() throws Exception {
+        model.replace(0, 0, "{ { def a; } { def b; } { def c; } }");
+        triggerParser();
+        
+        //  replace the inner block with itself
+        model.replace("{ { def a; } ".length(), "{ def b; }".length(), "{ def b; }");
+        triggerParser();
+        
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+    }
+    
+    @Test
+    public void testSwapStatementsViaRename() throws Exception {
+        model.replace(0, 0, "{ def a; def b; }");
+        triggerParser();
+        
+        // rename "a" to "b" and "b" to "a".
+        model.replace("{ def a; def ".length(), "b".length(), "a");
+        triggerParser();
+        model.replace("{ def ".length(), "a".length(), "b");
+        triggerParser();
+        
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+    }
+    
+    @Test
+    public void testSwapStatementsViaRenameInstant() throws Exception {
+        model.replace(0, 0, "{ def a; def b; }");
+        triggerParser();
+        
+        // rename "a" to "b" and "b" to "a" without intermediate parsing.
+        model.replace("{ def a; def ".length(), "b".length(), "a");
+        model.replace("{ def ".length(), "a".length(), "b");
+        triggerParser();
+        
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+    }
+    
+    @Test
+    public void testSwapStatements() throws Exception {
+        model.replace(0, 0, "{ def a; def b; }");
+        triggerParser();
+        
+        // replace "def a" with "def b" and "def b" with "def a"
+        model.replace("{ def a; ".length(), "def b;".length(), "def a;");
+        triggerParser();
+        model.replace("{ ".length(), "def a;".length(), "def b;");
+        triggerParser();
+        
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+    }
+    
+    @Test
+    public void testSwapStatementsInstant() throws Exception {
+        model.replace(0, 0, "{ def a; def b; }");
+        triggerParser();
+        
+        // replace "def a" with "def b" and "def b" with "def a".
+        // Without intermediate parsing.
+        model.replace("{ def a; ".length(), "def b;".length(), "def a;");
+        model.replace("{ ".length(), "def a;".length(), "def b;");
+        triggerParser();
+        
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+    }
+    
+    @Test
+    public void testSwapStatementsComplex() throws Exception {
+        model.replace(0, 0, "{{ def a; { { {use a; {def c;} } } {use a; def d;} }}}");
+        triggerParser();
+        
+        // swap the right most "def d" with "use a; {def c;}" 
+        model.replace("{{ def a; { { {".length(), "use a; {def c;}".length(), "def d;");
+        triggerParser();
+        model.replace("{{ def a; { { {def d; } } {use a; ".length(), "def d;".length(), "use a; {def c;}");
+        triggerParser();
+        
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+    }
+    
+    @Test
+    public void testSwapStatementsComplexInstant() throws Exception {
+        model.replace(0, 0, "{{ def a; { { {use a; {def c;} } } {use a; def d;} }}}");
+        triggerParser();
+        
+        // swap the right most "def d" with "use a; {def c;}" without intermediate parsing.
+        model.replace("{{ def a; { { {".length(), "use a; {def c;}" .length(), "def d;");
+        model.replace("{{ def a; { { {def d; } } {use a; ".length(), "def d;".length(), "use a; {def c;}");
+        triggerParser();
+        
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+    }
+    
+    @Test
+    public void testMoveStatement() throws Exception {
+        model.replace(0, 0, "{{ def a; { {use a; {def c;} } {use a;} }}}");
+        triggerParser();
+        
+        // Move def c; to different places.
+        
+        // move before use a;
+        model.replace("{{ def a; { {use a; {".length(), "def c;".length(), ""); // delete
+        model.replace("{{ def a; { {".length(), 0, "def c;"); // insert
+        triggerParser();
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+        
+        // move before def a;
+        model.replace("{{ def a; { {".length(), "def c;".length(), ""); // delete
+        model.replace("{{".length(), 0, "def c;"); // insert 
+        triggerParser();
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+        
+        // move to the end before the last }
+        model.replace("{{".length(), "def c;".length(), ""); // delete
+        model.replace("{{ def a; { {use a; {} } {use a;} }".length(), 0, "def c;"); // insert
+        triggerParser();
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+    }
+    
+    @Test
+    public void testMoveStatementWithErrors() throws Exception {
+        model.replace(0, 0, "{{ def a; { {use a; {def c;} } {use a;} }}}");
+        triggerParser();
+        
+        // Move def c; out of scope. Then back again.
+        
+        // move behind the last closing }
+        model.replace("{{ def a; { {use a; {".length(), "def c;".length(), ""); // delete
+        model.replace("{{ def a; { {use a; {} } {use a;} }}}".length(), 0, "def c;"); // insert
+        triggerParser();
+        
+        // has to yield errors. Statement may not be placed there
+        assertTrue(model.getRoot().getVersion() != Version.REFERENCE);
 
+        // move to the left of the right most }
+        model.replace("{{ def a; { {use a; {} } {use a;} }}}".length(), "def c;".length(), ""); // delete
+        model.replace("{{ def a; { {use a; {} } {use a;} }}".length(), 0, "def c;"); // insert
+
+        triggerParser();
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+    }
+    
     
 }
