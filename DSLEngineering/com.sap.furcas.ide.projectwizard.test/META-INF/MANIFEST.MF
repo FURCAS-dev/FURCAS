@@ -5,8 +5,8 @@ Bundle-SymbolicName: com.sap.furcas.ide.projectwizard.test
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.sap.furcas.ide.projectwizard.test.Activator
 Bundle-Vendor: SAP
-Require-Bundle: org.junit;bundle-version="4.8.1",
- org.antlr;bundle-version="3.1.1",
+Require-Bundle: org.junit,
+ org.antlr,
  org.eclipse.osgi,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
@@ -19,8 +19,8 @@ Require-Bundle: org.junit;bundle-version="4.8.1",
  org.eclipse.emf.ecore,
  com.sap.furcas.runtime.common,
  com.sap.furcas.runtime.parser.test,
- com.sap.furcas.runtime.parser.incremental,
  com.sap.furcas.runtime.parser,
+ com.sap.furcas.runtime.parser.incremental,
  com.sap.furcas.parsergenerator,
  com.sap.furcas.ide.projectwizard,
  com.sap.furcas.ide.dslproject,
@@ -30,5 +30,5 @@ Require-Bundle: org.junit;bundle-version="4.8.1",
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
- generationTemp/,
- lib/org.eclipse.swt.gtk.linux.x86_64_3.6.1.v3655c.jar
+ generationTemp/
+Export-Package: com.sap.furcas.ide.projectwizard.test

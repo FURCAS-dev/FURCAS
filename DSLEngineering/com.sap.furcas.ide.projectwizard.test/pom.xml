@@ -19,7 +19,8 @@
                         	<groupId>org.sonatype.tycho</groupId>
                                 <artifactId>maven-osgi-test-plugin</artifactId>
                                 <configuration>
-					<argLine>-Xmx1024m -XX:+UseParallelGC -Dtarget.location=${target.location} -Declipse.location=${eclipse.location}</argLine>
+									<argLine>-Xmx1024m -XX:+UseParallelGC -Dtarget.location=${target.location} -Declipse.location=${eclipse.location}</argLine>
+									<useUIHarness>true</useUIHarness>
                                 </configuration>
                         </plugin>
                 </plugins>
