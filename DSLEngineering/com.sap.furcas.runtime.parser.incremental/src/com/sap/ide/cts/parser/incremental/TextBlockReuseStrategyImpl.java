@@ -133,7 +133,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 							for (EObject refObject : affectedModelElements) {
 								if (EcoreHelper.isAlive(refObject)
 									&& !isFromReferenceOnlyTemplate(subNodeResult.textBlock)) {
-									EcoreUtil.delete(refObject);
+									EcoreUtil.delete(refObject, true);
 								}
 							}
 							// this block
@@ -823,7 +823,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
                                     for (EObject ro : new ArrayList<EObject>(tb
                                             .getCorrespondingModelElements())) {
                                         if (EcoreHelper.isAlive((ro))) {
-                                            EcoreUtil.delete(ro);
+                                            EcoreUtil.delete(ro, true);
                                         }
                                     }
                                 } else {

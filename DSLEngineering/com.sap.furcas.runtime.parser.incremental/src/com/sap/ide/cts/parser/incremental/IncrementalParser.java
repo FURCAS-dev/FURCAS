@@ -703,7 +703,7 @@ public class IncrementalParser extends IncrementalRecognizer {
             }
             for (EObject elementToDelete : elementsToDelete) {
                 if (EcoreHelper.isAlive(elementToDelete)) {
-                    EcoreUtil.delete(elementToDelete);
+                    EcoreUtil.delete(elementToDelete, true);
                 }
             }
         }
