@@ -43,7 +43,7 @@ public class SyntaxParser {
             if (errors != null && errors.size() > 0) {
                 if (result.getSyntax() != null) {
                     // also clean up unfinished syntax
-                    EcoreUtil.delete(result.getSyntax());
+                    EcoreUtil.delete(result.getSyntax(), true);
                 }
                 for (ParsingError error : errors) {
                     errorHandler.error(error);
