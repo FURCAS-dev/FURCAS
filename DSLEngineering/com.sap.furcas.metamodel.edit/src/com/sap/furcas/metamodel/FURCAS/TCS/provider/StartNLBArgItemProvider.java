@@ -107,10 +107,8 @@ public class StartNLBArgItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((StartNLBArg)object).getLocation();
-        return label == null || label.length() == 0 ?
-            getString("_UI_StartNLBArg_type") :
-            getString("_UI_StartNLBArg_type") + " " + label;
+        StartNLBArg startNLBArg = (StartNLBArg)object;
+        return getString("_UI_StartNLBArg_type") + " " + startNLBArg.isValue();
     }
 
         /**

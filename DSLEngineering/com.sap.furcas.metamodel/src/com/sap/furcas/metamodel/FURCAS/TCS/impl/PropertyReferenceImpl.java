@@ -6,15 +6,17 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
-import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
-import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,61 +33,61 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * @generated
  */
 public class PropertyReferenceImpl extends EObjectImpl implements PropertyReference {
-        /**
+    /**
      * The cached value of the '{@link #getStrucfeature() <em>Strucfeature</em>}' reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getStrucfeature()
      * @generated
      * @ordered
      */
-        protected EStructuralFeature strucfeature;
+    protected EStructuralFeature strucfeature;
 
-        /**
+    /**
      * The default value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getName()
      * @generated
      * @ordered
      */
-        protected static final String NAME_EDEFAULT = null;
+    protected static final String NAME_EDEFAULT = null;
 
-        /**
+    /**
      * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getName()
      * @generated
      * @ordered
      */
-        protected String name = NAME_EDEFAULT;
+    protected String name = NAME_EDEFAULT;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected PropertyReferenceImpl() {
+    protected PropertyReferenceImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.PROPERTY_REFERENCE;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public EStructuralFeature getStrucfeature() {
+    public EStructuralFeature getStrucfeature() {
         if (strucfeature != null && strucfeature.eIsProxy()) {
             InternalEObject oldStrucfeature = (InternalEObject)strucfeature;
             strucfeature = (EStructuralFeature)eResolveProxy(oldStrucfeature);
@@ -97,55 +99,55 @@ public class PropertyReferenceImpl extends EObjectImpl implements PropertyRefere
         return strucfeature;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public EStructuralFeature basicGetStrucfeature() {
+    public EStructuralFeature basicGetStrucfeature() {
         return strucfeature;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setStrucfeature(EStructuralFeature newStrucfeature) {
+    public void setStrucfeature(EStructuralFeature newStrucfeature) {
         EStructuralFeature oldStrucfeature = strucfeature;
         strucfeature = newStrucfeature;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.PROPERTY_REFERENCE__STRUCFEATURE, oldStrucfeature, strucfeature));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public String getName() {
+    public String getName() {
         return name;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setName(String newName) {
+    public void setName(String newName) {
         String oldName = name;
         name = newName;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.PROPERTY_REFERENCE__NAME, oldName, name));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.PROPERTY_REFERENCE__STRUCFEATURE:
                 if (resolve) return getStrucfeature();
@@ -156,13 +158,13 @@ public class PropertyReferenceImpl extends EObjectImpl implements PropertyRefere
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.PROPERTY_REFERENCE__STRUCFEATURE:
                 setStrucfeature((EStructuralFeature)newValue);
@@ -174,13 +176,13 @@ public class PropertyReferenceImpl extends EObjectImpl implements PropertyRefere
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.PROPERTY_REFERENCE__STRUCFEATURE:
                 setStrucfeature((EStructuralFeature)null);
@@ -192,13 +194,13 @@ public class PropertyReferenceImpl extends EObjectImpl implements PropertyRefere
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.PROPERTY_REFERENCE__STRUCFEATURE:
                 return strucfeature != null;
@@ -208,13 +210,13 @@ public class PropertyReferenceImpl extends EObjectImpl implements PropertyRefere
         return super.eIsSet(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public String toString() {
+    @Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());

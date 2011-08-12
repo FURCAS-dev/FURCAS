@@ -8,6 +8,8 @@ package com.sap.furcas.metamodel.FURCAS.TCS;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.ecore.EObject;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Or Pattern</b></em>'.
@@ -24,21 +26,21 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface OrPattern extends LocatedElement {
-        /**
+public interface OrPattern extends EObject {
+    /**
      * Returns the value of the '<em><b>Simple Patterns</b></em>' containment reference list.
      * The list contents are of type {@link com.sap.furcas.metamodel.FURCAS.TCS.SimplePattern}.
      * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>Simple Patterns</em>' containment reference list isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Simple Patterns</em>' containment reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Simple Patterns</em>' containment reference list.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getOrPattern_SimplePatterns()
      * @model containment="true" required="true"
      * @generated
      */
-        EList<SimplePattern> getSimplePatterns();
+    EList<SimplePattern> getSimplePatterns();
 
 } // OrPattern

@@ -164,10 +164,8 @@ public class MultiLineRuleItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((MultiLineRule)object).getLocation();
-        return label == null || label.length() == 0 ?
-            getString("_UI_MultiLineRule_type") :
-            getString("_UI_MultiLineRule_type") + " " + label;
+        MultiLineRule multiLineRule = (MultiLineRule)object;
+        return getString("_UI_MultiLineRule_type") + " " + multiLineRule.isDropStart();
     }
 
         /**

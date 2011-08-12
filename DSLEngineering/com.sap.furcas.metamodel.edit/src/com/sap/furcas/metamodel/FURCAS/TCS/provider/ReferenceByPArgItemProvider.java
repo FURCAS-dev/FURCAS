@@ -107,7 +107,7 @@ public class ReferenceByPArgItemProvider
      */
     @Override
     public String getText(Object object) {
-        String label = ((ReferenceByPArg)object).getLocation();
+        String label = ((ReferenceByPArg)object).getReferenceBy();
         return label == null || label.length() == 0 ?
             getString("_UI_ReferenceByPArg_type") :
             getString("_UI_ReferenceByPArg_type") + " " + label;

@@ -141,7 +141,7 @@ public class TemplateItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((Template)object).getLocation();
+        String label = ((Template)object).getDisambiguate();
         return label == null || label.length() == 0 ?
             getString("_UI_Template_type") :
             getString("_UI_Template_type") + " " + label;

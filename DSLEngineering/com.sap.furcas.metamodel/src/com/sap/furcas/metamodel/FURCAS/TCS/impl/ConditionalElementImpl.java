@@ -6,16 +6,18 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.Expression;
 import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,70 +35,70 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * @generated
  */
 public class ConditionalElementImpl extends SequenceElementImpl implements ConditionalElement {
-        /**
+    /**
      * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getCondition()
      * @generated
      * @ordered
      */
-        protected Expression condition;
+    protected Expression condition;
 
-        /**
+    /**
      * The cached value of the '{@link #getThenSequence() <em>Then Sequence</em>}' containment reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getThenSequence()
      * @generated
      * @ordered
      */
-        protected Sequence thenSequence;
+    protected Sequence thenSequence;
 
-        /**
+    /**
      * The cached value of the '{@link #getElseSequence() <em>Else Sequence</em>}' containment reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getElseSequence()
      * @generated
      * @ordered
      */
-        protected Sequence elseSequence;
+    protected Sequence elseSequence;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected ConditionalElementImpl() {
+    protected ConditionalElementImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.CONDITIONAL_ELEMENT;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public Expression getCondition() {
+    public Expression getCondition() {
         return condition;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public NotificationChain basicSetCondition(Expression newCondition, NotificationChain msgs) {
+    public NotificationChain basicSetCondition(Expression newCondition, NotificationChain msgs) {
         Expression oldCondition = condition;
         condition = newCondition;
         if (eNotificationRequired()) {
@@ -106,12 +108,12 @@ public class ConditionalElementImpl extends SequenceElementImpl implements Condi
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setCondition(Expression newCondition) {
+    public void setCondition(Expression newCondition) {
         if (newCondition != condition) {
             NotificationChain msgs = null;
             if (condition != null)
@@ -125,21 +127,21 @@ public class ConditionalElementImpl extends SequenceElementImpl implements Condi
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CONDITIONAL_ELEMENT__CONDITION, newCondition, newCondition));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public Sequence getThenSequence() {
+    public Sequence getThenSequence() {
         return thenSequence;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public NotificationChain basicSetThenSequence(Sequence newThenSequence, NotificationChain msgs) {
+    public NotificationChain basicSetThenSequence(Sequence newThenSequence, NotificationChain msgs) {
         Sequence oldThenSequence = thenSequence;
         thenSequence = newThenSequence;
         if (eNotificationRequired()) {
@@ -149,12 +151,12 @@ public class ConditionalElementImpl extends SequenceElementImpl implements Condi
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setThenSequence(Sequence newThenSequence) {
+    public void setThenSequence(Sequence newThenSequence) {
         if (newThenSequence != thenSequence) {
             NotificationChain msgs = null;
             if (thenSequence != null)
@@ -168,21 +170,21 @@ public class ConditionalElementImpl extends SequenceElementImpl implements Condi
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CONDITIONAL_ELEMENT__THEN_SEQUENCE, newThenSequence, newThenSequence));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public Sequence getElseSequence() {
+    public Sequence getElseSequence() {
         return elseSequence;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public NotificationChain basicSetElseSequence(Sequence newElseSequence, NotificationChain msgs) {
+    public NotificationChain basicSetElseSequence(Sequence newElseSequence, NotificationChain msgs) {
         Sequence oldElseSequence = elseSequence;
         elseSequence = newElseSequence;
         if (eNotificationRequired()) {
@@ -192,12 +194,12 @@ public class ConditionalElementImpl extends SequenceElementImpl implements Condi
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setElseSequence(Sequence newElseSequence) {
+    public void setElseSequence(Sequence newElseSequence) {
         if (newElseSequence != elseSequence) {
             NotificationChain msgs = null;
             if (elseSequence != null)
@@ -211,13 +213,13 @@ public class ConditionalElementImpl extends SequenceElementImpl implements Condi
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CONDITIONAL_ELEMENT__ELSE_SEQUENCE, newElseSequence, newElseSequence));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.CONDITIONAL_ELEMENT__CONDITION:
                 if (condition != null)
@@ -235,13 +237,13 @@ public class ConditionalElementImpl extends SequenceElementImpl implements Condi
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.CONDITIONAL_ELEMENT__CONDITION:
                 return basicSetCondition(null, msgs);
@@ -253,13 +255,13 @@ public class ConditionalElementImpl extends SequenceElementImpl implements Condi
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.CONDITIONAL_ELEMENT__CONDITION:
                 return getCondition();
@@ -271,13 +273,13 @@ public class ConditionalElementImpl extends SequenceElementImpl implements Condi
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.CONDITIONAL_ELEMENT__CONDITION:
                 setCondition((Expression)newValue);
@@ -292,13 +294,13 @@ public class ConditionalElementImpl extends SequenceElementImpl implements Condi
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.CONDITIONAL_ELEMENT__CONDITION:
                 setCondition((Expression)null);
@@ -313,13 +315,13 @@ public class ConditionalElementImpl extends SequenceElementImpl implements Condi
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.CONDITIONAL_ELEMENT__CONDITION:
                 return condition != null;

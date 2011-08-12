@@ -46,8 +46,6 @@ public final class FURCASEditorPlugin extends EMFPlugin {
         super
             (new ResourceLocator [] {
                 EcoreEditPlugin.INSTANCE,
-                OCLEditPlugin.INSTANCE,
-                OCLEcoreEditPlugin.INSTANCE,
             });
     }
 

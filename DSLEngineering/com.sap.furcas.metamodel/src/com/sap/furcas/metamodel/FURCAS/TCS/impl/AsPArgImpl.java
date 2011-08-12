@@ -6,14 +6,16 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.AsPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,61 +32,61 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Template;
  * @generated
  */
 public class AsPArgImpl extends PropertyArgImpl implements AsPArg {
-        /**
+    /**
      * The cached value of the '{@link #getTemplate() <em>Template</em>}' reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getTemplate()
      * @generated
      * @ordered
      */
-        protected Template template;
+    protected Template template;
 
-        /**
+    /**
      * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getValue()
      * @generated
      * @ordered
      */
-        protected static final String VALUE_EDEFAULT = null;
+    protected static final String VALUE_EDEFAULT = null;
 
-        /**
+    /**
      * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getValue()
      * @generated
      * @ordered
      */
-        protected String value = VALUE_EDEFAULT;
+    protected String value = VALUE_EDEFAULT;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected AsPArgImpl() {
+    protected AsPArgImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.AS_PARG;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public Template getTemplate() {
+    public Template getTemplate() {
         if (template != null && template.eIsProxy()) {
             InternalEObject oldTemplate = (InternalEObject)template;
             template = (Template)eResolveProxy(oldTemplate);
@@ -96,55 +98,55 @@ public class AsPArgImpl extends PropertyArgImpl implements AsPArg {
         return template;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public Template basicGetTemplate() {
+    public Template basicGetTemplate() {
         return template;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setTemplate(Template newTemplate) {
+    public void setTemplate(Template newTemplate) {
         Template oldTemplate = template;
         template = newTemplate;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.AS_PARG__TEMPLATE, oldTemplate, template));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public String getValue() {
+    public String getValue() {
         return value;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setValue(String newValue) {
+    public void setValue(String newValue) {
         String oldValue = value;
         value = newValue;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.AS_PARG__VALUE, oldValue, value));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.AS_PARG__TEMPLATE:
                 if (resolve) return getTemplate();
@@ -155,13 +157,13 @@ public class AsPArgImpl extends PropertyArgImpl implements AsPArg {
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.AS_PARG__TEMPLATE:
                 setTemplate((Template)newValue);
@@ -173,13 +175,13 @@ public class AsPArgImpl extends PropertyArgImpl implements AsPArg {
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.AS_PARG__TEMPLATE:
                 setTemplate((Template)null);
@@ -191,13 +193,13 @@ public class AsPArgImpl extends PropertyArgImpl implements AsPArg {
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.AS_PARG__TEMPLATE:
                 return template != null;
@@ -207,13 +209,13 @@ public class AsPArgImpl extends PropertyArgImpl implements AsPArg {
         return super.eIsSet(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public String toString() {
+    @Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());

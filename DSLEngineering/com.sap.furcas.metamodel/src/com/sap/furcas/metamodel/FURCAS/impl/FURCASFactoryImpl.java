@@ -7,15 +7,14 @@
 package com.sap.furcas.metamodel.FURCAS.impl;
 
 import com.sap.furcas.metamodel.FURCAS.*;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.impl.EFactoryImpl;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import com.sap.furcas.metamodel.FURCAS.EmptyDummyClassToWorkaroundGeneratorBug;
-import com.sap.furcas.metamodel.FURCAS.FURCASFactory;
-import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
+import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,13 +23,13 @@ import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
  * @generated
  */
 public class FURCASFactoryImpl extends EFactoryImpl implements FURCASFactory {
-        /**
+    /**
      * Creates the default factory implementation.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public static FURCASFactory init() {
+    public static FURCASFactory init() {
         try {
             FURCASFactory theFURCASFactory = (FURCASFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.furcas.org"); 
             if (theFURCASFactory != null) {
@@ -43,23 +42,23 @@ public class FURCASFactoryImpl extends EFactoryImpl implements FURCASFactory {
         return new FURCASFactoryImpl();
     }
 
-        /**
+    /**
      * Creates an instance of the factory.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public FURCASFactoryImpl() {
+    public FURCASFactoryImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public EObject create(EClass eClass) {
+    @Override
+    public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
             case FURCASPackage.EMPTY_DUMMY_CLASS_TO_WORKAROUND_GENERATOR_BUG: return createEmptyDummyClassToWorkaroundGeneratorBug();
             default:
@@ -67,33 +66,33 @@ public class FURCASFactoryImpl extends EFactoryImpl implements FURCASFactory {
         }
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public EmptyDummyClassToWorkaroundGeneratorBug createEmptyDummyClassToWorkaroundGeneratorBug() {
+    public EmptyDummyClassToWorkaroundGeneratorBug createEmptyDummyClassToWorkaroundGeneratorBug() {
         EmptyDummyClassToWorkaroundGeneratorBugImpl emptyDummyClassToWorkaroundGeneratorBug = new EmptyDummyClassToWorkaroundGeneratorBugImpl();
         return emptyDummyClassToWorkaroundGeneratorBug;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public FURCASPackage getFURCASPackage() {
+    public FURCASPackage getFURCASPackage() {
         return (FURCASPackage)getEPackage();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @deprecated
      * @generated
      */
-        @Deprecated
-        public static FURCASPackage getPackage() {
+    @Deprecated
+    public static FURCASPackage getPackage() {
         return FURCASPackage.eINSTANCE;
     }
 

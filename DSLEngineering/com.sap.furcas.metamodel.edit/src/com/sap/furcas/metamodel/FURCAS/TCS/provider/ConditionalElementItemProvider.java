@@ -115,10 +115,7 @@ public class ConditionalElementItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((ConditionalElement)object).getLocation();
-        return label == null || label.length() == 0 ?
-            getString("_UI_ConditionalElement_type") :
-            getString("_UI_ConditionalElement_type") + " " + label;
+        return getString("_UI_ConditionalElement_type");
     }
 
         /**

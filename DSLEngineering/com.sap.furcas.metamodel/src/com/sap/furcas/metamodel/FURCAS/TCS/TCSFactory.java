@@ -17,546 +17,546 @@ import org.eclipse.emf.ecore.EFactory;
  * @generated
  */
 public interface TCSFactory extends EFactory {
-        /**
+    /**
      * The singleton instance of the factory.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        TCSFactory eINSTANCE = com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSFactoryImpl.init();
+    TCSFactory eINSTANCE = com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSFactoryImpl.init();
 
-        /**
+    /**
      * Returns a new object of class '<em>Concrete Syntax</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Concrete Syntax</em>'.
      * @generated
      */
-        ConcreteSyntax createConcreteSyntax();
+    ConcreteSyntax createConcreteSyntax();
 
-        /**
+    /**
      * Returns a new object of class '<em>Function Template</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Function Template</em>'.
      * @generated
      */
-        FunctionTemplate createFunctionTemplate();
+    FunctionTemplate createFunctionTemplate();
 
-        /**
+    /**
      * Returns a new object of class '<em>Class Template</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Class Template</em>'.
      * @generated
      */
-        ClassTemplate createClassTemplate();
+    ClassTemplate createClassTemplate();
 
-        /**
+    /**
      * Returns a new object of class '<em>Primitive Template</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Primitive Template</em>'.
      * @generated
      */
-        PrimitiveTemplate createPrimitiveTemplate();
+    PrimitiveTemplate createPrimitiveTemplate();
 
-        /**
+    /**
      * Returns a new object of class '<em>Operator Template</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Operator Template</em>'.
      * @generated
      */
-        OperatorTemplate createOperatorTemplate();
+    OperatorTemplate createOperatorTemplate();
 
-        /**
+    /**
      * Returns a new object of class '<em>Enumeration Template</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Enumeration Template</em>'.
      * @generated
      */
-        EnumerationTemplate createEnumerationTemplate();
+    EnumerationTemplate createEnumerationTemplate();
 
-        /**
+    /**
      * Returns a new object of class '<em>Enum Literal Mapping</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Enum Literal Mapping</em>'.
      * @generated
      */
-        EnumLiteralMapping createEnumLiteralMapping();
+    EnumLiteralMapping createEnumLiteralMapping();
 
-        /**
+    /**
      * Returns a new object of class '<em>Symbol</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Symbol</em>'.
      * @generated
      */
-        Symbol createSymbol();
+    Symbol createSymbol();
 
-        /**
+    /**
      * Returns a new object of class '<em>Keyword</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Keyword</em>'.
      * @generated
      */
-        Keyword createKeyword();
+    Keyword createKeyword();
 
-        /**
+    /**
      * Returns a new object of class '<em>Operator List</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Operator List</em>'.
      * @generated
      */
-        OperatorList createOperatorList();
+    OperatorList createOperatorList();
 
-        /**
+    /**
      * Returns a new object of class '<em>Priority</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Priority</em>'.
      * @generated
      */
-        Priority createPriority();
+    Priority createPriority();
 
-        /**
+    /**
      * Returns a new object of class '<em>Operator</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Operator</em>'.
      * @generated
      */
-        Operator createOperator();
+    Operator createOperator();
 
-        /**
+    /**
      * Returns a new object of class '<em>Sequence</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Sequence</em>'.
      * @generated
      */
-        Sequence createSequence();
+    Sequence createSequence();
 
-        /**
+    /**
      * Returns a new object of class '<em>Literal Ref</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Literal Ref</em>'.
      * @generated
      */
-        LiteralRef createLiteralRef();
+    LiteralRef createLiteralRef();
 
-        /**
+    /**
      * Returns a new object of class '<em>Property</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Property</em>'.
      * @generated
      */
-        Property createProperty();
+    Property createProperty();
 
-        /**
+    /**
      * Returns a new object of class '<em>Custom Separator</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Custom Separator</em>'.
      * @generated
      */
-        CustomSeparator createCustomSeparator();
+    CustomSeparator createCustomSeparator();
 
-        /**
+    /**
      * Returns a new object of class '<em>Block</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Block</em>'.
      * @generated
      */
-        Block createBlock();
+    Block createBlock();
 
-        /**
+    /**
      * Returns a new object of class '<em>Conditional Element</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Conditional Element</em>'.
      * @generated
      */
-        ConditionalElement createConditionalElement();
+    ConditionalElement createConditionalElement();
 
-        /**
+    /**
      * Returns a new object of class '<em>Primitive Property Init</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Primitive Property Init</em>'.
      * @generated
      */
-        PrimitivePropertyInit createPrimitivePropertyInit();
+    PrimitivePropertyInit createPrimitivePropertyInit();
 
-        /**
+    /**
      * Returns a new object of class '<em>Alternative</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Alternative</em>'.
      * @generated
      */
-        Alternative createAlternative();
+    Alternative createAlternative();
 
-        /**
+    /**
      * Returns a new object of class '<em>Function Call</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Function Call</em>'.
      * @generated
      */
-        FunctionCall createFunctionCall();
+    FunctionCall createFunctionCall();
 
-        /**
+    /**
      * Returns a new object of class '<em>Refers To PArg</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Refers To PArg</em>'.
      * @generated
      */
-        RefersToPArg createRefersToPArg();
+    RefersToPArg createRefersToPArg();
 
-        /**
+    /**
      * Returns a new object of class '<em>Look In PArg</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Look In PArg</em>'.
      * @generated
      */
-        LookInPArg createLookInPArg();
+    LookInPArg createLookInPArg();
 
-        /**
+    /**
      * Returns a new object of class '<em>Create In PArg</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Create In PArg</em>'.
      * @generated
      */
-        CreateInPArg createCreateInPArg();
+    CreateInPArg createCreateInPArg();
 
-        /**
+    /**
      * Returns a new object of class '<em>Refers To Key PArg</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Refers To Key PArg</em>'.
      * @generated
      */
-        RefersToKeyPArg createRefersToKeyPArg();
+    RefersToKeyPArg createRefersToKeyPArg();
 
-        /**
+    /**
      * Returns a new object of class '<em>Separator PArg</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Separator PArg</em>'.
      * @generated
      */
-        SeparatorPArg createSeparatorPArg();
+    SeparatorPArg createSeparatorPArg();
 
-        /**
+    /**
      * Returns a new object of class '<em>Auto Create PArg</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Auto Create PArg</em>'.
      * @generated
      */
-        AutoCreatePArg createAutoCreatePArg();
+    AutoCreatePArg createAutoCreatePArg();
 
-        /**
+    /**
      * Returns a new object of class '<em>Import Context PArg</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Import Context PArg</em>'.
      * @generated
      */
-        ImportContextPArg createImportContextPArg();
+    ImportContextPArg createImportContextPArg();
 
-        /**
+    /**
      * Returns a new object of class '<em>Forced Lower PArg</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Forced Lower PArg</em>'.
      * @generated
      */
-        ForcedLowerPArg createForcedLowerPArg();
+    ForcedLowerPArg createForcedLowerPArg();
 
-        /**
+    /**
      * Returns a new object of class '<em>Create As PArg</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Create As PArg</em>'.
      * @generated
      */
-        CreateAsPArg createCreateAsPArg();
+    CreateAsPArg createCreateAsPArg();
 
-        /**
+    /**
      * Returns a new object of class '<em>As PArg</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>As PArg</em>'.
      * @generated
      */
-        AsPArg createAsPArg();
+    AsPArg createAsPArg();
 
-        /**
+    /**
      * Returns a new object of class '<em>Mode PArg</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Mode PArg</em>'.
      * @generated
      */
-        ModePArg createModePArg();
+    ModePArg createModePArg();
 
-        /**
+    /**
      * Returns a new object of class '<em>Nb NLB Arg</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Nb NLB Arg</em>'.
      * @generated
      */
-        NbNLBArg createNbNLBArg();
+    NbNLBArg createNbNLBArg();
 
-        /**
+    /**
      * Returns a new object of class '<em>Indent Incr BArg</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Indent Incr BArg</em>'.
      * @generated
      */
-        IndentIncrBArg createIndentIncrBArg();
+    IndentIncrBArg createIndentIncrBArg();
 
-        /**
+    /**
      * Returns a new object of class '<em>Start NLB Arg</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Start NLB Arg</em>'.
      * @generated
      */
-        StartNLBArg createStartNLBArg();
+    StartNLBArg createStartNLBArg();
 
-        /**
+    /**
      * Returns a new object of class '<em>Start Nb NLB Arg</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Start Nb NLB Arg</em>'.
      * @generated
      */
-        StartNbNLBArg createStartNbNLBArg();
+    StartNbNLBArg createStartNbNLBArg();
 
-        /**
+    /**
      * Returns a new object of class '<em>End NLB Arg</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>End NLB Arg</em>'.
      * @generated
      */
-        EndNLBArg createEndNLBArg();
+    EndNLBArg createEndNLBArg();
 
-        /**
+    /**
      * Returns a new object of class '<em>And Exp</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>And Exp</em>'.
      * @generated
      */
-        AndExp createAndExp();
+    AndExp createAndExp();
 
-        /**
+    /**
      * Returns a new object of class '<em>Equals Exp</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Equals Exp</em>'.
      * @generated
      */
-        EqualsExp createEqualsExp();
+    EqualsExp createEqualsExp();
 
-        /**
+    /**
      * Returns a new object of class '<em>Boolean Property Exp</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Boolean Property Exp</em>'.
      * @generated
      */
-        BooleanPropertyExp createBooleanPropertyExp();
+    BooleanPropertyExp createBooleanPropertyExp();
 
-        /**
+    /**
      * Returns a new object of class '<em>Is Defined Exp</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Is Defined Exp</em>'.
      * @generated
      */
-        IsDefinedExp createIsDefinedExp();
+    IsDefinedExp createIsDefinedExp();
 
-        /**
+    /**
      * Returns a new object of class '<em>One Exp</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>One Exp</em>'.
      * @generated
      */
-        OneExp createOneExp();
+    OneExp createOneExp();
 
-        /**
+    /**
      * Returns a new object of class '<em>Property Val</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Property Val</em>'.
      * @generated
      */
-        PropertyVal createPropertyVal();
+    PropertyVal createPropertyVal();
 
-        /**
+    /**
      * Returns a new object of class '<em>Token</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Token</em>'.
      * @generated
      */
-        Token createToken();
+    Token createToken();
 
-        /**
+    /**
      * Returns a new object of class '<em>Or Pattern</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Or Pattern</em>'.
      * @generated
      */
-        OrPattern createOrPattern();
+    OrPattern createOrPattern();
 
-        /**
+    /**
      * Returns a new object of class '<em>Rule Pattern</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Rule Pattern</em>'.
      * @generated
      */
-        RulePattern createRulePattern();
+    RulePattern createRulePattern();
 
-        /**
+    /**
      * Returns a new object of class '<em>Word Rule</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Word Rule</em>'.
      * @generated
      */
-        WordRule createWordRule();
+    WordRule createWordRule();
 
-        /**
+    /**
      * Returns a new object of class '<em>Word</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Word</em>'.
      * @generated
      */
-        Word createWord();
+    Word createWord();
 
-        /**
+    /**
      * Returns a new object of class '<em>End Of Line Rule</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>End Of Line Rule</em>'.
      * @generated
      */
-        EndOfLineRule createEndOfLineRule();
+    EndOfLineRule createEndOfLineRule();
 
-        /**
+    /**
      * Returns a new object of class '<em>Multi Line Rule</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Multi Line Rule</em>'.
      * @generated
      */
-        MultiLineRule createMultiLineRule();
+    MultiLineRule createMultiLineRule();
 
-        /**
+    /**
      * Returns a new object of class '<em>Simple Mapping</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Simple Mapping</em>'.
      * @generated
      */
-        SimpleMapping createSimpleMapping();
+    SimpleMapping createSimpleMapping();
 
-        /**
+    /**
      * Returns a new object of class '<em>Wildcard Mapping</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Wildcard Mapping</em>'.
      * @generated
      */
-        WildcardMapping createWildcardMapping();
+    WildcardMapping createWildcardMapping();
 
-        /**
+    /**
      * Returns a new object of class '<em>Octal Mapping</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Octal Mapping</em>'.
      * @generated
      */
-        OctalMapping createOctalMapping();
+    OctalMapping createOctalMapping();
 
-        /**
+    /**
      * Returns a new object of class '<em>Hexadecimal Mapping</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Hexadecimal Mapping</em>'.
      * @generated
      */
-        HexadecimalMapping createHexadecimalMapping();
+    HexadecimalMapping createHexadecimalMapping();
 
-        /**
+    /**
      * Returns a new object of class '<em>String Pattern</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>String Pattern</em>'.
      * @generated
      */
-        StringPattern createStringPattern();
+    StringPattern createStringPattern();
 
-        /**
+    /**
      * Returns a new object of class '<em>Class Pattern</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Class Pattern</em>'.
      * @generated
      */
-        ClassPattern createClassPattern();
+    ClassPattern createClassPattern();
 
-        /**
+    /**
      * Returns a new object of class '<em>Qualified Named Element</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Qualified Named Element</em>'.
      * @generated
      */
-        QualifiedNamedElement createQualifiedNamedElement();
+    QualifiedNamedElement createQualifiedNamedElement();
 
-        /**
+    /**
      * Returns a new object of class '<em>Forced Upper PArg</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Forced Upper PArg</em>'.
      * @generated
      */
-        ForcedUpperPArg createForcedUpperPArg();
+    ForcedUpperPArg createForcedUpperPArg();
 
-        /**
+    /**
      * Returns a new object of class '<em>Injector Actions Block</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Injector Actions Block</em>'.
      * @generated
      */
-        InjectorActionsBlock createInjectorActionsBlock();
+    InjectorActionsBlock createInjectorActionsBlock();
 
-        /**
+    /**
      * Returns a new object of class '<em>Lookup Scope PArg</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -565,7 +565,7 @@ public interface TCSFactory extends EFactory {
      */
     LookupScopePArg createLookupScopePArg();
 
-        /**
+    /**
      * Returns a new object of class '<em>Reference By PArg</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -574,7 +574,7 @@ public interface TCSFactory extends EFactory {
      */
     ReferenceByPArg createReferenceByPArg();
 
-        /**
+    /**
      * Returns a new object of class '<em>Prefix PArg</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -583,7 +583,7 @@ public interface TCSFactory extends EFactory {
      */
     PrefixPArg createPrefixPArg();
 
-        /**
+    /**
      * Returns a new object of class '<em>Postfix PArg</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -592,148 +592,148 @@ public interface TCSFactory extends EFactory {
      */
     PostfixPArg createPostfixPArg();
 
-        /**
+    /**
      * Returns a new object of class '<em>Property Reference</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Property Reference</em>'.
      * @generated
      */
-        PropertyReference createPropertyReference();
+    PropertyReference createPropertyReference();
 
-        /**
+    /**
      * Returns a new object of class '<em>Context Template</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Context Template</em>'.
      * @generated
      */
-        ContextTemplate createContextTemplate();
+    ContextTemplate createContextTemplate();
 
-        /**
+    /**
      * Returns a new object of class '<em>Context Tags</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Context Tags</em>'.
      * @generated
      */
-        ContextTags createContextTags();
+    ContextTags createContextTags();
 
-        /**
+    /**
      * Returns a new object of class '<em>Scope Arg</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Scope Arg</em>'.
      * @generated
      */
-        ScopeArg createScopeArg();
+    ScopeArg createScopeArg();
 
-        /**
+    /**
      * Returns a new object of class '<em>Foreach Predicate Property Init</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Foreach Predicate Property Init</em>'.
      * @generated
      */
-        ForeachPredicatePropertyInit createForeachPredicatePropertyInit();
+    ForeachPredicatePropertyInit createForeachPredicatePropertyInit();
 
-        /**
+    /**
      * Returns a new object of class '<em>Predicate Semantic</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Predicate Semantic</em>'.
      * @generated
      */
-        PredicateSemantic createPredicateSemantic();
+    PredicateSemantic createPredicateSemantic();
 
-        /**
+    /**
      * Returns a new object of class '<em>Sequence In Alternative</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Sequence In Alternative</em>'.
      * @generated
      */
-        SequenceInAlternative createSequenceInAlternative();
+    SequenceInAlternative createSequenceInAlternative();
 
-        /**
+    /**
      * Returns a new object of class '<em>Partial PArg</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Partial PArg</em>'.
      * @generated
      */
-        PartialPArg createPartialPArg();
+    PartialPArg createPartialPArg();
 
-        /**
+    /**
      * Returns a new object of class '<em>Disambiguate PArg</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Disambiguate PArg</em>'.
      * @generated
      */
-        DisambiguatePArg createDisambiguatePArg();
+    DisambiguatePArg createDisambiguatePArg();
 
-        /**
+    /**
      * Returns a new object of class '<em>Instance Of Exp</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Instance Of Exp</em>'.
      * @generated
      */
-        InstanceOfExp createInstanceOfExp();
+    InstanceOfExp createInstanceOfExp();
 
-        /**
+    /**
      * Returns a new object of class '<em>Enum Literal Val</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Enum Literal Val</em>'.
      * @generated
      */
-        EnumLiteralVal createEnumLiteralVal();
+    EnumLiteralVal createEnumLiteralVal();
 
-        /**
+    /**
      * Returns a new object of class '<em>String Val</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>String Val</em>'.
      * @generated
      */
-        StringVal createStringVal();
+    StringVal createStringVal();
 
-        /**
+    /**
      * Returns a new object of class '<em>Integer Val</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Integer Val</em>'.
      * @generated
      */
-        IntegerVal createIntegerVal();
+    IntegerVal createIntegerVal();
 
-        /**
+    /**
      * Returns a new object of class '<em>Negative Integer Val</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Negative Integer Val</em>'.
      * @generated
      */
-        NegativeIntegerVal createNegativeIntegerVal();
+    NegativeIntegerVal createNegativeIntegerVal();
 
-        /**
+    /**
      * Returns a new object of class '<em>Lookup Property Init</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Lookup Property Init</em>'.
      * @generated
      */
-        LookupPropertyInit createLookupPropertyInit();
+    LookupPropertyInit createLookupPropertyInit();
 
-        /**
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return the package supported by this factory.
      * @generated
      */
-        TCSPackage getTCSPackage();
+    TCSPackage getTCSPackage();
 
 } //TCSFactory

@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface InjectorAction extends EObject {
-        /**
+    /**
      * Returns the value of the '<em><b>Injector Actions Block</b></em>' container reference.
      * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock#getInjectorActions <em>Injector Actions</em>}'.
      * <!-- begin-user-doc -->

@@ -6,6 +6,7 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,16 +24,16 @@ package com.sap.furcas.metamodel.FURCAS.TCS;
  * @model abstract="true"
  * @generated
  */
-public interface BlockArg extends LocatedElement {
-        /**
+public interface BlockArg extends EObject {
+    /**
      * Returns the value of the '<em><b>Block</b></em>' container reference.
      * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.FURCAS.TCS.Block#getBlockArgs <em>Block Args</em>}'.
      * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>Block</em>' container reference isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Block</em>' container reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Block</em>' container reference.
      * @see #setBlock(Block)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getBlockArg_Block()
@@ -40,16 +41,16 @@ public interface BlockArg extends LocatedElement {
      * @model opposite="blockArgs" required="true" transient="false" ordered="false"
      * @generated
      */
-        Block getBlock();
+    Block getBlock();
 
-        /**
+    /**
      * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.BlockArg#getBlock <em>Block</em>}' container reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @param value the new value of the '<em>Block</em>' container reference.
      * @see #getBlock()
      * @generated
      */
-        void setBlock(Block value);
+    void setBlock(Block value);
 
 } // BlockArg

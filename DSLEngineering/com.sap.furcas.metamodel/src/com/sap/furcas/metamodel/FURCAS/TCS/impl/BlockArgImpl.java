@@ -6,16 +6,20 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.Block;
 import com.sap.furcas.metamodel.FURCAS.TCS.BlockArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,52 +34,52 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  *
  * @generated
  */
-public abstract class BlockArgImpl extends LocatedElementImpl implements BlockArg {
-        /**
+public abstract class BlockArgImpl extends EObjectImpl implements BlockArg {
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected BlockArgImpl() {
+    protected BlockArgImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.BLOCK_ARG;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public Block getBlock() {
+    public Block getBlock() {
         if (eContainerFeatureID() != TCSPackage.BLOCK_ARG__BLOCK) return null;
         return (Block)eContainer();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public NotificationChain basicSetBlock(Block newBlock, NotificationChain msgs) {
+    public NotificationChain basicSetBlock(Block newBlock, NotificationChain msgs) {
         msgs = eBasicSetContainer((InternalEObject)newBlock, TCSPackage.BLOCK_ARG__BLOCK, msgs);
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setBlock(Block newBlock) {
+    public void setBlock(Block newBlock) {
         if (newBlock != eInternalContainer() || (eContainerFeatureID() != TCSPackage.BLOCK_ARG__BLOCK && newBlock != null)) {
             if (EcoreUtil.isAncestor(this, newBlock))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
@@ -91,13 +95,13 @@ public abstract class BlockArgImpl extends LocatedElementImpl implements BlockAr
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.BLOCK_ARG__BLOCK, newBlock, newBlock));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.BLOCK_ARG__BLOCK:
                 if (eInternalContainer() != null)
@@ -107,13 +111,13 @@ public abstract class BlockArgImpl extends LocatedElementImpl implements BlockAr
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.BLOCK_ARG__BLOCK:
                 return basicSetBlock(null, msgs);
@@ -121,13 +125,13 @@ public abstract class BlockArgImpl extends LocatedElementImpl implements BlockAr
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+    @Override
+    public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
         switch (eContainerFeatureID()) {
             case TCSPackage.BLOCK_ARG__BLOCK:
                 return eInternalContainer().eInverseRemove(this, TCSPackage.BLOCK__BLOCK_ARGS, Block.class, msgs);
@@ -135,13 +139,13 @@ public abstract class BlockArgImpl extends LocatedElementImpl implements BlockAr
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.BLOCK_ARG__BLOCK:
                 return getBlock();
@@ -149,13 +153,13 @@ public abstract class BlockArgImpl extends LocatedElementImpl implements BlockAr
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.BLOCK_ARG__BLOCK:
                 setBlock((Block)newValue);
@@ -164,13 +168,13 @@ public abstract class BlockArgImpl extends LocatedElementImpl implements BlockAr
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.BLOCK_ARG__BLOCK:
                 setBlock((Block)null);
@@ -179,13 +183,13 @@ public abstract class BlockArgImpl extends LocatedElementImpl implements BlockAr
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.BLOCK_ARG__BLOCK:
                 return getBlock() != null;

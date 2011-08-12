@@ -80,10 +80,7 @@ public class OctalMappingItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((OctalMapping)object).getLocation();
-        return label == null || label.length() == 0 ?
-            getString("_UI_OctalMapping_type") :
-            getString("_UI_OctalMapping_type") + " " + label;
+        return getString("_UI_OctalMapping_type");
     }
 
         /**

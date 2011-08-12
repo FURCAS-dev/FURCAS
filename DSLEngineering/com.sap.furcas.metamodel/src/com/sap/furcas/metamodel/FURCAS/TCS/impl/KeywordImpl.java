@@ -6,10 +6,10 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import org.eclipse.emf.ecore.EClass;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
+import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,22 +21,22 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * @generated
  */
 public class KeywordImpl extends LiteralImpl implements Keyword {
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected KeywordImpl() {
+    protected KeywordImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.KEYWORD;
     }
 

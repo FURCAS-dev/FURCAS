@@ -130,7 +130,7 @@ public class AsPArgItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((AsPArg)object).getLocation();
+        String label = ((AsPArg)object).getValue();
         return label == null || label.length() == 0 ?
             getString("_UI_AsPArg_type") :
             getString("_UI_AsPArg_type") + " " + label;

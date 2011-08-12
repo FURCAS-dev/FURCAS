@@ -6,21 +6,25 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.Mapping;
 import com.sap.furcas.metamodel.FURCAS.TCS.MultiLineRule;
 import com.sap.furcas.metamodel.FURCAS.TCS.StringPattern;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -41,120 +45,120 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * @generated
  */
 public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
-        /**
+    /**
      * The cached value of the '{@link #getStart() <em>Start</em>}' containment reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getStart()
      * @generated
      * @ordered
      */
-        protected StringPattern start;
+    protected StringPattern start;
 
-        /**
+    /**
      * The cached value of the '{@link #getEnd() <em>End</em>}' containment reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getEnd()
      * @generated
      * @ordered
      */
-        protected StringPattern end;
+    protected StringPattern end;
 
-        /**
+    /**
      * The cached value of the '{@link #getEsc() <em>Esc</em>}' containment reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getEsc()
      * @generated
      * @ordered
      */
-        protected StringPattern esc;
+    protected StringPattern esc;
 
-        /**
+    /**
      * The cached value of the '{@link #getEscMappings() <em>Esc Mappings</em>}' containment reference list.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getEscMappings()
      * @generated
      * @ordered
      */
-        protected EList<Mapping> escMappings;
+    protected EList<Mapping> escMappings;
 
-        /**
+    /**
      * The default value of the '{@link #isDropStart() <em>Drop Start</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isDropStart()
      * @generated
      * @ordered
      */
-        protected static final boolean DROP_START_EDEFAULT = false;
+    protected static final boolean DROP_START_EDEFAULT = false;
 
-        /**
+    /**
      * The cached value of the '{@link #isDropStart() <em>Drop Start</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isDropStart()
      * @generated
      * @ordered
      */
-        protected boolean dropStart = DROP_START_EDEFAULT;
+    protected boolean dropStart = DROP_START_EDEFAULT;
 
-        /**
+    /**
      * The default value of the '{@link #isDropEnd() <em>Drop End</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isDropEnd()
      * @generated
      * @ordered
      */
-        protected static final boolean DROP_END_EDEFAULT = false;
+    protected static final boolean DROP_END_EDEFAULT = false;
 
-        /**
+    /**
      * The cached value of the '{@link #isDropEnd() <em>Drop End</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isDropEnd()
      * @generated
      * @ordered
      */
-        protected boolean dropEnd = DROP_END_EDEFAULT;
+    protected boolean dropEnd = DROP_END_EDEFAULT;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected MultiLineRuleImpl() {
+    protected MultiLineRuleImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.MULTI_LINE_RULE;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public StringPattern getStart() {
+    public StringPattern getStart() {
         return start;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public NotificationChain basicSetStart(StringPattern newStart, NotificationChain msgs) {
+    public NotificationChain basicSetStart(StringPattern newStart, NotificationChain msgs) {
         StringPattern oldStart = start;
         start = newStart;
         if (eNotificationRequired()) {
@@ -164,12 +168,12 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setStart(StringPattern newStart) {
+    public void setStart(StringPattern newStart) {
         if (newStart != start) {
             NotificationChain msgs = null;
             if (start != null)
@@ -183,21 +187,21 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.MULTI_LINE_RULE__START, newStart, newStart));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public StringPattern getEnd() {
+    public StringPattern getEnd() {
         return end;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public NotificationChain basicSetEnd(StringPattern newEnd, NotificationChain msgs) {
+    public NotificationChain basicSetEnd(StringPattern newEnd, NotificationChain msgs) {
         StringPattern oldEnd = end;
         end = newEnd;
         if (eNotificationRequired()) {
@@ -207,12 +211,12 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setEnd(StringPattern newEnd) {
+    public void setEnd(StringPattern newEnd) {
         if (newEnd != end) {
             NotificationChain msgs = null;
             if (end != null)
@@ -226,21 +230,21 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.MULTI_LINE_RULE__END, newEnd, newEnd));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public StringPattern getEsc() {
+    public StringPattern getEsc() {
         return esc;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public NotificationChain basicSetEsc(StringPattern newEsc, NotificationChain msgs) {
+    public NotificationChain basicSetEsc(StringPattern newEsc, NotificationChain msgs) {
         StringPattern oldEsc = esc;
         esc = newEsc;
         if (eNotificationRequired()) {
@@ -250,12 +254,12 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setEsc(StringPattern newEsc) {
+    public void setEsc(StringPattern newEsc) {
         if (newEsc != esc) {
             NotificationChain msgs = null;
             if (esc != null)
@@ -269,67 +273,67 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.MULTI_LINE_RULE__ESC, newEsc, newEsc));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public EList<Mapping> getEscMappings() {
+    public EList<Mapping> getEscMappings() {
         if (escMappings == null) {
             escMappings = new EObjectContainmentEList<Mapping>(Mapping.class, this, TCSPackage.MULTI_LINE_RULE__ESC_MAPPINGS);
         }
         return escMappings;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public boolean isDropStart() {
+    public boolean isDropStart() {
         return dropStart;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setDropStart(boolean newDropStart) {
+    public void setDropStart(boolean newDropStart) {
         boolean oldDropStart = dropStart;
         dropStart = newDropStart;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.MULTI_LINE_RULE__DROP_START, oldDropStart, dropStart));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public boolean isDropEnd() {
+    public boolean isDropEnd() {
         return dropEnd;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setDropEnd(boolean newDropEnd) {
+    public void setDropEnd(boolean newDropEnd) {
         boolean oldDropEnd = dropEnd;
         dropEnd = newDropEnd;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.MULTI_LINE_RULE__DROP_END, oldDropEnd, dropEnd));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.MULTI_LINE_RULE__START:
                 return basicSetStart(null, msgs);
@@ -343,13 +347,13 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.MULTI_LINE_RULE__START:
                 return getStart();
@@ -367,14 +371,14 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @SuppressWarnings("unchecked")
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.MULTI_LINE_RULE__START:
                 setStart((StringPattern)newValue);
@@ -399,13 +403,13 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.MULTI_LINE_RULE__START:
                 setStart((StringPattern)null);
@@ -429,13 +433,13 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.MULTI_LINE_RULE__START:
                 return start != null;
@@ -453,13 +457,13 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
         return super.eIsSet(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public String toString() {
+    @Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());

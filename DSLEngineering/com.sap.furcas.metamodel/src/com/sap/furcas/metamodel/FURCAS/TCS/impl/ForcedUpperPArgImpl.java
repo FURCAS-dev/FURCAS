@@ -6,12 +6,14 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,55 +29,55 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * @generated
  */
 public class ForcedUpperPArgImpl extends PropertyArgImpl implements ForcedUpperPArg {
-        /**
+    /**
      * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getValue()
      * @generated
      * @ordered
      */
-        protected static final Integer VALUE_EDEFAULT = new Integer(0);
+    protected static final Integer VALUE_EDEFAULT = new Integer(0);
 
-        /**
+    /**
      * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getValue()
      * @generated
      * @ordered
      */
-        protected Integer value = VALUE_EDEFAULT;
+    protected Integer value = VALUE_EDEFAULT;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected ForcedUpperPArgImpl() {
+    protected ForcedUpperPArgImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.FORCED_UPPER_PARG;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public Integer getValue() {
+    public Integer getValue() {
         return value;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -87,13 +89,13 @@ public class ForcedUpperPArgImpl extends PropertyArgImpl implements ForcedUpperP
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.FORCED_UPPER_PARG__VALUE, oldValue, value));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.FORCED_UPPER_PARG__VALUE:
                 return getValue();
@@ -101,13 +103,13 @@ public class ForcedUpperPArgImpl extends PropertyArgImpl implements ForcedUpperP
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.FORCED_UPPER_PARG__VALUE:
                 setValue((Integer)newValue);
@@ -116,13 +118,13 @@ public class ForcedUpperPArgImpl extends PropertyArgImpl implements ForcedUpperP
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.FORCED_UPPER_PARG__VALUE:
                 setValue(VALUE_EDEFAULT);
@@ -131,13 +133,13 @@ public class ForcedUpperPArgImpl extends PropertyArgImpl implements ForcedUpperP
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.FORCED_UPPER_PARG__VALUE:
                 return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
@@ -145,13 +147,13 @@ public class ForcedUpperPArgImpl extends PropertyArgImpl implements ForcedUpperP
         return super.eIsSet(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public String toString() {
+    @Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());

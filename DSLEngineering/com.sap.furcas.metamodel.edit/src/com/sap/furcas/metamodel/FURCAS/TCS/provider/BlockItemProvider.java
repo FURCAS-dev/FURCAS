@@ -114,10 +114,7 @@ public class BlockItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((Block)object).getLocation();
-        return label == null || label.length() == 0 ?
-            getString("_UI_Block_type") :
-            getString("_UI_Block_type") + " " + label;
+        return getString("_UI_Block_type");
     }
 
         /**

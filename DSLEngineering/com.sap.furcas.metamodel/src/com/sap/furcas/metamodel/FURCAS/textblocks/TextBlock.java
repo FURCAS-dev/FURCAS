@@ -6,10 +6,11 @@
  */
 package com.sap.furcas.metamodel.FURCAS.textblocks;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,23 +37,23 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Template;
  * @generated
  */
 public interface TextBlock extends DocumentNode {
-        /**
+    /**
      * Returns the value of the '<em><b>Type</b></em>' reference.
      * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>Type</em>' reference isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Type</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Type</em>' reference.
      * @see #setType(Template)
      * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getTextBlock_Type()
      * @model
      * @generated
      */
-        Template getType();
+    Template getType();
 
-        /**
+    /**
      * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getType <em>Type</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -62,158 +63,142 @@ public interface TextBlock extends DocumentNode {
      */
     void setType(Template value);
 
-        /**
+    /**
      * Returns the value of the '<em><b>Sub Nodes</b></em>' containment reference list.
      * The list contents are of type {@link com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode}.
      * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode#getParent <em>Parent</em>}'.
      * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>Sub Nodes</em>' containment reference list isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Sub Nodes</em>' containment reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Sub Nodes</em>' containment reference list.
      * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getTextBlock_SubNodes()
      * @see com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode#getParent
      * @model opposite="parent" containment="true"
      * @generated
      */
-        EList<DocumentNode> getSubNodes();
+    EList<DocumentNode> getSubNodes();
 
-        /**
+    /**
      * Returns the value of the '<em><b>Parent Alt Choices</b></em>' attribute list.
      * The list contents are of type {@link java.lang.Integer}.
      * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>Parent Alt Choices</em>' attribute list isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Parent Alt Choices</em>' attribute list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Parent Alt Choices</em>' attribute list.
      * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getTextBlock_ParentAltChoices()
      * @model
      * @generated
      */
-        EList<Integer> getParentAltChoices();
+    EList<Integer> getParentAltChoices();
 
-        /**
+    /**
      * Returns the value of the '<em><b>Elements In Context</b></em>' reference list.
      * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
      * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>Elements In Context</em>' reference list isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Elements In Context</em>' reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Elements In Context</em>' reference list.
      * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getTextBlock_ElementsInContext()
      * @model
      * @generated
      */
-        EList<EObject> getElementsInContext();
+    EList<EObject> getElementsInContext();
 
-        /**
+    /**
      * Returns the value of the '<em><b>For Each Executions</b></em>' containment reference list.
      * The list contents are of type {@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution}.
      * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>For Each Context</em>' containment reference list isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>For Each Executions</em>' containment reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>For Each Executions</em>' containment reference list.
      * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getTextBlock_ForEachExecutions()
      * @model containment="true"
      * @generated
      */
-        EList<ForEachExecution> getForEachExecutions();
+    EList<ForEachExecution> getForEachExecutions();
 
-        /**
+    /**
      * Returns the value of the '<em><b>Cached String</b></em>' attribute.
      * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>Cached String</em>' attribute isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Cached String</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Cached String</em>' attribute.
      * @see #setCachedString(String)
      * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getTextBlock_CachedString()
      * @model
      * @generated
      */
-        String getCachedString();
+    String getCachedString();
 
-        /**
+    /**
      * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getCachedString <em>Cached String</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @param value the new value of the '<em>Cached String</em>' attribute.
      * @see #getCachedString()
      * @generated
      */
-        void setCachedString(String value);
+    void setCachedString(String value);
 
-        /**
+    /**
      * Returns the value of the '<em><b>Complete</b></em>' attribute.
      * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Complete</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Complete</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Complete</em>' attribute.
      * @see #setComplete(boolean)
      * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getTextBlock_Complete()
      * @model default="false" required="true"
      * @generated
      */
-	boolean isComplete();
+    boolean isComplete();
 
-								/**
+    /**
      * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#isComplete <em>Complete</em>}' attribute.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @param value the new value of the '<em>Complete</em>' attribute.
      * @see #isComplete()
      * @generated
      */
-	void setComplete(boolean value);
+    void setComplete(boolean value);
 
-								/**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @model kind="operation"
-     *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
-     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.subNodes->select(n | n.oclIsKindOf(TextBlock)).oclAsType(TextBlock)->asOrderedSet()'"
-     * @generated
-     */
-        EList<TextBlock> getSubBlocks();
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @model kind="operation"
-     *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
-     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.subNodes->select(n | n.oclIsKindOf(AbstractToken)).oclAsType(AbstractToken)->asOrderedSet()'"
-     * @generated
-     */
-        EList<AbstractToken> getTokens();
-
-        /**
+    /**
      * Returns the value of the '<em><b>Additional Templates</b></em>' reference list.
      * The list contents are of type {@link com.sap.furcas.metamodel.FURCAS.TCS.Template}.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Additional Templates</em>' reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Additional Templates</em>' reference list.
      * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getTextBlock_AdditionalTemplates()
      * @model
      * @generated
      */
-        EList<Template> getAdditionalTemplates();
+    EList<Template> getAdditionalTemplates();
 
-        /**
+    /**
      * Returns the value of the '<em><b>Corresponding Model Elements</b></em>' reference list.
      * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
      * <!-- begin-user-doc -->
@@ -228,5 +213,25 @@ public interface TextBlock extends DocumentNode {
      * @generated
      */
     EList<EObject> getCorrespondingModelElements();
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model kind="operation"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.subNodes->select(n | n.oclIsKindOf(TextBlock)).oclAsType(TextBlock)->asOrderedSet()'"
+     * @generated
+     */
+    EList<TextBlock> getSubBlocks();
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model kind="operation"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.subNodes->select(n | n.oclIsKindOf(AbstractToken)).oclAsType(AbstractToken)->asOrderedSet()'"
+     * @generated
+     */
+    EList<AbstractToken> getTokens();
 
 } // TextBlock

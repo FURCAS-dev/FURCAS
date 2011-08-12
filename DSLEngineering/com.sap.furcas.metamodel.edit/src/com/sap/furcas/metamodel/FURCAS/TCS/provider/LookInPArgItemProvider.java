@@ -107,10 +107,7 @@ public class LookInPArgItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((LookInPArg)object).getLocation();
-        return label == null || label.length() == 0 ?
-            getString("_UI_LookInPArg_type") :
-            getString("_UI_LookInPArg_type") + " " + label;
+        return getString("_UI_LookInPArg_type");
     }
 
         /**

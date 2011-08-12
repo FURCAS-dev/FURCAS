@@ -6,19 +6,23 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EDataTypeEList;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.TemplateModifiers;
+
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,266 +46,266 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TemplateModifiers;
  * @generated
  */
 public class ClassTemplateImpl extends ContextTemplateImpl implements ClassTemplate {
-        /**
+    /**
      * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' attribute list.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getModifiers()
      * @generated
      * @ordered
      */
-        protected EList<TemplateModifiers> modifiers;
+    protected EList<TemplateModifiers> modifiers;
 
-        /**
+    /**
      * The default value of the '{@link #isIsAbstract() <em>Is Abstract</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isIsAbstract()
      * @generated
      * @ordered
      */
-        protected static final boolean IS_ABSTRACT_EDEFAULT = false;
+    protected static final boolean IS_ABSTRACT_EDEFAULT = false;
 
-        /**
+    /**
      * The cached value of the '{@link #isIsAbstract() <em>Is Abstract</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isIsAbstract()
      * @generated
      * @ordered
      */
-        protected boolean isAbstract = IS_ABSTRACT_EDEFAULT;
+    protected boolean isAbstract = IS_ABSTRACT_EDEFAULT;
 
-        /**
+    /**
      * The default value of the '{@link #isIsDeep() <em>Is Deep</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isIsDeep()
      * @generated
      * @ordered
      */
-        protected static final boolean IS_DEEP_EDEFAULT = false;
+    protected static final boolean IS_DEEP_EDEFAULT = false;
 
-        /**
+    /**
      * The cached value of the '{@link #isIsDeep() <em>Is Deep</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isIsDeep()
      * @generated
      * @ordered
      */
-        protected boolean isDeep = IS_DEEP_EDEFAULT;
+    protected boolean isDeep = IS_DEEP_EDEFAULT;
 
-        /**
+    /**
      * The default value of the '{@link #isIsOperatored() <em>Is Operatored</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isIsOperatored()
      * @generated
      * @ordered
      */
-        protected static final boolean IS_OPERATORED_EDEFAULT = false;
+    protected static final boolean IS_OPERATORED_EDEFAULT = false;
 
-        /**
+    /**
      * The cached value of the '{@link #isIsOperatored() <em>Is Operatored</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isIsOperatored()
      * @generated
      * @ordered
      */
-        protected boolean isOperatored = IS_OPERATORED_EDEFAULT;
+    protected boolean isOperatored = IS_OPERATORED_EDEFAULT;
 
-        /**
+    /**
      * The cached value of the '{@link #getOperatorList() <em>Operator List</em>}' reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getOperatorList()
      * @generated
      * @ordered
      */
-        protected OperatorList operatorList;
+    protected OperatorList operatorList;
 
-        /**
+    /**
      * The default value of the '{@link #isIsMain() <em>Is Main</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isIsMain()
      * @generated
      * @ordered
      */
-        protected static final boolean IS_MAIN_EDEFAULT = false;
+    protected static final boolean IS_MAIN_EDEFAULT = false;
 
-        /**
+    /**
      * The cached value of the '{@link #isIsMain() <em>Is Main</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isIsMain()
      * @generated
      * @ordered
      */
-        protected boolean isMain = IS_MAIN_EDEFAULT;
+    protected boolean isMain = IS_MAIN_EDEFAULT;
 
-        /**
+    /**
      * The default value of the '{@link #isIsMulti() <em>Is Multi</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isIsMulti()
      * @generated
      * @ordered
      */
-        protected static final boolean IS_MULTI_EDEFAULT = false;
+    protected static final boolean IS_MULTI_EDEFAULT = false;
 
-        /**
+    /**
      * The cached value of the '{@link #isIsMulti() <em>Is Multi</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isIsMulti()
      * @generated
      * @ordered
      */
-        protected boolean isMulti = IS_MULTI_EDEFAULT;
+    protected boolean isMulti = IS_MULTI_EDEFAULT;
 
-        /**
+    /**
      * The default value of the '{@link #isIsNonPrimary() <em>Is Non Primary</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isIsNonPrimary()
      * @generated
      * @ordered
      */
-        protected static final boolean IS_NON_PRIMARY_EDEFAULT = false;
+    protected static final boolean IS_NON_PRIMARY_EDEFAULT = false;
 
-        /**
+    /**
      * The cached value of the '{@link #isIsNonPrimary() <em>Is Non Primary</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isIsNonPrimary()
      * @generated
      * @ordered
      */
-        protected boolean isNonPrimary = IS_NON_PRIMARY_EDEFAULT;
+    protected boolean isNonPrimary = IS_NON_PRIMARY_EDEFAULT;
 
-        /**
+    /**
      * The default value of the '{@link #getMode() <em>Mode</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getMode()
      * @generated
      * @ordered
      */
-        protected static final String MODE_EDEFAULT = null;
+    protected static final String MODE_EDEFAULT = null;
 
-        /**
+    /**
      * The cached value of the '{@link #getMode() <em>Mode</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getMode()
      * @generated
      * @ordered
      */
-        protected String mode = MODE_EDEFAULT;
+    protected String mode = MODE_EDEFAULT;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected ClassTemplateImpl() {
+    protected ClassTemplateImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.CLASS_TEMPLATE;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public EList<TemplateModifiers> getModifiers() {
+    public EList<TemplateModifiers> getModifiers() {
         if (modifiers == null) {
             modifiers = new EDataTypeEList<TemplateModifiers>(TemplateModifiers.class, this, TCSPackage.CLASS_TEMPLATE__MODIFIERS);
         }
         return modifiers;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public boolean isIsAbstract() {
+    public boolean isIsAbstract() {
         return isAbstract;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setIsAbstract(boolean newIsAbstract) {
+    public void setIsAbstract(boolean newIsAbstract) {
         boolean oldIsAbstract = isAbstract;
         isAbstract = newIsAbstract;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CLASS_TEMPLATE__IS_ABSTRACT, oldIsAbstract, isAbstract));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public boolean isIsDeep() {
+    public boolean isIsDeep() {
         return isDeep;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setIsDeep(boolean newIsDeep) {
+    public void setIsDeep(boolean newIsDeep) {
         boolean oldIsDeep = isDeep;
         isDeep = newIsDeep;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CLASS_TEMPLATE__IS_DEEP, oldIsDeep, isDeep));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public boolean isIsOperatored() {
+    public boolean isIsOperatored() {
         return isOperatored;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setIsOperatored(boolean newIsOperatored) {
+    public void setIsOperatored(boolean newIsOperatored) {
         boolean oldIsOperatored = isOperatored;
         isOperatored = newIsOperatored;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CLASS_TEMPLATE__IS_OPERATORED, oldIsOperatored, isOperatored));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public OperatorList getOperatorList() {
+    public OperatorList getOperatorList() {
         if (operatorList != null && operatorList.eIsProxy()) {
             InternalEObject oldOperatorList = (InternalEObject)operatorList;
             operatorList = (OperatorList)eResolveProxy(oldOperatorList);
@@ -313,118 +317,118 @@ public class ClassTemplateImpl extends ContextTemplateImpl implements ClassTempl
         return operatorList;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public OperatorList basicGetOperatorList() {
+    public OperatorList basicGetOperatorList() {
         return operatorList;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setOperatorList(OperatorList newOperatorList) {
+    public void setOperatorList(OperatorList newOperatorList) {
         OperatorList oldOperatorList = operatorList;
         operatorList = newOperatorList;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CLASS_TEMPLATE__OPERATOR_LIST, oldOperatorList, operatorList));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public boolean isIsMain() {
+    public boolean isIsMain() {
         return isMain;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setIsMain(boolean newIsMain) {
+    public void setIsMain(boolean newIsMain) {
         boolean oldIsMain = isMain;
         isMain = newIsMain;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CLASS_TEMPLATE__IS_MAIN, oldIsMain, isMain));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public boolean isIsMulti() {
+    public boolean isIsMulti() {
         return isMulti;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setIsMulti(boolean newIsMulti) {
+    public void setIsMulti(boolean newIsMulti) {
         boolean oldIsMulti = isMulti;
         isMulti = newIsMulti;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CLASS_TEMPLATE__IS_MULTI, oldIsMulti, isMulti));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public boolean isIsNonPrimary() {
+    public boolean isIsNonPrimary() {
         return isNonPrimary;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setIsNonPrimary(boolean newIsNonPrimary) {
+    public void setIsNonPrimary(boolean newIsNonPrimary) {
         boolean oldIsNonPrimary = isNonPrimary;
         isNonPrimary = newIsNonPrimary;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CLASS_TEMPLATE__IS_NON_PRIMARY, oldIsNonPrimary, isNonPrimary));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public String getMode() {
+    public String getMode() {
         return mode;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setMode(String newMode) {
+    public void setMode(String newMode) {
         String oldMode = mode;
         mode = newMode;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CLASS_TEMPLATE__MODE, oldMode, mode));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.CLASS_TEMPLATE__MODIFIERS:
                 return getModifiers();
@@ -449,14 +453,14 @@ public class ClassTemplateImpl extends ContextTemplateImpl implements ClassTempl
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @SuppressWarnings("unchecked")
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.CLASS_TEMPLATE__MODIFIERS:
                 getModifiers().clear();
@@ -490,13 +494,13 @@ public class ClassTemplateImpl extends ContextTemplateImpl implements ClassTempl
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.CLASS_TEMPLATE__MODIFIERS:
                 getModifiers().clear();
@@ -529,13 +533,13 @@ public class ClassTemplateImpl extends ContextTemplateImpl implements ClassTempl
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.CLASS_TEMPLATE__MODIFIERS:
                 return modifiers != null && !modifiers.isEmpty();
@@ -559,13 +563,13 @@ public class ClassTemplateImpl extends ContextTemplateImpl implements ClassTempl
         return super.eIsSet(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public String toString() {
+    @Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());

@@ -107,7 +107,7 @@ public class SequenceInAlternativeItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((SequenceInAlternative)object).getLocation();
+        String label = ((SequenceInAlternative)object).getDisambiguate();
         return label == null || label.length() == 0 ?
             getString("_UI_SequenceInAlternative_type") :
             getString("_UI_SequenceInAlternative_type") + " " + label;

@@ -107,7 +107,7 @@ public class ModePArgItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((ModePArg)object).getLocation();
+        String label = ((ModePArg)object).getMode();
         return label == null || label.length() == 0 ?
             getString("_UI_ModePArg_type") :
             getString("_UI_ModePArg_type") + " " + label;

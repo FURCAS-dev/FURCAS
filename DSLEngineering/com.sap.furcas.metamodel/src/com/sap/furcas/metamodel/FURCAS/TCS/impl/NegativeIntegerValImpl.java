@@ -6,12 +6,14 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.NegativeIntegerVal;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,73 +29,73 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * @generated
  */
 public class NegativeIntegerValImpl extends ValueImpl implements NegativeIntegerVal {
-        /**
+    /**
      * The default value of the '{@link #getSymbol() <em>Symbol</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getSymbol()
      * @generated
      * @ordered
      */
-        protected static final Integer SYMBOL_EDEFAULT = null;
+    protected static final Integer SYMBOL_EDEFAULT = null;
 
-        /**
+    /**
      * The cached value of the '{@link #getSymbol() <em>Symbol</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getSymbol()
      * @generated
      * @ordered
      */
-        protected Integer symbol = SYMBOL_EDEFAULT;
+    protected Integer symbol = SYMBOL_EDEFAULT;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected NegativeIntegerValImpl() {
+    protected NegativeIntegerValImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.NEGATIVE_INTEGER_VAL;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public Integer getSymbol() {
+    public Integer getSymbol() {
         return symbol;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setSymbol(Integer newSymbol) {
+    public void setSymbol(Integer newSymbol) {
         Integer oldSymbol = symbol;
         symbol = newSymbol;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.NEGATIVE_INTEGER_VAL__SYMBOL, oldSymbol, symbol));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.NEGATIVE_INTEGER_VAL__SYMBOL:
                 return getSymbol();
@@ -101,13 +103,13 @@ public class NegativeIntegerValImpl extends ValueImpl implements NegativeInteger
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.NEGATIVE_INTEGER_VAL__SYMBOL:
                 setSymbol((Integer)newValue);
@@ -116,13 +118,13 @@ public class NegativeIntegerValImpl extends ValueImpl implements NegativeInteger
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.NEGATIVE_INTEGER_VAL__SYMBOL:
                 setSymbol(SYMBOL_EDEFAULT);
@@ -131,13 +133,13 @@ public class NegativeIntegerValImpl extends ValueImpl implements NegativeInteger
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.NEGATIVE_INTEGER_VAL__SYMBOL:
                 return SYMBOL_EDEFAULT == null ? symbol != null : !SYMBOL_EDEFAULT.equals(symbol);
@@ -145,13 +147,13 @@ public class NegativeIntegerValImpl extends ValueImpl implements NegativeInteger
         return super.eIsSet(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public String toString() {
+    @Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());

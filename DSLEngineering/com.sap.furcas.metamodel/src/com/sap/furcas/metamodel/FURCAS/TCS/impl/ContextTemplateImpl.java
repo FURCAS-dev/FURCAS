@@ -6,17 +6,19 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.ContextTags;
 import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ScopeArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,87 +39,87 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * @generated
  */
 public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate {
-        /**
+    /**
      * The default value of the '{@link #isIsContext() <em>Is Context</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isIsContext()
      * @generated
      * @ordered
      */
-        protected static final boolean IS_CONTEXT_EDEFAULT = false;
+    protected static final boolean IS_CONTEXT_EDEFAULT = false;
 
-        /**
+    /**
      * The cached value of the '{@link #isIsContext() <em>Is Context</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isIsContext()
      * @generated
      * @ordered
      */
-        protected boolean isContext = IS_CONTEXT_EDEFAULT;
+    protected boolean isContext = IS_CONTEXT_EDEFAULT;
 
-        /**
+    /**
      * The default value of the '{@link #isIsAddToContext() <em>Is Add To Context</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isIsAddToContext()
      * @generated
      * @ordered
      */
-        protected static final boolean IS_ADD_TO_CONTEXT_EDEFAULT = false;
+    protected static final boolean IS_ADD_TO_CONTEXT_EDEFAULT = false;
 
-        /**
+    /**
      * The cached value of the '{@link #isIsAddToContext() <em>Is Add To Context</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isIsAddToContext()
      * @generated
      * @ordered
      */
-        protected boolean isAddToContext = IS_ADD_TO_CONTEXT_EDEFAULT;
+    protected boolean isAddToContext = IS_ADD_TO_CONTEXT_EDEFAULT;
 
-        /**
+    /**
      * The default value of the '{@link #isIsReferenceOnly() <em>Is Reference Only</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isIsReferenceOnly()
      * @generated
      * @ordered
      */
-        protected static final boolean IS_REFERENCE_ONLY_EDEFAULT = false;
+    protected static final boolean IS_REFERENCE_ONLY_EDEFAULT = false;
 
-        /**
+    /**
      * The cached value of the '{@link #isIsReferenceOnly() <em>Is Reference Only</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isIsReferenceOnly()
      * @generated
      * @ordered
      */
-        protected boolean isReferenceOnly = IS_REFERENCE_ONLY_EDEFAULT;
+    protected boolean isReferenceOnly = IS_REFERENCE_ONLY_EDEFAULT;
 
-        /**
+    /**
      * The cached value of the '{@link #getContextTags() <em>Context Tags</em>}' containment reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getContextTags()
      * @generated
      * @ordered
      */
-        protected ContextTags contextTags;
+    protected ContextTags contextTags;
 
-        /**
+    /**
      * The cached value of the '{@link #getScope() <em>Scope</em>}' containment reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getScope()
      * @generated
      * @ordered
      */
-        protected ScopeArg scope;
+    protected ScopeArg scope;
 
-        /**
+    /**
      * The cached value of the '{@link #getTemplateSequence() <em>Template Sequence</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -127,98 +129,98 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
      */
     protected Sequence templateSequence;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected ContextTemplateImpl() {
+    protected ContextTemplateImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.CONTEXT_TEMPLATE;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public boolean isIsContext() {
+    public boolean isIsContext() {
         return isContext;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setIsContext(boolean newIsContext) {
+    public void setIsContext(boolean newIsContext) {
         boolean oldIsContext = isContext;
         isContext = newIsContext;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CONTEXT_TEMPLATE__IS_CONTEXT, oldIsContext, isContext));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public boolean isIsAddToContext() {
+    public boolean isIsAddToContext() {
         return isAddToContext;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setIsAddToContext(boolean newIsAddToContext) {
+    public void setIsAddToContext(boolean newIsAddToContext) {
         boolean oldIsAddToContext = isAddToContext;
         isAddToContext = newIsAddToContext;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CONTEXT_TEMPLATE__IS_ADD_TO_CONTEXT, oldIsAddToContext, isAddToContext));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public boolean isIsReferenceOnly() {
+    public boolean isIsReferenceOnly() {
         return isReferenceOnly;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setIsReferenceOnly(boolean newIsReferenceOnly) {
+    public void setIsReferenceOnly(boolean newIsReferenceOnly) {
         boolean oldIsReferenceOnly = isReferenceOnly;
         isReferenceOnly = newIsReferenceOnly;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CONTEXT_TEMPLATE__IS_REFERENCE_ONLY, oldIsReferenceOnly, isReferenceOnly));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public ContextTags getContextTags() {
+    public ContextTags getContextTags() {
         return contextTags;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -233,12 +235,12 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setContextTags(ContextTags newContextTags) {
+    public void setContextTags(ContextTags newContextTags) {
         if (newContextTags != contextTags) {
             NotificationChain msgs = null;
             if (contextTags != null)
@@ -252,21 +254,21 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CONTEXT_TEMPLATE__CONTEXT_TAGS, newContextTags, newContextTags));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public ScopeArg getScope() {
+    public ScopeArg getScope() {
         return scope;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public NotificationChain basicSetScope(ScopeArg newScope, NotificationChain msgs) {
+    public NotificationChain basicSetScope(ScopeArg newScope, NotificationChain msgs) {
         ScopeArg oldScope = scope;
         scope = newScope;
         if (eNotificationRequired()) {
@@ -276,12 +278,12 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setScope(ScopeArg newScope) {
+    public void setScope(ScopeArg newScope) {
         if (newScope != scope) {
             NotificationChain msgs = null;
             if (scope != null)
@@ -295,7 +297,7 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CONTEXT_TEMPLATE__SCOPE, newScope, newScope));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -304,7 +306,7 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
         return templateSequence;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -319,7 +321,7 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -338,13 +340,13 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CONTEXT_TEMPLATE__TEMPLATE_SEQUENCE, newTemplateSequence, newTemplateSequence));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.CONTEXT_TEMPLATE__CONTEXT_TAGS:
                 return basicSetContextTags(null, msgs);
@@ -356,13 +358,13 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.CONTEXT_TEMPLATE__IS_CONTEXT:
                 return isIsContext();
@@ -380,13 +382,13 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.CONTEXT_TEMPLATE__IS_CONTEXT:
                 setIsContext((Boolean)newValue);
@@ -410,13 +412,13 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.CONTEXT_TEMPLATE__IS_CONTEXT:
                 setIsContext(IS_CONTEXT_EDEFAULT);
@@ -440,13 +442,13 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.CONTEXT_TEMPLATE__IS_CONTEXT:
                 return isContext != IS_CONTEXT_EDEFAULT;
@@ -464,13 +466,13 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
         return super.eIsSet(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public String toString() {
+    @Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());

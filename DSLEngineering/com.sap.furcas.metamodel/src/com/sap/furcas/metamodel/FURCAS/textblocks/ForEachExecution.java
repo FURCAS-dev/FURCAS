@@ -6,14 +6,14 @@
  */
 package com.sap.furcas.metamodel.FURCAS.textblocks;
 
-import org.eclipse.emf.ecore.EObject;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 
+import org.eclipse.emf.ecore.EObject;
+
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>For Each Context</b></em>'.
+ * A representation of the model object '<em><b>For Each Execution</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
@@ -33,49 +33,49 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Template;
  * @generated
  */
 public interface ForEachExecution extends TextBlock {
-        /**
+    /**
      * Returns the value of the '<em><b>Foreach Pedicate Property Init</b></em>' reference.
      * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>Foreach Pedicate Property Init</em>' reference isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Foreach Pedicate Property Init</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Foreach Pedicate Property Init</em>' reference.
      * @see #setForeachPedicatePropertyInit(ForeachPredicatePropertyInit)
      * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getForEachExecution_ForeachPedicatePropertyInit()
      * @model
      * @generated
      */
-        ForeachPredicatePropertyInit getForeachPedicatePropertyInit();
+    ForeachPredicatePropertyInit getForeachPedicatePropertyInit();
 
-        /**
+    /**
      * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution#getForeachPedicatePropertyInit <em>Foreach Pedicate Property Init</em>}' reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @param value the new value of the '<em>Foreach Pedicate Property Init</em>' reference.
      * @see #getForeachPedicatePropertyInit()
      * @generated
      */
-        void setForeachPedicatePropertyInit(ForeachPredicatePropertyInit value);
+    void setForeachPedicatePropertyInit(ForeachPredicatePropertyInit value);
 
-        /**
+    /**
      * Returns the value of the '<em><b>Context Element</b></em>' reference.
      * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>Context Element</em>' reference list isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Context Element</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Context Element</em>' reference.
      * @see #setContextElement(EObject)
      * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getForEachExecution_ContextElement()
      * @model
      * @generated
      */
-        EObject getContextElement();
+    EObject getContextElement();
 
-        /**
+    /**
      * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution#getContextElement <em>Context Element</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -85,59 +85,59 @@ public interface ForEachExecution extends TextBlock {
      */
     void setContextElement(EObject value);
 
-        /**
+    /**
      * Returns the value of the '<em><b>Result Model Element</b></em>' reference.
      * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>Result Model Element</em>' reference isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Result Model Element</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Result Model Element</em>' reference.
      * @see #setResultModelElement(EObject)
      * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getForEachExecution_ResultModelElement()
      * @model
      * @generated
      */
-        EObject getResultModelElement();
+    EObject getResultModelElement();
 
-        /**
+    /**
      * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution#getResultModelElement <em>Result Model Element</em>}' reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @param value the new value of the '<em>Result Model Element</em>' reference.
      * @see #getResultModelElement()
      * @generated
      */
-        void setResultModelElement(EObject value);
+    void setResultModelElement(EObject value);
 
-        /**
+    /**
      * Returns the value of the '<em><b>Source Model Element</b></em>' reference.
      * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>Source Model Element</em>' reference isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Source Model Element</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Source Model Element</em>' reference.
      * @see #setSourceModelElement(EObject)
      * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getForEachExecution_SourceModelElement()
      * @model
      * @generated
      */
-        EObject getSourceModelElement();
+    EObject getSourceModelElement();
 
-        /**
+    /**
      * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution#getSourceModelElement <em>Source Model Element</em>}' reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @param value the new value of the '<em>Source Model Element</em>' reference.
      * @see #getSourceModelElement()
      * @generated
      */
-        void setSourceModelElement(EObject value);
+    void setSourceModelElement(EObject value);
 
-        /**
+    /**
      * Returns the value of the '<em><b>Context String</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <p>
@@ -153,7 +153,7 @@ public interface ForEachExecution extends TextBlock {
      */
     String getContextString();
 
-        /**
+    /**
      * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution#getContextString <em>Context String</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -163,7 +163,7 @@ public interface ForEachExecution extends TextBlock {
      */
     void setContextString(String value);
 
-        /**
+    /**
      * Returns the value of the '<em><b>Template Used For Production</b></em>' reference.
      * <!-- begin-user-doc -->
      * <p>
@@ -179,7 +179,7 @@ public interface ForEachExecution extends TextBlock {
      */
     Template getTemplateUsedForProduction();
 
-        /**
+    /**
      * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution#getTemplateUsedForProduction <em>Template Used For Production</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -189,4 +189,4 @@ public interface ForEachExecution extends TextBlock {
      */
     void setTemplateUsedForProduction(Template value);
 
-} // ForEachContext
+} // ForEachExecution

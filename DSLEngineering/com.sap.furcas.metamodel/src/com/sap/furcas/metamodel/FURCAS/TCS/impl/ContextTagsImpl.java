@@ -6,15 +6,18 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.ContextTags;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.ContextTags;
-import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,54 +33,54 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * @generated
  */
 public class ContextTagsImpl extends EObjectImpl implements ContextTags {
-        /**
+    /**
      * The cached value of the '{@link #getTags() <em>Tags</em>}' attribute list.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getTags()
      * @generated
      * @ordered
      */
-        protected EList<String> tags;
+    protected EList<String> tags;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected ContextTagsImpl() {
+    protected ContextTagsImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.CONTEXT_TAGS;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public EList<String> getTags() {
+    public EList<String> getTags() {
         if (tags == null) {
             tags = new EDataTypeUniqueEList<String>(String.class, this, TCSPackage.CONTEXT_TAGS__TAGS);
         }
         return tags;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.CONTEXT_TAGS__TAGS:
                 return getTags();
@@ -85,14 +88,14 @@ public class ContextTagsImpl extends EObjectImpl implements ContextTags {
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @SuppressWarnings("unchecked")
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.CONTEXT_TAGS__TAGS:
                 getTags().clear();
@@ -102,13 +105,13 @@ public class ContextTagsImpl extends EObjectImpl implements ContextTags {
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.CONTEXT_TAGS__TAGS:
                 getTags().clear();
@@ -117,13 +120,13 @@ public class ContextTagsImpl extends EObjectImpl implements ContextTags {
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.CONTEXT_TAGS__TAGS:
                 return tags != null && !tags.isEmpty();
@@ -131,13 +134,13 @@ public class ContextTagsImpl extends EObjectImpl implements ContextTags {
         return super.eIsSet(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public String toString() {
+    @Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());

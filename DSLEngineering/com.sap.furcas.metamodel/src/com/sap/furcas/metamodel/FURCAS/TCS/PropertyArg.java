@@ -6,6 +6,7 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,16 +24,16 @@ package com.sap.furcas.metamodel.FURCAS.TCS;
  * @model abstract="true"
  * @generated
  */
-public interface PropertyArg extends LocatedElement {
-        /**
+public interface PropertyArg extends EObject {
+    /**
      * Returns the value of the '<em><b>Property</b></em>' container reference.
      * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.FURCAS.TCS.Property#getPropertyArgs <em>Property Args</em>}'.
      * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>Property</em>' container reference isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Property</em>' container reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Property</em>' container reference.
      * @see #setProperty(Property)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getPropertyArg_Property()
@@ -40,16 +41,16 @@ public interface PropertyArg extends LocatedElement {
      * @model opposite="propertyArgs" required="true" transient="false" ordered="false"
      * @generated
      */
-        Property getProperty();
+    Property getProperty();
 
-        /**
+    /**
      * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg#getProperty <em>Property</em>}' container reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @param value the new value of the '<em>Property</em>' container reference.
      * @see #getProperty()
      * @generated
      */
-        void setProperty(Property value);
+    void setProperty(Property value);
 
 } // PropertyArg

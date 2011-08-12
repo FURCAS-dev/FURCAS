@@ -105,10 +105,7 @@ public class FunctionCallItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((FunctionCall)object).getLocation();
-        return label == null || label.length() == 0 ?
-            getString("_UI_FunctionCall_type") :
-            getString("_UI_FunctionCall_type") + " " + label;
+        return getString("_UI_FunctionCall_type");
     }
 
         /**

@@ -80,10 +80,7 @@ public class HexadecimalMappingItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((HexadecimalMapping)object).getLocation();
-        return label == null || label.length() == 0 ?
-            getString("_UI_HexadecimalMapping_type") :
-            getString("_UI_HexadecimalMapping_type") + " " + label;
+        return getString("_UI_HexadecimalMapping_type");
     }
 
         /**

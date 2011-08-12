@@ -107,7 +107,7 @@ public class PostfixPArgItemProvider
      */
     @Override
     public String getText(Object object) {
-        String label = ((PostfixPArg)object).getLocation();
+        String label = ((PostfixPArg)object).getPostfix();
         return label == null || label.length() == 0 ?
             getString("_UI_PostfixPArg_type") :
             getString("_UI_PostfixPArg_type") + " " + label;

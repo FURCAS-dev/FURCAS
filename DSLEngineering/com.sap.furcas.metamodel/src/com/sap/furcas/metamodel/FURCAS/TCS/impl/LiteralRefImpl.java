@@ -6,15 +6,17 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.Literal;
 import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,41 +32,41 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * @generated
  */
 public class LiteralRefImpl extends SequenceElementImpl implements LiteralRef {
-        /**
+    /**
      * The cached value of the '{@link #getReferredLiteral() <em>Referred Literal</em>}' reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getReferredLiteral()
      * @generated
      * @ordered
      */
-        protected Literal referredLiteral;
+    protected Literal referredLiteral;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected LiteralRefImpl() {
+    protected LiteralRefImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.LITERAL_REF;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public Literal getReferredLiteral() {
+    public Literal getReferredLiteral() {
         if (referredLiteral != null && referredLiteral.eIsProxy()) {
             InternalEObject oldReferredLiteral = (InternalEObject)referredLiteral;
             referredLiteral = (Literal)eResolveProxy(oldReferredLiteral);
@@ -76,21 +78,21 @@ public class LiteralRefImpl extends SequenceElementImpl implements LiteralRef {
         return referredLiteral;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public Literal basicGetReferredLiteral() {
+    public Literal basicGetReferredLiteral() {
         return referredLiteral;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public NotificationChain basicSetReferredLiteral(Literal newReferredLiteral, NotificationChain msgs) {
+    public NotificationChain basicSetReferredLiteral(Literal newReferredLiteral, NotificationChain msgs) {
         Literal oldReferredLiteral = referredLiteral;
         referredLiteral = newReferredLiteral;
         if (eNotificationRequired()) {
@@ -100,12 +102,12 @@ public class LiteralRefImpl extends SequenceElementImpl implements LiteralRef {
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setReferredLiteral(Literal newReferredLiteral) {
+    public void setReferredLiteral(Literal newReferredLiteral) {
         if (newReferredLiteral != referredLiteral) {
             NotificationChain msgs = null;
             if (referredLiteral != null)
@@ -119,13 +121,13 @@ public class LiteralRefImpl extends SequenceElementImpl implements LiteralRef {
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.LITERAL_REF__REFERRED_LITERAL, newReferredLiteral, newReferredLiteral));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.LITERAL_REF__REFERRED_LITERAL:
                 if (referredLiteral != null)
@@ -135,13 +137,13 @@ public class LiteralRefImpl extends SequenceElementImpl implements LiteralRef {
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.LITERAL_REF__REFERRED_LITERAL:
                 return basicSetReferredLiteral(null, msgs);
@@ -149,13 +151,13 @@ public class LiteralRefImpl extends SequenceElementImpl implements LiteralRef {
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.LITERAL_REF__REFERRED_LITERAL:
                 if (resolve) return getReferredLiteral();
@@ -164,13 +166,13 @@ public class LiteralRefImpl extends SequenceElementImpl implements LiteralRef {
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.LITERAL_REF__REFERRED_LITERAL:
                 setReferredLiteral((Literal)newValue);
@@ -179,13 +181,13 @@ public class LiteralRefImpl extends SequenceElementImpl implements LiteralRef {
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.LITERAL_REF__REFERRED_LITERAL:
                 setReferredLiteral((Literal)null);
@@ -194,13 +196,13 @@ public class LiteralRefImpl extends SequenceElementImpl implements LiteralRef {
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.LITERAL_REF__REFERRED_LITERAL:
                 return referredLiteral != null;

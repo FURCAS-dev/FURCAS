@@ -22,109 +22,109 @@ import org.eclipse.emf.common.util.Enumerator;
  * @generated
  */
 public enum AutoCreateKind implements Enumerator {
-        /**
+    /**
      * The '<em><b>Always</b></em>' literal object.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #ALWAYS_VALUE
      * @generated
      * @ordered
      */
-        ALWAYS(1, "always", "always"),
+    ALWAYS(1, "always", "always"),
 
-        /**
+    /**
      * The '<em><b>Ifmissing</b></em>' literal object.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #IFMISSING_VALUE
      * @generated
      * @ordered
      */
-        IFMISSING(2, "ifmissing", "ifmissing"),
+    IFMISSING(2, "ifmissing", "ifmissing"),
 
-        /**
+    /**
      * The '<em><b>Never</b></em>' literal object.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #NEVER_VALUE
      * @generated
      * @ordered
      */
-        NEVER(3, "never", "never");
+    NEVER(3, "never", "never");
 
-        /**
+    /**
      * The '<em><b>Always</b></em>' literal value.
      * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of '<em><b>Always</b></em>' literal object isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of '<em><b>Always</b></em>' literal object isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @see #ALWAYS
      * @model name="always"
      * @generated
      * @ordered
      */
-        public static final int ALWAYS_VALUE = 1;
+    public static final int ALWAYS_VALUE = 1;
 
-        /**
+    /**
      * The '<em><b>Ifmissing</b></em>' literal value.
      * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of '<em><b>Ifmissing</b></em>' literal object isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of '<em><b>Ifmissing</b></em>' literal object isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @see #IFMISSING
      * @model name="ifmissing"
      * @generated
      * @ordered
      */
-        public static final int IFMISSING_VALUE = 2;
+    public static final int IFMISSING_VALUE = 2;
 
-        /**
+    /**
      * The '<em><b>Never</b></em>' literal value.
      * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of '<em><b>Never</b></em>' literal object isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of '<em><b>Never</b></em>' literal object isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @see #NEVER
      * @model name="never"
      * @generated
      * @ordered
      */
-        public static final int NEVER_VALUE = 3;
+    public static final int NEVER_VALUE = 3;
 
-        /**
+    /**
      * An array of all the '<em><b>Auto Create Kind</b></em>' enumerators.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private static final AutoCreateKind[] VALUES_ARRAY =
-                new AutoCreateKind[] {
+    private static final AutoCreateKind[] VALUES_ARRAY =
+        new AutoCreateKind[] {
             ALWAYS,
             IFMISSING,
             NEVER,
         };
 
-        /**
+    /**
      * A public read-only list of all the '<em><b>Auto Create Kind</b></em>' enumerators.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public static final List<AutoCreateKind> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+    public static final List<AutoCreateKind> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
-        /**
+    /**
      * Returns the '<em><b>Auto Create Kind</b></em>' literal with the specified literal value.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public static AutoCreateKind get(String literal) {
+    public static AutoCreateKind get(String literal) {
         for (int i = 0; i < VALUES_ARRAY.length; ++i) {
             AutoCreateKind result = VALUES_ARRAY[i];
             if (result.toString().equals(literal)) {
@@ -134,13 +134,13 @@ public enum AutoCreateKind implements Enumerator {
         return null;
     }
 
-        /**
+    /**
      * Returns the '<em><b>Auto Create Kind</b></em>' literal with the specified name.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public static AutoCreateKind getByName(String name) {
+    public static AutoCreateKind getByName(String name) {
         for (int i = 0; i < VALUES_ARRAY.length; ++i) {
             AutoCreateKind result = VALUES_ARRAY[i];
             if (result.getName().equals(name)) {
@@ -150,13 +150,13 @@ public enum AutoCreateKind implements Enumerator {
         return null;
     }
 
-        /**
+    /**
      * Returns the '<em><b>Auto Create Kind</b></em>' literal with the specified integer value.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public static AutoCreateKind get(int value) {
+    public static AutoCreateKind get(int value) {
         switch (value) {
             case ALWAYS_VALUE: return ALWAYS;
             case IFMISSING_VALUE: return IFMISSING;
@@ -165,75 +165,75 @@ public enum AutoCreateKind implements Enumerator {
         return null;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private final int value;
+    private final int value;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private final String name;
+    private final String name;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private final String literal;
+    private final String literal;
 
-        /**
+    /**
      * Only this class can construct instances.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private AutoCreateKind(int value, String name, String literal) {
+    private AutoCreateKind(int value, String name, String literal) {
         this.value = value;
         this.name = name;
         this.literal = literal;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public int getValue() {
+    public int getValue() {
       return value;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public String getName() {
+    public String getName() {
       return name;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public String getLiteral() {
+    public String getLiteral() {
       return literal;
     }
 
-        /**
+    /**
      * Returns the literal value of the enumerator, which is its string representation.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public String toString() {
+    @Override
+    public String toString() {
         return literal;
     }
-        
+    
 } //AutoCreateKind

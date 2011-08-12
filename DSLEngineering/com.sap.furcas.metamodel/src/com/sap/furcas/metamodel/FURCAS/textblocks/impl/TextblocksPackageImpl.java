@@ -5,19 +5,15 @@
  * $Id$
  */
 package com.sap.furcas.metamodel.FURCAS.textblocks.impl;
- 
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
+
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
 import com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl;
+
 import com.sap.furcas.metamodel.FURCAS.impl.FURCASPackageImpl;
+
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
@@ -31,84 +27,93 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.metamodel.FURCAS.textblocks.UnlexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
+
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
  * @generated
- */ 
+ */
 public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPackage {
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass textBlockEClass = null;
+    private EClass textBlockEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass abstractTokenEClass = null;
+    private EClass abstractTokenEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass omittedTokenEClass = null;
+    private EClass omittedTokenEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass lexedTokenEClass = null;
+    private EClass lexedTokenEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass unlexedTokenEClass = null;
+    private EClass unlexedTokenEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass documentNodeEClass = null;
+    private EClass documentNodeEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     private EClass forEachExecutionEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass eostokenEClass = null;
+    private EClass eostokenEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass bostokenEClass = null;
+    private EClass bostokenEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EEnum versionEEnum = null;
+    private EEnum versionEEnum = null;
 
-        /**
+    /**
      * Creates an instance of the model <b>Package</b>, registered with
      * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
      * package URI value.
@@ -117,36 +122,36 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
      * initialization of the package, or returns the registered package,
      * if one already exists.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see org.eclipse.emf.ecore.EPackage.Registry
      * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#eNS_URI
      * @see #init()
      * @generated
      */
-        private TextblocksPackageImpl() {
+    private TextblocksPackageImpl() {
         super(eNS_URI, TextblocksFactory.eINSTANCE);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private static boolean isInited = false;
+    private static boolean isInited = false;
 
-        /**
+    /**
      * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
      * 
      * <p>This method is used to initialize {@link TextblocksPackage#eINSTANCE} when that field is accessed.
      * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #eNS_URI
      * @see #createPackageContents()
      * @see #initializePackageContents()
      * @generated
      */
-        public static TextblocksPackage init() {
+    public static TextblocksPackage init() {
         if (isInited) return (TextblocksPackage)EPackage.Registry.INSTANCE.getEPackage(TextblocksPackage.eNS_URI);
 
         // Obtain or create and register package
@@ -180,451 +185,408 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
         return theTextblocksPackage;
     }
 
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EClass getTextBlock() {
-        return textBlockEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getTextBlock_Type() {
-        return (EReference)textBlockEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getTextBlock_SubNodes() {
-        return (EReference)textBlockEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getTextBlock_ParentAltChoices() {
-        return (EAttribute)textBlockEClass.getEStructuralFeatures().get(2);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getTextBlock_ElementsInContext() {
-        return (EReference)textBlockEClass.getEStructuralFeatures().get(3);
-    }
-
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
+    public EClass getTextBlock() {
+        return textBlockEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getTextBlock_Type() {
+        return (EReference)textBlockEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getTextBlock_SubNodes() {
+        return (EReference)textBlockEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getTextBlock_ParentAltChoices() {
+        return (EAttribute)textBlockEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getTextBlock_ElementsInContext() {
+        return (EReference)textBlockEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EReference getTextBlock_ForEachExecutions() {
         return (EReference)textBlockEClass.getEStructuralFeatures().get(4);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-	public EAttribute getTextBlock_CachedString() {
+    public EAttribute getTextBlock_CachedString() {
         return (EAttribute)textBlockEClass.getEStructuralFeatures().get(5);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public EAttribute getTextBlock_Complete() {
+    public EAttribute getTextBlock_Complete() {
         return (EAttribute)textBlockEClass.getEStructuralFeatures().get(6);
     }
 
-								/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
-	public EReference getTextBlock_AdditionalTemplates() {
+    public EReference getTextBlock_AdditionalTemplates() {
         return (EReference)textBlockEClass.getEStructuralFeatures().get(7);
     }
 
-                                /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
     public EReference getTextBlock_CorrespondingModelElements() {
         return (EReference)textBlockEClass.getEStructuralFeatures().get(8);
     }
 
-                                /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EClass getAbstractToken() {
-        return abstractTokenEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getAbstractToken_Value() {
-        return (EAttribute)abstractTokenEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getAbstractToken_Lookahead() {
-        return (EAttribute)abstractTokenEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getAbstractToken_Lookback() {
-        return (EAttribute)abstractTokenEClass.getEStructuralFeatures().get(2);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getAbstractToken_State() {
-        return (EAttribute)abstractTokenEClass.getEStructuralFeatures().get(3);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getAbstractToken_Type() {
-        return (EAttribute)abstractTokenEClass.getEStructuralFeatures().get(4);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EClass getOmittedToken() {
-        return omittedTokenEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EClass getLexedToken() {
-        return lexedTokenEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getLexedToken_Operator() {
-        return (EAttribute)lexedTokenEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
+    public EClass getAbstractToken() {
+        return abstractTokenEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getAbstractToken_Value() {
+        return (EAttribute)abstractTokenEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getAbstractToken_Lookahead() {
+        return (EAttribute)abstractTokenEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getAbstractToken_Lookback() {
+        return (EAttribute)abstractTokenEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getAbstractToken_State() {
+        return (EAttribute)abstractTokenEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getAbstractToken_Type() {
+        return (EAttribute)abstractTokenEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getOmittedToken() {
+        return omittedTokenEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getLexedToken() {
+        return lexedTokenEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getLexedToken_Operator() {
+        return (EAttribute)lexedTokenEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EReference getLexedToken_ReferencedElements() {
         return (EReference)lexedTokenEClass.getEStructuralFeatures().get(1);
     }
 
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EClass getUnlexedToken() {
-        return unlexedTokenEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EClass getDocumentNode() {
-        return documentNodeEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getDocumentNode_Version() {
-        return (EAttribute)documentNodeEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getDocumentNode_ChildrenChanged() {
-        return (EAttribute)documentNodeEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getDocumentNode_RelexingNeeded() {
-        return (EAttribute)documentNodeEClass.getEStructuralFeatures().get(2);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getDocumentNode_Parent() {
-        return (EReference)documentNodeEClass.getEStructuralFeatures().get(3);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getDocumentNode_SequenceElement() {
-        return (EReference)documentNodeEClass.getEStructuralFeatures().get(4);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getDocumentNode_Offset() {
-        return (EAttribute)documentNodeEClass.getEStructuralFeatures().get(5);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getDocumentNode_Length() {
-        return (EAttribute)documentNodeEClass.getEStructuralFeatures().get(6);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getDocumentNode_OtherVersions() {
-        return (EReference)documentNodeEClass.getEStructuralFeatures().get(7);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getDocumentNode_OffsetRelative() {
-        return (EAttribute)documentNodeEClass.getEStructuralFeatures().get(8);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getDocumentNode_AbsoluteOffset() {
-        return (EAttribute)documentNodeEClass.getEStructuralFeatures().get(9);
-    }
-
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
+    public EClass getUnlexedToken() {
+        return unlexedTokenEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getDocumentNode() {
+        return documentNodeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getDocumentNode_Version() {
+        return (EAttribute)documentNodeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getDocumentNode_ChildrenChanged() {
+        return (EAttribute)documentNodeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getDocumentNode_RelexingNeeded() {
+        return (EAttribute)documentNodeEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentNode_Parent() {
+        return (EReference)documentNodeEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentNode_SequenceElement() {
+        return (EReference)documentNodeEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getDocumentNode_Offset() {
+        return (EAttribute)documentNodeEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getDocumentNode_Length() {
+        return (EAttribute)documentNodeEClass.getEStructuralFeatures().get(6);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDocumentNode_OtherVersions() {
+        return (EReference)documentNodeEClass.getEStructuralFeatures().get(7);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getDocumentNode_OffsetRelative() {
+        return (EAttribute)documentNodeEClass.getEStructuralFeatures().get(8);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getDocumentNode_AbsoluteOffset() {
+        return (EAttribute)documentNodeEClass.getEStructuralFeatures().get(9);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getForEachExecution() {
         return forEachExecutionEClass;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
     public EReference getForEachExecution_ForeachPedicatePropertyInit() {
         return (EReference)forEachExecutionEClass.getEStructuralFeatures().get(0);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
     public EReference getForEachExecution_ContextElement() {
         return (EReference)forEachExecutionEClass.getEStructuralFeatures().get(1);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
     public EReference getForEachExecution_ResultModelElement() {
         return (EReference)forEachExecutionEClass.getEStructuralFeatures().get(2);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
     public EReference getForEachExecution_SourceModelElement() {
         return (EReference)forEachExecutionEClass.getEStructuralFeatures().get(3);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
     public EAttribute getForEachExecution_ContextString() {
         return (EAttribute)forEachExecutionEClass.getEStructuralFeatures().get(4);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
     public EReference getForEachExecution_TemplateUsedForProduction() {
         return (EReference)forEachExecutionEClass.getEStructuralFeatures().get(5);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-	public EClass getEostoken() {
+    public EClass getEostoken() {
         return eostokenEClass;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-	public EClass getBostoken() {
+    public EClass getBostoken() {
         return bostokenEClass;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-	public EEnum getVersion() {
+    public EEnum getVersion() {
         return versionEEnum;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-	public TextblocksFactory getTextblocksFactory() {
+    public TextblocksFactory getTextblocksFactory() {
         return (TextblocksFactory)getEFactoryInstance();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private boolean isCreated = false;
+    private boolean isCreated = false;
 
-        /**
+    /**
      * Creates the meta-model objects for the package.  This method is
      * guarded to have no affect on any invocation but its first.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void createPackageContents() {
+    public void createPackageContents() {
         if (isCreated) return;
         isCreated = true;
 
@@ -683,21 +645,21 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
         versionEEnum = createEEnum(VERSION);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private boolean isInitialized = false;
+    private boolean isInitialized = false;
 
-        /**
+    /**
      * Complete the initialization of the package and its meta-model.  This
      * method is guarded to have no affect on any invocation but its first.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void initializePackageContents() {
+    public void initializePackageContents() {
         if (isInitialized) return;
         isInitialized = true;
 
@@ -708,7 +670,7 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
 
         // Obtain other dependent packages
         TCSPackage theTCSPackage = (TCSPackage)EPackage.Registry.INSTANCE.getEPackage(TCSPackage.eNS_URI);
-        org.eclipse.emf.ecore.EcorePackage theEcorePackage_1 = (org.eclipse.emf.ecore.EcorePackage)EPackage.Registry.INSTANCE.getEPackage(org.eclipse.emf.ecore.EcorePackage.eNS_URI);
+        EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
         // Create type parameters
 
@@ -731,10 +693,10 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
         initEAttribute(getTextBlock_ParentAltChoices(), ecorePackage.getEInt(), "parentAltChoices", null, 0, -1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getTextBlock_ElementsInContext(), ecorePackage.getEObject(), null, "elementsInContext", null, 0, -1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getTextBlock_ForEachExecutions(), this.getForEachExecution(), null, "forEachExecutions", null, 0, -1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getTextBlock_CachedString(), theEcorePackage_1.getEString(), "cachedString", null, 0, 1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getTextBlock_Complete(), theEcorePackage_1.getEBoolean(), "complete", "false", 1, 1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getTextBlock_CachedString(), theEcorePackage.getEString(), "cachedString", null, 0, 1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getTextBlock_Complete(), theEcorePackage.getEBoolean(), "complete", "false", 1, 1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getTextBlock_AdditionalTemplates(), theTCSPackage.getTemplate(), null, "additionalTemplates", null, 0, -1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTextBlock_CorrespondingModelElements(), theEcorePackage_1.getEObject(), null, "correspondingModelElements", null, 0, -1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTextBlock_CorrespondingModelElements(), theEcorePackage.getEObject(), null, "correspondingModelElements", null, 0, -1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         addEOperation(textBlockEClass, this.getTextBlock(), "getSubBlocks", 0, -1, IS_UNIQUE, IS_ORDERED);
 
@@ -750,8 +712,8 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
         initEClass(omittedTokenEClass, OmittedToken.class, "OmittedToken", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(lexedTokenEClass, LexedToken.class, "LexedToken", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getLexedToken_Operator(), theEcorePackage_1.getEBoolean(), "operator", null, 0, 1, LexedToken.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getLexedToken_ReferencedElements(), theEcorePackage_1.getEObject(), null, "referencedElements", null, 0, -1, LexedToken.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getLexedToken_Operator(), theEcorePackage.getEBoolean(), "operator", null, 0, 1, LexedToken.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getLexedToken_ReferencedElements(), theEcorePackage.getEObject(), null, "referencedElements", null, 0, -1, LexedToken.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(unlexedTokenEClass, UnlexedToken.class, "UnlexedToken", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -764,14 +726,14 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
         initEAttribute(getDocumentNode_Offset(), ecorePackage.getEInt(), "offset", null, 0, 1, DocumentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getDocumentNode_Length(), ecorePackage.getEInt(), "length", null, 0, 1, DocumentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentNode_OtherVersions(), this.getDocumentNode(), null, "otherVersions", null, 0, 2, DocumentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getDocumentNode_OffsetRelative(), theEcorePackage_1.getEBoolean(), "offsetRelative", null, 0, 1, DocumentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getDocumentNode_OffsetRelative(), theEcorePackage.getEBoolean(), "offsetRelative", null, 0, 1, DocumentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getDocumentNode_AbsoluteOffset(), ecorePackage.getEInt(), "absoluteOffset", null, 0, 1, DocumentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(forEachExecutionEClass, ForEachExecution.class, "ForEachExecution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getForEachExecution_ForeachPedicatePropertyInit(), theTCSPackage.getForeachPredicatePropertyInit(), null, "foreachPedicatePropertyInit", null, 0, 1, ForEachExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getForEachExecution_ContextElement(), theEcorePackage_1.getEObject(), null, "contextElement", null, 0, 1, ForEachExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getForEachExecution_ResultModelElement(), theEcorePackage_1.getEObject(), null, "resultModelElement", null, 0, 1, ForEachExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getForEachExecution_SourceModelElement(), theEcorePackage_1.getEObject(), null, "sourceModelElement", null, 0, 1, ForEachExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getForEachExecution_ContextElement(), theEcorePackage.getEObject(), null, "contextElement", null, 0, 1, ForEachExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getForEachExecution_ResultModelElement(), theEcorePackage.getEObject(), null, "resultModelElement", null, 0, 1, ForEachExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getForEachExecution_SourceModelElement(), theEcorePackage.getEObject(), null, "sourceModelElement", null, 0, 1, ForEachExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getForEachExecution_ContextString(), ecorePackage.getEString(), "contextString", null, 0, 1, ForEachExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getForEachExecution_TemplateUsedForProduction(), theTCSPackage.getTemplate(), null, "templateUsedForProduction", null, 1, 1, ForEachExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -794,13 +756,13 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
         createEmofAnnotations();
     }
 
-        /**
+    /**
      * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected void createEcoreAnnotations() {
+    protected void createEcoreAnnotations() {
         String source = "http://www.eclipse.org/emf/2002/Ecore";		
         addAnnotation
           (this, 
@@ -823,13 +785,13 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
            });			
     }
 
-        /**
+    /**
      * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL</b>.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected void createOCLAnnotations() {
+    protected void createOCLAnnotations() {
         String source = "http://www.eclipse.org/emf/2002/Ecore/OCL";				
         addAnnotation
           (textBlockEClass.getEOperations().get(0), 
@@ -845,7 +807,7 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
            });		
     }
 
-								/**
+    /**
      * Initializes the annotations for <b>http://schema.omg.org/spec/MOF/2.0/emof.xml</b>.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

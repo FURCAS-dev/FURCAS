@@ -138,10 +138,8 @@ public class AlternativeItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((Alternative)object).getLocation();
-        return label == null || label.length() == 0 ?
-            getString("_UI_Alternative_type") :
-            getString("_UI_Alternative_type") + " " + label;
+        Alternative alternative = (Alternative)object;
+        return getString("_UI_Alternative_type") + " " + alternative.isIsMulti();
     }
 
         /**

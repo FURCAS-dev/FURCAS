@@ -6,14 +6,16 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.LookInPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.LookInPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,54 +31,54 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * @generated
  */
 public class LookInPArgImpl extends PropertyArgImpl implements LookInPArg {
-        /**
+    /**
      * The cached value of the '{@link #getPropertyName() <em>Property Name</em>}' attribute list.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getPropertyName()
      * @generated
      * @ordered
      */
-        protected EList<String> propertyName;
+    protected EList<String> propertyName;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected LookInPArgImpl() {
+    protected LookInPArgImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.LOOK_IN_PARG;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public EList<String> getPropertyName() {
+    public EList<String> getPropertyName() {
         if (propertyName == null) {
             propertyName = new EDataTypeUniqueEList<String>(String.class, this, TCSPackage.LOOK_IN_PARG__PROPERTY_NAME);
         }
         return propertyName;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.LOOK_IN_PARG__PROPERTY_NAME:
                 return getPropertyName();
@@ -84,14 +86,14 @@ public class LookInPArgImpl extends PropertyArgImpl implements LookInPArg {
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @SuppressWarnings("unchecked")
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.LOOK_IN_PARG__PROPERTY_NAME:
                 getPropertyName().clear();
@@ -101,13 +103,13 @@ public class LookInPArgImpl extends PropertyArgImpl implements LookInPArg {
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.LOOK_IN_PARG__PROPERTY_NAME:
                 getPropertyName().clear();
@@ -116,13 +118,13 @@ public class LookInPArgImpl extends PropertyArgImpl implements LookInPArg {
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.LOOK_IN_PARG__PROPERTY_NAME:
                 return propertyName != null && !propertyName.isEmpty();
@@ -130,13 +132,13 @@ public class LookInPArgImpl extends PropertyArgImpl implements LookInPArg {
         return super.eIsSet(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public String toString() {
+    @Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());

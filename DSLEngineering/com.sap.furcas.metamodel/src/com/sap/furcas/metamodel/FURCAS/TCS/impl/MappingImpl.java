@@ -6,10 +6,12 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import org.eclipse.emf.ecore.EClass;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.Mapping;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
+import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,23 +22,23 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  *
  * @generated
  */
-public abstract class MappingImpl extends LocatedElementImpl implements Mapping {
-        /**
+public abstract class MappingImpl extends EObjectImpl implements Mapping {
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected MappingImpl() {
+    protected MappingImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.MAPPING;
     }
 

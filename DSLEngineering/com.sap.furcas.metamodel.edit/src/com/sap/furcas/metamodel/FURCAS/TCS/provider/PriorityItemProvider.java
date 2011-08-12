@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -21,11 +22,13 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSFactory;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+import com.sap.furcas.metamodel.FURCAS.provider.FURCASEditPlugin;
 
 /**
  * This is the item provider adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.Priority} object.
@@ -34,7 +37,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * @generated
  */
 public class PriorityItemProvider
-        extends LocatedElementItemProvider
+        extends ItemProviderAdapter
         implements
                 IEditingDomainItemProvider,
                 IStructuredItemContentProvider,
@@ -161,7 +164,8 @@ public class PriorityItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((Priority)object).getLocation();
+        Integer labelValue = ((Priority)object).getValue();
+        String label = labelValue == null ? null : labelValue.toString();
         return label == null || label.length() == 0 ?
             getString("_UI_Priority_type") :
             getString("_UI_Priority_type") + " " + label;
@@ -205,6 +209,17 @@ public class PriorityItemProvider
             (createChildParameter
                 (TCSPackage.Literals.PRIORITY__OPERATORS,
                  TCSFactory.eINSTANCE.createOperator()));
+    }
+
+        /**
+     * Return the resource locator for this item provider's resources.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public ResourceLocator getResourceLocator() {
+        return FURCASEditPlugin.INSTANCE;
     }
 
 }

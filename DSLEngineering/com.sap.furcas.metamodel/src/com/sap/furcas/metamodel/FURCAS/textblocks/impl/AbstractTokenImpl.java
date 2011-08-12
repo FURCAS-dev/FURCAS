@@ -6,12 +6,14 @@
  */
 package com.sap.furcas.metamodel.FURCAS.textblocks.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
+
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,237 +33,237 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
  * @generated
  */
 public class AbstractTokenImpl extends DocumentNodeImpl implements AbstractToken {
-        /**
+    /**
      * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getValue()
      * @generated
      * @ordered
      */
-        protected static final String VALUE_EDEFAULT = null;
+    protected static final String VALUE_EDEFAULT = null;
 
-        /**
+    /**
      * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getValue()
      * @generated
      * @ordered
      */
-        protected String value = VALUE_EDEFAULT;
+    protected String value = VALUE_EDEFAULT;
 
-        /**
+    /**
      * The default value of the '{@link #getLookahead() <em>Lookahead</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getLookahead()
      * @generated
      * @ordered
      */
-        protected static final int LOOKAHEAD_EDEFAULT = 0;
+    protected static final int LOOKAHEAD_EDEFAULT = 0;
 
-        /**
+    /**
      * The cached value of the '{@link #getLookahead() <em>Lookahead</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getLookahead()
      * @generated
      * @ordered
      */
-        protected int lookahead = LOOKAHEAD_EDEFAULT;
+    protected int lookahead = LOOKAHEAD_EDEFAULT;
 
-        /**
+    /**
      * The default value of the '{@link #getLookback() <em>Lookback</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getLookback()
      * @generated
      * @ordered
      */
-        protected static final int LOOKBACK_EDEFAULT = 0;
+    protected static final int LOOKBACK_EDEFAULT = 0;
 
-        /**
+    /**
      * The cached value of the '{@link #getLookback() <em>Lookback</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getLookback()
      * @generated
      * @ordered
      */
-        protected int lookback = LOOKBACK_EDEFAULT;
+    protected int lookback = LOOKBACK_EDEFAULT;
 
-        /**
+    /**
      * The default value of the '{@link #getState() <em>State</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getState()
      * @generated
      * @ordered
      */
-        protected static final int STATE_EDEFAULT = 0;
+    protected static final int STATE_EDEFAULT = 0;
 
-        /**
+    /**
      * The cached value of the '{@link #getState() <em>State</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getState()
      * @generated
      * @ordered
      */
-        protected int state = STATE_EDEFAULT;
+    protected int state = STATE_EDEFAULT;
 
-        /**
+    /**
      * The default value of the '{@link #getType() <em>Type</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getType()
      * @generated
      * @ordered
      */
-        protected static final int TYPE_EDEFAULT = 0;
+    protected static final int TYPE_EDEFAULT = 0;
 
-        /**
+    /**
      * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getType()
      * @generated
      * @ordered
      */
-        protected int type = TYPE_EDEFAULT;
+    protected int type = TYPE_EDEFAULT;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected AbstractTokenImpl() {
+    protected AbstractTokenImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TextblocksPackage.Literals.ABSTRACT_TOKEN;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public String getValue() {
+    public String getValue() {
         return value;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setValue(String newValue) {
+    public void setValue(String newValue) {
         String oldValue = value;
         value = newValue;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.ABSTRACT_TOKEN__VALUE, oldValue, value));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public int getLookahead() {
+    public int getLookahead() {
         return lookahead;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setLookahead(int newLookahead) {
+    public void setLookahead(int newLookahead) {
         int oldLookahead = lookahead;
         lookahead = newLookahead;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.ABSTRACT_TOKEN__LOOKAHEAD, oldLookahead, lookahead));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public int getLookback() {
+    public int getLookback() {
         return lookback;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setLookback(int newLookback) {
+    public void setLookback(int newLookback) {
         int oldLookback = lookback;
         lookback = newLookback;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.ABSTRACT_TOKEN__LOOKBACK, oldLookback, lookback));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public int getState() {
+    public int getState() {
         return state;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setState(int newState) {
+    public void setState(int newState) {
         int oldState = state;
         state = newState;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.ABSTRACT_TOKEN__STATE, oldState, state));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public int getType() {
+    public int getType() {
         return type;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setType(int newType) {
+    public void setType(int newType) {
         int oldType = type;
         type = newType;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.ABSTRACT_TOKEN__TYPE, oldType, type));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TextblocksPackage.ABSTRACT_TOKEN__VALUE:
                 return getValue();
@@ -277,13 +279,13 @@ public class AbstractTokenImpl extends DocumentNodeImpl implements AbstractToken
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TextblocksPackage.ABSTRACT_TOKEN__VALUE:
                 setValue((String)newValue);
@@ -304,13 +306,13 @@ public class AbstractTokenImpl extends DocumentNodeImpl implements AbstractToken
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TextblocksPackage.ABSTRACT_TOKEN__VALUE:
                 setValue(VALUE_EDEFAULT);
@@ -331,13 +333,13 @@ public class AbstractTokenImpl extends DocumentNodeImpl implements AbstractToken
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TextblocksPackage.ABSTRACT_TOKEN__VALUE:
                 return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
@@ -353,13 +355,13 @@ public class AbstractTokenImpl extends DocumentNodeImpl implements AbstractToken
         return super.eIsSet(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public String toString() {
+    @Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());

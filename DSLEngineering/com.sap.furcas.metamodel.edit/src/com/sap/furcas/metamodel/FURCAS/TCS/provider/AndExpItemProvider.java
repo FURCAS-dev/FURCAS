@@ -113,10 +113,7 @@ public class AndExpItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((AndExp)object).getLocation();
-        return label == null || label.length() == 0 ?
-            getString("_UI_AndExp_type") :
-            getString("_UI_AndExp_type") + " " + label;
+        return getString("_UI_AndExp_type");
     }
 
         /**

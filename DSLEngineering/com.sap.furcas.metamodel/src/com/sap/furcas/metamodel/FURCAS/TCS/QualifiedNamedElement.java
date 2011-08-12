@@ -7,7 +7,9 @@
 package com.sap.furcas.metamodel.FURCAS.TCS;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,40 +28,40 @@ import org.eclipse.emf.ecore.EClassifier;
  * @model
  * @generated
  */
-public interface QualifiedNamedElement extends LocatedElement {
-        /**
+public interface QualifiedNamedElement extends EObject {
+    /**
      * Returns the value of the '<em><b>Names</b></em>' attribute list.
      * The list contents are of type {@link java.lang.String}.
      * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>Names</em>' attribute list isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Names</em>' attribute list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Names</em>' attribute list.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getQualifiedNamedElement_Names()
      * @model required="true"
      * @generated
      */
-        EList<String> getNames();
+    EList<String> getNames();
 
-        /**
+    /**
      * Returns the value of the '<em><b>Meta Reference</b></em>' reference.
      * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>Meta Reference</em>' reference isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Meta Reference</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Meta Reference</em>' reference.
      * @see #setMetaReference(EClassifier)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getQualifiedNamedElement_MetaReference()
      * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='furcasTemplates'"
      * @generated
      */
-        EClassifier getMetaReference();
+    EClassifier getMetaReference();
 
-        /**
+    /**
      * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement#getMetaReference <em>Meta Reference</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

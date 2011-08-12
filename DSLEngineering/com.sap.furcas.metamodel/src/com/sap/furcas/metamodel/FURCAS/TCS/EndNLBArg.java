@@ -24,7 +24,6 @@ package com.sap.furcas.metamodel.FURCAS.TCS;
  * @generated
  */
 public interface EndNLBArg extends BlockArg {
-
     /**
      * Returns the value of the '<em><b>Value</b></em>' attribute.
      * <!-- begin-user-doc -->
@@ -50,4 +49,5 @@ public interface EndNLBArg extends BlockArg {
      * @generated
      */
     void setValue(boolean value);
+
 } // EndNLBArg

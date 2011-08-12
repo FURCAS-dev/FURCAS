@@ -6,20 +6,25 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
+import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
-import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
-import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,97 +40,97 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  *
  * @generated
  */
-public class OperatorListImpl extends LocatedElementImpl implements OperatorList {
-        /**
+public class OperatorListImpl extends EObjectImpl implements OperatorList {
+    /**
      * The default value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getName()
      * @generated
      * @ordered
      */
-        protected static final String NAME_EDEFAULT = null;
+    protected static final String NAME_EDEFAULT = null;
 
-        /**
+    /**
      * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getName()
      * @generated
      * @ordered
      */
-        protected String name = NAME_EDEFAULT;
+    protected String name = NAME_EDEFAULT;
 
-        /**
+    /**
      * The cached value of the '{@link #getPriorities() <em>Priorities</em>}' containment reference list.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getPriorities()
      * @generated
      * @ordered
      */
-        protected EList<Priority> priorities;
+    protected EList<Priority> priorities;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected OperatorListImpl() {
+    protected OperatorListImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.OPERATOR_LIST;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public String getName() {
+    public String getName() {
         return name;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setName(String newName) {
+    public void setName(String newName) {
         String oldName = name;
         name = newName;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.OPERATOR_LIST__NAME, oldName, name));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public EList<Priority> getPriorities() {
+    public EList<Priority> getPriorities() {
         if (priorities == null) {
             priorities = new EObjectContainmentWithInverseEList<Priority>(Priority.class, this, TCSPackage.OPERATOR_LIST__PRIORITIES, TCSPackage.PRIORITY__LIST);
         }
         return priorities;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @SuppressWarnings("unchecked")
-        @Override
-        public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.OPERATOR_LIST__PRIORITIES:
                 return ((InternalEList<InternalEObject>)(InternalEList<?>)getPriorities()).basicAdd(otherEnd, msgs);
@@ -133,13 +138,13 @@ public class OperatorListImpl extends LocatedElementImpl implements OperatorList
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.OPERATOR_LIST__PRIORITIES:
                 return ((InternalEList<?>)getPriorities()).basicRemove(otherEnd, msgs);
@@ -147,13 +152,13 @@ public class OperatorListImpl extends LocatedElementImpl implements OperatorList
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.OPERATOR_LIST__NAME:
                 return getName();
@@ -163,14 +168,14 @@ public class OperatorListImpl extends LocatedElementImpl implements OperatorList
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @SuppressWarnings("unchecked")
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.OPERATOR_LIST__NAME:
                 setName((String)newValue);
@@ -183,13 +188,13 @@ public class OperatorListImpl extends LocatedElementImpl implements OperatorList
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.OPERATOR_LIST__NAME:
                 setName(NAME_EDEFAULT);
@@ -201,13 +206,13 @@ public class OperatorListImpl extends LocatedElementImpl implements OperatorList
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.OPERATOR_LIST__NAME:
                 return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
@@ -217,13 +222,13 @@ public class OperatorListImpl extends LocatedElementImpl implements OperatorList
         return super.eIsSet(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public String toString() {
+    @Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());

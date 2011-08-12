@@ -6,15 +6,17 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.Rule;
 import com.sap.furcas.metamodel.FURCAS.TCS.RulePattern;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,50 +32,50 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * @generated
  */
 public class RulePatternImpl extends SimplePatternImpl implements RulePattern {
-        /**
+    /**
      * The cached value of the '{@link #getRule() <em>Rule</em>}' containment reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getRule()
      * @generated
      * @ordered
      */
-        protected Rule rule;
+    protected Rule rule;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected RulePatternImpl() {
+    protected RulePatternImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.RULE_PATTERN;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public Rule getRule() {
+    public Rule getRule() {
         return rule;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public NotificationChain basicSetRule(Rule newRule, NotificationChain msgs) {
+    public NotificationChain basicSetRule(Rule newRule, NotificationChain msgs) {
         Rule oldRule = rule;
         rule = newRule;
         if (eNotificationRequired()) {
@@ -83,12 +85,12 @@ public class RulePatternImpl extends SimplePatternImpl implements RulePattern {
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setRule(Rule newRule) {
+    public void setRule(Rule newRule) {
         if (newRule != rule) {
             NotificationChain msgs = null;
             if (rule != null)
@@ -102,13 +104,13 @@ public class RulePatternImpl extends SimplePatternImpl implements RulePattern {
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.RULE_PATTERN__RULE, newRule, newRule));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.RULE_PATTERN__RULE:
                 return basicSetRule(null, msgs);
@@ -116,13 +118,13 @@ public class RulePatternImpl extends SimplePatternImpl implements RulePattern {
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.RULE_PATTERN__RULE:
                 return getRule();
@@ -130,13 +132,13 @@ public class RulePatternImpl extends SimplePatternImpl implements RulePattern {
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.RULE_PATTERN__RULE:
                 setRule((Rule)newValue);
@@ -145,13 +147,13 @@ public class RulePatternImpl extends SimplePatternImpl implements RulePattern {
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.RULE_PATTERN__RULE:
                 setRule((Rule)null);
@@ -160,13 +162,13 @@ public class RulePatternImpl extends SimplePatternImpl implements RulePattern {
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.RULE_PATTERN__RULE:
                 return rule != null;

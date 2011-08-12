@@ -107,10 +107,8 @@ public class EndNLBArgItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((EndNLBArg)object).getLocation();
-        return label == null || label.length() == 0 ?
-            getString("_UI_EndNLBArg_type") :
-            getString("_UI_EndNLBArg_type") + " " + label;
+        EndNLBArg endNLBArg = (EndNLBArg)object;
+        return getString("_UI_EndNLBArg_type") + " " + endNLBArg.isValue();
     }
 
         /**

@@ -24,24 +24,24 @@ package com.sap.furcas.metamodel.FURCAS.TCS;
  * @generated
  */
 public interface ForcedUpperPArg extends PropertyArg {
-        /**
+    /**
      * Returns the value of the '<em><b>Value</b></em>' attribute.
      * The default value is <code>"0"</code>.
      * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>Value</em>' attribute isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Value</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Value</em>' attribute.
      * @see #setValue(Integer)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getForcedUpperPArg_Value()
      * @model default="0" unique="false" required="true" ordered="false"
      * @generated
      */
-        Integer getValue();
+    Integer getValue();
 
-        /**
+    /**
      * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg#getValue <em>Value</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

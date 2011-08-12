@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -19,11 +20,13 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.OrPattern;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSFactory;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+import com.sap.furcas.metamodel.FURCAS.provider.FURCASEditPlugin;
 
 /**
  * This is the item provider adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.OrPattern} object.
@@ -32,7 +35,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * @generated
  */
 public class OrPatternItemProvider
-        extends LocatedElementItemProvider
+        extends ItemProviderAdapter
         implements
                 IEditingDomainItemProvider,
                 IStructuredItemContentProvider,
@@ -113,10 +116,7 @@ public class OrPatternItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((OrPattern)object).getLocation();
-        return label == null || label.length() == 0 ?
-            getString("_UI_OrPattern_type") :
-            getString("_UI_OrPattern_type") + " " + label;
+        return getString("_UI_OrPattern_type");
     }
 
         /**
@@ -163,6 +163,17 @@ public class OrPatternItemProvider
             (createChildParameter
                 (TCSPackage.Literals.OR_PATTERN__SIMPLE_PATTERNS,
                  TCSFactory.eINSTANCE.createClassPattern()));
+    }
+
+        /**
+     * Return the resource locator for this item provider's resources.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public ResourceLocator getResourceLocator() {
+        return FURCASEditPlugin.INSTANCE;
     }
 
 }

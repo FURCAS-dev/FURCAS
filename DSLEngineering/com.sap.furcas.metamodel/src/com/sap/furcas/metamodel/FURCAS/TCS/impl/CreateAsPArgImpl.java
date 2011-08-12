@@ -6,14 +6,16 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.CreateAsPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.CreateAsPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,54 +31,54 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * @generated
  */
 public class CreateAsPArgImpl extends PropertyArgImpl implements CreateAsPArg {
-        /**
+    /**
      * The cached value of the '{@link #getName() <em>Name</em>}' attribute list.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getName()
      * @generated
      * @ordered
      */
-        protected EList<String> name;
+    protected EList<String> name;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected CreateAsPArgImpl() {
+    protected CreateAsPArgImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.CREATE_AS_PARG;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public EList<String> getName() {
+    public EList<String> getName() {
         if (name == null) {
             name = new EDataTypeUniqueEList<String>(String.class, this, TCSPackage.CREATE_AS_PARG__NAME);
         }
         return name;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.CREATE_AS_PARG__NAME:
                 return getName();
@@ -84,14 +86,14 @@ public class CreateAsPArgImpl extends PropertyArgImpl implements CreateAsPArg {
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @SuppressWarnings("unchecked")
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.CREATE_AS_PARG__NAME:
                 getName().clear();
@@ -101,13 +103,13 @@ public class CreateAsPArgImpl extends PropertyArgImpl implements CreateAsPArg {
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.CREATE_AS_PARG__NAME:
                 getName().clear();
@@ -116,13 +118,13 @@ public class CreateAsPArgImpl extends PropertyArgImpl implements CreateAsPArg {
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.CREATE_AS_PARG__NAME:
                 return name != null && !name.isEmpty();
@@ -130,13 +132,13 @@ public class CreateAsPArgImpl extends PropertyArgImpl implements CreateAsPArg {
         return super.eIsSet(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public String toString() {
+    @Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());

@@ -6,12 +6,14 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.SimpleMapping;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,7 +30,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * @generated
  */
 public class SimpleMappingImpl extends MappingImpl implements SimpleMapping {
-        /**
+    /**
      * The default value of the '{@link #getKey() <em>Key</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -37,6 +39,7 @@ public class SimpleMappingImpl extends MappingImpl implements SimpleMapping {
      * @ordered
      */
     protected static final String KEY_EDEFAULT = null;
+
     /**
      * The cached value of the '{@link #getKey() <em>Key</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -46,6 +49,7 @@ public class SimpleMappingImpl extends MappingImpl implements SimpleMapping {
      * @ordered
      */
     protected String key = KEY_EDEFAULT;
+
     /**
      * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -55,6 +59,7 @@ public class SimpleMappingImpl extends MappingImpl implements SimpleMapping {
      * @ordered
      */
     protected static final String VALUE_EDEFAULT = null;
+
     /**
      * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -65,26 +70,26 @@ public class SimpleMappingImpl extends MappingImpl implements SimpleMapping {
      */
     protected String value = VALUE_EDEFAULT;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected SimpleMappingImpl() {
+    protected SimpleMappingImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.SIMPLE_MAPPING;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -93,7 +98,7 @@ public class SimpleMappingImpl extends MappingImpl implements SimpleMapping {
         return key;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -105,7 +110,7 @@ public class SimpleMappingImpl extends MappingImpl implements SimpleMapping {
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.SIMPLE_MAPPING__KEY, oldKey, key));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -114,7 +119,7 @@ public class SimpleMappingImpl extends MappingImpl implements SimpleMapping {
         return value;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -126,7 +131,7 @@ public class SimpleMappingImpl extends MappingImpl implements SimpleMapping {
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.SIMPLE_MAPPING__VALUE, oldValue, value));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -142,7 +147,7 @@ public class SimpleMappingImpl extends MappingImpl implements SimpleMapping {
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -160,7 +165,7 @@ public class SimpleMappingImpl extends MappingImpl implements SimpleMapping {
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -178,7 +183,7 @@ public class SimpleMappingImpl extends MappingImpl implements SimpleMapping {
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -194,7 +199,7 @@ public class SimpleMappingImpl extends MappingImpl implements SimpleMapping {
         return super.eIsSet(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated

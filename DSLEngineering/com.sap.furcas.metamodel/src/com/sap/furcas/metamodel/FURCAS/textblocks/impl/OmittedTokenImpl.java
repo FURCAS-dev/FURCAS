@@ -6,10 +6,10 @@
  */
 package com.sap.furcas.metamodel.FURCAS.textblocks.impl;
 
-import org.eclipse.emf.ecore.EClass;
-
 import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
+
+import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,22 +21,22 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
  * @generated
  */
 public class OmittedTokenImpl extends AbstractTokenImpl implements OmittedToken {
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected OmittedTokenImpl() {
+    protected OmittedTokenImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TextblocksPackage.Literals.OMITTED_TOKEN;
     }
 

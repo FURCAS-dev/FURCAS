@@ -6,21 +6,25 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.Operator;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,128 +44,128 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * @generated
  */
 public class OperatorTemplateImpl extends ContextTemplateImpl implements OperatorTemplate {
-        /**
+    /**
      * The cached value of the '{@link #getOperators() <em>Operators</em>}' reference list.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getOperators()
      * @generated
      * @ordered
      */
-        protected EList<Operator> operators;
+    protected EList<Operator> operators;
 
-        /**
+    /**
      * The default value of the '{@link #getSource() <em>Source</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getSource()
      * @generated
      * @ordered
      */
-        protected static final String SOURCE_EDEFAULT = null;
+    protected static final String SOURCE_EDEFAULT = null;
 
-        /**
+    /**
      * The cached value of the '{@link #getSource() <em>Source</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getSource()
      * @generated
      * @ordered
      */
-        protected String source = SOURCE_EDEFAULT;
+    protected String source = SOURCE_EDEFAULT;
 
-        /**
+    /**
      * The cached value of the '{@link #getStoreOperatorTo() <em>Store Operator To</em>}' containment reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getStoreOperatorTo()
      * @generated
      * @ordered
      */
-        protected PropertyReference storeOperatorTo;
+    protected PropertyReference storeOperatorTo;
 
-        /**
+    /**
      * The cached value of the '{@link #getStoreLeftSideTo() <em>Store Left Side To</em>}' containment reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getStoreLeftSideTo()
      * @generated
      * @ordered
      */
-        protected PropertyReference storeLeftSideTo;
+    protected PropertyReference storeLeftSideTo;
 
-        /**
+    /**
      * The cached value of the '{@link #getStoreRightSideTo() <em>Store Right Side To</em>}' containment reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getStoreRightSideTo()
      * @generated
      * @ordered
      */
-        protected PropertyReference storeRightSideTo;
+    protected PropertyReference storeRightSideTo;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected OperatorTemplateImpl() {
+    protected OperatorTemplateImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.OPERATOR_TEMPLATE;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public EList<Operator> getOperators() {
+    public EList<Operator> getOperators() {
         if (operators == null) {
             operators = new EObjectWithInverseResolvingEList.ManyInverse<Operator>(Operator.class, this, TCSPackage.OPERATOR_TEMPLATE__OPERATORS, TCSPackage.OPERATOR__TEMPLATES);
         }
         return operators;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public String getSource() {
+    public String getSource() {
         return source;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setSource(String newSource) {
+    public void setSource(String newSource) {
         String oldSource = source;
         source = newSource;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.OPERATOR_TEMPLATE__SOURCE, oldSource, source));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public PropertyReference getStoreOperatorTo() {
+    public PropertyReference getStoreOperatorTo() {
         return storeOperatorTo;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -176,12 +180,12 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setStoreOperatorTo(PropertyReference newStoreOperatorTo) {
+    public void setStoreOperatorTo(PropertyReference newStoreOperatorTo) {
         if (newStoreOperatorTo != storeOperatorTo) {
             NotificationChain msgs = null;
             if (storeOperatorTo != null)
@@ -195,16 +199,16 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.OPERATOR_TEMPLATE__STORE_OPERATOR_TO, newStoreOperatorTo, newStoreOperatorTo));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public PropertyReference getStoreLeftSideTo() {
+    public PropertyReference getStoreLeftSideTo() {
         return storeLeftSideTo;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -219,12 +223,12 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setStoreLeftSideTo(PropertyReference newStoreLeftSideTo) {
+    public void setStoreLeftSideTo(PropertyReference newStoreLeftSideTo) {
         if (newStoreLeftSideTo != storeLeftSideTo) {
             NotificationChain msgs = null;
             if (storeLeftSideTo != null)
@@ -238,16 +242,16 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.OPERATOR_TEMPLATE__STORE_LEFT_SIDE_TO, newStoreLeftSideTo, newStoreLeftSideTo));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public PropertyReference getStoreRightSideTo() {
+    public PropertyReference getStoreRightSideTo() {
         return storeRightSideTo;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -262,12 +266,12 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setStoreRightSideTo(PropertyReference newStoreRightSideTo) {
+    public void setStoreRightSideTo(PropertyReference newStoreRightSideTo) {
         if (newStoreRightSideTo != storeRightSideTo) {
             NotificationChain msgs = null;
             if (storeRightSideTo != null)
@@ -281,14 +285,14 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.OPERATOR_TEMPLATE__STORE_RIGHT_SIDE_TO, newStoreRightSideTo, newStoreRightSideTo));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @SuppressWarnings("unchecked")
-        @Override
-        public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.OPERATOR_TEMPLATE__OPERATORS:
                 return ((InternalEList<InternalEObject>)(InternalEList<?>)getOperators()).basicAdd(otherEnd, msgs);
@@ -296,13 +300,13 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.OPERATOR_TEMPLATE__OPERATORS:
                 return ((InternalEList<?>)getOperators()).basicRemove(otherEnd, msgs);
@@ -316,13 +320,13 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.OPERATOR_TEMPLATE__OPERATORS:
                 return getOperators();
@@ -338,14 +342,14 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @SuppressWarnings("unchecked")
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.OPERATOR_TEMPLATE__OPERATORS:
                 getOperators().clear();
@@ -367,13 +371,13 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.OPERATOR_TEMPLATE__OPERATORS:
                 getOperators().clear();
@@ -394,13 +398,13 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.OPERATOR_TEMPLATE__OPERATORS:
                 return operators != null && !operators.isEmpty();
@@ -416,13 +420,13 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
         return super.eIsSet(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public String toString() {
+    @Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());

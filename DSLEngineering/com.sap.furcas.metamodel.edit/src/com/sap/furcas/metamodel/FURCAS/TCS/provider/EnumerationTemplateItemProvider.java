@@ -138,7 +138,7 @@ public class EnumerationTemplateItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((EnumerationTemplate)object).getLocation();
+        String label = ((EnumerationTemplate)object).getDisambiguate();
         return label == null || label.length() == 0 ?
             getString("_UI_EnumerationTemplate_type") :
             getString("_UI_EnumerationTemplate_type") + " " + label;

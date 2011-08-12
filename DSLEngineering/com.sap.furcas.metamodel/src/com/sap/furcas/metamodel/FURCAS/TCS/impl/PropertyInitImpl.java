@@ -6,15 +6,17 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,37 +34,37 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * @generated
  */
 public abstract class PropertyInitImpl extends InjectorActionImpl implements PropertyInit {
-        /**
+    /**
      * The cached value of the '{@link #getPropertyReference() <em>Property Reference</em>}' containment reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getPropertyReference()
      * @generated
      * @ordered
      */
-        protected PropertyReference propertyReference;
+    protected PropertyReference propertyReference;
 
-        /**
+    /**
      * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getValue()
      * @generated
      * @ordered
      */
-        protected static final String VALUE_EDEFAULT = null;
+    protected static final String VALUE_EDEFAULT = null;
 
-        /**
+    /**
      * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getValue()
      * @generated
      * @ordered
      */
-        protected String value = VALUE_EDEFAULT;
+    protected String value = VALUE_EDEFAULT;
 
-        /**
+    /**
      * The default value of the '{@link #isDefault() <em>Default</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -72,7 +74,7 @@ public abstract class PropertyInitImpl extends InjectorActionImpl implements Pro
      */
     protected static final boolean DEFAULT_EDEFAULT = false;
 
-        /**
+    /**
      * The cached value of the '{@link #isDefault() <em>Default</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -82,35 +84,35 @@ public abstract class PropertyInitImpl extends InjectorActionImpl implements Pro
      */
     protected boolean default_ = DEFAULT_EDEFAULT;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected PropertyInitImpl() {
+    protected PropertyInitImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.PROPERTY_INIT;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public PropertyReference getPropertyReference() {
+    public PropertyReference getPropertyReference() {
         return propertyReference;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -125,12 +127,12 @@ public abstract class PropertyInitImpl extends InjectorActionImpl implements Pro
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setPropertyReference(PropertyReference newPropertyReference) {
+    public void setPropertyReference(PropertyReference newPropertyReference) {
         if (newPropertyReference != propertyReference) {
             NotificationChain msgs = null;
             if (propertyReference != null)
@@ -144,28 +146,28 @@ public abstract class PropertyInitImpl extends InjectorActionImpl implements Pro
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.PROPERTY_INIT__PROPERTY_REFERENCE, newPropertyReference, newPropertyReference));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public String getValue() {
+    public String getValue() {
         return value;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setValue(String newValue) {
+    public void setValue(String newValue) {
         String oldValue = value;
         value = newValue;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.PROPERTY_INIT__VALUE, oldValue, value));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -174,7 +176,7 @@ public abstract class PropertyInitImpl extends InjectorActionImpl implements Pro
         return default_;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -186,7 +188,7 @@ public abstract class PropertyInitImpl extends InjectorActionImpl implements Pro
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.PROPERTY_INIT__DEFAULT, oldDefault, default_));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -200,13 +202,13 @@ public abstract class PropertyInitImpl extends InjectorActionImpl implements Pro
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.PROPERTY_INIT__PROPERTY_REFERENCE:
                 return getPropertyReference();
@@ -218,13 +220,13 @@ public abstract class PropertyInitImpl extends InjectorActionImpl implements Pro
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.PROPERTY_INIT__PROPERTY_REFERENCE:
                 setPropertyReference((PropertyReference)newValue);
@@ -239,13 +241,13 @@ public abstract class PropertyInitImpl extends InjectorActionImpl implements Pro
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.PROPERTY_INIT__PROPERTY_REFERENCE:
                 setPropertyReference((PropertyReference)null);
@@ -260,13 +262,13 @@ public abstract class PropertyInitImpl extends InjectorActionImpl implements Pro
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.PROPERTY_INIT__PROPERTY_REFERENCE:
                 return propertyReference != null;
@@ -278,13 +280,13 @@ public abstract class PropertyInitImpl extends InjectorActionImpl implements Pro
         return super.eIsSet(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public String toString() {
+    @Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());

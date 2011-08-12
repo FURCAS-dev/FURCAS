@@ -6,16 +6,19 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralMapping;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralVal;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,61 +34,61 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  *
  * @generated
  */
-public class EnumLiteralMappingImpl extends LocatedElementImpl implements EnumLiteralMapping {
-        /**
+public class EnumLiteralMappingImpl extends EObjectImpl implements EnumLiteralMapping {
+    /**
      * The cached value of the '{@link #getLiteral() <em>Literal</em>}' containment reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getLiteral()
      * @generated
      * @ordered
      */
-        protected EnumLiteralVal literal;
+    protected EnumLiteralVal literal;
 
-        /**
+    /**
      * The cached value of the '{@link #getElement() <em>Element</em>}' containment reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getElement()
      * @generated
      * @ordered
      */
-        protected SequenceElement element;
+    protected SequenceElement element;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected EnumLiteralMappingImpl() {
+    protected EnumLiteralMappingImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.ENUM_LITERAL_MAPPING;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public EnumLiteralVal getLiteral() {
+    public EnumLiteralVal getLiteral() {
         return literal;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public NotificationChain basicSetLiteral(EnumLiteralVal newLiteral, NotificationChain msgs) {
+    public NotificationChain basicSetLiteral(EnumLiteralVal newLiteral, NotificationChain msgs) {
         EnumLiteralVal oldLiteral = literal;
         literal = newLiteral;
         if (eNotificationRequired()) {
@@ -95,12 +98,12 @@ public class EnumLiteralMappingImpl extends LocatedElementImpl implements EnumLi
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setLiteral(EnumLiteralVal newLiteral) {
+    public void setLiteral(EnumLiteralVal newLiteral) {
         if (newLiteral != literal) {
             NotificationChain msgs = null;
             if (literal != null)
@@ -114,21 +117,21 @@ public class EnumLiteralMappingImpl extends LocatedElementImpl implements EnumLi
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.ENUM_LITERAL_MAPPING__LITERAL, newLiteral, newLiteral));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public SequenceElement getElement() {
+    public SequenceElement getElement() {
         return element;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public NotificationChain basicSetElement(SequenceElement newElement, NotificationChain msgs) {
+    public NotificationChain basicSetElement(SequenceElement newElement, NotificationChain msgs) {
         SequenceElement oldElement = element;
         element = newElement;
         if (eNotificationRequired()) {
@@ -138,12 +141,12 @@ public class EnumLiteralMappingImpl extends LocatedElementImpl implements EnumLi
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setElement(SequenceElement newElement) {
+    public void setElement(SequenceElement newElement) {
         if (newElement != element) {
             NotificationChain msgs = null;
             if (element != null)
@@ -157,13 +160,13 @@ public class EnumLiteralMappingImpl extends LocatedElementImpl implements EnumLi
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.ENUM_LITERAL_MAPPING__ELEMENT, newElement, newElement));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.ENUM_LITERAL_MAPPING__LITERAL:
                 return basicSetLiteral(null, msgs);
@@ -173,13 +176,13 @@ public class EnumLiteralMappingImpl extends LocatedElementImpl implements EnumLi
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.ENUM_LITERAL_MAPPING__LITERAL:
                 return getLiteral();
@@ -189,13 +192,13 @@ public class EnumLiteralMappingImpl extends LocatedElementImpl implements EnumLi
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.ENUM_LITERAL_MAPPING__LITERAL:
                 setLiteral((EnumLiteralVal)newValue);
@@ -207,13 +210,13 @@ public class EnumLiteralMappingImpl extends LocatedElementImpl implements EnumLi
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.ENUM_LITERAL_MAPPING__LITERAL:
                 setLiteral((EnumLiteralVal)null);
@@ -225,13 +228,13 @@ public class EnumLiteralMappingImpl extends LocatedElementImpl implements EnumLi
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.ENUM_LITERAL_MAPPING__LITERAL:
                 return literal != null;

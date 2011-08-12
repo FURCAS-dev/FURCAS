@@ -6,21 +6,25 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.OrPattern;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Word;
 import com.sap.furcas.metamodel.FURCAS.TCS.WordRule;
+
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,80 +43,80 @@ import com.sap.furcas.metamodel.FURCAS.TCS.WordRule;
  * @generated
  */
 public class WordRuleImpl extends RuleImpl implements WordRule {
-        /**
+    /**
      * The cached value of the '{@link #getStart() <em>Start</em>}' containment reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getStart()
      * @generated
      * @ordered
      */
-        protected OrPattern start;
+    protected OrPattern start;
 
-        /**
+    /**
      * The cached value of the '{@link #getPart() <em>Part</em>}' containment reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getPart()
      * @generated
      * @ordered
      */
-        protected OrPattern part;
+    protected OrPattern part;
 
-        /**
+    /**
      * The cached value of the '{@link #getEnd() <em>End</em>}' containment reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getEnd()
      * @generated
      * @ordered
      */
-        protected OrPattern end;
+    protected OrPattern end;
 
-        /**
+    /**
      * The cached value of the '{@link #getWords() <em>Words</em>}' containment reference list.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getWords()
      * @generated
      * @ordered
      */
-        protected EList<Word> words;
+    protected EList<Word> words;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected WordRuleImpl() {
+    protected WordRuleImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.WORD_RULE;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public OrPattern getStart() {
+    public OrPattern getStart() {
         return start;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public NotificationChain basicSetStart(OrPattern newStart, NotificationChain msgs) {
+    public NotificationChain basicSetStart(OrPattern newStart, NotificationChain msgs) {
         OrPattern oldStart = start;
         start = newStart;
         if (eNotificationRequired()) {
@@ -122,12 +126,12 @@ public class WordRuleImpl extends RuleImpl implements WordRule {
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setStart(OrPattern newStart) {
+    public void setStart(OrPattern newStart) {
         if (newStart != start) {
             NotificationChain msgs = null;
             if (start != null)
@@ -141,21 +145,21 @@ public class WordRuleImpl extends RuleImpl implements WordRule {
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.WORD_RULE__START, newStart, newStart));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public OrPattern getPart() {
+    public OrPattern getPart() {
         return part;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public NotificationChain basicSetPart(OrPattern newPart, NotificationChain msgs) {
+    public NotificationChain basicSetPart(OrPattern newPart, NotificationChain msgs) {
         OrPattern oldPart = part;
         part = newPart;
         if (eNotificationRequired()) {
@@ -165,12 +169,12 @@ public class WordRuleImpl extends RuleImpl implements WordRule {
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setPart(OrPattern newPart) {
+    public void setPart(OrPattern newPart) {
         if (newPart != part) {
             NotificationChain msgs = null;
             if (part != null)
@@ -184,21 +188,21 @@ public class WordRuleImpl extends RuleImpl implements WordRule {
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.WORD_RULE__PART, newPart, newPart));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public OrPattern getEnd() {
+    public OrPattern getEnd() {
         return end;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public NotificationChain basicSetEnd(OrPattern newEnd, NotificationChain msgs) {
+    public NotificationChain basicSetEnd(OrPattern newEnd, NotificationChain msgs) {
         OrPattern oldEnd = end;
         end = newEnd;
         if (eNotificationRequired()) {
@@ -208,12 +212,12 @@ public class WordRuleImpl extends RuleImpl implements WordRule {
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setEnd(OrPattern newEnd) {
+    public void setEnd(OrPattern newEnd) {
         if (newEnd != end) {
             NotificationChain msgs = null;
             if (end != null)
@@ -227,25 +231,25 @@ public class WordRuleImpl extends RuleImpl implements WordRule {
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.WORD_RULE__END, newEnd, newEnd));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public EList<Word> getWords() {
+    public EList<Word> getWords() {
         if (words == null) {
             words = new EObjectContainmentEList<Word>(Word.class, this, TCSPackage.WORD_RULE__WORDS);
         }
         return words;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.WORD_RULE__START:
                 return basicSetStart(null, msgs);
@@ -259,13 +263,13 @@ public class WordRuleImpl extends RuleImpl implements WordRule {
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.WORD_RULE__START:
                 return getStart();
@@ -279,14 +283,14 @@ public class WordRuleImpl extends RuleImpl implements WordRule {
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @SuppressWarnings("unchecked")
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.WORD_RULE__START:
                 setStart((OrPattern)newValue);
@@ -305,13 +309,13 @@ public class WordRuleImpl extends RuleImpl implements WordRule {
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.WORD_RULE__START:
                 setStart((OrPattern)null);
@@ -329,13 +333,13 @@ public class WordRuleImpl extends RuleImpl implements WordRule {
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.WORD_RULE__START:
                 return start != null;

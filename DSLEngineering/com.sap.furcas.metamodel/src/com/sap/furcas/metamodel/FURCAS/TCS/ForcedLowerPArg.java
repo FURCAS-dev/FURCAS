@@ -24,24 +24,24 @@ package com.sap.furcas.metamodel.FURCAS.TCS;
  * @generated
  */
 public interface ForcedLowerPArg extends PropertyArg {
-        /**
+    /**
      * Returns the value of the '<em><b>Value</b></em>' attribute.
      * The default value is <code>"0"</code>.
      * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>Value</em>' attribute isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Value</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Value</em>' attribute.
      * @see #setValue(Integer)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getForcedLowerPArg_Value()
      * @model default="0" required="true"
      * @generated
      */
-        Integer getValue();
+    Integer getValue();
 
-        /**
+    /**
      * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg#getValue <em>Value</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

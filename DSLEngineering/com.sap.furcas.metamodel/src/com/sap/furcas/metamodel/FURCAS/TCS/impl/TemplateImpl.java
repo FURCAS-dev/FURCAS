@@ -6,16 +6,19 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,113 +37,111 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Template;
  * @generated
  */
 public abstract class TemplateImpl extends QualifiedNamedElementImpl implements Template {
-        /**
+    /**
      * The default value of the '{@link #getDisambiguate() <em>Disambiguate</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getDisambiguate()
      * @generated
      * @ordered
      */
-        protected static final String DISAMBIGUATE_EDEFAULT = null;
+    protected static final String DISAMBIGUATE_EDEFAULT = null;
 
-        /**
+    /**
      * The cached value of the '{@link #getDisambiguate() <em>Disambiguate</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getDisambiguate()
      * @generated
      * @ordered
      */
-        protected String disambiguate = DISAMBIGUATE_EDEFAULT;
+    protected String disambiguate = DISAMBIGUATE_EDEFAULT;
 
-        /**
+    /**
      * The default value of the '{@link #getDisambiguateV3() <em>Disambiguate V3</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getDisambiguateV3()
      * @generated
      * @ordered
      */
-        protected static final String DISAMBIGUATE_V3_EDEFAULT = null;
+    protected static final String DISAMBIGUATE_V3_EDEFAULT = null;
 
-        /**
+    /**
      * The cached value of the '{@link #getDisambiguateV3() <em>Disambiguate V3</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getDisambiguateV3()
      * @generated
      * @ordered
      */
-        protected String disambiguateV3 = DISAMBIGUATE_V3_EDEFAULT;
+    protected String disambiguateV3 = DISAMBIGUATE_V3_EDEFAULT;
 
-        /**
+    /**
      * The default value of the '{@link #getSemDisambiguate() <em>Sem Disambiguate</em>}' attribute.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getSemDisambiguate()
      * @generated
      * @ordered
      */
-	protected static final String SEM_DISAMBIGUATE_EDEFAULT = null;
+    protected static final String SEM_DISAMBIGUATE_EDEFAULT = null;
 
-								/**
+    /**
      * The cached value of the '{@link #getSemDisambiguate() <em>Sem Disambiguate</em>}' attribute.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getSemDisambiguate()
      * @generated
      * @ordered
      */
-	protected String semDisambiguate = SEM_DISAMBIGUATE_EDEFAULT;
+    protected String semDisambiguate = SEM_DISAMBIGUATE_EDEFAULT;
 
-								/**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected TemplateImpl() {
+    protected TemplateImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.TEMPLATE;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public ConcreteSyntax getConcreteSyntax() {
+    public ConcreteSyntax getConcreteSyntax() {
         if (eContainerFeatureID() != TCSPackage.TEMPLATE__CONCRETE_SYNTAX) return null;
         return (ConcreteSyntax)eContainer();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public NotificationChain basicSetConcreteSyntax(ConcreteSyntax newConcreteSyntax, NotificationChain msgs) {
+    public NotificationChain basicSetConcreteSyntax(ConcreteSyntax newConcreteSyntax, NotificationChain msgs) {
         msgs = eBasicSetContainer((InternalEObject)newConcreteSyntax, TCSPackage.TEMPLATE__CONCRETE_SYNTAX, msgs);
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void setConcreteSyntax(ConcreteSyntax newConcreteSyntax) {
+    public void setConcreteSyntax(ConcreteSyntax newConcreteSyntax) {
         if (newConcreteSyntax != eInternalContainer() || (eContainerFeatureID() != TCSPackage.TEMPLATE__CONCRETE_SYNTAX && newConcreteSyntax != null)) {
             if (EcoreUtil.isAncestor(this, newConcreteSyntax))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
@@ -156,68 +157,62 @@ public abstract class TemplateImpl extends QualifiedNamedElementImpl implements 
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.TEMPLATE__CONCRETE_SYNTAX, newConcreteSyntax, newConcreteSyntax));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public String getDisambiguate() {
+    public String getDisambiguate() {
         return disambiguate;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void setDisambiguate(String newDisambiguate) {
+    public void setDisambiguate(String newDisambiguate) {
         String oldDisambiguate = disambiguate;
         disambiguate = newDisambiguate;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.TEMPLATE__DISAMBIGUATE, oldDisambiguate, disambiguate));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public String getDisambiguateV3() {
+    public String getDisambiguateV3() {
         return disambiguateV3;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void setDisambiguateV3(String newDisambiguateV3) {
+    public void setDisambiguateV3(String newDisambiguateV3) {
         String oldDisambiguateV3 = disambiguateV3;
         disambiguateV3 = newDisambiguateV3;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.TEMPLATE__DISAMBIGUATE_V3, oldDisambiguateV3, disambiguateV3));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
     public String getSemDisambiguate() {
         return semDisambiguate;
     }
 
-								/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
     public void setSemDisambiguate(String newSemDisambiguate) {
         String oldSemDisambiguate = semDisambiguate;
         semDisambiguate = newSemDisambiguate;
@@ -225,13 +220,13 @@ public abstract class TemplateImpl extends QualifiedNamedElementImpl implements 
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.TEMPLATE__SEM_DISAMBIGUATE, oldSemDisambiguate, semDisambiguate));
     }
 
-								/**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.TEMPLATE__CONCRETE_SYNTAX:
                 if (eInternalContainer() != null)
@@ -241,13 +236,13 @@ public abstract class TemplateImpl extends QualifiedNamedElementImpl implements 
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.TEMPLATE__CONCRETE_SYNTAX:
                 return basicSetConcreteSyntax(null, msgs);
@@ -255,13 +250,13 @@ public abstract class TemplateImpl extends QualifiedNamedElementImpl implements 
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+    @Override
+    public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
         switch (eContainerFeatureID()) {
             case TCSPackage.TEMPLATE__CONCRETE_SYNTAX:
                 return eInternalContainer().eInverseRemove(this, TCSPackage.CONCRETE_SYNTAX__TEMPLATES, ConcreteSyntax.class, msgs);
@@ -269,13 +264,13 @@ public abstract class TemplateImpl extends QualifiedNamedElementImpl implements 
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.TEMPLATE__CONCRETE_SYNTAX:
                 return getConcreteSyntax();
@@ -289,13 +284,13 @@ public abstract class TemplateImpl extends QualifiedNamedElementImpl implements 
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.TEMPLATE__CONCRETE_SYNTAX:
                 setConcreteSyntax((ConcreteSyntax)newValue);
@@ -313,13 +308,13 @@ public abstract class TemplateImpl extends QualifiedNamedElementImpl implements 
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.TEMPLATE__CONCRETE_SYNTAX:
                 setConcreteSyntax((ConcreteSyntax)null);
@@ -337,13 +332,13 @@ public abstract class TemplateImpl extends QualifiedNamedElementImpl implements 
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.TEMPLATE__CONCRETE_SYNTAX:
                 return getConcreteSyntax() != null;
@@ -357,13 +352,13 @@ public abstract class TemplateImpl extends QualifiedNamedElementImpl implements 
         return super.eIsSet(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public String toString() {
+    @Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());

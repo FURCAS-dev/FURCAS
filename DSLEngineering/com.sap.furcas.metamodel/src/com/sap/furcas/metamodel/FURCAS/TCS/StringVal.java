@@ -24,30 +24,30 @@ package com.sap.furcas.metamodel.FURCAS.TCS;
  * @generated
  */
 public interface StringVal extends Value {
-        /**
+    /**
      * Returns the value of the '<em><b>Symbol</b></em>' attribute.
      * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>Symbol</em>' attribute isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Symbol</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Symbol</em>' attribute.
      * @see #setSymbol(String)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getStringVal_Symbol()
      * @model
      * @generated
      */
-        String getSymbol();
+    String getSymbol();
 
-        /**
+    /**
      * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.StringVal#getSymbol <em>Symbol</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @param value the new value of the '<em>Symbol</em>' attribute.
      * @see #getSymbol()
      * @generated
      */
-        void setSymbol(String value);
+    void setSymbol(String value);
 
 } // StringVal

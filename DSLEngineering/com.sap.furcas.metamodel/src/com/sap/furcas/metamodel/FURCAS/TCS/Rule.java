@@ -6,6 +6,7 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,5 +18,5 @@ package com.sap.furcas.metamodel.FURCAS.TCS;
  * @model abstract="true"
  * @generated
  */
-public interface Rule extends LocatedElement {
+public interface Rule extends EObject {
 } // Rule

@@ -130,7 +130,7 @@ public class SimpleMappingItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((SimpleMapping)object).getLocation();
+        String label = ((SimpleMapping)object).getKey();
         return label == null || label.length() == 0 ?
             getString("_UI_SimpleMapping_type") :
             getString("_UI_SimpleMapping_type") + " " + label;

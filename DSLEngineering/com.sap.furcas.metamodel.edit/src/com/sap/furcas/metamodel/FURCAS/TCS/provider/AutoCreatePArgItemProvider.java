@@ -7,6 +7,7 @@
 package com.sap.furcas.metamodel.FURCAS.TCS.provider;
 
 
+import com.sap.furcas.metamodel.FURCAS.TCS.AutoCreateKind;
 import com.sap.furcas.metamodel.FURCAS.TCS.AutoCreatePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
@@ -107,7 +108,8 @@ public class AutoCreatePArgItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((AutoCreatePArg)object).getLocation();
+        AutoCreateKind labelValue = ((AutoCreatePArg)object).getValue();
+        String label = labelValue == null ? null : labelValue.toString();
         return label == null || label.length() == 0 ?
             getString("_UI_AutoCreatePArg_type") :
             getString("_UI_AutoCreatePArg_type") + " " + label;

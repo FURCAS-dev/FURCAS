@@ -7,21 +7,11 @@
 package com.sap.furcas.metamodel.FURCAS.textblocks.util;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.*;
-import java.util.List;
 
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 
-import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
-import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
-import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
-import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution;
-import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
-import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
-import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
-import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
-import com.sap.furcas.metamodel.FURCAS.textblocks.UnlexedToken;
+import org.eclipse.emf.ecore.util.Switch;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,66 +26,49 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.UnlexedToken;
  * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage
  * @generated
  */
-public class TextblocksSwitch<T> {
-        /**
+public class TextblocksSwitch<T> extends Switch<T> {
+    /**
      * The cached model package
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected static TextblocksPackage modelPackage;
+    protected static TextblocksPackage modelPackage;
 
-        /**
+    /**
      * Creates an instance of the switch.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public TextblocksSwitch() {
+    public TextblocksSwitch() {
         if (modelPackage == null) {
             modelPackage = TextblocksPackage.eINSTANCE;
         }
     }
 
-        /**
-     * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+    /**
+     * Checks whether this is a switch for the given package.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @return the first non-null result returned by a <code>caseXXX</code> call.
+     * <!-- end-user-doc -->
+     * @parameter ePackage the package in question.
+     * @return whether this is a switch for the given package.
      * @generated
      */
-        public T doSwitch(EObject theEObject) {
-        return doSwitch(theEObject.eClass(), theEObject);
+    @Override
+    protected boolean isSwitchFor(EPackage ePackage) {
+        return ePackage == modelPackage;
     }
 
-        /**
+    /**
      * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return the first non-null result returned by a <code>caseXXX</code> call.
      * @generated
      */
-        protected T doSwitch(EClass theEClass, EObject theEObject) {
-        if (theEClass.eContainer() == modelPackage) {
-            return doSwitch(theEClass.getClassifierID(), theEObject);
-        }
-        else {
-            List<EClass> eSuperTypes = theEClass.getESuperTypes();
-            return
-                eSuperTypes.isEmpty() ?
-                    defaultCase(theEObject) :
-                    doSwitch(eSuperTypes.get(0), theEObject);
-        }
-    }
-
-        /**
-     * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @return the first non-null result returned by a <code>caseXXX</code> call.
-     * @generated
-     */
-        protected T doSwitch(int classifierID, EObject theEObject) {
+    @Override
+    protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
             case TextblocksPackage.TEXT_BLOCK: {
                 TextBlock textBlock = (TextBlock)theEObject;
@@ -169,97 +142,97 @@ public class TextblocksSwitch<T> {
         }
     }
 
-        /**
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Text Block</em>'.
      * <!-- begin-user-doc -->
-         * This implementation returns null;
-         * returning a non-null result will terminate the switch.
-         * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
      * @param object the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Text Block</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-        public T caseTextBlock(TextBlock object) {
+    public T caseTextBlock(TextBlock object) {
         return null;
     }
 
-        /**
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Abstract Token</em>'.
      * <!-- begin-user-doc -->
-         * This implementation returns null;
-         * returning a non-null result will terminate the switch.
-         * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
      * @param object the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Abstract Token</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-        public T caseAbstractToken(AbstractToken object) {
+    public T caseAbstractToken(AbstractToken object) {
         return null;
     }
 
-        /**
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Omitted Token</em>'.
      * <!-- begin-user-doc -->
-         * This implementation returns null;
-         * returning a non-null result will terminate the switch.
-         * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
      * @param object the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Omitted Token</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-        public T caseOmittedToken(OmittedToken object) {
+    public T caseOmittedToken(OmittedToken object) {
         return null;
     }
 
-        /**
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Lexed Token</em>'.
      * <!-- begin-user-doc -->
-         * This implementation returns null;
-         * returning a non-null result will terminate the switch.
-         * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
      * @param object the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Lexed Token</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-        public T caseLexedToken(LexedToken object) {
+    public T caseLexedToken(LexedToken object) {
         return null;
     }
 
-        /**
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Unlexed Token</em>'.
      * <!-- begin-user-doc -->
-         * This implementation returns null;
-         * returning a non-null result will terminate the switch.
-         * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
      * @param object the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Unlexed Token</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-        public T caseUnlexedToken(UnlexedToken object) {
+    public T caseUnlexedToken(UnlexedToken object) {
         return null;
     }
 
-        /**
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Document Node</em>'.
      * <!-- begin-user-doc -->
-         * This implementation returns null;
-         * returning a non-null result will terminate the switch.
-         * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
      * @param object the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Document Node</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-        public T caseDocumentNode(DocumentNode object) {
+    public T caseDocumentNode(DocumentNode object) {
         return null;
     }
 
-        /**
+    /**
      * Returns the result of interpreting the object as an instance of '<em>For Each Execution</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -274,48 +247,49 @@ public class TextblocksSwitch<T> {
         return null;
     }
 
-        /**
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Eostoken</em>'.
      * <!-- begin-user-doc -->
-         * This implementation returns null;
-         * returning a non-null result will terminate the switch.
-         * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
      * @param object the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Eostoken</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-        public T caseEostoken(Eostoken object) {
+    public T caseEostoken(Eostoken object) {
         return null;
     }
 
-        /**
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Bostoken</em>'.
      * <!-- begin-user-doc -->
-         * This implementation returns null;
-         * returning a non-null result will terminate the switch.
-         * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
      * @param object the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>Bostoken</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-        public T caseBostoken(Bostoken object) {
+    public T caseBostoken(Bostoken object) {
         return null;
     }
 
-        /**
+    /**
      * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
      * <!-- begin-user-doc -->
-         * This implementation returns null;
-         * returning a non-null result will terminate the switch, but this is the last case anyway.
-         * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch, but this is the last case anyway.
+     * <!-- end-user-doc -->
      * @param object the target of the switch.
      * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject)
      * @generated
      */
-        public T defaultCase(EObject object) {
+    @Override
+    public T defaultCase(EObject object) {
         return null;
     }
 

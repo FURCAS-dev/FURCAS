@@ -6,16 +6,19 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceInAlternative;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,71 +35,71 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * @generated
  */
 public class SequenceInAlternativeImpl extends SequenceImpl implements SequenceInAlternative {
-        /**
+    /**
      * The default value of the '{@link #getDisambiguate() <em>Disambiguate</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getDisambiguate()
      * @generated
      * @ordered
      */
-        protected static final String DISAMBIGUATE_EDEFAULT = null;
+    protected static final String DISAMBIGUATE_EDEFAULT = null;
 
-        /**
+    /**
      * The cached value of the '{@link #getDisambiguate() <em>Disambiguate</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getDisambiguate()
      * @generated
      * @ordered
      */
-        protected String disambiguate = DISAMBIGUATE_EDEFAULT;
+    protected String disambiguate = DISAMBIGUATE_EDEFAULT;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected SequenceInAlternativeImpl() {
+    protected SequenceInAlternativeImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.SEQUENCE_IN_ALTERNATIVE;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public Alternative getAlternativeContainer() {
+    public Alternative getAlternativeContainer() {
         if (eContainerFeatureID() != TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER) return null;
         return (Alternative)eContainer();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public NotificationChain basicSetAlternativeContainer(Alternative newAlternativeContainer, NotificationChain msgs) {
+    public NotificationChain basicSetAlternativeContainer(Alternative newAlternativeContainer, NotificationChain msgs) {
         msgs = eBasicSetContainer((InternalEObject)newAlternativeContainer, TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER, msgs);
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setAlternativeContainer(Alternative newAlternativeContainer) {
+    public void setAlternativeContainer(Alternative newAlternativeContainer) {
         if (newAlternativeContainer != eInternalContainer() || (eContainerFeatureID() != TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER && newAlternativeContainer != null)) {
             if (EcoreUtil.isAncestor(this, newAlternativeContainer))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
@@ -112,34 +115,34 @@ public class SequenceInAlternativeImpl extends SequenceImpl implements SequenceI
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER, newAlternativeContainer, newAlternativeContainer));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public String getDisambiguate() {
+    public String getDisambiguate() {
         return disambiguate;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setDisambiguate(String newDisambiguate) {
+    public void setDisambiguate(String newDisambiguate) {
         String oldDisambiguate = disambiguate;
         disambiguate = newDisambiguate;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.SEQUENCE_IN_ALTERNATIVE__DISAMBIGUATE, oldDisambiguate, disambiguate));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER:
                 if (eInternalContainer() != null)
@@ -149,13 +152,13 @@ public class SequenceInAlternativeImpl extends SequenceImpl implements SequenceI
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER:
                 return basicSetAlternativeContainer(null, msgs);
@@ -163,13 +166,13 @@ public class SequenceInAlternativeImpl extends SequenceImpl implements SequenceI
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+    @Override
+    public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
         switch (eContainerFeatureID()) {
             case TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER:
                 return eInternalContainer().eInverseRemove(this, TCSPackage.ALTERNATIVE__SEQUENCES, Alternative.class, msgs);
@@ -177,13 +180,13 @@ public class SequenceInAlternativeImpl extends SequenceImpl implements SequenceI
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER:
                 return getAlternativeContainer();
@@ -193,13 +196,13 @@ public class SequenceInAlternativeImpl extends SequenceImpl implements SequenceI
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER:
                 setAlternativeContainer((Alternative)newValue);
@@ -211,13 +214,13 @@ public class SequenceInAlternativeImpl extends SequenceImpl implements SequenceI
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER:
                 setAlternativeContainer((Alternative)null);
@@ -229,13 +232,13 @@ public class SequenceInAlternativeImpl extends SequenceImpl implements SequenceI
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER:
                 return getAlternativeContainer() != null;
@@ -245,13 +248,13 @@ public class SequenceInAlternativeImpl extends SequenceImpl implements SequenceI
         return super.eIsSet(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public String toString() {
+    @Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());

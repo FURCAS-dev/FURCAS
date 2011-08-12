@@ -6,12 +6,14 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.DisambiguatePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,73 +29,73 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * @generated
  */
 public class DisambiguatePArgImpl extends PropertyArgImpl implements DisambiguatePArg {
-        /**
+    /**
      * The default value of the '{@link #getDisambiguation() <em>Disambiguation</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getDisambiguation()
      * @generated
      * @ordered
      */
-        protected static final String DISAMBIGUATION_EDEFAULT = null;
+    protected static final String DISAMBIGUATION_EDEFAULT = null;
 
-        /**
+    /**
      * The cached value of the '{@link #getDisambiguation() <em>Disambiguation</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getDisambiguation()
      * @generated
      * @ordered
      */
-        protected String disambiguation = DISAMBIGUATION_EDEFAULT;
+    protected String disambiguation = DISAMBIGUATION_EDEFAULT;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected DisambiguatePArgImpl() {
+    protected DisambiguatePArgImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.DISAMBIGUATE_PARG;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public String getDisambiguation() {
+    public String getDisambiguation() {
         return disambiguation;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setDisambiguation(String newDisambiguation) {
+    public void setDisambiguation(String newDisambiguation) {
         String oldDisambiguation = disambiguation;
         disambiguation = newDisambiguation;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.DISAMBIGUATE_PARG__DISAMBIGUATION, oldDisambiguation, disambiguation));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.DISAMBIGUATE_PARG__DISAMBIGUATION:
                 return getDisambiguation();
@@ -101,13 +103,13 @@ public class DisambiguatePArgImpl extends PropertyArgImpl implements Disambiguat
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.DISAMBIGUATE_PARG__DISAMBIGUATION:
                 setDisambiguation((String)newValue);
@@ -116,13 +118,13 @@ public class DisambiguatePArgImpl extends PropertyArgImpl implements Disambiguat
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.DISAMBIGUATE_PARG__DISAMBIGUATION:
                 setDisambiguation(DISAMBIGUATION_EDEFAULT);
@@ -131,13 +133,13 @@ public class DisambiguatePArgImpl extends PropertyArgImpl implements Disambiguat
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.DISAMBIGUATE_PARG__DISAMBIGUATION:
                 return DISAMBIGUATION_EDEFAULT == null ? disambiguation != null : !DISAMBIGUATION_EDEFAULT.equals(disambiguation);
@@ -145,13 +147,13 @@ public class DisambiguatePArgImpl extends PropertyArgImpl implements Disambiguat
         return super.eIsSet(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public String toString() {
+    @Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());

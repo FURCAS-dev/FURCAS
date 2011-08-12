@@ -105,10 +105,7 @@ public class LiteralRefItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((LiteralRef)object).getLocation();
-        return label == null || label.length() == 0 ?
-            getString("_UI_LiteralRef_type") :
-            getString("_UI_LiteralRef_type") + " " + label;
+        return getString("_UI_LiteralRef_type");
     }
 
         /**

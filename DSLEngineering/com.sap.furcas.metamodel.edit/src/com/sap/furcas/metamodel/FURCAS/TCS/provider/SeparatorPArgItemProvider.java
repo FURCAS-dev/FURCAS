@@ -113,10 +113,7 @@ public class SeparatorPArgItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((SeparatorPArg)object).getLocation();
-        return label == null || label.length() == 0 ?
-            getString("_UI_SeparatorPArg_type") :
-            getString("_UI_SeparatorPArg_type") + " " + label;
+        return getString("_UI_SeparatorPArg_type");
     }
 
         /**
