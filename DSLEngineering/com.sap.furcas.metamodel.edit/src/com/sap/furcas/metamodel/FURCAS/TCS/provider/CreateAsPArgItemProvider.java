@@ -107,10 +107,7 @@ public class CreateAsPArgItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((CreateAsPArg)object).getLocation();
-        return label == null || label.length() == 0 ?
-            getString("_UI_CreateAsPArg_type") :
-            getString("_UI_CreateAsPArg_type") + " " + label;
+        return getString("_UI_CreateAsPArg_type");
     }
 
         /**

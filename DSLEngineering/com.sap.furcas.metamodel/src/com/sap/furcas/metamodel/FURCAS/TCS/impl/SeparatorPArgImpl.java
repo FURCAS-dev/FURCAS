@@ -6,15 +6,17 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,50 +32,50 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * @generated
  */
 public class SeparatorPArgImpl extends PropertyArgImpl implements SeparatorPArg {
-        /**
+    /**
      * The cached value of the '{@link #getSeparatorSequence() <em>Separator Sequence</em>}' containment reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getSeparatorSequence()
      * @generated
      * @ordered
      */
-        protected Sequence separatorSequence;
+    protected Sequence separatorSequence;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected SeparatorPArgImpl() {
+    protected SeparatorPArgImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.SEPARATOR_PARG;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public Sequence getSeparatorSequence() {
+    public Sequence getSeparatorSequence() {
         return separatorSequence;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public NotificationChain basicSetSeparatorSequence(Sequence newSeparatorSequence, NotificationChain msgs) {
+    public NotificationChain basicSetSeparatorSequence(Sequence newSeparatorSequence, NotificationChain msgs) {
         Sequence oldSeparatorSequence = separatorSequence;
         separatorSequence = newSeparatorSequence;
         if (eNotificationRequired()) {
@@ -83,12 +85,12 @@ public class SeparatorPArgImpl extends PropertyArgImpl implements SeparatorPArg 
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setSeparatorSequence(Sequence newSeparatorSequence) {
+    public void setSeparatorSequence(Sequence newSeparatorSequence) {
         if (newSeparatorSequence != separatorSequence) {
             NotificationChain msgs = null;
             if (separatorSequence != null)
@@ -102,13 +104,13 @@ public class SeparatorPArgImpl extends PropertyArgImpl implements SeparatorPArg 
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.SEPARATOR_PARG__SEPARATOR_SEQUENCE, newSeparatorSequence, newSeparatorSequence));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.SEPARATOR_PARG__SEPARATOR_SEQUENCE:
                 if (separatorSequence != null)
@@ -118,13 +120,13 @@ public class SeparatorPArgImpl extends PropertyArgImpl implements SeparatorPArg 
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.SEPARATOR_PARG__SEPARATOR_SEQUENCE:
                 return basicSetSeparatorSequence(null, msgs);
@@ -132,13 +134,13 @@ public class SeparatorPArgImpl extends PropertyArgImpl implements SeparatorPArg 
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.SEPARATOR_PARG__SEPARATOR_SEQUENCE:
                 return getSeparatorSequence();
@@ -146,13 +148,13 @@ public class SeparatorPArgImpl extends PropertyArgImpl implements SeparatorPArg 
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.SEPARATOR_PARG__SEPARATOR_SEQUENCE:
                 setSeparatorSequence((Sequence)newValue);
@@ -161,13 +163,13 @@ public class SeparatorPArgImpl extends PropertyArgImpl implements SeparatorPArg 
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.SEPARATOR_PARG__SEPARATOR_SEQUENCE:
                 setSeparatorSequence((Sequence)null);
@@ -176,13 +178,13 @@ public class SeparatorPArgImpl extends PropertyArgImpl implements SeparatorPArg 
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.SEPARATOR_PARG__SEPARATOR_SEQUENCE:
                 return separatorSequence != null;

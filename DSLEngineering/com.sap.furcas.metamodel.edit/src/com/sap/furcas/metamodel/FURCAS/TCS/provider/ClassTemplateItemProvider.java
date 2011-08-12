@@ -290,7 +290,7 @@ public class ClassTemplateItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((ClassTemplate)object).getLocation();
+        String label = ((ClassTemplate)object).getDisambiguate();
         return label == null || label.length() == 0 ?
             getString("_UI_ClassTemplate_type") :
             getString("_UI_ClassTemplate_type") + " " + label;

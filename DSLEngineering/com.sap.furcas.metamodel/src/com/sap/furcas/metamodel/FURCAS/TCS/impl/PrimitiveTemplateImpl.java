@@ -6,12 +6,14 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,27 +34,27 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * @generated
  */
 public class PrimitiveTemplateImpl extends TemplateImpl implements PrimitiveTemplate {
-        /**
+    /**
      * The default value of the '{@link #getTemplateName() <em>Template Name</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getTemplateName()
      * @generated
      * @ordered
      */
-        protected static final String TEMPLATE_NAME_EDEFAULT = null;
+    protected static final String TEMPLATE_NAME_EDEFAULT = null;
 
-        /**
+    /**
      * The cached value of the '{@link #getTemplateName() <em>Template Name</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getTemplateName()
      * @generated
      * @ordered
      */
-        protected String templateName = TEMPLATE_NAME_EDEFAULT;
+    protected String templateName = TEMPLATE_NAME_EDEFAULT;
 
-        /**
+    /**
      * The default value of the '{@link #isDefault() <em>Default</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -62,7 +64,7 @@ public class PrimitiveTemplateImpl extends TemplateImpl implements PrimitiveTemp
      */
     protected static final boolean DEFAULT_EDEFAULT = false;
 
-        /**
+    /**
      * The cached value of the '{@link #isDefault() <em>Default</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -72,127 +74,127 @@ public class PrimitiveTemplateImpl extends TemplateImpl implements PrimitiveTemp
      */
     protected boolean default_ = DEFAULT_EDEFAULT;
 
-        /**
+    /**
      * The default value of the '{@link #getTokenName() <em>Token Name</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getTokenName()
      * @generated
      * @ordered
      */
-        protected static final String TOKEN_NAME_EDEFAULT = null;
+    protected static final String TOKEN_NAME_EDEFAULT = null;
 
-        /**
+    /**
      * The cached value of the '{@link #getTokenName() <em>Token Name</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getTokenName()
      * @generated
      * @ordered
      */
-        protected String tokenName = TOKEN_NAME_EDEFAULT;
+    protected String tokenName = TOKEN_NAME_EDEFAULT;
 
-        /**
+    /**
      * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getValue()
      * @generated
      * @ordered
      */
-        protected static final String VALUE_EDEFAULT = null;
+    protected static final String VALUE_EDEFAULT = null;
 
-        /**
+    /**
      * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getValue()
      * @generated
      * @ordered
      */
-        protected String value = VALUE_EDEFAULT;
+    protected String value = VALUE_EDEFAULT;
 
-        /**
+    /**
      * The default value of the '{@link #getSerializer() <em>Serializer</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getSerializer()
      * @generated
      * @ordered
      */
-        protected static final String SERIALIZER_EDEFAULT = null;
+    protected static final String SERIALIZER_EDEFAULT = null;
 
-        /**
+    /**
      * The cached value of the '{@link #getSerializer() <em>Serializer</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getSerializer()
      * @generated
      * @ordered
      */
-        protected String serializer = SERIALIZER_EDEFAULT;
+    protected String serializer = SERIALIZER_EDEFAULT;
 
-        /**
+    /**
      * The default value of the '{@link #isOrKeyword() <em>Or Keyword</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isOrKeyword()
      * @generated
      * @ordered
      */
-        protected static final boolean OR_KEYWORD_EDEFAULT = false;
+    protected static final boolean OR_KEYWORD_EDEFAULT = false;
 
-        /**
+    /**
      * The cached value of the '{@link #isOrKeyword() <em>Or Keyword</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isOrKeyword()
      * @generated
      * @ordered
      */
-        protected boolean orKeyword = OR_KEYWORD_EDEFAULT;
+    protected boolean orKeyword = OR_KEYWORD_EDEFAULT;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected PrimitiveTemplateImpl() {
+    protected PrimitiveTemplateImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.PRIMITIVE_TEMPLATE;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public String getTemplateName() {
+    public String getTemplateName() {
         return templateName;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setTemplateName(String newTemplateName) {
+    public void setTemplateName(String newTemplateName) {
         String oldTemplateName = templateName;
         templateName = newTemplateName;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.PRIMITIVE_TEMPLATE__TEMPLATE_NAME, oldTemplateName, templateName));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -201,7 +203,7 @@ public class PrimitiveTemplateImpl extends TemplateImpl implements PrimitiveTemp
         return default_;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -213,97 +215,97 @@ public class PrimitiveTemplateImpl extends TemplateImpl implements PrimitiveTemp
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.PRIMITIVE_TEMPLATE__DEFAULT, oldDefault, default_));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public String getTokenName() {
+    public String getTokenName() {
         return tokenName;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setTokenName(String newTokenName) {
+    public void setTokenName(String newTokenName) {
         String oldTokenName = tokenName;
         tokenName = newTokenName;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.PRIMITIVE_TEMPLATE__TOKEN_NAME, oldTokenName, tokenName));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public String getValue() {
+    public String getValue() {
         return value;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setValue(String newValue) {
+    public void setValue(String newValue) {
         String oldValue = value;
         value = newValue;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.PRIMITIVE_TEMPLATE__VALUE, oldValue, value));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public String getSerializer() {
+    public String getSerializer() {
         return serializer;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setSerializer(String newSerializer) {
+    public void setSerializer(String newSerializer) {
         String oldSerializer = serializer;
         serializer = newSerializer;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.PRIMITIVE_TEMPLATE__SERIALIZER, oldSerializer, serializer));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public boolean isOrKeyword() {
+    public boolean isOrKeyword() {
         return orKeyword;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setOrKeyword(boolean newOrKeyword) {
+    public void setOrKeyword(boolean newOrKeyword) {
         boolean oldOrKeyword = orKeyword;
         orKeyword = newOrKeyword;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.PRIMITIVE_TEMPLATE__OR_KEYWORD, oldOrKeyword, orKeyword));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.PRIMITIVE_TEMPLATE__TEMPLATE_NAME:
                 return getTemplateName();
@@ -321,13 +323,13 @@ public class PrimitiveTemplateImpl extends TemplateImpl implements PrimitiveTemp
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.PRIMITIVE_TEMPLATE__TEMPLATE_NAME:
                 setTemplateName((String)newValue);
@@ -351,13 +353,13 @@ public class PrimitiveTemplateImpl extends TemplateImpl implements PrimitiveTemp
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.PRIMITIVE_TEMPLATE__TEMPLATE_NAME:
                 setTemplateName(TEMPLATE_NAME_EDEFAULT);
@@ -381,13 +383,13 @@ public class PrimitiveTemplateImpl extends TemplateImpl implements PrimitiveTemp
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.PRIMITIVE_TEMPLATE__TEMPLATE_NAME:
                 return TEMPLATE_NAME_EDEFAULT == null ? templateName != null : !TEMPLATE_NAME_EDEFAULT.equals(templateName);
@@ -405,13 +407,13 @@ public class PrimitiveTemplateImpl extends TemplateImpl implements PrimitiveTemp
         return super.eIsSet(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public String toString() {
+    @Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());

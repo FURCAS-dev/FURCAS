@@ -107,7 +107,8 @@ public class ForcedLowerPArgItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((ForcedLowerPArg)object).getLocation();
+        Integer labelValue = ((ForcedLowerPArg)object).getValue();
+        String label = labelValue == null ? null : labelValue.toString();
         return label == null || label.length() == 0 ?
             getString("_UI_ForcedLowerPArg_type") :
             getString("_UI_ForcedLowerPArg_type") + " " + label;

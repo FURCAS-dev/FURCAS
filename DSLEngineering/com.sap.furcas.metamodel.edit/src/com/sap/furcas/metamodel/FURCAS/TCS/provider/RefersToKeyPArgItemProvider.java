@@ -80,10 +80,7 @@ public class RefersToKeyPArgItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((RefersToKeyPArg)object).getLocation();
-        return label == null || label.length() == 0 ?
-            getString("_UI_RefersToKeyPArg_type") :
-            getString("_UI_RefersToKeyPArg_type") + " " + label;
+        return getString("_UI_RefersToKeyPArg_type");
     }
 
         /**

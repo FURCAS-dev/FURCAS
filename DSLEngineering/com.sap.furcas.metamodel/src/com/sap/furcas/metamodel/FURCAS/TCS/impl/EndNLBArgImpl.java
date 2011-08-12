@@ -6,12 +6,14 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.EndNLBArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +29,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * @generated
  */
 public class EndNLBArgImpl extends BlockArgImpl implements EndNLBArg {
-        /**
+    /**
      * The default value of the '{@link #isValue() <em>Value</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -36,6 +38,7 @@ public class EndNLBArgImpl extends BlockArgImpl implements EndNLBArg {
      * @ordered
      */
     protected static final boolean VALUE_EDEFAULT = false;
+
     /**
      * The cached value of the '{@link #isValue() <em>Value</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -46,26 +49,26 @@ public class EndNLBArgImpl extends BlockArgImpl implements EndNLBArg {
      */
     protected boolean value = VALUE_EDEFAULT;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected EndNLBArgImpl() {
+    protected EndNLBArgImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.END_NLB_ARG;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -74,7 +77,7 @@ public class EndNLBArgImpl extends BlockArgImpl implements EndNLBArg {
         return value;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -86,7 +89,7 @@ public class EndNLBArgImpl extends BlockArgImpl implements EndNLBArg {
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.END_NLB_ARG__VALUE, oldValue, value));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -100,7 +103,7 @@ public class EndNLBArgImpl extends BlockArgImpl implements EndNLBArg {
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -115,7 +118,7 @@ public class EndNLBArgImpl extends BlockArgImpl implements EndNLBArg {
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -130,7 +133,7 @@ public class EndNLBArgImpl extends BlockArgImpl implements EndNLBArg {
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -144,7 +147,7 @@ public class EndNLBArgImpl extends BlockArgImpl implements EndNLBArg {
         return super.eIsSet(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated

@@ -6,23 +6,27 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.InternalEList;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.Literal;
 import com.sap.furcas.metamodel.FURCAS.TCS.Operator;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,7 +46,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * @generated
  */
 public class OperatorImpl extends NamedElementImpl implements Operator {
-        /**
+    /**
      * The default value of the '{@link #isPostfix() <em>Postfix</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -62,66 +66,66 @@ public class OperatorImpl extends NamedElementImpl implements Operator {
      */
     protected boolean postfix = POSTFIX_EDEFAULT;
 
-        /**
+    /**
      * The default value of the '{@link #getArity() <em>Arity</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getArity()
      * @generated
      * @ordered
      */
-        protected static final Integer ARITY_EDEFAULT = null;
+    protected static final Integer ARITY_EDEFAULT = null;
 
-        /**
+    /**
      * The cached value of the '{@link #getArity() <em>Arity</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getArity()
      * @generated
      * @ordered
      */
-        protected Integer arity = ARITY_EDEFAULT;
+    protected Integer arity = ARITY_EDEFAULT;
 
-        /**
+    /**
      * The cached value of the '{@link #getLiteral() <em>Literal</em>}' reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getLiteral()
      * @generated
      * @ordered
      */
-        protected Literal literal;
+    protected Literal literal;
 
-        /**
+    /**
      * The cached value of the '{@link #getTemplates() <em>Templates</em>}' reference list.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getTemplates()
      * @generated
      * @ordered
      */
-        protected EList<OperatorTemplate> templates;
+    protected EList<OperatorTemplate> templates;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected OperatorImpl() {
+    protected OperatorImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.OPERATOR;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -130,7 +134,7 @@ public class OperatorImpl extends NamedElementImpl implements Operator {
         return postfix;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -142,16 +146,16 @@ public class OperatorImpl extends NamedElementImpl implements Operator {
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.OPERATOR__POSTFIX, oldPostfix, postfix));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public Integer getArity() {
+    public Integer getArity() {
         return arity;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -163,12 +167,12 @@ public class OperatorImpl extends NamedElementImpl implements Operator {
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.OPERATOR__ARITY, oldArity, arity));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public Literal getLiteral() {
+    public Literal getLiteral() {
         if (literal != null && literal.eIsProxy()) {
             InternalEObject oldLiteral = (InternalEObject)literal;
             literal = (Literal)eResolveProxy(oldLiteral);
@@ -180,21 +184,21 @@ public class OperatorImpl extends NamedElementImpl implements Operator {
         return literal;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public Literal basicGetLiteral() {
+    public Literal basicGetLiteral() {
         return literal;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public NotificationChain basicSetLiteral(Literal newLiteral, NotificationChain msgs) {
+    public NotificationChain basicSetLiteral(Literal newLiteral, NotificationChain msgs) {
         Literal oldLiteral = literal;
         literal = newLiteral;
         if (eNotificationRequired()) {
@@ -204,12 +208,12 @@ public class OperatorImpl extends NamedElementImpl implements Operator {
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setLiteral(Literal newLiteral) {
+    public void setLiteral(Literal newLiteral) {
         if (newLiteral != literal) {
             NotificationChain msgs = null;
             if (literal != null)
@@ -223,32 +227,32 @@ public class OperatorImpl extends NamedElementImpl implements Operator {
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.OPERATOR__LITERAL, newLiteral, newLiteral));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public Priority getPriority() {
+    public Priority getPriority() {
         if (eContainerFeatureID() != TCSPackage.OPERATOR__PRIORITY) return null;
         return (Priority)eContainer();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public NotificationChain basicSetPriority(Priority newPriority, NotificationChain msgs) {
+    public NotificationChain basicSetPriority(Priority newPriority, NotificationChain msgs) {
         msgs = eBasicSetContainer((InternalEObject)newPriority, TCSPackage.OPERATOR__PRIORITY, msgs);
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setPriority(Priority newPriority) {
+    public void setPriority(Priority newPriority) {
         if (newPriority != eInternalContainer() || (eContainerFeatureID() != TCSPackage.OPERATOR__PRIORITY && newPriority != null)) {
             if (EcoreUtil.isAncestor(this, newPriority))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
@@ -264,26 +268,26 @@ public class OperatorImpl extends NamedElementImpl implements Operator {
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.OPERATOR__PRIORITY, newPriority, newPriority));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public EList<OperatorTemplate> getTemplates() {
+    public EList<OperatorTemplate> getTemplates() {
         if (templates == null) {
             templates = new EObjectWithInverseResolvingEList.ManyInverse<OperatorTemplate>(OperatorTemplate.class, this, TCSPackage.OPERATOR__TEMPLATES, TCSPackage.OPERATOR_TEMPLATE__OPERATORS);
         }
         return templates;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @SuppressWarnings("unchecked")
-        @Override
-        public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.OPERATOR__LITERAL:
                 if (literal != null)
@@ -299,13 +303,13 @@ public class OperatorImpl extends NamedElementImpl implements Operator {
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.OPERATOR__LITERAL:
                 return basicSetLiteral(null, msgs);
@@ -317,13 +321,13 @@ public class OperatorImpl extends NamedElementImpl implements Operator {
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+    @Override
+    public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
         switch (eContainerFeatureID()) {
             case TCSPackage.OPERATOR__PRIORITY:
                 return eInternalContainer().eInverseRemove(this, TCSPackage.PRIORITY__OPERATORS, Priority.class, msgs);
@@ -331,13 +335,13 @@ public class OperatorImpl extends NamedElementImpl implements Operator {
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.OPERATOR__POSTFIX:
                 return isPostfix();
@@ -354,14 +358,14 @@ public class OperatorImpl extends NamedElementImpl implements Operator {
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @SuppressWarnings("unchecked")
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.OPERATOR__POSTFIX:
                 setPostfix((Boolean)newValue);
@@ -383,13 +387,13 @@ public class OperatorImpl extends NamedElementImpl implements Operator {
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.OPERATOR__POSTFIX:
                 setPostfix(POSTFIX_EDEFAULT);
@@ -410,13 +414,13 @@ public class OperatorImpl extends NamedElementImpl implements Operator {
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.OPERATOR__POSTFIX:
                 return postfix != POSTFIX_EDEFAULT;
@@ -432,13 +436,13 @@ public class OperatorImpl extends NamedElementImpl implements Operator {
         return super.eIsSet(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public String toString() {
+    @Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());

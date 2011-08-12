@@ -80,10 +80,7 @@ public class ImportContextPArgItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((ImportContextPArg)object).getLocation();
-        return label == null || label.length() == 0 ?
-            getString("_UI_ImportContextPArg_type") :
-            getString("_UI_ImportContextPArg_type") + " " + label;
+        return getString("_UI_ImportContextPArg_type");
     }
 
         /**

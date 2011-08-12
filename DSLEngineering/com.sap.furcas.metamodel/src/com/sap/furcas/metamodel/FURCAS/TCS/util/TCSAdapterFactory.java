@@ -7,107 +7,13 @@
 package com.sap.furcas.metamodel.FURCAS.TCS.util;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.*;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-import org.eclipse.emf.ecore.EObject;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
-import com.sap.furcas.metamodel.FURCAS.TCS.AndExp;
-import com.sap.furcas.metamodel.FURCAS.TCS.AsPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.AtomExp;
-import com.sap.furcas.metamodel.FURCAS.TCS.AutoCreatePArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.Block;
-import com.sap.furcas.metamodel.FURCAS.TCS.BlockArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.BooleanPropertyExp;
-import com.sap.furcas.metamodel.FURCAS.TCS.ClassPattern;
-import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
-import com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement;
-import com.sap.furcas.metamodel.FURCAS.TCS.ContextTags;
-import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.CreateAsPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.CreateInPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.CustomSeparator;
-import com.sap.furcas.metamodel.FURCAS.TCS.DisambiguatePArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.EndNLBArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.EndOfLineRule;
-import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralMapping;
-import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralVal;
-import com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.EqualsExp;
-import com.sap.furcas.metamodel.FURCAS.TCS.Expression;
-import com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
-import com.sap.furcas.metamodel.FURCAS.TCS.FunctionCall;
-import com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.HexadecimalMapping;
-import com.sap.furcas.metamodel.FURCAS.TCS.ImportContextPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.IndentIncrBArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
-import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
-import com.sap.furcas.metamodel.FURCAS.TCS.InstanceOfExp;
-import com.sap.furcas.metamodel.FURCAS.TCS.IntegerVal;
-import com.sap.furcas.metamodel.FURCAS.TCS.IsDefinedExp;
-import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
-import com.sap.furcas.metamodel.FURCAS.TCS.Literal;
-import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
-import com.sap.furcas.metamodel.FURCAS.TCS.LocatedElement;
-import com.sap.furcas.metamodel.FURCAS.TCS.LookInPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit;
-import com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.Mapping;
-import com.sap.furcas.metamodel.FURCAS.TCS.ModePArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.MultiLineRule;
-import com.sap.furcas.metamodel.FURCAS.TCS.NamedElement;
-import com.sap.furcas.metamodel.FURCAS.TCS.NbNLBArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.NegativeIntegerVal;
-import com.sap.furcas.metamodel.FURCAS.TCS.OclPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.OclPropertyInit;
-import com.sap.furcas.metamodel.FURCAS.TCS.OctalMapping;
-import com.sap.furcas.metamodel.FURCAS.TCS.OneExp;
-import com.sap.furcas.metamodel.FURCAS.TCS.Operator;
-import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
-import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.OrPattern;
-import com.sap.furcas.metamodel.FURCAS.TCS.PartialPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.PostfixPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic;
-import com.sap.furcas.metamodel.FURCAS.TCS.PrefixPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.PrimitivePropertyInit;
-import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
-import com.sap.furcas.metamodel.FURCAS.TCS.Property;
-import com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.PropertyInit;
-import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
-import com.sap.furcas.metamodel.FURCAS.TCS.PropertyVal;
-import com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement;
-import com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.RefersToKeyPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.Rule;
-import com.sap.furcas.metamodel.FURCAS.TCS.RulePattern;
-import com.sap.furcas.metamodel.FURCAS.TCS.ScopeArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
-import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
-import com.sap.furcas.metamodel.FURCAS.TCS.SequenceInAlternative;
-import com.sap.furcas.metamodel.FURCAS.TCS.SimpleMapping;
-import com.sap.furcas.metamodel.FURCAS.TCS.SimplePattern;
-import com.sap.furcas.metamodel.FURCAS.TCS.StartNLBArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.StartNbNLBArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.StringPattern;
-import com.sap.furcas.metamodel.FURCAS.TCS.StringVal;
-import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
-import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
-import com.sap.furcas.metamodel.FURCAS.TCS.Template;
-import com.sap.furcas.metamodel.FURCAS.TCS.Token;
-import com.sap.furcas.metamodel.FURCAS.TCS.Value;
-import com.sap.furcas.metamodel.FURCAS.TCS.WildcardMapping;
-import com.sap.furcas.metamodel.FURCAS.TCS.Word;
-import com.sap.furcas.metamodel.FURCAS.TCS.WordRule;
+import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -118,36 +24,36 @@ import com.sap.furcas.metamodel.FURCAS.TCS.WordRule;
  * @generated
  */
 public class TCSAdapterFactory extends AdapterFactoryImpl {
-        /**
+    /**
      * The cached model package.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected static TCSPackage modelPackage;
+    protected static TCSPackage modelPackage;
 
-        /**
+    /**
      * Creates an instance of the adapter factory.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public TCSAdapterFactory() {
+    public TCSAdapterFactory() {
         if (modelPackage == null) {
             modelPackage = TCSPackage.eINSTANCE;
         }
     }
 
-        /**
+    /**
      * Returns whether this factory is applicable for the type of the object.
      * <!-- begin-user-doc -->
-         * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
-         * <!-- end-user-doc -->
+     * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
+     * <!-- end-user-doc -->
      * @return whether this factory is applicable for the type of the object.
      * @generated
      */
-        @Override
-        public boolean isFactoryForType(Object object) {
+    @Override
+    public boolean isFactoryForType(Object object) {
         if (object == modelPackage) {
             return true;
         }
@@ -157,18 +63,14 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
         return false;
     }
 
-        /**
+    /**
      * The switch that delegates to the <code>createXXX</code> methods.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected TCSSwitch<Adapter> modelSwitch =
-                new TCSSwitch<Adapter>() {
-            @Override
-            public Adapter caseLocatedElement(LocatedElement object) {
-                return createLocatedElementAdapter();
-            }
+    protected TCSSwitch<Adapter> modelSwitch =
+        new TCSSwitch<Adapter>() {
             @Override
             public Adapter caseNamedElement(NamedElement object) {
                 return createNamedElementAdapter();
@@ -543,1029 +445,1015 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
             }
         };
 
-        /**
+    /**
      * Creates an adapter for the <code>target</code>.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @param target the object to adapt.
      * @return the adapter for the <code>target</code>.
      * @generated
      */
-        @Override
-        public Adapter createAdapter(Notifier target) {
+    @Override
+    public Adapter createAdapter(Notifier target) {
         return modelSwitch.doSwitch((EObject)target);
     }
 
 
-        /**
-     * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.LocatedElement <em>Located Element</em>}'.
-     * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.LocatedElement
-     * @generated
-     */
-        public Adapter createLocatedElementAdapter() {
-        return null;
-    }
-
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.NamedElement <em>Named Element</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.NamedElement
      * @generated
      */
-        public Adapter createNamedElementAdapter() {
+    public Adapter createNamedElementAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax <em>Concrete Syntax</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax
      * @generated
      */
-        public Adapter createConcreteSyntaxAdapter() {
+    public Adapter createConcreteSyntaxAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.Template <em>Template</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Template
      * @generated
      */
-        public Adapter createTemplateAdapter() {
+    public Adapter createTemplateAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate <em>Function Template</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate
      * @generated
      */
-        public Adapter createFunctionTemplateAdapter() {
+    public Adapter createFunctionTemplateAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate <em>Class Template</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate
      * @generated
      */
-        public Adapter createClassTemplateAdapter() {
+    public Adapter createClassTemplateAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate <em>Primitive Template</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate
      * @generated
      */
-        public Adapter createPrimitiveTemplateAdapter() {
+    public Adapter createPrimitiveTemplateAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate <em>Operator Template</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate
      * @generated
      */
-        public Adapter createOperatorTemplateAdapter() {
+    public Adapter createOperatorTemplateAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate <em>Enumeration Template</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate
      * @generated
      */
-        public Adapter createEnumerationTemplateAdapter() {
+    public Adapter createEnumerationTemplateAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralMapping <em>Enum Literal Mapping</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralMapping
      * @generated
      */
-        public Adapter createEnumLiteralMappingAdapter() {
+    public Adapter createEnumLiteralMappingAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.Literal <em>Literal</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Literal
      * @generated
      */
-        public Adapter createLiteralAdapter() {
+    public Adapter createLiteralAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.Symbol <em>Symbol</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Symbol
      * @generated
      */
-        public Adapter createSymbolAdapter() {
+    public Adapter createSymbolAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.Keyword <em>Keyword</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Keyword
      * @generated
      */
-        public Adapter createKeywordAdapter() {
+    public Adapter createKeywordAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.OperatorList <em>Operator List</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.OperatorList
      * @generated
      */
-        public Adapter createOperatorListAdapter() {
+    public Adapter createOperatorListAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.Priority <em>Priority</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Priority
      * @generated
      */
-        public Adapter createPriorityAdapter() {
+    public Adapter createPriorityAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.Operator <em>Operator</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Operator
      * @generated
      */
-        public Adapter createOperatorAdapter() {
+    public Adapter createOperatorAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.Sequence <em>Sequence</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Sequence
      * @generated
      */
-        public Adapter createSequenceAdapter() {
+    public Adapter createSequenceAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement <em>Sequence Element</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement
      * @generated
      */
-        public Adapter createSequenceElementAdapter() {
+    public Adapter createSequenceElementAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef <em>Literal Ref</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef
      * @generated
      */
-        public Adapter createLiteralRefAdapter() {
+    public Adapter createLiteralRefAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.Property <em>Property</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Property
      * @generated
      */
-        public Adapter createPropertyAdapter() {
+    public Adapter createPropertyAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.CustomSeparator <em>Custom Separator</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.CustomSeparator
      * @generated
      */
-        public Adapter createCustomSeparatorAdapter() {
+    public Adapter createCustomSeparatorAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.Block <em>Block</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Block
      * @generated
      */
-        public Adapter createBlockAdapter() {
+    public Adapter createBlockAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement <em>Conditional Element</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement
      * @generated
      */
-        public Adapter createConditionalElementAdapter() {
+    public Adapter createConditionalElementAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.PrimitivePropertyInit <em>Primitive Property Init</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.PrimitivePropertyInit
      * @generated
      */
-        public Adapter createPrimitivePropertyInitAdapter() {
+    public Adapter createPrimitivePropertyInitAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.Alternative <em>Alternative</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Alternative
      * @generated
      */
-        public Adapter createAlternativeAdapter() {
+    public Adapter createAlternativeAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.FunctionCall <em>Function Call</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.FunctionCall
      * @generated
      */
-        public Adapter createFunctionCallAdapter() {
+    public Adapter createFunctionCallAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg <em>Property Arg</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg
      * @generated
      */
-        public Adapter createPropertyArgAdapter() {
+    public Adapter createPropertyArgAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg <em>Refers To PArg</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg
      * @generated
      */
-        public Adapter createRefersToPArgAdapter() {
+    public Adapter createRefersToPArgAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.LookInPArg <em>Look In PArg</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.LookInPArg
      * @generated
      */
-        public Adapter createLookInPArgAdapter() {
+    public Adapter createLookInPArgAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.CreateInPArg <em>Create In PArg</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.CreateInPArg
      * @generated
      */
-        public Adapter createCreateInPArgAdapter() {
+    public Adapter createCreateInPArgAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.RefersToKeyPArg <em>Refers To Key PArg</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.RefersToKeyPArg
      * @generated
      */
-        public Adapter createRefersToKeyPArgAdapter() {
+    public Adapter createRefersToKeyPArgAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg <em>Separator PArg</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg
      * @generated
      */
-        public Adapter createSeparatorPArgAdapter() {
+    public Adapter createSeparatorPArgAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.AutoCreatePArg <em>Auto Create PArg</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.AutoCreatePArg
      * @generated
      */
-        public Adapter createAutoCreatePArgAdapter() {
+    public Adapter createAutoCreatePArgAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.ImportContextPArg <em>Import Context PArg</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.ImportContextPArg
      * @generated
      */
-        public Adapter createImportContextPArgAdapter() {
+    public Adapter createImportContextPArgAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg <em>Forced Lower PArg</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg
      * @generated
      */
-        public Adapter createForcedLowerPArgAdapter() {
+    public Adapter createForcedLowerPArgAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.CreateAsPArg <em>Create As PArg</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.CreateAsPArg
      * @generated
      */
-        public Adapter createCreateAsPArgAdapter() {
+    public Adapter createCreateAsPArgAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.AsPArg <em>As PArg</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.AsPArg
      * @generated
      */
-        public Adapter createAsPArgAdapter() {
+    public Adapter createAsPArgAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.ModePArg <em>Mode PArg</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.ModePArg
      * @generated
      */
-        public Adapter createModePArgAdapter() {
+    public Adapter createModePArgAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.BlockArg <em>Block Arg</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.BlockArg
      * @generated
      */
-        public Adapter createBlockArgAdapter() {
+    public Adapter createBlockArgAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.NbNLBArg <em>Nb NLB Arg</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.NbNLBArg
      * @generated
      */
-        public Adapter createNbNLBArgAdapter() {
+    public Adapter createNbNLBArgAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.IndentIncrBArg <em>Indent Incr BArg</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.IndentIncrBArg
      * @generated
      */
-        public Adapter createIndentIncrBArgAdapter() {
+    public Adapter createIndentIncrBArgAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.StartNLBArg <em>Start NLB Arg</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.StartNLBArg
      * @generated
      */
-        public Adapter createStartNLBArgAdapter() {
+    public Adapter createStartNLBArgAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.StartNbNLBArg <em>Start Nb NLB Arg</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.StartNbNLBArg
      * @generated
      */
-        public Adapter createStartNbNLBArgAdapter() {
+    public Adapter createStartNbNLBArgAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.EndNLBArg <em>End NLB Arg</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.EndNLBArg
      * @generated
      */
-        public Adapter createEndNLBArgAdapter() {
+    public Adapter createEndNLBArgAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.Expression <em>Expression</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Expression
      * @generated
      */
-        public Adapter createExpressionAdapter() {
+    public Adapter createExpressionAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.AndExp <em>And Exp</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.AndExp
      * @generated
      */
-        public Adapter createAndExpAdapter() {
+    public Adapter createAndExpAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.AtomExp <em>Atom Exp</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.AtomExp
      * @generated
      */
-        public Adapter createAtomExpAdapter() {
+    public Adapter createAtomExpAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.EqualsExp <em>Equals Exp</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.EqualsExp
      * @generated
      */
-        public Adapter createEqualsExpAdapter() {
+    public Adapter createEqualsExpAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.BooleanPropertyExp <em>Boolean Property Exp</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.BooleanPropertyExp
      * @generated
      */
-        public Adapter createBooleanPropertyExpAdapter() {
+    public Adapter createBooleanPropertyExpAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.IsDefinedExp <em>Is Defined Exp</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.IsDefinedExp
      * @generated
      */
-        public Adapter createIsDefinedExpAdapter() {
+    public Adapter createIsDefinedExpAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.OneExp <em>One Exp</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.OneExp
      * @generated
      */
-        public Adapter createOneExpAdapter() {
+    public Adapter createOneExpAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.Value <em>Value</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Value
      * @generated
      */
-        public Adapter createValueAdapter() {
+    public Adapter createValueAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.PropertyVal <em>Property Val</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.PropertyVal
      * @generated
      */
-        public Adapter createPropertyValAdapter() {
+    public Adapter createPropertyValAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.Token <em>Token</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Token
      * @generated
      */
-        public Adapter createTokenAdapter() {
+    public Adapter createTokenAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.OrPattern <em>Or Pattern</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.OrPattern
      * @generated
      */
-        public Adapter createOrPatternAdapter() {
+    public Adapter createOrPatternAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.SimplePattern <em>Simple Pattern</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.SimplePattern
      * @generated
      */
-        public Adapter createSimplePatternAdapter() {
+    public Adapter createSimplePatternAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.RulePattern <em>Rule Pattern</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.RulePattern
      * @generated
      */
-        public Adapter createRulePatternAdapter() {
+    public Adapter createRulePatternAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.Rule <em>Rule</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Rule
      * @generated
      */
-        public Adapter createRuleAdapter() {
+    public Adapter createRuleAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.WordRule <em>Word Rule</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.WordRule
      * @generated
      */
-        public Adapter createWordRuleAdapter() {
+    public Adapter createWordRuleAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.Word <em>Word</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Word
      * @generated
      */
-        public Adapter createWordAdapter() {
+    public Adapter createWordAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.EndOfLineRule <em>End Of Line Rule</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.EndOfLineRule
      * @generated
      */
-        public Adapter createEndOfLineRuleAdapter() {
+    public Adapter createEndOfLineRuleAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.MultiLineRule <em>Multi Line Rule</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.MultiLineRule
      * @generated
      */
-        public Adapter createMultiLineRuleAdapter() {
+    public Adapter createMultiLineRuleAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.Mapping <em>Mapping</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Mapping
      * @generated
      */
-        public Adapter createMappingAdapter() {
+    public Adapter createMappingAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.SimpleMapping <em>Simple Mapping</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.SimpleMapping
      * @generated
      */
-        public Adapter createSimpleMappingAdapter() {
+    public Adapter createSimpleMappingAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.WildcardMapping <em>Wildcard Mapping</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.WildcardMapping
      * @generated
      */
-        public Adapter createWildcardMappingAdapter() {
+    public Adapter createWildcardMappingAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.OctalMapping <em>Octal Mapping</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.OctalMapping
      * @generated
      */
-        public Adapter createOctalMappingAdapter() {
+    public Adapter createOctalMappingAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.HexadecimalMapping <em>Hexadecimal Mapping</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.HexadecimalMapping
      * @generated
      */
-        public Adapter createHexadecimalMappingAdapter() {
+    public Adapter createHexadecimalMappingAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.StringPattern <em>String Pattern</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.StringPattern
      * @generated
      */
-        public Adapter createStringPatternAdapter() {
+    public Adapter createStringPatternAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.ClassPattern <em>Class Pattern</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.ClassPattern
      * @generated
      */
-        public Adapter createClassPatternAdapter() {
+    public Adapter createClassPatternAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement <em>Qualified Named Element</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement
      * @generated
      */
-        public Adapter createQualifiedNamedElementAdapter() {
+    public Adapter createQualifiedNamedElementAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg <em>Forced Upper PArg</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg
      * @generated
      */
-        public Adapter createForcedUpperPArgAdapter() {
+    public Adapter createForcedUpperPArgAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock <em>Injector Actions Block</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock
      * @generated
      */
-        public Adapter createInjectorActionsBlockAdapter() {
+    public Adapter createInjectorActionsBlockAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg <em>Lookup Scope PArg</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -1579,7 +1467,7 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg <em>Reference By PArg</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -1593,7 +1481,7 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.PrefixPArg <em>Prefix PArg</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -1607,7 +1495,7 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.PostfixPArg <em>Postfix PArg</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -1621,253 +1509,253 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference <em>Property Reference</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference
      * @generated
      */
-        public Adapter createPropertyReferenceAdapter() {
+    public Adapter createPropertyReferenceAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate <em>Context Template</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate
      * @generated
      */
-        public Adapter createContextTemplateAdapter() {
+    public Adapter createContextTemplateAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.ContextTags <em>Context Tags</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.ContextTags
      * @generated
      */
-        public Adapter createContextTagsAdapter() {
+    public Adapter createContextTagsAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction <em>Injector Action</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction
      * @generated
      */
-        public Adapter createInjectorActionAdapter() {
+    public Adapter createInjectorActionAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.PropertyInit <em>Property Init</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.PropertyInit
      * @generated
      */
-        public Adapter createPropertyInitAdapter() {
+    public Adapter createPropertyInitAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.ScopeArg <em>Scope Arg</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.ScopeArg
      * @generated
      */
-        public Adapter createScopeArgAdapter() {
+    public Adapter createScopeArgAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit <em>Foreach Predicate Property Init</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit
      * @generated
      */
-        public Adapter createForeachPredicatePropertyInitAdapter() {
+    public Adapter createForeachPredicatePropertyInitAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic <em>Predicate Semantic</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic
      * @generated
      */
-        public Adapter createPredicateSemanticAdapter() {
+    public Adapter createPredicateSemanticAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.SequenceInAlternative <em>Sequence In Alternative</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.SequenceInAlternative
      * @generated
      */
-        public Adapter createSequenceInAlternativeAdapter() {
+    public Adapter createSequenceInAlternativeAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.PartialPArg <em>Partial PArg</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.PartialPArg
      * @generated
      */
-        public Adapter createPartialPArgAdapter() {
+    public Adapter createPartialPArgAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.DisambiguatePArg <em>Disambiguate PArg</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.DisambiguatePArg
      * @generated
      */
-        public Adapter createDisambiguatePArgAdapter() {
+    public Adapter createDisambiguatePArgAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.InstanceOfExp <em>Instance Of Exp</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.InstanceOfExp
      * @generated
      */
-        public Adapter createInstanceOfExpAdapter() {
+    public Adapter createInstanceOfExpAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralVal <em>Enum Literal Val</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralVal
      * @generated
      */
-        public Adapter createEnumLiteralValAdapter() {
+    public Adapter createEnumLiteralValAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.StringVal <em>String Val</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.StringVal
      * @generated
      */
-        public Adapter createStringValAdapter() {
+    public Adapter createStringValAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.IntegerVal <em>Integer Val</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.IntegerVal
      * @generated
      */
-        public Adapter createIntegerValAdapter() {
+    public Adapter createIntegerValAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.NegativeIntegerVal <em>Negative Integer Val</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.NegativeIntegerVal
      * @generated
      */
-        public Adapter createNegativeIntegerValAdapter() {
+    public Adapter createNegativeIntegerValAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit <em>Lookup Property Init</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit
      * @generated
      */
-        public Adapter createLookupPropertyInitAdapter() {
+    public Adapter createLookupPropertyInitAdapter() {
         return null;
     }
 
-        /**
+    /**
      * Creates a new adapter for the default case.
      * <!-- begin-user-doc -->
-         * This default implementation returns null.
-         * <!-- end-user-doc -->
+     * This default implementation returns null.
+     * <!-- end-user-doc -->
      * @return the new adapter.
      * @generated
      */
-        public Adapter createEObjectAdapter() {
+    public Adapter createEObjectAdapter() {
         return null;
     }
 

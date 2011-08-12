@@ -6,15 +6,17 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.EndOfLineRule;
 import com.sap.furcas.metamodel.FURCAS.TCS.StringPattern;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,70 +33,70 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * @generated
  */
 public class EndOfLineRuleImpl extends RuleImpl implements EndOfLineRule {
-        /**
+    /**
      * The cached value of the '{@link #getStart() <em>Start</em>}' containment reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getStart()
      * @generated
      * @ordered
      */
-        protected StringPattern start;
+    protected StringPattern start;
 
-        /**
+    /**
      * The default value of the '{@link #isDropStart() <em>Drop Start</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isDropStart()
      * @generated
      * @ordered
      */
-        protected static final boolean DROP_START_EDEFAULT = false;
+    protected static final boolean DROP_START_EDEFAULT = false;
 
-        /**
+    /**
      * The cached value of the '{@link #isDropStart() <em>Drop Start</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isDropStart()
      * @generated
      * @ordered
      */
-        protected boolean dropStart = DROP_START_EDEFAULT;
+    protected boolean dropStart = DROP_START_EDEFAULT;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected EndOfLineRuleImpl() {
+    protected EndOfLineRuleImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.END_OF_LINE_RULE;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public StringPattern getStart() {
+    public StringPattern getStart() {
         return start;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public NotificationChain basicSetStart(StringPattern newStart, NotificationChain msgs) {
+    public NotificationChain basicSetStart(StringPattern newStart, NotificationChain msgs) {
         StringPattern oldStart = start;
         start = newStart;
         if (eNotificationRequired()) {
@@ -104,12 +106,12 @@ public class EndOfLineRuleImpl extends RuleImpl implements EndOfLineRule {
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setStart(StringPattern newStart) {
+    public void setStart(StringPattern newStart) {
         if (newStart != start) {
             NotificationChain msgs = null;
             if (start != null)
@@ -123,34 +125,34 @@ public class EndOfLineRuleImpl extends RuleImpl implements EndOfLineRule {
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.END_OF_LINE_RULE__START, newStart, newStart));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public boolean isDropStart() {
+    public boolean isDropStart() {
         return dropStart;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setDropStart(boolean newDropStart) {
+    public void setDropStart(boolean newDropStart) {
         boolean oldDropStart = dropStart;
         dropStart = newDropStart;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.END_OF_LINE_RULE__DROP_START, oldDropStart, dropStart));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.END_OF_LINE_RULE__START:
                 return basicSetStart(null, msgs);
@@ -158,13 +160,13 @@ public class EndOfLineRuleImpl extends RuleImpl implements EndOfLineRule {
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.END_OF_LINE_RULE__START:
                 return getStart();
@@ -174,13 +176,13 @@ public class EndOfLineRuleImpl extends RuleImpl implements EndOfLineRule {
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.END_OF_LINE_RULE__START:
                 setStart((StringPattern)newValue);
@@ -192,13 +194,13 @@ public class EndOfLineRuleImpl extends RuleImpl implements EndOfLineRule {
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.END_OF_LINE_RULE__START:
                 setStart((StringPattern)null);
@@ -210,13 +212,13 @@ public class EndOfLineRuleImpl extends RuleImpl implements EndOfLineRule {
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.END_OF_LINE_RULE__START:
                 return start != null;
@@ -226,13 +228,13 @@ public class EndOfLineRuleImpl extends RuleImpl implements EndOfLineRule {
         return super.eIsSet(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public String toString() {
+    @Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());

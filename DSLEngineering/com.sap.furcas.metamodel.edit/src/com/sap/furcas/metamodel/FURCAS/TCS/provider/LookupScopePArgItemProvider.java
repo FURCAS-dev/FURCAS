@@ -107,7 +107,7 @@ public class LookupScopePArgItemProvider
      */
     @Override
     public String getText(Object object) {
-        String label = ((LookupScopePArg)object).getLocation();
+        String label = ((LookupScopePArg)object).getQuery();
         return label == null || label.length() == 0 ?
             getString("_UI_LookupScopePArg_type") :
             getString("_UI_LookupScopePArg_type") + " " + label;

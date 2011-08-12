@@ -6,16 +6,20 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.Expression;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,52 +34,52 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  *
  * @generated
  */
-public abstract class ExpressionImpl extends LocatedElementImpl implements Expression {
-        /**
+public abstract class ExpressionImpl extends EObjectImpl implements Expression {
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected ExpressionImpl() {
+    protected ExpressionImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.EXPRESSION;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public ConditionalElement getConditionalElement() {
+    public ConditionalElement getConditionalElement() {
         if (eContainerFeatureID() != TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT) return null;
         return (ConditionalElement)eContainer();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public NotificationChain basicSetConditionalElement(ConditionalElement newConditionalElement, NotificationChain msgs) {
+    public NotificationChain basicSetConditionalElement(ConditionalElement newConditionalElement, NotificationChain msgs) {
         msgs = eBasicSetContainer((InternalEObject)newConditionalElement, TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT, msgs);
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setConditionalElement(ConditionalElement newConditionalElement) {
+    public void setConditionalElement(ConditionalElement newConditionalElement) {
         if (newConditionalElement != eInternalContainer() || (eContainerFeatureID() != TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT && newConditionalElement != null)) {
             if (EcoreUtil.isAncestor(this, newConditionalElement))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
@@ -91,13 +95,13 @@ public abstract class ExpressionImpl extends LocatedElementImpl implements Expre
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT, newConditionalElement, newConditionalElement));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT:
                 if (eInternalContainer() != null)
@@ -107,13 +111,13 @@ public abstract class ExpressionImpl extends LocatedElementImpl implements Expre
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT:
                 return basicSetConditionalElement(null, msgs);
@@ -121,13 +125,13 @@ public abstract class ExpressionImpl extends LocatedElementImpl implements Expre
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+    @Override
+    public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
         switch (eContainerFeatureID()) {
             case TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT:
                 return eInternalContainer().eInverseRemove(this, TCSPackage.CONDITIONAL_ELEMENT__CONDITION, ConditionalElement.class, msgs);
@@ -135,13 +139,13 @@ public abstract class ExpressionImpl extends LocatedElementImpl implements Expre
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT:
                 return getConditionalElement();
@@ -149,13 +153,13 @@ public abstract class ExpressionImpl extends LocatedElementImpl implements Expre
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT:
                 setConditionalElement((ConditionalElement)newValue);
@@ -164,13 +168,13 @@ public abstract class ExpressionImpl extends LocatedElementImpl implements Expre
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT:
                 setConditionalElement((ConditionalElement)null);
@@ -179,13 +183,13 @@ public abstract class ExpressionImpl extends LocatedElementImpl implements Expre
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.EXPRESSION__CONDITIONAL_ELEMENT:
                 return getConditionalElement() != null;

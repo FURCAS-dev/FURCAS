@@ -116,10 +116,7 @@ public class WordRuleItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((WordRule)object).getLocation();
-        return label == null || label.length() == 0 ?
-            getString("_UI_WordRule_type") :
-            getString("_UI_WordRule_type") + " " + label;
+        return getString("_UI_WordRule_type");
     }
 
         /**

@@ -8,6 +8,8 @@ package com.sap.furcas.metamodel.FURCAS.TCS;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.ecore.EObject;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Priority</b></em>'.
@@ -27,16 +29,16 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Priority extends LocatedElement {
-        /**
+public interface Priority extends EObject {
+    /**
      * Returns the value of the '<em><b>List</b></em>' container reference.
      * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.FURCAS.TCS.OperatorList#getPriorities <em>Priorities</em>}'.
      * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>List</em>' container reference isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>List</em>' container reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>List</em>' container reference.
      * @see #setList(OperatorList)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getPriority_List()
@@ -44,35 +46,35 @@ public interface Priority extends LocatedElement {
      * @model opposite="priorities" required="true" transient="false" ordered="false"
      * @generated
      */
-        OperatorList getList();
+    OperatorList getList();
 
-        /**
+    /**
      * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.Priority#getList <em>List</em>}' container reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @param value the new value of the '<em>List</em>' container reference.
      * @see #getList()
      * @generated
      */
-        void setList(OperatorList value);
+    void setList(OperatorList value);
 
-        /**
+    /**
      * Returns the value of the '<em><b>Value</b></em>' attribute.
      * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>Value</em>' attribute isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Value</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Value</em>' attribute.
      * @see #setValue(Integer)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getPriority_Value()
      * @model unique="false" required="true" ordered="false"
      * @generated
      */
-        Integer getValue();
+    Integer getValue();
 
-        /**
+    /**
      * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.Priority#getValue <em>Value</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -82,15 +84,15 @@ public interface Priority extends LocatedElement {
      */
     void setValue(Integer value);
 
-        /**
+    /**
      * Returns the value of the '<em><b>Associativity</b></em>' attribute.
      * The literals are from the enumeration {@link com.sap.furcas.metamodel.FURCAS.TCS.Associativity}.
      * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>Associativity</em>' attribute isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Associativity</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Associativity</em>' attribute.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Associativity
      * @see #setAssociativity(Associativity)
@@ -98,35 +100,35 @@ public interface Priority extends LocatedElement {
      * @model unique="false" required="true" ordered="false"
      * @generated
      */
-        Associativity getAssociativity();
+    Associativity getAssociativity();
 
-        /**
+    /**
      * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.Priority#getAssociativity <em>Associativity</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @param value the new value of the '<em>Associativity</em>' attribute.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Associativity
      * @see #getAssociativity()
      * @generated
      */
-        void setAssociativity(Associativity value);
+    void setAssociativity(Associativity value);
 
-        /**
+    /**
      * Returns the value of the '<em><b>Operators</b></em>' containment reference list.
      * The list contents are of type {@link com.sap.furcas.metamodel.FURCAS.TCS.Operator}.
      * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.FURCAS.TCS.Operator#getPriority <em>Priority</em>}'.
      * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>Operators</em>' containment reference list isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Operators</em>' containment reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Operators</em>' containment reference list.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getPriority_Operators()
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Operator#getPriority
      * @model opposite="priority" containment="true" ordered="false"
      * @generated
      */
-        EList<Operator> getOperators();
+    EList<Operator> getOperators();
 
 } // Priority

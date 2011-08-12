@@ -6,15 +6,17 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,91 +33,91 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * @generated
  */
 public class FunctionTemplateImpl extends TemplateImpl implements FunctionTemplate {
-        /**
+    /**
      * The default value of the '{@link #getFunctionName() <em>Function Name</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getFunctionName()
      * @generated
      * @ordered
      */
-        protected static final String FUNCTION_NAME_EDEFAULT = null;
+    protected static final String FUNCTION_NAME_EDEFAULT = null;
 
-        /**
+    /**
      * The cached value of the '{@link #getFunctionName() <em>Function Name</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getFunctionName()
      * @generated
      * @ordered
      */
-        protected String functionName = FUNCTION_NAME_EDEFAULT;
+    protected String functionName = FUNCTION_NAME_EDEFAULT;
 
-        /**
+    /**
      * The cached value of the '{@link #getFunctionSequence() <em>Function Sequence</em>}' containment reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getFunctionSequence()
      * @generated
      * @ordered
      */
-        protected Sequence functionSequence;
+    protected Sequence functionSequence;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected FunctionTemplateImpl() {
+    protected FunctionTemplateImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.FUNCTION_TEMPLATE;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public String getFunctionName() {
+    public String getFunctionName() {
         return functionName;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setFunctionName(String newFunctionName) {
+    public void setFunctionName(String newFunctionName) {
         String oldFunctionName = functionName;
         functionName = newFunctionName;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.FUNCTION_TEMPLATE__FUNCTION_NAME, oldFunctionName, functionName));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public Sequence getFunctionSequence() {
+    public Sequence getFunctionSequence() {
         return functionSequence;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public NotificationChain basicSetFunctionSequence(Sequence newFunctionSequence, NotificationChain msgs) {
+    public NotificationChain basicSetFunctionSequence(Sequence newFunctionSequence, NotificationChain msgs) {
         Sequence oldFunctionSequence = functionSequence;
         functionSequence = newFunctionSequence;
         if (eNotificationRequired()) {
@@ -125,12 +127,12 @@ public class FunctionTemplateImpl extends TemplateImpl implements FunctionTempla
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setFunctionSequence(Sequence newFunctionSequence) {
+    public void setFunctionSequence(Sequence newFunctionSequence) {
         if (newFunctionSequence != functionSequence) {
             NotificationChain msgs = null;
             if (functionSequence != null)
@@ -144,13 +146,13 @@ public class FunctionTemplateImpl extends TemplateImpl implements FunctionTempla
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.FUNCTION_TEMPLATE__FUNCTION_SEQUENCE, newFunctionSequence, newFunctionSequence));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.FUNCTION_TEMPLATE__FUNCTION_SEQUENCE:
                 if (functionSequence != null)
@@ -160,13 +162,13 @@ public class FunctionTemplateImpl extends TemplateImpl implements FunctionTempla
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.FUNCTION_TEMPLATE__FUNCTION_SEQUENCE:
                 return basicSetFunctionSequence(null, msgs);
@@ -174,13 +176,13 @@ public class FunctionTemplateImpl extends TemplateImpl implements FunctionTempla
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.FUNCTION_TEMPLATE__FUNCTION_NAME:
                 return getFunctionName();
@@ -190,13 +192,13 @@ public class FunctionTemplateImpl extends TemplateImpl implements FunctionTempla
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.FUNCTION_TEMPLATE__FUNCTION_NAME:
                 setFunctionName((String)newValue);
@@ -208,13 +210,13 @@ public class FunctionTemplateImpl extends TemplateImpl implements FunctionTempla
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.FUNCTION_TEMPLATE__FUNCTION_NAME:
                 setFunctionName(FUNCTION_NAME_EDEFAULT);
@@ -226,13 +228,13 @@ public class FunctionTemplateImpl extends TemplateImpl implements FunctionTempla
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.FUNCTION_TEMPLATE__FUNCTION_NAME:
                 return FUNCTION_NAME_EDEFAULT == null ? functionName != null : !FUNCTION_NAME_EDEFAULT.equals(functionName);
@@ -242,13 +244,13 @@ public class FunctionTemplateImpl extends TemplateImpl implements FunctionTempla
         return super.eIsSet(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public String toString() {
+    @Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());

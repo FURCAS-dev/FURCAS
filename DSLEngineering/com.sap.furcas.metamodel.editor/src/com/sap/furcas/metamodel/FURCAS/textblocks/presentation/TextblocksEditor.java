@@ -668,10 +668,6 @@ public class TextblocksEditor
         adapterFactory.addAdapterFactory(new TCSItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new TextblocksItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
-        adapterFactory.addAdapterFactory(new TypesItemProviderAdapterFactory());
-        adapterFactory.addAdapterFactory(new UtilitiesItemProviderAdapterFactory());
-        adapterFactory.addAdapterFactory(new ExpressionsItemProviderAdapterFactory());
-        adapterFactory.addAdapterFactory(new org.eclipse.ocl.ecore.provider.EcoreItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
         // Create the command stack that will notify this editor as commands are executed.

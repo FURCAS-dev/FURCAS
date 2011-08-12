@@ -7,8 +7,8 @@
 package com.sap.furcas.metamodel.FURCAS.textblocks;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,33 +28,33 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface LexedToken extends AbstractToken {
-        /**
+    /**
      * Returns the value of the '<em><b>Operator</b></em>' attribute.
      * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>Operator</em>' attribute isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Operator</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Operator</em>' attribute.
      * @see #setOperator(boolean)
      * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getLexedToken_Operator()
      * @model
      * @generated
      */
-        boolean isOperator();
+    boolean isOperator();
 
-        /**
+    /**
      * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken#isOperator <em>Operator</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @param value the new value of the '<em>Operator</em>' attribute.
      * @see #isOperator()
      * @generated
      */
-        void setOperator(boolean value);
+    void setOperator(boolean value);
 
-        /**
+    /**
      * Returns the value of the '<em><b>Referenced Elements</b></em>' reference list.
      * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
      * <!-- begin-user-doc -->

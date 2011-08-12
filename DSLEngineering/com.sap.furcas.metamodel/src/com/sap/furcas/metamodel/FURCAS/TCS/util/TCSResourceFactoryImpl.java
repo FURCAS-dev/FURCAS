@@ -7,9 +7,10 @@
 package com.sap.furcas.metamodel.FURCAS.TCS.util;
 
 import org.eclipse.emf.common.util.URI;
+
 import org.eclipse.emf.ecore.resource.Resource;
+
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
-import org.eclipse.emf.ecore.xmi.XMLResource;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,24 +20,24 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
  * @generated
  */
 public class TCSResourceFactoryImpl extends ResourceFactoryImpl {
-        /**
+    /**
      * Creates an instance of the resource factory.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public TCSResourceFactoryImpl() {
+    public TCSResourceFactoryImpl() {
         super();
     }
 
-        /**
+    /**
      * Creates an instance of the resource.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Resource createResource(URI uri) {
+    @Override
+    public Resource createResource(URI uri) {
         Resource result = new TCSResourceImpl(uri);
         return result;
     }

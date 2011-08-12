@@ -27,10 +27,6 @@ public interface LookupScopePArg extends PropertyArg {
     /**
      * Returns the value of the '<em><b>Query</b></em>' attribute.
      * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Query</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
      * <!-- end-user-doc -->
      * <!-- begin-model-doc -->
      * The query is meant to return all elements that shall be considered when references are resolved by name (see {@link ReferenceByPArg}). 

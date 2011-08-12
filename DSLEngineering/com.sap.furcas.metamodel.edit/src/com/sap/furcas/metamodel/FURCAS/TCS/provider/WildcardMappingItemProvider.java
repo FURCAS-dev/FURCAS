@@ -80,10 +80,7 @@ public class WildcardMappingItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((WildcardMapping)object).getLocation();
-        return label == null || label.length() == 0 ?
-            getString("_UI_WildcardMapping_type") :
-            getString("_UI_WildcardMapping_type") + " " + label;
+        return getString("_UI_WildcardMapping_type");
     }
 
         /**

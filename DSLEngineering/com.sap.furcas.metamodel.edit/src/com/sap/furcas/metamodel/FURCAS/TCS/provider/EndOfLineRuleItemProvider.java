@@ -138,10 +138,8 @@ public class EndOfLineRuleItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((EndOfLineRule)object).getLocation();
-        return label == null || label.length() == 0 ?
-            getString("_UI_EndOfLineRule_type") :
-            getString("_UI_EndOfLineRule_type") + " " + label;
+        EndOfLineRule endOfLineRule = (EndOfLineRule)object;
+        return getString("_UI_EndOfLineRule_type") + " " + endOfLineRule.isDropStart();
     }
 
         /**

@@ -6,16 +6,21 @@
  */
 package com.sap.furcas.metamodel.FURCAS.textblocks.impl;
 
+import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
+
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
-import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
-import java.util.Collection;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,27 +37,27 @@ import java.util.Collection;
  * @generated
  */
 public class LexedTokenImpl extends AbstractTokenImpl implements LexedToken {
-        /**
+    /**
      * The default value of the '{@link #isOperator() <em>Operator</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isOperator()
      * @generated
      * @ordered
      */
-        protected static final boolean OPERATOR_EDEFAULT = false;
+    protected static final boolean OPERATOR_EDEFAULT = false;
 
-        /**
+    /**
      * The cached value of the '{@link #isOperator() <em>Operator</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isOperator()
      * @generated
      * @ordered
      */
-        protected boolean operator = OPERATOR_EDEFAULT;
+    protected boolean operator = OPERATOR_EDEFAULT;
 
-        /**
+    /**
      * The cached value of the '{@link #getReferencedElements() <em>Referenced Elements</em>}' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -62,47 +67,47 @@ public class LexedTokenImpl extends AbstractTokenImpl implements LexedToken {
      */
     protected EList<EObject> referencedElements;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected LexedTokenImpl() {
+    protected LexedTokenImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TextblocksPackage.Literals.LEXED_TOKEN;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public boolean isOperator() {
+    public boolean isOperator() {
         return operator;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setOperator(boolean newOperator) {
+    public void setOperator(boolean newOperator) {
         boolean oldOperator = operator;
         operator = newOperator;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.LEXED_TOKEN__OPERATOR, oldOperator, operator));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -114,13 +119,13 @@ public class LexedTokenImpl extends AbstractTokenImpl implements LexedToken {
         return referencedElements;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TextblocksPackage.LEXED_TOKEN__OPERATOR:
                 return isOperator();
@@ -130,14 +135,14 @@ public class LexedTokenImpl extends AbstractTokenImpl implements LexedToken {
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @SuppressWarnings("unchecked")
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TextblocksPackage.LEXED_TOKEN__OPERATOR:
                 setOperator((Boolean)newValue);
@@ -150,13 +155,13 @@ public class LexedTokenImpl extends AbstractTokenImpl implements LexedToken {
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TextblocksPackage.LEXED_TOKEN__OPERATOR:
                 setOperator(OPERATOR_EDEFAULT);
@@ -168,13 +173,13 @@ public class LexedTokenImpl extends AbstractTokenImpl implements LexedToken {
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TextblocksPackage.LEXED_TOKEN__OPERATOR:
                 return operator != OPERATOR_EDEFAULT;
@@ -184,13 +189,13 @@ public class LexedTokenImpl extends AbstractTokenImpl implements LexedToken {
         return super.eIsSet(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public String toString() {
+    @Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());

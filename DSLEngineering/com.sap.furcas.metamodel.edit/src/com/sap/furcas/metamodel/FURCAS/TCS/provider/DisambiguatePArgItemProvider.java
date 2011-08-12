@@ -107,7 +107,7 @@ public class DisambiguatePArgItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((DisambiguatePArg)object).getLocation();
+        String label = ((DisambiguatePArg)object).getDisambiguation();
         return label == null || label.length() == 0 ?
             getString("_UI_DisambiguatePArg_type") :
             getString("_UI_DisambiguatePArg_type") + " " + label;

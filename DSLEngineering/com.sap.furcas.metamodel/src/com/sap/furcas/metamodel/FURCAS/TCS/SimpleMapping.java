@@ -25,7 +25,6 @@ package com.sap.furcas.metamodel.FURCAS.TCS;
  * @generated
  */
 public interface SimpleMapping extends Mapping {
-
     /**
      * Returns the value of the '<em><b>Key</b></em>' attribute.
      * <!-- begin-user-doc -->
@@ -77,4 +76,5 @@ public interface SimpleMapping extends Mapping {
      * @generated
      */
     void setValue(String value);
+
 } // SimpleMapping

@@ -107,7 +107,7 @@ public class PrefixPArgItemProvider
      */
     @Override
     public String getText(Object object) {
-        String label = ((PrefixPArg)object).getLocation();
+        String label = ((PrefixPArg)object).getPrefix();
         return label == null || label.length() == 0 ?
             getString("_UI_PrefixPArg_type") :
             getString("_UI_PrefixPArg_type") + " " + label;

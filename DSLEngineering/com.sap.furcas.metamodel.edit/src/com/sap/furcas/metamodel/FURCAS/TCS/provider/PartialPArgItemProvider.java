@@ -80,10 +80,7 @@ public class PartialPArgItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((PartialPArg)object).getLocation();
-        return label == null || label.length() == 0 ?
-            getString("_UI_PartialPArg_type") :
-            getString("_UI_PartialPArg_type") + " " + label;
+        return getString("_UI_PartialPArg_type");
     }
 
         /**

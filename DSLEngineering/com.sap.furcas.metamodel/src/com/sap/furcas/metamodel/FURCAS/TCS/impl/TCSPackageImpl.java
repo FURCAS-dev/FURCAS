@@ -6,15 +6,8 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.ocl.ecore.EcorePackage;
-
 import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
+
 import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
 import com.sap.furcas.metamodel.FURCAS.TCS.AndExp;
 import com.sap.furcas.metamodel.FURCAS.TCS.AsPArg;
@@ -58,7 +51,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.IsDefinedExp;
 import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
 import com.sap.furcas.metamodel.FURCAS.TCS.Literal;
 import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
-import com.sap.furcas.metamodel.FURCAS.TCS.LocatedElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookInPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg;
@@ -68,8 +60,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.MultiLineRule;
 import com.sap.furcas.metamodel.FURCAS.TCS.NamedElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.NbNLBArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.NegativeIntegerVal;
-import com.sap.furcas.metamodel.FURCAS.TCS.OclPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.OclPropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.OctalMapping;
 import com.sap.furcas.metamodel.FURCAS.TCS.OneExp;
 import com.sap.furcas.metamodel.FURCAS.TCS.Operator;
@@ -117,11 +107,21 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Value;
 import com.sap.furcas.metamodel.FURCAS.TCS.WildcardMapping;
 import com.sap.furcas.metamodel.FURCAS.TCS.Word;
 import com.sap.furcas.metamodel.FURCAS.TCS.WordRule;
-import com.sap.furcas.metamodel.FURCAS.TCS.*;
+
 import com.sap.furcas.metamodel.FURCAS.impl.FURCASPackageImpl;
+
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
+
 import com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextblocksPackageImpl;
 
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
+
+import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -130,693 +130,686 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextblocksPackageImpl;
  * @generated
  */
 public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass locatedElementEClass = null;
+    private EClass namedElementEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass namedElementEClass = null;
+    private EClass concreteSyntaxEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass concreteSyntaxEClass = null;
+    private EClass templateEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass templateEClass = null;
+    private EClass functionTemplateEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass functionTemplateEClass = null;
+    private EClass classTemplateEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass classTemplateEClass = null;
+    private EClass primitiveTemplateEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass primitiveTemplateEClass = null;
+    private EClass operatorTemplateEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass operatorTemplateEClass = null;
+    private EClass enumerationTemplateEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass enumerationTemplateEClass = null;
+    private EClass enumLiteralMappingEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass enumLiteralMappingEClass = null;
+    private EClass literalEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass literalEClass = null;
+    private EClass symbolEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass symbolEClass = null;
+    private EClass keywordEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass keywordEClass = null;
+    private EClass operatorListEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass operatorListEClass = null;
+    private EClass priorityEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass priorityEClass = null;
+    private EClass operatorEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass operatorEClass = null;
+    private EClass sequenceEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass sequenceEClass = null;
+    private EClass sequenceElementEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass sequenceElementEClass = null;
+    private EClass literalRefEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass literalRefEClass = null;
+    private EClass propertyEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass propertyEClass = null;
+    private EClass customSeparatorEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass customSeparatorEClass = null;
+    private EClass blockEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass blockEClass = null;
+    private EClass conditionalElementEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass conditionalElementEClass = null;
+    private EClass primitivePropertyInitEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass primitivePropertyInitEClass = null;
+    private EClass alternativeEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass alternativeEClass = null;
+    private EClass functionCallEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass functionCallEClass = null;
+    private EClass propertyArgEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass propertyArgEClass = null;
+    private EClass refersToPArgEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass refersToPArgEClass = null;
+    private EClass lookInPArgEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass lookInPArgEClass = null;
+    private EClass createInPArgEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass createInPArgEClass = null;
+    private EClass refersToKeyPArgEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass refersToKeyPArgEClass = null;
+    private EClass separatorPArgEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass separatorPArgEClass = null;
+    private EClass autoCreatePArgEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass autoCreatePArgEClass = null;
+    private EClass importContextPArgEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass importContextPArgEClass = null;
+    private EClass forcedLowerPArgEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass forcedLowerPArgEClass = null;
+    private EClass createAsPArgEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass createAsPArgEClass = null;
+    private EClass asPArgEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass asPArgEClass = null;
+    private EClass modePArgEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass modePArgEClass = null;
+    private EClass blockArgEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass blockArgEClass = null;
+    private EClass nbNLBArgEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass nbNLBArgEClass = null;
+    private EClass indentIncrBArgEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass indentIncrBArgEClass = null;
+    private EClass startNLBArgEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass startNLBArgEClass = null;
+    private EClass startNbNLBArgEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass startNbNLBArgEClass = null;
+    private EClass endNLBArgEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass endNLBArgEClass = null;
+    private EClass expressionEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass expressionEClass = null;
+    private EClass andExpEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass andExpEClass = null;
+    private EClass atomExpEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass atomExpEClass = null;
+    private EClass equalsExpEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass equalsExpEClass = null;
+    private EClass booleanPropertyExpEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass booleanPropertyExpEClass = null;
+    private EClass isDefinedExpEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass isDefinedExpEClass = null;
+    private EClass oneExpEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass oneExpEClass = null;
+    private EClass valueEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass valueEClass = null;
+    private EClass propertyValEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass propertyValEClass = null;
+    private EClass tokenEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass tokenEClass = null;
+    private EClass orPatternEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass orPatternEClass = null;
+    private EClass simplePatternEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass simplePatternEClass = null;
+    private EClass rulePatternEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass rulePatternEClass = null;
+    private EClass ruleEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass ruleEClass = null;
+    private EClass wordRuleEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass wordRuleEClass = null;
+    private EClass wordEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass wordEClass = null;
+    private EClass endOfLineRuleEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass endOfLineRuleEClass = null;
+    private EClass multiLineRuleEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass multiLineRuleEClass = null;
+    private EClass mappingEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass mappingEClass = null;
+    private EClass simpleMappingEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass simpleMappingEClass = null;
+    private EClass wildcardMappingEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass wildcardMappingEClass = null;
+    private EClass octalMappingEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass octalMappingEClass = null;
+    private EClass hexadecimalMappingEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass hexadecimalMappingEClass = null;
+    private EClass stringPatternEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass stringPatternEClass = null;
+    private EClass classPatternEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass classPatternEClass = null;
+    private EClass qualifiedNamedElementEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass qualifiedNamedElementEClass = null;
+    private EClass forcedUpperPArgEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass forcedUpperPArgEClass = null;
+    private EClass injectorActionsBlockEClass = null;
 
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        private EClass injectorActionsBlockEClass = null;
-
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     private EClass lookupScopePArgEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     private EClass referenceByPArgEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     private EClass prefixPArgEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     private EClass postfixPArgEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass propertyReferenceEClass = null;
+    private EClass propertyReferenceEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass contextTemplateEClass = null;
+    private EClass contextTemplateEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass contextTagsEClass = null;
+    private EClass contextTagsEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass injectorActionEClass = null;
+    private EClass injectorActionEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass propertyInitEClass = null;
+    private EClass propertyInitEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass scopeArgEClass = null;
+    private EClass scopeArgEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass foreachPredicatePropertyInitEClass = null;
+    private EClass foreachPredicatePropertyInitEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass predicateSemanticEClass = null;
+    private EClass predicateSemanticEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass sequenceInAlternativeEClass = null;
+    private EClass sequenceInAlternativeEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass partialPArgEClass = null;
+    private EClass partialPArgEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass disambiguatePArgEClass = null;
+    private EClass disambiguatePArgEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass instanceOfExpEClass = null;
+    private EClass instanceOfExpEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass enumLiteralValEClass = null;
+    private EClass enumLiteralValEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass stringValEClass = null;
+    private EClass stringValEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass integerValEClass = null;
+    private EClass integerValEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass negativeIntegerValEClass = null;
+    private EClass negativeIntegerValEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass lookupPropertyInitEClass = null;
+    private EClass lookupPropertyInitEClass = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EEnum templateModifiersEEnum = null;
+    private EEnum templateModifiersEEnum = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EEnum spaceKindEEnum = null;
+    private EEnum spaceKindEEnum = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EEnum associativityEEnum = null;
+    private EEnum associativityEEnum = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EEnum autoCreateKindEEnum = null;
+    private EEnum autoCreateKindEEnum = null;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EEnum scopeKindEEnum = null;
+    private EEnum scopeKindEEnum = null;
 
-        /**
+    /**
      * Creates an instance of the model <b>Package</b>, registered with
      * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
      * package URI value.
@@ -825,36 +818,36 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
      * initialization of the package, or returns the registered package,
      * if one already exists.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see org.eclipse.emf.ecore.EPackage.Registry
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#eNS_URI
      * @see #init()
      * @generated
      */
-        private TCSPackageImpl() {
+    private TCSPackageImpl() {
         super(eNS_URI, TCSFactory.eINSTANCE);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private static boolean isInited = false;
+    private static boolean isInited = false;
 
-        /**
+    /**
      * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
      * 
      * <p>This method is used to initialize {@link TCSPackage#eINSTANCE} when that field is accessed.
      * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #eNS_URI
      * @see #createPackageContents()
      * @see #initializePackageContents()
      * @generated
      */
-        public static TCSPackage init() {
+    public static TCSPackage init() {
         if (isInited) return (TCSPackage)EPackage.Registry.INSTANCE.getEPackage(TCSPackage.eNS_URI);
 
         // Obtain or create and register package
@@ -888,2600 +881,2293 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         return theTCSPackage;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-	public EClass getLocatedElement() {
-        return locatedElementEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getLocatedElement_Location() {
-        return (EAttribute)locatedElementEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getLocatedElement_CommentsBefore() {
-        return (EAttribute)locatedElementEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getLocatedElement_CommentsAfter() {
-        return (EAttribute)locatedElementEClass.getEStructuralFeatures().get(2);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EClass getNamedElement() {
+    public EClass getNamedElement() {
         return namedElementEClass;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-	public EAttribute getNamedElement_Name() {
+    public EAttribute getNamedElement_Name() {
         return (EAttribute)namedElementEClass.getEStructuralFeatures().get(0);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-	public EClass getConcreteSyntax() {
+    public EClass getConcreteSyntax() {
         return concreteSyntaxEClass;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-	public EAttribute getConcreteSyntax_K() {
+    public EAttribute getConcreteSyntax_K() {
         return (EAttribute)concreteSyntaxEClass.getEStructuralFeatures().get(0);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-	public EReference getConcreteSyntax_Templates() {
+    public EReference getConcreteSyntax_Templates() {
         return (EReference)concreteSyntaxEClass.getEStructuralFeatures().get(1);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-	public EReference getConcreteSyntax_Keywords() {
+    public EReference getConcreteSyntax_Keywords() {
         return (EReference)concreteSyntaxEClass.getEStructuralFeatures().get(2);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-	public EReference getConcreteSyntax_Symbols() {
+    public EReference getConcreteSyntax_Symbols() {
         return (EReference)concreteSyntaxEClass.getEStructuralFeatures().get(3);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-	public EReference getConcreteSyntax_OperatorLists() {
+    public EReference getConcreteSyntax_OperatorLists() {
         return (EReference)concreteSyntaxEClass.getEStructuralFeatures().get(4);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-	public EReference getConcreteSyntax_Tokens() {
+    public EReference getConcreteSyntax_Tokens() {
         return (EReference)concreteSyntaxEClass.getEStructuralFeatures().get(5);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-	public EAttribute getConcreteSyntax_Lexer() {
+    public EAttribute getConcreteSyntax_Lexer() {
         return (EAttribute)concreteSyntaxEClass.getEStructuralFeatures().get(6);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-	public EClass getTemplate() {
+    public EClass getTemplate() {
         return templateEClass;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-	public EReference getTemplate_ConcreteSyntax() {
+    public EReference getTemplate_ConcreteSyntax() {
         return (EReference)templateEClass.getEStructuralFeatures().get(0);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-	public EAttribute getTemplate_Disambiguate() {
+    public EAttribute getTemplate_Disambiguate() {
         return (EAttribute)templateEClass.getEStructuralFeatures().get(1);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-	public EAttribute getTemplate_DisambiguateV3() {
+    public EAttribute getTemplate_DisambiguateV3() {
         return (EAttribute)templateEClass.getEStructuralFeatures().get(2);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
     public EAttribute getTemplate_SemDisambiguate() {
         return (EAttribute)templateEClass.getEStructuralFeatures().get(3);
     }
 
-								/**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EClass getFunctionTemplate() {
-        return functionTemplateEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getFunctionTemplate_FunctionName() {
-        return (EAttribute)functionTemplateEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getFunctionTemplate_FunctionSequence() {
-        return (EReference)functionTemplateEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EClass getClassTemplate() {
-        return classTemplateEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getClassTemplate_Modifiers() {
-        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getClassTemplate_IsAbstract() {
-        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getClassTemplate_IsDeep() {
-        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(2);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getClassTemplate_IsOperatored() {
-        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(3);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getClassTemplate_OperatorList() {
-        return (EReference)classTemplateEClass.getEStructuralFeatures().get(4);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getClassTemplate_IsMain() {
-        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(5);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getClassTemplate_IsMulti() {
-        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(6);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getClassTemplate_IsNonPrimary() {
-        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(7);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getClassTemplate_Mode() {
-        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(8);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EClass getPrimitiveTemplate() {
-        return primitiveTemplateEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getPrimitiveTemplate_TemplateName() {
-        return (EAttribute)primitiveTemplateEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
+    public EClass getFunctionTemplate() {
+        return functionTemplateEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getFunctionTemplate_FunctionName() {
+        return (EAttribute)functionTemplateEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getFunctionTemplate_FunctionSequence() {
+        return (EReference)functionTemplateEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getClassTemplate() {
+        return classTemplateEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getClassTemplate_Modifiers() {
+        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getClassTemplate_IsAbstract() {
+        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getClassTemplate_IsDeep() {
+        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getClassTemplate_IsOperatored() {
+        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getClassTemplate_OperatorList() {
+        return (EReference)classTemplateEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getClassTemplate_IsMain() {
+        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getClassTemplate_IsMulti() {
+        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(6);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getClassTemplate_IsNonPrimary() {
+        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(7);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getClassTemplate_Mode() {
+        return (EAttribute)classTemplateEClass.getEStructuralFeatures().get(8);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getPrimitiveTemplate() {
+        return primitiveTemplateEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getPrimitiveTemplate_TemplateName() {
+        return (EAttribute)primitiveTemplateEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EAttribute getPrimitiveTemplate_Default() {
         return (EAttribute)primitiveTemplateEClass.getEStructuralFeatures().get(1);
     }
 
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getPrimitiveTemplate_TokenName() {
-        return (EAttribute)primitiveTemplateEClass.getEStructuralFeatures().get(2);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getPrimitiveTemplate_Value() {
-        return (EAttribute)primitiveTemplateEClass.getEStructuralFeatures().get(3);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getPrimitiveTemplate_Serializer() {
-        return (EAttribute)primitiveTemplateEClass.getEStructuralFeatures().get(4);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getPrimitiveTemplate_OrKeyword() {
-        return (EAttribute)primitiveTemplateEClass.getEStructuralFeatures().get(5);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EClass getOperatorTemplate() {
-        return operatorTemplateEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getOperatorTemplate_Operators() {
-        return (EReference)operatorTemplateEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getOperatorTemplate_Source() {
-        return (EAttribute)operatorTemplateEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getOperatorTemplate_StoreOperatorTo() {
-        return (EReference)operatorTemplateEClass.getEStructuralFeatures().get(2);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getOperatorTemplate_StoreLeftSideTo() {
-        return (EReference)operatorTemplateEClass.getEStructuralFeatures().get(3);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getOperatorTemplate_StoreRightSideTo() {
-        return (EReference)operatorTemplateEClass.getEStructuralFeatures().get(4);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EClass getEnumerationTemplate() {
-        return enumerationTemplateEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getEnumerationTemplate_Automatic() {
-        return (EAttribute)enumerationTemplateEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getEnumerationTemplate_Mappings() {
-        return (EReference)enumerationTemplateEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EClass getEnumLiteralMapping() {
-        return enumLiteralMappingEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getEnumLiteralMapping_Literal() {
-        return (EReference)enumLiteralMappingEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getEnumLiteralMapping_Element() {
-        return (EReference)enumLiteralMappingEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EClass getLiteral() {
-        return literalEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getLiteral_Operators() {
-        return (EReference)literalEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getLiteral_LiteralRefs() {
-        return (EReference)literalEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getLiteral_Value() {
-        return (EAttribute)literalEClass.getEStructuralFeatures().get(2);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EClass getSymbol() {
-        return symbolEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getSymbol_Spaces() {
-        return (EAttribute)symbolEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EClass getKeyword() {
-        return keywordEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EClass getOperatorList() {
-        return operatorListEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getOperatorList_Name() {
-        return (EAttribute)operatorListEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getOperatorList_Priorities() {
-        return (EReference)operatorListEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EClass getPriority() {
-        return priorityEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getPriority_List() {
-        return (EReference)priorityEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getPriority_Value() {
-        return (EAttribute)priorityEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getPriority_Associativity() {
-        return (EAttribute)priorityEClass.getEStructuralFeatures().get(2);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getPriority_Operators() {
-        return (EReference)priorityEClass.getEStructuralFeatures().get(3);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EClass getOperator() {
-        return operatorEClass;
-    }
-
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
+    public EAttribute getPrimitiveTemplate_TokenName() {
+        return (EAttribute)primitiveTemplateEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getPrimitiveTemplate_Value() {
+        return (EAttribute)primitiveTemplateEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getPrimitiveTemplate_Serializer() {
+        return (EAttribute)primitiveTemplateEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getPrimitiveTemplate_OrKeyword() {
+        return (EAttribute)primitiveTemplateEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getOperatorTemplate() {
+        return operatorTemplateEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getOperatorTemplate_Operators() {
+        return (EReference)operatorTemplateEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getOperatorTemplate_Source() {
+        return (EAttribute)operatorTemplateEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getOperatorTemplate_StoreOperatorTo() {
+        return (EReference)operatorTemplateEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getOperatorTemplate_StoreLeftSideTo() {
+        return (EReference)operatorTemplateEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getOperatorTemplate_StoreRightSideTo() {
+        return (EReference)operatorTemplateEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getEnumerationTemplate() {
+        return enumerationTemplateEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getEnumerationTemplate_Automatic() {
+        return (EAttribute)enumerationTemplateEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getEnumerationTemplate_Mappings() {
+        return (EReference)enumerationTemplateEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getEnumLiteralMapping() {
+        return enumLiteralMappingEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getEnumLiteralMapping_Literal() {
+        return (EReference)enumLiteralMappingEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getEnumLiteralMapping_Element() {
+        return (EReference)enumLiteralMappingEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getLiteral() {
+        return literalEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getLiteral_Operators() {
+        return (EReference)literalEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getLiteral_LiteralRefs() {
+        return (EReference)literalEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getLiteral_Value() {
+        return (EAttribute)literalEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getSymbol() {
+        return symbolEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getSymbol_Spaces() {
+        return (EAttribute)symbolEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getKeyword() {
+        return keywordEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getOperatorList() {
+        return operatorListEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getOperatorList_Name() {
+        return (EAttribute)operatorListEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getOperatorList_Priorities() {
+        return (EReference)operatorListEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getPriority() {
+        return priorityEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getPriority_List() {
+        return (EReference)priorityEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getPriority_Value() {
+        return (EAttribute)priorityEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getPriority_Associativity() {
+        return (EAttribute)priorityEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getPriority_Operators() {
+        return (EReference)priorityEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getOperator() {
+        return operatorEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EAttribute getOperator_Postfix() {
         return (EAttribute)operatorEClass.getEStructuralFeatures().get(0);
     }
 
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getOperator_Arity() {
-        return (EAttribute)operatorEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getOperator_Literal() {
-        return (EReference)operatorEClass.getEStructuralFeatures().get(2);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getOperator_Priority() {
-        return (EReference)operatorEClass.getEStructuralFeatures().get(3);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getOperator_Templates() {
-        return (EReference)operatorEClass.getEStructuralFeatures().get(4);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EClass getSequence() {
-        return sequenceEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getSequence_Elements() {
-        return (EReference)sequenceEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getSequence_TemplateContainer() {
-        return (EReference)sequenceEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getSequence_PrefixContainer() {
-        return (EReference)sequenceEClass.getEStructuralFeatures().get(2);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getSequence_FunctionContainer() {
-        return (EReference)sequenceEClass.getEStructuralFeatures().get(3);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getSequence_BlockContainer() {
-        return (EReference)sequenceEClass.getEStructuralFeatures().get(4);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getSequence_ThenContainer() {
-        return (EReference)sequenceEClass.getEStructuralFeatures().get(5);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getSequence_ElseContainer() {
-        return (EReference)sequenceEClass.getEStructuralFeatures().get(6);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getSequence_SeparatorContainer() {
-        return (EReference)sequenceEClass.getEStructuralFeatures().get(7);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getSequence_OtContainer() {
-        return (EReference)sequenceEClass.getEStructuralFeatures().get(8);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EClass getSequenceElement() {
-        return sequenceElementEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getSequenceElement_ElementSequence() {
-        return (EReference)sequenceElementEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getSequenceElement_ParentTemplate() {
-        return (EReference)sequenceElementEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EClass getLiteralRef() {
-        return literalRefEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getLiteralRef_ReferredLiteral() {
-        return (EReference)literalRefEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EClass getProperty() {
-        return propertyEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getProperty_PropertyArgs() {
-        return (EReference)propertyEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getProperty_PropertyReference() {
-        return (EReference)propertyEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EClass getCustomSeparator() {
-        return customSeparatorEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getCustomSeparator_Name() {
-        return (EAttribute)customSeparatorEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EClass getBlock() {
-        return blockEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getBlock_BlockSequence() {
-        return (EReference)blockEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getBlock_BlockArgs() {
-        return (EReference)blockEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EClass getConditionalElement() {
-        return conditionalElementEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getConditionalElement_Condition() {
-        return (EReference)conditionalElementEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getConditionalElement_ThenSequence() {
-        return (EReference)conditionalElementEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getConditionalElement_ElseSequence() {
-        return (EReference)conditionalElementEClass.getEStructuralFeatures().get(2);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getPrimitivePropertyInit() {
-        return primitivePropertyInitEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getAlternative() {
-        return alternativeEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getAlternative_Sequences() {
-        return (EReference)alternativeEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getAlternative_IsMulti() {
-        return (EAttribute)alternativeEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getFunctionCall() {
-        return functionCallEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getFunctionCall_CalledFunction() {
-        return (EReference)functionCallEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getPropertyArg() {
-        return propertyArgEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getPropertyArg_Property() {
-        return (EReference)propertyArgEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getRefersToPArg() {
-        return refersToPArgEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getRefersToPArg_PropertyName() {
-        return (EAttribute)refersToPArgEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getLookInPArg() {
-        return lookInPArgEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getLookInPArg_PropertyName() {
-        return (EAttribute)lookInPArgEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getCreateInPArg() {
-        return createInPArgEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getCreateInPArg_PropertyName() {
-        return (EAttribute)createInPArgEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getRefersToKeyPArg() {
-        return refersToKeyPArgEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getSeparatorPArg() {
-        return separatorPArgEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getSeparatorPArg_SeparatorSequence() {
-        return (EReference)separatorPArgEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getAutoCreatePArg() {
-        return autoCreatePArgEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getAutoCreatePArg_Value() {
-        return (EAttribute)autoCreatePArgEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getImportContextPArg() {
-        return importContextPArgEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getForcedLowerPArg() {
-        return forcedLowerPArgEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getForcedLowerPArg_Value() {
-        return (EAttribute)forcedLowerPArgEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getCreateAsPArg() {
-        return createAsPArgEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getCreateAsPArg_Name() {
-        return (EAttribute)createAsPArgEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getAsPArg() {
-        return asPArgEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getAsPArg_Template() {
-        return (EReference)asPArgEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getAsPArg_Value() {
-        return (EAttribute)asPArgEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getModePArg() {
-        return modePArgEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getModePArg_Mode() {
-        return (EAttribute)modePArgEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getBlockArg() {
-        return blockArgEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getBlockArg_Block() {
-        return (EReference)blockArgEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getNbNLBArg() {
-        return nbNLBArgEClass;
-    }
-
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
+    public EAttribute getOperator_Arity() {
+        return (EAttribute)operatorEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getOperator_Literal() {
+        return (EReference)operatorEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getOperator_Priority() {
+        return (EReference)operatorEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getOperator_Templates() {
+        return (EReference)operatorEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getSequence() {
+        return sequenceEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getSequence_Elements() {
+        return (EReference)sequenceEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getSequence_TemplateContainer() {
+        return (EReference)sequenceEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getSequence_PrefixContainer() {
+        return (EReference)sequenceEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getSequence_FunctionContainer() {
+        return (EReference)sequenceEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getSequence_BlockContainer() {
+        return (EReference)sequenceEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getSequence_ThenContainer() {
+        return (EReference)sequenceEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getSequence_ElseContainer() {
+        return (EReference)sequenceEClass.getEStructuralFeatures().get(6);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getSequence_SeparatorContainer() {
+        return (EReference)sequenceEClass.getEStructuralFeatures().get(7);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getSequence_OtContainer() {
+        return (EReference)sequenceEClass.getEStructuralFeatures().get(8);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getSequenceElement() {
+        return sequenceElementEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getSequenceElement_ElementSequence() {
+        return (EReference)sequenceElementEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getSequenceElement_ParentTemplate() {
+        return (EReference)sequenceElementEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getLiteralRef() {
+        return literalRefEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getLiteralRef_ReferredLiteral() {
+        return (EReference)literalRefEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getProperty() {
+        return propertyEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getProperty_PropertyArgs() {
+        return (EReference)propertyEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getProperty_PropertyReference() {
+        return (EReference)propertyEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getCustomSeparator() {
+        return customSeparatorEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCustomSeparator_Name() {
+        return (EAttribute)customSeparatorEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getBlock() {
+        return blockEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getBlock_BlockSequence() {
+        return (EReference)blockEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getBlock_BlockArgs() {
+        return (EReference)blockEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getConditionalElement() {
+        return conditionalElementEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getConditionalElement_Condition() {
+        return (EReference)conditionalElementEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getConditionalElement_ThenSequence() {
+        return (EReference)conditionalElementEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getConditionalElement_ElseSequence() {
+        return (EReference)conditionalElementEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getPrimitivePropertyInit() {
+        return primitivePropertyInitEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getAlternative() {
+        return alternativeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getAlternative_Sequences() {
+        return (EReference)alternativeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getAlternative_IsMulti() {
+        return (EAttribute)alternativeEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getFunctionCall() {
+        return functionCallEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getFunctionCall_CalledFunction() {
+        return (EReference)functionCallEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getPropertyArg() {
+        return propertyArgEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getPropertyArg_Property() {
+        return (EReference)propertyArgEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getRefersToPArg() {
+        return refersToPArgEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getRefersToPArg_PropertyName() {
+        return (EAttribute)refersToPArgEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getLookInPArg() {
+        return lookInPArgEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getLookInPArg_PropertyName() {
+        return (EAttribute)lookInPArgEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getCreateInPArg() {
+        return createInPArgEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCreateInPArg_PropertyName() {
+        return (EAttribute)createInPArgEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getRefersToKeyPArg() {
+        return refersToKeyPArgEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getSeparatorPArg() {
+        return separatorPArgEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getSeparatorPArg_SeparatorSequence() {
+        return (EReference)separatorPArgEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getAutoCreatePArg() {
+        return autoCreatePArgEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getAutoCreatePArg_Value() {
+        return (EAttribute)autoCreatePArgEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getImportContextPArg() {
+        return importContextPArgEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getForcedLowerPArg() {
+        return forcedLowerPArgEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getForcedLowerPArg_Value() {
+        return (EAttribute)forcedLowerPArgEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getCreateAsPArg() {
+        return createAsPArgEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCreateAsPArg_Name() {
+        return (EAttribute)createAsPArgEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getAsPArg() {
+        return asPArgEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getAsPArg_Template() {
+        return (EReference)asPArgEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getAsPArg_Value() {
+        return (EAttribute)asPArgEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getModePArg() {
+        return modePArgEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getModePArg_Mode() {
+        return (EAttribute)modePArgEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getBlockArg() {
+        return blockArgEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getBlockArg_Block() {
+        return (EReference)blockArgEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getNbNLBArg() {
+        return nbNLBArgEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EAttribute getNbNLBArg_Value() {
         return (EAttribute)nbNLBArgEClass.getEStructuralFeatures().get(0);
     }
 
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getIndentIncrBArg() {
-        return indentIncrBArgEClass;
-    }
-
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
+    public EClass getIndentIncrBArg() {
+        return indentIncrBArgEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EAttribute getIndentIncrBArg_Value() {
         return (EAttribute)indentIncrBArgEClass.getEStructuralFeatures().get(0);
     }
 
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getStartNLBArg() {
-        return startNLBArgEClass;
-    }
-
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
+    public EClass getStartNLBArg() {
+        return startNLBArgEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EAttribute getStartNLBArg_Value() {
         return (EAttribute)startNLBArgEClass.getEStructuralFeatures().get(0);
     }
 
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getStartNbNLBArg() {
-        return startNbNLBArgEClass;
-    }
-
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
+    public EClass getStartNbNLBArg() {
+        return startNbNLBArgEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EAttribute getStartNbNLBArg_Value() {
         return (EAttribute)startNbNLBArgEClass.getEStructuralFeatures().get(0);
     }
 
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getEndNLBArg() {
-        return endNLBArgEClass;
-    }
-
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
+    public EClass getEndNLBArg() {
+        return endNLBArgEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EAttribute getEndNLBArg_Value() {
         return (EAttribute)endNLBArgEClass.getEStructuralFeatures().get(0);
     }
 
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getExpression() {
-        return expressionEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getExpression_ConditionalElement() {
-        return (EReference)expressionEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getAndExp() {
-        return andExpEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getAndExp_Expressions() {
-        return (EReference)andExpEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getAtomExp() {
-        return atomExpEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getAtomExp_AndExp() {
-        return (EReference)atomExpEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getAtomExp_PropertyName() {
-        return (EAttribute)atomExpEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getAtomExp_PropertyReference() {
-        return (EReference)atomExpEClass.getEStructuralFeatures().get(2);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getEqualsExp() {
-        return equalsExpEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getEqualsExp_Value() {
-        return (EReference)equalsExpEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getBooleanPropertyExp() {
-        return booleanPropertyExpEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getIsDefinedExp() {
-        return isDefinedExpEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getOneExp() {
-        return oneExpEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getValue() {
-        return valueEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getValue_Name() {
-        return (EAttribute)valueEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getPropertyVal() {
-        return propertyValEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getToken() {
-        return tokenEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getToken_Pattern() {
-        return (EReference)tokenEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getToken_Omitted() {
-        return (EAttribute)tokenEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getOrPattern() {
-        return orPatternEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getOrPattern_SimplePatterns() {
-        return (EReference)orPatternEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getSimplePattern() {
-        return simplePatternEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getRulePattern() {
-        return rulePatternEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getRulePattern_Rule() {
-        return (EReference)rulePatternEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getRule() {
-        return ruleEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getWordRule() {
-        return wordRuleEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getWordRule_Start() {
-        return (EReference)wordRuleEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getWordRule_Part() {
-        return (EReference)wordRuleEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getWordRule_End() {
-        return (EReference)wordRuleEClass.getEStructuralFeatures().get(2);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getWordRule_Words() {
-        return (EReference)wordRuleEClass.getEStructuralFeatures().get(3);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getWord() {
-        return wordEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getWord_Token() {
-        return (EAttribute)wordEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getEndOfLineRule() {
-        return endOfLineRuleEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getEndOfLineRule_Start() {
-        return (EReference)endOfLineRuleEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getEndOfLineRule_DropStart() {
-        return (EAttribute)endOfLineRuleEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getMultiLineRule() {
-        return multiLineRuleEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getMultiLineRule_Start() {
-        return (EReference)multiLineRuleEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getMultiLineRule_End() {
-        return (EReference)multiLineRuleEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getMultiLineRule_Esc() {
-        return (EReference)multiLineRuleEClass.getEStructuralFeatures().get(2);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getMultiLineRule_EscMappings() {
-        return (EReference)multiLineRuleEClass.getEStructuralFeatures().get(3);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getMultiLineRule_DropStart() {
-        return (EAttribute)multiLineRuleEClass.getEStructuralFeatures().get(4);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getMultiLineRule_DropEnd() {
-        return (EAttribute)multiLineRuleEClass.getEStructuralFeatures().get(5);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getMapping() {
-        return mappingEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getSimpleMapping() {
-        return simpleMappingEClass;
-    }
-
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
+    public EClass getExpression() {
+        return expressionEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getExpression_ConditionalElement() {
+        return (EReference)expressionEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getAndExp() {
+        return andExpEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getAndExp_Expressions() {
+        return (EReference)andExpEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getAtomExp() {
+        return atomExpEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getAtomExp_AndExp() {
+        return (EReference)atomExpEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getAtomExp_PropertyName() {
+        return (EAttribute)atomExpEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getAtomExp_PropertyReference() {
+        return (EReference)atomExpEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getEqualsExp() {
+        return equalsExpEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getEqualsExp_Value() {
+        return (EReference)equalsExpEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getBooleanPropertyExp() {
+        return booleanPropertyExpEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getIsDefinedExp() {
+        return isDefinedExpEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getOneExp() {
+        return oneExpEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getValue() {
+        return valueEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getValue_Name() {
+        return (EAttribute)valueEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getPropertyVal() {
+        return propertyValEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getToken() {
+        return tokenEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getToken_Pattern() {
+        return (EReference)tokenEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getToken_Omitted() {
+        return (EAttribute)tokenEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getOrPattern() {
+        return orPatternEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getOrPattern_SimplePatterns() {
+        return (EReference)orPatternEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getSimplePattern() {
+        return simplePatternEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getRulePattern() {
+        return rulePatternEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getRulePattern_Rule() {
+        return (EReference)rulePatternEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getRule() {
+        return ruleEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getWordRule() {
+        return wordRuleEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getWordRule_Start() {
+        return (EReference)wordRuleEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getWordRule_Part() {
+        return (EReference)wordRuleEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getWordRule_End() {
+        return (EReference)wordRuleEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getWordRule_Words() {
+        return (EReference)wordRuleEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getWord() {
+        return wordEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getWord_Token() {
+        return (EAttribute)wordEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getEndOfLineRule() {
+        return endOfLineRuleEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getEndOfLineRule_Start() {
+        return (EReference)endOfLineRuleEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getEndOfLineRule_DropStart() {
+        return (EAttribute)endOfLineRuleEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getMultiLineRule() {
+        return multiLineRuleEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getMultiLineRule_Start() {
+        return (EReference)multiLineRuleEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getMultiLineRule_End() {
+        return (EReference)multiLineRuleEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getMultiLineRule_Esc() {
+        return (EReference)multiLineRuleEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getMultiLineRule_EscMappings() {
+        return (EReference)multiLineRuleEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getMultiLineRule_DropStart() {
+        return (EAttribute)multiLineRuleEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getMultiLineRule_DropEnd() {
+        return (EAttribute)multiLineRuleEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getMapping() {
+        return mappingEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getSimpleMapping() {
+        return simpleMappingEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EAttribute getSimpleMapping_Key() {
         return (EAttribute)simpleMappingEClass.getEStructuralFeatures().get(0);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
     public EAttribute getSimpleMapping_Value() {
         return (EAttribute)simpleMappingEClass.getEStructuralFeatures().get(1);
     }
 
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getWildcardMapping() {
-        return wildcardMappingEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getOctalMapping() {
-        return octalMappingEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getHexadecimalMapping() {
-        return hexadecimalMappingEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getStringPattern() {
-        return stringPatternEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getClassPattern() {
-        return classPatternEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getQualifiedNamedElement() {
-        return qualifiedNamedElementEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getQualifiedNamedElement_Names() {
-        return (EAttribute)qualifiedNamedElementEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getQualifiedNamedElement_MetaReference() {
-        return (EReference)qualifiedNamedElementEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getForcedUpperPArg() {
-        return forcedUpperPArgEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getForcedUpperPArg_Value() {
-        return (EAttribute)forcedUpperPArgEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getInjectorActionsBlock() {
-        return injectorActionsBlockEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getInjectorActionsBlock_PropertyInits() {
-        return (EReference)injectorActionsBlockEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getInjectorActionsBlock_InjectorActions() {
-        return (EReference)injectorActionsBlockEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
+    public EClass getWildcardMapping() {
+        return wildcardMappingEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getOctalMapping() {
+        return octalMappingEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getHexadecimalMapping() {
+        return hexadecimalMappingEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getStringPattern() {
+        return stringPatternEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getClassPattern() {
+        return classPatternEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getQualifiedNamedElement() {
+        return qualifiedNamedElementEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getQualifiedNamedElement_Names() {
+        return (EAttribute)qualifiedNamedElementEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getQualifiedNamedElement_MetaReference() {
+        return (EReference)qualifiedNamedElementEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getForcedUpperPArg() {
+        return forcedUpperPArgEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getForcedUpperPArg_Value() {
+        return (EAttribute)forcedUpperPArgEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getInjectorActionsBlock() {
+        return injectorActionsBlockEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getInjectorActionsBlock_InjectorActions() {
+        return (EReference)injectorActionsBlockEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getLookupScopePArg() {
         return lookupScopePArgEClass;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
     public EAttribute getLookupScopePArg_Query() {
         return (EAttribute)lookupScopePArgEClass.getEStructuralFeatures().get(0);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
     public EClass getReferenceByPArg() {
         return referenceByPArgEClass;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
     public EAttribute getReferenceByPArg_ReferenceBy() {
         return (EAttribute)referenceByPArgEClass.getEStructuralFeatures().get(0);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
     public EClass getPrefixPArg() {
         return prefixPArgEClass;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
     public EAttribute getPrefixPArg_Prefix() {
         return (EAttribute)prefixPArgEClass.getEStructuralFeatures().get(0);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
     public EClass getPostfixPArg() {
         return postfixPArgEClass;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
     public EAttribute getPostfixPArg_Postfix() {
         return (EAttribute)postfixPArgEClass.getEStructuralFeatures().get(0);
     }
 
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getPropertyReference() {
-        return propertyReferenceEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getPropertyReference_Strucfeature() {
-        return (EReference)propertyReferenceEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getPropertyReference_Name() {
-        return (EAttribute)propertyReferenceEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getContextTemplate() {
-        return contextTemplateEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getContextTemplate_IsContext() {
-        return (EAttribute)contextTemplateEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getContextTemplate_IsAddToContext() {
-        return (EAttribute)contextTemplateEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getContextTemplate_IsReferenceOnly() {
-        return (EAttribute)contextTemplateEClass.getEStructuralFeatures().get(2);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getContextTemplate_ContextTags() {
-        return (EReference)contextTemplateEClass.getEStructuralFeatures().get(3);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getContextTemplate_Scope() {
-        return (EReference)contextTemplateEClass.getEStructuralFeatures().get(4);
-    }
-
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
+    public EClass getPropertyReference() {
+        return propertyReferenceEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getPropertyReference_Strucfeature() {
+        return (EReference)propertyReferenceEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getPropertyReference_Name() {
+        return (EAttribute)propertyReferenceEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getContextTemplate() {
+        return contextTemplateEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getContextTemplate_IsContext() {
+        return (EAttribute)contextTemplateEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getContextTemplate_IsAddToContext() {
+        return (EAttribute)contextTemplateEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getContextTemplate_IsReferenceOnly() {
+        return (EAttribute)contextTemplateEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getContextTemplate_ContextTags() {
+        return (EReference)contextTemplateEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getContextTemplate_Scope() {
+        return (EReference)contextTemplateEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EReference getContextTemplate_TemplateSequence() {
         return (EReference)contextTemplateEClass.getEStructuralFeatures().get(5);
     }
 
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getContextTags() {
-        return contextTagsEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getContextTags_Tags() {
-        return (EAttribute)contextTagsEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getInjectorAction() {
-        return injectorActionEClass;
-    }
-
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
+    public EClass getContextTags() {
+        return contextTagsEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getContextTags_Tags() {
+        return (EAttribute)contextTagsEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getInjectorAction() {
+        return injectorActionEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EReference getInjectorAction_InjectorActionsBlock() {
         return (EReference)injectorActionEClass.getEStructuralFeatures().get(0);
     }
 
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getPropertyInit() {
-        return propertyInitEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getPropertyInit_PropertyReference() {
-        return (EReference)propertyInitEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getPropertyInit_Value() {
-        return (EAttribute)propertyInitEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
+    public EClass getPropertyInit() {
+        return propertyInitEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getPropertyInit_PropertyReference() {
+        return (EReference)propertyInitEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getPropertyInit_Value() {
+        return (EAttribute)propertyInitEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EAttribute getPropertyInit_Default() {
         return (EAttribute)propertyInitEClass.getEStructuralFeatures().get(2);
     }
 
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getScopeArg() {
-        return scopeArgEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getScopeArg_Scope() {
-        return (EAttribute)scopeArgEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getForeachPredicatePropertyInit() {
-        return foreachPredicatePropertyInitEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getForeachPredicatePropertyInit_PredicateSemantic() {
-        return (EReference)foreachPredicatePropertyInitEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getForeachPredicatePropertyInit_Mode() {
-        return (EAttribute)foreachPredicatePropertyInitEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EClass getPredicateSemantic() {
-        return predicateSemanticEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EReference getPredicateSemantic_As() {
-        return (EReference)predicateSemanticEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getPredicateSemantic_When() {
-        return (EAttribute)predicateSemanticEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-        public EAttribute getPredicateSemantic_Mode() {
-        return (EAttribute)predicateSemanticEClass.getEStructuralFeatures().get(2);
-    }
-
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
+    public EClass getScopeArg() {
+        return scopeArgEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getScopeArg_Scope() {
+        return (EAttribute)scopeArgEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getForeachPredicatePropertyInit() {
+        return foreachPredicatePropertyInitEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getForeachPredicatePropertyInit_PredicateSemantic() {
+        return (EReference)foreachPredicatePropertyInitEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getForeachPredicatePropertyInit_Mode() {
+        return (EAttribute)foreachPredicatePropertyInitEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getPredicateSemantic() {
+        return predicateSemanticEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getPredicateSemantic_When() {
+        return (EAttribute)predicateSemanticEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getPredicateSemantic_As() {
+        return (EReference)predicateSemanticEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getPredicateSemantic_Mode() {
+        return (EAttribute)predicateSemanticEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EReference getPredicateSemantic_ForeachParent() {
         return (EReference)predicateSemanticEClass.getEStructuralFeatures().get(3);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public EClass getSequenceInAlternative() {
+    public EClass getSequenceInAlternative() {
         return sequenceInAlternativeEClass;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public EReference getSequenceInAlternative_AlternativeContainer() {
+    public EReference getSequenceInAlternative_AlternativeContainer() {
         return (EReference)sequenceInAlternativeEClass.getEStructuralFeatures().get(0);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public EAttribute getSequenceInAlternative_Disambiguate() {
+    public EAttribute getSequenceInAlternative_Disambiguate() {
         return (EAttribute)sequenceInAlternativeEClass.getEStructuralFeatures().get(1);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public EClass getPartialPArg() {
+    public EClass getPartialPArg() {
         return partialPArgEClass;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public EClass getDisambiguatePArg() {
+    public EClass getDisambiguatePArg() {
         return disambiguatePArgEClass;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public EAttribute getDisambiguatePArg_Disambiguation() {
+    public EAttribute getDisambiguatePArg_Disambiguation() {
         return (EAttribute)disambiguatePArgEClass.getEStructuralFeatures().get(0);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public EClass getInstanceOfExp() {
+    public EClass getInstanceOfExp() {
         return instanceOfExpEClass;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public EAttribute getInstanceOfExp_Supertype() {
+    public EAttribute getInstanceOfExp_Supertype() {
         return (EAttribute)instanceOfExpEClass.getEStructuralFeatures().get(0);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public EClass getEnumLiteralVal() {
+    public EClass getEnumLiteralVal() {
         return enumLiteralValEClass;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public EClass getStringVal() {
+    public EClass getStringVal() {
         return stringValEClass;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public EAttribute getStringVal_Symbol() {
+    public EAttribute getStringVal_Symbol() {
         return (EAttribute)stringValEClass.getEStructuralFeatures().get(0);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public EClass getIntegerVal() {
+    public EClass getIntegerVal() {
         return integerValEClass;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public EAttribute getIntegerVal_Symbol() {
+    public EAttribute getIntegerVal_Symbol() {
         return (EAttribute)integerValEClass.getEStructuralFeatures().get(0);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public EClass getNegativeIntegerVal() {
+    public EClass getNegativeIntegerVal() {
         return negativeIntegerValEClass;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public EAttribute getNegativeIntegerVal_Symbol() {
+    public EAttribute getNegativeIntegerVal_Symbol() {
         return (EAttribute)negativeIntegerValEClass.getEStructuralFeatures().get(0);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public EClass getLookupPropertyInit() {
+    public EClass getLookupPropertyInit() {
         return lookupPropertyInitEClass;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public EEnum getTemplateModifiers() {
+    public EEnum getTemplateModifiers() {
         return templateModifiersEEnum;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public EEnum getSpaceKind() {
+    public EEnum getSpaceKind() {
         return spaceKindEEnum;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public EEnum getAssociativity() {
+    public EEnum getAssociativity() {
         return associativityEEnum;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public EEnum getAutoCreateKind() {
+    public EEnum getAutoCreateKind() {
         return autoCreateKindEEnum;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public EEnum getScopeKind() {
+    public EEnum getScopeKind() {
         return scopeKindEEnum;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public TCSFactory getTCSFactory() {
+    public TCSFactory getTCSFactory() {
         return (TCSFactory)getEFactoryInstance();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private boolean isCreated = false;
+    private boolean isCreated = false;
 
-        /**
+    /**
      * Creates the meta-model objects for the package.  This method is
      * guarded to have no affect on any invocation but its first.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void createPackageContents() {
+    public void createPackageContents() {
         if (isCreated) return;
         isCreated = true;
 
         // Create classes and their features
-        locatedElementEClass = createEClass(LOCATED_ELEMENT);
-        createEAttribute(locatedElementEClass, LOCATED_ELEMENT__LOCATION);
-        createEAttribute(locatedElementEClass, LOCATED_ELEMENT__COMMENTS_BEFORE);
-        createEAttribute(locatedElementEClass, LOCATED_ELEMENT__COMMENTS_AFTER);
-
         namedElementEClass = createEClass(NAMED_ELEMENT);
         createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
 
@@ -3745,7 +3431,6 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         createEAttribute(forcedUpperPArgEClass, FORCED_UPPER_PARG__VALUE);
 
         injectorActionsBlockEClass = createEClass(INJECTOR_ACTIONS_BLOCK);
-        createEReference(injectorActionsBlockEClass, INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS);
         createEReference(injectorActionsBlockEClass, INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS);
 
         lookupScopePArgEClass = createEClass(LOOKUP_SCOPE_PARG);
@@ -3829,21 +3514,21 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         scopeKindEEnum = createEEnum(SCOPE_KIND);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private boolean isInitialized = false;
+    private boolean isInitialized = false;
 
-        /**
+    /**
      * Complete the initialization of the package and its meta-model.  This
      * method is guarded to have no affect on any invocation but its first.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void initializePackageContents() {
+    public void initializePackageContents() {
         if (isInitialized) return;
         isInitialized = true;
 
@@ -3853,14 +3538,13 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         setNsURI(eNS_URI);
 
         // Obtain other dependent packages
-        org.eclipse.emf.ecore.EcorePackage theEcorePackage_1 = (org.eclipse.emf.ecore.EcorePackage)EPackage.Registry.INSTANCE.getEPackage(org.eclipse.emf.ecore.EcorePackage.eNS_URI);
+        EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
         // Create type parameters
 
         // Set bounds for type parameters
 
         // Add supertypes to classes
-        namedElementEClass.getESuperTypes().add(this.getLocatedElement());
         concreteSyntaxEClass.getESuperTypes().add(this.getNamedElement());
         templateEClass.getESuperTypes().add(this.getQualifiedNamedElement());
         functionTemplateEClass.getESuperTypes().add(this.getTemplate());
@@ -3868,15 +3552,10 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         primitiveTemplateEClass.getESuperTypes().add(this.getTemplate());
         operatorTemplateEClass.getESuperTypes().add(this.getContextTemplate());
         enumerationTemplateEClass.getESuperTypes().add(this.getTemplate());
-        enumLiteralMappingEClass.getESuperTypes().add(this.getLocatedElement());
         literalEClass.getESuperTypes().add(this.getNamedElement());
         symbolEClass.getESuperTypes().add(this.getLiteral());
         keywordEClass.getESuperTypes().add(this.getLiteral());
-        operatorListEClass.getESuperTypes().add(this.getLocatedElement());
-        priorityEClass.getESuperTypes().add(this.getLocatedElement());
         operatorEClass.getESuperTypes().add(this.getNamedElement());
-        sequenceEClass.getESuperTypes().add(this.getLocatedElement());
-        sequenceElementEClass.getESuperTypes().add(this.getLocatedElement());
         literalRefEClass.getESuperTypes().add(this.getSequenceElement());
         propertyEClass.getESuperTypes().add(this.getSequenceElement());
         customSeparatorEClass.getESuperTypes().add(this.getSequenceElement());
@@ -3885,7 +3564,6 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         primitivePropertyInitEClass.getESuperTypes().add(this.getPropertyInit());
         alternativeEClass.getESuperTypes().add(this.getSequenceElement());
         functionCallEClass.getESuperTypes().add(this.getSequenceElement());
-        propertyArgEClass.getESuperTypes().add(this.getLocatedElement());
         refersToPArgEClass.getESuperTypes().add(this.getPropertyArg());
         lookInPArgEClass.getESuperTypes().add(this.getPropertyArg());
         createInPArgEClass.getESuperTypes().add(this.getPropertyArg());
@@ -3897,38 +3575,30 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         createAsPArgEClass.getESuperTypes().add(this.getPropertyArg());
         asPArgEClass.getESuperTypes().add(this.getPropertyArg());
         modePArgEClass.getESuperTypes().add(this.getPropertyArg());
-        blockArgEClass.getESuperTypes().add(this.getLocatedElement());
         nbNLBArgEClass.getESuperTypes().add(this.getBlockArg());
         indentIncrBArgEClass.getESuperTypes().add(this.getBlockArg());
         startNLBArgEClass.getESuperTypes().add(this.getBlockArg());
         startNbNLBArgEClass.getESuperTypes().add(this.getBlockArg());
         endNLBArgEClass.getESuperTypes().add(this.getBlockArg());
-        expressionEClass.getESuperTypes().add(this.getLocatedElement());
         andExpEClass.getESuperTypes().add(this.getExpression());
-        atomExpEClass.getESuperTypes().add(this.getLocatedElement());
         equalsExpEClass.getESuperTypes().add(this.getAtomExp());
         booleanPropertyExpEClass.getESuperTypes().add(this.getAtomExp());
         isDefinedExpEClass.getESuperTypes().add(this.getAtomExp());
         oneExpEClass.getESuperTypes().add(this.getAtomExp());
-        valueEClass.getESuperTypes().add(this.getLocatedElement());
         propertyValEClass.getESuperTypes().add(this.getValue());
         tokenEClass.getESuperTypes().add(this.getNamedElement());
-        orPatternEClass.getESuperTypes().add(this.getLocatedElement());
         simplePatternEClass.getESuperTypes().add(this.getNamedElement());
         rulePatternEClass.getESuperTypes().add(this.getSimplePattern());
-        ruleEClass.getESuperTypes().add(this.getLocatedElement());
         wordRuleEClass.getESuperTypes().add(this.getRule());
         wordEClass.getESuperTypes().add(this.getNamedElement());
         endOfLineRuleEClass.getESuperTypes().add(this.getRule());
         multiLineRuleEClass.getESuperTypes().add(this.getRule());
-        mappingEClass.getESuperTypes().add(this.getLocatedElement());
         simpleMappingEClass.getESuperTypes().add(this.getMapping());
         wildcardMappingEClass.getESuperTypes().add(this.getMapping());
         octalMappingEClass.getESuperTypes().add(this.getMapping());
         hexadecimalMappingEClass.getESuperTypes().add(this.getMapping());
         stringPatternEClass.getESuperTypes().add(this.getSimplePattern());
         classPatternEClass.getESuperTypes().add(this.getSimplePattern());
-        qualifiedNamedElementEClass.getESuperTypes().add(this.getLocatedElement());
         forcedUpperPArgEClass.getESuperTypes().add(this.getPropertyArg());
         injectorActionsBlockEClass.getESuperTypes().add(this.getSequenceElement());
         lookupScopePArgEClass.getESuperTypes().add(this.getPropertyArg());
@@ -3949,16 +3619,11 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         lookupPropertyInitEClass.getESuperTypes().add(this.getPropertyInit());
 
         // Initialize classes and features; add operations and parameters
-        initEClass(locatedElementEClass, LocatedElement.class, "LocatedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getLocatedElement_Location(), ecorePackage.getEString(), "location", null, 0, 1, LocatedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEAttribute(getLocatedElement_CommentsBefore(), ecorePackage.getEString(), "commentsBefore", null, 0, -1, LocatedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getLocatedElement_CommentsAfter(), ecorePackage.getEString(), "commentsAfter", null, 0, -1, LocatedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
         initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(concreteSyntaxEClass, ConcreteSyntax.class, "ConcreteSyntax", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getConcreteSyntax_K(), theEcorePackage_1.getEIntegerObject(), "k", null, 0, 1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEAttribute(getConcreteSyntax_K(), theEcorePackage.getEIntegerObject(), "k", null, 0, 1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEReference(getConcreteSyntax_Templates(), this.getTemplate(), this.getTemplate_ConcreteSyntax(), "templates", null, 0, -1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getConcreteSyntax_Keywords(), this.getKeyword(), null, "keywords", null, 0, -1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getConcreteSyntax_Symbols(), this.getSymbol(), null, "symbols", null, 0, -1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4084,13 +3749,13 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEReference(getPropertyArg_Property(), this.getProperty(), this.getProperty_PropertyArgs(), "property", null, 1, 1, PropertyArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(refersToPArgEClass, RefersToPArg.class, "RefersToPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getRefersToPArg_PropertyName(), theEcorePackage_1.getEString(), "propertyName", null, 1, 1, RefersToPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getRefersToPArg_PropertyName(), theEcorePackage.getEString(), "propertyName", null, 1, 1, RefersToPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(lookInPArgEClass, LookInPArg.class, "LookInPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getLookInPArg_PropertyName(), theEcorePackage_1.getEString(), "propertyName", null, 0, -1, LookInPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getLookInPArg_PropertyName(), theEcorePackage.getEString(), "propertyName", null, 0, -1, LookInPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(createInPArgEClass, CreateInPArg.class, "CreateInPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCreateInPArg_PropertyName(), theEcorePackage_1.getEString(), "propertyName", null, 0, -1, CreateInPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCreateInPArg_PropertyName(), theEcorePackage.getEString(), "propertyName", null, 0, -1, CreateInPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(refersToKeyPArgEClass, RefersToKeyPArg.class, "RefersToKeyPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -4106,14 +3771,14 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEAttribute(getForcedLowerPArg_Value(), ecorePackage.getEIntegerObject(), "value", "0", 1, 1, ForcedLowerPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(createAsPArgEClass, CreateAsPArg.class, "CreateAsPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCreateAsPArg_Name(), theEcorePackage_1.getEString(), "name", null, 0, -1, CreateAsPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCreateAsPArg_Name(), theEcorePackage.getEString(), "name", null, 0, -1, CreateAsPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(asPArgEClass, AsPArg.class, "AsPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getAsPArg_Template(), this.getTemplate(), null, "template", null, 1, 1, AsPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getAsPArg_Value(), theEcorePackage_1.getEString(), "value", null, 1, 1, AsPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getAsPArg_Value(), theEcorePackage.getEString(), "value", null, 1, 1, AsPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(modePArgEClass, ModePArg.class, "ModePArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getModePArg_Mode(), theEcorePackage_1.getEString(), "mode", null, 1, 1, ModePArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getModePArg_Mode(), theEcorePackage.getEString(), "mode", null, 1, 1, ModePArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(blockArgEClass, BlockArg.class, "BlockArg", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getBlockArg_Block(), this.getBlock(), this.getBlock_BlockArgs(), "block", null, 1, 1, BlockArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -4154,13 +3819,13 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEClass(oneExpEClass, OneExp.class, "OneExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(valueEClass, Value.class, "Value", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getValue_Name(), theEcorePackage_1.getEString(), "name", null, 1, 1, Value.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getValue_Name(), theEcorePackage.getEString(), "name", null, 1, 1, Value.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(propertyValEClass, PropertyVal.class, "PropertyVal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(tokenEClass, Token.class, "Token", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getToken_Pattern(), this.getOrPattern(), null, "pattern", null, 1, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEAttribute(getToken_Omitted(), theEcorePackage_1.getEBoolean(), "omitted", null, 0, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getToken_Omitted(), theEcorePackage.getEBoolean(), "omitted", null, 0, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(orPatternEClass, OrPattern.class, "OrPattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getOrPattern_SimplePatterns(), this.getSimplePattern(), null, "simplePatterns", null, 1, -1, OrPattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4183,15 +3848,15 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
         initEClass(endOfLineRuleEClass, EndOfLineRule.class, "EndOfLineRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getEndOfLineRule_Start(), this.getStringPattern(), null, "start", null, 1, 1, EndOfLineRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEAttribute(getEndOfLineRule_DropStart(), theEcorePackage_1.getEBoolean(), "dropStart", null, 0, 1, EndOfLineRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getEndOfLineRule_DropStart(), theEcorePackage.getEBoolean(), "dropStart", null, 0, 1, EndOfLineRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(multiLineRuleEClass, MultiLineRule.class, "MultiLineRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getMultiLineRule_Start(), this.getStringPattern(), null, "start", null, 1, 1, MultiLineRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEReference(getMultiLineRule_End(), this.getStringPattern(), null, "end", null, 1, 1, MultiLineRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEReference(getMultiLineRule_Esc(), this.getStringPattern(), null, "esc", null, 0, 1, MultiLineRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEReference(getMultiLineRule_EscMappings(), this.getMapping(), null, "escMappings", null, 0, -1, MultiLineRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEAttribute(getMultiLineRule_DropStart(), theEcorePackage_1.getEBoolean(), "dropStart", null, 0, 1, MultiLineRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getMultiLineRule_DropEnd(), theEcorePackage_1.getEBoolean(), "dropEnd", null, 0, 1, MultiLineRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getMultiLineRule_DropStart(), theEcorePackage.getEBoolean(), "dropStart", null, 0, 1, MultiLineRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getMultiLineRule_DropEnd(), theEcorePackage.getEBoolean(), "dropEnd", null, 0, 1, MultiLineRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(mappingEClass, Mapping.class, "Mapping", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -4217,7 +3882,6 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEAttribute(getForcedUpperPArg_Value(), ecorePackage.getEIntegerObject(), "value", "0", 1, 1, ForcedUpperPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(injectorActionsBlockEClass, InjectorActionsBlock.class, "InjectorActionsBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getInjectorActionsBlock_PropertyInits(), this.getInjectorAction(), null, "propertyInits", null, 0, -1, InjectorActionsBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getInjectorActionsBlock_InjectorActions(), this.getInjectorAction(), this.getInjectorAction_InjectorActionsBlock(), "injectorActions", null, 0, -1, InjectorActionsBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(lookupScopePArgEClass, LookupScopePArg.class, "LookupScopePArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -4233,7 +3897,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEAttribute(getPostfixPArg_Postfix(), ecorePackage.getEString(), "postfix", null, 1, 1, PostfixPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(propertyReferenceEClass, PropertyReference.class, "PropertyReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getPropertyReference_Strucfeature(), theEcorePackage_1.getEStructuralFeature(), null, "strucfeature", null, 0, 1, PropertyReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getPropertyReference_Strucfeature(), theEcorePackage.getEStructuralFeature(), null, "strucfeature", null, 0, 1, PropertyReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getPropertyReference_Name(), ecorePackage.getEString(), "name", null, 1, 1, PropertyReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(contextTemplateEClass, ContextTemplate.class, "ContextTemplate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -4252,7 +3916,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
         initEClass(propertyInitEClass, PropertyInit.class, "PropertyInit", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getPropertyInit_PropertyReference(), this.getPropertyReference(), null, "propertyReference", null, 0, 1, PropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getPropertyInit_Value(), theEcorePackage_1.getEString(), "value", null, 0, 1, PropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getPropertyInit_Value(), theEcorePackage.getEString(), "value", null, 0, 1, PropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getPropertyInit_Default(), ecorePackage.getEBoolean(), "default", null, 0, 1, PropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(scopeArgEClass, ScopeArg.class, "ScopeArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -4260,12 +3924,12 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
         initEClass(foreachPredicatePropertyInitEClass, ForeachPredicatePropertyInit.class, "ForeachPredicatePropertyInit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getForeachPredicatePropertyInit_PredicateSemantic(), this.getPredicateSemantic(), this.getPredicateSemantic_ForeachParent(), "predicateSemantic", null, 0, -1, ForeachPredicatePropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getForeachPredicatePropertyInit_Mode(), theEcorePackage_1.getEString(), "mode", null, 0, 1, ForeachPredicatePropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getForeachPredicatePropertyInit_Mode(), theEcorePackage.getEString(), "mode", null, 0, 1, ForeachPredicatePropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(predicateSemanticEClass, PredicateSemantic.class, "PredicateSemantic", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getPredicateSemantic_When(), theEcorePackage_1.getEString(), "when", null, 0, 1, PredicateSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getPredicateSemantic_When(), theEcorePackage.getEString(), "when", null, 0, 1, PredicateSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getPredicateSemantic_As(), this.getTemplate(), null, "as", null, 0, 1, PredicateSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getPredicateSemantic_Mode(), theEcorePackage_1.getEString(), "mode", null, 0, 1, PredicateSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getPredicateSemantic_Mode(), theEcorePackage.getEString(), "mode", null, 0, 1, PredicateSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getPredicateSemantic_ForeachParent(), this.getForeachPredicatePropertyInit(), this.getForeachPredicatePropertyInit_PredicateSemantic(), "foreachParent", null, 1, 1, PredicateSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(sequenceInAlternativeEClass, SequenceInAlternative.class, "SequenceInAlternative", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -4275,21 +3939,21 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEClass(partialPArgEClass, PartialPArg.class, "PartialPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(disambiguatePArgEClass, DisambiguatePArg.class, "DisambiguatePArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getDisambiguatePArg_Disambiguation(), theEcorePackage_1.getEString(), "disambiguation", null, 0, 1, DisambiguatePArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getDisambiguatePArg_Disambiguation(), theEcorePackage.getEString(), "disambiguation", null, 0, 1, DisambiguatePArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(instanceOfExpEClass, InstanceOfExp.class, "InstanceOfExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getInstanceOfExp_Supertype(), theEcorePackage_1.getEString(), "supertype", null, 0, -1, InstanceOfExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getInstanceOfExp_Supertype(), theEcorePackage.getEString(), "supertype", null, 0, -1, InstanceOfExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(enumLiteralValEClass, EnumLiteralVal.class, "EnumLiteralVal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(stringValEClass, StringVal.class, "StringVal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getStringVal_Symbol(), theEcorePackage_1.getEString(), "symbol", null, 0, 1, StringVal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getStringVal_Symbol(), theEcorePackage.getEString(), "symbol", null, 0, 1, StringVal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(integerValEClass, IntegerVal.class, "IntegerVal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getIntegerVal_Symbol(), ecorePackage.getEIntegerObject(), "symbol", null, 0, 1, IntegerVal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(negativeIntegerValEClass, NegativeIntegerVal.class, "NegativeIntegerVal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getNegativeIntegerVal_Symbol(), theEcorePackage_1.getEIntegerObject(), "symbol", null, 0, 1, NegativeIntegerVal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getNegativeIntegerVal_Symbol(), theEcorePackage.getEIntegerObject(), "symbol", null, 0, 1, NegativeIntegerVal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(lookupPropertyInitEClass, LookupPropertyInit.class, "LookupPropertyInit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -4328,7 +3992,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         createEmofAnnotations();
     }
 
-        /**
+    /**
      * Initializes the annotations for <b>http://schema.omg.org/spec/MOF/2.0/emof.xml</b>.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

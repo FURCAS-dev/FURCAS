@@ -107,7 +107,8 @@ public class StartNbNLBArgItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((StartNbNLBArg)object).getLocation();
+        Integer labelValue = ((StartNbNLBArg)object).getValue();
+        String label = labelValue == null ? null : labelValue.toString();
         return label == null || label.length() == 0 ?
             getString("_UI_StartNbNLBArg_type") :
             getString("_UI_StartNbNLBArg_type") + " " + label;

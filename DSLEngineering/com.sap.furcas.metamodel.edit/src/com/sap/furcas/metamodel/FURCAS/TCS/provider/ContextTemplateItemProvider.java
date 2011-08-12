@@ -139,10 +139,10 @@ public class ContextTemplateItemProvider
         /**
      * This adds a property descriptor for the Context Tags feature.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected void addContextTagsPropertyDescriptor(Object object) {
+    protected void addContextTagsPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -208,7 +208,7 @@ public class ContextTemplateItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((ContextTemplate)object).getLocation();
+        String label = ((ContextTemplate)object).getDisambiguate();
         return label == null || label.length() == 0 ?
             getString("_UI_ContextTemplate_type") :
             getString("_UI_ContextTemplate_type") + " " + label;

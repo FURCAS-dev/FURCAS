@@ -6,17 +6,20 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,26 +35,26 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  * @generated
  */
 public abstract class InjectorActionImpl extends EObjectImpl implements InjectorAction {
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected InjectorActionImpl() {
+    protected InjectorActionImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.INJECTOR_ACTION;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -61,7 +64,7 @@ public abstract class InjectorActionImpl extends EObjectImpl implements Injector
         return (InjectorActionsBlock)eContainer();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -71,7 +74,7 @@ public abstract class InjectorActionImpl extends EObjectImpl implements Injector
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -92,13 +95,13 @@ public abstract class InjectorActionImpl extends EObjectImpl implements Injector
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK, newInjectorActionsBlock, newInjectorActionsBlock));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK:
                 if (eInternalContainer() != null)
@@ -108,13 +111,13 @@ public abstract class InjectorActionImpl extends EObjectImpl implements Injector
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK:
                 return basicSetInjectorActionsBlock(null, msgs);
@@ -122,13 +125,13 @@ public abstract class InjectorActionImpl extends EObjectImpl implements Injector
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+    @Override
+    public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
         switch (eContainerFeatureID()) {
             case TCSPackage.INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK:
                 return eInternalContainer().eInverseRemove(this, TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS, InjectorActionsBlock.class, msgs);
@@ -136,13 +139,13 @@ public abstract class InjectorActionImpl extends EObjectImpl implements Injector
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK:
                 return getInjectorActionsBlock();
@@ -150,13 +153,13 @@ public abstract class InjectorActionImpl extends EObjectImpl implements Injector
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK:
                 setInjectorActionsBlock((InjectorActionsBlock)newValue);
@@ -165,13 +168,13 @@ public abstract class InjectorActionImpl extends EObjectImpl implements Injector
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK:
                 setInjectorActionsBlock((InjectorActionsBlock)null);
@@ -180,13 +183,13 @@ public abstract class InjectorActionImpl extends EObjectImpl implements Injector
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK:
                 return getInjectorActionsBlock() != null;

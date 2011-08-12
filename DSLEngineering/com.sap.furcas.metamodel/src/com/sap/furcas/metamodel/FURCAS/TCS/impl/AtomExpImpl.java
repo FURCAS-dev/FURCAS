@@ -6,17 +6,21 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.AndExp;
 import com.sap.furcas.metamodel.FURCAS.TCS.AtomExp;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,82 +37,82 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
  *
  * @generated
  */
-public abstract class AtomExpImpl extends LocatedElementImpl implements AtomExp {
-        /**
+public abstract class AtomExpImpl extends EObjectImpl implements AtomExp {
+    /**
      * The default value of the '{@link #getPropertyName() <em>Property Name</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getPropertyName()
      * @generated
      * @ordered
      */
-        protected static final String PROPERTY_NAME_EDEFAULT = null;
+    protected static final String PROPERTY_NAME_EDEFAULT = null;
 
-        /**
+    /**
      * The cached value of the '{@link #getPropertyName() <em>Property Name</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getPropertyName()
      * @generated
      * @ordered
      */
-        protected String propertyName = PROPERTY_NAME_EDEFAULT;
+    protected String propertyName = PROPERTY_NAME_EDEFAULT;
 
-        /**
+    /**
      * The cached value of the '{@link #getPropertyReference() <em>Property Reference</em>}' containment reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getPropertyReference()
      * @generated
      * @ordered
      */
-        protected PropertyReference propertyReference;
+    protected PropertyReference propertyReference;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected AtomExpImpl() {
+    protected AtomExpImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.ATOM_EXP;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public AndExp getAndExp() {
+    public AndExp getAndExp() {
         if (eContainerFeatureID() != TCSPackage.ATOM_EXP__AND_EXP) return null;
         return (AndExp)eContainer();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public NotificationChain basicSetAndExp(AndExp newAndExp, NotificationChain msgs) {
+    public NotificationChain basicSetAndExp(AndExp newAndExp, NotificationChain msgs) {
         msgs = eBasicSetContainer((InternalEObject)newAndExp, TCSPackage.ATOM_EXP__AND_EXP, msgs);
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setAndExp(AndExp newAndExp) {
+    public void setAndExp(AndExp newAndExp) {
         if (newAndExp != eInternalContainer() || (eContainerFeatureID() != TCSPackage.ATOM_EXP__AND_EXP && newAndExp != null)) {
             if (EcoreUtil.isAncestor(this, newAndExp))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
@@ -124,37 +128,37 @@ public abstract class AtomExpImpl extends LocatedElementImpl implements AtomExp 
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.ATOM_EXP__AND_EXP, newAndExp, newAndExp));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public String getPropertyName() {
+    public String getPropertyName() {
         return propertyName;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setPropertyName(String newPropertyName) {
+    public void setPropertyName(String newPropertyName) {
         String oldPropertyName = propertyName;
         propertyName = newPropertyName;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.ATOM_EXP__PROPERTY_NAME, oldPropertyName, propertyName));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public PropertyReference getPropertyReference() {
+    public PropertyReference getPropertyReference() {
         return propertyReference;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -169,12 +173,12 @@ public abstract class AtomExpImpl extends LocatedElementImpl implements AtomExp 
         return msgs;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setPropertyReference(PropertyReference newPropertyReference) {
+    public void setPropertyReference(PropertyReference newPropertyReference) {
         if (newPropertyReference != propertyReference) {
             NotificationChain msgs = null;
             if (propertyReference != null)
@@ -188,13 +192,13 @@ public abstract class AtomExpImpl extends LocatedElementImpl implements AtomExp 
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.ATOM_EXP__PROPERTY_REFERENCE, newPropertyReference, newPropertyReference));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.ATOM_EXP__AND_EXP:
                 if (eInternalContainer() != null)
@@ -204,13 +208,13 @@ public abstract class AtomExpImpl extends LocatedElementImpl implements AtomExp 
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.ATOM_EXP__AND_EXP:
                 return basicSetAndExp(null, msgs);
@@ -220,13 +224,13 @@ public abstract class AtomExpImpl extends LocatedElementImpl implements AtomExp 
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+    @Override
+    public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
         switch (eContainerFeatureID()) {
             case TCSPackage.ATOM_EXP__AND_EXP:
                 return eInternalContainer().eInverseRemove(this, TCSPackage.AND_EXP__EXPRESSIONS, AndExp.class, msgs);
@@ -234,13 +238,13 @@ public abstract class AtomExpImpl extends LocatedElementImpl implements AtomExp 
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.ATOM_EXP__AND_EXP:
                 return getAndExp();
@@ -252,13 +256,13 @@ public abstract class AtomExpImpl extends LocatedElementImpl implements AtomExp 
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.ATOM_EXP__AND_EXP:
                 setAndExp((AndExp)newValue);
@@ -273,13 +277,13 @@ public abstract class AtomExpImpl extends LocatedElementImpl implements AtomExp 
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.ATOM_EXP__AND_EXP:
                 setAndExp((AndExp)null);
@@ -294,13 +298,13 @@ public abstract class AtomExpImpl extends LocatedElementImpl implements AtomExp 
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.ATOM_EXP__AND_EXP:
                 return getAndExp() != null;
@@ -312,13 +316,13 @@ public abstract class AtomExpImpl extends LocatedElementImpl implements AtomExp 
         return super.eIsSet(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public String toString() {
+    @Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());

@@ -6,20 +6,23 @@
  */
 package com.sap.furcas.metamodel.FURCAS.textblocks.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+
 import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>For Each Context</b></em>'.
+ * An implementation of the model object '<em><b>For Each Execution</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -36,47 +39,47 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
  * @generated
  */
 public class ForEachExecutionImpl extends TextBlockImpl implements ForEachExecution {
-        /**
+    /**
      * The cached value of the '{@link #getForeachPedicatePropertyInit() <em>Foreach Pedicate Property Init</em>}' reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getForeachPedicatePropertyInit()
      * @generated
      * @ordered
      */
-        protected ForeachPredicatePropertyInit foreachPedicatePropertyInit;
+    protected ForeachPredicatePropertyInit foreachPedicatePropertyInit;
 
-        /**
+    /**
      * The cached value of the '{@link #getContextElement() <em>Context Element</em>}' reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getContextElement()
      * @generated
      * @ordered
      */
-        protected EObject contextElement;
+    protected EObject contextElement;
 
-        /**
+    /**
      * The cached value of the '{@link #getResultModelElement() <em>Result Model Element</em>}' reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getResultModelElement()
      * @generated
      * @ordered
      */
-        protected EObject resultModelElement;
+    protected EObject resultModelElement;
 
-        /**
+    /**
      * The cached value of the '{@link #getSourceModelElement() <em>Source Model Element</em>}' reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getSourceModelElement()
      * @generated
      * @ordered
      */
-        protected EObject sourceModelElement;
+    protected EObject sourceModelElement;
 
-        /**
+    /**
      * The default value of the '{@link #getContextString() <em>Context String</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -86,7 +89,7 @@ public class ForEachExecutionImpl extends TextBlockImpl implements ForEachExecut
      */
     protected static final String CONTEXT_STRING_EDEFAULT = null;
 
-        /**
+    /**
      * The cached value of the '{@link #getContextString() <em>Context String</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -96,7 +99,7 @@ public class ForEachExecutionImpl extends TextBlockImpl implements ForEachExecut
      */
     protected String contextString = CONTEXT_STRING_EDEFAULT;
 
-        /**
+    /**
      * The cached value of the '{@link #getTemplateUsedForProduction() <em>Template Used For Production</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -106,31 +109,31 @@ public class ForEachExecutionImpl extends TextBlockImpl implements ForEachExecut
      */
     protected Template templateUsedForProduction;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected ForEachExecutionImpl() {
+    protected ForEachExecutionImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TextblocksPackage.Literals.FOR_EACH_EXECUTION;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public ForeachPredicatePropertyInit getForeachPedicatePropertyInit() {
+    public ForeachPredicatePropertyInit getForeachPedicatePropertyInit() {
         if (foreachPedicatePropertyInit != null && foreachPedicatePropertyInit.eIsProxy()) {
             InternalEObject oldForeachPedicatePropertyInit = (InternalEObject)foreachPedicatePropertyInit;
             foreachPedicatePropertyInit = (ForeachPredicatePropertyInit)eResolveProxy(oldForeachPedicatePropertyInit);
@@ -142,33 +145,33 @@ public class ForEachExecutionImpl extends TextBlockImpl implements ForEachExecut
         return foreachPedicatePropertyInit;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public ForeachPredicatePropertyInit basicGetForeachPedicatePropertyInit() {
+    public ForeachPredicatePropertyInit basicGetForeachPedicatePropertyInit() {
         return foreachPedicatePropertyInit;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setForeachPedicatePropertyInit(ForeachPredicatePropertyInit newForeachPedicatePropertyInit) {
+    public void setForeachPedicatePropertyInit(ForeachPredicatePropertyInit newForeachPedicatePropertyInit) {
         ForeachPredicatePropertyInit oldForeachPedicatePropertyInit = foreachPedicatePropertyInit;
         foreachPedicatePropertyInit = newForeachPedicatePropertyInit;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_EXECUTION__FOREACH_PEDICATE_PROPERTY_INIT, oldForeachPedicatePropertyInit, foreachPedicatePropertyInit));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public EObject getContextElement() {
+    public EObject getContextElement() {
         if (contextElement != null && contextElement.eIsProxy()) {
             InternalEObject oldContextElement = (InternalEObject)contextElement;
             contextElement = eResolveProxy(oldContextElement);
@@ -180,7 +183,7 @@ public class ForEachExecutionImpl extends TextBlockImpl implements ForEachExecut
         return contextElement;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -189,7 +192,7 @@ public class ForEachExecutionImpl extends TextBlockImpl implements ForEachExecut
         return contextElement;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -201,12 +204,12 @@ public class ForEachExecutionImpl extends TextBlockImpl implements ForEachExecut
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_EXECUTION__CONTEXT_ELEMENT, oldContextElement, contextElement));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public EObject getResultModelElement() {
+    public EObject getResultModelElement() {
         if (resultModelElement != null && resultModelElement.eIsProxy()) {
             InternalEObject oldResultModelElement = (InternalEObject)resultModelElement;
             resultModelElement = eResolveProxy(oldResultModelElement);
@@ -218,33 +221,33 @@ public class ForEachExecutionImpl extends TextBlockImpl implements ForEachExecut
         return resultModelElement;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public EObject basicGetResultModelElement() {
+    public EObject basicGetResultModelElement() {
         return resultModelElement;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setResultModelElement(EObject newResultModelElement) {
+    public void setResultModelElement(EObject newResultModelElement) {
         EObject oldResultModelElement = resultModelElement;
         resultModelElement = newResultModelElement;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_EXECUTION__RESULT_MODEL_ELEMENT, oldResultModelElement, resultModelElement));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public EObject getSourceModelElement() {
+    public EObject getSourceModelElement() {
         if (sourceModelElement != null && sourceModelElement.eIsProxy()) {
             InternalEObject oldSourceModelElement = (InternalEObject)sourceModelElement;
             sourceModelElement = eResolveProxy(oldSourceModelElement);
@@ -256,28 +259,28 @@ public class ForEachExecutionImpl extends TextBlockImpl implements ForEachExecut
         return sourceModelElement;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public EObject basicGetSourceModelElement() {
+    public EObject basicGetSourceModelElement() {
         return sourceModelElement;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setSourceModelElement(EObject newSourceModelElement) {
+    public void setSourceModelElement(EObject newSourceModelElement) {
         EObject oldSourceModelElement = sourceModelElement;
         sourceModelElement = newSourceModelElement;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_EXECUTION__SOURCE_MODEL_ELEMENT, oldSourceModelElement, sourceModelElement));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -286,7 +289,7 @@ public class ForEachExecutionImpl extends TextBlockImpl implements ForEachExecut
         return contextString;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -298,7 +301,7 @@ public class ForEachExecutionImpl extends TextBlockImpl implements ForEachExecut
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_EXECUTION__CONTEXT_STRING, oldContextString, contextString));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -315,7 +318,7 @@ public class ForEachExecutionImpl extends TextBlockImpl implements ForEachExecut
         return templateUsedForProduction;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -324,7 +327,7 @@ public class ForEachExecutionImpl extends TextBlockImpl implements ForEachExecut
         return templateUsedForProduction;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -336,13 +339,13 @@ public class ForEachExecutionImpl extends TextBlockImpl implements ForEachExecut
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_EXECUTION__TEMPLATE_USED_FOR_PRODUCTION, oldTemplateUsedForProduction, templateUsedForProduction));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TextblocksPackage.FOR_EACH_EXECUTION__FOREACH_PEDICATE_PROPERTY_INIT:
                 if (resolve) return getForeachPedicatePropertyInit();
@@ -365,13 +368,13 @@ public class ForEachExecutionImpl extends TextBlockImpl implements ForEachExecut
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TextblocksPackage.FOR_EACH_EXECUTION__FOREACH_PEDICATE_PROPERTY_INIT:
                 setForeachPedicatePropertyInit((ForeachPredicatePropertyInit)newValue);
@@ -395,13 +398,13 @@ public class ForEachExecutionImpl extends TextBlockImpl implements ForEachExecut
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TextblocksPackage.FOR_EACH_EXECUTION__FOREACH_PEDICATE_PROPERTY_INIT:
                 setForeachPedicatePropertyInit((ForeachPredicatePropertyInit)null);
@@ -425,13 +428,13 @@ public class ForEachExecutionImpl extends TextBlockImpl implements ForEachExecut
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TextblocksPackage.FOR_EACH_EXECUTION__FOREACH_PEDICATE_PROPERTY_INIT:
                 return foreachPedicatePropertyInit != null;
@@ -449,7 +452,7 @@ public class ForEachExecutionImpl extends TextBlockImpl implements ForEachExecut
         return super.eIsSet(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -465,4 +468,4 @@ public class ForEachExecutionImpl extends TextBlockImpl implements ForEachExecut
         return result.toString();
     }
 
-} //ForEachContextImpl
+} //ForEachExecutionImpl

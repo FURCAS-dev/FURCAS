@@ -21,13 +21,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Internal;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.LocatedElement;
-
 
 /**
  *
  */
-public abstract class LocatedElementStub  implements LocatedElement, InternalEObject {
+public abstract class LocatedElementStub  implements InternalEObject {
 
     public String representation;
     
@@ -40,40 +38,6 @@ public abstract class LocatedElementStub  implements LocatedElement, InternalEOb
      */
     public LocatedElementStub() {
         super();
-    }
-
-    /* (non-Javadoc)
-     * @see TCS.LocatedElement#getCommentsAfter()
-     */
-    @Override
-    public EList<String> getCommentsAfter() {
-        return ca;
-    }
-
-    /* (non-Javadoc)
-     * @see TCS.LocatedElement#getCommentsBefore()
-     */
-    @Override
-    public EList<String> getCommentsBefore() {
-        // TODO Auto-generated method stub
-        return cb;
-    }
-
-    /* (non-Javadoc)
-     * @see TCS.LocatedElement#getLocation()
-     */
-    @Override
-    public String getLocation() {
-        // TODO Auto-generated method stub
-        return loc;
-    }
-
-    /* (non-Javadoc)
-     * @see TCS.LocatedElement#setLocation(java.lang.String)
-     */
-    @Override
-    public void setLocation(String value) {
-        loc = value;
     }
 
     @Override

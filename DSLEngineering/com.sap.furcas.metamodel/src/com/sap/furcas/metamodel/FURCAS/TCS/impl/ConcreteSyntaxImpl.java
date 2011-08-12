@@ -6,18 +6,6 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
@@ -25,6 +13,22 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.TCS.Token;
+
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -46,139 +50,139 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Token;
  * @generated
  */
 public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSyntax {
-        /**
+    /**
      * The default value of the '{@link #getK() <em>K</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getK()
      * @generated
      * @ordered
      */
-        protected static final Integer K_EDEFAULT = null;
+    protected static final Integer K_EDEFAULT = null;
 
-        /**
+    /**
      * The cached value of the '{@link #getK() <em>K</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getK()
      * @generated
      * @ordered
      */
-        protected Integer k = K_EDEFAULT;
+    protected Integer k = K_EDEFAULT;
 
-        /**
+    /**
      * This is true if the K attribute has been set.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        protected boolean kESet;
+    protected boolean kESet;
 
-        /**
+    /**
      * The cached value of the '{@link #getTemplates() <em>Templates</em>}' containment reference list.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getTemplates()
      * @generated
      * @ordered
      */
-        protected EList<Template> templates;
+    protected EList<Template> templates;
 
-        /**
+    /**
      * The cached value of the '{@link #getKeywords() <em>Keywords</em>}' containment reference list.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getKeywords()
      * @generated
      * @ordered
      */
-        protected EList<Keyword> keywords;
+    protected EList<Keyword> keywords;
 
-        /**
+    /**
      * The cached value of the '{@link #getSymbols() <em>Symbols</em>}' containment reference list.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getSymbols()
      * @generated
      * @ordered
      */
-        protected EList<Symbol> symbols;
+    protected EList<Symbol> symbols;
 
-        /**
+    /**
      * The cached value of the '{@link #getOperatorLists() <em>Operator Lists</em>}' containment reference list.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getOperatorLists()
      * @generated
      * @ordered
      */
-        protected EList<OperatorList> operatorLists;
+    protected EList<OperatorList> operatorLists;
 
-        /**
+    /**
      * The cached value of the '{@link #getTokens() <em>Tokens</em>}' containment reference list.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getTokens()
      * @generated
      * @ordered
      */
-        protected EList<Token> tokens;
+    protected EList<Token> tokens;
 
-        /**
+    /**
      * The default value of the '{@link #getLexer() <em>Lexer</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getLexer()
      * @generated
      * @ordered
      */
-        protected static final String LEXER_EDEFAULT = null;
+    protected static final String LEXER_EDEFAULT = null;
 
-        /**
+    /**
      * The cached value of the '{@link #getLexer() <em>Lexer</em>}' attribute.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getLexer()
      * @generated
      * @ordered
      */
-        protected String lexer = LEXER_EDEFAULT;
+    protected String lexer = LEXER_EDEFAULT;
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected ConcreteSyntaxImpl() {
+    protected ConcreteSyntaxImpl() {
         super();
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return TCSPackage.Literals.CONCRETE_SYNTAX;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public Integer getK() {
+    public Integer getK() {
         return k;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setK(Integer newK) {
+    public void setK(Integer newK) {
         Integer oldK = k;
         k = newK;
         boolean oldKESet = kESet;
@@ -187,12 +191,12 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CONCRETE_SYNTAX__K, oldK, k, !oldKESet));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void unsetK() {
+    public void unsetK() {
         Integer oldK = k;
         boolean oldKESet = kESet;
         k = K_EDEFAULT;
@@ -201,104 +205,104 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
             eNotify(new ENotificationImpl(this, Notification.UNSET, TCSPackage.CONCRETE_SYNTAX__K, oldK, K_EDEFAULT, oldKESet));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public boolean isSetK() {
+    public boolean isSetK() {
         return kESet;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public EList<Template> getTemplates() {
+    public EList<Template> getTemplates() {
         if (templates == null) {
             templates = new EObjectContainmentWithInverseEList<Template>(Template.class, this, TCSPackage.CONCRETE_SYNTAX__TEMPLATES, TCSPackage.TEMPLATE__CONCRETE_SYNTAX);
         }
         return templates;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public EList<Keyword> getKeywords() {
+    public EList<Keyword> getKeywords() {
         if (keywords == null) {
             keywords = new EObjectContainmentEList<Keyword>(Keyword.class, this, TCSPackage.CONCRETE_SYNTAX__KEYWORDS);
         }
         return keywords;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public EList<Symbol> getSymbols() {
+    public EList<Symbol> getSymbols() {
         if (symbols == null) {
             symbols = new EObjectContainmentEList<Symbol>(Symbol.class, this, TCSPackage.CONCRETE_SYNTAX__SYMBOLS);
         }
         return symbols;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public EList<OperatorList> getOperatorLists() {
+    public EList<OperatorList> getOperatorLists() {
         if (operatorLists == null) {
             operatorLists = new EObjectContainmentEList<OperatorList>(OperatorList.class, this, TCSPackage.CONCRETE_SYNTAX__OPERATOR_LISTS);
         }
         return operatorLists;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public EList<Token> getTokens() {
+    public EList<Token> getTokens() {
         if (tokens == null) {
             tokens = new EObjectContainmentEList<Token>(Token.class, this, TCSPackage.CONCRETE_SYNTAX__TOKENS);
         }
         return tokens;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public String getLexer() {
+    public String getLexer() {
         return lexer;
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public void setLexer(String newLexer) {
+    public void setLexer(String newLexer) {
         String oldLexer = lexer;
         lexer = newLexer;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CONCRETE_SYNTAX__LEXER, oldLexer, lexer));
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @SuppressWarnings("unchecked")
-        @Override
-        public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.CONCRETE_SYNTAX__TEMPLATES:
                 return ((InternalEList<InternalEObject>)(InternalEList<?>)getTemplates()).basicAdd(otherEnd, msgs);
@@ -306,13 +310,13 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case TCSPackage.CONCRETE_SYNTAX__TEMPLATES:
                 return ((InternalEList<?>)getTemplates()).basicRemove(otherEnd, msgs);
@@ -328,13 +332,13 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.CONCRETE_SYNTAX__K:
                 return getK();
@@ -354,14 +358,14 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
         return super.eGet(featureID, resolve, coreType);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @SuppressWarnings("unchecked")
-        @Override
-        public void eSet(int featureID, Object newValue) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TCSPackage.CONCRETE_SYNTAX__K:
                 setK((Integer)newValue);
@@ -393,13 +397,13 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
         super.eSet(featureID, newValue);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case TCSPackage.CONCRETE_SYNTAX__K:
                 unsetK();
@@ -426,13 +430,13 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
         super.eUnset(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.CONCRETE_SYNTAX__K:
                 return isSetK();
@@ -452,13 +456,13 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
         return super.eIsSet(featureID);
     }
 
-        /**
+    /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public String toString() {
+    @Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
