@@ -237,9 +237,5 @@ public class DefaultTextAwareModelAdapter implements IModelAdapter {
         return modelAdapter.instanceOf(instance, metaType);
     }
 
-    @Override
-    public Collection<Object> getElementsOfType(List<String> list) throws ModelAdapterException {
-        return modelAdapter.getElementsOfType(list);
-    }
 
 }

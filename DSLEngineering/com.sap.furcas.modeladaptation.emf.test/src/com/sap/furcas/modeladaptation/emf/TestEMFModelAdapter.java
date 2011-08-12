@@ -427,29 +427,4 @@ public class TestEMFModelAdapter {
         assertEquals(opList, adapter.get(classTemplate, "operatorList"));
     }
     
-    @Test
-    public void testTCSElementsOfType() throws Exception {
-        Object literal1 = adapter.createElement("FURCAS::TCS::Keyword");
-        Object literal2 = adapter.createElement("FURCAS::TCS::Symbol");
-        
-        Object template1 = adapter.createElement("FURCAS::TCS::ClassTemplate");
-        Object template2 = adapter.createElement("FURCAS::TCS::OperatorTemplate");
-
-        // search for super type and hope to find the sub-classes
-        Collection<?> resultWithLiterals = adapter.getElementsOfType("FURCAS::TCS::Literal");
-        assertEquals(2, resultWithLiterals.size());
-        assertTrue(resultWithLiterals.contains(literal1));
-        assertTrue(resultWithLiterals.contains(literal2));
-        
-        // search for super type and hope to find the sub-classes
-        Collection<?> resultWithTemplates = adapter.getElementsOfType("FURCAS::TCS::Template");
-        assertEquals(2, resultWithTemplates.size());
-        assertTrue(resultWithTemplates.contains(template1));
-        assertTrue(resultWithTemplates.contains(template2));
-        
-        // search for specific type
-        Collection<?> resultWithClassTemplate = adapter.getElementsOfType("FURCAS::TCS::ClassTemplate");
-        assertEquals(1, resultWithClassTemplate.size());
-        assertTrue(resultWithClassTemplate.contains(template1));
-    }
 }

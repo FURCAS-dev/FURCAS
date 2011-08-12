@@ -144,9 +144,4 @@ public interface IModelAdapter extends IModelElementInvestigator { // extends In
      */
     public Collection<?> evaluateOCLQuery(Object modelElement, Object keyValue, String oclQuery, Object contextElement) throws ModelAdapterException;
 
-    /**
-     * Return all modelElements of the given type with are known to this model adapter instance.
-     */
-    public Collection<Object> getElementsOfType(List<String> list) throws ModelAdapterException; 
-
 }

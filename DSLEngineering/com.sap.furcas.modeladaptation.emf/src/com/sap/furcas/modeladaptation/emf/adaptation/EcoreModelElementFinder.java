@@ -75,27 +75,6 @@ public class EcoreModelElementFinder {
 
         queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
     }
-
-    /**
-     * Returns all known instances within the explicitly given referenceScope.
-     * If nothing is found, an empty collection is returned.
-     */
-    public Collection<EObject> findEObjectsOfType(List<String> targetType) throws ModelAdapterException {
-        URI qName = EcoreUtil.getURI(findMetaClassOfType(targetType));
-
-        SelectEntry se = new SelectAlias(MQL_ALIAS_INSTANCE);
-        FromEntry fe = new FromType(MQL_ALIAS_INSTANCE, qName, /*withoutSubtypes*/ false);
-        Query mq = new Query(new SelectEntry[] { se }, new FromEntry[] { fe });
-        
-        QueryContext scopeProvider = EcoreHelper.getRestrictedQueryContext(resourceSet, referenceScope);
-        ResultSet resultSet = queryProcessor.execute(mq, scopeProvider);
-
-        Collection<EObject> resultObjects = new ArrayList<EObject>();
-        for (URI uri : resultSet.getUris(MQL_ALIAS_INSTANCE)) {
-            resultObjects.add(resourceSet.getEObject(uri, true));
-        }
-        return resultObjects;
-    }
        
     /**
      *  Returns the model element uniquely identified by the combination of type, property name and

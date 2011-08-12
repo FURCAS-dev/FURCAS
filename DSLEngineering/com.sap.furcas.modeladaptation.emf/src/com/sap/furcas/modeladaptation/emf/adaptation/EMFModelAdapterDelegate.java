@@ -380,11 +380,6 @@ public class EMFModelAdapterDelegate {
 
         return result;
     }
-
- 
-    public Collection<Object> getElementsOfType(List<String> list) throws ModelAdapterException {
-        return new ArrayList<Object>(modelLookup.findEObjectsOfType(list));
-    }
     
     public Collection<Object> queryElement(List<String> typeName, Map<String, List<Object>> attributes) throws ModelAdapterException {
         Map<String, Object> singleValuedAttributesMap = new HashMap<String, Object>();

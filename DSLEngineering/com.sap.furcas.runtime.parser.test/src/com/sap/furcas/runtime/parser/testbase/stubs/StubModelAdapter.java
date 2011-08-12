@@ -53,8 +53,7 @@ public class StubModelAdapter implements IModelAdapter, IBareModelAdapter {
         return ((StubModelElement) ame_).get(propertyName);
     }
     
-    @Override
-    public Collection<Object> getElementsOfType(List<String> list) throws ModelAdapterException {
+    public Collection<Object> getElementsOfType(List<String> list) {
         StringBuilder buf = new StringBuilder();
         Iterator<String> iterator = list.iterator();
         while (iterator.hasNext()) {
