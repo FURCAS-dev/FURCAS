@@ -91,7 +91,6 @@ public class TestQueryBasedEcoreMetaModelLookUp {
         assertNotNull(lookup.resolveReference(StringListHelper.list("FURCAS", "TCS", "ClassTemplate")));
         assertNotNull(lookup.resolveReference(list("FURCAS", "TCS", "Token")));
         assertNotNull(lookup.resolveReference(list("FURCAS", "TCS", "PrimitiveTemplate")));
-        assertNotNull(lookup.resolveReference(list("FURCAS", "TCS", "LocatedElement")));
 
         assertNull(lookup.resolveReference(list("FURCAS", "TCS", "Classifier")));
         assertNull(lookup.resolveReference(list("FURCAS", "TCS", "XYZ")));
