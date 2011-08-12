@@ -273,11 +273,11 @@ public class TestEMFModelAdapter {
         // test by referring to abstract superclass
         Object syntax = adapter.createElement("FURCAS::TCS::ConcreteSyntax");
         Object primTemplate = adapter.createElement("FURCAS::TCS::PrimitiveTemplate");
-        adapter.set(primTemplate, "location", "location42");
+        adapter.set(primTemplate, "disambiguate", "disambiguate42");
         
         assertEquals(new ArrayList<Object>(), adapter.get(syntax, "templates"));
         
-        adapter.setReferenceWithLookup(syntax, "templates", list("FURCAS", "TCS", "LocatedElement"), "location", "location42");
+        adapter.setReferenceWithLookup(syntax, "templates", list("FURCAS", "TCS", "Template"), "disambiguate", "disambiguate42");
         
         Object rawResult = adapter.get(syntax, "templates");
         assertNotNull(rawResult);
