@@ -11,8 +11,9 @@ package com.sap.furcas.parsergenerator.tcs.t2m.grammar;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.eclipse.emf.ecore.EObject;
+
 import com.sap.furcas.metamodel.FURCAS.TCS.Block;
-import com.sap.furcas.metamodel.FURCAS.TCS.LocatedElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
@@ -38,7 +39,7 @@ public class BlockTypeHandler {
      * @throws MetaModelLookupException
      *             the meta model lookup exception
      */
-    public void addElement(LocatedElement element, RuleBodyStringBuffer buffer)
+    public void addElement(EObject element, RuleBodyStringBuffer buffer)
             throws MetaModelLookupException {
         buffer.append('(');
         if (element instanceof Sequence) {
@@ -73,7 +74,7 @@ public class BlockTypeHandler {
 	 * @throws MetaModelLookupException
 	 *             the meta model lookup exception
 	 */
-	public void addElement(LocatedElement element,
+	public void addElement(EObject element,
 			SemanticRuleBodyStringBuffer buffer, String semanticRef)
 			throws MetaModelLookupException {
 		buffer.append('(');
@@ -89,8 +90,9 @@ public class BlockTypeHandler {
 				if (sequenceElement instanceof Property) {
 					Property prop = (Property) sequenceElement;
 					String name = PropertyTypeHandler.getPropertyName(prop);
-					if(semanticRef != null && name.equals(semanticRef))
-						buffer.append("{semRef = temp;}");
+					if(semanticRef != null && name.equals(semanticRef)) {
+                        buffer.append("{semRef = temp;}");
+                    }
 				}
 			}
 		} else if (element instanceof Block) {

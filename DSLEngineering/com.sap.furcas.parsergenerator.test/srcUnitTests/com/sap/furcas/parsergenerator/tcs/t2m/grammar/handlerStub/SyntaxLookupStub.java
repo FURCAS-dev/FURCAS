@@ -12,9 +12,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
+
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
-import com.sap.furcas.metamodel.FURCAS.TCS.LocatedElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
 import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
@@ -63,7 +64,7 @@ public class SyntaxLookupStub extends SyntaxLookup {
     }
 
     @Override
-    public Template getEnclosingQualifiedElement(LocatedElement syntaxElement)  {
+    public Template getEnclosingQualifiedElement(EObject syntaxElement)  {
         return enclosingName;
     }
 

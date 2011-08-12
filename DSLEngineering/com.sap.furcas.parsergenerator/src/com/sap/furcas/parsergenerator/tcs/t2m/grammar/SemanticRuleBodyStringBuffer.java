@@ -115,7 +115,7 @@ public class SemanticRuleBodyStringBuffer extends RuleBodyStringBuffer {
 				if (lit.getReferredLiteral() == null) {
 					throw new RuntimeException(
 							"Bug: Missing reference, check that references were set after parsing in "
-									+ element.getLocation());
+									+ element);
 				}
 				String value = lit.getReferredLiteral().getValue();
 				this.append(syntaxLookup.getSymbolRule(value));
@@ -139,7 +139,7 @@ public class SemanticRuleBodyStringBuffer extends RuleBodyStringBuffer {
 				if (funcCall.getCalledFunction() == null) {
 					throw new RuntimeException(
 							"Bug: Missing Function Template in function call in "
-									+ element.getLocation());
+									+ element);
 				}
 				String rulename = namingHelper.getRuleName(funcCall
 						.getCalledFunction());

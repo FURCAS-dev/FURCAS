@@ -176,7 +176,7 @@ public class RuleBodyStringBuffer {
         } else if (element instanceof LiteralRef) {
             LiteralRef lit = (LiteralRef) element;
             if (lit.getReferredLiteral() == null) {
-                throw new RuntimeException("Bug: Missing reference, check that references were set after parsing in " + element.getLocation());
+                throw new RuntimeException("Bug: Missing reference, check that references were set after parsing in " + element);
             }
             String value = lit.getReferredLiteral().getValue();
             this.append(syntaxLookup.getSymbolRule(value));
@@ -196,7 +196,7 @@ public class RuleBodyStringBuffer {
         } else if (element instanceof FunctionCall) {
             FunctionCall funcCall = (FunctionCall) element;
             if (funcCall.getCalledFunction() == null) {
-                throw new RuntimeException("Bug: Missing Function Template in function call in " + element.getLocation());
+                throw new RuntimeException("Bug: Missing Function Template in function call in " + element);
             }
             String rulename = namingHelper.getRuleName(funcCall.getCalledFunction());
             this.append(rulename + "[ret]");
