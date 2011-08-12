@@ -364,7 +364,7 @@ public class TestEMFModelAdapter {
         
         assertTrue(adapter.instanceOf(classTemplate, TCSPackage.Literals.TEMPLATE));
         assertTrue(adapter.instanceOf(classTemplate, TCSPackage.Literals.CLASS_TEMPLATE));
-        assertTrue(adapter.instanceOf(classTemplate, TCSPackage.Literals.LOCATED_ELEMENT));
+        assertTrue(adapter.instanceOf(classTemplate, TCSPackage.Literals.QUALIFIED_NAMED_ELEMENT));
         
         assertFalse(adapter.instanceOf(classTemplate, TCSPackage.Literals.PRIMITIVE_TEMPLATE));
         assertFalse(adapter.instanceOf(classTemplate, TCSPackage.Literals.KEYWORD));

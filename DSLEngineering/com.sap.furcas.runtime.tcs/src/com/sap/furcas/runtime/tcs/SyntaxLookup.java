@@ -24,7 +24,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
-import com.sap.furcas.metamodel.FURCAS.TCS.LocatedElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
@@ -274,7 +273,7 @@ public class SyntaxLookup {
      * @return the property class
      * @throws SyntaxParsingException 
      */
-    public Template getEnclosingQualifiedElement(LocatedElement syntaxElement) {
+    public Template getEnclosingQualifiedElement(EObject syntaxElement) {
         // TODO refactor SyntaxModel to have explicit reference to parent template?
         EObject parent = syntaxElement.eContainer();
         while (parent != null && !(parent instanceof Template)) {

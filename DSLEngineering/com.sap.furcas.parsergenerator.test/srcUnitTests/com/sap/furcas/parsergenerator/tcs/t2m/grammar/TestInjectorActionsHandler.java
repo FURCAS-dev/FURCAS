@@ -180,11 +180,6 @@ public class TestInjectorActionsHandler {
         public EList<InjectorAction> getInjectorActions() {
             return actions;
         }
-
-	@Override
-	public EList<InjectorAction> getPropertyInits() {
-	    return null;
-	}
         
     }
 
