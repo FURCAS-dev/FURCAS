@@ -17,9 +17,9 @@ public class TestInvalidSyntaxes extends AbstractTCSInjectionTest {
         parseInputStream(new ByteArrayInputStream(invalidSample.getBytes()));
         
         assertNotNull(modelParsingResult);
-        assertNotNull(modelParsingResult.getResult().getErrors());
-        assertEquals(2, modelParsingResult.getResult().getErrors().size());
-        ParsingError e1 = modelParsingResult.getResult().getErrors().get(0);
+        assertNotNull(modelParsingResult.getErrors());
+        assertEquals(2, modelParsingResult.getErrors().size());
+        ParsingError e1 = modelParsingResult.getErrors().get(0);
         assertEquals(1, e1.getLine());
         assertEquals(0, e1.getPosition());
         assertEquals(1, e1.getEndLine());
@@ -32,9 +32,9 @@ public class TestInvalidSyntaxes extends AbstractTCSInjectionTest {
         parseInputStream(new ByteArrayInputStream(invalidSample.getBytes()));
         
         assertNotNull(modelParsingResult);
-        assertNotNull(modelParsingResult.getResult().getErrors());
-        assertEquals(1, modelParsingResult.getResult().getErrors().size());
-        ParsingError e1 = modelParsingResult.getResult().getErrors().get(0);
+        assertNotNull(modelParsingResult.getErrors());
+        assertEquals(1, modelParsingResult.getErrors().size());
+        ParsingError e1 = modelParsingResult.getErrors().get(0);
         assertEquals(1, e1.getLine());
         assertEquals(15, e1.getPosition());
         assertEquals(1, e1.getEndLine());
@@ -49,8 +49,8 @@ public class TestInvalidSyntaxes extends AbstractTCSInjectionTest {
         parseInputStream(new ByteArrayInputStream(invalidSample.getBytes()));
 
         assertNotNull(modelParsingResult);
-        assertNotNull(modelParsingResult.getResult().getErrors());
-        assertEquals(2, modelParsingResult.getResult().getErrors().size());
+        assertNotNull(modelParsingResult.getErrors());
+        assertEquals(2, modelParsingResult.getErrors().size());
     }
 
     @Test
@@ -61,9 +61,9 @@ public class TestInvalidSyntaxes extends AbstractTCSInjectionTest {
         parseInputStream(new ByteArrayInputStream(invalidSample.getBytes()));
 
         assertNotNull(modelParsingResult);
-        assertNotNull(modelParsingResult.getResult().getErrors());
-        assertEquals(1, modelParsingResult.getResult().getErrors().size());
-        ParsingError e1 = modelParsingResult.getResult().getErrors().get(0);
+        assertNotNull(modelParsingResult.getErrors());
+        assertEquals(1, modelParsingResult.getErrors().size());
+        ParsingError e1 = modelParsingResult.getErrors().get(0);
         assertEquals(2, e1.getLine());
         assertEquals(30, e1.getPosition());
         assertEquals(2, e1.getEndLine());

@@ -5,12 +5,8 @@ package com.sap.furcas.parsergenerator.tcs.t2m.grammar;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.junit.Test;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
 import com.sap.furcas.metamodel.FURCAS.TCS.stubs.ConcreteSyntaxStub;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.handlerStub.ANTLR3WriterStub;
@@ -36,10 +32,8 @@ public class TestGrammarGenerator {
         MetaLookupStub metaStub = new MetaLookupStub();
         
         ConcreteSyntaxStub syntaxStub = new ConcreteSyntaxStub();
-        Set<Keyword> keywordSet = new HashSet<Keyword>();
         TCSSyntaxContainerBean bean = new TCSSyntaxContainerBean();
         bean.setSyntax(syntaxStub);
-        bean.setKeywords(keywordSet);
         
         ANTLRGrammarGenerator generator = new ANTLRGrammarGenerator();
 
@@ -117,12 +111,9 @@ public class TestGrammarGenerator {
         ANTLR3WriterStub writerStub = new ANTLR3WriterStub();
         MetaLookupStub metaStub = new MetaLookupStub();
         
-        
         ConcreteSyntaxStub syntaxStub = new ConcreteSyntaxStub();
-        Set<Keyword> keywordSet = new HashSet<Keyword>();
         TCSSyntaxContainerBean bean = new TCSSyntaxContainerBean();
         bean.setSyntax(syntaxStub);
-        bean.setKeywords(keywordSet);
         
         ANTLRGrammarGenerator generator = new ANTLRGrammarGenerator();
 

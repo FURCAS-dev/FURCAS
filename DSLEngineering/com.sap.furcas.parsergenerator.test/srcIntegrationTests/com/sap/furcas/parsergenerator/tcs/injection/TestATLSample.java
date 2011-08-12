@@ -4,9 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -14,7 +12,6 @@ import org.junit.Test;
 import com.sap.furcas.metamodel.FURCAS.TCS.Associativity;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
@@ -35,7 +32,7 @@ public class TestATLSample extends AbstractTCSInjectionTest {
         // now check the generated model is okay
         assertNotNull(syntax);
         assertEquals("ATL", syntax.getName());
-        assertEquals(0, modelParsingResult.getResult().getErrors().size());
+        assertEquals(0, modelParsingResult.getErrors().size());
     }
 
     @Test
@@ -112,20 +109,7 @@ public class TestATLSample extends AbstractTCSInjectionTest {
      */
     @Test
     public void testKeywords() throws ModelAdapterException {
-
-        Set<Keyword> keywords = modelParsingResult.getKeywords();
-        Iterator<Keyword> iterator = keywords.iterator();
-        for (; iterator.hasNext();) {
-            Keyword keyword = iterator.next();
-            keywords.add(keyword);
-        }
-
-        // syntax.getKeywords();
-        assertEquals(57, keywords.size());
-        for (Keyword keyword : syntax.getKeywords()) {
-            keywords.add(keyword);
-        }
-        assertEquals(57, keywords.size());
+        assertEquals(57, syntax.getKeywords().size());
     }
 
     @Test

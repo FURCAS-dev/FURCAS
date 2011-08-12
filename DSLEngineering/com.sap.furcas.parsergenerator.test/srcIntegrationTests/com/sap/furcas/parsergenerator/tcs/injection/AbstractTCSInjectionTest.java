@@ -13,10 +13,10 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
-import com.sap.furcas.parsergenerator.emf.tcs.inject.ModelInjectionResult;
 import com.sap.furcas.parsergenerator.emf.tcs.inject.TCSSpecificEMFModelInjector;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.util.FileResourceHelper;
+import com.sap.furcas.runtime.parser.ModelParsingResult;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.test.testutils.ResourceTestHelper;
@@ -28,7 +28,7 @@ public abstract class AbstractTCSInjectionTest {
 
     // The set of EMF objects returned from parsing to EMF model
     protected static ConcreteSyntax syntax;
-    protected static ModelInjectionResult modelParsingResult;
+    protected static ModelParsingResult modelParsingResult;
 
     protected static void setup(File tcs, File... metamodel) throws InvalidParserImplementationException, IOException, UnknownProductionRuleException, MetaModelLookupException {
         ResourceSet resourceSet = FileResourceHelper.loadResourceSet(metamodel);
@@ -37,7 +37,7 @@ public abstract class AbstractTCSInjectionTest {
         modelParsingResult = TCSSpecificEMFModelInjector.parseSyntaxDefinition(new FileInputStream(tcs),
                 resourceSet, referenceScope, /*observer*/ null);
         
-        syntax = modelParsingResult.getSyntax();
+        syntax = (ConcreteSyntax) modelParsingResult.getParsedModelElement();
     }
     
     protected void parseInputStream(InputStream in) throws InvalidParserImplementationException, IOException, UnknownProductionRuleException {
