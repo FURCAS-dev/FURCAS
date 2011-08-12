@@ -92,7 +92,7 @@ public interface TextBlock extends DocumentNode {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Parent Alt Choices</em>' attribute list.
      * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getTextBlock_ParentAltChoices()
-     * @model
+     * @model unique="false"
      * @generated
      */
     EList<Integer> getParentAltChoices();
