@@ -4,7 +4,6 @@
 package com.sap.furcas.modeladaptation.emf;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -42,11 +41,6 @@ public class TestableEMFModelAdapter extends EMFModelAdapter {
     public Object createEnumLiteral(String string, String string2) throws ModelAdapterException {
         List<String> typeName = Arrays.asList(string.split("::"));
         return super.createEnumLiteral(typeName, string2);
-    }
-
-    public Collection<?> getElementsOfType(String string) throws ModelAdapterException {
-        List<String> typeName = Arrays.asList(string.split("::"));
-        return super.getElementsOfType(typeName);
     }
 
 }

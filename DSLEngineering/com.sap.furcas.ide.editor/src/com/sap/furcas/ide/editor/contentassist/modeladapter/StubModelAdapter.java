@@ -288,10 +288,4 @@ public class StubModelAdapter implements IBareModelAdapter {
         return null;
     }
 
-    @Override
-    public Collection<Object> getElementsOfType(List<String> list) throws ModelAdapterException {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
 }

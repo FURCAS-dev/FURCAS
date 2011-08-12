@@ -258,23 +258,7 @@ public class EMFModelAdapter implements IBareModelAdapter {
             throw new RuntimeException("Failed to query element with name " + typeName, e);
         }
     }
-    
-    /**
-     * This lookup only includes all elements within the transient resource and all elements
-     * within the explicitly given, additional lookup scope.
-     * 
-     * @see IBareModelAdapter#getElementsOfType(List)
-     */
-    @Override
-    public Collection<Object> getElementsOfType(List<String> list) throws ModelAdapterException {
-        assertIsValidTypeName(list);
-        try {
-            return delegate.getElementsOfType(list);
-        } catch (RuntimeException re) {
-            throw new RuntimeException("JmiException while getting elements of type" + list, re);
-        }
-    }
-    
+        
     @Override
     public boolean instanceOf(Object modelElement, Object metaType) throws ModelAdapterException {
         assertArgumentsAreNotNull(modelElement, metaType);

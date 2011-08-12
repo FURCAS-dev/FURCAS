@@ -3,7 +3,6 @@
  */
 package com.sap.furcas.parsergenerator.emf.tcs.inject;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -159,15 +158,6 @@ public class TCSSpecificEMFModelAdapter implements IBareModelAdapter {
         return reference;
     }
 
-    /**
-     * @param string
-     * @return
-     * @throws ModelAdapterException 
-     */
-    public Set<Object> getElementsByType(String string) throws ModelAdapterException {
-        return new HashSet<Object>(adapter.getElementsOfType(Arrays.asList(string.split("::"))));
-    }
-
     /*
      * (non-Javadoc)
      * 
@@ -221,11 +211,6 @@ public class TCSSpecificEMFModelAdapter implements IBareModelAdapter {
     @Override
     public void unset(Object modelElement, String prop, Object value) throws ModelAdapterException {
         adapter.unset(modelElement, prop, value);
-    }
-
-    @Override
-    public Collection<Object> getElementsOfType(List<String> list) throws ModelAdapterException {
-        return adapter.getElementsOfType(list);
     }
 
 }
