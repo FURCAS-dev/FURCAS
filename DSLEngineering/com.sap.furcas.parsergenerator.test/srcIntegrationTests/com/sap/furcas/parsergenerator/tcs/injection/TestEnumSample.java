@@ -4,16 +4,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.TCS.Token;
@@ -33,7 +30,7 @@ public class TestEnumSample extends AbstractTCSInjectionTest {
 
         assertNotNull(syntax);
         assertEquals("EnumTest", syntax.getName());
-        assertEquals(0, modelParsingResult.getResult().getErrors().size());
+        assertEquals(0, modelParsingResult.getErrors().size());
     }
 
     @Test
@@ -99,23 +96,7 @@ public class TestEnumSample extends AbstractTCSInjectionTest {
      */
     @Test
     public void testKeywords() throws ModelAdapterException {
-
-        Set<Keyword> keywords = modelParsingResult.getKeywords();
-        Iterator<Keyword> iterator = keywords.iterator();
-        for (; iterator.hasNext();) {
-            Keyword keyword = iterator.next();
-            keywords.add(keyword);
-        }
-
-        // for (Iterator iterator2 = keywords.iterator(); iterator2.hasNext();) {
-        // Keyword keyword = (Keyword) iterator2.next();
-        // System.out.println(keyword.getValue() + " : " + keyword.getName());
-        // }
-        assertEquals(8, keywords.size());
-        for (Keyword keyword : syntax.getKeywords()) {
-            keywords.add(keyword);
-        }
-        assertEquals(8, keywords.size());
+        assertEquals(8, syntax.getKeywords().size());
     }
 
     @Test

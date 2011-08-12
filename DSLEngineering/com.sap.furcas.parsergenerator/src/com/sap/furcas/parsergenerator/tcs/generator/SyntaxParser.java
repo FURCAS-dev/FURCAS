@@ -7,14 +7,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.parsergenerator.GenerationErrorHandler;
 import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
-import com.sap.furcas.parsergenerator.emf.tcs.inject.ModelInjectionResult;
 import com.sap.furcas.parsergenerator.emf.tcs.inject.TCSSpecificEMFModelInjector;
 import com.sap.furcas.runtime.common.exceptions.ParserInvokationException;
+import com.sap.furcas.runtime.parser.ModelParsingResult;
 import com.sap.furcas.runtime.parser.ParsingError;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
@@ -36,24 +38,24 @@ public class SyntaxParser {
             inputStream = new FileInputStream(syntaxDefFile);
 
             // By choosing this injector, we establish the dependency to EMF.
-            ModelInjectionResult result = TCSSpecificEMFModelInjector.parseSyntaxDefinition(inputStream,
+            ModelParsingResult result = TCSSpecificEMFModelInjector.parseSyntaxDefinition(inputStream,
                     sourceConfiguration.getResourceSet(), sourceConfiguration.getReferenceScope(), /* observer */null);
 
-            List<ParsingError> errors = result.getResult().getErrors();
+            List<ParsingError> errors = result.getErrors();
             if (errors != null && errors.size() > 0) {
-                if (result.getSyntax() != null) {
+                if (result.getParsedModelElement() != null) {
                     // also clean up unfinished syntax
-                    EcoreUtil.delete(result.getSyntax(), true);
+                    EcoreUtil.delete((EObject) result.getParsedModelElement(), true);
                 }
                 for (ParsingError error : errors) {
                     errorHandler.error(error);
                 }
             }
+            ConcreteSyntax syntax = (ConcreteSyntax) result.getParsedModelElement();
 
             TCSSyntaxContainerBean returnBean = new TCSSyntaxContainerBean();
-            returnBean.setSyntax(result.getSyntax());
-            returnBean.setKeywords(result.getKeywords());
-            returnBean.setElementToLocationMap(result.getResult().getLocationMap());
+            returnBean.setSyntax(syntax);
+            returnBean.setElementToLocationMap(result.getLocationMap());
 
             return returnBean;
 

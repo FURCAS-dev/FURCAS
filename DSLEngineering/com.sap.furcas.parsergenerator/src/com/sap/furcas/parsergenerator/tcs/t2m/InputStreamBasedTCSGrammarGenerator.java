@@ -15,15 +15,17 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
-import com.sap.furcas.parsergenerator.emf.tcs.inject.ModelInjectionResult;
 import com.sap.furcas.parsergenerator.emf.tcs.inject.TCSSpecificEMFModelInjector;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.ParserInvokationException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.runtime.parser.ModelParsingResult;
 import com.sap.furcas.runtime.parser.ParsingError;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
@@ -59,21 +61,22 @@ public class InputStreamBasedTCSGrammarGenerator extends AbstractTCSGrammarGener
             throws InvalidParserImplementationException, IOException, UnknownProductionRuleException, SyntaxParsingException {
 
         // By choosing this injector, we establish the dependency to EMF.
-        ModelInjectionResult result = TCSSpecificEMFModelInjector.parseSyntaxDefinition(definitionInputStream, resourceSet,
+        ModelParsingResult result = TCSSpecificEMFModelInjector.parseSyntaxDefinition(definitionInputStream, resourceSet,
                 referenceScope, /* observer */null);
 
-        List<ParsingError> errors = result.getResult().getErrors();
+        List<ParsingError> errors = result.getErrors();
         if (errors != null && errors.size() > 0) {
-            if (result.getSyntax() != null) {
+            if (result.getParsedModelElement() != null) {
                 // also clean up unfinished syntax
-                EcoreUtil.delete(result.getSyntax(), /* recursive */true);
+                EcoreUtil.delete((EObject) result.getParsedModelElement(), /* recursive */true);
             }
             throw new SyntaxParsingException(errors);
         }
+        ConcreteSyntax syntax = (ConcreteSyntax) result.getParsedModelElement();
+        
         TCSSyntaxContainerBean returnBean = new TCSSyntaxContainerBean();
-        returnBean.setSyntax(result.getSyntax());
-        returnBean.setKeywords(result.getKeywords());
-        returnBean.setElementToLocationMap(result.getResult().getLocationMap());
+        returnBean.setSyntax(syntax);
+        returnBean.setElementToLocationMap(result.getLocationMap());
 
         return returnBean;
     }

@@ -36,7 +36,7 @@ public class TCSSpecificEMFModelInjector {
     /**
      * Parse the syntax definition using the stable version of the TCSParser and TCSLexer.
      */
-    public static ModelInjectionResult parseSyntaxDefinition(InputStream in, ResourceSet resourceSet, Set<URI> referenceScope,
+    public static ModelParsingResult parseSyntaxDefinition(InputStream in, ResourceSet resourceSet, Set<URI> referenceScope,
 	    IParsingObserver observer) throws InvalidParserImplementationException, IOException, UnknownProductionRuleException {
         
         ParserFacade tcsParserFacade = TCSParserFacadeFactory.INSTANCE.createTCSParserFacade();
@@ -46,7 +46,7 @@ public class TCSSpecificEMFModelInjector {
     /**
      * Parse the syntax definition using the given version of the TCSParser and TCSLexer.
      */
-    public static ModelInjectionResult parseSyntaxDefinition(InputStream in, ResourceSet resourceSet, Set<URI> referenceScope,
+    public static ModelParsingResult parseSyntaxDefinition(InputStream in, ResourceSet resourceSet, Set<URI> referenceScope,
 	    IParsingObserver observer, ParserFacade tcsParserFacade) throws IOException, UnknownProductionRuleException {
         
 	// use a model Handler that is implemented in EMF and only handles TCS models
@@ -54,8 +54,7 @@ public class TCSSpecificEMFModelInjector {
 	
 	try {
 	    DefaultTextAwareModelAdapter handlerWrapper = new DefaultTextAwareModelAdapter(handler);
-	    ModelParsingResult result = tcsParserFacade.parseProductionRule(in, handlerWrapper, null, null, observer);
-	    return new ModelInjectionResult(handler, result);
+	    return tcsParserFacade.parseProductionRule(in, handlerWrapper, null, null, observer);
 	} finally {
 	    handler.close();
 	}

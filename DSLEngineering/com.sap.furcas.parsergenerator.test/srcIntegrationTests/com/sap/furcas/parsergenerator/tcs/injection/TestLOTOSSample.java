@@ -3,9 +3,7 @@ package com.sap.furcas.parsergenerator.tcs.injection;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -13,7 +11,6 @@ import org.junit.Test;
 import com.sap.furcas.metamodel.FURCAS.TCS.Associativity;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
@@ -34,7 +31,7 @@ public class TestLOTOSSample extends AbstractTCSInjectionTest {
         // now check the generated model is okay
         assertNotNull(syntax);
         assertEquals("LOTOS", syntax.getName());
-        assertEquals(0, modelParsingResult.getResult().getErrors().size());
+        assertEquals(0, modelParsingResult.getErrors().size());
     }
 
     @Test
@@ -109,16 +106,7 @@ public class TestLOTOSSample extends AbstractTCSInjectionTest {
      */
     @Test
     public void testKeywords() throws Exception {
-
-        Set<Keyword> keywords = modelParsingResult.getKeywords();
-        Iterator<Keyword> iterator = keywords.iterator();
-        for (; iterator.hasNext();) {
-            Keyword keyword = iterator.next();
-            keywords.add(keyword);
-        }
-
-        // syntax.getKeywords();
-        assertEquals(29, keywords.size());
+        assertEquals(29, syntax.getKeywords().size());
     }
 
     @Test
