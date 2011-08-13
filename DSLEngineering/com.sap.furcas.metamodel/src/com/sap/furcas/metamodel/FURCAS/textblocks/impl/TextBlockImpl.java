@@ -349,7 +349,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
      * @generated
      * @ordered
      */
-    protected static final EOperation.Internal.InvocationDelegate GET_SUB_BLOCKS_1__EINVOCATION_DELEGATE = ((EOperation.Internal)TextblocksPackage.Literals.TEXT_BLOCK.getEOperations().get(0)).getInvocationDelegate();
+    protected static final EOperation.Internal.InvocationDelegate GET_SUB_BLOCKS__EINVOCATION_DELEGATE = ((EOperation.Internal)TextblocksPackage.Literals.TEXT_BLOCK.getEOperations().get(0)).getInvocationDelegate();
 
     /**
      * <!-- begin-user-doc -->
@@ -359,7 +359,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
     @SuppressWarnings("unchecked")
     public EList<TextBlock> getSubBlocks() {
         try {
-            return (EList<TextBlock>)GET_SUB_BLOCKS_1__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return (EList<TextBlock>)GET_SUB_BLOCKS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -374,7 +374,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
      * @generated
      * @ordered
      */
-    protected static final EOperation.Internal.InvocationDelegate GET_TOKENS_1__EINVOCATION_DELEGATE = ((EOperation.Internal)TextblocksPackage.Literals.TEXT_BLOCK.getEOperations().get(1)).getInvocationDelegate();
+    protected static final EOperation.Internal.InvocationDelegate GET_TOKENS__EINVOCATION_DELEGATE = ((EOperation.Internal)TextblocksPackage.Literals.TEXT_BLOCK.getEOperations().get(1)).getInvocationDelegate();
 
     /**
      * <!-- begin-user-doc -->
@@ -384,7 +384,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
     @SuppressWarnings("unchecked")
     public EList<AbstractToken> getTokens() {
         try {
-            return (EList<AbstractToken>)GET_TOKENS_1__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return (EList<AbstractToken>)GET_TOKENS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
