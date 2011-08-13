@@ -204,12 +204,15 @@ public class TestSyntaxLookup {
         MetaModelElementResolutionHelperStub namingHelper = new MetaModelElementResolutionHelperStub();
         EList<Keyword> keywordList = new BasicEList<Keyword>();
         Keyword keyStub1 = new KeywordStub();
+        keyStub1.setValue("ONE");
         
         keywordList.add(keyStub1 );
         ConcreteSyntaxStub syntax = new ConcreteSyntaxStub();
         
         Keyword keyStub2 = new KeywordStub();
         keywordList.add(keyStub2 );
+        keyStub2.setValue("TWO");
+
         syntax.keywords = keywordList;
         
         SyntaxLookup lookup = new SyntaxLookup(syntax, namingHelper);
