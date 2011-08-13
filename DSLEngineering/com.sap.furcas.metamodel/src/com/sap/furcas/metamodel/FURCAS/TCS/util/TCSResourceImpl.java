@@ -7,7 +7,6 @@
 package com.sap.furcas.metamodel.FURCAS.TCS.util;
 
 import org.eclipse.emf.common.util.URI;
-
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
 /**
@@ -15,7 +14,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
  * The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
  * @see com.sap.furcas.metamodel.FURCAS.TCS.util.TCSResourceFactoryImpl
- * @generated
+ * @generated NOT
  */
 public class TCSResourceImpl extends XMIResourceImpl {
     /**
@@ -27,6 +26,14 @@ public class TCSResourceImpl extends XMIResourceImpl {
      */
     public TCSResourceImpl(URI uri) {
         super(uri);
+    }
+    
+    /**
+     * @generated NOT
+     */
+    @Override
+    protected boolean useUUIDs() {
+        return true;
     }
 
 } //TCSResourceImpl
