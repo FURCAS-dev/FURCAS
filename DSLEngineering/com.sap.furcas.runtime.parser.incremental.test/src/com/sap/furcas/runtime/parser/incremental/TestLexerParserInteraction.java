@@ -110,8 +110,7 @@ public class TestLexerParserInteraction extends FixtureProvidingTextBlockTest {
         ANTLRIncrementalLexerAdapter lexer = new ANTLRIncrementalLexerAdapter(lexerAdapter, null);
         ANTLRIncrementalTokenStream input = new ANTLRIncrementalTokenStream(lexer);
 
-        ParserScope parserScope = new ParserScope(resourceSet, transientParsingResource, new TCSParserFactory());
-
+        ParserScope parserScope = new ParserScope(resourceSet, new TCSParserFactory());
         PartitionAssignmentHandler partitioningHandler = new MockPartitionAssignmentHandler(transientParsingResource);
         ParserTextBlocksHandler tbh = new ParserTextBlocksHandler(input, parserScope, partitioningHandler);
 

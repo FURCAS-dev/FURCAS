@@ -7,6 +7,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
+import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.runtime.parser.PartitionAssignmentHandler;
 
 
@@ -15,24 +16,19 @@ import com.sap.furcas.runtime.parser.PartitionAssignmentHandler;
 public class DefaultPartitionAssignmentHandlerImpl implements PartitionAssignmentHandler {
 
     public static final String TEXTBLOCKS_PARTITION_EXTENSION = "textblocks";
-    private Resource defaultPartition;
-    private Resource defaultTextBlocksPartition;
+    protected Resource defaultPartition;
+    protected Resource defaultTextBlocksPartition;
 
     /**
-     * Assigns the <code>newElement</code> to a partition according to the given
-     * Tag "org.omg.sap2mof.requiresPartition" in the metamodel. If the tag is
-     * false or not specified assigns the <code>newElement</code> to the
-     * partition of the <code>elementInPartition</code>.
+     * Assigns the <code>element</code> to the partition of the <code>elementInPartition</code>.
      * 
      * @param elementInPartition
-     * @param newElement
+     * @param element 
      */
     @Override
     public void assignToPartition(EObject element, EObject elementInPartition) {
         if (element != elementInPartition) {
-            Resource partition = null;
-            partition = elementInPartition.eResource();
-            partition.getContents().add(element);
+            elementInPartition.eResource().getContents().add(element);
         } else {
             assignToDefaultPartition(element);
         }	
@@ -60,26 +56,16 @@ public class DefaultPartitionAssignmentHandlerImpl implements PartitionAssignmen
     }
 
     @Override
-    public void assignToDefaultTextBlocksPartition(EObject element) {
-        if (element != null && !defaultTextBlocksPartition.equals(element.eResource())) {
+    public void assignToDefaultTextBlocksPartition(DocumentNode element) {
+        if (element != null && element.eResource() != defaultTextBlocksPartition) {
             defaultTextBlocksPartition.getContents().add(element);
         }
-    }
-
-    @Override
-    public Resource getDefaultPartition() {
-        return defaultPartition;
     }
     
     @Override
     public void saveAllPartitions(Map<?,?> options) throws IOException {
         defaultPartition.save(options);
         defaultTextBlocksPartition.save(options);
-    }
-
-    @Override
-    public Resource getDefaultTextBlockPartition() {
-        return defaultTextBlocksPartition;
     }
 
 }

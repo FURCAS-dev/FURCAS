@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
 import com.sap.furcas.modeladaptation.emf.lookup.QueryBasedEcoreMetaModelLookUp;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
-import com.sap.furcas.test.testutils.ResourceTestHelper;
+import com.sap.furcas.runtime.parser.PartitionAssignmentHandlerBaseImpl;
 
 /**
  * Helper class. Makes it easier to call several model adapter methods.
@@ -24,8 +24,9 @@ import com.sap.furcas.test.testutils.ResourceTestHelper;
 public class TestableEMFModelAdapter extends EMFModelAdapter {
 
     public TestableEMFModelAdapter(ResourceSet resourceSet, Resource transientResource, EPackage metamodelPackage) {
-        super(resourceSet, transientResource, new QueryBasedEcoreMetaModelLookUp(ResourceTestHelper.createResourceSet(),
-                Collections.singleton(URI.createURI(metamodelPackage.getNsURI()))), new HashSet<URI>());
+        super(resourceSet, new PartitionAssignmentHandlerBaseImpl(transientResource),
+                new QueryBasedEcoreMetaModelLookUp(resourceSet, Collections.singleton(URI.createURI(metamodelPackage.getNsURI()))),
+                new HashSet<URI>());
     }
 
     public Object createElement(String string) throws ModelAdapterException {

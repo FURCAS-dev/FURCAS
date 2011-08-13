@@ -76,8 +76,20 @@ public class SyntaxLookup {
         }
     }
 
+    /**
+     * Filter duplicates.
+     */
     public Set<Keyword> getAllKeywords() {
-        return new HashSet<Keyword>(syntax.getKeywords());
+        HashSet<String> strings = new HashSet<String>();
+        HashSet<Keyword> keywords = new HashSet<Keyword>();
+
+        for (Keyword k : syntax.getKeywords()) {
+            if (!strings.contains(k.getValue())) {
+                keywords.add(k);
+                strings.add(k.getValue());
+            }
+        }
+        return keywords;
     }
 
    /**

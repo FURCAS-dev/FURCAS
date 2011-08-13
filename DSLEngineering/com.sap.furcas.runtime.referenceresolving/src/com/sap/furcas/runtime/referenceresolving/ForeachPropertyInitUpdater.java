@@ -60,6 +60,7 @@ import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.IParsingObserver;
 import com.sap.furcas.runtime.parser.ModelElementCreationException;
 import com.sap.furcas.runtime.parser.ParserFactory;
+import com.sap.furcas.runtime.parser.PartitionAssignmentHandlerBaseImpl;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.impl.DefaultTextAwareModelAdapter;
 import com.sap.furcas.runtime.parser.impl.DelegationParsingObserver;
@@ -551,7 +552,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
             IMetaModelLookup<EObject> metamodelLookup = new QueryBasedEcoreMetaModelLookUp(resourceSet,
                     parserFactory.getMetamodelURIs());
             IModelAdapter modelAdapter = new DefaultTextAwareModelAdapter(new EMFModelAdapter(resourceSet,
-                    transientResource, metamodelLookup, scope));
+                    new PartitionAssignmentHandlerBaseImpl(transientResource), metamodelLookup, scope));
             
             ObservableInjectingParser parser = parserFactory.createParser(new CommonTokenStream(lexer), modelAdapter);
             DelegationParsingObserver delegator = new DelegationParsingObserver();

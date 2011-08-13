@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
@@ -47,6 +46,7 @@ import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.common.util.MessageUtil;
 import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
+import com.sap.furcas.runtime.parser.PartitionAssignmentHandlerBase;
 import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider;
@@ -62,7 +62,8 @@ public class EMFModelAdapterDelegate {
     private final Collection<StructureTypeMockObject> structureTypeMocks = new ArrayList<StructureTypeMockObject>();
     private final Map<Object, Object> mock2ModelElementMap = new HashMap<Object, Object>();
 
-    private final Resource transientResource;
+    private final PartitionAssignmentHandlerBase partitioningHandler;
+    private final HashSet<URI> explicitQueryScope;
     
     private final EcoreModelElementFinder modelLookup;
     private final IMetaModelLookup<EObject> metamodelLookup;
@@ -71,22 +72,17 @@ public class EMFModelAdapterDelegate {
     private final Query2OppositeEndFinder oppositeEndFinder;
 
     /**
-     * @see {@link EMFModelAdapter} for any API documentation.
+     * @see EMFModelAdapter for any API documentation.
      */
-    public EMFModelAdapterDelegate(ResourceSet resourceSet, Resource transientResource, IMetaModelLookup<EObject> metamodelLookup, Set<URI> additionalQueryScope) {
-        if (transientResource.getResourceSet() != resourceSet) {
-            throw new IllegalArgumentException("Transient resource must be, as all other dirty resources, contained within the given resourceSet");
-        }
+    public EMFModelAdapterDelegate(ResourceSet resourceSet, PartitionAssignmentHandlerBase partitioningHandler, IMetaModelLookup<EObject> metamodelLookup, Set<URI> additionalQueryScope) {
         this.metamodelLookup = metamodelLookup;
-        this.transientResource = transientResource;
-        
-        HashSet<URI> explicitQueryScope = new HashSet<URI>();
-        explicitQueryScope.add(transientResource.getURI());
-        explicitQueryScope.addAll(additionalQueryScope);
+        this.partitioningHandler = partitioningHandler;
         
         // The model lookup needs to know about the element created by this delegate
         // This is only a partial scope as it does neither include or resources in the resourceSet,
         // nor all resources within the workspace
+        explicitQueryScope = new HashSet<URI>();
+        explicitQueryScope.addAll(additionalQueryScope);
         modelLookup = new EcoreModelElementFinder(resourceSet, explicitQueryScope, metamodelLookup);
         
         // Build a scope encompassing all resources in the resource set,
@@ -96,11 +92,7 @@ public class EMFModelAdapterDelegate {
         this.oppositeEndFinder = new Query2OppositeEndFinder(queryContext);
         this.oclEvaluator = new TCSSpecificOCLEvaluator(oppositeEndFinder);
     }
-    
-    private void assignToTransientResource(EObject eObject) {
-        transientResource.getContents().add(eObject);
-    }
-    
+        
     public Object createElement(List<String> qualifiedTypeName) throws ModelAdapterException {
         EModelElement modelElement = findClassifierByName(qualifiedTypeName);
         if (modelElement instanceof EClass) {
@@ -110,7 +102,7 @@ public class EMFModelAdapterDelegate {
                         + " as it is abstract.");
             }
             EObject created = EcoreUtil.create(metaClass);
-            assignToTransientResource(created);
+            assignToPartition(created);
             return created;
         } else if (modelElement instanceof EDataType) {
             EDataType structype = (EDataType) modelElement;
@@ -121,6 +113,13 @@ public class EMFModelAdapterDelegate {
             throw new ModelAdapterException("Unsupported model element type. Cannot instantiate EModelElement "
                     + MessageUtil.asModelName(qualifiedTypeName));
         }
+    }
+
+    private void assignToPartition(EObject created) {
+        partitioningHandler.assignToDefaultPartition(created);
+        // for the EcoreModelElementFinder to work we need to know which resources hold
+        // model elements created by this adapter.
+        explicitQueryScope.add(created.eResource().getURI());
     }
     
     public EEnumLiteral createEnumLiteral(List<String> qualifiedEnumTypeName, String enumLiteralName) throws ModelAdapterException {
@@ -193,7 +192,7 @@ public class EMFModelAdapterDelegate {
                         + ", when the property has " + multiProperty.size() + " elements.");
             }
         }
-        removeExplicitTransientResourceAssignmentIfAddedToContainment(feat, value);
+        removeExplicitResourceAssignmentIfAddedToContainment(modelElement, feat, value);
     }
 
     @SuppressWarnings("unchecked")
@@ -228,17 +227,38 @@ public class EMFModelAdapterDelegate {
                         + feat.getUpperBound());
             }
         }
-        removeExplicitTransientResourceAssignmentIfAddedToContainment(feat, value);
+        removeExplicitResourceAssignmentIfAddedToContainment(modelElement, feat, value);
     }
-
-    private void removeExplicitTransientResourceAssignmentIfAddedToContainment(EStructuralFeature feat, Object value) {
-        if (feat instanceof EReference && ((EReference) feat).isContainment()) {
-            if (value instanceof Collection<?>) {
-                for (Object o : (Collection<?>) value) {
-                    removeExplicitTransientResourceAssignmentIfAddedToContainment(feat, o);
-                }
-            } else if (value instanceof EObject) {
-                transientResource.getContents().remove(value);
+    
+    /**
+     * Break the existing resource assignment of the child if the parent has the same resource. We want the child
+     * to be located directly under the parent. It should not stay a top-level element in the resource.
+     * 
+     * The check for the same resource is needed to allow custom partitioning.
+     */
+    private void removeExplicitResourceAssignmentIfAddedToContainment(EObject modelElement, EStructuralFeature feat, Object value) {
+        if (! (feat instanceof EReference)) {
+            return;
+        }
+        if (value instanceof Collection<?>) {
+            for (Object o : (Collection<?>) value) {
+                removeExplicitResourceAssignmentIfAddedToContainment(modelElement, feat, o);
+            }
+        } else if (value instanceof EObject) {
+            EObject parent = null;
+            EObject child = null;
+            
+            if (((EReference) feat).isContainment()) {
+                parent = modelElement;
+                child = (EObject) value;
+            } else if (((EReference) feat).isContainer()) {
+                parent = (EObject) value;
+                child = modelElement;
+            } else {
+                return;
+            }
+            if (parent.eResource().equals(child.eResource())) {
+                parent.eResource().getContents().remove(child);
             }
         }
     }
