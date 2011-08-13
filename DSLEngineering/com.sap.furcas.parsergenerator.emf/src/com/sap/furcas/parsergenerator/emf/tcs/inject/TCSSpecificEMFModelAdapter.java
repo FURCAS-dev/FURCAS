@@ -26,6 +26,7 @@ import com.sap.furcas.runtime.common.exceptions.ReferenceSettingException;
 import com.sap.furcas.runtime.common.interfaces.IBareModelAdapter;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
+import com.sap.furcas.runtime.parser.PartitionAssignmentHandlerBaseImpl;
 
 /**
  * Specialized EMF Adapter for TCS Syntaxes
@@ -33,16 +34,15 @@ import com.sap.furcas.runtime.common.util.EcoreHelper;
 public class TCSSpecificEMFModelAdapter implements IBareModelAdapter {
 
     private final EMFModelAdapter adapter;
-    private final Resource transientResource;
 
     /**
      * Instantiates an EMF model adapter to be used to create TCS syntax models.
      * 
      * @param resourceSet 
-     * @param referenceScope, all metamodels referenced by the syntax to be parsed
+     * @param referenceScope all metamodels referenced by the syntax to be parsed
      */
     public TCSSpecificEMFModelAdapter(ResourceSet resourceSet, Set<URI> referenceScope) {
-        transientResource = EcoreHelper.createTransientParsingResource(resourceSet, FURCASPackage.eINSTANCE.getNsURI());
+        Resource transientResource = EcoreHelper.createTransientParsingResource(resourceSet, FURCASPackage.eINSTANCE.getNsURI());
         
         // Though we get metamodel URIs passed in, we do actually want to instantiate TCS models.
         // The metamodels passed in are only referenced by the templates we create. Thus, they have to
@@ -52,11 +52,8 @@ public class TCSSpecificEMFModelAdapter implements IBareModelAdapter {
         metamodelURIs.add(URI.createURI(EcorePackage.eINSTANCE.getNsURI()));
         
         IMetaModelLookup<EObject> metamodelLookup = new QueryBasedEcoreMetaModelLookUp(resourceSet, metamodelURIs);
-        adapter = new EMFModelAdapter(resourceSet, transientResource, metamodelLookup, referenceScope);
-    }
-
-    public void close() {
-
+        adapter = new EMFModelAdapter(resourceSet, new PartitionAssignmentHandlerBaseImpl(transientResource),
+                metamodelLookup, referenceScope);
     }
 
     /*

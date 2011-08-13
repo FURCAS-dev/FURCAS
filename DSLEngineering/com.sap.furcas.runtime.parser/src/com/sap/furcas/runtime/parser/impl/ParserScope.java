@@ -10,16 +10,15 @@
  ******************************************************************************/
 package com.sap.furcas.runtime.parser.impl;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import org.antlr.runtime.Lexer;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.modeladaptation.emf.lookup.QueryBasedEcoreMetaModelLookUp;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.parser.ParserFactory;
@@ -52,8 +51,7 @@ public class ParserScope {
     private final Set<URI> explicitQueryScope;
 
     
-    public ParserScope(ResourceSet resourceSet, Resource transientResource, 
-            ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) {
+    public ParserScope(ResourceSet resourceSet, ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) {
         
         this.metamodels = parserFactory.getMetamodelURIs();
         this.metamodelLookup = new QueryBasedEcoreMetaModelLookUp(resourceSet, metamodels);
@@ -61,13 +59,10 @@ public class ParserScope {
         this.syntax = (ConcreteSyntax) resourceSet.getEObject(URI.createURI(parserFactory.getSyntaxUUID()), true);
         this.resourceSet = resourceSet;
         
-        
         MetaModelElementResolutionHelper<EObject> resolutionHelper = new MetaModelElementResolutionHelper<EObject>(metamodelLookup);
         this.syntaxLookup = new SyntaxLookup(syntax, resolutionHelper);
         
-        this.explicitQueryScope = new HashSet<URI>();
-        explicitQueryScope.add(transientResource.getURI());
-        explicitQueryScope.addAll(parserFactory.getAdditionalQueryScope());
+        this.explicitQueryScope = parserFactory.getAdditionalQueryScope();
     }
     
     
@@ -117,13 +112,9 @@ public class ParserScope {
      * project dependencies. Some resources might be shipped in plugins and
      * would not be visible. <p>
      * 
-     * Such resources are loaded on-demand and endup in the {@link resourceSet}<p>
+     * Such resources are loaded on-demand and endup in the {@link ResourceSet}<p>
      * 
-     * Furthermore, URIs of transient in-memory resources that contain domain elements which
-     * are temporarily created during parsing. Elements within this resources will
-     * eventually be moved to a persistent resource.<p>
-     * 
-     * This scope does not include any TextBlocks resoources.
+     * This scope does not include any TextBlocks resources.
      */
     public Set<URI> getExplicitQueryScope() {
         return explicitQueryScope;

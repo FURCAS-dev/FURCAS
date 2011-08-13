@@ -23,7 +23,6 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
 import com.sap.furcas.runtime.common.exceptions.ParserInstantiationException;
 import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
-import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ParserFactory;
 import com.sap.furcas.runtime.parser.ParsingError;
@@ -61,7 +60,6 @@ public class IncrementalParserFacade {
     private final ModelInjector injector;
     private final ParserTextBlocksHandler observer;
     private final ParserScope parserScope;
-    private final Resource transientResource;
     private final PartitionAssignmentHandler partitionAssignmentHandler;
 
     public IncrementalParserFacade(ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory,
@@ -70,10 +68,7 @@ public class IncrementalParserFacade {
         this.parserFactory = parserFactory;
         this.partitionAssignmentHandler = partitionAssignmentHandler;
         
-        this.transientResource = EcoreHelper.createTransientParsingResource(
-                resourceSet, parserFactory.getMetamodelURIs().iterator().next().toString());
-        
-        this.parserScope = new ParserScope(resourceSet, transientResource, parserFactory);
+        this.parserScope = new ParserScope(resourceSet, parserFactory);
         IModelAdapter modelAdapter = createModelAdapter();
 
         // TODO use token wrapper factory here
@@ -178,7 +173,7 @@ public class IncrementalParserFacade {
         TokenStream tokenStream = new CommonTokenStream(lexer);
                 
         IModelAdapter modelAdapter = new DefaultTextAwareModelAdapter(new EMFModelAdapter(parserScope.getResourceSet(),
-                transientResource, parserScope.getMetamodelLookup(), parserScope.getExplicitQueryScope()));
+                partitionAssignmentHandler, parserScope.getMetamodelLookup(), parserScope.getExplicitQueryScope()));
         
         ObservableInjectingParser p = parserFactory.createParser(tokenStream, modelAdapter);
         return p.checkSyntaxWithoutInjecting();
@@ -257,8 +252,8 @@ public class IncrementalParserFacade {
     }
     
     /*package*/ IModelAdapter createModelAdapter() {
-        return new TextBlocksAwareModelAdapter(new EMFModelAdapter(
-                parserScope.getResourceSet(), transientResource, parserScope.getMetamodelLookup(), parserScope.getExplicitQueryScope()));
+        return new TextBlocksAwareModelAdapter(new EMFModelAdapter(parserScope.getResourceSet(),
+                partitionAssignmentHandler, parserScope.getMetamodelLookup(), parserScope.getExplicitQueryScope()));
     }
     
     /*package*/ IModelAdapter getModelAdapter() {

@@ -68,6 +68,11 @@ public class EcoreModelElementFinder {
     private static final String MQL_ALIAS_INSTANCE = "instance";
     
 
+    /**
+     * 
+     * @param referenceScope a live collection. May be changed from the outside after this class
+     *          has been instantiated.
+     */
     public EcoreModelElementFinder(ResourceSet resourceSet, Set<URI> referenceScope, IMetaModelLookup<EObject> metamodelLookup) {
         this.resourceSet = resourceSet;
         this.metamodelLookup = metamodelLookup;

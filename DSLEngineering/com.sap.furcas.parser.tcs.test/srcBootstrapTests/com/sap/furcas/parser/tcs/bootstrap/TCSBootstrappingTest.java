@@ -6,6 +6,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -20,6 +21,7 @@ import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ParserFacade;
+import com.sap.furcas.runtime.parser.PartitionAssignmentHandlerBaseImpl;
 import com.sap.furcas.runtime.parser.impl.DefaultTextAwareModelAdapter;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
@@ -62,10 +64,10 @@ public class TCSBootstrappingTest extends GeneratedParserBasedTest {
         TCSSyntaxContainerBean syntaxBeanyntaxBean = parseSyntax(testConfig);
         ParserFacade facade = generateParserForLanguage(syntaxBeanyntaxBean, testConfig, new ClassLookupImpl());
 
+        Resource transientResource = EcoreHelper.createTransientParsingResource(resourceSet, FURCASPackage.eINSTANCE.getNsURI());        
         parsingHelper = new StubParsingHelper(facade);
         modelAdapter = new DefaultTextAwareModelAdapter(new EMFModelAdapter(testConfig.getSourceConfiguration().getResourceSet(), 
-                EcoreHelper.createTransientParsingResource(resourceSet, FURCASPackage.eINSTANCE.getNsURI()),
-                metamodelLookup, metamodels));
+                new PartitionAssignmentHandlerBaseImpl(transientResource), metamodelLookup, metamodels));
     }
 
     @Test

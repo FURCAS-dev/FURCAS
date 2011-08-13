@@ -9,6 +9,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -77,6 +78,14 @@ public class TestSimplePropertyInitReEvaluationWithContext extends AbstractRefer
                 article = entry;
             }
         }
+    }
+    
+    @After
+    public void removeModelFromResourceSet() {
+        rootElement.eResource().getContents().remove(rootElement);
+        resourceSet.getResources().remove(transientParsingResource);
+        // make sure the next parser run isn't obstructed by an already subscribed trigger manager:
+        triggerManager.removeFromObservedResourceSets(resourceSet);
     }
 
     @Test

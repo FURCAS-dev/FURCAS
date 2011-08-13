@@ -51,13 +51,9 @@ public class TCSSpecificEMFModelInjector {
         
 	// use a model Handler that is implemented in EMF and only handles TCS models
 	TCSSpecificEMFModelAdapter handler = new TCSSpecificEMFModelAdapter(resourceSet, referenceScope);;
-	
-	try {
-	    DefaultTextAwareModelAdapter handlerWrapper = new DefaultTextAwareModelAdapter(handler);
-	    return tcsParserFacade.parseProductionRule(in, handlerWrapper, null, null, observer);
-	} finally {
-	    handler.close();
-	}
+
+        DefaultTextAwareModelAdapter handlerWrapper = new DefaultTextAwareModelAdapter(handler);
+        return tcsParserFacade.parseProductionRule(in, handlerWrapper, null, null, observer);
 
     }
 

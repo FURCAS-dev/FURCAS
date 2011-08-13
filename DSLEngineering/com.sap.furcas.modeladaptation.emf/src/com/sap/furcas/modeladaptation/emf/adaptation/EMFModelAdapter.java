@@ -19,7 +19,6 @@ import java.util.Set;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.runtime.common.exceptions.DeferredActionResolvingException;
@@ -29,6 +28,7 @@ import com.sap.furcas.runtime.common.interfaces.IBareModelAdapter;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.common.util.MessageUtil;
+import com.sap.furcas.runtime.parser.PartitionAssignmentHandlerBase;
 
 /**
  * Facade for the creation of EMF model elements. 
@@ -55,9 +55,8 @@ public class EMFModelAdapter implements IBareModelAdapter {
      * Creates a new ModelAdapter which creates EMF model elements.
      * 
      * @param resourceSet A resourceSet to work on
-     * @param transientResource A resource that is meant to be in-memory only. It must be contained
-     *          in the given resource set. All elements created by this adapter are added to this resource..
-     *          It is the responsponsability of the caller to cleanup the resource and the contained elements afterwards.
+     * @param partitioningHandler A partitioning handler that shall be used to partition created elements by adding
+     *          them to an appropriate resource. The resources should be contained in the given resourceSet.
      * @param metamodelLookup A {@link IMetaModelLookup} configured for all the metamodels this modeladapter is supposed to work on.
      * @param additionalQueryScope A list of additional URIs that shall be looked at when references are
      *          resolved or when existing model elements are queres. The queryScope by default already includes the
@@ -65,8 +64,8 @@ public class EMFModelAdapter implements IBareModelAdapter {
      *          and the visible URIs of the give resource set. In most cases the scope can therefore remain
      *          empty.
      */
-    public EMFModelAdapter(ResourceSet resourceSet, Resource transientResource, IMetaModelLookup<EObject> metamodelLookup, Set<URI> additionalQueryScope) {
-        delegate = new EMFModelAdapterDelegate(resourceSet, transientResource, metamodelLookup, additionalQueryScope);
+    public EMFModelAdapter(ResourceSet resourceSet, PartitionAssignmentHandlerBase partitioningHandler, IMetaModelLookup<EObject> metamodelLookup, Set<URI> additionalQueryScope) {
+        delegate = new EMFModelAdapterDelegate(resourceSet, partitioningHandler, metamodelLookup, additionalQueryScope);
     }
 
     @Override

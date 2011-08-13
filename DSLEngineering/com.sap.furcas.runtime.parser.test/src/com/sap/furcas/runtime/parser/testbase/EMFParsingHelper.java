@@ -15,6 +15,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
@@ -24,6 +25,7 @@ import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ModelParsingResult;
 import com.sap.furcas.runtime.parser.ParserFacade;
+import com.sap.furcas.runtime.parser.PartitionAssignmentHandlerBaseImpl;
 import com.sap.furcas.runtime.parser.impl.DefaultTextAwareModelAdapter;
 
 /**
@@ -45,8 +47,9 @@ public class EMFParsingHelper extends AbstractParsingHelper<ModelParsingResult> 
     @Override
     protected IModelAdapter createModelAdapter() {
         IMetaModelLookup<EObject> metamodelLookup = new QueryBasedEcoreMetaModelLookUp(resourceSet, referenceScope);
+        Resource transientResource = EcoreHelper.createTransientParsingResource(resourceSet, packageURI);
         return new DefaultTextAwareModelAdapter(new EMFModelAdapter(resourceSet,
-                EcoreHelper.createTransientParsingResource(resourceSet, packageURI), metamodelLookup, new HashSet<URI>()));
+                new PartitionAssignmentHandlerBaseImpl(transientResource), metamodelLookup, new HashSet<URI>()));
     }
 
     @Override
