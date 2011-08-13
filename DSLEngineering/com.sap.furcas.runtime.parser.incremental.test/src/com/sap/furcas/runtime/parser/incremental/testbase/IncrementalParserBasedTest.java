@@ -11,9 +11,12 @@
 package com.sap.furcas.runtime.parser.incremental.testbase;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
@@ -68,6 +71,9 @@ public abstract class IncrementalParserBasedTest extends GeneratedParserAndFacto
         AbstractToken emptyToken = modelFactory.createToken("");
         TextBlock rootBlock = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, emptyToken);
         model = new TextBlocksModel(rootBlock);
+    
+        // delete model elements and textblocks of the previous test run.
+        transientParsingResource.getContents().clear();
     }
     
     /**
@@ -99,10 +105,44 @@ public abstract class IncrementalParserBasedTest extends GeneratedParserAndFacto
         String postParseContent = model.get(0, model.getLength());
         assertEquals("Textual representation must not be changed", preParseContent, postParseContent);
         
+        assertPartitioning();
+        
         TbValidationUtil.assertTextBlockConsistencyRecursive(resultBlock);
         TbValidationUtil.assertCacheIsUpToDate(resultBlock);
         return resultBlock;
     }
     
+    /**
+     * Assert that we have correctly partitioned the parsed model into resources.
+     * Makes the assumption that the resource is cleared before each parse run. 
+     */
+    protected void assertPartitioning() {
+        int numTextBlocksInReferenceVersion = 0;
+        int numTextBlocksInPreviousVersion = 0;
+        int numTextBlocksInCurrentVersion = 0;
+
+        int numModelElements = 0;
+
+        // iter over top-level elements
+        for (EObject object : transientParsingResource.getContents()) {
+            if (object instanceof TextBlock) {
+                switch (((TextBlock) object).getVersion()) {
+                case REFERENCE: numTextBlocksInReferenceVersion++; break;
+                case PREVIOUS: numTextBlocksInPreviousVersion++; break;
+                case CURRENT: numTextBlocksInCurrentVersion++; break;
+                }
+            } else if (object instanceof AbstractToken) {
+                fail("Tokens must always be owned by TextBlocks");
+            } else {
+                numModelElements++;
+            }
+        }
+        assertTrue("There may not be more than one textblock of each version. Seen " + numTextBlocksInReferenceVersion
+                + " REFERENCE, " + numTextBlocksInPreviousVersion + " PREVIOUS, " + numTextBlocksInCurrentVersion + " CURRENT.",
+                numTextBlocksInReferenceVersion <= 1);
+
+        // Only one is edited at a time. If more are seen than either syntax or partitioning is buggy.
+        assertTrue("May not be more than one model element in the resource. Seen " + numModelElements, numModelElements <= 1);
+    }
     
 }
