@@ -26,6 +26,7 @@ import com.sap.furcas.runtime.common.exceptions.ParserGeneratorInvocationExcepti
 import com.sap.furcas.runtime.common.exceptions.ParserInvokationException;
 
 public class TCSBootstrap {
+    
     private static final String LANGUAGE_NAME = "TCS";
     private static final String GENERATIONDIR = "./generationTemp/";
     private static final String PACKAGE = "generated";
@@ -36,12 +37,6 @@ public class TCSBootstrap {
     private static GrammarGenerationSourceConfiguration sourceConfiguration;
     private static GrammarGenerationTargetConfiguration targetConfiguration;
     private static TCSParserGenerator generator;
-
-    /**
-     * Result of Step #1: The parsed TCS.tcs
-     */
-    private static TCSSyntaxContainerBean syntaxBean;
-    
     
     @BeforeClass
     public static void setup() throws ParserGeneratorInvocationException {
@@ -51,6 +46,14 @@ public class TCSBootstrap {
     }
     
     @Test
+    public void runBootStrap() {
+        phase1_step0_deleteOldBootstrapFiles();
+        TCSSyntaxContainerBean syntaxBean = phase1_step1_parseSyntaxDefintion();
+        phase1_step2_generateGrammar(syntaxBean);
+        phase1_step3_generateParser();
+    }
+    
+    
     public void phase1_step0_deleteOldBootstrapFiles() {
         File dir = new File(GENERATIONDIR + PACKAGE);
         for (File file : dir.listFiles()) {
@@ -62,25 +65,26 @@ public class TCSBootstrap {
     
     /**
      * Step 1: Parse the TCS.tcs syntax definition
+     * @return 
      */
-    @Test
-    public void phase1_step1_parseSyntaxDefintion() {
+    private TCSSyntaxContainerBean phase1_step1_parseSyntaxDefintion() {
         SystemOutErrorHandler errorHandler = new SystemOutErrorHandler();
         try {
-            syntaxBean = generator.parseSyntax(sourceConfiguration, new File(SYNTAXDEFINITION), new SystemOutErrorHandler());
+            TCSSyntaxContainerBean syntaxBean = generator.parseSyntax(sourceConfiguration, new File(SYNTAXDEFINITION), new SystemOutErrorHandler());
             assertFalse("Must have completed without (critical) errors", errorHandler.hasFailedWithError());
             assertEquals(LANGUAGE_NAME, syntaxBean.getSyntax().getName());
+            return syntaxBean;
         } catch (ParserInvokationException e) {
             e.printStackTrace();
             fail("Failed to parse syntax:" + e.getMessage());
+            return null;
         }
     }
     
     /**
      * Step 2: Walk the syntax and generate a corresponding ANTLR grammar
      */
-    @Test
-    public void phase1_step2_generateGrammar() {
+    private void phase1_step2_generateGrammar(TCSSyntaxContainerBean syntaxBean) {
         SystemOutErrorHandler errorHandler = new SystemOutErrorHandler();
         try {
             // Move mapping to target resource. This will cause the appropriate
@@ -108,8 +112,7 @@ public class TCSBootstrap {
     /**
      * Step 3: Use ANTLR to generate a TCSParser.java and TCSLexer.java from the grammar.
      */
-    @Test
-    public void phase1_step3_generateParser() {
+    private void phase1_step3_generateParser() {
         SystemOutErrorHandler errorHandler = new SystemOutErrorHandler();
         generator.generateParserFromGrammar(targetConfiguration, errorHandler);
         assertFalse("Must have completed without (critical) errors", errorHandler.hasFailedWithError());
