@@ -934,15 +934,7 @@ public class TcsUtil {
      */
     public static boolean wasExecuted(ContextTemplate base, EList<Integer> alternativeChoices, SequenceElement searchFor) {
         Sequence sequence = base.getTemplateSequence();
-        List<Integer> alternativeChoicesWithLeadingMinusOneRemoved = new LinkedList<Integer>(alternativeChoices);
-        removeHeadUpToNextPositiveInteger(alternativeChoicesWithLeadingMinusOneRemoved);
-        return sequence != null && wasExecuted(sequence, alternativeChoicesWithLeadingMinusOneRemoved, searchFor);
-    }
-    
-    private static void removeHeadUpToNextPositiveInteger(List<Integer> alternativeChoicesWithLeadingMinusOneRemoved) {
-        while (!alternativeChoicesWithLeadingMinusOneRemoved.isEmpty() && alternativeChoicesWithLeadingMinusOneRemoved.get(0) < 0) {
-            alternativeChoicesWithLeadingMinusOneRemoved.remove(0);
-        }
+        return sequence != null && wasExecuted(sequence, new LinkedList<Integer>(alternativeChoices), searchFor);
     }
 
     private static boolean wasExecuted(Sequence sequence, List<Integer> alternativeChoices, SequenceElement searchFor) {
@@ -964,6 +956,7 @@ public class TcsUtil {
     }
 
     private static Sequence getSubSequence(List<Integer> alternativeChoices, SequenceElement element) {
+        removeHeadUpToNextPositiveInteger(alternativeChoices);
         Sequence subSequence;
         if (element instanceof Alternative) {
             subSequence = ((Alternative) element).getSequences().get(alternativeChoices.get(0));
@@ -989,6 +982,12 @@ public class TcsUtil {
             subSequence = null;
         }
         return subSequence;
+    }
+    
+    private static void removeHeadUpToNextPositiveInteger(List<Integer> alternativeChoicesWithLeadingMinusOneRemoved) {
+        while (!alternativeChoicesWithLeadingMinusOneRemoved.isEmpty() && alternativeChoicesWithLeadingMinusOneRemoved.get(0) < 0) {
+            alternativeChoicesWithLeadingMinusOneRemoved.remove(0);
+        }
     }
 
     public static Template getParentTemplate(SequenceElement e, ConcreteSyntax syntax) {
