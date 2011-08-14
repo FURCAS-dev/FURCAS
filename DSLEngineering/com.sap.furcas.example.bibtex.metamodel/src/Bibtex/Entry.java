@@ -32,102 +32,102 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Entry extends EObject {
     /**
-	 * Returns the value of the '<em><b>Title</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Title</b></em>' attribute.
+     * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Title</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-	 * @return the value of the '<em>Title</em>' attribute.
-	 * @see #setTitle(String)
-	 * @see Bibtex.BibtexPackage#getEntry_Title()
-	 * @model required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Title</em>' attribute.
+     * @see #setTitle(String)
+     * @see Bibtex.BibtexPackage#getEntry_Title()
+     * @model required="true"
+     * @generated
+     */
     String getTitle();
 
     /**
-	 * Sets the value of the '{@link Bibtex.Entry#getTitle <em>Title</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link Bibtex.Entry#getTitle <em>Title</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Title</em>' attribute.
-	 * @see #getTitle()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Title</em>' attribute.
+     * @see #getTitle()
+     * @generated
+     */
     void setTitle(String value);
 
     /**
-	 * Returns the value of the '<em><b>Id</b></em>' attribute.
-	 * The default value is <code>""</code>.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Id</b></em>' attribute.
+     * The default value is <code>""</code>.
+     * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Id</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-	 * @return the value of the '<em>Id</em>' attribute.
-	 * @see #setId(String)
-	 * @see Bibtex.BibtexPackage#getEntry_Id()
-	 * @model default="" required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Id</em>' attribute.
+     * @see #setId(String)
+     * @see Bibtex.BibtexPackage#getEntry_Id()
+     * @model default="" required="true"
+     * @generated
+     */
     String getId();
 
     /**
-	 * Sets the value of the '{@link Bibtex.Entry#getId <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link Bibtex.Entry#getId <em>Id</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Id</em>' attribute.
-	 * @see #getId()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Id</em>' attribute.
+     * @see #getId()
+     * @generated
+     */
     void setId(String value);
 
     /**
-	 * Returns the value of the '<em><b>Author</b></em>' reference list.
-	 * The list contents are of type {@link Bibtex.Author}.
-	 * It is bidirectional and its opposite is '{@link Bibtex.Author#getPublications <em>Publications</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Author</b></em>' reference list.
+     * The list contents are of type {@link Bibtex.Author}.
+     * It is bidirectional and its opposite is '{@link Bibtex.Author#getPublications <em>Publications</em>}'.
+     * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Author</em>' reference list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-	 * @return the value of the '<em>Author</em>' reference list.
-	 * @see Bibtex.BibtexPackage#getEntry_Author()
-	 * @see Bibtex.Author#getPublications
-	 * @model opposite="publications"
-	 * @generated
-	 */
+     * @return the value of the '<em>Author</em>' reference list.
+     * @see Bibtex.BibtexPackage#getEntry_Author()
+     * @see Bibtex.Author#getPublications
+     * @model opposite="publications"
+     * @generated
+     */
     EList<Author> getAuthor();
 
     /**
-	 * Returns the value of the '<em><b>Literaturedb</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link Bibtex.LiteratureDb#getEntries <em>Entries</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Literaturedb</b></em>' container reference.
+     * It is bidirectional and its opposite is '{@link Bibtex.LiteratureDb#getEntries <em>Entries</em>}'.
+     * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Literaturedb</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-	 * @return the value of the '<em>Literaturedb</em>' container reference.
-	 * @see #setLiteraturedb(LiteratureDb)
-	 * @see Bibtex.BibtexPackage#getEntry_Literaturedb()
-	 * @see Bibtex.LiteratureDb#getEntries
-	 * @model opposite="entries" required="true" transient="false"
-	 * @generated
-	 */
+     * @return the value of the '<em>Literaturedb</em>' container reference.
+     * @see #setLiteraturedb(LiteratureDb)
+     * @see Bibtex.BibtexPackage#getEntry_Literaturedb()
+     * @see Bibtex.LiteratureDb#getEntries
+     * @model opposite="entries" required="true" transient="false"
+     * @generated
+     */
     LiteratureDb getLiteraturedb();
 
     /**
-	 * Sets the value of the '{@link Bibtex.Entry#getLiteraturedb <em>Literaturedb</em>}' container reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link Bibtex.Entry#getLiteraturedb <em>Literaturedb</em>}' container reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Literaturedb</em>' container reference.
-	 * @see #getLiteraturedb()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Literaturedb</em>' container reference.
+     * @see #getLiteraturedb()
+     * @generated
+     */
     void setLiteraturedb(LiteratureDb value);
 
 } // Entry

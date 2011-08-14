@@ -18,47 +18,47 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface BibtexFactory extends EFactory {
     /**
-	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc -->
+     * The singleton instance of the factory.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     BibtexFactory eINSTANCE = Bibtex.impl.BibtexFactoryImpl.init();
 
     /**
-	 * Returns a new object of class '<em>Literature Db</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Literature Db</em>'.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Literature Db</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Literature Db</em>'.
+     * @generated
+     */
     LiteratureDb createLiteratureDb();
 
     /**
-	 * Returns a new object of class '<em>Entry</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Entry</em>'.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Entry</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Entry</em>'.
+     * @generated
+     */
     Entry createEntry();
 
     /**
-	 * Returns a new object of class '<em>Author</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Author</em>'.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Author</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Author</em>'.
+     * @generated
+     */
     Author createAuthor();
 
     /**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
+     * Returns the package supported by this factory.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @return the package supported by this factory.
-	 * @generated
-	 */
+     * @return the package supported by this factory.
+     * @generated
+     */
     BibtexPackage getBibtexPackage();
 
 } //BibtexFactory
