@@ -12,8 +12,6 @@ package com.sap.furcas.modeladaptation.emf.lookup;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.WeakHashMap;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -42,8 +40,6 @@ import com.sap.furcas.runtime.common.util.MessageUtil;
  * unqualified name.
  */
 public abstract class AbstractEcoreMetaModelLookup implements IMetaModelLookup<EObject> {
-
-    private final Map<List<String>, ResolvedNameAndReferenceBean<EObject>> metaLookupCache = new WeakHashMap<List<String>, ResolvedNameAndReferenceBean<EObject>>();
 
     /**
      * Returns an {@link OppositeEndFinder} that can be used to used to find
@@ -246,12 +242,8 @@ public abstract class AbstractEcoreMetaModelLookup implements IMetaModelLookup<E
 
     @Override
     public ResolvedNameAndReferenceBean<EObject> resolveReference(List<String> names) throws MetaModelLookupException {
-        ResolvedNameAndReferenceBean<EObject> result = metaLookupCache.get(names);
-        if(result == null) {
-            result = createBean(findClassifiersByQualifiedName(names));
-            metaLookupCache.put(names, result);
-        }
-        return result;
+        EClassifier classifier = findClassifiersByQualifiedName(names);
+        return createBean(classifier);
     }
 
     @Override
