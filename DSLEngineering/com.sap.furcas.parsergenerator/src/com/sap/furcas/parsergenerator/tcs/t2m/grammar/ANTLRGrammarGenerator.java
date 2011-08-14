@@ -12,8 +12,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate;
@@ -185,7 +183,7 @@ public class ANTLRGrammarGenerator {
         // until TCS elements will all be identified by their UUIDs we will use the
         // special UUID attribute to store a randomly generated UUID. See documentation
         // of ConcreteSyntax:getUuid()
-        writer.setSyntaxUUID(EcoreUtil.getURI(syntax));
+        writer.setSyntaxUUID(ObservationDirectivesHelper.getId(syntax));
 
         String lexerString = syntax.getLexer();
         if (lexerString == null) {
