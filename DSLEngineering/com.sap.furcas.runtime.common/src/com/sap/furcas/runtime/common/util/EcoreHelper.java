@@ -45,13 +45,14 @@ public class EcoreHelper {
     }
 	
     /**
-     * Constructs a query context that contains the given <tt>resources</tt> as well as all resources in the given resource set.
+     * Constructs a query context that contains the given <tt>resources</tt> as well as all other
+     * resources in the given <tt>resourceSet</tt>.
      */
-    public static QueryContext getQueryContext(final ResourceSet resourceSet, final Set<URI> referenceScope) {
+    public static QueryContext getQueryContext(final ResourceSet resourceSet, final Set<URI> resources) {
         return new QueryContext() {
             @Override
             public URI[] getResourceScope() {
-                Collection<URI> result = new HashSet<URI>(referenceScope);
+                Collection<URI> result = new HashSet<URI>(resources);
                 for (Resource resource : resourceSet.getResources()) {
                     result.add(resource.getURI());
                 }
@@ -64,34 +65,18 @@ public class EcoreHelper {
             }
         };
     }
-    
-    /**
-     * Constructs a query context that contains the given <tt>resources</tt>.
-     */
-    public static QueryContext getQueryContextForReferenceScope(final ResourceSet resourceSet, final Set<URI> referenceScope) {
-        return new QueryContext() {
-            @Override
-            public URI[] getResourceScope() {
-                return referenceScope.toArray(new URI[referenceScope.size()]);
-            }
-
-            @Override
-            public ResourceSet getResourceSet() {
-                return resourceSet;
-            }
-        };
-    }
-    
+        
     /**
      * Constructs a query context that contains only the given <tt>resources</tt> but no other
-     * resources from the resourceSet or the workspace.
+     * resources from the resourceSet or the workspace.<br>
+     * 
+     * This is usefull when the exact scope of a query is known.
      */
     public static QueryContext getRestrictedQueryContext(final ResourceSet resourceSet, final Set<URI> resources) {
         return new QueryContext() {
             @Override
             public URI[] getResourceScope() {
-                Collection<URI> result = new HashSet<URI>(resources);
-                return result.toArray(new URI[result.size()]);
+                return resources.toArray(new URI[resources.size()]);
             }
 
             @Override
@@ -260,8 +245,8 @@ public class EcoreHelper {
 	}
 
     /**
-     * Creates a new resource in the given {@link ResourceSet#} named according to the uri of the 
-     * given <code>rootPackage</code> nsURI and postfixed with a generated UUID.
+     * Creates a new resource in the given <tt>resourceSet</tt> named according to the
+     * <tt>nsURI</tt> and postfixed with a generated UUID.
      */
     public static Resource createTransientParsingResource(ResourceSet resourceSet, String nsURI) {
         Resource resource = resourceSet.createResource(URI.createURI(
