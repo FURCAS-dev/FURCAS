@@ -78,7 +78,7 @@ public class ModelInjector extends AbstractModelInjector implements IModelInject
             return createdObject;
         } catch (ModelAdapterException e) {
             // TODO move this to getModelAdapter() and delete ModelElement on errors (?)
-            throw new ModelElementCreationException("Exception resolving proxy " + proxy, e);
+            throw new ModelElementCreationException("Exception resolving proxy " + proxy + ": " + e.getMessage(), e);
         }
     }
     
