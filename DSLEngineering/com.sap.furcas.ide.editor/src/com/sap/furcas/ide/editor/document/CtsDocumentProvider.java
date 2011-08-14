@@ -178,7 +178,7 @@ public class CtsDocumentProvider extends AbstractDocumentProvider {
     @Override
     protected ISchedulingRule getResetRule(Object element) {
         Collection<ISchedulingRule> rules = new ArrayList<ISchedulingRule>();
-        for (Resource resource : editingDomain.getResourceSet().getResources()) {
+        for (Resource resource : getWorkspaceResources()) {
             IFile file = WorkspaceSynchronizer.getFile(resource);
             if (file != null) {
                 rules.add(ResourcesPlugin.getWorkspace().getRuleFactory().modifyRule(file));
@@ -188,21 +188,9 @@ public class CtsDocumentProvider extends AbstractDocumentProvider {
     }
 
     @Override
-    protected ISchedulingRule getSaveRule(Object element) {
-        Collection<ISchedulingRule> rules = new ArrayList<ISchedulingRule>();
-        for (Resource resource : editingDomain.getResourceSet().getResources()) {
-            IFile file = WorkspaceSynchronizer.getFile(resource);
-            if (file != null) {
-                rules.add(computeSchedulingRule(file));
-            }
-        }
-        return new MultiRule(rules.toArray(new ISchedulingRule[rules.size()]));
-    }
-
-    @Override
     protected ISchedulingRule getSynchronizeRule(Object element) {
         Collection<ISchedulingRule> rules = new ArrayList<ISchedulingRule>();
-        for (Resource resource : editingDomain.getResourceSet().getResources()) {
+        for (Resource resource : getWorkspaceResources()) {
             IFile file = WorkspaceSynchronizer.getFile(resource);
             if (file != null) {
                 rules.add(ResourcesPlugin.getWorkspace().getRuleFactory().refreshRule(file));
@@ -214,7 +202,7 @@ public class CtsDocumentProvider extends AbstractDocumentProvider {
     @Override
     protected ISchedulingRule getValidateStateRule(Object element) {
         Collection<ISchedulingRule> rules = new ArrayList<ISchedulingRule>();
-        for (Resource resource : editingDomain.getResourceSet().getResources()) {
+        for (Resource resource : getWorkspaceResources()) {
             IFile file = WorkspaceSynchronizer.getFile(resource);
             if (file != null) {
                 rules.add(file);
@@ -222,7 +210,19 @@ public class CtsDocumentProvider extends AbstractDocumentProvider {
         }
         return ResourcesPlugin.getWorkspace().getRuleFactory().validateEditRule(rules.toArray(new IFile[rules.size()]));
     }
-
+    
+    @Override
+    protected ISchedulingRule getSaveRule(Object element) {
+        Collection<ISchedulingRule> rules = new ArrayList<ISchedulingRule>();
+        for (Resource resource : getWorkspaceResources()) {
+            IFile file = WorkspaceSynchronizer.getFile(resource);
+            if (file != null) {
+                rules.add(computeSchedulingRule(file));
+            }
+        }
+        return new MultiRule(rules.toArray(new ISchedulingRule[rules.size()]));
+    }
+    
     private ISchedulingRule computeSchedulingRule(IResource toCreateOrModify) {
         if (toCreateOrModify.exists()) {
             return ResourcesPlugin.getWorkspace().getRuleFactory().modifyRule(toCreateOrModify);
@@ -234,6 +234,19 @@ public class CtsDocumentProvider extends AbstractDocumentProvider {
         } while (parent != null && !parent.exists());
 
         return ResourcesPlugin.getWorkspace().getRuleFactory().createRule(toCreateOrModify);
+    }
+    
+    /**
+     * Filter plugin resources. Those cannot be changed and thus don't need and synchronization.
+     */
+    private Collection<Resource> getWorkspaceResources() {
+        ArrayList<Resource> resources = new ArrayList<Resource>();
+        for (Resource r : editingDomain.getResourceSet().getResources()) {
+            if (!r.getURI().isPlatformPlugin()) {
+                
+            }
+        }
+        return resources;
     }
     
     @Override
@@ -251,6 +264,9 @@ public class CtsDocumentProvider extends AbstractDocumentProvider {
         return true;
     }
     
+    /**
+     * @see ModelEditorInput
+     */
     public void consumeModelEditorInput() {
         editorInput.consume();
     }
