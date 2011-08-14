@@ -54,12 +54,8 @@ public class ModelEditorInput {
         
     }
 
-    /**
-     * Set empty after first usage. Prevents memory leak when the root elements are replaced through
-     * editing actions..
-     */
     private boolean consumed = false;
-    private final EObject rootObject;
+    private EObject rootObject;
     private TextBlock rootBlock;
     private final ModelURIEditorInput editorInput;
     
@@ -72,20 +68,23 @@ public class ModelEditorInput {
         editorInput = new ModelURIEditorInput(EcoreUtil.getURI(rootObject), getName());
     }
     
+    /**
+     * Allow objects to be garbage collected. Prevents memory leak when the root
+     * elements are replaced through editing actions..
+     */
     public void consume() {
         consumed  = true;
+        rootBlock = null;
+        rootObject = null;
     }
 
-    /**
-     * Will never be null
-     */
     public EObject getRootObject() {
         Assert.isLegal(!consumed, "Editor input no longer valid");
         return rootObject;
     }
     
     /**
-     * May be null
+     * Will be null if the root object does not have a textblock, yet. 
      */
     public TextBlock getRootBlock() {
         Assert.isLegal(!consumed, "Editor input no longer valid");

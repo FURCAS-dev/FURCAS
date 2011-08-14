@@ -9,6 +9,7 @@
  *     SAP AG - initial API and implementation
  ******************************************************************************/
 package com.sap.furcas.ide.editor.imp;
+
 import java.util.EventObject;
 
 import org.antlr.runtime.Lexer;
@@ -23,7 +24,6 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
@@ -63,7 +63,7 @@ import com.sap.ide.cts.parser.incremental.IncrementalParserFacade;
  *      <li>the editor itself</li>
  * </ul><br>
  * 
- * Clients that want to use this editor <b>should</b> inherit from the FURCAS_BASE<
+ * Clients that want to use this editor <b>should</b> inherit from the <tt>FURCAS_BASE</tt>
  * language. It provides the following generic implementations:
  * <ul>
  *      <li>the {@link FurcasContentProposer}</li>
@@ -153,24 +153,12 @@ public class AbstractFurcasEditor extends UniversalEditor {
         ((BasicCommandStack) editingDomain.getCommandStack()).saveIsDone();        
     }
 
-    private IncrementalParserFacade createParserFacade(final PartitionAssignmentHandler partitionHandler) {
-        // Using the command is a workaround because the incremental parser facade
-        // is already modifying a model when creating the transient parsing resource
-        final IncrementalParserFacade[] facade = new IncrementalParserFacade[1];
-        RecordingCommand cmd = new RecordingCommand(editingDomain) {
-            @Override
-            protected void doExecute() {
-                try {
-                    // create a parser/lexer combo suitable for the current editor input
-                    facade[0] = new IncrementalParserFacade(parserFactory, editingDomain.getResourceSet(), partitionHandler);
-                    assert syntax == facade[0].getParserScope().getSyntax();
-                } catch (ParserInstantiationException e) {
-                    throw new RuntimeException("Unable to instantiate parser for language " + parserFactory.getLanguageId(), e);
-                }
-            }
-        };
-        editingDomain.getCommandStack().execute(cmd);
-        return facade[0];
+    private IncrementalParserFacade createParserFacade(PartitionAssignmentHandler partitionHandler) {
+        try {
+            return new IncrementalParserFacade(parserFactory, editingDomain.getResourceSet(), partitionHandler);
+        } catch (ParserInstantiationException e) {
+            throw new RuntimeException("Failed to create the parser facade", e);
+        }
     }
             
     /**
@@ -194,7 +182,6 @@ public class AbstractFurcasEditor extends UniversalEditor {
         fParserScheduler.cancel();
         fParserScheduler.schedule();
         
-        // Allow the root block to be garbage collected after the first parse run
         getDocumentProvider().consumeModelEditorInput();
         
         updateVisuals();
@@ -202,7 +189,7 @@ public class AbstractFurcasEditor extends UniversalEditor {
     
     private void updateVisuals() {
         EObject rootObject = getParseController().getCurrentRootObject();
-        if (rootObject != null) { // better save then sorry
+        if (rootObject != null) { // better safe than sorry
             AdapterFactoryLabelProvider provider = new AdapterFactoryLabelProvider(adapterFactory);
             setPartName(provider.getText(rootObject));
             setTitleImage(provider.getImage(rootObject));
@@ -213,15 +200,6 @@ public class AbstractFurcasEditor extends UniversalEditor {
     public void doSave(IProgressMonitor progressMonitor) {
         super.doSave(progressMonitor);
         updateVisuals();
-        postSaveHook(progressMonitor);
-    }
-
-    /**
-     * Can be overwritten by subclasses if needed.
-     * @param progressMonitor 
-     */
-    protected void postSaveHook(IProgressMonitor progressMonitor) {
-        
     }
 
     /**
@@ -244,10 +222,23 @@ public class AbstractFurcasEditor extends UniversalEditor {
     }
     
     /**
-     * Can be overwritten by subclasses if needed.
+     * Can be overwritten by subclasses if needed (e.g., to use a shared editing domain);
+     * If overwritten, consider to also overwrite {@link #disposeEditingDomain()}. 
+     * 
      */
     protected TransactionalEditingDomain createEditingDomain() {
         return  WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain();
+    }
+    
+    protected void disposeEditingDomain() {
+        if (editingDomain != null) {
+            editingDomain.dispose();
+        }
+    } 
+    
+    @Override
+    public void dispose() {
+        disposeEditingDomain();
     }
     
     private void configureEditingDomain(TransactionalEditingDomain domain) {
