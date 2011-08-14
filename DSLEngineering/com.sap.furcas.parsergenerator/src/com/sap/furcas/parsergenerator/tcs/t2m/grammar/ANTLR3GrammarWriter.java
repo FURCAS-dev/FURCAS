@@ -13,8 +13,6 @@ import static com.sap.furcas.parsergenerator.util.StringConcatUtil.concat;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.common.util.URI;
-
 import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.AbstractAntlr3Rule;
 import com.sap.furcas.parsergenerator.util.VarStringBuffer;
@@ -152,7 +150,7 @@ public class ANTLR3GrammarWriter {
 	/** The fixed string for lexer rules. */
 	private String lexerString = "";
 
-	private URI syntaxUUID;
+	private String syntaxUUID;
 
 	/**
 	 * Sets the grammar name.
@@ -312,7 +310,7 @@ public class ANTLR3GrammarWriter {
 		this.parserSuperClass = parserSuperClass;
 	}
 
-	public void setSyntaxUUID(URI uri) {
+	public void setSyntaxUUID(String uri) {
 		this.syntaxUUID = uri;
 	}
 
