@@ -167,9 +167,8 @@ public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup
     
     private ResultSet executeQuery(String query) {
         try {
-            QueryContext scopeProvider = EcoreHelper.getQueryContext(resourceSet, metaModelURIs);
-            ResultSet resultSet = queryProcessor.execute(query, scopeProvider);
-            return resultSet;
+            QueryContext scopeProvider = EcoreHelper.getRestrictedQueryContext(resourceSet, metaModelURIs);
+            return queryProcessor.execute(query, scopeProvider);
         } catch (RuntimeException rte) {
             rte.printStackTrace();
             throw rte;
