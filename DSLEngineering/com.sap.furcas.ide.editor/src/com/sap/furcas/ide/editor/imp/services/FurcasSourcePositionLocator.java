@@ -10,37 +10,26 @@
  ******************************************************************************/
 package com.sap.furcas.ide.editor.imp.services;
 
+import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.imp.editor.ModelTreeNode;
 import org.eclipse.imp.parser.ISourcePositionLocator;
-import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.furcas.ide.editor.imp.FurcasParseController;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
-import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
-import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.ide.cts.parser.incremental.IncrementalParser.TextBlocksTarjanTreeContentProvider;
 import com.sap.ide.cts.parser.incremental.util.TarjansLCA;
-import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
-
-import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider;
 
 /**
  * Allows IMP to inspect the "AST" nodes returned by our {@link FurcasParseController}.
@@ -50,30 +39,6 @@ import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider
  *
  */
 public class FurcasSourcePositionLocator implements ISourcePositionLocator {
-    
-    /**
-     * A simple scope provider that can only be used to navigate from the domain
-     * to the textblocks model. 
-     */
-    private static final class TextBlocksPartitonQueryContextProvider implements QueryContextProvider {
-        
-        private final Set<URI> scope;
-        private final ResourceSet resourceSet;
-        
-        public TextBlocksPartitonQueryContextProvider(ResourceSet resourceSet, Set<URI> scope) {
-            this.resourceSet = resourceSet;
-            this.scope = scope;
-        }
- 
-        @Override
-        public QueryContext getForwardScopeQueryContext(Notifier context) {
-            throw new UnsupportedOperationException("Cannot navigate from domain to view");
-        }
-        @Override
-        public QueryContext getBackwardScopeQueryContext(Notifier context) {
-            return EcoreHelper.getRestrictedQueryContext(resourceSet, scope);
-        }
-    }
     
     @Override
     public Object findNode(Object astRoot, int offset) {
@@ -173,21 +138,13 @@ public class FurcasSourcePositionLocator implements ISourcePositionLocator {
      * the given rootBlock. It is assumed that there can only be one.
      */
     public TextBlock findTextBlockOf(TextBlock rootBlock, EObject modelElement, ResourceSet resourceSet) {
-        HashSet<URI> scope = new HashSet<URI>(2);
-        scope.add(modelElement.eResource().getURI());
-        scope.add(rootBlock.eResource().getURI());
-        
-        OppositeEndFinder endFinder = new Query2OppositeEndFinder(new TextBlocksPartitonQueryContextProvider(
-                resourceSet, scope));
-        
-        for (EObject o : endFinder.navigateOppositePropertyWithBackwardScope(
-                TextblocksPackage.eINSTANCE.getTextBlock_CorrespondingModelElements(), modelElement)) {
-            TextBlock tb = (TextBlock) o;
-            if (EcoreUtil.getRootContainer(o) == rootBlock && tb.getVersion() == rootBlock.getVersion()) {
-                return tb;
-            }
+        Collection<TextBlock> result = TbUtil.findTextBlockOf(rootBlock, modelElement, resourceSet);
+        if (result.size() == 0) {
+            return null;
+        } else {
+            assert result.size() == 1;
+            return result.iterator().next();
         }
-        return null;
     }
 
 }

@@ -21,7 +21,6 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
-import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.runtime.common.implementation.ResolvedModelElementProxy;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
@@ -49,26 +48,6 @@ import com.sap.furcas.runtime.textblocks.TbUtil;
  */
 public class ParserTextBlocksHandler implements IParsingObserver {
 
-    //    TODO: Disabled until the PartitonAssignmentHandler does no longer assign TextBlocks to
-    //          domain model resources.  Stephan Erb, 17.05.2011     
-
-    //    /**
-    //     * A simple scope provider that can only be used to navigate from the domain
-    //     * to the textblocks model. 
-    //     */
-    //    private class TextBlocksPartitonQueryContextProvider implements QueryContextProvider {
-    // 
-    //        @Override
-    //        public QueryContext getForwardScopeQueryContext(Notifier context) {
-    //            throw new UnsupportedOperationException("Cannot navigate from domain to view");
-    //        }
-    //        @Override
-    //        public QueryContext getBackwardScopeQueryContext(Notifier context) {
-    //            return EcoreHelper.getRestrictedQueryContext(parserScope.getResourceSet(),
-    //                    Collections.singleton(partitionAssignmentHandler.getDefaultTextBlockPartition().getURI()));
-    //        }
-    //    }
-
     /**
      * used to track current context in virtual tree in parallel to existing
      * tree
@@ -88,6 +67,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
     private final OppositeEndFinder textBlocksOnlyOppositeEndFinder;
     private final ParserScope parserScope;
     private final PartitionAssignmentHandler partitionAssignmentHandler;
+    private TextBlock existingRoot;
 
     /**
      * Constructs a new Handler which will read from the TextBlocksTokenStream
@@ -477,30 +457,18 @@ public class ParserTextBlocksHandler implements IParsingObserver {
      * @return the corresponding {@link TextBlock} for the given element
      */
     private TextBlock getTextBlockForElementAt(EObject element, ANTLR3LocationToken referenceToken) {
-        TextBlock tb = null;
-        Collection<EObject> nodes = textBlocksOnlyOppositeEndFinder.navigateOppositePropertyWithBackwardScope(
-                TextblocksPackage.eINSTANCE.getTextBlock_CorrespondingModelElements(), element);
-        if (nodes != null) {
-            for (EObject eObject : nodes) {
-                DocumentNode node = (DocumentNode) eObject;
-                int candidateOffset = TbUtil.getAbsoluteOffset(node);
-
-                if (referenceToken != null
-                        && ((candidateOffset > referenceToken.getStartIndex()) || (candidateOffset + node.getLength() < referenceToken
-                                .getStopIndex()))) {
-                    continue;
-                }
-
-                if (node instanceof TextBlock) {
-                    tb = (TextBlock) node;
-                    tb = (TextBlock) TbUtil.getNewestVersion(tb);
-                } else {
-                    AbstractToken tempToken = (AbstractToken) node;
-                    tb = tempToken.getParent();
-                }
+        TextBlock rootBlock = TbUtil.getNewestVersion(existingRoot);
+        
+        for (TextBlock textBlock : TbUtil.findTextBlockOf(rootBlock, element, parserScope.getResourceSet())) {
+            
+            int candidateOffset = TbUtil.getAbsoluteOffset(textBlock);
+            if (referenceToken != null && ((candidateOffset > referenceToken.getStartIndex()) || 
+                    (candidateOffset + textBlock.getLength() < referenceToken.getStopIndex()))) {
+                continue;
             }
+            return textBlock;
         }
-        return tb;
+        return null;
     }
 
     /**
@@ -510,6 +478,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
      * @param root
      */
     public void setRootBlock(TextBlock root) {
+        this.existingRoot = root;
         this.traverser = new TextBlockTraverser();
     }
 
