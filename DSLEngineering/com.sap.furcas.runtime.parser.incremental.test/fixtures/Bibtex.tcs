@@ -17,7 +17,10 @@ syntax Bibtex {
 	template Article
 		: "article" "{"
 		[
-		key "," author{refersTo=name} "," attributes{separator = ","}
+		  key ","
+		  author{referenceBy="name", lookupScope="OCL:#context.oclAsType(BibText::BibTextFile).entries
+		  		->select(e|e.oclIsKindOf(BibText::Author)).oclAsType(BibText::Author)"} ","
+		  attributes{separator = ","}
 		]
 		"}"
 		{{ location = lookIn("OCL:'Where '.concat(self.author.name).concat(' wrote it')") }}
@@ -25,7 +28,7 @@ syntax Bibtex {
 	
 	template Attribute abstract;
 	
-	template Author addToContext
+	template Author
 		: "author" "=" name "."
 		;
 	
@@ -77,6 +80,8 @@ syntax Bibtex {
 
 -- END Operator table
 
- omitted token COMMENT	: endOfLine(start = "--");
+ omitted token COMMENT : endOfLine(start = "--");
+ omitted token MULTI_LINE_COMMENT : multiLine(start = "/**", end = "*/");
+ 
 
 }
