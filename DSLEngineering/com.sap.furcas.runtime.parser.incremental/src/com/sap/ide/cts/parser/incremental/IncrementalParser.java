@@ -239,7 +239,7 @@ public class IncrementalParser extends IncrementalRecognizer {
                     }
                     if (monitor.isCanceled()) {
                         // we still haven't changed/created a model element for this region. 
-                        // It is safe to abort here if the user has canceld the parser.
+                        // It is safe to abort here if the user has canceled the parser.
                         return root;
                     }
 
@@ -294,6 +294,9 @@ public class IncrementalParser extends IncrementalRecognizer {
                 // It is safe to abort here if the user has canceld the parser.
                 return root;
             }
+            
+            // provide context for reference resolving.
+            parserTextBlocksHandler.setRootBlock(newRoot);
             
             // batchParser.setObserver(originalObserver);
             batchParser.setResolveProxies(originalResolveProxiesValue);

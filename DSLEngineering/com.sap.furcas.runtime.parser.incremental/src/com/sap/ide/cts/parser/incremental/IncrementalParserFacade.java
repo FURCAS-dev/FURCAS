@@ -135,7 +135,7 @@ public class IncrementalParserFacade {
             observer.setRootBlock(preparedTextBlock);
             
             if (monitor.isCanceled()) {
-                // Canceld during lexing. Save to return here.
+                // Canceld during lexing. Safe to return here.
                 return preparedTextBlock;
             }
             String preParseContent = TbDebugUtil.getDocumentNodeAsPlainString(preparedTextBlock);

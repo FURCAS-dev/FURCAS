@@ -3,13 +3,18 @@ package com.sap.furcas.runtime.textblocks;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement;
@@ -20,12 +25,39 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.textblocks.shortprettyprint.ShortPrettyPrinter;
 
 
 
 public class TbUtil {
+ 
+// Disabled for now. See TbUtil#findTextBlockOf(...).
+//    
+//    /**
+//     * A simple scope provider that can only be used to navigate from the domain
+//     * to the textblocks model. 
+//     */
+//    private static final class TextBlocksPartitonQueryContextProvider implements QueryContextProvider {
+//        
+//        private final Set<URI> scope;
+//        private final ResourceSet resourceSet;
+//        
+//        public TextBlocksPartitonQueryContextProvider(ResourceSet resourceSet, Set<URI> scope) {
+//            this.resourceSet = resourceSet;
+//            this.scope = scope;
+//        }
+// 
+//        @Override
+//        public QueryContext getForwardScopeQueryContext(Notifier context) {
+//            throw new UnsupportedOperationException("Cannot navigate from domain to view");
+//        }
+//        @Override
+//        public QueryContext getBackwardScopeQueryContext(Notifier context) {
+//            return EcoreHelper.getRestrictedQueryContext(resourceSet, scope);
+//        }
+//    }
 
     /**
      * Computes the absolute offset of the given {@link DocumentNode} by traversing all transitive
@@ -408,6 +440,31 @@ public class TbUtil {
                 }
             }
             return tbs;
+        }
+        
+        /**
+         * Find the TextBlock representing the given modelElement within the tree under
+         * the given rootBlock.
+         */
+        public static Collection<TextBlock> findTextBlockOf(TextBlock rootBlock, EObject modelElement, ResourceSet resourceSet) {
+            ArrayList<TextBlock> result = new ArrayList<TextBlock>();
+            HashSet<URI> scope = new HashSet<URI>(2);
+            scope.add(modelElement.eResource().getURI());
+            scope.add(rootBlock.eResource().getURI());
+            
+            // FIXME: Disabled. Otherwise a reference resolving tests fails because
+            //        query2 is unable to resolve an existing reference.... Stephan Erb, 17.05.2011 
+            // new Query2OppositeEndFinder(new TextBlocksPartitonQueryContextProvider(resourceSet, scope));
+            OppositeEndFinder endFinder = DefaultOppositeEndFinder.getInstance();
+            
+            for (EObject o : endFinder.navigateOppositePropertyWithBackwardScope(
+                    TextblocksPackage.eINSTANCE.getTextBlock_CorrespondingModelElements(), modelElement)) {
+                TextBlock tb = (TextBlock) o;
+                if (EcoreUtil.getRootContainer(o) == rootBlock && tb.getVersion() == rootBlock.getVersion()) {
+                    result.add(tb);
+                }
+            }
+            return result;
         }
 
 }

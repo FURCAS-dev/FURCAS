@@ -10,7 +10,8 @@ Require-Bundle: com.sap.furcas.metamodel,
  com.sap.furcas.runtime.tcs,
  com.sap.furcas.runtime.common,
  org.eclipse.ocl.examples.impactanalyzer.util,
- com.sap.furcas.utils
+ com.sap.furcas.utils,
+ com.sap.ocl.oppositefinder.query2
 Export-Package: com.sap.furcas.runtime.textblocks,
  com.sap.furcas.runtime.textblocks.model,
  com.sap.furcas.runtime.textblocks.modifcation,
