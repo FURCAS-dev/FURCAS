@@ -4,8 +4,10 @@ import static org.junit.Assert.fail;
 
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.wizards.IWizardDescriptor;
+import org.junit.Ignore;
 import org.junit.Test;
 
+@Ignore("UI Tests still not supported")
 public class WizardExistenceTest {
 
     /**
