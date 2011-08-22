@@ -679,27 +679,7 @@ public class TcsUtil {
         return null;
     }
 
-    public static boolean matchesContext(ClassTemplate ct, String tag) {
-        if (ct.isIsContext()) {
-            if (tag != null) {
-                if (ct.getContextTags() != null && ct.getContextTags().getTags() != null) {
-                    for (String curTag : ct.getContextTags().getTags()) {
-                        if (curTag.equals(tag)) {
-                            return true;
-                        }
-                    }
-                }
-            } else {
-                // return EObject that matches this ClassTemplate
-                return true;
-
-            }
-        }
-
-        return false;
-    }
-
-    public static boolean matchesContext(OperatorTemplate ot, String tag) {
+    public static boolean matchesContext(ContextTemplate ot, String tag) {
         if (ot.isIsContext()) {
             if (tag != null) {
                 if (ot.getContextTags() != null && ot.getContextTags().getTags() != null) {
@@ -715,7 +695,6 @@ public class TcsUtil {
 
             }
         }
-
         return false;
     }
 
@@ -769,6 +748,7 @@ public class TcsUtil {
         return null;
     }
    
+    // FIXME: The collection comparision looks really strange.
     public static boolean isPropValueAndOclResultEqual(Object propValue, Collection<?> oclResult) {
         // oclHelper.findElementWithOCLQuery returns null for empty collections
         if (propValue == null) {
@@ -792,13 +772,14 @@ public class TcsUtil {
         }
     }
 
+    
+    private final static Pattern contextPattern = Pattern.compile("#context(\\((\\w*)(\\)))?");
+
     public static String getContextTag(String oclQuery) {
         // strip OCL query prefix
         if (oclQuery.startsWith(EMFModelAdapter.OCL_QUERY_PREFIX)) {
             oclQuery = oclQuery.substring(EMFModelAdapter.OCL_QUERY_PREFIX.length());
         }
-
-        final Pattern contextPattern = Pattern.compile("#context(\\((\\w*)(\\)))?");
 
         // #context(blub) will make
         // group 0: #context(blub)

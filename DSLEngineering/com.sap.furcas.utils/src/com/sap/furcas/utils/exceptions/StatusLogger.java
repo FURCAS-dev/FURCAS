@@ -2,16 +2,17 @@ package com.sap.furcas.utils.exceptions;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.ErrorDialog;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.ui.PlatformUI;
 
 public class StatusLogger {
 
-    private final AbstractUIPlugin plugin;
+    private final Plugin plugin;
     private final String pluginId;
 
-    public StatusLogger(AbstractUIPlugin plugin, String pluginId) {
+    public StatusLogger(Plugin plugin, String pluginId) {
 	this.plugin = plugin;
 	this.pluginId = pluginId;
     }
@@ -132,7 +133,7 @@ public class StatusLogger {
      *            the message
      */
     public void displayError(String message) {
-	ErrorDialog.openError(plugin.getWorkbench().getActiveWorkbenchWindow().getShell(), "Error in SyntaxGeneration Plugin",
+	ErrorDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Error in SyntaxGeneration Plugin",
 		message, EclipseExceptionHelper.getErrorStatus(message, pluginId));
     }
 }

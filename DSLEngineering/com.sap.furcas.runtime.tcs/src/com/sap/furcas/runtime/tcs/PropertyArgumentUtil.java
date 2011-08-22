@@ -299,4 +299,8 @@ public class PropertyArgumentUtil {
         return false;
     }
 
+    public static boolean containsPartialPArg(Property p) {
+        return getPartialPArg(p) != null;
+    }
+
 }
