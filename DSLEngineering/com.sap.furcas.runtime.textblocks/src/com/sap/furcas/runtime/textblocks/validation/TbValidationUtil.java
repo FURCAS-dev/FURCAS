@@ -37,7 +37,7 @@ public class TbValidationUtil {
 	        }
 	        if ( nodeOffSet > lastEnd ) {
 //	        	if(! (documentNode instanceof Eostoken) ) {
-	        		throw new IllegalTextBlocksStateException("TextBlock with gap between subnodes created : " + nodeOffSet +" after " + lastEnd, currentTextBlock);
+	        		throw new IllegalTextBlocksStateException("TextBlock with gap between subnodes created : " + lastEnd +" after " + nodeOffSet, currentTextBlock);
 //	        	}
 	        }
 	        if (nodeOffSet < lastEnd ) {
@@ -54,18 +54,20 @@ public class TbValidationUtil {
 	}
 	
 	public static void assertTextBlockConsistencyRecursive(TextBlock currentTextBlock) {
-		for(TextBlock subBlock : currentTextBlock.getSubBlocks()) {
-			assertTextBlockConsistencyRecursive(subBlock);
+		for(DocumentNode subNode : currentTextBlock.getSubNodes()) {
+		    if (subNode instanceof TextBlock) {
+		        assertTextBlockConsistencyRecursive((TextBlock) subNode);
+		    }
 		}
 		assertTextBlockConsistency(currentTextBlock);
 	}
 	
 	public static void assertCacheIsUpToDate(TextBlock rootBlock) {
 	    TextBlocksModel model = new TextBlocksModel(rootBlock);
-	    model.setUsecache(false);
-	    String uncached = model.get(0, model.getLength());
 	    model.setUsecache(true);
 	    String cached = model.get(0, model.getLength());
+	    model.setUsecache(false);
+	    String uncached = model.get(0, model.getLength());
 	    if (!cached.equals(uncached)) {
 		System.out.println("Uncached");
 		System.out.println(uncached);

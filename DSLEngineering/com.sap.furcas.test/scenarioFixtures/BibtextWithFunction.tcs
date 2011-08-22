@@ -3,7 +3,8 @@ syntax BibtextWithFunction {
 	-- variant of the BibText Syntax including Function Templates for testing of that feature
 
 	primitiveTemplate identifier for PrimitiveTypes::String default using NAME:
-		value = "unescapeString(%token%)";
+		value = "unescapeString(%token%)",
+		serializer="\"%value%\"";
 	
 	function addKey(BibTextEntry)
 		: ->key ","

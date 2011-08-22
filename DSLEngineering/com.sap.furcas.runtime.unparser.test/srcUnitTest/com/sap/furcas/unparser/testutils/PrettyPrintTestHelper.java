@@ -1,6 +1,5 @@
 package com.sap.furcas.unparser.testutils;
 
-import java.io.ByteArrayOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Set;
@@ -12,37 +11,30 @@ import org.eclipse.emf.ecore.EObject;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.modeladaptation.emf.lookup.QueryBasedEcoreMetaModelLookUp;
+import com.sap.furcas.prettyprinter.PrettyPrinter;
+import com.sap.furcas.prettyprinter.exceptions.SyntaxMismatchException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 import com.sap.furcas.runtime.parser.ParserFactory;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
-import com.sap.furcas.unparser.PrettyPrinter;
-import com.sap.furcas.unparser.SyntaxAndModelMismatchException;
-import com.sap.furcas.unparser.extraction.TCSExtractorPrintStream;
-import com.sap.furcas.unparser.extraction.textblocks.TextBlockTCSExtractorStream;
+
 
 public class PrettyPrintTestHelper {
 
-    public static String prettyPrintString(EObject source, ConcreteSyntax syntax, Set<URI> metamodels) throws SyntaxAndModelMismatchException {
-        ByteArrayOutputStream output = new ByteArrayOutputStream();
-
+    public static String prettyPrintString(EObject source, ConcreteSyntax syntax, Set<URI> metamodels) throws SyntaxMismatchException {
         IMetaModelLookup<EObject> lookup = new QueryBasedEcoreMetaModelLookUp(syntax.eResource().getResourceSet(), metamodels);
-        PrettyPrinter prettyPrinter = new PrettyPrinter(syntax, lookup);
-        prettyPrinter.prettyPrint(source, new TCSExtractorPrintStream(output));
+        PrettyPrinter prettyPrinter = new PrettyPrinter(syntax, lookup, new TCSSpecificOCLEvaluator());
 
-        return output.toString();
+        return prettyPrinter.prettyPrint(source).getCachedString();
     }
 
     public static TextBlock prettyPrintTextBlock(EObject source, ConcreteSyntax syntax,
-            ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) throws SyntaxAndModelMismatchException {
+            ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) throws SyntaxMismatchException {
 
-        TextBlockTCSExtractorStream target = new TextBlockTCSExtractorStream(parserFactory);
+        IMetaModelLookup<EObject> lookup = new QueryBasedEcoreMetaModelLookUp(syntax.eResource().getResourceSet(), parserFactory.getMetamodelURIs());
+        PrettyPrinter prettyPrinter = new PrettyPrinter(syntax, lookup, new TCSSpecificOCLEvaluator());
 
-        IMetaModelLookup<EObject> lookup = new QueryBasedEcoreMetaModelLookUp(syntax.eResource().getResourceSet(),
-                parserFactory.getMetamodelURIs());
-        PrettyPrinter prettyPrinter = new PrettyPrinter(syntax, lookup);
-        prettyPrinter.prettyPrint(source, target);
-
-        return target.getPrintedResultRootBlock();
+        return prettyPrinter.prettyPrint(source);
     }
 
     public static String readFile(String fileName) throws IOException {
