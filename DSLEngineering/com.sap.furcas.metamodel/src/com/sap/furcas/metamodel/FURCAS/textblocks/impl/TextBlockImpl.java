@@ -6,37 +6,30 @@
  */
 package com.sap.furcas.metamodel.FURCAS.textblocks.impl;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.WrappedException;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
-
-import java.lang.reflect.InvocationTargetException;
-
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.WrappedException;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeEList;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -194,13 +187,15 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public Template getType() {
         if (type != null && type.eIsProxy()) {
             InternalEObject oldType = (InternalEObject)type;
             type = (Template)eResolveProxy(oldType);
             if (type != oldType) {
-                if (eNotificationRequired())
+                if (eNotificationRequired()) {
                     eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblocksPackage.TEXT_BLOCK__TYPE, oldType, type));
+                }
             }
         }
         return type;
@@ -220,11 +215,13 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void setType(Template newType) {
         Template oldType = type;
         type = newType;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.TEXT_BLOCK__TYPE, oldType, type));
+        }
     }
 
     /**
@@ -232,6 +229,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public EList<DocumentNode> getSubNodes() {
         if (subNodes == null) {
             subNodes = new EObjectContainmentWithInverseEList<DocumentNode>(DocumentNode.class, this, TextblocksPackage.TEXT_BLOCK__SUB_NODES, TextblocksPackage.DOCUMENT_NODE__PARENT);
@@ -244,6 +242,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public EList<Integer> getParentAltChoices() {
         if (parentAltChoices == null) {
             parentAltChoices = new EDataTypeEList<Integer>(Integer.class, this, TextblocksPackage.TEXT_BLOCK__PARENT_ALT_CHOICES);
@@ -256,6 +255,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public EList<EObject> getElementsInContext() {
         if (elementsInContext == null) {
             elementsInContext = new EObjectResolvingEList<EObject>(EObject.class, this, TextblocksPackage.TEXT_BLOCK__ELEMENTS_IN_CONTEXT);
@@ -268,6 +268,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public EList<ForEachExecution> getForEachExecutions() {
         if (forEachExecutions == null) {
             forEachExecutions = new EObjectContainmentEList<ForEachExecution>(ForEachExecution.class, this, TextblocksPackage.TEXT_BLOCK__FOR_EACH_EXECUTIONS);
@@ -280,6 +281,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public String getCachedString() {
         return cachedString;
     }
@@ -289,11 +291,13 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void setCachedString(String newCachedString) {
         String oldCachedString = cachedString;
         cachedString = newCachedString;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.TEXT_BLOCK__CACHED_STRING, oldCachedString, cachedString));
+        }
     }
 
     /**
@@ -301,6 +305,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public boolean isComplete() {
         return complete;
     }
@@ -310,11 +315,13 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void setComplete(boolean newComplete) {
         boolean oldComplete = complete;
         complete = newComplete;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.TEXT_BLOCK__COMPLETE, oldComplete, complete));
+        }
     }
 
     /**
@@ -322,6 +329,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public EList<Template> getAdditionalTemplates() {
         if (additionalTemplates == null) {
             additionalTemplates = new EObjectResolvingEList<Template>(Template.class, this, TextblocksPackage.TEXT_BLOCK__ADDITIONAL_TEMPLATES);
@@ -334,6 +342,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public EList<EObject> getCorrespondingModelElements() {
         if (correspondingModelElements == null) {
             correspondingModelElements = new EObjectResolvingEList<EObject>(EObject.class, this, TextblocksPackage.TEXT_BLOCK__CORRESPONDING_MODEL_ELEMENTS);
@@ -356,6 +365,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     @SuppressWarnings("unchecked")
     public EList<TextBlock> getSubBlocks() {
         try {
@@ -381,6 +391,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     @SuppressWarnings("unchecked")
     public EList<AbstractToken> getTokens() {
         try {
@@ -431,7 +442,9 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TextblocksPackage.TEXT_BLOCK__TYPE:
-                if (resolve) return getType();
+                if (resolve) {
+                    return getType();
+                }
                 return basicGetType();
             case TextblocksPackage.TEXT_BLOCK__SUB_NODES:
                 return getSubNodes();
@@ -571,21 +584,37 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public String toString() {
-        if (eIsProxy()) return super.toString();
-
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (parentAltChoices: ");
-        result.append(parentAltChoices);
-        result.append(", cachedString: ");
-        result.append(cachedString);
-        result.append(", complete: ");
-        result.append(complete);
-        result.append(')');
-        return result.toString();
+        if (eIsProxy()) {
+            return super.toString();
+        }
+        StringBuilder str = new StringBuilder();
+        str.append("[");
+        if (getParent() == null) {
+            str.append("root").append(", ");
+        } else {
+            str.append("inner node").append(", ");
+        }
+        str.append(super.toString());
+        str.append("]");
+        str.append(getNodeAsPlainTextString(this));
+        return str.toString();
     }
+    
+    public static String getNodeAsPlainTextString(DocumentNode currentNode) {
+        StringBuilder temp = new StringBuilder();
+        if (currentNode instanceof AbstractToken) {
+            temp.append(((AbstractToken) currentNode).getValue());
+        } else {
+            for (DocumentNode node : ((TextBlock)currentNode).getSubNodes()) {
+                temp.append(getNodeAsPlainTextString(node));
+            }
+        }
+        return temp.toString();
+    }
+    
 
 } //TextBlockImpl

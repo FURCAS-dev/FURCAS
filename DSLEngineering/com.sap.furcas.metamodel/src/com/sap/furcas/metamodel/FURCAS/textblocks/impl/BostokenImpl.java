@@ -6,10 +6,10 @@
  */
 package com.sap.furcas.metamodel.FURCAS.textblocks.impl;
 
+import org.eclipse.emf.ecore.EClass;
+
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
-
-import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,6 +38,14 @@ public class BostokenImpl extends AbstractTokenImpl implements Bostoken {
     @Override
     protected EClass eStaticClass() {
         return TextblocksPackage.Literals.BOSTOKEN;
+    }
+    
+    /**
+     * @generated NOT
+     */
+    @Override
+    public String toString() {
+        return super.toString();
     }
 
 } //BostokenImpl

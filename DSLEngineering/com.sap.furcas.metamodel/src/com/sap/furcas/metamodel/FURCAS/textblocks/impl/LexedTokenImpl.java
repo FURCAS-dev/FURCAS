@@ -6,21 +6,17 @@
  */
 package com.sap.furcas.metamodel.FURCAS.textblocks.impl;
 
-import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
-import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
+import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -91,6 +87,7 @@ public class LexedTokenImpl extends AbstractTokenImpl implements LexedToken {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public boolean isOperator() {
         return operator;
     }
@@ -100,11 +97,13 @@ public class LexedTokenImpl extends AbstractTokenImpl implements LexedToken {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void setOperator(boolean newOperator) {
         boolean oldOperator = operator;
         operator = newOperator;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.LEXED_TOKEN__OPERATOR, oldOperator, operator));
+        }
     }
 
     /**
@@ -112,9 +111,11 @@ public class LexedTokenImpl extends AbstractTokenImpl implements LexedToken {
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public EList<EObject> getReferencedElements() {
         if (referencedElements == null) {
-            referencedElements = new EObjectResolvingEList<EObject>(EObject.class, this, TextblocksPackage.LEXED_TOKEN__REFERENCED_ELEMENTS);
+            referencedElements = new EObjectResolvingEList<EObject>(EObject.class, this,
+                    TextblocksPackage.LEXED_TOKEN__REFERENCED_ELEMENTS);
         }
         return referencedElements;
     }
@@ -127,10 +128,10 @@ public class LexedTokenImpl extends AbstractTokenImpl implements LexedToken {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case TextblocksPackage.LEXED_TOKEN__OPERATOR:
-                return isOperator();
-            case TextblocksPackage.LEXED_TOKEN__REFERENCED_ELEMENTS:
-                return getReferencedElements();
+        case TextblocksPackage.LEXED_TOKEN__OPERATOR:
+            return isOperator();
+        case TextblocksPackage.LEXED_TOKEN__REFERENCED_ELEMENTS:
+            return getReferencedElements();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -144,13 +145,13 @@ public class LexedTokenImpl extends AbstractTokenImpl implements LexedToken {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case TextblocksPackage.LEXED_TOKEN__OPERATOR:
-                setOperator((Boolean)newValue);
-                return;
-            case TextblocksPackage.LEXED_TOKEN__REFERENCED_ELEMENTS:
-                getReferencedElements().clear();
-                getReferencedElements().addAll((Collection<? extends EObject>)newValue);
-                return;
+        case TextblocksPackage.LEXED_TOKEN__OPERATOR:
+            setOperator((Boolean) newValue);
+            return;
+        case TextblocksPackage.LEXED_TOKEN__REFERENCED_ELEMENTS:
+            getReferencedElements().clear();
+            getReferencedElements().addAll((Collection<? extends EObject>) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -163,12 +164,12 @@ public class LexedTokenImpl extends AbstractTokenImpl implements LexedToken {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case TextblocksPackage.LEXED_TOKEN__OPERATOR:
-                setOperator(OPERATOR_EDEFAULT);
-                return;
-            case TextblocksPackage.LEXED_TOKEN__REFERENCED_ELEMENTS:
-                getReferencedElements().clear();
-                return;
+        case TextblocksPackage.LEXED_TOKEN__OPERATOR:
+            setOperator(OPERATOR_EDEFAULT);
+            return;
+        case TextblocksPackage.LEXED_TOKEN__REFERENCED_ELEMENTS:
+            getReferencedElements().clear();
+            return;
         }
         super.eUnset(featureID);
     }
@@ -181,28 +182,20 @@ public class LexedTokenImpl extends AbstractTokenImpl implements LexedToken {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case TextblocksPackage.LEXED_TOKEN__OPERATOR:
-                return operator != OPERATOR_EDEFAULT;
-            case TextblocksPackage.LEXED_TOKEN__REFERENCED_ELEMENTS:
-                return referencedElements != null && !referencedElements.isEmpty();
+        case TextblocksPackage.LEXED_TOKEN__OPERATOR:
+            return operator != OPERATOR_EDEFAULT;
+        case TextblocksPackage.LEXED_TOKEN__REFERENCED_ELEMENTS:
+            return referencedElements != null && !referencedElements.isEmpty();
         }
         return super.eIsSet(featureID);
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public String toString() {
-        if (eIsProxy()) return super.toString();
-
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (operator: ");
-        result.append(operator);
-        result.append(')');
-        return result.toString();
+        return super.toString();
     }
 
 } //LexedTokenImpl
