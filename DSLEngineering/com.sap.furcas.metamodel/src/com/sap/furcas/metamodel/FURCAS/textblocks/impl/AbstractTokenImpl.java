@@ -6,14 +6,12 @@
  */
 package com.sap.furcas.metamodel.FURCAS.textblocks.impl;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
-
-import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -157,6 +155,7 @@ public class AbstractTokenImpl extends DocumentNodeImpl implements AbstractToken
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public String getValue() {
         return value;
     }
@@ -166,11 +165,13 @@ public class AbstractTokenImpl extends DocumentNodeImpl implements AbstractToken
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void setValue(String newValue) {
         String oldValue = value;
         value = newValue;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.ABSTRACT_TOKEN__VALUE, oldValue, value));
+        }
     }
 
     /**
@@ -178,6 +179,7 @@ public class AbstractTokenImpl extends DocumentNodeImpl implements AbstractToken
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public int getLookahead() {
         return lookahead;
     }
@@ -187,11 +189,13 @@ public class AbstractTokenImpl extends DocumentNodeImpl implements AbstractToken
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void setLookahead(int newLookahead) {
         int oldLookahead = lookahead;
         lookahead = newLookahead;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.ABSTRACT_TOKEN__LOOKAHEAD, oldLookahead, lookahead));
+        }
     }
 
     /**
@@ -199,6 +203,7 @@ public class AbstractTokenImpl extends DocumentNodeImpl implements AbstractToken
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public int getLookback() {
         return lookback;
     }
@@ -208,11 +213,13 @@ public class AbstractTokenImpl extends DocumentNodeImpl implements AbstractToken
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void setLookback(int newLookback) {
         int oldLookback = lookback;
         lookback = newLookback;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.ABSTRACT_TOKEN__LOOKBACK, oldLookback, lookback));
+        }
     }
 
     /**
@@ -220,6 +227,7 @@ public class AbstractTokenImpl extends DocumentNodeImpl implements AbstractToken
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public int getState() {
         return state;
     }
@@ -229,11 +237,13 @@ public class AbstractTokenImpl extends DocumentNodeImpl implements AbstractToken
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void setState(int newState) {
         int oldState = state;
         state = newState;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.ABSTRACT_TOKEN__STATE, oldState, state));
+        }
     }
 
     /**
@@ -241,6 +251,7 @@ public class AbstractTokenImpl extends DocumentNodeImpl implements AbstractToken
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public int getType() {
         return type;
     }
@@ -250,11 +261,13 @@ public class AbstractTokenImpl extends DocumentNodeImpl implements AbstractToken
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void setType(int newType) {
         int oldType = type;
         type = newType;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.ABSTRACT_TOKEN__TYPE, oldType, type));
+        }
     }
 
     /**
@@ -356,26 +369,15 @@ public class AbstractTokenImpl extends DocumentNodeImpl implements AbstractToken
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public String toString() {
-        if (eIsProxy()) return super.toString();
-
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (value: ");
-        result.append(value);
-        result.append(", lookahead: ");
-        result.append(lookahead);
-        result.append(", lookback: ");
-        result.append(lookback);
-        result.append(", state: ");
-        result.append(state);
-        result.append(", type: ");
-        result.append(type);
-        result.append(')');
+        if (eIsProxy()) {
+            return super.toString();
+        }
+        StringBuilder result = new StringBuilder();
+        result.append("[").append(super.toString()).append("]").append("\'").append(getValue()).append("\'");
         return result.toString();
     }
 

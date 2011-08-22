@@ -6,10 +6,10 @@
  */
 package com.sap.furcas.metamodel.FURCAS.textblocks.impl;
 
+import org.eclipse.emf.ecore.EClass;
+
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.metamodel.FURCAS.textblocks.UnlexedToken;
-
-import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,6 +38,16 @@ public class UnlexedTokenImpl extends AbstractTokenImpl implements UnlexedToken 
     @Override
     protected EClass eStaticClass() {
         return TextblocksPackage.Literals.UNLEXED_TOKEN;
+    }
+    
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    @Override
+    public String toString() {
+        return super.toString();
     }
 
 } //UnlexedTokenImpl
