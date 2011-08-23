@@ -35,6 +35,7 @@ import com.sap.furcas.runtime.common.exceptions.NameResolutionFailedException;
 import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.runtime.common.util.MessageUtil;
 
 /**
  * Convenience class for looking up information in a SyntaxDefinition.
@@ -47,7 +48,8 @@ public class SyntaxLookup {
     private final MetaModelElementResolutionHelper<?> resolutionHelper;
     private List<PrimitiveTemplate> primitiveTemplates;
     private final Map<QualifiedNamedElement, List<String>> qualifiednamesCache = new HashMap<QualifiedNamedElement, List<String>>();
-
+    private final Map<String, Collection<Template>> templateCache = new HashMap<String, Collection<Template>>();
+    
     /**
      * Instantiates a new syntax lookup.
      * 
@@ -143,6 +145,15 @@ public class SyntaxLookup {
         }
         return symbolRule;
     }
+    
+    public Symbol getSymbolByValue(String value) {
+        for (Symbol sym : syntax.getSymbols()) {
+            if (sym.getValue().equals(value)) {
+                return sym;
+            }
+        }
+        return null;
+    }
 
     /**
      * Teturns TCS template in the syntax for a given type name of a metamodel element
@@ -154,6 +165,12 @@ public class SyntaxLookup {
      */
     public Collection<Template> getTCSTemplate(ResolvedNameAndReferenceBean<?> resolvedName, String mode)
             throws SyntaxElementException {
+        
+        String cacheKey = MessageUtil.asModelName(resolvedName.getNames()) + "#" + mode;
+        if (templateCache.containsKey(cacheKey)) {
+            return templateCache.get(cacheKey);
+        } 
+        
         Collection<Template> returnTemplate = new ArrayList<Template>(1);
         // loop over all templates and return the first with the same name.
         Collection<Template> templates = syntax.getTemplates();
@@ -199,6 +216,7 @@ public class SyntaxLookup {
                 }
             }
         }
+        templateCache.put(cacheKey, returnTemplate);
         return returnTemplate;
     }
 
