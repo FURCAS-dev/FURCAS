@@ -1,5 +1,6 @@
 package com.sap.furcas.runtime.textblocks.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
@@ -89,13 +90,13 @@ public class VersionedTextBlockNavigator {
 		DocumentNode floorToken = null;
 		if (block.getParent() == null) {
 			// root block, don't search bos and eos
-			floorToken = floorSearchByOffset(TbUtil.withoutBosEos(block.getTokens()),
+			floorToken = floorSearchByOffset(TbUtil.withoutBosEos(getTokens(block)),
 					offset);
 		} else {
-			floorToken = floorSearchByOffset(block.getTokens(), offset);
+			floorToken = floorSearchByOffset(getTokens(block), offset);
 		}
 
-		DocumentNode floorBlock = floorSearchByOffset(block.getSubBlocks(),
+		DocumentNode floorBlock = floorSearchByOffset(getSubBlocks(block),
 				offset);
 
 		if (floorToken != null) {
@@ -124,6 +125,28 @@ public class VersionedTextBlockNavigator {
 		// no floor token exists
 		return null;
 	}
+
+
+    private List<TextBlock> getSubBlocks(TextBlock block) {
+        ArrayList<TextBlock> result = new ArrayList<TextBlock>();
+        for (DocumentNode node : block.getSubNodes()) {
+            if (node instanceof TextBlock) {
+                result.add((TextBlock) node);
+            }
+        }
+        return result;
+    }
+
+
+    private List<AbstractToken> getTokens(TextBlock block) {
+        ArrayList<AbstractToken> result = new ArrayList<AbstractToken>();
+        for (DocumentNode node : block.getSubNodes()) {
+            if (node instanceof AbstractToken) {
+                result.add((AbstractToken) node);
+            }
+        }
+        return result;
+    }
 	
 	 /**
      * Returns the token at the offset.
@@ -150,13 +173,13 @@ public class VersionedTextBlockNavigator {
 	    DocumentNode floorToken = null;
 	    if (currentBlock.getParent() == null) {
 	        // root block, don't search bos and eos
-	        floorToken = floorSearchByOffset(TbUtil.withoutBosEos(currentBlock.getTokens()),
+	        floorToken = floorSearchByOffset(TbUtil.withoutBosEos(getTokens(currentBlock)),
 	                offset);
 	    } else {
-	        floorToken = floorSearchByOffset(currentBlock.getTokens(), offset);
+	        floorToken = floorSearchByOffset(getTokens(currentBlock), offset);
 	    }
 
-	    DocumentNode floorBlock = floorSearchByOffset(currentBlock.getSubBlocks(),
+	    DocumentNode floorBlock = floorSearchByOffset(getSubBlocks(currentBlock),
 	            offset);
 
 	    if (floorToken != null) {
