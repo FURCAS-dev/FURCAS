@@ -13,7 +13,7 @@ package com.sap.furcas.prettyprinter.stubs;
 import java.util.Collection;
 import java.util.Collections;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EClass;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
 import com.sap.furcas.prettyprinter.TemplateFinder;
@@ -32,7 +32,7 @@ public class MockContextTemplateFinder extends TemplateFinder {
     }
 
     @Override
-    public Collection<ContextTemplate> findMatchingContextTemplates(EObject modelElement, String mode) {
+    public Collection<ContextTemplate> findMatchingContextTemplates(EClass eClass, String mode) {
         return Collections.<ContextTemplate>singletonList(hardcodedTemplate);
     }
 }

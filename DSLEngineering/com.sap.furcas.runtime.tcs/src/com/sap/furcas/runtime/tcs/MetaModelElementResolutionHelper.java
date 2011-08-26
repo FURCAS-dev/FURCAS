@@ -25,10 +25,6 @@ public class MetaModelElementResolutionHelper<Type extends Object> {
      * @param metaLookup
      */
     public MetaModelElementResolutionHelper(IMetaModelLookup<Type> metaLookup) {
-        super();
-        if (metaLookup == null) {
-            throw new IllegalArgumentException("null not allowed");
-        }
         this.metaLookup = metaLookup;
     }
     

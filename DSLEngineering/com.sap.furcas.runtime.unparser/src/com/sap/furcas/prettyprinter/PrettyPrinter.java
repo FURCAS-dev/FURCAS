@@ -52,7 +52,7 @@ public class PrettyPrinter {
         MetaModelElementResolutionHelper<EObject> resolutionHelper = new MetaModelElementResolutionHelper<EObject>(metamodelLookup);
         SyntaxLookup syntaxLookup = new SyntaxLookup(syntax, resolutionHelper);
         
-        this.templateHandler = new TemplateHandler(tbfactory, formatter);
+        this.templateHandler = new TemplateHandler(tbfactory, formatter, syntaxLookup);
         
         TemplateFinder templateFinder = new TemplateFinder(syntaxLookup, metamodelLookup);
         SequenceHandler sequenceHandler = new SequenceHandler(tbfactory, templateFinder, templateHandler,
@@ -78,7 +78,6 @@ public class PrettyPrinter {
                 tbfactory.createEOSToken(resultBlock.getLength()));
         
         TbValidationUtil.assertTextBlockConsistencyRecursive(resultBlock);
-        TbValidationUtil.assertCacheIsUpToDate(resultBlock);
         
         return resultBlock;
     }

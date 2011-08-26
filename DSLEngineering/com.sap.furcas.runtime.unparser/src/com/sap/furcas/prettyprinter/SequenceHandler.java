@@ -29,6 +29,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.FunctionCall;
 import com.sap.furcas.metamodel.FURCAS.TCS.IndentIncrBArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
+import com.sap.furcas.metamodel.FURCAS.TCS.Literal;
 import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.NbNLBArg;
@@ -100,11 +101,11 @@ public class SequenceHandler {
     /**
      * Serailize sequences such as: "keyword" "{" propertyName "}" {{property=1}}
      */
-    public ResultContainer serializeSequence(EObject modelElement, Sequence sequence, PrintContext context, PrintPolicy policy) throws SyntaxMismatchException {
+    public final ResultContainer serializeSequence(EObject modelElement, Sequence sequence, PrintContext context, PrintPolicy policy) throws SyntaxMismatchException {
         ResultContainer result = new ResultContainer(context.getPendingFormattingRequest());
         result.configureFormattingBetweenBlockElements(context.getBlockFormattingBetweenElements());
-
         Iterator<SequenceElement> iter = sequence.getElements().iterator();
+
         while (iter.hasNext()) {
             SequenceElement seqElem = iter.next();
             PrintResult subResult = serializeSequenceElement(modelElement, seqElem, result.asSubContext(context), policy);
@@ -114,13 +115,17 @@ public class SequenceHandler {
             }
             result.merge(subResult);
         }
+        // if the the last sequence element did not have a syntax contribution we have 
+        // added block formatting that has not yet been consumed. To prevent it from
+        // leaking out, we have to remove it.
+        result.removeFormatRequests(context.getBlockFormattingBetweenElements());
         return result;
     }
 
     /**
      * Serialize the individual elements of a sequence such as: "keyword", "{", or propertyName
      */
-    private PrintResult serializeSequenceElement(EObject modelElement, SequenceElement seqElem, PrintContext context,
+    public final PrintResult serializeSequenceElement(EObject modelElement, SequenceElement seqElem, PrintContext context,
             PrintPolicy policy) throws SyntaxMismatchException {
 
         switch (seqElem.eClass().getClassifierID()) {
@@ -128,7 +133,7 @@ public class SequenceHandler {
             Object value = TcsUtil.getPropertyValue(modelElement, ((Property) seqElem).getPropertyReference());
             return serializeProperty(modelElement, (Property) seqElem, value, context, policy);
         case TCSPackage.LITERAL_REF:
-            return serializeLiteralRef((LiteralRef) seqElem, context, policy);
+            return serializeLiteral(((LiteralRef) seqElem).getReferredLiteral(), seqElem, context, policy);
         case TCSPackage.ALTERNATIVE:
             return serializeAlternative(modelElement, (Alternative) seqElem, context, policy);
         case TCSPackage.BLOCK:
@@ -151,29 +156,28 @@ public class SequenceHandler {
             return new NullResult();
         }
     }
-
+    
     /**
      * Serialize keywords (e.g., "class") or symbols (e.g., ";", "{", ...).
      */
-    private PrintResult serializeLiteralRef(LiteralRef seqElem, PrintContext context, PrintPolicy policy) {
-        List<OmittedToken> formatting = formatter.translateToTokens(getLeadingSymbolFormatting(seqElem, context, policy), context);
+    public final PrintResult serializeLiteral(Literal literal, SequenceElement seqElem, PrintContext context, PrintPolicy policy) {
+        List<OmittedToken> formatting = formatter.translateToTokens(getLeadingSymbolFormatting(literal, context, policy), context);
 
         List<DocumentNode> tokens = new ArrayList<DocumentNode>(formatting);
-        tokens.add(tbFactory.createLexedToken(seqElem.getReferredLiteral().getValue(), seqElem,
+        tokens.add(tbFactory.createLexedToken(literal.getValue(), seqElem,
                 getLengthOf(formatting, context.getNextOffset())));
         
         LeafResult result = new LeafResult(tokens);
-        
-        appendFollowingSymbolFormatting(seqElem, result);
+        appendFollowingSymbolFormatting(literal, result);
         return result;
     }
     
-    private List<FormatRequest> getLeadingSymbolFormatting(LiteralRef seqElem, PrintContext context, PrintPolicy policy) {
+    private List<FormatRequest> getLeadingSymbolFormatting(Literal literal, PrintContext context, PrintPolicy policy) {
         List<FormatRequest> formatRequests = new ArrayList<FormatRequest>(context.getPendingFormattingRequest());
         formatRequests = policy.getOverruledFormattingOf(formatRequests);
 
-        if (seqElem.getReferredLiteral() instanceof Symbol) {
-            Symbol symbol = ((Symbol) seqElem.getReferredLiteral());
+        if (literal instanceof Symbol) {
+            Symbol symbol = (Symbol) literal;
             if (symbol.getSpaces().contains(SpaceKind.LEFT_NONE)) {
                 formatRequests.add(FormatRequest.create(Type.SKIP_SPACE));
             } else if (symbol.getSpaces().contains(SpaceKind.LEFT_SPACE)) {
@@ -185,9 +189,9 @@ public class SequenceHandler {
         return formatRequests;
     }
 
-    private void appendFollowingSymbolFormatting(LiteralRef seqElem, LeafResult result) {
-        if (seqElem.getReferredLiteral() instanceof Symbol) {
-            Symbol symbol = ((Symbol) seqElem.getReferredLiteral());
+    private void appendFollowingSymbolFormatting(Literal literal, LeafResult result) {
+        if (literal instanceof Symbol) {
+            Symbol symbol = (Symbol) literal;
             if (symbol.getSpaces().contains(SpaceKind.RIGHT_SPACE)) {
                 result.appendFormatRequest(FormatRequest.create(Type.ADD_SPACE));
             } else if (symbol.getSpaces().contains(SpaceKind.RIGHT_NONE)) {
@@ -211,14 +215,20 @@ public class SequenceHandler {
                         templateFinder.findPrimitiveTemplate(seqElem), context, policy);
                 
             } else if (value instanceof Enum) {
-                return templateHandler.serializeEnumerationTemplate((Enum<?>) value,
-                        templateFinder.findEnumerationTemplate(seqElem)); 
+                return templateHandler.serializeEnumerationTemplate(modelElement, seqElem, (Enum<?>) value, 
+                        templateFinder.findEnumerationTemplate(seqElem), context, policy); 
                     
             } else if (value instanceof Collection) {
                 return serializePropertyWithCollectionValue(modelElement, seqElem, (Collection<?>) value, context, policy);
                 
             } else if (value instanceof EObject) {
-                return serializePropertyWithEObjectValue(modelElement, seqElem, (EObject) value, context, policy);
+                EObject propertyValue = (EObject) value;
+                if (isRefererence(seqElem)) {
+                    return serializePropertyWithEObjectReference(seqElem, propertyValue, context, policy);
+                } else {
+                    return serializeEObjectViaTemplateCall(modelElement, seqElem, propertyValue,
+                            TcsUtil.getMode(seqElem), context, policy);
+                }
 
             } else {
                 Activator.logger.logError("Unable to serialize property value of unknown type "
@@ -234,31 +244,29 @@ public class SequenceHandler {
         }
     }
     
-    /**
-     * Serialize the given property of EObject type by calling a matching template for this particular type.
-     */
-    private PrintResult serializePropertyWithEObjectValue(EObject modelElement, Property seqElem, EObject propertyValue,
-            PrintContext context, PrintPolicy policy) throws SyntaxMismatchException {
-
-        if (isRefererence(seqElem)) {
-            Object reference = policy.getReferenceValueReplacementFor(getReferenceValue(seqElem, propertyValue));
-            LeafResult result = templateHandler.serializePrimitiveTemplate(reference, seqElem,
-                    templateFinder.findPrimitiveTemplate(seqElem), context, policy);
-            setReferencedModelElementInResult(result, propertyValue);
-            return result;
-
-        } else {
-            for (ContextTemplate template : policy.getPreferredTemplateOrderOf(propertyValue, seqElem,
-                    templateFinder.findMatchingContextTemplates(propertyValue, TcsUtil.getMode(seqElem)))) {
-                try {
-                    PrintPolicy subPolicy = policy.getPolicyFor(modelElement, seqElem, propertyValue, template);
-                    return templateHandler.serializeContextTemplate(propertyValue, template, seqElem, context, subPolicy);
-                } catch (SyntaxMismatchException e) {
-                    // try next  
-                }
+    public PrintResult serializeEObjectViaTemplateCall(EObject modelElement, SequenceElement seqElem, EObject value,
+            String mode, PrintContext context, PrintPolicy policy) throws NoMatchingTemplateException {
+        
+        for (ContextTemplate template : policy.getPreferredTemplateOrderOf(value, seqElem,
+                templateFinder.findMatchingContextTemplates(value.eClass(), mode))) {
+            try {
+                PrintPolicy subPolicy = policy.getPolicyFor(modelElement, seqElem, value, template);
+                return templateHandler.serializeContextTemplate(value, template, seqElem, context, subPolicy);
+            } catch (SyntaxMismatchException e) {
+                // try next  
             }
-            throw new NoMatchingTemplateException();
         }
+        throw new NoMatchingTemplateException();
+    }
+
+    private PrintResult serializePropertyWithEObjectReference(Property seqElem, EObject propertyValue, PrintContext context,
+            PrintPolicy policy) {
+        
+        Object reference = policy.getReferenceValueReplacementFor(getReferenceValue(seqElem, propertyValue));
+        LeafResult result = templateHandler.serializePrimitiveTemplate(reference, seqElem,
+                templateFinder.findPrimitiveTemplate(seqElem), context, policy);
+        setReferencedModelElementInResult(result, propertyValue);
+        return result;
     }
 
     private Object getReferenceValue(Property seqElem, EObject propertyValue) {

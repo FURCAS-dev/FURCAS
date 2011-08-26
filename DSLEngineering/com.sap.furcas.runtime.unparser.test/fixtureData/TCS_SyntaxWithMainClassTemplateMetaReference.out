@@ -1,4 +1,4 @@
 syntax SyntaxWithMainClassTemplateMetaReference{
-
-  template ecore::EString main;
+    
+    template ecore::EString main;
 }

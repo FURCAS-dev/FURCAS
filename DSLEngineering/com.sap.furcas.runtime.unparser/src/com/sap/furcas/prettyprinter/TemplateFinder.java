@@ -23,13 +23,18 @@ import com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
+import com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.prettyprinter.exceptions.NoMatchingTemplateException;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.runtime.common.exceptions.NameResolutionFailedException;
 import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.runtime.tcs.MetaModelElementResolutionHelper;
 import com.sap.furcas.runtime.tcs.PropertyArgumentUtil;
 import com.sap.furcas.runtime.tcs.SyntaxLookup;
+import com.sap.furcas.runtime.tcs.TcsUtil;
 
 /**
  * @author Stephan Erb
@@ -39,24 +44,45 @@ public class TemplateFinder {
 
     private final SyntaxLookup syntaxLookup;
     private final IMetaModelLookup<EObject> metamodelLookup;
+    private final MetaModelElementResolutionHelper<EObject> resolutionHelper;
     
     public TemplateFinder(SyntaxLookup syntaxLookup, IMetaModelLookup<EObject> metamodelLookup) {
         this.syntaxLookup = syntaxLookup;
         this.metamodelLookup = metamodelLookup;
+        this.resolutionHelper = new MetaModelElementResolutionHelper<EObject>(metamodelLookup);
     }
     
     public PrimitiveTemplate findPrimitiveTemplate(Property seqElem) {
         AsPArg asParg = PropertyArgumentUtil.getAsPArg(seqElem);
         if (asParg == null) {
-            // FIXME!
-            return null;  // syntaxLookup.getDefaultPrimitiveTemplateRule(metaModelTypeOfPropertyReference);
+            try {
+                ResolvedNameAndReferenceBean<EObject> metaElementRef = resolutionHelper.resolve(
+                        syntaxLookup.getEnclosingQualifiedElement(seqElem));
+                ResolvedNameAndReferenceBean<EObject> metamodelType = metamodelLookup.getFeatureClassReference(
+                        metaElementRef, TcsUtil.getPropertyName(seqElem.getPropertyReference()));
+                
+                ReferenceByPArg refByParg = PropertyArgumentUtil.getReferenceByPArg(seqElem);
+                if (refByParg == null) {
+                    return syntaxLookup.getDefaultPrimitiveTemplateRule(metamodelType);
+                } else {
+                    String referenceByQuery = PropertyArgumentUtil.getReferenceByAsOCL(refByParg);
+                    EObject type = metamodelLookup.getOclReturnType(metamodelType.getReference(), referenceByQuery);
+                    ResolvedNameAndReferenceBean<EObject> metaModelTypeOfQueryResult = metamodelLookup.resolveReferenceName(type);
+                    return syntaxLookup.getDefaultPrimitiveTemplateRule(metaModelTypeOfQueryResult);
+                }
+            } catch (NameResolutionFailedException e) {
+                throw new RuntimeException(e);
+            } catch (MetaModelLookupException e) {
+                throw new RuntimeException(e);
+            } catch (SyntaxElementException e) {
+                throw new RuntimeException(e);
+            }
         } else {
             return (PrimitiveTemplate) asParg.getTemplate();
         }
     }
 
-    public Collection<ContextTemplate> findMatchingContextTemplates(EObject modelElement, String mode) {
-        EClass eClass = modelElement.eClass();
+    public Collection<ContextTemplate> findMatchingContextTemplates(EClass eClass, String mode) {
         Collection<ContextTemplate> templates = new ArrayList<ContextTemplate>(1);
         try {
             ResolvedNameAndReferenceBean<EObject> resolvedName = metamodelLookup.resolveReferenceName(eClass);
@@ -82,13 +108,21 @@ public class TemplateFinder {
         }
     }
 
-    /**
-     * @param seqElem
-     * @return
-     */
-    public EnumerationTemplate findEnumerationTemplate(Property seqElem) {
-        // TODO Auto-generated method stub
-        return null;
+    public EnumerationTemplate findEnumerationTemplate(Property seqElem) throws NoMatchingTemplateException {
+        try {
+            ResolvedNameAndReferenceBean<EObject> resolvedName = metamodelLookup.resolveReferenceName(TcsUtil.getType(seqElem));
+            Collection<Template> templates = syntaxLookup.getTCSTemplate(resolvedName, /*mode*/null);
+            
+            if (templates.size() != 1 || !(templates.iterator().next() instanceof EnumerationTemplate)) {
+                throw new NoMatchingTemplateException();
+            }
+            return (EnumerationTemplate) templates.iterator().next();
+            
+        } catch (MetaModelLookupException e) {
+            throw new RuntimeException(e);
+        } catch (SyntaxElementException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

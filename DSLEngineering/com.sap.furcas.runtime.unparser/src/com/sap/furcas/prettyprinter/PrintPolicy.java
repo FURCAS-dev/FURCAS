@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceInAlternative;
 import com.sap.furcas.prettyprinter.Formatter.FormatRequest;
 
@@ -26,13 +27,13 @@ import com.sap.furcas.prettyprinter.Formatter.FormatRequest;
  */
 public class PrintPolicy {
 
-    public PrintPolicy getPolicyFor(EObject modelElement, Property seqElem, Object value, ContextTemplate template) {
+    public PrintPolicy getPolicyFor(EObject modelElement, SequenceElement seqElem, Object value, ContextTemplate template) {
         // TODO for now: just the same policy
         return this; 
     }
 
     
-    public Collection<ContextTemplate> getPreferredTemplateOrderOf(EObject modelElement, Property seqElem, Collection<ContextTemplate> elements) {
+    public Collection<ContextTemplate> getPreferredTemplateOrderOf(EObject modelElement, SequenceElement seqElem, Collection<ContextTemplate> elements) {
         // TODO for now: just the same order
         return elements;
     }

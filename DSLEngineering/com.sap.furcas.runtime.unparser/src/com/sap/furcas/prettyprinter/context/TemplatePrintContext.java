@@ -17,6 +17,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
 import com.sap.furcas.prettyprinter.Formatter.FormatRequest;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 
@@ -29,6 +30,7 @@ public class TemplatePrintContext implements PrintContext {
     private final PrintContext parentContext;
     private final EObject modelElement;
     private final ContextTemplate template;
+    private int priority;
 
     /**
      * @param modelElement
@@ -38,6 +40,12 @@ public class TemplatePrintContext implements PrintContext {
         this.parentContext = context;
         this.modelElement = modelElement;
         this.template = template;
+        this.priority = parentContext.getPriority();
+    }
+
+    public TemplatePrintContext(PrintContext context, EObject modelElement, OperatorTemplate template, int priority) {
+        this(context, modelElement, template);
+        this.priority = priority;
     }
 
     @Override
@@ -47,7 +55,7 @@ public class TemplatePrintContext implements PrintContext {
 
     @Override
     public int getPriority() {
-        return parentContext.getPriority();
+        return priority;
     }
 
     @Override
