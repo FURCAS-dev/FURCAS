@@ -41,7 +41,7 @@ public class MockContextTemplateHandler extends TemplateHandler {
     private final Template hardcodedTemplate;
 
     public MockContextTemplateHandler(TextBlocksFactory factory, Template hardcodedTemplate) {
-        super(factory, new Formatter(factory));
+        super(factory, new Formatter(factory), /*syntax lookuk*/ null);
         this.hardcodedTemplate = hardcodedTemplate;
     }
     

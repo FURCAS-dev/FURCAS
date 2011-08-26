@@ -63,9 +63,11 @@ public abstract class PrintResult {
      * element to be printed, following this result object.  
      */
     public void appendFormatRequests(Collection<FormatRequest> requests) {
-        if (!requests.isEmpty()) {
-            formatRequests.addAll(requests);
-        }
+        formatRequests.addAll(requests);
+    }
+    
+    public void removeFormatRequests(Collection<FormatRequest> requests) {
+        formatRequests.removeAll(requests);
     }
     
     public List<DocumentNode> getNodes() {
@@ -193,7 +195,6 @@ public abstract class PrintResult {
                 }
             };
         }
-        
 
     }
 

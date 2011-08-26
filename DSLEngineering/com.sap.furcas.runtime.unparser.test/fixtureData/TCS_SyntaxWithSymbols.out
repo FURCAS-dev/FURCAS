@@ -1,9 +1,9 @@
 syntax SyntaxWithSymbols{
-
-  symbols{
-    lsquare="[":leftSpace, rightNone;
-    rsquare="]";
-    dlsquare="[[":leftNone, rightNone;
-    drsquare="]]":rightSpace;
-  }
+    
+    symbols{
+        lsquare="[":leftSpace,rightNone;
+        rsquare="]";
+        dlsquare="[[":leftNone,rightNone;
+        drsquare="]]":rightSpace;
+    }
 }

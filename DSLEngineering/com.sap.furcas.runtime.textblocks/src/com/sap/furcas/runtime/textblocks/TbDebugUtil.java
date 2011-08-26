@@ -43,16 +43,15 @@ public class TbDebugUtil {
     }
 
     public static String getDocumentNodeAsPlainString(DocumentNode currentNode) {
-        String temp = "";
+        StringBuilder result = new StringBuilder();
         if (currentNode instanceof AbstractToken) {
-            AbstractToken tok = (AbstractToken) currentNode;
-            temp += getTokenValue(tok);
+            result.append(getTokenValue((AbstractToken) currentNode));
         } else {
-            for (DocumentNode node : TbNavigationUtil.getSubNodes((TextBlock) currentNode)) {
-                temp += getDocumentNodeAsPlainString(node);
+            for (DocumentNode node : ((TextBlock) currentNode).getSubNodes()) {
+                result.append(getDocumentNodeAsPlainString(node));
             }
         }
-        return temp;
+        return result.toString();
     }
     
     private static String getTokenValue(AbstractToken tok) {

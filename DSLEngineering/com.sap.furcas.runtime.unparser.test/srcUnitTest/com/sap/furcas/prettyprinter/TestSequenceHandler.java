@@ -230,7 +230,7 @@ public class TestSequenceHandler {
                 return template;
             };
         };
-        SequenceHandler handler = createSequenceHandlerForProperty(templateFinder, new TemplateHandler(tbfactory, formatter));
+        SequenceHandler handler = createSequenceHandlerForProperty(templateFinder, new TemplateHandler(tbfactory, formatter, /*syntax lookuk*/ null));
         
         // The model elment to be printed
         ENamedElement modelElement = EcoreFactory.eINSTANCE.createEClass();

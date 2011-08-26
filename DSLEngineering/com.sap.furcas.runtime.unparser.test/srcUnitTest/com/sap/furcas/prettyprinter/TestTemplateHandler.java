@@ -101,7 +101,7 @@ public class TestTemplateHandler {
     }
 
     private TemplateHandler createTemplateHandler() {
-        TemplateHandler handler = new TemplateHandler(tbfactory, formatter);
+        TemplateHandler handler = new TemplateHandler(tbfactory, formatter, /*syntax lookuk*/ null);
         handler.setSequenceHandler(new SequenceHandler(tbfactory, /*templateFinder*/ null, handler,
                 /*oclEvaluator*/ null, /*validator*/ null, formatter));
         return handler;
@@ -149,7 +149,7 @@ public class TestTemplateHandler {
             }
         };
         
-        TemplateHandler handler = new TemplateHandler(tbfactory, formatter);
+        TemplateHandler handler = new TemplateHandler(tbfactory, formatter, /*syntax lookuk*/ null);
         handler.setSequenceHandler(new SequenceHandler(tbfactory, /*templateFinder*/ null, handler,
                 /*oclEvaluator*/ null, validator, formatter));
         
@@ -164,10 +164,6 @@ public class TestTemplateHandler {
         assertEquals(0, textBlock.getLength());
         assertSame(template, textBlock.getType());
         
-        // With no syntactic contribution also no formatting requests should leak out
-//        assertTrue(result.asSubContext(context).getPendingFormattingRequest().containsAll(context.getPendingFormattingRequest()));
-//        assertTrue(context.getPendingFormattingRequest().containsAll(result.getPendingFormattingRequest()));
-
         // Check the actual execution state
         assertFalse(TcsUtil.wasExecuted(template, textBlock.getParentAltChoices(), propInit1.getInjectorActionsBlock()));
         assertFalse(TcsUtil.wasExecuted(template, textBlock.getParentAltChoices(), propInit2.getInjectorActionsBlock()));
