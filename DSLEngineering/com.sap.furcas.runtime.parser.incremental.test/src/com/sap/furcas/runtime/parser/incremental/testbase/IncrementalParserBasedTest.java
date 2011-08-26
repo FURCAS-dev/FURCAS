@@ -139,7 +139,7 @@ public abstract class IncrementalParserBasedTest extends GeneratedParserAndFacto
         }
         assertTrue("There may not be more than one textblock of each version. Seen " + numTextBlocksInReferenceVersion
                 + " REFERENCE, " + numTextBlocksInPreviousVersion + " PREVIOUS, " + numTextBlocksInCurrentVersion + " CURRENT.",
-                numTextBlocksInReferenceVersion <= 1);
+                numTextBlocksInReferenceVersion <= 1 && numTextBlocksInCurrentVersion <=1 && numTextBlocksInPreviousVersion <= 1);
 
         // Only one is edited at a time. If more are seen than either syntax or partitioning is buggy.
         assertTrue("May not be more than one model element in the resource. Seen " + numModelElements, numModelElements <= 1);
