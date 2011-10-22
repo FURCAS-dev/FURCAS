@@ -42,41 +42,33 @@ public class TextBlockBasedPrintPolicy implements PrintPolicy {
 
     @Override
     public PrintPolicy getPolicyFor(EObject modelElement, SequenceElement seqElem, Object value, ContextTemplate template) {
-        // TODO Auto-generated method stub
-        return null;
+        return this; 
+    }
+    
+    @Override
+    public Collection<?> getPreferredCollectionOrderOf(EObject modelElement, Property seqElem, Collection<?> elements) {
+        return elements;
     }
     
     @Override
     public Collection<ContextTemplate> getPreferredTemplateOrderOf(EObject modelElement, SequenceElement seqElem, EObject value,
             Collection<ContextTemplate> elements) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Collection<?> getPreferredCollectionOrderOf(EObject modelElement, Property seqElem, Collection<?> elements) {
-        // TODO Auto-generated method stub
-        return null;
+        return elements;
     }
 
     @Override
     public Collection<SequenceInAlternative> getPreferredAlternativeChoiceOrderOf(Collection<SequenceInAlternative> sequences) {
-        // TODO Auto-generated method stub
-        return null;
+        return sequences;
     }
 
     @Override
     public Object getReferenceValueReplacementFor(Object referenceValue) {
-        // TODO Auto-generated method stub
-        return null;
+        return referenceValue;
     }
 
     @Override
     public List<FormatRequest> getOverruledFormattingOf(List<FormatRequest> pendingFormattingRequest) {
-        // TODO Auto-generated method stub
-        return null;
+        return pendingFormattingRequest;
     }
-
-
 
 }

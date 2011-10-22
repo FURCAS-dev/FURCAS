@@ -27,6 +27,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.parser.incremental.ClassLookupImpl;
+import com.sap.furcas.runtime.parser.testbase.ClassLookup;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
@@ -50,6 +51,11 @@ public abstract class IncrementalParserBasedTest extends GeneratedParserAndFacto
     protected TextBlocksModel model;
     
     protected static void setupParser(String languageName, File syntaxDefFile, File... metamodels) throws Exception {
+        setupParser(languageName, syntaxDefFile, new ClassLookupImpl(), metamodels);
+    }
+
+    
+    protected static void setupParser(String languageName, File syntaxDefFile, ClassLookup classLookup, File... metamodels) throws Exception {
         GeneratedParserAndFactoryTestConfiguration testConfig = new GeneratedParserAndFactoryTestConfiguration(languageName, syntaxDefFile, metamodels);
 
         resourceSet = testConfig.getSourceConfiguration().getResourceSet();
@@ -58,7 +64,7 @@ public abstract class IncrementalParserBasedTest extends GeneratedParserAndFacto
         transientParsingResource = ResourceTestHelper.createTransientResource(resourceSet);
         
         incrementalParserFacade = generateParserAndParserFactoryForLanguage(syntaxBean, testConfig,
-                resourceSet, new MockPartitionAssignmentHandler(transientParsingResource), new ClassLookupImpl());
+                resourceSet, new MockPartitionAssignmentHandler(transientParsingResource), classLookup);
         
         ECrossReferenceAdapter crossRefAdapter = new ECrossReferenceAdapter();
         resourceSet.eAdapters().add(crossRefAdapter);
