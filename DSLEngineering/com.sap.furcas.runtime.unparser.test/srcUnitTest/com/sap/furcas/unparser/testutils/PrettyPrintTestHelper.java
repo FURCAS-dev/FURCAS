@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.modeladaptation.emf.lookup.QueryBasedEcoreMetaModelLookUp;
+import com.sap.furcas.parser.tcs.TCSParserFactory;
 import com.sap.furcas.prettyprinter.PrettyPrinter;
 import com.sap.furcas.prettyprinter.exceptions.SyntaxMismatchException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
@@ -23,7 +24,11 @@ public class PrettyPrintTestHelper {
 
     public static String prettyPrintString(EObject source, ConcreteSyntax syntax, Set<URI> metamodels) throws SyntaxMismatchException {
         IMetaModelLookup<EObject> lookup = new QueryBasedEcoreMetaModelLookUp(syntax.eResource().getResourceSet(), metamodels);
-        PrettyPrinter prettyPrinter = new PrettyPrinter(syntax, lookup, new TCSSpecificOCLEvaluator());
+        // Using the TCSParserFactory here is a crude hack: We should use the ParserFactories suitable for the given
+        // syntax. However, not all clients of this test method know their respective factory.
+        // Using the (wrong) TCS factory here will lead to wrong token types. But as the client is only
+        // interested in the string representation, this is not a problem.
+        PrettyPrinter prettyPrinter = new PrettyPrinter(syntax, lookup, new TCSSpecificOCLEvaluator(), new TCSParserFactory());
 
         return prettyPrinter.prettyPrint(source).getCachedString();
     }

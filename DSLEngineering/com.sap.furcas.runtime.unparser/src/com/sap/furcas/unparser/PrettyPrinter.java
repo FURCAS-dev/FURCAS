@@ -79,8 +79,10 @@ import com.sap.furcas.runtime.tcs.PropertyArgumentUtil;
 import com.sap.furcas.runtime.tcs.SyntaxLookup;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.shortprettyprint.PrettyPrinterUtil;
+import com.sap.furcas.unparser.PrettyPrintExceptions.ForcedBoundsException;
 import com.sap.furcas.unparser.PrettyPrintExceptions.NoTemplateMatchFoundException;
 import com.sap.furcas.unparser.PrettyPrintExceptions.OperatorTemplateOperatorMissmatchException;
+import com.sap.furcas.unparser.PrettyPrintExceptions.PropertyInitException;
 import com.sap.furcas.unparser.PrettyPrintExceptions.SyntaxMismatchException;
 import com.sap.furcas.unparser.extraction.TCSExtractorStream;
 
