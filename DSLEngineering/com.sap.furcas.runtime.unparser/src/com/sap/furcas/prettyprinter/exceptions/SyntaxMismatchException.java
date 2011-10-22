@@ -10,11 +10,44 @@
  ******************************************************************************/
 package com.sap.furcas.prettyprinter.exceptions;
 
-/**
- * @author Stephan Erb
- *
- */
-public class SyntaxMismatchException extends Exception {
+import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.runtime.common.util.EcoreHelper;
+import com.sap.furcas.runtime.tcs.TcsUtil;
 
+
+public abstract class SyntaxMismatchException extends Exception {
+
+    private static final long serialVersionUID = 1L;
+
+    @Override
+    public synchronized Throwable fillInStackTrace() {
+        // Do not create a stack trace as we don't need it.
+        // It is very costly when all we want is a deep return.
+        return this;
+    }
+
+    protected String getTemplateName(Template template) {
+        String name = TcsUtil.joinNameList(EcoreHelper.getQualifiedName(template.getMetaReference()));
+        if (template instanceof ClassTemplate && ((ClassTemplate) template).getMode() != null) {
+            name += " #" + ((ClassTemplate) template).getMode();
+        }
+        return name;
+    }
+
+    @Override
+    public String getMessage() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(getMismatchErrorMessage());
+        if (getTemplate() != null) {
+            builder.append(" in/of Template ").append(getTemplateName(getTemplate()));
+        }
+        builder.append(": ").append(getMismatchErrorBody());
+        return builder.toString();
+    }
     
+    protected abstract String getMismatchErrorMessage();
+    protected abstract String getMismatchErrorBody();
+    protected abstract  Template getTemplate();
+
 }

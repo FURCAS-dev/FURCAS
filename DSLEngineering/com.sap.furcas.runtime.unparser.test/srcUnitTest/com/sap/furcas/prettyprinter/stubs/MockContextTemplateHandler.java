@@ -24,13 +24,13 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksFactory;
 import com.sap.furcas.prettyprinter.Formatter;
 import com.sap.furcas.prettyprinter.Formatter.FormatRequest;
-import com.sap.furcas.prettyprinter.PrintPolicy;
 import com.sap.furcas.prettyprinter.TemplateHandler;
 import com.sap.furcas.prettyprinter.TextBlocksFactory;
 import com.sap.furcas.prettyprinter.context.PrintContext;
 import com.sap.furcas.prettyprinter.context.PrintResult;
 import com.sap.furcas.prettyprinter.context.PrintResult.LeafResult;
 import com.sap.furcas.prettyprinter.exceptions.SyntaxMismatchException;
+import com.sap.furcas.prettyprinter.policy.PrintPolicy;
 
 /**
  * @author Stephan Erb

@@ -47,10 +47,12 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.parser.tcs.TCSParserFactory;
 import com.sap.furcas.prettyprinter.context.InitialPrintContext;
 import com.sap.furcas.prettyprinter.context.PrintResult;
 import com.sap.furcas.prettyprinter.exceptions.ForcedBoundMismatchException;
 import com.sap.furcas.prettyprinter.exceptions.SyntaxMismatchException;
+import com.sap.furcas.prettyprinter.policy.DefaultPrintPolicy;
 import com.sap.furcas.prettyprinter.stubs.MockContextTemplateFinder;
 import com.sap.furcas.prettyprinter.stubs.MockContextTemplateHandler;
 
@@ -63,7 +65,7 @@ public class TestSequenceHandler {
     
     private static TCSFactory tcsFactory = TCSFactory.eINSTANCE;
     
-    private static TextBlocksFactory tbfactory = new TextBlocksFactory();
+    private static TextBlocksFactory tbfactory = new TextBlocksFactory(new TCSParserFactory());
     private static Formatter formatter = new Formatter(tbfactory);
     
     /**
@@ -84,7 +86,7 @@ public class TestSequenceHandler {
         lit2.setValue("second");
         
         SequenceHandler handler = createSequenceHandlerForLiteralRef();
-        PrintResult result = handler.serializeSequence(new EcoreAnyStub(), createSequence(litRef1, litRef2), new InitialPrintContext(), new PrintPolicy());
+        PrintResult result = handler.serializeSequence(new EcoreAnyStub(), createSequence(litRef1, litRef2), new InitialPrintContext(), new DefaultPrintPolicy());
         
         assertEquals(2, result.getNodes().size());
         LexedToken first = (LexedToken) result.getNodes().get(0);
@@ -122,7 +124,7 @@ public class TestSequenceHandler {
         Sequence sequence = createSequence(litRef1, litRef2);
         
         SequenceHandler handler = createSequenceHandlerForLiteralRef();
-        PrintResult result = handler.serializeSequence(new EcoreAnyStub(), sequence, new InitialPrintContext(), new PrintPolicy());
+        PrintResult result = handler.serializeSequence(new EcoreAnyStub(), sequence, new InitialPrintContext(), new DefaultPrintPolicy());
         
         // Check for correct overall text
         StringBuilder content = new StringBuilder();
@@ -168,7 +170,7 @@ public class TestSequenceHandler {
         Sequence sequence = createSequence(litRef1, spaceSep, tabSep, newlineSep, litRef2);
         
         SequenceHandler handler = createSequenceHandlerForLiteralRef();
-        PrintResult result = handler.serializeSequence(new EcoreAnyStub(), sequence, new InitialPrintContext(), new PrintPolicy());
+        PrintResult result = handler.serializeSequence(new EcoreAnyStub(), sequence, new InitialPrintContext(), new DefaultPrintPolicy());
         
         // Check for correct overall text
         StringBuilder content = new StringBuilder();
@@ -196,7 +198,7 @@ public class TestSequenceHandler {
         Sequence sequence = createSequence(litRef1, litRef2);
         
         SequenceHandler handler = createSequenceHandlerForLiteralRef();
-        PrintResult result = handler.serializeSequence(new EcoreAnyStub(), sequence, new InitialPrintContext(), new PrintPolicy());
+        PrintResult result = handler.serializeSequence(new EcoreAnyStub(), sequence, new InitialPrintContext(), new DefaultPrintPolicy());
         
         // Check for correct overall text
         StringBuilder content = new StringBuilder();
@@ -239,7 +241,7 @@ public class TestSequenceHandler {
         // The property pointing to the name feature configured above
         Property property = createProperty(EcorePackage.eINSTANCE.getENamedElement_Name());
         
-        PrintResult result = handler.serializeSequence(modelElement, createSequence(property), new InitialPrintContext(), new PrintPolicy());
+        PrintResult result = handler.serializeSequence(modelElement, createSequence(property), new InitialPrintContext(), new DefaultPrintPolicy());
         
         assertEquals(1, result.getNodes().size());
         LexedToken token = (LexedToken) result.getNodes().get(0);
@@ -273,7 +275,7 @@ public class TestSequenceHandler {
         Property property = createProperty(EcorePackage.eINSTANCE.getETypedElement_EType());
 
         SequenceHandler handler = createSequenceHandlerForProperty(templateFinder, templatehandler);
-        PrintResult result = handler.serializeSequence(modelElement, createSequence(property), new InitialPrintContext(), new PrintPolicy());
+        PrintResult result = handler.serializeSequence(modelElement, createSequence(property), new InitialPrintContext(), new DefaultPrintPolicy());
         
         assertEquals(1, result.getNodes().size());
         TextBlock textBlock = (TextBlock) result.getNodes().get(0);
@@ -304,7 +306,7 @@ public class TestSequenceHandler {
         Property property = createProperty(EcorePackage.eINSTANCE.getEClass_EAttributes());
         
         SequenceHandler handler = createSequenceHandlerForProperty(templateFinder, templatehandler);
-        PrintResult result = handler.serializeSequence(modelElement, createSequence(property), new InitialPrintContext(), new PrintPolicy());
+        PrintResult result = handler.serializeSequence(modelElement, createSequence(property), new InitialPrintContext(), new DefaultPrintPolicy());
         assertEquals("One for each attribute", 10, result.getNodes().size());
     }
 
@@ -341,7 +343,7 @@ public class TestSequenceHandler {
         property.getPropertyArgs().add(pArg);
         
         SequenceHandler handler = createSequenceHandlerForProperty(templateFinder, templatehandler);
-        PrintResult result = handler.serializeSequence(modelElement, createSequence(property), new InitialPrintContext(), new PrintPolicy());
+        PrintResult result = handler.serializeSequence(modelElement, createSequence(property), new InitialPrintContext(), new DefaultPrintPolicy());
         assertEquals("One for each attribute and the seaprators between them, which is size-1",
                 2*modelElement.getEAttributes().size()-1, result.getNodes().size());
     }
@@ -373,7 +375,7 @@ public class TestSequenceHandler {
         property.getPropertyArgs().add(pArg);
                 
         SequenceHandler handler = createSequenceHandlerForProperty(templateFinder, templatehandler);
-        handler.serializeSequence(modelElement, createSequence(property), new InitialPrintContext(), new PrintPolicy());
+        handler.serializeSequence(modelElement, createSequence(property), new InitialPrintContext(), new DefaultPrintPolicy());
         // Expected are 3, but the collection has only 2 elements.
         fail("Should never come this far");
     }
@@ -406,7 +408,7 @@ public class TestSequenceHandler {
         property.getPropertyArgs().add(tcsFactory.createPartialPArg());
                 
         SequenceHandler handler = createSequenceHandlerForProperty(templateFinder, templatehandler);
-        PrintResult result = handler.serializeSequence(modelElement, createSequence(property), new InitialPrintContext(), new PrintPolicy());
+        PrintResult result = handler.serializeSequence(modelElement, createSequence(property), new InitialPrintContext(), new DefaultPrintPolicy());
         assertEquals("No excption, but still nothing should have been created", 0, result.getNodes().size());
     }
     
@@ -425,7 +427,7 @@ public class TestSequenceHandler {
         Sequence sequence = createSequence(litRefBefore, block, litRefAfter);
         
         SequenceHandler handler = createSequenceHandlerForLiteralRef();
-        PrintResult result = handler.serializeSequence(new EcoreAnyStub(), sequence, new InitialPrintContext(), new PrintPolicy());
+        PrintResult result = handler.serializeSequence(new EcoreAnyStub(), sequence, new InitialPrintContext(), new DefaultPrintPolicy());
         
         // Check for correct overall text
         StringBuilder content = new StringBuilder();
@@ -471,7 +473,7 @@ public class TestSequenceHandler {
         block.getBlockArgs().add(numOfNewlinesWithinTheBlock);
         
         SequenceHandler handler = createSequenceHandlerForLiteralRef();
-        PrintResult result = handler.serializeSequence(new EcoreAnyStub(), sequence, new InitialPrintContext(), new PrintPolicy());
+        PrintResult result = handler.serializeSequence(new EcoreAnyStub(), sequence, new InitialPrintContext(), new DefaultPrintPolicy());
         
         // Check for correct overall text
         StringBuilder content = new StringBuilder();

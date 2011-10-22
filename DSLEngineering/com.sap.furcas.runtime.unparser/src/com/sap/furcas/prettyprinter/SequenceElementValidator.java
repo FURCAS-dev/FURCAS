@@ -20,15 +20,21 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.PrimitivePropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.prettyprinter.context.PrintContext;
 import com.sap.furcas.prettyprinter.exceptions.ForcedBoundMismatchException;
 import com.sap.furcas.prettyprinter.exceptions.PropertyInitMismatchException;
+import com.sap.furcas.prettyprinter.exceptions.SyntaxMismatchException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 import com.sap.furcas.runtime.tcs.PropertyArgumentUtil;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 
 /**
+ * Validates if a model element matches the requirements of a particular {@link SequenceElement}.
+ * A template is considered matching for a model element, if all validations of {@link SequenceElement}s
+ * pass.
+ * 
  * @author Stephan Erb
  *
  */
@@ -40,7 +46,11 @@ public class SequenceElementValidator {
         this.oclEvaluator = oclEvaluator;
     }
     
-    public void validateLookupPropertyInit(EObject modelElement, LookupPropertyInit propInit, PrintContext context) throws PropertyInitMismatchException {
+    /**
+     * Check if the property value of a modelelement is equal to the expected result
+     * of the corresponding OCL lookup query, as required by a template. 
+     */
+    public void validateLookupPropertyInit(EObject modelElement, LookupPropertyInit propInit, PrintContext context) throws SyntaxMismatchException {
         if (propInit.isDefault()) {
             // only validate PropertyInit, if it is mandatory and not just a default for the parser
             return;
@@ -54,14 +64,18 @@ public class SequenceElementValidator {
             /*key*/null, oclQuery, contextObject, /*foreachObject*/null);
 
             if (!TcsUtil.isPropValueAndOclResultEqual(actualValueInModel, expectedValueByPropInit)) {
-                throw new PropertyInitMismatchException();
+                throw new PropertyInitMismatchException(actualValueInModel, expectedValueByPropInit, propInit);
             }
         } catch (ModelAdapterException e) {
-            throw new PropertyInitMismatchException();
+            throw new RuntimeException("Failed to validate property init: " + e.getMessage(), e);
         }
     }
 
-    public void validatePrimitivePropertyInit(Object element, PrimitivePropertyInit propInit, PrintContext context) throws PropertyInitMismatchException {
+    /**
+     * Check if the property value of a modelelement is equal to the expected,
+     * corresponding property init of a template. 
+     */
+    public void validatePrimitivePropertyInit(Object element, PrimitivePropertyInit propInit) throws SyntaxMismatchException {
         if (propInit.isDefault()) {
             // only validate PropertyInit, if it is mandatory and not just a default for the parser
             return;
@@ -81,15 +95,15 @@ public class SequenceElementValidator {
             expectedValueByPropInit = expectedValueByPropInit.substring(1, expectedValueByPropInit.length() - 1);
         }
         if (!actualValueInModel.equals(expectedValueByPropInit)) {
-            throw new PropertyInitMismatchException();
+            throw new PropertyInitMismatchException(actualValueInModel, expectedValueByPropInit, propInit);
         }
     }
-    
 
     /**
-     * Check for forced upper and forced lower validity of model element
+     * Check if the forced upper and forced lower bounds of a property
+     * are satisfied by the corresponding propertyValue of a model element.
      */
-    public void validateBounds(Object modelElement, Property prop, Object propValue) throws ForcedBoundMismatchException  {
+    public void validateBounds(Property prop, Object propValue) throws ForcedBoundMismatchException  {
         ForcedLowerPArg lowerArg = PropertyArgumentUtil.getForcedLowerPArg(prop);
         ForcedUpperPArg upperArg = PropertyArgumentUtil.getForcedUpperPArg(prop);
 
@@ -102,13 +116,13 @@ public class SequenceElementValidator {
         if (lowerArg != null) {
             int lowerBound = lowerArg.getValue();
             if (lowerBound > elementsInPropValue) {
-                throw new ForcedBoundMismatchException();
+                throw new ForcedBoundMismatchException(propValue, prop, lowerArg, null);
             }
         }
         if (upperArg != null) {
             int upperBound = upperArg.getValue();
             if (elementsInPropValue > upperBound) {
-                throw new ForcedBoundMismatchException();
+                throw new ForcedBoundMismatchException(propValue, prop, null, upperArg);
             }
         }
     }

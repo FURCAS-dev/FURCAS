@@ -57,8 +57,8 @@ import com.sap.furcas.prettyprinter.context.PrintResult.NullResult;
 import com.sap.furcas.prettyprinter.context.PrintResult.ResultContainer;
 import com.sap.furcas.prettyprinter.exceptions.AlternativeChoiceMismatch;
 import com.sap.furcas.prettyprinter.exceptions.NoMatchingTemplateException;
-import com.sap.furcas.prettyprinter.exceptions.PropertyInitMismatchException;
 import com.sap.furcas.prettyprinter.exceptions.SyntaxMismatchException;
+import com.sap.furcas.prettyprinter.policy.PrintPolicy;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 import com.sap.furcas.runtime.tcs.BlockArgumentUtil;
@@ -70,11 +70,10 @@ import com.sap.furcas.unparser.TCSConditionEvaluator;
 
 /**
  * This is the primary serialization component of the {@link PrettyPrinter}. It pretty prints
- * TCS {@link Sequence Sequences} and their contained {@link SequenceElement}s
- * to lists of formatted {@link DocumentNode}s.
- * <p>
- * This class is called by {@link TemplateHandler}.
- * </p>
+ * {@link Sequence Sequences} and their contained {@link SequenceElement}s to lists of formatted
+ * {@link DocumentNode}s. These {@link DocumentNode}s are passed around in form of {@link PrintResult}s.
+ * 
+ * The class is called by {@link TemplateHandler} in order to print template sequences.
  * 
  * @author Stephan Erb
  *
@@ -208,7 +207,7 @@ public class SequenceHandler {
     private PrintResult serializeProperty(EObject modelElement, Property seqElem, Object value, PrintContext context,
             PrintPolicy policy) throws SyntaxMismatchException {
         try {
-            seValidator.validateBounds(modelElement, seqElem, value);
+            seValidator.validateBounds(seqElem, value);
 
             if (isPrimitive(value)) {
                 return templateHandler.serializePrimitiveTemplate(value, seqElem,
@@ -247,7 +246,7 @@ public class SequenceHandler {
     public PrintResult serializeEObjectViaTemplateCall(EObject modelElement, SequenceElement seqElem, EObject value,
             String mode, PrintContext context, PrintPolicy policy) throws NoMatchingTemplateException {
         
-        for (ContextTemplate template : policy.getPreferredTemplateOrderOf(value, seqElem,
+        for (ContextTemplate template : policy.getPreferredTemplateOrderOf(modelElement, seqElem, value,
                 templateFinder.findMatchingContextTemplates(value.eClass(), mode))) {
             try {
                 PrintPolicy subPolicy = policy.getPolicyFor(modelElement, seqElem, value, template);
@@ -256,7 +255,7 @@ public class SequenceHandler {
                 // try next  
             }
         }
-        throw new NoMatchingTemplateException();
+        throw new NoMatchingTemplateException(value.eClass(), mode);
     }
 
     private PrintResult serializePropertyWithEObjectReference(Property seqElem, EObject propertyValue, PrintContext context,
@@ -315,11 +314,11 @@ public class SequenceHandler {
      * Execute all injector actions in the given block. If the actual model element values differ from the
      * values expected by the actions, backtrack by throwing an exception. 
      */
-    private PrintResult validateInjectorActionsBlock(EObject modelElement, InjectorActionsBlock seqElem, PrintContext context) throws PropertyInitMismatchException {
+    private PrintResult validateInjectorActionsBlock(EObject modelElement, InjectorActionsBlock seqElem, PrintContext context) throws SyntaxMismatchException {
         for (InjectorAction action : seqElem.getInjectorActions()) {
             switch (action.eClass().getClassifierID()) {
             case TCSPackage.PRIMITIVE_PROPERTY_INIT:
-                seValidator.validatePrimitivePropertyInit(modelElement, (PrimitivePropertyInit) action, context);
+                seValidator.validatePrimitivePropertyInit(modelElement, (PrimitivePropertyInit) action);
                 break;
             case TCSPackage.LOOKUP_PROPERTY_INIT:
                 seValidator.validateLookupPropertyInit(modelElement, (LookupPropertyInit) action, context);
@@ -438,6 +437,7 @@ public class SequenceHandler {
         ResultContainer result = new ResultContainer(context.getPendingFormattingRequest());
         result.configureAlternativeNestingLevel(1, context);
 
+        Collection<SyntaxMismatchException> exceptions = new ArrayList<SyntaxMismatchException>();
         for (SequenceInAlternative choice : policy.getPreferredAlternativeChoiceOrderOf(seqElem.getSequences())) {
             try {
                 PrintResult subResult = serializeSequence(modelElement, choice, result.asSubContext(context), policy);
@@ -445,19 +445,19 @@ public class SequenceHandler {
                 result.mergeChosenAlternative(seqElem, getSequenceChoiceIndex(choice, seqElem), subResult);
                 return result;
             } catch (SyntaxMismatchException e) {
+                exceptions.add(e);
                 // try next  
             }
         }
         if (seqElem.isIsMulti()) {
             return result;
         } else {
-            throw new AlternativeChoiceMismatch();
+            throw new AlternativeChoiceMismatch(seqElem, exceptions);
         }
     }
 
     private int getSequenceChoiceIndex(Sequence choice, Alternative alt) {
-        ArrayList<Sequence> list = new ArrayList<Sequence>(alt.getSequences());
-        return list.indexOf(choice);
+        return alt.getSequences().indexOf(choice);
     }
 
     /**

@@ -21,6 +21,9 @@ import com.sap.furcas.prettyprinter.Formatter.FormatRequest;
 import com.sap.furcas.prettyprinter.Formatter.Type;
 
 /**
+ * A {@link PrintContext} which is solely used to print a root object
+ * (the corresponding model element of the root text block).
+
  * @author Stephan Erb
  *
  */

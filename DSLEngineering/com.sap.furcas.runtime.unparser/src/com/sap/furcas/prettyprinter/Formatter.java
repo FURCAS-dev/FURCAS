@@ -16,10 +16,29 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
 import com.sap.furcas.prettyprinter.context.PrintContext;
 
 /**
+ * The {@link PrettyPrinter} produces formatted text. It has to add spaces between elements for
+ * disambiguation purposes (e.g. "1 2" and not "12") and to perform the actual formatting (e.g. linebreaks,
+ * indentation and spaces before and after symbols as configured in the {@link ConcreteSyntax}). 
+ * 
+ * Due to the way a syntax is structured, the correct whitespaces/formatting between text fragments (e.g.
+ * 'text before' and 'text after') can only be calculated at the moment when 'text after' shall be printed.
+ * 
+ * ...text before] [Whitespace/Formatting] [text after...
+ *  
+ * After printing 'text before', the {@link PrettyPrinter} therefore does not directly create any
+ * whitespaces ({@link OmittedToken}s). Instead, it  queues so called {@link FormatRequest}s.
+ * The number and kind of these requests depends on the {@link ConcreteSyntax} and the current pretty printing
+ * context.
+ * 
+ * It is then the responsibility of this class to interpret these {@link FormatRequest}s and to translate
+ * them into {@link OmittedToken}s. These tokens can then be appended to the print result before 'text after'
+ * is printed.    
+ *  
  * @author Stephan Erb
  *
  */
@@ -39,7 +58,10 @@ public class Formatter {
         SKIP_SPACE,
         SKIP_OPTIONAL_SPACE
     }
-        
+    
+    /**
+     * @see Formatter
+     */
     public static class FormatRequest {
         
         private final Type type;

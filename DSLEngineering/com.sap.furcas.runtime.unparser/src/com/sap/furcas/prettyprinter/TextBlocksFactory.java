@@ -13,6 +13,8 @@ package com.sap.furcas.prettyprinter;
 import java.util.Collection;
 import java.util.List;
 
+import org.antlr.runtime.ANTLRStringStream;
+import org.antlr.runtime.Lexer;
 import org.antlr.runtime.Token;
 import org.eclipse.emf.ecore.EObject;
 
@@ -27,6 +29,8 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksFactory;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
+import com.sap.furcas.runtime.parser.ParserFactory;
+import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
 
 /**
@@ -38,8 +42,13 @@ import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
  */
 public class TextBlocksFactory {
 
+    private static final Version version = Version.REFERENCE;
     private final TextblocksFactory factory = TextblocksFactory.eINSTANCE;
-    private final Version version = Version.REFERENCE;
+    private final Lexer lexer;
+    
+    public TextBlocksFactory(ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) {
+        lexer = parserFactory.createLexer(null);
+    }
     
     public TextBlock createTextBlock(EObject modelElement, List<DocumentNode> subnodes, Template template,
             SequenceElement seqElem, int offset, Collection<Integer> parentAltChoices) {
@@ -85,12 +94,18 @@ public class TextBlocksFactory {
     }
     
     private void configure(AbstractToken token, String value, int offset) {
-        // TODO: run parser to set type.
+        token.setType(getTokenType(value));
         token.setValue(value);
         token.setLength(value.length());
         token.setOffset(offset);
         token.setVersion(version);
         token.setOffsetRelative(true);
+    }
+
+    private int getTokenType(String value) {
+        lexer.setCharStream(new ANTLRStringStream(value));
+        Token lexerToken = lexer.nextToken();
+        return lexerToken.getType();
     }
     
     public static int getLengthOf(List<? extends DocumentNode> nodes, int defaultValue) {

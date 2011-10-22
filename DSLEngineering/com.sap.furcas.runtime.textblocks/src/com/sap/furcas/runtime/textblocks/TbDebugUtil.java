@@ -41,17 +41,21 @@ public class TbDebugUtil {
         return temp + "[o:" + currentTextBlock.getOffset() + (currentTextBlock.isOffsetRelative() ? "r" : "a") + ",l:"
                 + currentTextBlock.getLength() + "]<Version:" + currentTextBlock.getVersion() + ">";
     }
-
+    
     public static String getDocumentNodeAsPlainString(DocumentNode currentNode) {
+        return getDocumentNodeAsStringBuilder(currentNode).toString();
+    }
+
+    private static StringBuilder getDocumentNodeAsStringBuilder(DocumentNode currentNode) {
         StringBuilder result = new StringBuilder();
         if (currentNode instanceof AbstractToken) {
             result.append(getTokenValue((AbstractToken) currentNode));
         } else {
             for (DocumentNode node : ((TextBlock) currentNode).getSubNodes()) {
-                result.append(getDocumentNodeAsPlainString(node));
+                result.append(getDocumentNodeAsStringBuilder(node));
             }
         }
-        return result.toString();
+        return result;
     }
     
     private static String getTokenValue(AbstractToken tok) {

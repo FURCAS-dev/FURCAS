@@ -34,6 +34,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
@@ -46,14 +47,15 @@ import com.sap.furcas.prettyprinter.context.PrintResult.NullResult;
 import com.sap.furcas.prettyprinter.context.PrintResult.ResultContainer;
 import com.sap.furcas.prettyprinter.context.TemplatePrintContext;
 import com.sap.furcas.prettyprinter.exceptions.SyntaxMismatchException;
+import com.sap.furcas.prettyprinter.policy.PrintPolicy;
 import com.sap.furcas.runtime.tcs.SyntaxLookup;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.shortprettyprint.PrettyPrinterUtil;
 import com.sap.furcas.unparser.EMFModelInspector;
 
 /**
- * Called by the  {@link PrettyPrinter} to serialize {@link Sequence}s using a
- * {@link SequenceHandler}.
+ * Serializes a model element according to a given {@link Template}. Most of the actual
+ * serialization work is performed by a {@link SequenceHandler}.
  * 
  * @author Stephan Erb
  *
@@ -278,7 +280,5 @@ public class TemplateHandler {
       return new LeafResult(node, result.asSubContext(context).getPendingFormattingRequest(),
               result.hasSyntacticContribution());
     }
-    
-    
     
 }

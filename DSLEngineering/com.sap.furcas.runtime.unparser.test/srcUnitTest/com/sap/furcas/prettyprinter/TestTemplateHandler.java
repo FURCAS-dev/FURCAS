@@ -32,10 +32,13 @@ import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceInAlternative;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSFactory;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.parser.tcs.TCSParserFactory;
 import com.sap.furcas.prettyprinter.context.InitialPrintContext;
 import com.sap.furcas.prettyprinter.context.PrintContext;
 import com.sap.furcas.prettyprinter.context.PrintResult;
 import com.sap.furcas.prettyprinter.exceptions.PropertyInitMismatchException;
+import com.sap.furcas.prettyprinter.exceptions.SyntaxMismatchException;
+import com.sap.furcas.prettyprinter.policy.DefaultPrintPolicy;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbDebugUtil;
 import com.sap.furcas.runtime.textblocks.validation.TbValidationUtil;
@@ -48,7 +51,7 @@ public class TestTemplateHandler {
 
     private static TCSFactory tcsFactory = TCSFactory.eINSTANCE;
     
-    private static TextBlocksFactory tbfactory = new TextBlocksFactory();
+    private static TextBlocksFactory tbfactory = new TextBlocksFactory(new TCSParserFactory());
     private static Formatter formatter = new Formatter(tbfactory);
     
     /**
@@ -60,7 +63,7 @@ public class TestTemplateHandler {
         template.setTemplateSequence(createSequence());
         
         TemplateHandler handler = createTemplateHandler();
-        PrintResult result = handler.serializeContextTemplate(new EcoreAnyStub(), template, /*seqElem*/ null, new InitialPrintContext(), new PrintPolicy());
+        PrintResult result = handler.serializeContextTemplate(new EcoreAnyStub(), template, /*seqElem*/ null, new InitialPrintContext(), new DefaultPrintPolicy());
         
         assertEquals("Expect one block", 1, result.getNodes().size());
         TextBlock textBlock = (TextBlock) result.getNodes().get(0);
@@ -85,7 +88,7 @@ public class TestTemplateHandler {
         template.setTemplateSequence(createSequence(litRef1, litRef2));
         
         TemplateHandler handler = createTemplateHandler();
-        PrintResult result = handler.serializeContextTemplate(new EcoreAnyStub(), template, /*seqElem*/ null, new InitialPrintContext(), new PrintPolicy());
+        PrintResult result = handler.serializeContextTemplate(new EcoreAnyStub(), template, /*seqElem*/ null, new InitialPrintContext(), new DefaultPrintPolicy());
         
         assertEquals("Expect one block", 1, result.getNodes().size());
         TextBlock textBlock = (TextBlock) result.getNodes().get(0);
@@ -140,11 +143,11 @@ public class TestTemplateHandler {
         //     
         SequenceElementValidator validator =  new SequenceElementValidator(/*oclEvaluator*/ null) {
             @Override
-            public void validateLookupPropertyInit(EObject modelElement, LookupPropertyInit propInit, PrintContext context) throws PropertyInitMismatchException {
+            public void validateLookupPropertyInit(EObject modelElement, LookupPropertyInit propInit, PrintContext context) throws SyntaxMismatchException {
                 throw new PropertyInitMismatchException();
             }
             @Override
-            public void validatePrimitivePropertyInit(Object element, PrimitivePropertyInit propInit, PrintContext context) throws PropertyInitMismatchException {
+            public void validatePrimitivePropertyInit(Object element, PrimitivePropertyInit propInit) throws SyntaxMismatchException {
                
             }
         };
@@ -154,7 +157,7 @@ public class TestTemplateHandler {
                 /*oclEvaluator*/ null, validator, formatter));
         
         PrintContext context = new InitialPrintContext();
-        PrintResult result = handler.serializeContextTemplate(new EcoreAnyStub(), template, /*seqElem*/ null, context, new PrintPolicy());
+        PrintResult result = handler.serializeContextTemplate(new EcoreAnyStub(), template, /*seqElem*/ null, context, new DefaultPrintPolicy());
         
         assertEquals("Expect one block", 1, result.getNodes().size());
         TextBlock textBlock = (TextBlock) result.getNodes().get(0);

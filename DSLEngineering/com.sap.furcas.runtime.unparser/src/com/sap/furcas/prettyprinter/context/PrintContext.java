@@ -26,7 +26,7 @@ import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 
 /**
  * Instances of this class encapsulate the relevent information about everything that
- * has been printed up to the creation of the repsective instance. 
+ * has been pretty printed up to the creation of the respective context instance. 
  * 
  * @author Stephan Erb
  *
@@ -47,7 +47,7 @@ public interface PrintContext {
     
     /**
      * Find the most recent corresponding context element within the stack of
-     * {@link TemplateHandler} invokations leading to the currently serialized element.
+     * {@link TemplateHandler} invocations leading to the currently serialized element.
      *   
      * @see ContextAndForeachHelper
      */
@@ -72,7 +72,7 @@ public interface PrintContext {
     public List<FormatRequest> getPendingFormattingRequest();
 
     /**
-     * @return
+     * The formatting as required by the configuration of the inner-most {@link Block}.
      */
     public Collection<FormatRequest> getBlockFormattingBetweenElements();
 
