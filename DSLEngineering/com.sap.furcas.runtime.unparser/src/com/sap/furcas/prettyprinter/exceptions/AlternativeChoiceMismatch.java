@@ -10,10 +10,42 @@
  ******************************************************************************/
 package com.sap.furcas.prettyprinter.exceptions;
 
-/**
- * @author Stephan Erb
- *
- */
+import java.util.Collection;
+
+import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+
+
 public class AlternativeChoiceMismatch extends SyntaxMismatchException {
+
+    private static final long serialVersionUID = 1L;
+    private final Alternative seqElem;
+    private final Collection<SyntaxMismatchException> exceptions;
+
+    public AlternativeChoiceMismatch(Alternative seqElem, Collection<SyntaxMismatchException> exceptions) {
+        this.seqElem = seqElem;
+        this.exceptions = exceptions;
+    }
+
+    @Override
+    protected String getMismatchErrorMessage() {
+        return "No matching choice for alternative";
+    }
+
+    @Override
+    protected String getMismatchErrorBody() {
+        StringBuilder error = new StringBuilder();
+        int i = 0;
+        for (SyntaxMismatchException e : exceptions) {
+            error.append("Choice ").append(i).append(": ").append(e.getMessage());
+            i++;
+        }
+        return error.toString();
+    }
+
+    @Override
+    protected Template getTemplate() {
+        return seqElem.getParentTemplate();
+    }
 
 }

@@ -17,37 +17,31 @@ import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 
 
-public class NoMatchingTemplateException extends SyntaxMismatchException {
-    
+public class AmbigousTemplateException extends SyntaxMismatchException {
+
     private static final long serialVersionUID = 1L;
     private final EClassifier type;
-    private final String mode;
+    private final int numberOfTemplatesFound;
 
-    public NoMatchingTemplateException(EClassifier type) {
-        this(type, null);
-    }
-    
-    public NoMatchingTemplateException(EClassifier type, String mode) {
+    public AmbigousTemplateException(EClassifier type, int numberOfTemplatesFound) {
         this.type = type;
-        this.mode = mode;
+        this.numberOfTemplatesFound = numberOfTemplatesFound;
     }
     
     @Override
     protected String getMismatchErrorMessage() {
-        return "No matching template found";
+        return "Ambigous template definition";
     }
 
     @Override
     protected String getMismatchErrorBody() {
-        String error = "There is no template for type " + TcsUtil.joinNameList(EcoreHelper.getQualifiedName(type));
-        if (mode != null) {
-            error += " with mode " + mode;
-        }
-        return error;       
+        return "Found  " + numberOfTemplatesFound + " templates for type "
+                + TcsUtil.joinNameList(EcoreHelper.getQualifiedName(type));
     }
 
     @Override
     protected Template getTemplate() {
         return null;
     }
+
 }

@@ -32,7 +32,7 @@ public class PrettyPrintTestHelper {
             ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) throws SyntaxMismatchException {
 
         IMetaModelLookup<EObject> lookup = new QueryBasedEcoreMetaModelLookUp(syntax.eResource().getResourceSet(), parserFactory.getMetamodelURIs());
-        PrettyPrinter prettyPrinter = new PrettyPrinter(syntax, lookup, new TCSSpecificOCLEvaluator());
+        PrettyPrinter prettyPrinter = new PrettyPrinter(syntax, lookup, new TCSSpecificOCLEvaluator(), parserFactory);
 
         return prettyPrinter.prettyPrint(source);
     }

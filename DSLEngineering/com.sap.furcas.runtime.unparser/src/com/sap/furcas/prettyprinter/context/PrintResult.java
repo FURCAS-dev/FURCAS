@@ -21,10 +21,17 @@ import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.prettyprinter.Formatter.FormatRequest;
+import com.sap.furcas.prettyprinter.PrettyPrinter;
 import com.sap.furcas.prettyprinter.TextBlocksFactory;
 
 /**
+ * The {@link PrettyPrinter} encapsulates the result of its recursive serialization method calls
+ * in form of {@link PrintResult}s.
  * 
+ * The final result of the pretty printing progress is yield by the combination of all performed
+ * recurisve methods calls. {@link PrintResult}s can therefore be merged 
+ * (see {@link ResultContainer#merge(PrintResult)}).
+ *  
  * @author Stephan Erb
  *
  */
@@ -74,7 +81,9 @@ public abstract class PrintResult {
         return nodes;
     }
     
-    
+    /**
+     * Used if a serialization method did not produce any result. 
+     */
     public static class NullResult extends PrintResult {
         
         public NullResult() {
@@ -89,6 +98,9 @@ public abstract class PrintResult {
     }
     
     
+    /**
+     * Used if a serialization method produced a result.
+     */
     public static class LeafResult extends PrintResult {
         
         public LeafResult(List<DocumentNode> nodes) {
@@ -100,10 +112,11 @@ public abstract class PrintResult {
             super(Collections.<DocumentNode>singletonList(node), formatRequests);
             this.syntacticContribution = syntacticContribution;
         }
-
     }
     
-    
+    /**
+     * Used if several sub-result shall be combined/merged into a single result.
+     */
     public static class ResultContainer extends PrintResult {
         
         private final List<Integer> chosenAlternatives = new ArrayList<Integer>();
@@ -132,6 +145,9 @@ public abstract class PrintResult {
             }
         }
         
+        /**
+         * @param seqElem  
+         */
         public void mergeChosenAlternative(SequenceElement seqElem, int choice, PrintResult subResult) {
             alternativesNestingLevel++;
             chosenAlternatives.add(-alternativesNestingLevel); // marker to indicate nesting

@@ -19,9 +19,13 @@ import org.eclipse.emf.ecore.EObject;
 import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
 import com.sap.furcas.prettyprinter.Formatter.FormatRequest;
+import com.sap.furcas.prettyprinter.PrettyPrinter;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 
 /**
+ * A {@link PrintContext} which is used when the {@link PrettyPrinter} descends into
+ * serializing a {@link ContextTemplate}.
+ * 
  * @author Stephan Erb
  *
  */
@@ -32,10 +36,6 @@ public class TemplatePrintContext implements PrintContext {
     private final ContextTemplate template;
     private int priority;
 
-    /**
-     * @param modelElement
-     * @param template
-     */
     public TemplatePrintContext(PrintContext context, EObject modelElement, ContextTemplate template) {
         this.parentContext = context;
         this.modelElement = modelElement;

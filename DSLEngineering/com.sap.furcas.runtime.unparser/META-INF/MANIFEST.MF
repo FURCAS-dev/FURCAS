@@ -8,6 +8,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: com.sap.furcas.prettyprinter,
  com.sap.furcas.prettyprinter.context,
  com.sap.furcas.prettyprinter.exceptions,
+ com.sap.furcas.prettyprinter.policy,
  com.sap.furcas.unparser,
  com.sap.furcas.unparser.extraction,
  com.sap.furcas.unparser.extraction.textblocks,

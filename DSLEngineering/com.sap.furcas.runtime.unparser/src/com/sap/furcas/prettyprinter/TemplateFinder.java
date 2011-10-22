@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.AsPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
@@ -25,6 +26,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.prettyprinter.exceptions.AmbigousTemplateException;
 import com.sap.furcas.prettyprinter.exceptions.NoMatchingTemplateException;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.exceptions.NameResolutionFailedException;
@@ -37,6 +39,8 @@ import com.sap.furcas.runtime.tcs.SyntaxLookup;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 
 /**
+ * A {@link TemplateFinder} is used to search through the templates of a {@link ConcreteSyntax}. 
+ * 
  * @author Stephan Erb
  *
  */
@@ -108,21 +112,34 @@ public class TemplateFinder {
         }
     }
 
-    public EnumerationTemplate findEnumerationTemplate(Property seqElem) throws NoMatchingTemplateException {
+    public EnumerationTemplate findEnumerationTemplate(Property seqElem) throws NoMatchingTemplateException, AmbigousTemplateException {
         try {
             ResolvedNameAndReferenceBean<EObject> resolvedName = metamodelLookup.resolveReferenceName(TcsUtil.getType(seqElem));
-            Collection<Template> templates = syntaxLookup.getTCSTemplate(resolvedName, /*mode*/null);
-            
-            if (templates.size() != 1 || !(templates.iterator().next() instanceof EnumerationTemplate)) {
-                throw new NoMatchingTemplateException();
+            Collection<EnumerationTemplate> templates = filterFor(syntaxLookup.getTCSTemplate(resolvedName, /*mode*/null),
+                    EnumerationTemplate.class);
+
+            if (templates.size() < 1) {
+                throw new NoMatchingTemplateException(TcsUtil.getType(seqElem));
+            } else if (templates.size() > 1) {
+                throw new AmbigousTemplateException(TcsUtil.getType(seqElem), templates.size());
+            } else {
+                return templates.iterator().next();
             }
-            return (EnumerationTemplate) templates.iterator().next();
-            
         } catch (MetaModelLookupException e) {
             throw new RuntimeException(e);
         } catch (SyntaxElementException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private <E> Collection<E> filterFor(Collection<?> elements, Class<E> clazz) {
+        ArrayList<E> result = new ArrayList<E>();
+        for (Object e : elements) {
+            if (clazz.isInstance(e)) {
+                result.add(clazz.cast(e));
+            }
+        }
+        return result;
     }
 
 }
