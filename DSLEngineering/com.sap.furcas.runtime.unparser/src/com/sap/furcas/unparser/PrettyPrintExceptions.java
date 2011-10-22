@@ -64,6 +64,60 @@ public class PrettyPrintExceptions {
 
      }
     
+    public static class ForcedBoundsException extends SyntaxMismatchException {
+
+	private static final long serialVersionUID = 1L;
+	private final Object element;
+	private final ForcedLowerPArg lowerArg;
+	private final Property p;
+	private final String propertyName;
+	private final ForcedUpperPArg upperArg;
+
+	public ForcedBoundsException(Object element, Property p, ForcedLowerPArg lowerArg, ForcedUpperPArg upperArg,
+		PrettyPrintContext context) {
+	    super(context);
+	    this.element = element;
+	    this.p = p;
+	    this.propertyName = TcsUtil.getPropertyName(p.getPropertyReference());
+	    this.lowerArg = lowerArg;
+	    this.upperArg = upperArg;
+	}
+
+	@Override
+	protected String getMismatchError() {
+	    Object propValue = null;
+	    if (element instanceof EObject) {
+		propValue = TcsUtil.getPropertyValue((EObject) element, p.getPropertyReference());
+// FIXME
+//	    } else if (element instanceof RefStruct) {
+//		propValue = TcsUtil.getPropertyValue((RefStruct) element, p.getPropertyReference());
+	    }
+
+	    Integer propValueSize = 0;
+	    if (!(propValue == null)) {
+		propValueSize = 1;
+	    }
+
+	    if (propValue instanceof Collection<?>) {
+		Collection<?> c = (Collection<?>) propValue;
+		propValueSize = c.size();
+	    }
+
+	    String error = "ForcedBoundsError: ";
+	    error += "property " + propertyName;
+	    error += " has " + propValueSize + " elements with";
+
+	    if (lowerArg != null) {
+		error += " forced lower " + lowerArg.getValue();
+	    }
+	    if (upperArg != null) {
+		error += " forced upper " + upperArg.getValue();
+	    }
+	    return error;
+	}
+
+    }
+
     public static class NoTemplateMatchFoundException extends SyntaxMismatchException {
 
 	private static final long serialVersionUID = 1L;
@@ -105,5 +159,49 @@ public class PrettyPrintExceptions {
             return "Operator and template missmatch. Template " + EMFModelInspector.getTypeName(template) +
                 " does not support the operator " + operator;
         }
+    }
+
+    public static class PropertyInitException extends SyntaxMismatchException {
+
+	private static final long serialVersionUID = 1L;
+	private final Object element;
+	private final PropertyInit propertyInit;
+	private final String propertyName;
+
+	public PropertyInitException(Object element, PropertyInit propertyInit, PrettyPrintContext context) {
+	    super(context);
+	    this.element = element;
+	    this.propertyInit = propertyInit;
+	    this.propertyName = TcsUtil.getPropertyName(propertyInit.getPropertyReference());
+	}
+
+	@Override
+	protected String getMismatchError() {
+	    if (propertyInit instanceof PrimitivePropertyInit) {
+		return getPrimitivePropertyInitError((PrimitivePropertyInit) propertyInit);
+	    }
+	    if (propertyInit instanceof LookupPropertyInit) {
+		return getLookupPropertyInitError((LookupPropertyInit) propertyInit);
+	    }
+	    return "unknown property init type";
+	}
+
+	private String getPrimitivePropertyInitError(PrimitivePropertyInit p) {
+	    String error = "PrimitivePropertyInit: ";
+	    error += "property " + propertyName;
+// FIXME: Structure types not yet supported
+//	    if (element instanceof RefStruct) {
+//		error += " is " + ((RefStruct) element).refGetValue(propertyName);
+//	    } else if (element instanceof EObject) {
+		error += " is " + ((EObject) element).eGet(((EObject) element).eClass().getEStructuralFeature((propertyName)));
+//	    }
+	    error += " instead of the expected " + p.getValue();
+
+	    return error;
+	}
+	
+	private String getLookupPropertyInitError(LookupPropertyInit p) {
+	    return "LookupPropertyInit: property " + propertyName + " does not match OCL query " + p.getValue();
+	}
     }
 }

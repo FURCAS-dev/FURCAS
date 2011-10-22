@@ -144,7 +144,7 @@ public class TestTemplateHandler {
         SequenceElementValidator validator =  new SequenceElementValidator(/*oclEvaluator*/ null) {
             @Override
             public void validateLookupPropertyInit(EObject modelElement, LookupPropertyInit propInit, PrintContext context) throws SyntaxMismatchException {
-                throw new PropertyInitMismatchException();
+                throw new PropertyInitMismatchException("actual", "expected", propInit);
             }
             @Override
             public void validatePrimitivePropertyInit(Object element, PrimitivePropertyInit propInit) throws SyntaxMismatchException {

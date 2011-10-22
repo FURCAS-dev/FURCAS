@@ -34,18 +34,17 @@ public class DefaultPrintPolicy implements PrintPolicy {
     public PrintPolicy getPolicyFor(EObject modelElement, SequenceElement seqElem, Object value, ContextTemplate template) {
         return this; 
     }
-
-    
-    @Override
-    public Collection<ContextTemplate> getPreferredTemplateOrderOf(EObject modelElement, SequenceElement seqElem, Collection<ContextTemplate> elements) {
-        return elements;
-    }
     
     @Override
     public Collection<?> getPreferredCollectionOrderOf(EObject modelElement, Property seqElem, Collection<?> elements) {
         return elements;
     }
     
+    @Override
+    public Collection<ContextTemplate> getPreferredTemplateOrderOf(EObject modelElement, SequenceElement seqElem, EObject value,
+            Collection<ContextTemplate> elements) {
+        return elements;
+    }
 
     @Override
     public Collection<SequenceInAlternative> getPreferredAlternativeChoiceOrderOf(Collection<SequenceInAlternative> sequences) {
