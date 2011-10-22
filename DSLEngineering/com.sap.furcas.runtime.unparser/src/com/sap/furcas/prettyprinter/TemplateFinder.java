@@ -25,6 +25,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.prettyprinter.exceptions.AmbigousTemplateException;
 import com.sap.furcas.prettyprinter.exceptions.NoMatchingTemplateException;
@@ -66,13 +67,21 @@ public class TemplateFinder {
                         metaElementRef, TcsUtil.getPropertyName(seqElem.getPropertyReference()));
                 
                 ReferenceByPArg refByParg = PropertyArgumentUtil.getReferenceByPArg(seqElem);
-                if (refByParg == null) {
-                    return syntaxLookup.getDefaultPrimitiveTemplateRule(metamodelType);
-                } else {
+                RefersToPArg refersToParg = PropertyArgumentUtil.getRefersToPArg(seqElem);
+                
+                if (refByParg != null) {
                     String referenceByQuery = PropertyArgumentUtil.getReferenceByAsOCL(refByParg);
                     EObject type = metamodelLookup.getOclReturnType(metamodelType.getReference(), referenceByQuery);
                     ResolvedNameAndReferenceBean<EObject> metaModelTypeOfQueryResult = metamodelLookup.resolveReferenceName(type);
                     return syntaxLookup.getDefaultPrimitiveTemplateRule(metaModelTypeOfQueryResult);
+                    
+                } else if (refersToParg != null) {
+                   ResolvedNameAndReferenceBean<EObject> referredFeatureType = metamodelLookup.getFeatureClassReference(
+                           metamodelType, refersToParg.getPropertyName());
+                   return syntaxLookup.getDefaultPrimitiveTemplateRule(referredFeatureType);
+                    
+                } else {
+                    return syntaxLookup.getDefaultPrimitiveTemplateRule(metamodelType);
                 }
             } catch (NameResolutionFailedException e) {
                 throw new RuntimeException(e);

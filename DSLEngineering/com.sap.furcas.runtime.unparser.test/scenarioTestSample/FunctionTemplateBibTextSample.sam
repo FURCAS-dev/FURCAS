@@ -1,6 +1,6 @@
 article{
-	Testing, "John Doe",
+	"Testing", "John Doe",
 	year = "2002" 
 }
 
-author = testKey, "John Doe".
+author = "testKey", "John Doe".

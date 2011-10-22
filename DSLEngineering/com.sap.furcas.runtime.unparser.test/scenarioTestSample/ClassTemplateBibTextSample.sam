@@ -1,18 +1,18 @@
 article{
-  Testing, "John Doe",
-  year = "2002"
+  Testing, JohnDoe,
+  year = TwoThousendTwo
 }
-author = "John Doe".
+author = JohnDoe.
 
 article{
-  Testing2, "John Dome",
-  year = "2002"
+  Testing2, JohnDome,
+  year = TwoThousendTwo
 }
 
 article{
-  Testing, "John Dome",
-  year = "2002"
+  Testing, JohnDome,
+  year = TwoThousendOne
 }
 
-author = "John Dome".
-author = "Jane Doe".
+author = JohnDome.
+author = JaneDoe.
