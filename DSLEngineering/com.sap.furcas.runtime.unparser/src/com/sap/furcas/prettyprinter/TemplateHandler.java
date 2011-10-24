@@ -114,9 +114,9 @@ public class TemplateHandler {
     private LeafResult createFormattedTokenWithContent(String content, SequenceElement seqElem, PrintContext context,
             PrintPolicy policy) {
         List<FormatRequest> formatRequests = new ArrayList<FormatRequest>(context.getPendingFormattingRequest());
-        formatRequests = policy.getOverruledFormattingOf(formatRequests);
-        
         formatRequests.add(FormatRequest.create(Type.ADD_OPTIONAL_SPACE));
+        
+        formatRequests = policy.getOverruledFormattingBetween(formatRequests, context.getLastSequenceElement(), seqElem);
         List<OmittedToken> formatting = formatter.translateToTokens(formatRequests, context);
           
         List<DocumentNode> tokens = new ArrayList<DocumentNode>(formatting);

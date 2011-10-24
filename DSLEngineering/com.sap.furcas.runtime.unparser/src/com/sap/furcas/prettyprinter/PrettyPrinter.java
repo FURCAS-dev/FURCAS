@@ -32,6 +32,7 @@ import com.sap.furcas.runtime.tcs.SyntaxLookup;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbDebugUtil;
 import com.sap.furcas.runtime.textblocks.validation.TbValidationUtil;
+import com.sap.furcas.unparser.textblocks.TextBlockIndex;
 
 /**
  * A {@link PrettyPrinter} translates a domain model into a textual representation.
@@ -97,7 +98,10 @@ public class PrettyPrinter {
     public TextBlock prettyPrint(EObject modelElement, TextBlock oldBlock) throws SyntaxMismatchException {
         assert oldBlock.getCorrespondingModelElements().contains(modelElement);
         
-        PrintPolicy policy = new TextBlockBasedPrintPolicy(oldBlock);
+        TextBlockIndex index = new TextBlockIndex();
+        index.index(oldBlock);
+        
+        PrintPolicy policy = new TextBlockBasedPrintPolicy(oldBlock, index);
         ClassTemplate template = TcsUtil.getMainClassTemplate(syntax);
         
         return prettyPrintInternal(modelElement, template, policy);

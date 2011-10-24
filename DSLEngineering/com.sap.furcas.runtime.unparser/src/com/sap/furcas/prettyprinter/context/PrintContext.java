@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
 import com.sap.furcas.metamodel.FURCAS.TCS.Block;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.prettyprinter.Formatter.FormatRequest;
 import com.sap.furcas.prettyprinter.TemplateHandler;
@@ -70,6 +71,11 @@ public interface PrintContext {
      * before the next element with syntactic contribution can be printed. 
      */
     public List<FormatRequest> getPendingFormattingRequest();
+    
+    /**
+     * The {@link SequenceElement} of the last printed element.
+     */
+    public SequenceElement getLastSequenceElement();
 
     /**
      * The formatting as required by the configuration of the inner-most {@link Block}.

@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.prettyprinter.Formatter.FormatRequest;
 import com.sap.furcas.prettyprinter.Formatter.Type;
 
@@ -65,6 +66,11 @@ public class InitialPrintContext implements PrintContext {
     @Override
     public Collection<FormatRequest> getBlockFormattingBetweenElements() {
         return Collections.emptyList();
+    }
+
+    @Override
+    public SequenceElement getLastSequenceElement() {
+        return null;
     }
 
 }

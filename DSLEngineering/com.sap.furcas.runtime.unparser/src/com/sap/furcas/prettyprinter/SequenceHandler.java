@@ -160,7 +160,7 @@ public class SequenceHandler {
      * Serialize keywords (e.g., "class") or symbols (e.g., ";", "{", ...).
      */
     public final PrintResult serializeLiteral(Literal literal, SequenceElement seqElem, PrintContext context, PrintPolicy policy) {
-        List<OmittedToken> formatting = formatter.translateToTokens(getLeadingSymbolFormatting(literal, context, policy), context);
+        List<OmittedToken> formatting = formatter.translateToTokens(getLeadingSymbolFormatting(literal, seqElem, context, policy), context);
 
         List<DocumentNode> tokens = new ArrayList<DocumentNode>(formatting);
         tokens.add(tbFactory.createLexedToken(literal.getValue(), seqElem,
@@ -171,9 +171,8 @@ public class SequenceHandler {
         return result;
     }
     
-    private List<FormatRequest> getLeadingSymbolFormatting(Literal literal, PrintContext context, PrintPolicy policy) {
+    private List<FormatRequest> getLeadingSymbolFormatting(Literal literal, SequenceElement seqElem, PrintContext context, PrintPolicy policy) {
         List<FormatRequest> formatRequests = new ArrayList<FormatRequest>(context.getPendingFormattingRequest());
-        formatRequests = policy.getOverruledFormattingOf(formatRequests);
 
         if (literal instanceof Symbol) {
             Symbol symbol = (Symbol) literal;
@@ -185,6 +184,7 @@ public class SequenceHandler {
         } else {
             formatRequests.add(FormatRequest.create(Type.ADD_OPTIONAL_SPACE));
         }
+        formatRequests = policy.getOverruledFormattingBetween(formatRequests, context.getLastSequenceElement(), seqElem);
         return formatRequests;
     }
 

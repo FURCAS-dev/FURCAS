@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.prettyprinter.Formatter.FormatRequest;
 import com.sap.furcas.prettyprinter.PrettyPrinter;
 import com.sap.furcas.runtime.tcs.TcsUtil;
@@ -85,6 +86,11 @@ public class TemplatePrintContext implements PrintContext {
     @Override
     public Collection<FormatRequest> getBlockFormattingBetweenElements() {
         return Collections.emptyList();
+    }
+
+    @Override
+    public SequenceElement getLastSequenceElement() {
+       return parentContext.getLastSequenceElement();
     }
 
 }

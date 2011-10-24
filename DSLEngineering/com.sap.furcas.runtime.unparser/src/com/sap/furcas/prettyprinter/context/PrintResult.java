@@ -209,6 +209,14 @@ public abstract class PrintResult {
                 public int getAlternativeNestingLevel() {
                     return context.getAlternativeNestingLevel() + alternativeNestingLevelIncrement;
                 }
+                @Override
+                public SequenceElement getLastSequenceElement() {
+                    if (getNodes().isEmpty()) {
+                        return null;
+                    } else {
+                        return getNodes().get(getNodes().size()-1).getSequenceElement();
+                    }
+                }
             };
         }
 
