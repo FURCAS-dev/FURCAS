@@ -20,7 +20,9 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceInAlternative;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.prettyprinter.Formatter.FormatRequest;
+import com.sap.furcas.unparser.textblocks.TextBlockIndex;
 
 /**
  * A {@link PrintPolicy} which always defaults to the information/order as provided by the used {@link ConcreteSyntax}.
@@ -30,9 +32,36 @@ import com.sap.furcas.prettyprinter.Formatter.FormatRequest;
  */
 public class DefaultPrintPolicy implements PrintPolicy {
 
+    private final TextBlockIndex index;
+
+    public DefaultPrintPolicy() {
+        this(null);
+    }
+    
+    public DefaultPrintPolicy(TextBlockIndex index) {
+        this.index = index;
+    }
+
     @Override
-    public PrintPolicy getPolicyFor(EObject modelElement, SequenceElement seqElem, Object value, ContextTemplate template) {
-        return this; 
+    public PrintPolicy getPolicyFor(EObject modelElement, SequenceElement seqElem, EObject value, ContextTemplate template) {
+        if (index == null) {
+            return this;
+        } else {
+            return getPolicyFor(index, value, template);
+        }
+    }
+    
+    /*package*/ static PrintPolicy getPolicyFor(TextBlockIndex index, EObject valueToBePrinted, ContextTemplate template) {
+        
+        Collection<TextBlock> potentiallyReusableBlocks = index.findTextBlock(template, valueToBePrinted);
+        if (potentiallyReusableBlocks.isEmpty()) {
+            return new DefaultPrintPolicy(index);
+        } else {
+            // it is unknown which textblocks to prefer if there are several potential
+            // this may happen if a model element is visible in several views
+            TextBlock block = potentiallyReusableBlocks.iterator().next();
+            return new TextBlockBasedPrintPolicy(block, index);
+        }
     }
     
     @Override
@@ -57,7 +86,7 @@ public class DefaultPrintPolicy implements PrintPolicy {
     }
 
     @Override
-    public List<FormatRequest> getOverruledFormattingOf(List<FormatRequest> pendingFormattingRequest) {
+    public List<FormatRequest> getOverruledFormattingBetween(List<FormatRequest> pendingFormattingRequest, SequenceElement previousSeqElement, SequenceElement newSeqElement) {
         return pendingFormattingRequest;
     }
 

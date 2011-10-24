@@ -142,7 +142,7 @@ public class TextBlockPrettyPrintingTraverser implements PrettyPrintingPolicy, P
     
     @Override
     public void notifyStartedClassTemplateForObject(int handle, EObject printedModelElement, Template template) {
-	Collection<TextBlock> potentiallyReusableBlocks = textBlocksIndex.findTextBlock(template.getConcreteSyntax(), template, printedModelElement);
+	Collection<TextBlock> potentiallyReusableBlocks = textBlocksIndex.findTextBlock(template, printedModelElement);
 	if (potentiallyReusableBlocks.isEmpty()) {
 	    this.traversationContextStack.push(/*null context*/ new TraversationContext());
 	} else {

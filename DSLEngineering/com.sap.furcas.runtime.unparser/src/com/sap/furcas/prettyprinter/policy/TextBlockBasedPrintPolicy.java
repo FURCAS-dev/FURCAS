@@ -10,8 +10,12 @@
  ******************************************************************************/
 package com.sap.furcas.prettyprinter.policy;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -19,8 +23,16 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceInAlternative;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.prettyprinter.Formatter.FormatRequest;
+import com.sap.furcas.runtime.tcs.TcsUtil;
+import com.sap.furcas.unparser.textblocks.TextBlockIndex;
 
 /**
  * A {@link PrintPolicy} which allows to re-use information from old/preexisting {@link TextBlock}s.
@@ -36,13 +48,51 @@ import com.sap.furcas.prettyprinter.Formatter.FormatRequest;
  */
 public class TextBlockBasedPrintPolicy implements PrintPolicy {
 
-    public TextBlockBasedPrintPolicy(TextBlock oldBlock) {
-        // TODO Auto-generated method stub
+    private final TextBlock textBlock;
+    private final HashMap<SequenceElement, AbstractToken> firstPreceedingWhiteSpacePerTokenSequenceElement = new HashMap<SequenceElement, AbstractToken>();
+    private final TextBlockIndex index;
+    
+    public TextBlockBasedPrintPolicy(TextBlock oldBlock, TextBlockIndex index) {
+        this.textBlock = oldBlock;
+        this.index = index;
+        
+        initializeSequenceElementStore(textBlock.getTokens());
     }
+    
+    private void initializeSequenceElementStore(List<AbstractToken> tokensOfBlock) {
+        AbstractToken currentleftMostWhiteSpace = null;
+        
+        for (AbstractToken token : tokensOfBlock) {
+            if (token instanceof LexedToken) {
+                SequenceElement se = ((LexedToken) token).getSequenceElement();
+                if (currentleftMostWhiteSpace == null) {
+                    firstPreceedingWhiteSpacePerTokenSequenceElement.put(se, token);
+                } else {
+                    firstPreceedingWhiteSpacePerTokenSequenceElement.put(se, currentleftMostWhiteSpace);
+                    currentleftMostWhiteSpace = null;
+                }
+            } else if (isWhiteSpace(token) && !isPseudoToken(token)) {
+                if (currentleftMostWhiteSpace == null) {
+                    currentleftMostWhiteSpace = token;
+                }
+            } else {
+                currentleftMostWhiteSpace = null;
+            }
+        }
+    }
+    
+    private static boolean isPseudoToken(DocumentNode node) {
+        return node instanceof Bostoken || node instanceof Eostoken;
+    }
+    
+    private static boolean isWhiteSpace(DocumentNode node) {
+        return node instanceof OmittedToken;
+    }
+    
 
     @Override
-    public PrintPolicy getPolicyFor(EObject modelElement, SequenceElement seqElem, Object value, ContextTemplate template) {
-        return this; 
+    public PrintPolicy getPolicyFor(EObject modelElement, SequenceElement seqElem, EObject valueToBePrinted, ContextTemplate template) {
+        return DefaultPrintPolicy.getPolicyFor(index, valueToBePrinted, template);
     }
     
     @Override
@@ -58,6 +108,18 @@ public class TextBlockBasedPrintPolicy implements PrintPolicy {
 
     @Override
     public Collection<SequenceInAlternative> getPreferredAlternativeChoiceOrderOf(Collection<SequenceInAlternative> sequences) {
+        // This is slow, but seems fast enoug for now...
+        // Find the chosen alternative in the old textblock
+        for (SequenceInAlternative seq : sequences) {
+            if (textBlock.getType() instanceof ContextTemplate && TcsUtil.wasExecuted(
+                    (ContextTemplate) textBlock.getType(), textBlock.getParentAltChoices(), seq.getElements().iterator().next())) {
+                // put it to front: It should be tested first
+                List<SequenceInAlternative> reordered = new ArrayList<SequenceInAlternative>(sequences);
+                reordered.remove(seq);
+                reordered.add(0, seq);
+                return reordered;
+            }
+        }
         return sequences;
     }
 
@@ -67,8 +129,50 @@ public class TextBlockBasedPrintPolicy implements PrintPolicy {
     }
 
     @Override
-    public List<FormatRequest> getOverruledFormattingOf(List<FormatRequest> pendingFormattingRequest) {
-        return pendingFormattingRequest;
+    public List<FormatRequest> getOverruledFormattingBetween(List<FormatRequest> pendingFormattingRequest,
+            SequenceElement previousSeqElement, SequenceElement newSeqElement) {
+        ListIterator<DocumentNode> iter = textBlock.getSubNodes().listIterator();
+        
+        if (consumeUntilSequenceElement(iter, newSeqElement)) {
+            return getFormattingRequestsForNextWhiteSpaces(iter);
+        } else {
+            return pendingFormattingRequest;
+        }
+    }
+    
+    /**
+     * Fast forward to the leftmost whitespace in [..., TB, WS, WS, MyLexedTokenWithTargetSeqElem, TB]
+     */
+    private boolean consumeUntilSequenceElement(ListIterator<DocumentNode> iter, SequenceElement targetSeqElem) {
+        AbstractToken targetToken = firstPreceedingWhiteSpacePerTokenSequenceElement.get(targetSeqElem);
+        if (targetToken == null) {
+            return false;
+        }
+        while (iter.hasNext()) {
+            DocumentNode node = iter.next();
+            if (node == targetToken) {
+                iter.previous(); // gone one to far
+                return true;
+            }
+        }
+        return false; // happens at end of list
+    }
+    
+    private  List<FormatRequest> getFormattingRequestsForNextWhiteSpaces(Iterator<DocumentNode> iter) {
+        List<FormatRequest> requests = new ArrayList<FormatRequest>();
+        
+        while (iter.hasNext()) {
+            DocumentNode node = iter.next();
+            if (isPseudoToken(node)) {
+                continue;
+            }
+            if (isWhiteSpace(node)) {
+                requests.add(FormatRequest.createCustom(((AbstractToken) node).getValue()));
+            } else {
+                break;
+            }
+        }
+        return requests;
     }
 
 }

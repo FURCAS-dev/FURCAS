@@ -29,7 +29,7 @@ import com.sap.furcas.prettyprinter.Formatter.FormatRequest;
  */
 public interface PrintPolicy {
 
-    public PrintPolicy getPolicyFor(EObject modelElement, SequenceElement seqElem, Object value, ContextTemplate template);
+    public PrintPolicy getPolicyFor(EObject modelElement, SequenceElement seqElem, EObject value, ContextTemplate template);
 
     /**
      * Allow to change the order in which templates are tested. Only the first matching template is used
@@ -58,6 +58,6 @@ public interface PrintPolicy {
     /**
      * Allow to overwrite the formatting between elements.
      */
-    public List<FormatRequest> getOverruledFormattingOf(List<FormatRequest> pendingFormattingRequest);
+    public List<FormatRequest> getOverruledFormattingBetween(List<FormatRequest> pendingFormattingRequest, SequenceElement previousSeqElement, SequenceElement newSeqElement);
 
 }

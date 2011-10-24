@@ -150,14 +150,14 @@ public class TextBlockIndex {
      * @param correspondingModelElement
      * @return
      */
-    public Collection<TextBlock> findTextBlock(ConcreteSyntax syntax, Template template, EObject correspondingModelElement) {
+    public Collection<TextBlock> findTextBlock(Template template, EObject correspondingModelElement) {
 	Collection<TextBlock> found = null;
 	
-	found = getBlockListForKey(new ModelElementKey(syntax, template, correspondingModelElement));
+	found = getBlockListForKey(new ModelElementKey(template.getConcreteSyntax(), template, correspondingModelElement));
 	if (!found.isEmpty()) {
 	    return found;
 	}
-	found = getBlockListForKey(new ModelElementKey(syntax, /*template*/ null, correspondingModelElement));
+	found = getBlockListForKey(new ModelElementKey(template.getConcreteSyntax(), /*template*/ null, correspondingModelElement));
 	if (!found.isEmpty()) {
 	    return found;
 	}
@@ -165,7 +165,7 @@ public class TextBlockIndex {
 	if (sharedTextBlocksIndex == null) {
 	    return Collections.emptyList();
 	} else {
-	    return sharedTextBlocksIndex.findTextBlock(syntax, template, correspondingModelElement);
+	    return sharedTextBlocksIndex.findTextBlock(template, correspondingModelElement);
 	}
     }
     

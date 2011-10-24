@@ -13,8 +13,11 @@ import static com.sap.furcas.unparser.testutils.PrettyPrintAssertionUtil.assertE
 
 import java.io.File;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
@@ -82,7 +85,7 @@ public class TestTextBlockBasedPrintPolicy extends IncrementalParserBasedTest {
     }
     
     /**
-     * Content is slightly modified. As the old block is not passed in,
+     * Default formatting is slightly modified. As the old block is not passed in,
      * we cannot expect any formatting re-use.
      */
     @Test(expected=Throwable.class)
@@ -97,13 +100,32 @@ public class TestTextBlockBasedPrintPolicy extends IncrementalParserBasedTest {
     }
     
     /**
-     * Content is slightly modified. As the old block is not passed in,
-     * we cannot expect any formatting re-use.
+     * Default formatting is slightly modified.
+     * The pretty printer should re-use the complete formatting information.
      */
     @Test
     public void testSimpleFormattingChangesWithReuse() throws Exception {
         String content = "Definitions: def a; Usages: use a;";
 
+        model.replace(0, model.getLength(), content);
+        triggerParser();
+        
+        TextBlock reprinted = prettyPrinter.prettyPrint(getRootObject(), getRootBlock());
+        assertEqualsByLines(reprinted.getCachedString(), content);
+    }
+    
+    /**
+     * The pretty printer should re-use the complete formatting information.
+     */
+    @Test
+    public void testFormattingChangesWithReuse() throws Exception {
+        String content = "Definitions  : \n" +
+        		 "    def a;\n" +
+        		 "    def   b   ; \n " +
+        		 "    def c;\n" +
+        		 "\n" +
+        		 "Usages: \n" +
+        		 "    use a;\n";
         model.replace(0, model.getLength(), content);
         triggerParser();
         
@@ -126,7 +148,7 @@ public class TestTextBlockBasedPrintPolicy extends IncrementalParserBasedTest {
         TextBlock reprinted = prettyPrinter.prettyPrint(getRootObject());
         assertEqualsByLines(reprinted.getCachedString(), expected);
     }
-    
+        
     /**
      * There is an alternativ way to reference definitions named xxFOOxx.
      * The pretty printer should re-use the alternative choice that was used
@@ -141,6 +163,107 @@ public class TestTextBlockBasedPrintPolicy extends IncrementalParserBasedTest {
         
         TextBlock reprinted = prettyPrinter.prettyPrint(getRootObject(), getRootBlock());
         assertEqualsByLines(reprinted.getCachedString(), content);
+    }
+    
+    @Test
+    public void testAlternativeChoiceWithFormattingAndReuse() throws Exception {
+        String content  = "Definitions:\n " +
+        		  "    def xxFOOxx;\n" +
+        		  "Usages: \n " +
+        		  "    useXX FOO;\n" +
+        		  "    use xxFOOxx;";
+
+        model.replace(0, model.getLength(), content);
+        triggerParser();
+        
+        TextBlock reprinted = prettyPrinter.prettyPrint(getRootObject(), getRootBlock());
+        assertEqualsByLines(reprinted.getCachedString(), content);
+    }
+    
+    @Test
+    public void testReprintAfterDeleteSecond() throws Exception {
+        String content = "Definitions: \n \n" +
+                         "    def  a;\n" +
+                         "    def  b;\n" +
+                         "    def  c;\n" +
+                         "Usages:";
+        String expected = "Definitions: \n \n" +
+                         "    def  a;\n" +
+                         "    def  c;\n" +
+                         "Usages:";
+
+
+        model.replace(0, model.getLength(), content);
+        triggerParser();
+        
+        // Delete the "def b"
+        EList<EObject> definitions = getDefinitions(getRootObject());
+        definitions.remove(1); 
+        
+        TextBlock reprinted = prettyPrinter.prettyPrint(getRootObject(), getRootBlock());
+        assertEqualsByLines(reprinted.getCachedString(), expected);
+    }
+    
+    /**
+     * Delete the first definition. This is a bit harder, as we want to keep 
+     * the two line breaks after "Definitions:"
+     */
+    @Test
+    @Ignore("Proper fix would require a reworking of how we assign/distribute"+
+            "Whitespaces to adjacent TextBlocks")
+    public void testReprintAfterDeleteFirst() throws Exception {
+        String content = "Definitions: \n \n" +
+                         "    def  a;\n" +
+                         "    def  b;\n" +
+                         "    def  c;\n" +
+                         "Usages:";
+        String expected = "Definitions: \n \n" +
+                         "    def  b;\n" +
+                         "    def  c;\n" +
+                         "Usages:";
+
+        model.replace(0, model.getLength(), content);
+        triggerParser();
+        
+        // Delete the "def a"
+        EList<EObject> definitions = getDefinitions(getRootObject());
+        definitions.remove(0); 
+        
+        TextBlock reprinted = prettyPrinter.prettyPrint(getRootObject(), getRootBlock());
+        assertEqualsByLines(reprinted.getCachedString(), expected);
+    }
+    
+    @Test
+    public void testReprintAfterInsert() throws Exception {
+        String content = "Definitions: \n" +
+                         "    def  a;\n" +
+                         "    def  b;\n" +
+                         "    def  c;\n" +
+                         "Usages:";
+        String expected ="Definitions: \n" +
+                         "    def  a; def d ;\n" + // default syntax (which is used for def d) does not define newlines.
+                         "    def  b;\n" +
+                         "    def  c;\n" +
+                         "Usages:";
+
+
+        model.replace(0, model.getLength(), content);
+        triggerParser();
+        
+        // Insert "def d" after "def a"
+        EList<EObject> definitions = getDefinitions(getRootObject());
+        EClass defClass = definitions.get(0).eClass();
+        EObject def = defClass.getEPackage().getEFactoryInstance().create(defClass);
+        def.eSet(defClass.getEStructuralFeature("name"), "d");
+        definitions.add(1, def); 
+        
+        TextBlock reprinted = prettyPrinter.prettyPrint(getRootObject(), getRootBlock());
+        assertEqualsByLines(reprinted.getCachedString(), expected);
+    }
+
+    @SuppressWarnings("unchecked")
+    private EList<EObject> getDefinitions(EObject root) {
+        return (EList<EObject>) root.eGet(root.eClass().getEStructuralFeature("definitions"));
     }
     
     private TextBlock getRootBlock() {
