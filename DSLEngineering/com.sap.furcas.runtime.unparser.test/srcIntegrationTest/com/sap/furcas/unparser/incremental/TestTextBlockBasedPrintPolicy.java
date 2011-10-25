@@ -260,10 +260,61 @@ public class TestTextBlockBasedPrintPolicy extends IncrementalParserBasedTest {
         TextBlock reprinted = prettyPrinter.prettyPrint(getRootObject(), getRootBlock());
         assertEqualsByLines(reprinted.getCachedString(), expected);
     }
+    
+    /**
+     * Delete a definition. The reference in the usage will
+     * thus be broken on re-print.
+     */
+    @Test
+    public void testReprintWithBrokenReference() throws Exception {
+        String content = "Definitions : def a ; Usages : use a ;";
+        String expected = "Definitions : Usages : use  ;";
+
+
+        model.replace(0, model.getLength(), content);
+        triggerParser();
+        
+        // Delete the "def a"
+        EList<EObject> definitions = getDefinitions(getRootObject());
+        definitions.remove(0); 
+        EList<EObject> usages = getUsages(getRootObject());
+        usages.get(0).eUnset(usages.get(0).eClass().getEStructuralFeature("boundDefinition"));
+        
+        TextBlock reprinted = prettyPrinter.prettyPrint(getRootObject());
+        assertEqualsByLines(reprinted.getCachedString(), expected);
+    }
+    
+    /**
+     * Delete a definition but make sure the pretty pritner keeps
+     * the id used to reference the definition.
+     */
+    @Test
+    public void testReprintWithBrokenReferenceAndRecovery() throws Exception {
+        String content = "Definitions: def a; Usages: use a;";
+        String expected = "Definitions: Usages: use a;";
+
+
+        model.replace(0, model.getLength(), content);
+        triggerParser();
+        
+        // Delete the "def a"
+        EList<EObject> definitions = getDefinitions(getRootObject());
+        definitions.remove(0); 
+        EList<EObject> usages = getUsages(getRootObject());
+        usages.get(0).eUnset(usages.get(0).eClass().getEStructuralFeature("boundDefinition"));
+        
+        TextBlock reprinted = prettyPrinter.prettyPrint(getRootObject(), getRootBlock());
+        assertEqualsByLines(reprinted.getCachedString(), expected);
+    }
 
     @SuppressWarnings("unchecked")
     private EList<EObject> getDefinitions(EObject root) {
         return (EList<EObject>) root.eGet(root.eClass().getEStructuralFeature("definitions"));
+    }
+    
+    @SuppressWarnings("unchecked")
+    private EList<EObject> getUsages(EObject root) {
+        return (EList<EObject>) root.eGet(root.eClass().getEStructuralFeature("usages"));
     }
     
     private TextBlock getRootBlock() {

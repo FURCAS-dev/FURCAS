@@ -53,7 +53,7 @@ public interface PrintPolicy {
      * Allow to change how a reference to a model element is represented as text.
      * The value should only be changed if the referenceValue is null, which happens whenever a reference is broken. 
      */
-    public Object getReferenceValueReplacementFor(Object referenceValue);
+    public Object getRecoveredReferenceValueFor(SequenceElement seqElem);
 
     /**
      * Allow to overwrite the formatting between elements.
