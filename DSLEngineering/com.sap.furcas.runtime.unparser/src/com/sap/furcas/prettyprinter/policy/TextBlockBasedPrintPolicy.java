@@ -108,19 +108,29 @@ public class TextBlockBasedPrintPolicy implements PrintPolicy {
 
     @Override
     public Collection<SequenceInAlternative> getPreferredAlternativeChoiceOrderOf(Collection<SequenceInAlternative> sequences) {
-        // This is slow, but seems fast enoug for now...
+        // This is slow, but seems fast enough for now...
         // Find the chosen alternative in the old textblock
+        SequenceInAlternative executedAlternative = null;
         for (SequenceInAlternative seq : sequences) {
+            if (seq.getElements().isEmpty()) {
+                executedAlternative = seq;
+                continue; // only use if we there wasn't another one being executed.
+            }
             if (textBlock.getType() instanceof ContextTemplate && TcsUtil.wasExecuted(
                     (ContextTemplate) textBlock.getType(), textBlock.getParentAltChoices(), seq.getElements().iterator().next())) {
-                // put it to front: It should be tested first
-                List<SequenceInAlternative> reordered = new ArrayList<SequenceInAlternative>(sequences);
-                reordered.remove(seq);
-                reordered.add(0, seq);
-                return reordered;
+                executedAlternative = seq;
+                break; // there can only be one
             }
         }
-        return sequences;
+        if (executedAlternative == null) {
+            return sequences;
+        } else {
+            // put it to front: It should be tested first
+            List<SequenceInAlternative> reordered = new ArrayList<SequenceInAlternative>(sequences);
+            reordered.remove(executedAlternative);
+            reordered.add(0, executedAlternative);
+            return reordered;
+        }
     }
 
     @Override
