@@ -34,6 +34,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.NbNLBArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.PrimitivePropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg;
@@ -220,15 +221,12 @@ public class SequenceHandler {
             } else if (value instanceof Collection) {
                 return serializePropertyWithCollectionValue(modelElement, seqElem, (Collection<?>) value, context, policy);
                 
+            } else if (isRefererence(seqElem)) {
+                return serializePropertyWithEObjectReference(seqElem, (EObject) value, context, policy);
+                
             } else if (value instanceof EObject) {
-                EObject propertyValue = (EObject) value;
-                if (isRefererence(seqElem)) {
-                    return serializePropertyWithEObjectReference(seqElem, propertyValue, context, policy);
-                } else {
-                    return serializeEObjectViaTemplateCall(modelElement, seqElem, propertyValue,
-                            TcsUtil.getMode(seqElem), context, policy);
-                }
-
+                return serializeEObjectViaTemplateCall(modelElement, seqElem, (EObject) value,
+                        TcsUtil.getMode(seqElem), context, policy);
             } else {
                 Activator.logger.logError("Unable to serialize property value of unknown type "
                         + value.getClass().getName() + ". Skipping.");
@@ -260,12 +258,16 @@ public class SequenceHandler {
 
     private PrintResult serializePropertyWithEObjectReference(Property seqElem, EObject propertyValue, PrintContext context,
             PrintPolicy policy) {
-        
-        Object reference = policy.getReferenceValueReplacementFor(getReferenceValue(seqElem, propertyValue));
-        LeafResult result = templateHandler.serializePrimitiveTemplate(reference, seqElem,
-                templateFinder.findPrimitiveTemplate(seqElem), context, policy);
-        setReferencedModelElementInResult(result, propertyValue);
-        return result;
+        PrimitiveTemplate template = templateFinder.findPrimitiveTemplate(seqElem);
+        if (propertyValue == null) {
+            Object reference = policy.getRecoveredReferenceValueFor(seqElem);
+            return templateHandler.serializePrimitiveTemplate(reference, seqElem, template, context, policy);
+        } else {
+            Object reference = getReferenceValue(seqElem, propertyValue);
+            LeafResult result = templateHandler.serializePrimitiveTemplate(reference, seqElem, template, context, policy);
+            setReferencedModelElementInResult(result, propertyValue);
+            return result;
+        }
     }
 
     private Object getReferenceValue(Property seqElem, EObject propertyValue) {
@@ -282,7 +284,7 @@ public class SequenceHandler {
     }
 
     private void setReferencedModelElementInResult(LeafResult result, EObject propertyValue) {
-        LexedToken token = (LexedToken) result.getNodes().get(result.getNodes().size()-1);
+        LexedToken token = (LexedToken) result.getNodes().get(result.getNodes().size() - 1);
         token.getReferencedElements().add(propertyValue);
     }
 

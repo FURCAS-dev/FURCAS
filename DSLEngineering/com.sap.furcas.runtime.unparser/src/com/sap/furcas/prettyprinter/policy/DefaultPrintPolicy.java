@@ -81,8 +81,8 @@ public class DefaultPrintPolicy implements PrintPolicy {
     }
 
     @Override
-    public Object getReferenceValueReplacementFor(Object referenceValue) {
-        return referenceValue;
+    public Object getRecoveredReferenceValueFor(SequenceElement seqElem) {
+        return "";
     }
 
     @Override

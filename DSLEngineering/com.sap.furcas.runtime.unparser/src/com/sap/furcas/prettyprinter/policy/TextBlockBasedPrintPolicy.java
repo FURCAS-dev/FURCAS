@@ -124,8 +124,17 @@ public class TextBlockBasedPrintPolicy implements PrintPolicy {
     }
 
     @Override
-    public Object getReferenceValueReplacementFor(Object referenceValue) {
-        return referenceValue;
+    public Object getRecoveredReferenceValueFor(SequenceElement seqElem) {
+        // The reference is broken. We now have to recover the text used to reference the deleted object, so that 
+        // the reference can be re-established at a later point in time.
+        for (DocumentNode node : textBlock.getSubNodes()) {
+            // FIXME: this might fail if we have a multi-value reference and more than two references
+            // break at the same time. We don't know which value shall be re-used here
+            if (node instanceof LexedToken && seqElem.equals(node.getSequenceElement())) {
+                return ((LexedToken) node).getValue();
+            }
+        }
+        return "";
     }
 
     @Override
