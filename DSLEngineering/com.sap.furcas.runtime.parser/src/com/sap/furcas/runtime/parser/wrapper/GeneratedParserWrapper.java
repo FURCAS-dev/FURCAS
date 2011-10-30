@@ -8,11 +8,8 @@
  *******************************************************************************/
 package com.sap.furcas.runtime.parser.wrapper;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -35,6 +32,7 @@ import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationExcep
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.impl.ModelInjector;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.utils.projects.FileReadHelper;
 
 
 /**
@@ -166,15 +164,7 @@ public class GeneratedParserWrapper {
         this.injector.setOptions(bean);
         try {
            
-            InputStreamReader isr = new InputStreamReader(in);
-            Reader reader = new BufferedReader(isr);
-            StringBuilder s = new StringBuilder();
-            char buffer[] = new char[2048];
-            int size;
-            while((size = reader.read(buffer)) > 0) {
-                s.append(buffer, 0, size);
-            }
-            ANTLRStringStream stream = new ANTLRStringStream(s.toString());
+            ANTLRStringStream stream = new ANTLRStringStream(FileReadHelper.readInput(in));
 
             lexer.setCharStream(stream);
             CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -213,8 +203,6 @@ public class GeneratedParserWrapper {
 
         return parsedModelElement;
     }
-
-
 
     /**
      * @return

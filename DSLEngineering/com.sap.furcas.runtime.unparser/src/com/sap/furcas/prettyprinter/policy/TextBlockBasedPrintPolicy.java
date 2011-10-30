@@ -56,24 +56,24 @@ public class TextBlockBasedPrintPolicy implements PrintPolicy {
         this.textBlock = oldBlock;
         this.index = index;
         
-        initializeSequenceElementStore(textBlock.getTokens());
+        initializeSequenceElementStore(textBlock.getSubNodes());
     }
     
-    private void initializeSequenceElementStore(List<AbstractToken> tokensOfBlock) {
+    private void initializeSequenceElementStore(List<DocumentNode> tokensOfBlock) {
         AbstractToken currentleftMostWhiteSpace = null;
         
-        for (AbstractToken token : tokensOfBlock) {
-            if (token instanceof LexedToken) {
-                SequenceElement se = ((LexedToken) token).getSequenceElement();
+        for (DocumentNode node : tokensOfBlock) {
+            if (node instanceof LexedToken) {
+                SequenceElement se = ((LexedToken) node).getSequenceElement();
                 if (currentleftMostWhiteSpace == null) {
-                    firstPreceedingWhiteSpacePerTokenSequenceElement.put(se, token);
+                    firstPreceedingWhiteSpacePerTokenSequenceElement.put(se, (AbstractToken) node);
                 } else {
                     firstPreceedingWhiteSpacePerTokenSequenceElement.put(se, currentleftMostWhiteSpace);
                     currentleftMostWhiteSpace = null;
                 }
-            } else if (isWhiteSpace(token) && !isPseudoToken(token)) {
+            } else if (isWhiteSpace(node) && !isPseudoToken(node)) {
                 if (currentleftMostWhiteSpace == null) {
-                    currentleftMostWhiteSpace = token;
+                    currentleftMostWhiteSpace = (AbstractToken) node;
                 }
             } else {
                 currentleftMostWhiteSpace = null;

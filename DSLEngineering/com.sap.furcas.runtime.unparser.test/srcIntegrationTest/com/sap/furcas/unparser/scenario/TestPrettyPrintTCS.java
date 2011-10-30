@@ -7,6 +7,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.util.Set;
 
@@ -22,6 +23,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.SpaceKind;
 import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSFactory;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.parser.tcs.TCSParserFactory;
 import com.sap.furcas.parser.tcs.TCSSyntaxDefinition;
@@ -30,10 +32,17 @@ import com.sap.furcas.parsergenerator.TCSParserGenerator;
 import com.sap.furcas.parsergenerator.TCSParserGeneratorFactory;
 import com.sap.furcas.runtime.common.exceptions.ParserGeneratorInvocationException;
 import com.sap.furcas.runtime.common.exceptions.ParserInvokationException;
+import com.sap.furcas.runtime.parser.incremental.testbase.TcsTestHelper;
 import com.sap.furcas.runtime.parser.testbase.FailOnErrorErrorHandler;
+import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
+import com.sap.furcas.runtime.textblocks.testutils.EMFTextBlocksModelElementFactory;
+import com.sap.furcas.runtime.textblocks.testutils.TestSourceTextBlockCreator;
+import com.sap.furcas.runtime.textblocks.testutils.TextBlocksModelElementFactory;
 import com.sap.furcas.test.testutils.ResourceTestHelper;
 import com.sap.furcas.unparser.testutils.PrettyPrintAssertionUtil;
 import com.sap.furcas.unparser.testutils.PrettyPrintTestHelper;
+import com.sap.furcas.utils.projects.FileReadHelper;
+import com.sap.ide.cts.parser.incremental.IncrementalParserFacade;
 
 public class TestPrettyPrintTCS {
 
@@ -150,6 +159,37 @@ public class TestPrettyPrintTCS {
         TextBlock reprintedTCS2 = PrettyPrintTestHelper.prettyPrintTextBlock(reparsedSyntax, syntax, new TCSParserFactory());
         
         assertEqualsByLines(reprintedTCS2, reprintedTCS);
+    }
+    
+    /** 
+     * Print the TCS model and then check if it can be parsed again.
+     * Use a pre-existing TextBlock to re-use comments and formatting.
+     */
+    @Test
+    public void testPrettyPrintWithReuse() throws Exception {
+        IncrementalParserFacade incrementalParserFacade = TcsTestHelper.createTCSIncrementalParserFacade();
+        
+        TextBlocksModelElementFactory factory = new EMFTextBlocksModelElementFactory();
+        AbstractToken tcsTcsContent = factory.createToken("");
+        TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(factory, tcsTcsContent);
+        
+        FileInputStream in = new FileInputStream(TCSSyntaxDefinition.TCS_TCS);
+        String referenceContent = FileReadHelper.readInput(in);
+
+        TextBlocksModel tbModel = new TextBlocksModel(root);
+        tbModel.replace(0, 0, referenceContent);
+        root = incrementalParserFacade.parseIncrementally(root);
+
+        // Incremental reprint.
+        TextBlock reprinted = PrettyPrintTestHelper.prettyPrintTextBlock(IncrementalParserFacade.getParsingResult(root),
+                root, new TCSParserFactory());
+        
+        // Unfortunately the TCS Syntax definition is not "determinstic". There are certain things
+        // that the pretty printer cannot know solely from the syntax definition. We have to fix those.
+        String reprintedContent = reprinted.getCachedString().replace("FURCAS:: TCS::", "TCS::");
+        reprintedContent = reprintedContent.replace("    \n    \n    keywords{\n        \n    }\n", "");
+        
+        assertEqualsByLines(reprintedContent, referenceContent);
     }
 
 }

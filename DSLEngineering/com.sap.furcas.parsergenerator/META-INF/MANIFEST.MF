@@ -7,12 +7,12 @@ Require-Bundle: org.antlr;bundle-version="3.1.1",
  org.eclipse.core.runtime,
  org.eclipse.ui,
  com.sap.furcas.metamodel,
+ com.sap.furcas.utils,
  com.sap.furcas.runtime.common,
  com.sap.furcas.runtime.tcs,
  com.sap.furcas.modeladaptation.emf,
  com.sap.furcas.parsergenerator.emf,
- com.sap.furcas.runtime.parser,
- com.sap.furcas.utils
+ com.sap.furcas.runtime.parser
 Bundle-ClassPath: bin/,
  .
 Bundle-Activator: com.sap.furcas.parsergenerator.Activator

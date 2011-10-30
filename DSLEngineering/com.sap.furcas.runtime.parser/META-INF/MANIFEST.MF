@@ -12,7 +12,8 @@ Require-Bundle: org.antlr;bundle-version="3.1.1",
  com.sap.furcas.runtime.textblocks,
  com.sap.furcas.runtime.tcs,
  com.sap.ocl.oppositefinder.query2,
- com.sap.furcas.modeladaptation.emf
+ com.sap.furcas.modeladaptation.emf,
+ com.sap.furcas.utils
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: com.sap.furcas.runtime.parser,
  com.sap.furcas.runtime.parser.antlr3,

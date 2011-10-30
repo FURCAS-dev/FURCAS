@@ -17,6 +17,7 @@ Require-Bundle: org.antlr,
  org.eclipse.emf.workspace.ui,
  org.eclipse.emf.transaction.ui,
  com.sap.ocl.oppositefinder.query2,
+ com.sap.furcas.utils,
  com.sap.furcas.runtime.common,
  com.sap.furcas.runtime.tcs,
  com.sap.furcas.runtime.textblocks,
@@ -27,8 +28,7 @@ Require-Bundle: org.antlr,
  com.sap.furcas.metamodel.editor,
  com.sap.furcas.ide.parserfactory,
  com.sap.furcas.runtime.unparser,
- org.eclipse.imp.runtime;bundle-version="0.1.108",
- com.sap.furcas.utils
+ org.eclipse.imp.runtime;bundle-version="0.1.108"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.furcas.ide.editor,
