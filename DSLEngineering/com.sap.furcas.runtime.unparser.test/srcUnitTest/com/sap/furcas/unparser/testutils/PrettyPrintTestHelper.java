@@ -36,10 +36,24 @@ public class PrettyPrintTestHelper {
     public static TextBlock prettyPrintTextBlock(EObject source, ConcreteSyntax syntax,
             ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) throws SyntaxMismatchException {
 
-        IMetaModelLookup<EObject> lookup = new QueryBasedEcoreMetaModelLookUp(syntax.eResource().getResourceSet(), parserFactory.getMetamodelURIs());
-        PrettyPrinter prettyPrinter = new PrettyPrinter(syntax, lookup, new TCSSpecificOCLEvaluator(), parserFactory);
+        PrettyPrinter prettyPrinter = createPrettyPrinter(syntax, parserFactory);
 
         return prettyPrinter.prettyPrint(source);
+    }
+
+    public static TextBlock prettyPrintTextBlock(EObject source, TextBlock textBlock,
+            ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) throws SyntaxMismatchException {
+
+        PrettyPrinter prettyPrinter = createPrettyPrinter(textBlock.getType().getConcreteSyntax(), parserFactory);
+        return prettyPrinter.prettyPrint(source, textBlock);
+    }
+    
+    private static PrettyPrinter createPrettyPrinter(ConcreteSyntax syntax,
+            ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) {
+        
+        IMetaModelLookup<EObject> lookup = new QueryBasedEcoreMetaModelLookUp(syntax.eResource().getResourceSet(), parserFactory.getMetamodelURIs());
+        PrettyPrinter prettyPrinter = new PrettyPrinter(syntax, lookup, new TCSSpecificOCLEvaluator(), parserFactory);
+        return prettyPrinter;
     }
 
     public static String readFile(String fileName) throws IOException {

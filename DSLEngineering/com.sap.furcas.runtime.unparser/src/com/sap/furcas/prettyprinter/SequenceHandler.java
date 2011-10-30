@@ -209,7 +209,7 @@ public class SequenceHandler {
             PrintPolicy policy) throws SyntaxMismatchException {
         try {
             seValidator.validateBounds(seqElem, value);
-
+            
             if (isPrimitive(value)) {
                 return templateHandler.serializePrimitiveTemplate(value, seqElem,
                         templateFinder.findPrimitiveTemplate(seqElem), context, policy);

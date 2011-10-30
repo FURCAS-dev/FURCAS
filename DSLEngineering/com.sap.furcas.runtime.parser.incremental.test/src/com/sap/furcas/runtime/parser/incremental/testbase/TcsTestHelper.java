@@ -1,4 +1,4 @@
-package com.sap.furcas.ide.editor.test.utils;
+package com.sap.furcas.runtime.parser.incremental.testbase;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
@@ -11,12 +11,12 @@ import org.antlr.runtime.Lexer;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 
 import com.sap.furcas.parser.tcs.TCSParserFactory;
 import com.sap.furcas.runtime.common.exceptions.ParserInstantiationException;
 import com.sap.furcas.runtime.parser.ParserFactory;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
-import com.sap.furcas.runtime.parser.incremental.testbase.MockPartitionAssignmentHandler;
 import com.sap.furcas.test.testutils.ResourceTestHelper;
 import com.sap.ide.cts.parser.incremental.IncrementalParserFacade;
 
@@ -39,10 +39,14 @@ public class TcsTestHelper {
         }
     }
 
-    public IncrementalParserFacade createTCSIncrementalParserFacade() throws ParserInstantiationException {
+    public static IncrementalParserFacade createTCSIncrementalParserFacade() throws ParserInstantiationException {
         ResourceSet resourceSet = ResourceTestHelper.createResourceSet();
         Resource transientParsingResource = ResourceTestHelper.createTransientResource(resourceSet);
 
+        ECrossReferenceAdapter crossRefAdapter = new ECrossReferenceAdapter();
+        resourceSet.eAdapters().add(crossRefAdapter);
+        crossRefAdapter.setTarget(resourceSet);
+        
         ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory = new TCSParserFactory() {
             /**
              * We must be able to reference the metamodels to which the different TCS

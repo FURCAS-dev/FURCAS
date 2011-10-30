@@ -14,6 +14,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.AsPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.CreateAsPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg;
@@ -262,6 +263,19 @@ public class PropertyArgumentUtil {
         for (PropertyArg arg : p.getPropertyArgs()) {
             if (arg instanceof SeparatorPArg) {
                 return (SeparatorPArg) arg;
+            }
+        }
+        return null;
+    }
+    
+    /**
+     * Returns the first CreateAsParg of Property p. There should only be one.
+     * No error is thrown, if more than one exist.
+     */
+    public static CreateAsPArg getCreateAsParg(Property p) {
+        for (PropertyArg arg : p.getPropertyArgs()) {
+            if (arg instanceof CreateAsPArg) {
+                return (CreateAsPArg) arg;
             }
         }
         return null;

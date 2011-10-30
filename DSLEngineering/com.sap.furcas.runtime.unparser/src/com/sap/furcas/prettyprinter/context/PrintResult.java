@@ -212,7 +212,7 @@ public abstract class PrintResult {
                 @Override
                 public SequenceElement getLastSequenceElement() {
                     if (getNodes().isEmpty()) {
-                        return null;
+                        return context.getLastSequenceElement();
                     } else {
                         return getNodes().get(getNodes().size()-1).getSequenceElement();
                     }

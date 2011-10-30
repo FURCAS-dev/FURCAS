@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 
 /**
@@ -97,27 +98,22 @@ public class TextBlockIndex {
      */
     public void index(TextBlock textBlock) {
 	if (textBlock.getType() == null) {
-// FIXME
-//	    CtsActivator.logWarning("Not indexing TextBlock due to broken mapping: " + textBlock);
 	    return;
 	}
 	
 	storePerTemplateAndModelElement(textBlock);
 	storePerModelElement(textBlock);
 	
-	for (TextBlock subBlock : textBlock.getSubBlocks()) {
-	    index(subBlock);
+	for (DocumentNode subNode : textBlock.getSubNodes()) {
+	    if (subNode instanceof TextBlock) {
+	        index((TextBlock) subNode);
+	    }
 	}
     }
 
     private void storePerModelElement(TextBlock textBlock) {
 	Template template = textBlock.getType();
 	for (EObject correspondingModelElement : textBlock.getCorrespondingModelElements()) {
-// FIXME
-//	    if (!correspondingModelElement.is___Alive()) {
-//		// if the model element is gone, then there is no reason to keep this textblock
-//		return;
-//	    }
 	    ModelElementKey key = new ModelElementKey(template.getConcreteSyntax(), /*template*/ null, correspondingModelElement);
 	    getBlockListForKey(key).add(textBlock);
 	}
@@ -126,29 +122,23 @@ public class TextBlockIndex {
     private void storePerTemplateAndModelElement(TextBlock textBlock) {
 	Template template = textBlock.getType();
 	for (EObject correspondingModelElement : textBlock.getCorrespondingModelElements()) {
-// FIXME
-//	    if (!correspondingModelElement.is___Alive()) {
-//		// if the model element is gone, then there is no reason to keep this textblock
-//		return;
-//	    }
 	    ModelElementKey key = new ModelElementKey(template.getConcreteSyntax(), template, correspondingModelElement);
 	    getBlockListForKey(key).add(textBlock);
 	}
     }
     
     private Collection<TextBlock> getBlockListForKey(ModelElementKey key) {
-	if (!blockIndexPerModelElement.containsKey(key)) {
-	    blockIndexPerModelElement.put(key, new ArrayList<TextBlock>(1));
-	}
-	return blockIndexPerModelElement.get(key);
+        Collection<TextBlock> result = blockIndexPerModelElement.get(key);
+        if (result == null) {
+            result = new ArrayList<TextBlock>(1);
+            blockIndexPerModelElement.put(key, result);
+        }
+        return result;
     }
     
     /**
      * Returns null if nothing was found.
      * 
-     * @param template
-     * @param correspondingModelElement
-     * @return
      */
     public Collection<TextBlock> findTextBlock(Template template, EObject correspondingModelElement) {
 	Collection<TextBlock> found = null;
