@@ -36,7 +36,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
-import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.prettyprinter.Formatter.FormatRequest;
 import com.sap.furcas.prettyprinter.Formatter.Type;
@@ -117,12 +116,11 @@ public class TemplateHandler {
         formatRequests.add(FormatRequest.create(Type.ADD_OPTIONAL_SPACE));
         
         formatRequests = policy.getOverruledFormattingBetween(formatRequests, context.getLastSequenceElement(), seqElem);
-        List<OmittedToken> formatting = formatter.translateToTokens(formatRequests, context);
+        List<DocumentNode> formatting = formatter.translateToTokens(formatRequests, context);
           
-        List<DocumentNode> tokens = new ArrayList<DocumentNode>(formatting);
-        tokens.add(tbFactory.createLexedToken(content, seqElem, getLengthOf(formatting, context.getNextOffset())));
+        formatting.add(tbFactory.createLexedToken(content, seqElem, getLengthOf(formatting, context.getNextOffset())));
         
-        return new LeafResult(tokens);
+        return new LeafResult(formatting);
     }
 
     public PrintResult serializeContextTemplate(EObject modelElement, ContextTemplate template, SequenceElement seqElem,

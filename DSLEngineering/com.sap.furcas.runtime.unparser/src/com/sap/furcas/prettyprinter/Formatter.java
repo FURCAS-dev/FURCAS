@@ -17,6 +17,7 @@ import java.util.Collection;
 import java.util.List;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
 import com.sap.furcas.prettyprinter.context.PrintContext;
 
@@ -98,9 +99,9 @@ public class Formatter {
         this.factory = factory;
     }
     
-    public List<OmittedToken> translateToTokens(List<FormatRequest> formatRequests, PrintContext context) {
+    public List<DocumentNode> translateToTokens(List<FormatRequest> formatRequests, PrintContext context) {
         int offset = context.getNextOffset();
-        List<OmittedToken> formatting = new ArrayList<OmittedToken>();        
+        List<DocumentNode> formatting = new ArrayList<DocumentNode>();        
         
         OmittedToken disambiguationToken = null;
         boolean skipSpace = false;

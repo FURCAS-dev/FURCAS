@@ -48,7 +48,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
-import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
 import com.sap.furcas.prettyprinter.Formatter.FormatRequest;
 import com.sap.furcas.prettyprinter.Formatter.Type;
 import com.sap.furcas.prettyprinter.context.PrintContext;
@@ -161,13 +160,12 @@ public class SequenceHandler {
      * Serialize keywords (e.g., "class") or symbols (e.g., ";", "{", ...).
      */
     public final PrintResult serializeLiteral(Literal literal, SequenceElement seqElem, PrintContext context, PrintPolicy policy) {
-        List<OmittedToken> formatting = formatter.translateToTokens(getLeadingSymbolFormatting(literal, seqElem, context, policy), context);
+        List<DocumentNode> formatting = formatter.translateToTokens(getLeadingSymbolFormatting(literal, seqElem, context, policy), context);
 
-        List<DocumentNode> tokens = new ArrayList<DocumentNode>(formatting);
-        tokens.add(tbFactory.createLexedToken(literal.getValue(), seqElem,
+        formatting.add(tbFactory.createLexedToken(literal.getValue(), seqElem,
                 getLengthOf(formatting, context.getNextOffset())));
         
-        LeafResult result = new LeafResult(tokens);
+        LeafResult result = new LeafResult(formatting);
         appendFollowingSymbolFormatting(literal, result);
         return result;
     }
@@ -397,11 +395,13 @@ public class SequenceHandler {
     }
 
     private List<FormatRequest> getFormattingBetweenElements(int numOfNewLinesBeforeEachElement, int indentation) {
-        List<FormatRequest> formattingBetweenElements = new ArrayList<FormatRequest>();
+        List<FormatRequest> formattingBetweenElements = null;
         if (numOfNewLinesBeforeEachElement == 0) {
+            formattingBetweenElements = new ArrayList<FormatRequest>(1);
             // no new lines wanted; use the standard spacing instead
             formattingBetweenElements.add(FormatRequest.create(Type.ADD_SPACE));
         } else {
+            formattingBetweenElements = new ArrayList<FormatRequest>(indentation+1);
             for (int i = 0; i < numOfNewLinesBeforeEachElement; i++) {
                 formattingBetweenElements.add(FormatRequest.createNewline(indentation));
             }
@@ -439,7 +439,7 @@ public class SequenceHandler {
         ResultContainer result = new ResultContainer(context.getPendingFormattingRequest());
         result.configureAlternativeNestingLevel(1, context);
 
-        Collection<SyntaxMismatchException> exceptions = new ArrayList<SyntaxMismatchException>();
+        Collection<SyntaxMismatchException> exceptions = new ArrayList<SyntaxMismatchException>(seqElem.getSequences().size());
         for (SequenceInAlternative choice : policy.getPreferredAlternativeChoiceOrderOf(seqElem.getSequences())) {
             try {
                 PrintResult subResult = serializeSequence(modelElement, choice, result.asSubContext(context), policy);
