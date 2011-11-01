@@ -79,6 +79,10 @@ public class EcoreModelElementFinder {
         this.referenceScope = referenceScope;
 
         queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
+        // Profiling data suggests that for our current usage pattern these optimizations do more harm
+        // than good. Stephan Erb 01.11.2011
+        queryProcessor.turnOffOptimizationForPartitionsDuringScheduling();
+        queryProcessor.turnOffOptimizationForElementsDuringScheduling();
     }
        
     /**

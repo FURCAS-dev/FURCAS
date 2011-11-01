@@ -25,6 +25,9 @@ public class PrettyPrintAssertionUtil {
     }       
           
     public static void assertEqualsByLines(String output, String referenceOutput) {
+        if (output.equals(referenceOutput)) {
+            return; // Everything ok. No need to perform a expensive line-wise check.
+        }
         BufferedReader actualOutputStream = new BufferedReader(new StringReader(output));
         BufferedReader referenceOutputStream = new BufferedReader(new StringReader(referenceOutput));
 
