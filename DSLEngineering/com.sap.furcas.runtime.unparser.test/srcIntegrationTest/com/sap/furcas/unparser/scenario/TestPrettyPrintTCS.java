@@ -13,6 +13,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
@@ -30,8 +31,6 @@ import com.sap.furcas.parser.tcs.TCSSyntaxDefinition;
 import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
 import com.sap.furcas.parsergenerator.TCSParserGenerator;
 import com.sap.furcas.parsergenerator.TCSParserGeneratorFactory;
-import com.sap.furcas.runtime.common.exceptions.ParserGeneratorInvocationException;
-import com.sap.furcas.runtime.common.exceptions.ParserInvokationException;
 import com.sap.furcas.runtime.parser.incremental.testbase.TcsTestHelper;
 import com.sap.furcas.runtime.parser.testbase.FailOnErrorErrorHandler;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
@@ -55,14 +54,15 @@ public class TestPrettyPrintTCS {
 
 
     @BeforeClass
-    public static void init() throws ParserGeneratorInvocationException, ParserInvokationException {
-        TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
+    public static void init() {
         referenceScope = ResourceTestHelper.createFURCASReferenceScope();
         referenceScope.addAll(ResourceTestHelper.createEcoreReferenceScope());
-        syntax = generator.parseSyntax(new GrammarGenerationSourceConfiguration(ResourceTestHelper.createResourceSet(),
-                referenceScope), TCSSyntaxDefinition.TCS_TCS, new FailOnErrorErrorHandler()).getSyntax();
+        ResourceSet resourceSet = ResourceTestHelper.createResourceSet();
+        
+        TCSParserFactory factory = new TCSParserFactory();
+        syntax = (ConcreteSyntax) resourceSet.getEObject(URI.createURI(factory.getSyntaxUUID()), /*load*/true);
     }
-
+    
     @Test
     public void testSyntaxOnly() throws Exception {
         ConcreteSyntax concreteSyntax = modelFactory.createConcreteSyntax();

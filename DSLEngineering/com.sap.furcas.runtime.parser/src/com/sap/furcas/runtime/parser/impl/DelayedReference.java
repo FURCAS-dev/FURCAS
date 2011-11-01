@@ -10,9 +10,6 @@ package com.sap.furcas.runtime.parser.impl;
 
 import java.util.List;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.common.interfaces.IRuleName;
@@ -94,7 +91,7 @@ public abstract class DelayedReference implements Cloneable {
     private String createIn;
 
     /** The token. */
-    private ANTLR3LocationToken token;
+    private final ANTLR3LocationToken token;
 
     /** The real value. */
     private Object realValue = null;
@@ -103,8 +100,6 @@ public abstract class DelayedReference implements Cloneable {
     private Object queryElement;
 
     private String oclQuery;
-
-    private String filter;
 
     private final boolean isOptional;
 
@@ -121,13 +116,11 @@ public abstract class DelayedReference implements Cloneable {
     private final ReferenceType type;
 
     private List<PredicateSemantic> predicateActionList;
-    private boolean isGenericReference = false;
 
     private boolean hasContext;
 
     private Object textBlock;
 
-    private ResourceSet connection;
     
     private List<SemanticDisambRuleData> semRulData;
 	
@@ -374,10 +367,6 @@ public abstract class DelayedReference implements Cloneable {
         return keyValue;
     }
 
-    public void setKeyValue(String value) {
-        this.keyValue = value;
-    }
-
     /**
      * Gets the look in.
      * 
@@ -443,15 +432,6 @@ public abstract class DelayedReference implements Cloneable {
     }
 
     /**
-     * sets the token.
-     * 
-     * @return the token
-     */
-    public void setToken(ANTLR3LocationToken token) {
-        this.token = token;
-    }
-
-    /**
      * Gets the real value.
      * 
      * @return the real value
@@ -475,10 +455,6 @@ public abstract class DelayedReference implements Cloneable {
      */
     public String getOclQuery() {
         return oclQuery;
-    }
-
-    public void setOclQuery(String query) {
-        this.oclQuery = query;
     }
 
     /*
@@ -514,14 +490,6 @@ public abstract class DelayedReference implements Cloneable {
         this.modelElement = newObject;
     }
     
-    public EObject getUnwrappedModelElement() {
-        if(modelElement instanceof IModelElementProxy) {
-            return (EObject) ((IModelElementProxy) modelElement).getRealObject();
-        } else {
-            return (EObject) modelElement;
-        }
-    }
-
     /**
      * @param result
      */
@@ -547,14 +515,6 @@ public abstract class DelayedReference implements Cloneable {
         return mode;
     }
 
-    /**
-     * 
-     * @param mode
-     */
-    public void setMode(String mode) {
-        this.mode = mode;
-    }
-
     public ReferenceType getType() {
         return type;
     }
@@ -563,47 +523,12 @@ public abstract class DelayedReference implements Cloneable {
         return predicateActionList;
     }
 
-    public void setPredicateActionList(
-            List<PredicateSemantic> predicateActionList) {
-        this.predicateActionList = predicateActionList;
-    }
-
     public void setQueryElement(Object sequenceElementOrInjectorAction) {
         this.queryElement = sequenceElementOrInjectorAction;
     }
 
-    /**
-     * Defines whether the reference is defined through a generic property init
-     * (being set to true) or if it is a refernce that was created during a
-     * parse run or as an unresolved reference (being set to false);
-     */
-    public void setGenericReference(boolean value) {
-        this.isGenericReference = value;
-    }
-
-    /**
-     * Defines whether the reference is defined through a generic property init
-     * (being set to true) or if it is a refernce that was created during a
-     * parse run or as an unresolved reference (being set to false);
-     */
-    public boolean isGenericReference() {
-        return isGenericReference;
-    }
-
-    public void setFilter(String filter) {
-        this.filter = filter;
-    }
-
-    public String getFilter() {
-        return filter;
-    }
-
     public IRuleName getRuleNameFinder() {
         return ruleNameFinder;
-    }
-
-    public void setRuleNameFinder(IRuleName ruleNameFinder) {
-        this.ruleNameFinder = ruleNameFinder;
     }
 
     public boolean hasContext() {
@@ -628,27 +553,10 @@ public abstract class DelayedReference implements Cloneable {
         return textBlock;
     }
 
-    public void setConnection(ResourceSet conn) {
-        this.connection = conn;
-    }
-    
-    public ResourceSet getConnection() {
-        return connection;
-    }
-
-    public void setCurrentForeachElement(EObject currentForeachElement) {
-        this.currentForeachElement = currentForeachElement;
-    }
-    
-
-
 	public List<SemanticDisambRuleData> getSemRulData() {
 		return semRulData;
 	}
 
-	public void setSemRulData(List<SemanticDisambRuleData> semRulData) {
-		this.semRulData = semRulData;
-	}
 
 	public Object getSemanticObject() {
 		return semanticObject;
