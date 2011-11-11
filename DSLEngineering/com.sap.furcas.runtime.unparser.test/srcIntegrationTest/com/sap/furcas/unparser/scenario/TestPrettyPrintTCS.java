@@ -190,7 +190,7 @@ public class TestPrettyPrintTCS {
         // Unfortunately the TCS Syntax definition is not "determinstic". There are certain things
         // that the pretty printer cannot know solely from the syntax definition. We have to fix those.
         reprintedContent = reprintedContent.replace("FURCAS:: TCS::", "TCS::");
-        reprintedContent = reprintedContent.replace("    \n    \n    keywords{\n        \n    }\n", "");
+        reprintedContent = reprintedContent.replace("\n    \n    \n    keywords{\n        \n    }", "");
         
         assertEqualsByLines(reprintedContent, referenceContent);
     }
