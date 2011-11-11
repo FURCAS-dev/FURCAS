@@ -10,7 +10,6 @@
  ******************************************************************************/
 package com.sap.furcas.prettyprinter;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.antlr.runtime.ANTLRStringStream;
@@ -51,7 +50,7 @@ public class TextBlocksFactory {
     }
     
     public TextBlock createTextBlock(EObject modelElement, List<DocumentNode> subnodes, Template template,
-            SequenceElement seqElem, int offset, Collection<Integer> parentAltChoices) {
+            SequenceElement seqElem, int offset) {
         
         TextBlock textBlock = factory.createTextBlock();
         textBlock.setVersion(version);
@@ -59,7 +58,6 @@ public class TextBlocksFactory {
         textBlock.setType(template);
         textBlock.setSequenceElement(seqElem);
         textBlock.getSubNodes().addAll(subnodes);
-        textBlock.getParentAltChoices().addAll(parentAltChoices);
         textBlock.setOffsetRelative(true);
         textBlock.setComplete(true);
         textBlock.setOffset(offset);

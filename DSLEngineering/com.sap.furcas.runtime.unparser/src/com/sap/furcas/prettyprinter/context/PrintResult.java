@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
@@ -42,6 +43,8 @@ public abstract class PrintResult {
     
     protected boolean syntacticContribution;
     protected List<FormatRequest> formatRequests;
+    protected final Collection<EObject> elementsInContext = new ArrayList<EObject>();
+
     
     
     public PrintResult(List<DocumentNode> nodes, List<FormatRequest> formatRequests) {
@@ -97,7 +100,6 @@ public abstract class PrintResult {
         }
     }
     
-    
     /**
      * Used if a serialization method produced a result.
      */
@@ -105,12 +107,28 @@ public abstract class PrintResult {
         
         public LeafResult(List<DocumentNode> nodes) {
             super(nodes, new ArrayList<FormatRequest>());
-            syntacticContribution = true;
+            this.syntacticContribution = true;
         }
-        
-        public LeafResult(TextBlock node, List<FormatRequest> formatRequests, boolean syntacticContribution) {
-            super(Collections.<DocumentNode>singletonList(node), formatRequests);
-            this.syntacticContribution = syntacticContribution;
+
+        public LeafResult(TextBlock node, ResultContainer subResult, List<FormatRequest> formatting) {
+            super(Collections.<DocumentNode>singletonList(node), formatting);
+            this.syntacticContribution = subResult.hasSyntacticContribution();
+            
+            node.getParentAltChoices().addAll(subResult.getChosenAlternatives());
+            
+            if (node.getType() instanceof ContextTemplate) {
+                ContextTemplate contextTemplate = (ContextTemplate) node.getType();
+                if (contextTemplate.isIsContext()) {
+                    node.getElementsInContext().addAll(subResult.elementsInContext);
+                } else {
+                    // Propagate upwards in order to add the elements to the innermost parent context 
+                    elementsInContext.addAll(subResult.elementsInContext);
+                }
+                if (contextTemplate.isIsAddToContext()) {
+                    // Add the element represented by this block to its inermost parent context
+                    elementsInContext.addAll(node.getCorrespondingModelElements());
+                }
+            }
         }
     }
     
@@ -138,11 +156,9 @@ public abstract class PrintResult {
                 formatRequests = subResult.formatRequests;
             }
             if (subResult instanceof ResultContainer) {
-                ResultContainer subContainer = (ResultContainer) subResult;
-                if (subContainer.chosenAlternatives != null) {
-                    chosenAlternatives.addAll(subContainer.chosenAlternatives);
-                }
+                chosenAlternatives.addAll(((ResultContainer) subResult).chosenAlternatives);
             }
+            elementsInContext.addAll(subResult.elementsInContext);
         }
         
         /**
@@ -173,7 +189,7 @@ public abstract class PrintResult {
             this.alternativeNestingLevelIncrement = i;
             this.alternativesNestingLevel = context.getAlternativeNestingLevel();
         }
-                        
+                                
         /**
          * Create a {@link PrintContext} representing everything that has been pretty printed so far.
          * This encompasses all information encapusalted in the given context together
