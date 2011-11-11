@@ -243,7 +243,7 @@ public class CtsDocumentProvider extends AbstractDocumentProvider {
         ArrayList<Resource> resources = new ArrayList<Resource>();
         for (Resource r : editingDomain.getResourceSet().getResources()) {
             if (!r.getURI().isPlatformPlugin()) {
-                
+                resources.add(r);
             }
         }
         return resources;
