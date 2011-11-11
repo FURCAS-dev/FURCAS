@@ -32,11 +32,11 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.modeladaptation.emf.lookup.QueryBasedEcoreMetaModelLookUp;
+import com.sap.furcas.prettyprinter.incremental.IncrementalTextBlockPrettyPrinter;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.unparser.extraction.textblocks.TextBlockTCSExtractorStream;
-import com.sap.furcas.unparser.textblocks.IncrementalTextBlockPrettyPrinter;
 
 /**
  * 

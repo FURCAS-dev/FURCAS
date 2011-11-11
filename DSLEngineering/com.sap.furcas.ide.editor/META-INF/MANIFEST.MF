@@ -27,7 +27,7 @@ Require-Bundle: org.antlr,
  com.sap.furcas.metamodel.edit,
  com.sap.furcas.metamodel.editor,
  com.sap.furcas.ide.parserfactory,
- com.sap.furcas.runtime.unparser,
+ com.sap.furcas.runtime.prettyprinter,
  org.eclipse.imp.runtime;bundle-version="0.1.108"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
