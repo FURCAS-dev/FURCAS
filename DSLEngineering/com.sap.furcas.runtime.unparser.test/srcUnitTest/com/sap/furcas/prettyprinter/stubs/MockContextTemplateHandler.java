@@ -29,6 +29,7 @@ import com.sap.furcas.prettyprinter.TextBlocksFactory;
 import com.sap.furcas.prettyprinter.context.PrintContext;
 import com.sap.furcas.prettyprinter.context.PrintResult;
 import com.sap.furcas.prettyprinter.context.PrintResult.LeafResult;
+import com.sap.furcas.prettyprinter.context.PrintResult.ResultContainer;
 import com.sap.furcas.prettyprinter.exceptions.SyntaxMismatchException;
 import com.sap.furcas.prettyprinter.policy.PrintPolicy;
 
@@ -51,7 +52,9 @@ public class MockContextTemplateHandler extends TemplateHandler {
         assertNotNull(modelElement);
         assertSame("Template returned by the template finder expected", hardcodedTemplate, template);
         assertTrue("Template should match", template.getMetaReference().isInstance(modelElement));
-        return new LeafResult(TextblocksFactory.eINSTANCE.createTextBlock(),
-                Collections.<FormatRequest>emptyList(), true);
+        
+        ResultContainer subResult = new ResultContainer(Collections.<FormatRequest>emptyList());
+        subResult.hasSyntacticContribution(true);
+        return new LeafResult(TextblocksFactory.eINSTANCE.createTextBlock(), subResult, Collections.<FormatRequest>emptyList());
     }
 }
