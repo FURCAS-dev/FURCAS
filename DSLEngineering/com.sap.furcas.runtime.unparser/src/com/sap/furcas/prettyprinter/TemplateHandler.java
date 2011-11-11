@@ -268,7 +268,7 @@ public class TemplateHandler {
         if (paren) {
             result.merge(sequenceHandler.serializeLiteral(syntaxLookup.getSymbolByValue(")"), seqElem, result.asSubContext(templateContext), policy));
         }
-        TextBlock node = tbFactory.createTextBlock(modelElement, result.getNodes(), template, seqElem, templateContext.getNextOffset());
+        TextBlock node = tbFactory.createTextBlock(modelElement, result.getNodes(), template, seqElem, context.getNextOffset());
         return new LeafResult(node, result, result.asSubContext(templateContext).getPendingFormattingRequest());
     }
     
