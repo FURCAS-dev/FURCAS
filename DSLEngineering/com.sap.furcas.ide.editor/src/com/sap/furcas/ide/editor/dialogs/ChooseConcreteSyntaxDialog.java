@@ -10,11 +10,13 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
+
 public class ChooseConcreteSyntaxDialog extends AbstractHandler
 {
-	private final List<EObject> templateEntries;
+	private final List<ContextTemplate> templateEntries;
 	
-	public ChooseConcreteSyntaxDialog(List<EObject> templates)
+	public ChooseConcreteSyntaxDialog(List<ContextTemplate> templates)
 	{
 		this.templateEntries = templates;
 	}

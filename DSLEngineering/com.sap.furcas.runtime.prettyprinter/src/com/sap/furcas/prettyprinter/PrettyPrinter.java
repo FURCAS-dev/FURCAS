@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
@@ -98,18 +99,25 @@ public class PrettyPrinter {
      * existing/old {@link TextBlock} of this element.
      */
     public TextBlock prettyPrint(EObject modelElement, TextBlock oldBlock) throws SyntaxMismatchException {
+        return prettyPrint(modelElement, TcsUtil.getMainClassTemplate(syntax), oldBlock);
+    }
+    
+    /**
+     * Print a model element from scratch, but re-use information from an
+     * existing/old {@link TextBlock} of this element.
+     */
+    public TextBlock prettyPrint(EObject modelElement, ContextTemplate template, TextBlock oldBlock) throws SyntaxMismatchException {
         assert oldBlock.getCorrespondingModelElements().contains(modelElement);
         
         TextBlockIndex index = new TextBlockIndex();
         index.index(oldBlock);
         
         PrintPolicy policy = new TextBlockBasedPrintPolicy(oldBlock, index);
-        ClassTemplate template = TcsUtil.getMainClassTemplate(syntax);
         
         return prettyPrintInternal(modelElement, template, policy);
     }
 
-    private TextBlock prettyPrintInternal(EObject modelElement, ClassTemplate template, PrintPolicy policy) throws SyntaxMismatchException {
+    private TextBlock prettyPrintInternal(EObject modelElement, ContextTemplate template, PrintPolicy policy) throws SyntaxMismatchException {
         PrintResult result = templateHandler.serializeContextTemplate(modelElement, template, /*seqElem*/ null,
                 new InitialPrintContext(), policy);
         
@@ -123,8 +131,8 @@ public class PrettyPrinter {
         return resultBlock;
     }
 
-    protected void addBosEosTokensIfNeeded(ClassTemplate template, TextBlock resultBlock) {
-        if (template.isIsMain()) {
+    protected void addBosEosTokensIfNeeded(Template template, TextBlock resultBlock) {
+        if (template instanceof ClassTemplate && ((ClassTemplate) template).isIsMain()) {
             AbstractToken bosToken = tbfactory.createBOSToken();
             AbstractToken eosToken = tbfactory.createEOSToken(resultBlock.getLength());
             

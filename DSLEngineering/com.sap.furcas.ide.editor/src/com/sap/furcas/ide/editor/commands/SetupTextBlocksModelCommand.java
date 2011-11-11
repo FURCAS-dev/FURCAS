@@ -10,8 +10,6 @@
  ******************************************************************************/
 package com.sap.furcas.ide.editor.commands;
 
-import java.io.ByteArrayOutputStream;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -21,18 +19,15 @@ import com.sap.furcas.ide.editor.dialogs.PrettyPrintPreviewDialog;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
-import com.sap.furcas.prettyprinter.incremental.IncrementalTextBlockPrettyPrinter;
+import com.sap.furcas.prettyprinter.PrettyPrinter;
+import com.sap.furcas.prettyprinter.exceptions.SyntaxMismatchException;
+import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 import com.sap.furcas.runtime.parser.PartitionAssignmentHandler;
 import com.sap.furcas.runtime.tcs.MessageHelper;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.validation.TbValidationUtil;
-import com.sap.furcas.unparser.PrettyPrinter;
-import com.sap.furcas.unparser.SyntaxAndModelMismatchException;
-import com.sap.furcas.unparser.extraction.TCSExtractorPrintStream;
-import com.sap.furcas.unparser.extraction.TCSExtractorStream;
-import com.sap.furcas.unparser.extraction.textblocks.TextBlockTCSExtractorStream;
 import com.sap.ide.cts.parser.incremental.IncrementalParserFacade;
 import com.sap.ide.cts.parser.incremental.MappingRecoveringTextBlocksValidator;
 import com.sap.ide.cts.parser.incremental.TextBlockMappingRecoveringFailedException;
@@ -73,7 +68,7 @@ public class SetupTextBlocksModelCommand extends RecordingCommand {
     protected void doExecute() {
         try  {
             if (rootBlock == null) {
-                resultBlock = prettyPrintModelToTextBlock();
+                resultBlock = prettyPrint();
             } else {
                 resultBlock = validateAndMigrateTextBlocksModel();
             }
@@ -136,13 +131,15 @@ public class SetupTextBlocksModelCommand extends RecordingCommand {
             + " b) Click Cancel to keep the texutal view as it is. However, this will force the recreation of all model elements"
             + " defined in this view upon changes to this document.";
             
+            TextBlock newRootBlock = prettyPrint();
+            
             String oldTextualView = rootBlock.getCachedString();
-            String newTextualView = prettyPrintModelToString();
+            String newTextualView = newRootBlock.getCachedString();
+            
             PrettyPrintPreviewDialog previewDialog = new PrettyPrintPreviewDialog(title, error, oldTextualView, newTextualView);
             boolean prettyPrintAccepted = previewDialog.open();
             
             if (prettyPrintAccepted) {
-                TextBlock newRootBlock = prettyPrintModelToTextBlock();
                 TbChangeUtil.deleteOtherVersions(rootBlock);
                 TbChangeUtil.delete(rootBlock);
                 return newRootBlock;
@@ -151,31 +148,16 @@ public class SetupTextBlocksModelCommand extends RecordingCommand {
         return null;
     }
     
-    private String prettyPrintModelToString() {
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        prettyPrintToStream(new TCSExtractorPrintStream(stream));
-        return stream.toString();
-    }
-
-    private TextBlock prettyPrintModelToTextBlock() {
-        TextBlockTCSExtractorStream target = new TextBlockTCSExtractorStream(parserFacade.getParserFactory());
-        prettyPrintToStream(target);
-        return target.getPrintedResultRootBlock();
-    }
-
-    private void prettyPrintToStream(TCSExtractorStream target) {
+    private TextBlock prettyPrint() {
         try {
-            if (rootBlock != null && target instanceof TextBlockTCSExtractorStream) {
-                IncrementalTextBlockPrettyPrinter prettyPrinter = new IncrementalTextBlockPrettyPrinter(syntax,
-                        parserFacade.getParserScope().getMetamodelLookup());
-                prettyPrinter.prettyPrint(rootObject, rootBlock, mainTemplate, target);
-    
+            PrettyPrinter prettyPrinter = new PrettyPrinter(syntax, parserFacade.getParserScope().getMetamodelLookup(), 
+                    new TCSSpecificOCLEvaluator(), parserFacade.getParserFactory());
+            if (rootBlock == null) {
+                return prettyPrinter.prettyPrint(rootObject);
             } else {
-                PrettyPrinter prettyPrinter = new PrettyPrinter(parserFacade.getParserScope().getSyntax(),
-                        parserFacade.getParserScope().getMetamodelLookup());
-                prettyPrinter.prettyPrint(rootObject, target);
+                return prettyPrinter.prettyPrint(rootObject, rootBlock);
             }
-        } catch (SyntaxAndModelMismatchException e) {
+        } catch (SyntaxMismatchException e) {
             throw new RuntimeException("Model does not (fully) conform to syntax "
                     + parserFacade.getParserFactory().getLanguageId() + ": \n\n" + e.getCause().getMessage(), e);
         }

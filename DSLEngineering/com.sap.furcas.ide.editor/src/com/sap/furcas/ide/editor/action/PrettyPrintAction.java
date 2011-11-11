@@ -27,16 +27,17 @@ import com.sap.furcas.ide.editor.dialogs.PrettyPrinterInfoDialog;
 import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.modeladaptation.emf.lookup.QueryBasedEcoreMetaModelLookUp;
-import com.sap.furcas.prettyprinter.incremental.IncrementalTextBlockPrettyPrinter;
+import com.sap.furcas.prettyprinter.PrettyPrinter;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
+import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
-import com.sap.furcas.unparser.extraction.textblocks.TextBlockTCSExtractorStream;
 
 /**
  * 
@@ -73,7 +74,7 @@ public class PrettyPrintAction extends Action {
             Resource resource = modelElement.eResource();
             ResourceSet connection = resource.getResourceSet();
 
-            Template template = determineTemplate(connection);
+            ContextTemplate template = determineTemplate(connection);
             ConcreteSyntax syntax = template.getConcreteSyntax();
             TextBlock textBlockToReuse = determineTextBlockToReuse(connection,
                     template);
@@ -81,12 +82,11 @@ public class PrettyPrintAction extends Action {
             try {
                 AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory = EditorUtil
                         .constructParserFactoryForSyntax(syntax);
-                TextBlockTCSExtractorStream stream = new TextBlockTCSExtractorStream(parserFactory);
-
                 IMetaModelLookup<EObject> metamodelLookup = new QueryBasedEcoreMetaModelLookUp(connection, parserFactory.getMetamodelURIs());
-                IncrementalTextBlockPrettyPrinter prettyPrinter = new IncrementalTextBlockPrettyPrinter(syntax, metamodelLookup);
-                prettyPrinter.prettyPrint(modelElement, textBlockToReuse, template, stream);
-                resultBlock = stream.getPrintedResultRootBlock();
+                
+                PrettyPrinter prettyPrinter = new PrettyPrinter(syntax, metamodelLookup, new TCSSpecificOCLEvaluator(), parserFactory);
+                resultBlock = prettyPrinter.prettyPrint(modelElement, template, textBlockToReuse);
+                
                 if (resultBlock != null) {
                     resource.save(null);
                     PrettyPrinterInfoDialog dialog = new PrettyPrinterInfoDialog(
@@ -116,9 +116,9 @@ public class PrettyPrintAction extends Action {
         }
     }
 
-    public Template determineTemplate(ResourceSet rs) throws Exception {
+    public ContextTemplate determineTemplate(ResourceSet rs) throws Exception {
         
-        Template template = null;
+        ContextTemplate template = null;
 
         QueryContext context = EcoreHelper.getQueryContext(rs);
         
@@ -130,10 +130,10 @@ public class PrettyPrintAction extends Action {
                 + "where template.metaReference = class";
         ResultSet resultSet = queryProcessor.execute(mqlTemplates, context);
         URI[] resultURIs = resultSet.getUris("template");
-        List<EObject> templates = new ArrayList<EObject>(resultURIs.length);
+        List<ContextTemplate> templates = new ArrayList<ContextTemplate>(resultURIs.length);
         
         for (URI uri : resultURIs) {
-            templates.add(rs.getEObject(uri, true));
+            templates.add((ContextTemplate) rs.getEObject(uri, true));
         }
 
         if (templates.size() > 1) {
@@ -153,7 +153,7 @@ public class PrettyPrintAction extends Action {
             }
         } else if (templates.size() == 1) {
             if (templates.iterator().next() instanceof ClassTemplate) {
-                template = (ClassTemplate) templates.iterator().next();
+                template = templates.iterator().next();
             }
         } else {
             throw new Exception("No template found to print model element!");
