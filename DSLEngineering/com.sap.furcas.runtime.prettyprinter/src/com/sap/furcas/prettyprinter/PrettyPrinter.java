@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.prettyprinter.context.InitialPrintContext;
 import com.sap.furcas.prettyprinter.context.PrintResult;
@@ -32,6 +33,7 @@ import com.sap.furcas.runtime.tcs.MetaModelElementResolutionHelper;
 import com.sap.furcas.runtime.tcs.SyntaxLookup;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbDebugUtil;
+import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.validation.TbValidationUtil;
 
 /**
@@ -115,14 +117,34 @@ public class PrettyPrinter {
         TextBlock resultBlock = (TextBlock) result.getNodes().get(0);
         resultBlock.setCachedString(TbDebugUtil.getDocumentNodeAsPlainString(resultBlock));
         
-        if (template.isIsMain()) {
-            resultBlock.getSubNodes().add(0, tbfactory.createBOSToken());
-            resultBlock.getSubNodes().add(resultBlock.getSubNodes().size(),
-                    tbfactory.createEOSToken(resultBlock.getLength()));
-        }
+        addBosEosTokensIfNeeded(template, resultBlock);
         
         TbValidationUtil.assertTextBlockConsistencyRecursive(resultBlock);
-        
         return resultBlock;
+    }
+
+    protected void addBosEosTokensIfNeeded(ClassTemplate template, TextBlock resultBlock) {
+        if (template.isIsMain()) {
+            AbstractToken bosToken = tbfactory.createBOSToken();
+            AbstractToken eosToken = tbfactory.createEOSToken(resultBlock.getLength());
+            
+            resultBlock.getSubNodes().add(0, bosToken);
+            resultBlock.getSubNodes().add(resultBlock.getSubNodes().size(), eosToken);
+            
+            fixLookBack(TbNavigationUtil.nextToken(bosToken));
+        }
+    }
+
+    /**
+     * The pretty printer uses hardcoded lookbacks. 
+     * We have to prevent that we look beyond the first token.
+     */
+    private void fixLookBack(AbstractToken firstContentToken) {
+        if (firstContentToken == null) {
+            return;
+        } else {
+            firstContentToken.setLookback(0);
+        }
+        
     }
 }
