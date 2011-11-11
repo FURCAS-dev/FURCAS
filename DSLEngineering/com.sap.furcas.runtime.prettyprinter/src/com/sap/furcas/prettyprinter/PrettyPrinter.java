@@ -115,9 +115,11 @@ public class PrettyPrinter {
         TextBlock resultBlock = (TextBlock) result.getNodes().get(0);
         resultBlock.setCachedString(TbDebugUtil.getDocumentNodeAsPlainString(resultBlock));
         
-        resultBlock.getSubNodes().add(0, tbfactory.createBOSToken());
-        resultBlock.getSubNodes().add(resultBlock.getSubNodes().size(),
-                tbfactory.createEOSToken(resultBlock.getLength()));
+        if (template.isIsMain()) {
+            resultBlock.getSubNodes().add(0, tbfactory.createBOSToken());
+            resultBlock.getSubNodes().add(resultBlock.getSubNodes().size(),
+                    tbfactory.createEOSToken(resultBlock.getLength()));
+        }
         
         TbValidationUtil.assertTextBlockConsistencyRecursive(resultBlock);
         
