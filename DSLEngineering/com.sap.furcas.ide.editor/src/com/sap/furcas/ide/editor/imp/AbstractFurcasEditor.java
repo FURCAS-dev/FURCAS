@@ -238,6 +238,7 @@ public class AbstractFurcasEditor extends UniversalEditor {
     
     @Override
     public void dispose() {
+        super.dispose();
         disposeEditingDomain();
     }
     
