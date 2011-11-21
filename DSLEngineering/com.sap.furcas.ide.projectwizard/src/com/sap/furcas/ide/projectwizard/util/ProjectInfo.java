@@ -49,13 +49,8 @@ public class ProjectInfo {
      */
     private boolean loadMetamodel = false;
 
-    /**
-     * Will be true if loading an existing metamodel from workspace OR if loading the metamodel from a freshly created metamodel
-     * project. Will be false if loading from registered packages.
-     */
-    private boolean fromWorkspace = false;
 
-	private String mmBundleName;
+    private String mmBundleName;
 
     /**
      * 
@@ -168,14 +163,6 @@ public class ProjectInfo {
      */
     public void setFromWorkspace(boolean fromWorkspace) {
         this.fromWorkspace = fromWorkspace;
-    }
-
-    /**
-     * 
-     * @return <code>fromWorkspace</code>
-     */
-    public boolean isFromWorkspace() {
-        return fromWorkspace;
     }
 
     /**
