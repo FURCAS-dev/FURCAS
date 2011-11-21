@@ -29,7 +29,7 @@ public class ProjectInfo {
      * The nsURI of the metamodel as entered on the {@link SelectionPage} if new Metamodel project creation is chosen.
      */
     private String nsURI = "";
-    
+
     private boolean autoResolve = true;
 
     /**
@@ -49,6 +49,7 @@ public class ProjectInfo {
      */
     private boolean loadMetamodel = false;
 
+    private boolean localEcoreMetamodel = false;
 
     private String mmBundleName;
 
@@ -99,12 +100,12 @@ public class ProjectInfo {
     public void setNsURI(String nsURI) {
         this.nsURI = nsURI;
     }
-    
-    public boolean isAutoResolve(){
+
+    public boolean isAutoResolve() {
         return autoResolve;
     }
-    
-    public void setAutoResolve(boolean autoResolve){
+
+    public void setAutoResolve(boolean autoResolve) {
         this.autoResolve = autoResolve;
     }
 
@@ -189,13 +190,20 @@ public class ProjectInfo {
         return modelPath;
     }
 
-	public void setMMBundleName(String mmBundleName) {
-		this.mmBundleName = mmBundleName;
-		
-	}
+    public void setMMBundleName(String mmBundleName) {
+        this.mmBundleName = mmBundleName;
 
-	public String getMmBundleName() {
-		return mmBundleName;
-	}
+    }
 
+    public String getMmBundleName() {
+        return mmBundleName;
+    }
+
+    public boolean isLocalEcoreMetamodel() {
+        return localEcoreMetamodel;
+    }
+
+    public void setLocalEcoreMetamodel(boolean localEcoreMetamodel) {
+        this.localEcoreMetamodel = localEcoreMetamodel;
+    }
 }
