@@ -21,7 +21,7 @@ public class OverallWizardTest {
         
         String capLangName = CreateProject.capitalizeFirstChar(pi.getLanguageName());
         pi.setModelPath("/" + pi.getProjectName() + ".metamodel/model/" + capLangName + ".ecore");
-        pi.setFromWorkspace(true);
+        pi.setLocalEcoreMetamodel(true);
         
         FurcasWizard wizard = null;
         try {
