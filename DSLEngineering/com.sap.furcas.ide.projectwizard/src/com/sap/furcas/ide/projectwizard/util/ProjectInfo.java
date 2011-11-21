@@ -159,14 +159,6 @@ public class ProjectInfo {
 
     /**
      * 
-     * @param fromWorkspace
-     */
-    public void setFromWorkspace(boolean fromWorkspace) {
-        this.fromWorkspace = fromWorkspace;
-    }
-
-    /**
-     * 
      * @param className
      */
     public void setClassName(String className) {
