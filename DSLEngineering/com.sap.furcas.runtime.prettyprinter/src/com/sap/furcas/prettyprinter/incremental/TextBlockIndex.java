@@ -66,8 +66,8 @@ public class TextBlockIndex {
 		return false;
 	    }
 	    ModelElementKey other = (ModelElementKey) obj;
-		return other.correspondingModelElement.equals(this.correspondingModelElement) && other.syntax.equals(this.syntax) &&
-			(other.template == null && this.template == null || other.template.equals(this.template)); 
+	    return other.correspondingModelElement.equals(this.correspondingModelElement) && other.syntax.equals(this.syntax) &&
+	            (other.template == null && this.template == null || other.template != null && other.template.equals(this.template)); 
 	}
     }
         
@@ -89,38 +89,37 @@ public class TextBlockIndex {
      * 
      * @param sharedTextBlocksIndex
      */
-    public TextBlockIndex( TextBlockIndex sharedTextBlocksIndex) {
+    public TextBlockIndex(TextBlockIndex sharedTextBlocksIndex) {
 	this.sharedTextBlocksIndex = sharedTextBlocksIndex;
     }
 
     /**
      * Recursively stores the given TextBlock and all its subBlocks within this index.
      */
-    public void index(TextBlock textBlock) {
+    public void index(TextBlock textBlock, ConcreteSyntax syntax) {
         
-        storePerModelElement(textBlock);
+        storePerModelElement(textBlock, syntax);
 	if (textBlock.getType() != null) {
-	    storePerTemplateAndModelElement(textBlock);
+	    storePerTemplateAndModelElement(textBlock, syntax);
 	}
 	for (DocumentNode subNode : textBlock.getSubNodes()) {
 	    if (subNode instanceof TextBlock) {
-	        index((TextBlock) subNode);
+	        index((TextBlock) subNode, syntax);
 	    }
 	}
     }
 
-    private void storePerModelElement(TextBlock textBlock) {
-	Template template = textBlock.getType();
+    private void storePerModelElement(TextBlock textBlock, ConcreteSyntax syntax) {
 	for (EObject correspondingModelElement : textBlock.getCorrespondingModelElements()) {
-	    ModelElementKey key = new ModelElementKey(template.getConcreteSyntax(), /*template*/ null, correspondingModelElement);
+	    ModelElementKey key = new ModelElementKey(syntax, /*template*/ null, correspondingModelElement);
 	    getBlockListForKey(key).add(textBlock);
 	}
     }
 
-    private void storePerTemplateAndModelElement(TextBlock textBlock) {
+    private void storePerTemplateAndModelElement(TextBlock textBlock, ConcreteSyntax syntax) {
 	Template template = textBlock.getType();
 	for (EObject correspondingModelElement : textBlock.getCorrespondingModelElements()) {
-	    ModelElementKey key = new ModelElementKey(template.getConcreteSyntax(), template, correspondingModelElement);
+	    ModelElementKey key = new ModelElementKey(syntax, template, correspondingModelElement);
 	    getBlockListForKey(key).add(textBlock);
 	}
     }
