@@ -20,6 +20,7 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.prettyprinter.PrettyPrinter;
 import com.sap.furcas.prettyprinter.template.ClassLookupImpl;
@@ -118,16 +119,53 @@ public class TestTextBlockBasedPrintPolicy extends IncrementalParserBasedTest {
      * The pretty printer should re-use the complete formatting information.
      */
     @Test
-    public void testFormattingChangesWithReuse() throws Exception {
-        String content = "Definitions  : \n" +
-        		 "    def a;\n" +
-        		 "    def   b   ; \n " +
-        		 "    def c;\n" +
-        		 "\n" +
-        		 "Usages: \n" +
-        		 "    use a;\n";
+    public void testFormattingChangesWithReuseAtBlockBoundaries() throws Exception {
+        String content = "  // Leading \n" +
+        		 "  Definitions: def a; Usages: use a; // Line comment \n" +
+        		 "  // Trailing ";
         model.replace(0, model.getLength(), content);
         triggerParser();
+        
+        TextBlock reprinted = prettyPrinter.prettyPrint(getRootObject(), getRootBlock());
+        assertEqualsByLines(reprinted.getCachedString(), content);
+    }
+    
+    /**
+     * The pretty printer should reuse leading and trailing formatting/whitespaces
+     */
+    @Test
+    public void testFormattingChangesWithReuse() throws Exception {
+        String content = "Definitions  : \n" +
+                         "    def a;\n" +
+                         "    def   b   ; \n " +
+                         "    def c;\n" +
+                         "\n" +
+                         "Usages: \n" +
+                         "    use a;\n";
+        model.replace(0, model.getLength(), content);
+        triggerParser();
+        
+        TextBlock reprinted = prettyPrinter.prettyPrint(getRootObject(), getRootBlock());
+        assertEqualsByLines(reprinted.getCachedString(), content);
+    }
+    
+    /**
+     * The pretty printer should re-use the complete formatting information.
+     */
+    @Ignore
+    @Test
+    public void testFormattingReuseWithBrokenMapping() throws Exception {
+        String content = "Definitions  : \n" +
+                         "    def a;\n" +
+                         "    def   b   ; \n " +
+                         "    def c;\n" +
+                         "\n" +
+                         "Usages: \n" +
+                         "    use a;\n";
+        model.replace(0, model.getLength(), content);
+        triggerParser();
+        
+        breakMapping(getRootBlock());
         
         TextBlock reprinted = prettyPrinter.prettyPrint(getRootObject(), getRootBlock());
         assertEqualsByLines(reprinted.getCachedString(), content);
@@ -323,6 +361,21 @@ public class TestTextBlockBasedPrintPolicy extends IncrementalParserBasedTest {
     
     private EObject getRootObject() {
         return model.getRoot().getCorrespondingModelElements().iterator().next();
+    }
+    
+    /**
+     * Break all links from the TextBlocks model to the syntax mapping.
+     */
+    private void breakMapping(TextBlock rootBlock) {
+        rootBlock.setType(null);
+        rootBlock.setSequenceElement(null);
+        for (DocumentNode node : rootBlock.getSubNodes()) {
+            node.setSequenceElement(null);
+            if (node instanceof TextBlock) {
+                breakMapping((TextBlock) node);
+            }
+        }
+        
     }
     
 }

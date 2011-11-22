@@ -50,13 +50,14 @@ import com.sap.furcas.runtime.tcs.TcsUtil;
 public class TextBlockBasedPrintPolicy implements PrintPolicy {
 
     private final TextBlock textBlock;
-    private final HashMap<SequenceElement, AbstractToken> firstPreceedingWhiteSpacePerTokenSequenceElement = new HashMap<SequenceElement, AbstractToken>();
+    private final HashMap<SequenceElement, AbstractToken> firstPreceedingWhiteSpacePerTokenSequenceElement;
     private final TextBlockIndex index;
     
     public TextBlockBasedPrintPolicy(TextBlock oldBlock, TextBlockIndex index) {
         this.textBlock = oldBlock;
         this.index = index;
         
+        this.firstPreceedingWhiteSpacePerTokenSequenceElement = new HashMap<SequenceElement, AbstractToken>(2*textBlock.getSubNodes().size());
         initializeSequenceElementStore(textBlock.getSubNodes());
     }
     
@@ -66,20 +67,23 @@ public class TextBlockBasedPrintPolicy implements PrintPolicy {
         for (DocumentNode node : tokensOfBlock) {
             if (node instanceof LexedToken) {
                 SequenceElement se = ((LexedToken) node).getSequenceElement();
+                
                 if (currentleftMostWhiteSpace == null) {
                     firstPreceedingWhiteSpacePerTokenSequenceElement.put(se, (AbstractToken) node);
                 } else {
                     firstPreceedingWhiteSpacePerTokenSequenceElement.put(se, currentleftMostWhiteSpace);
                     currentleftMostWhiteSpace = null;
                 }
-            } else if (isWhiteSpace(node) && !isPseudoToken(node)) {
-                if (currentleftMostWhiteSpace == null) {
-                    currentleftMostWhiteSpace = (AbstractToken) node;
-                }
-            } else {
+            } else if (isWhiteSpace(node) && currentleftMostWhiteSpace == null) {
+                currentleftMostWhiteSpace = (AbstractToken) node;
+                    
+            } else if (node instanceof TextBlock) {
                 currentleftMostWhiteSpace = null;
             }
         }
+        // Special case handling for the whitespace/comments at the end of the block
+        firstPreceedingWhiteSpacePerTokenSequenceElement.put(null, currentleftMostWhiteSpace);
+
     }
     
     private static boolean isPseudoToken(DocumentNode node) {
@@ -160,11 +164,12 @@ public class TextBlockBasedPrintPolicy implements PrintPolicy {
         }
     }
     
+    
     /**
-     * Fast forward to the leftmost whitespace in [..., TB, WS, WS, MyLexedTokenWithTargetSeqElem, TB]
+     * Fast forward to the leftmost whitespace in [..., TB, WS, WS, MyLexedTokenWithTargetSeqElem, TB] 
      */
     private boolean consumeUntilSequenceElement(ListIterator<DocumentNode> iter, SequenceElement targetSeqElem) {
-        AbstractToken targetToken = firstPreceedingWhiteSpacePerTokenSequenceElement.get(targetSeqElem);
+        AbstractToken targetToken = getTargetToken(targetSeqElem);
         if (targetToken == null) {
             return false;
         }
@@ -176,6 +181,10 @@ public class TextBlockBasedPrintPolicy implements PrintPolicy {
             }
         }
         return false; // happens at end of list
+    }
+
+    private AbstractToken getTargetToken(SequenceElement targetSeqElem) {
+        return firstPreceedingWhiteSpacePerTokenSequenceElement.get(targetSeqElem);
     }
     
     private  List<FormatRequest> getFormattingRequestsForNextWhiteSpaces(Iterator<DocumentNode> iter) {
