@@ -97,13 +97,11 @@ public class TextBlockIndex {
      * Recursively stores the given TextBlock and all its subBlocks within this index.
      */
     public void index(TextBlock textBlock) {
-	if (textBlock.getType() == null) {
-	    return;
+        
+        storePerModelElement(textBlock);
+	if (textBlock.getType() != null) {
+	    storePerTemplateAndModelElement(textBlock);
 	}
-	
-	storePerTemplateAndModelElement(textBlock);
-	storePerModelElement(textBlock);
-	
 	for (DocumentNode subNode : textBlock.getSubNodes()) {
 	    if (subNode instanceof TextBlock) {
 	        index((TextBlock) subNode);

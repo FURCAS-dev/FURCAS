@@ -10,6 +10,9 @@
  ******************************************************************************/
 package com.sap.furcas.prettyprinter;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.antlr.runtime.Lexer;
 import org.eclipse.emf.ecore.EObject;
 
@@ -18,9 +21,13 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.prettyprinter.Formatter.FormatRequest;
 import com.sap.furcas.prettyprinter.context.InitialPrintContext;
+import com.sap.furcas.prettyprinter.context.PrintContext;
 import com.sap.furcas.prettyprinter.context.PrintResult;
+import com.sap.furcas.prettyprinter.context.PrintResult.ResultContainer;
 import com.sap.furcas.prettyprinter.exceptions.SyntaxMismatchException;
 import com.sap.furcas.prettyprinter.incremental.TextBlockBasedPrintPolicy;
 import com.sap.furcas.prettyprinter.incremental.TextBlockIndex;
@@ -118,17 +125,34 @@ public class PrettyPrinter {
     }
 
     private TextBlock prettyPrintInternal(EObject modelElement, ContextTemplate template, PrintPolicy policy) throws SyntaxMismatchException {
+        PrintContext context = new InitialPrintContext();
+        
+        // Print the template
         PrintResult result = templateHandler.serializeContextTemplate(modelElement, template, /*seqElem*/ null,
-                new InitialPrintContext(), policy);
+                context, policy);
         
         assert result.getNodes().size() == 1;
         TextBlock resultBlock = (TextBlock) result.getNodes().get(0);
-        resultBlock.setCachedString(TbDebugUtil.getDocumentNodeAsPlainString(resultBlock));
         
+        addPendingFormatting(policy, context, result, resultBlock);
+        resultBlock.setCachedString(TbDebugUtil.getDocumentNodeAsPlainString(resultBlock));
         addBosEosTokensIfNeeded(template, resultBlock);
         
         TbValidationUtil.assertTextBlockConsistencyRecursive(resultBlock);
         return resultBlock;
+    }
+
+    protected void addPendingFormatting(PrintPolicy policy, PrintContext context, PrintResult result, TextBlock resultBlock) {
+        ResultContainer tmpResult = new ResultContainer(Collections.<FormatRequest>emptyList());
+        tmpResult.merge(result);
+        context = tmpResult.asSubContext(context); // state of the world after the model has ben printed entirely
+        
+        List<FormatRequest> formatRequests = policy.getOverruledFormattingBetween(context.getPendingFormattingRequest(),
+                context.getLastSequenceElement(), /*seqElem*/ null);
+        List<DocumentNode> formatting = formatter.translateToTokens(formatRequests, context);
+        
+        resultBlock.getSubNodes().addAll(formatting);
+        resultBlock.setLength(TextBlocksFactory.getLengthOf(formatting, resultBlock.getLength()));
     }
 
     protected void addBosEosTokensIfNeeded(Template template, TextBlock resultBlock) {

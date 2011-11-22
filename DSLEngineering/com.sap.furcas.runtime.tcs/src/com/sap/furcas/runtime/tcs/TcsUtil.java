@@ -212,6 +212,10 @@ public class TcsUtil {
         }
         return null;
     }
+    
+    public static boolean isFirstSequenceElement(SequenceElement se) {
+        return se.equals(TcsUtil.getFirstSequenceElement(se.getElementSequence()));
+    }
 
     public static boolean isLastSequenceElement(SequenceElement e) {
         if (e == null) {
