@@ -50,40 +50,50 @@ import com.sap.furcas.runtime.tcs.TcsUtil;
 public class TextBlockBasedPrintPolicy implements PrintPolicy {
 
     private final TextBlock textBlock;
-    private final HashMap<SequenceElement, AbstractToken> firstPreceedingWhiteSpacePerTokenSequenceElement;
+    private final HashMap<SequenceElement, Integer> firstPreceedingWhiteSpaceTokenIndexPerSequenceElement;
     private final TextBlockIndex index;
     
     public TextBlockBasedPrintPolicy(TextBlock oldBlock, TextBlockIndex index) {
         this.textBlock = oldBlock;
         this.index = index;
         
-        this.firstPreceedingWhiteSpacePerTokenSequenceElement = new HashMap<SequenceElement, AbstractToken>(2*textBlock.getSubNodes().size());
+        this.firstPreceedingWhiteSpaceTokenIndexPerSequenceElement = new HashMap<SequenceElement, Integer>(2*textBlock.getSubNodes().size());
         initializeSequenceElementStore(textBlock.getSubNodes());
     }
     
     private void initializeSequenceElementStore(List<DocumentNode> tokensOfBlock) {
-        AbstractToken currentleftMostWhiteSpace = null;
+        int currentleftMostWhiteSpace = getUndefinedIndex(); 
         
-        for (DocumentNode node : tokensOfBlock) {
+        for (int i=0; i<tokensOfBlock.size(); i++) {
+            DocumentNode node = tokensOfBlock.get(i);
+            
             if (node instanceof LexedToken) {
                 SequenceElement se = ((LexedToken) node).getSequenceElement();
                 
-                if (currentleftMostWhiteSpace == null) {
-                    firstPreceedingWhiteSpacePerTokenSequenceElement.put(se, (AbstractToken) node);
+                if (isUndefinedIndex(currentleftMostWhiteSpace)) {
+                    firstPreceedingWhiteSpaceTokenIndexPerSequenceElement.put(se, i);
                 } else {
-                    firstPreceedingWhiteSpacePerTokenSequenceElement.put(se, currentleftMostWhiteSpace);
-                    currentleftMostWhiteSpace = null;
+                    firstPreceedingWhiteSpaceTokenIndexPerSequenceElement.put(se, currentleftMostWhiteSpace);
+                    currentleftMostWhiteSpace = getUndefinedIndex();
                 }
-            } else if (isWhiteSpace(node) && currentleftMostWhiteSpace == null) {
-                currentleftMostWhiteSpace = (AbstractToken) node;
+            } else if (isWhiteSpace(node) && isUndefinedIndex(currentleftMostWhiteSpace)) {
+                currentleftMostWhiteSpace = i;
                     
             } else if (node instanceof TextBlock) {
-                currentleftMostWhiteSpace = null;
+                currentleftMostWhiteSpace = getUndefinedIndex();
             }
         }
         // Special case handling for the whitespace/comments at the end of the block
-        firstPreceedingWhiteSpacePerTokenSequenceElement.put(null, currentleftMostWhiteSpace);
-
+        if (!isUndefinedIndex(currentleftMostWhiteSpace)) {
+            firstPreceedingWhiteSpaceTokenIndexPerSequenceElement.put(null, currentleftMostWhiteSpace);
+        }
+    }
+    
+    private static boolean isUndefinedIndex(int i) {
+        return i < 0;
+    }
+    private static int getUndefinedIndex() {
+        return -1;
     }
     
     private static boolean isPseudoToken(DocumentNode node) {
@@ -155,38 +165,16 @@ public class TextBlockBasedPrintPolicy implements PrintPolicy {
     @Override
     public List<FormatRequest> getOverruledFormattingBetween(List<FormatRequest> pendingFormattingRequest,
             SequenceElement previousSeqElement, SequenceElement newSeqElement) {
-        ListIterator<DocumentNode> iter = textBlock.getSubNodes().listIterator();
+        Integer targetTokenIndex = firstPreceedingWhiteSpaceTokenIndexPerSequenceElement.get(newSeqElement);
         
-        if (consumeUntilSequenceElement(iter, newSeqElement)) {
-            return getFormattingRequestsForNextWhiteSpaces(iter);
-        } else {
+        if (targetTokenIndex == null) {
             return pendingFormattingRequest;
+        } else {
+            ListIterator<DocumentNode> iter = textBlock.getSubNodes().listIterator(targetTokenIndex);
+            return getFormattingRequestsForNextWhiteSpaces(iter);
         }
-    }
-    
-    
-    /**
-     * Fast forward to the leftmost whitespace in [..., TB, WS, WS, MyLexedTokenWithTargetSeqElem, TB] 
-     */
-    private boolean consumeUntilSequenceElement(ListIterator<DocumentNode> iter, SequenceElement targetSeqElem) {
-        AbstractToken targetToken = getTargetToken(targetSeqElem);
-        if (targetToken == null) {
-            return false;
-        }
-        while (iter.hasNext()) {
-            DocumentNode node = iter.next();
-            if (node == targetToken) {
-                iter.previous(); // gone one to far
-                return true;
-            }
-        }
-        return false; // happens at end of list
     }
 
-    private AbstractToken getTargetToken(SequenceElement targetSeqElem) {
-        return firstPreceedingWhiteSpacePerTokenSequenceElement.get(targetSeqElem);
-    }
-    
     private  List<FormatRequest> getFormattingRequestsForNextWhiteSpaces(Iterator<DocumentNode> iter) {
         List<FormatRequest> requests = new ArrayList<FormatRequest>();
         
