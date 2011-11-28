@@ -1,7 +1,10 @@
 package com.sap.furcas.ide.projectwizard.wizards;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -16,7 +19,15 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.presentation.EcoreEditorPlugin;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -36,10 +47,10 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 import org.eclipse.ui.progress.UIJob;
 
+import com.sap.furcas.ide.dslproject.Activator;
 import com.sap.furcas.ide.dslproject.conf.EcoreMetaProjectConf;
-import com.sap.furcas.ide.dslproject.conf.RegisteredEcoreMetamodelProjectConf;
-import com.sap.furcas.ide.dslproject.conf.LocalEcoreMetamodelProjectConf;
 import com.sap.furcas.ide.dslproject.conf.ProjectMetaRefConfFactory;
+import com.sap.furcas.ide.dslproject.conf.RegisteredEcoreMetamodelProjectConf;
 import com.sap.furcas.ide.projectwizard.util.CodeGenerationException;
 import com.sap.furcas.ide.projectwizard.util.CreateMMProject;
 import com.sap.furcas.ide.projectwizard.util.CreateProject;
@@ -318,9 +329,13 @@ public class FurcasWizard extends Wizard implements INewWizard {
     protected void generateSpecific(IProject project, ProjectInfo pi, IProgressMonitor monitor) throws CodeGenerationException {
         if (project != null) {
             EcoreMetaProjectConf conf;
-                // instantiates the configuration take a look at EcoreMetaProjectConf for more details
-                // uses the new URI list in the ReferenceScope to load the referenced metamodel from registered packages
-                conf = new RegisteredEcoreMetamodelProjectConf(project,pi.getNsURI() + ",http://www.eclipse.org/emf/2002/Ecore", pi.isAutoResolve()); //$NON-NLS-1$
+            if (pi.isLocalEcoreMetamodel()) {
+                registerLocalMetamodel(pi);
+            }
+            // instantiates the configuration take a look at EcoreMetaProjectConf for more details
+            // uses the new URI list in the ReferenceScope to load the referenced metamodel from registered packages
+            conf = new RegisteredEcoreMetamodelProjectConf(project,
+                    pi.getNsURI() + ",http://www.eclipse.org/emf/2002/Ecore", pi.isAutoResolve()); //$NON-NLS-1$
 
             try {
                 ProjectMetaRefConfFactory.configure(project, conf);
@@ -329,19 +344,44 @@ public class FurcasWizard extends Wizard implements INewWizard {
             }
 
             // Builds, refreshs, cleans the project to make sure, that all files will be found and generated
-            //
             monitor.subTask(Messages.FurcasWizard_15);
             try {
                 project.build(IncrementalProjectBuilder.FULL_BUILD, monitor);
                 IFolder folder = project.getFolder("generated").getFolder("generated"); //$NON-NLS-1$ //$NON-NLS-2$
                 folder.refreshLocal(1, new NullProgressMonitor());
                 project.build(IncrementalProjectBuilder.CLEAN_BUILD, monitor);
+                if (pi.isLocalEcoreMetamodel()) {
+                    // rebuild metamodel project so that there are no build problems on furcas project
+                    project.getReferencedProjects()[0].build(IncrementalProjectBuilder.FULL_BUILD, monitor);
+                }
                 project.build(IncrementalProjectBuilder.FULL_BUILD, monitor);
 
             } catch (CoreException e) {
                 throw new CodeGenerationException(Messages.FurcasWizard_18, e.getCause());
             }
 
+        }
+    }
+
+    private void registerLocalMetamodel(ProjectInfo pi) {
+        ResourceSet resourceSet = new ResourceSetImpl();
+
+        Resource resource = resourceSet.createResource(URI.createPlatformResourceURI(pi.getModelPath(), true));
+
+        Map<Object, Object> options = new HashMap<Object, Object>();
+        options.put(XMLResource.OPTION_ENCODING, "UTF-8");
+
+        try {
+            resource.load(options);
+        } catch (IOException e) {
+            Activator.logger.logError("Error loading local metamodel: " + resource.getURI(), e);
+        }
+        EList<EObject> list = resource.getContents();
+        for (EObject object : list) {
+            if (object instanceof EPackage) {
+                EPackage newPackage = (EPackage) object;
+                EPackage.Registry.INSTANCE.put(newPackage.getNsURI(), newPackage);
+            }
         }
     }
 
