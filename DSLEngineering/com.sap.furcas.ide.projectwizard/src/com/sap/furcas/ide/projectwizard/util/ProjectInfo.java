@@ -49,8 +49,6 @@ public class ProjectInfo {
      */
     private boolean loadMetamodel = false;
 
-    private boolean localEcoreMetamodel = false;
-
     private String mmBundleName;
 
     public String getFileExtension() {
@@ -133,13 +131,5 @@ public class ProjectInfo {
 
     public String getMmBundleName() {
         return mmBundleName;
-    }
-
-    public boolean isLocalEcoreMetamodel() {
-        return localEcoreMetamodel;
-    }
-
-    public void setLocalEcoreMetamodel(boolean localEcoreMetamodel) {
-        this.localEcoreMetamodel = localEcoreMetamodel;
     }
 }

@@ -329,7 +329,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
     protected void generateSpecific(IProject project, ProjectInfo pi, IProgressMonitor monitor) throws CodeGenerationException {
         if (project != null) {
             EcoreMetaProjectConf conf;
-            if (pi.isLocalEcoreMetamodel()) {
+            if (!pi.isLoadMetamodel()) {
                 registerLocalMetamodel(pi);
             }
             // instantiates the configuration take a look at EcoreMetaProjectConf for more details
@@ -350,7 +350,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
                 IFolder folder = project.getFolder("generated").getFolder("generated"); //$NON-NLS-1$ //$NON-NLS-2$
                 folder.refreshLocal(1, new NullProgressMonitor());
                 project.build(IncrementalProjectBuilder.CLEAN_BUILD, monitor);
-                if (pi.isLocalEcoreMetamodel()) {
+                if (!pi.isLoadMetamodel()) {
                     // rebuild metamodel project so that there are no build problems on furcas project
                     project.getReferencedProjects()[0].build(IncrementalProjectBuilder.FULL_BUILD, monitor);
                 }
