@@ -117,9 +117,9 @@ public class PrettyPrinter {
         assert oldBlock.getCorrespondingModelElements().contains(modelElement);
         
         TextBlockIndex index = new TextBlockIndex();
-        index.index(oldBlock);
+        index.index(oldBlock, syntax);
         
-        PrintPolicy policy = new TextBlockBasedPrintPolicy(oldBlock, index);
+        PrintPolicy policy = new TextBlockBasedPrintPolicy(oldBlock, template, index);
         
         return prettyPrintInternal(modelElement, template, policy);
     }
@@ -142,20 +142,20 @@ public class PrettyPrinter {
         return resultBlock;
     }
 
-    protected void addPendingFormatting(PrintPolicy policy, PrintContext context, PrintResult result, TextBlock resultBlock) {
+    private void addPendingFormatting(PrintPolicy policy, PrintContext context, PrintResult result, TextBlock resultBlock) {
         ResultContainer tmpResult = new ResultContainer(Collections.<FormatRequest>emptyList());
         tmpResult.merge(result);
         context = tmpResult.asSubContext(context); // state of the world after the model has ben printed entirely
         
         List<FormatRequest> formatRequests = policy.getOverruledFormattingBetween(context.getPendingFormattingRequest(),
-                context.getLastSequenceElement(), /*seqElem*/ null);
+                context.getLastSequenceElement(), /*seqElem*/ null, /* next token content */ "");
         List<DocumentNode> formatting = formatter.translateToTokens(formatRequests, context);
         
         resultBlock.getSubNodes().addAll(formatting);
         resultBlock.setLength(TextBlocksFactory.getLengthOf(formatting, resultBlock.getLength()));
     }
 
-    protected void addBosEosTokensIfNeeded(Template template, TextBlock resultBlock) {
+    private void addBosEosTokensIfNeeded(Template template, TextBlock resultBlock) {
         if (template instanceof ClassTemplate && ((ClassTemplate) template).isIsMain()) {
             AbstractToken bosToken = tbfactory.createBOSToken();
             AbstractToken eosToken = tbfactory.createEOSToken(resultBlock.getLength());

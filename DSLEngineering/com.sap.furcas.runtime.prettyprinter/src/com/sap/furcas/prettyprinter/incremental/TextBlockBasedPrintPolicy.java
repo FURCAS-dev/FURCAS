@@ -50,14 +50,16 @@ import com.sap.furcas.runtime.tcs.TcsUtil;
 public class TextBlockBasedPrintPolicy implements PrintPolicy {
 
     private final TextBlock textBlock;
-    private final HashMap<SequenceElement, Integer> firstPreceedingWhiteSpaceTokenIndexPerSequenceElement;
+    private final HashMap<SequenceElement, Integer> firstPreceedingWhiteSpaceTokenIndexPerSequenceElement = new HashMap<SequenceElement, Integer>();
+    private final HashMap<String, Integer> firstPreceedingWhiteSpaceTokenIndexPerTokenValue = new HashMap<String, Integer>();
     private final TextBlockIndex index;
+    private final ContextTemplate template;
     
-    public TextBlockBasedPrintPolicy(TextBlock oldBlock, TextBlockIndex index) {
+    public TextBlockBasedPrintPolicy(TextBlock oldBlock, ContextTemplate template, TextBlockIndex index) {
         this.textBlock = oldBlock;
+        this.template = template;
         this.index = index;
         
-        this.firstPreceedingWhiteSpaceTokenIndexPerSequenceElement = new HashMap<SequenceElement, Integer>(2*textBlock.getSubNodes().size());
         initializeSequenceElementStore(textBlock.getSubNodes());
     }
     
@@ -68,14 +70,12 @@ public class TextBlockBasedPrintPolicy implements PrintPolicy {
             DocumentNode node = tokensOfBlock.get(i);
             
             if (node instanceof LexedToken) {
-                SequenceElement se = ((LexedToken) node).getSequenceElement();
+                int tokenIndex = isUndefinedIndex(currentleftMostWhiteSpace) ? i : currentleftMostWhiteSpace;
                 
-                if (isUndefinedIndex(currentleftMostWhiteSpace)) {
-                    firstPreceedingWhiteSpaceTokenIndexPerSequenceElement.put(se, i);
-                } else {
-                    firstPreceedingWhiteSpaceTokenIndexPerSequenceElement.put(se, currentleftMostWhiteSpace);
-                    currentleftMostWhiteSpace = getUndefinedIndex();
-                }
+                firstPreceedingWhiteSpaceTokenIndexPerSequenceElement.put(((LexedToken) node).getSequenceElement(), tokenIndex);
+                firstPreceedingWhiteSpaceTokenIndexPerTokenValue.put(((LexedToken) node).getValue(), tokenIndex);
+                currentleftMostWhiteSpace = getUndefinedIndex();
+                
             } else if (isWhiteSpace(node) && isUndefinedIndex(currentleftMostWhiteSpace)) {
                 currentleftMostWhiteSpace = i;
                     
@@ -84,9 +84,7 @@ public class TextBlockBasedPrintPolicy implements PrintPolicy {
             }
         }
         // Special case handling for the whitespace/comments at the end of the block
-        if (!isUndefinedIndex(currentleftMostWhiteSpace)) {
-            firstPreceedingWhiteSpaceTokenIndexPerSequenceElement.put(null, currentleftMostWhiteSpace);
-        }
+        firstPreceedingWhiteSpaceTokenIndexPerSequenceElement.put(null, isUndefinedIndex(currentleftMostWhiteSpace) ? null : currentleftMostWhiteSpace);
     }
     
     private static boolean isUndefinedIndex(int i) {
@@ -123,7 +121,7 @@ public class TextBlockBasedPrintPolicy implements PrintPolicy {
 
     @Override
     public Collection<SequenceInAlternative> getPreferredAlternativeChoiceOrderOf(Collection<SequenceInAlternative> sequences) {
-        // This is slow, but seems fast enough for now...
+        // This is slow in theory, but seems fast enough for now...
         // Find the chosen alternative in the old textblock
         SequenceInAlternative executedAlternative = null;
         for (SequenceInAlternative seq : sequences) {
@@ -131,8 +129,7 @@ public class TextBlockBasedPrintPolicy implements PrintPolicy {
                 executedAlternative = seq;
                 continue; // only use if we there wasn't another one being executed.
             }
-            if (textBlock.getType() instanceof ContextTemplate && TcsUtil.wasExecuted(
-                    (ContextTemplate) textBlock.getType(), textBlock.getParentAltChoices(), seq.getElements().iterator().next())) {
+            if (TcsUtil.wasExecuted(template, textBlock.getParentAltChoices(), seq.getElements().iterator().next())) {
                 executedAlternative = seq;
                 break; // there can only be one
             }
@@ -164,14 +161,32 @@ public class TextBlockBasedPrintPolicy implements PrintPolicy {
 
     @Override
     public List<FormatRequest> getOverruledFormattingBetween(List<FormatRequest> pendingFormattingRequest,
-            SequenceElement previousSeqElement, SequenceElement newSeqElement) {
-        Integer targetTokenIndex = firstPreceedingWhiteSpaceTokenIndexPerSequenceElement.get(newSeqElement);
+            SequenceElement previousSeqElement, SequenceElement followingSeqElement, String followingTokenValue) {
+        Integer targetTokenIndex = getTargetToken(followingSeqElement, followingTokenValue);
         
         if (targetTokenIndex == null) {
             return pendingFormattingRequest;
         } else {
             ListIterator<DocumentNode> iter = textBlock.getSubNodes().listIterator(targetTokenIndex);
             return getFormattingRequestsForNextWhiteSpaces(iter);
+        }
+    }
+
+    private Integer getTargetToken(SequenceElement followingSeqElement, String followingTokenValue) {
+        if (followingSeqElement == null) {
+            // get the content behind the last sequence element
+            return firstPreceedingWhiteSpaceTokenIndexPerSequenceElement.get(followingSeqElement);
+        } else if (TcsUtil.isFirstSequenceElement(followingSeqElement) &&
+                followingSeqElement.getElementSequence().equals(template.getTemplateSequence())) {
+            // get the content before the first sequence element
+            return 0;
+        } else {
+            Integer tokenIndex = firstPreceedingWhiteSpaceTokenIndexPerSequenceElement.get(followingSeqElement);
+            if (tokenIndex == null) {
+                // token value based fallback. 
+                tokenIndex = firstPreceedingWhiteSpaceTokenIndexPerTokenValue.get(followingTokenValue);
+            }
+            return tokenIndex;
         }
     }
 

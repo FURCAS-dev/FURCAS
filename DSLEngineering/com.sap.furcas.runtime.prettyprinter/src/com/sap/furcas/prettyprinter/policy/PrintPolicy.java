@@ -58,6 +58,7 @@ public interface PrintPolicy {
     /**
      * Allow to overwrite the formatting between elements.
      */
-    public List<FormatRequest> getOverruledFormattingBetween(List<FormatRequest> pendingFormattingRequest, SequenceElement previousSeqElement, SequenceElement newSeqElement);
+    public List<FormatRequest> getOverruledFormattingBetween(List<FormatRequest> pendingFormattingRequest,
+            SequenceElement previousSeqElement, SequenceElement followingSeqElement, String followingTokenValue);
 
 }

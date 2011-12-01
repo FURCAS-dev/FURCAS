@@ -183,8 +183,7 @@ public class SequenceHandler {
         } else {
             formatRequests.add(FormatRequest.create(Type.ADD_OPTIONAL_SPACE));
         }
-        formatRequests = policy.getOverruledFormattingBetween(formatRequests, context.getLastSequenceElement(), seqElem);
-        return formatRequests;
+        return policy.getOverruledFormattingBetween(formatRequests, context.getLastSequenceElement(), seqElem, literal.getValue());
     }
 
     private void appendFollowingSymbolFormatting(Literal literal, LeafResult result) {

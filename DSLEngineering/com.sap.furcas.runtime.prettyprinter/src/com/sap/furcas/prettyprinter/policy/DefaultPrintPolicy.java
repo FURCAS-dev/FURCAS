@@ -61,7 +61,7 @@ public class DefaultPrintPolicy implements PrintPolicy {
             // it is unknown which textblocks to prefer if there are several potential
             // this may happen if a model element is visible in several views
             TextBlock block = potentiallyReusableBlocks.iterator().next();
-            return new TextBlockBasedPrintPolicy(block, index);
+            return new TextBlockBasedPrintPolicy(block, template, index);
         }
     }
     
@@ -87,7 +87,7 @@ public class DefaultPrintPolicy implements PrintPolicy {
     }
 
     @Override
-    public List<FormatRequest> getOverruledFormattingBetween(List<FormatRequest> pendingFormattingRequest, SequenceElement previousSeqElement, SequenceElement newSeqElement) {
+    public List<FormatRequest> getOverruledFormattingBetween(List<FormatRequest> pendingFormattingRequest, SequenceElement previousSeqElement, SequenceElement followingSeqElement, String followingTokenValue) {
         return pendingFormattingRequest;
     }
 

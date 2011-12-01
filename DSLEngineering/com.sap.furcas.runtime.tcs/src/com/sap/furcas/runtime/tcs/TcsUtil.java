@@ -214,7 +214,11 @@ public class TcsUtil {
     }
     
     public static boolean isFirstSequenceElement(SequenceElement se) {
-        return se.equals(TcsUtil.getFirstSequenceElement(se.getElementSequence()));
+        EObject container = se.eContainer();
+        if (container instanceof Sequence) {
+            return se.equals(TcsUtil.getFirstSequenceElement((Sequence) container));
+        }
+        return false;
     }
 
     public static boolean isLastSequenceElement(SequenceElement e) {
@@ -227,15 +231,13 @@ public class TcsUtil {
     /**
      * Returns the next SequenceElement in the parent Sequence, or null, if it is the last SequenceElement.
      * 
-     * @param e
-     *            SequenceElement after which to look
+     * @param e SequenceElement after which to look
      * @return next SequenceElement in parent Sequence
      */
     public static SequenceElement getNextSequenceElement(SequenceElement e) {
         if (e == null) {
             return null;
         }
-
         // use refImmediateComposite, as a SequenceElement can be part of
         // different types of Sequences
         EObject container = e.eContainer();
@@ -251,7 +253,6 @@ public class TcsUtil {
                 }
             }
         }
-
         return null;
     }
 

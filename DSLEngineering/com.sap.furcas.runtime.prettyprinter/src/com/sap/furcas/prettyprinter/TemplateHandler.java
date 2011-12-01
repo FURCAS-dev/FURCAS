@@ -115,7 +115,7 @@ public class TemplateHandler {
         List<FormatRequest> formatRequests = new ArrayList<FormatRequest>(context.getPendingFormattingRequest());
         formatRequests.add(FormatRequest.create(Type.ADD_OPTIONAL_SPACE));
         
-        formatRequests = policy.getOverruledFormattingBetween(formatRequests, context.getLastSequenceElement(), seqElem);
+        formatRequests = policy.getOverruledFormattingBetween(formatRequests, context.getLastSequenceElement(), seqElem, content);
         List<DocumentNode> formatting = formatter.translateToTokens(formatRequests, context);
           
         formatting.add(tbFactory.createLexedToken(content, seqElem, getLengthOf(formatting, context.getNextOffset())));
