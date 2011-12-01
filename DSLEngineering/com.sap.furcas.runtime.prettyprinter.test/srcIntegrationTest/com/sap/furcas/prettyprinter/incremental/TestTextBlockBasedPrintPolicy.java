@@ -116,21 +116,6 @@ public class TestTextBlockBasedPrintPolicy extends IncrementalParserBasedTest {
     }
     
     /**
-     * The pretty printer should re-use the complete formatting information.
-     */
-    @Test
-    public void testFormattingChangesWithReuseAtBlockBoundaries() throws Exception {
-        String content = "  // Leading \n" +
-        		 "  Definitions: def a; Usages: use a; // Line comment \n" +
-        		 "  // Trailing ";
-        model.replace(0, model.getLength(), content);
-        triggerParser();
-        
-        TextBlock reprinted = prettyPrinter.prettyPrint(getRootObject(), getRootBlock());
-        assertEqualsByLines(reprinted.getCachedString(), content);
-    }
-    
-    /**
      * The pretty printer should reuse leading and trailing formatting/whitespaces
      */
     @Test
@@ -152,16 +137,44 @@ public class TestTextBlockBasedPrintPolicy extends IncrementalParserBasedTest {
     /**
      * The pretty printer should re-use the complete formatting information.
      */
-    @Ignore
     @Test
     public void testFormattingReuseWithBrokenMapping() throws Exception {
-        String content = "Definitions  : \n" +
+        String content = "Definitions: \n" +
                          "    def a;\n" +
                          "    def   b   ; \n " +
                          "    def c;\n" +
                          "\n" +
                          "Usages: \n" +
                          "    use a;\n";
+        model.replace(0, model.getLength(), content);
+        triggerParser();
+        
+        breakMapping(getRootBlock());
+        
+        TextBlock reprinted = prettyPrinter.prettyPrint(getRootObject(), getRootBlock());
+        assertEqualsByLines(reprinted.getCachedString(), content);
+    }
+    
+    /**
+     * The pretty printer should re-use the complete formatting information.
+     */
+    @Test
+    public void testFormattingChangesWithReuseAtBlockBoundaries() throws Exception {
+        String content = "  // Leading \n" +
+                         "  Definitions: def a; Usages: use a; // Line comment \n" +
+                         "  // Trailing ";
+        model.replace(0, model.getLength(), content);
+        triggerParser();
+        
+        TextBlock reprinted = prettyPrinter.prettyPrint(getRootObject(), getRootBlock());
+        assertEqualsByLines(reprinted.getCachedString(), content);
+    }
+    
+    @Test
+    public void testFormattingChangesReuseAtBlockBoundariesWithBrokenMapping() throws Exception {
+        String content = "  // Leading \n" +
+                         "  Definitions: def a; Usages: use a; // Line comment \n" +
+                         "  // Trailing ";
         model.replace(0, model.getLength(), content);
         triggerParser();
         
@@ -198,6 +211,23 @@ public class TestTextBlockBasedPrintPolicy extends IncrementalParserBasedTest {
 
         model.replace(0, model.getLength(), content);
         triggerParser();
+        
+        TextBlock reprinted = prettyPrinter.prettyPrint(getRootObject(), getRootBlock());
+        assertEqualsByLines(reprinted.getCachedString(), content);
+    }
+    
+    /**
+     * Should work as currently alt choice indizes are encoded as integers and not as
+     * references to model elements.
+     */
+    @Test
+    public void testAlternativeChoiceReuseWithBrokenMapping() throws Exception {
+        String content  = "Definitions : def xxFOOxx ; Usages : useXX FOO ; use xxFOOxx ;";
+
+        model.replace(0, model.getLength(), content);
+        triggerParser();
+        
+        breakMapping(getRootBlock());
         
         TextBlock reprinted = prettyPrinter.prettyPrint(getRootObject(), getRootBlock());
         assertEqualsByLines(reprinted.getCachedString(), content);
@@ -369,6 +399,7 @@ public class TestTextBlockBasedPrintPolicy extends IncrementalParserBasedTest {
     private void breakMapping(TextBlock rootBlock) {
         rootBlock.setType(null);
         rootBlock.setSequenceElement(null);
+        
         for (DocumentNode node : rootBlock.getSubNodes()) {
             node.setSequenceElement(null);
             if (node instanceof TextBlock) {
