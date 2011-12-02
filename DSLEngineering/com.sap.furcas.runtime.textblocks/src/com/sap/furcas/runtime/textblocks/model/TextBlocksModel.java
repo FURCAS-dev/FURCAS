@@ -382,7 +382,7 @@ public class TextBlocksModel {
     private void replaceInNonEmptyTree(int replacedRegionAbsoluteOffset, int replacedRegionLength, String newText,
 	    TextBlock workingCopy) {
 
-	// find out whether the region starts on a token gap
+	// find out whether the egion starts on a token gap
 	DocumentNode bottomNode = navigator.getLeafNode(workingCopy, replacedRegionAbsoluteOffset);
 	if (bottomNode instanceof TextBlock) {
 	    // extend a token in the block with blanks to cover the beginning of
@@ -900,7 +900,7 @@ public class TextBlocksModel {
     /**
 	 * 
 	 */
-    public Bostoken getStartToken() {
+    private Bostoken getStartToken() {
 	if (rootBlock.getTokens().size() <= 0) {
 	    throw new IllegalStateException("TextBlocksModel is in illegal state, root block contains no tokens!");
 	}
@@ -908,7 +908,7 @@ public class TextBlocksModel {
 	    throw new IllegalStateException("TextBlocksModel is in illegal state, first token not BOS!");
 	}
 
-	return (Bostoken) activeVersion(rootBlock.getTokens().get(0));
+	return (Bostoken) rootBlock.getSubNodes().get(0);
     }
 
 }
