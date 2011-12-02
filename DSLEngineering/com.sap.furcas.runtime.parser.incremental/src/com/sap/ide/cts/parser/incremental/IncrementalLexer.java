@@ -172,6 +172,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
                             + "\n\nCurrent Block:\n"
                             + currentVersion == null ? "<none>" : TbDebugUtil.getTextBlockAsAnnotatedString(currentVersion));       
             Activator.logError(ex);
+            throw new RuntimeException(ex);
             
         } finally {
             if (!success) {
