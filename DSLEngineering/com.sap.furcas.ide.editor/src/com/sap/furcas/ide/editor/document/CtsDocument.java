@@ -112,30 +112,21 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
         return events.size() > 0;
     }
 
-    /**
-     * Has to be called whenever the textual content of the block
-     * returned by {@link #getRootBlock()} has been modified.
-     */
-    public void refreshContentFromTextBlocksModel(final ShortPrettyPrinter shortPrettyPrinter) {
-        Display.getDefault().syncExec(new Runnable() {
-            @Override
-            public void run() {
-                synchronized (getLockObject()) {
-                    flushUserEditsToTextBlocskModel();
-                    inDocumentRefreshMode = true;
-                    
-                    for (TokenChange change : model.doShortPrettyPrintToEditableVersion(shortPrettyPrinter)) {
-                        try {
-                            replace(change.oldOffset, change.oldLength, change.token.getValue());
-                        } catch (BadLocationException e) {
-                            CtsActivator.logger.logError("Invalidated textblocks model on refresh", e);
-                            throw new RuntimeException(e);
-                        }
-                    }
-                    inDocumentRefreshMode = false;
+    public void refreshContentFromTextBlocksModelChanges(final ShortPrettyPrinter shortPrettyPrinter) {
+        synchronized (getLockObject()) {
+            flushUserEditsToTextBlocskModel();
+            final ArrayList<TokenChange> tokenChanges = model.doShortPrettyPrintToEditableVersion(shortPrettyPrinter);
+            try {
+                inDocumentRefreshMode = true;
+                for (TokenChange change : tokenChanges) {
+                    replace(change.oldOffset, change.oldLength, change.token.getValue());
                 }
+            } catch (BadLocationException e) {
+                CtsActivator.logger.logError("Failed to refresh document", e);
+            } finally {
+                inDocumentRefreshMode = false;
             }
-        });
+        }
     }
     
     public void resetAfterError() {

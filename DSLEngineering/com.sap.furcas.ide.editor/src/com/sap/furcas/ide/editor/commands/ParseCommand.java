@@ -14,8 +14,8 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.imp.parser.IMessageHandler;
+import org.eclipse.swt.widgets.Display;
 
-import com.sap.furcas.ide.editor.CtsActivator;
 import com.sap.furcas.ide.editor.document.CtsDocument;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
@@ -49,9 +49,11 @@ public class ParseCommand extends RecordingCommand {
     private boolean wasEffective;
     private final ShortPrettyPrinter shortPrettyPrinter;
     private final IProgressMonitor monitor;
+    private final TransactionalEditingDomain domain;
 
     public ParseCommand(TransactionalEditingDomain domain, CtsDocument document, IncrementalParserFacade parserFacade, IMessageHandler handler, IProgressMonitor monitor) {
         super(domain, "Parse document");
+        this.domain = domain;
         this.document = document;
         this.parserFacade = parserFacade;
         this.handler = handler;
@@ -89,14 +91,16 @@ public class ParseCommand extends RecordingCommand {
         //    Afterwards, run the short pretty printer to update all tokens according
         //    to domain model changes. The order is essential here, because otherwise 
         //    the offsets of the user's text edits are already invalid. 
-        synchronized (document.getLockObject()) {
-            document.setRootBlock(result);
-        }
-        // TODO: Disabled because of invalid thread access problems
-        //      Stephan Erb, Jun 15 2011.
-        // document.refreshContentFromTextBlocksModel(shortPrettyPrinter);
+        document.setRootBlock(result);
+        Runnable privRunnable = domain.createPrivilegedRunnable(new Runnable() {
+            @Override
+            public void run() {
+                document.refreshContentFromTextBlocksModelChanges(shortPrettyPrinter);
+            }
+        });
+        Display.getDefault().syncExec(privRunnable);
     }
-    
+        
     private TextBlock parse(TextBlock oldBlock) {
         try {
             TextBlock newBlock = parserFacade.parseIncrementally(oldBlock, monitor);
@@ -106,7 +110,6 @@ public class ParseCommand extends RecordingCommand {
                 // Both lexing and parsing were successfull. Make a new REFERENCE version. 
                 return (TextBlock) TbChangeUtil.cleanUp(newBlock);
             }
-            
         } catch (SemanticParserException e) {
             handleParseException(e);
             // We can use the created textblock as an intermediate result, as
