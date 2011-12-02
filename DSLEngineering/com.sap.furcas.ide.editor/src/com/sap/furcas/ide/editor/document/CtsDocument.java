@@ -10,13 +10,14 @@ import org.eclipse.jface.text.DocumentEvent;
 import org.eclipse.jface.text.GapTextStore;
 import org.eclipse.jface.text.IDocumentListener;
 import org.eclipse.jface.text.ISynchronizable;
-import org.eclipse.swt.widgets.Display;
 
 import com.sap.furcas.ide.editor.CtsActivator;
 import com.sap.furcas.ide.editor.imp.FurcasParseController;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel.TokenChange;
+import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
 import com.sap.furcas.runtime.textblocks.shortprettyprint.ShortPrettyPrinter;
 
 /**
@@ -57,7 +58,7 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
         setTextStore(new GapTextStore());
         setLineTracker(new DefaultLineTracker());
         
-        model = new TextBlocksModel(editorInput.getRootBlock());
+        model = new TextBlocksModel(getReferenceOrWorkingCopy(editorInput));
         model.setUsecache(true); 
         
 	completeInitialization();
@@ -76,6 +77,11 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
             @Override
             public void documentAboutToBeChanged(DocumentEvent event) { }
         });
+    }
+
+    private TextBlock getReferenceOrWorkingCopy(ModelEditorInput editorInput) {
+        TextBlock tb = TbVersionUtil.getOtherVersion(editorInput.getRootBlock(), Version.PREVIOUS);
+        return tb != null ? tb : editorInput.getRootBlock(); 
     }
 
     public TextBlock getRootBlock() {
