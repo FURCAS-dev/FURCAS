@@ -100,7 +100,7 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
      * Has to be called before starting to work on the
      * block returned by {@link #getRootBlock()}
      */
-    public void flushUserEditsToTextBlocskModel() {
+    public boolean flushUserEditsToTextBlocskModel() {
         Collection<DocumentEvent> events = new ArrayList<DocumentEvent>();
         synchronized (getLockObject()) {
             events.addAll(bufferedChanges);
@@ -109,6 +109,7 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
         for (DocumentEvent event : events) {
             model.replace(event.getOffset(), event.getLength(), event.getText());
         }
+        return events.size() > 0;
     }
 
     /**

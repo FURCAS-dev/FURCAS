@@ -67,17 +67,15 @@ public class ParseCommand extends RecordingCommand {
         // 1) Write all buffered user edits to the underlying 
         //    textblocks model. Synchronize to prevent concurrent
         //    editing from within the UI thread.
-        synchronized (document.getLockObject()) {
-            document.flushUserEditsToTextBlocskModel();
+        boolean contentChanged = document.flushUserEditsToTextBlocskModel();
+        if (!contentChanged) {
+            // parser was triggered by IMP, but there are no changes that require reparsing.
+            return;
         }
                 
         // 2) Run the parser. This creates a new TextBlocks model
         //    Parsing runs in the background only.
-        final TextBlock blockWithUnparsedEdits = TbVersionUtil.getOtherVersion(document.getRootBlock(), Version.PREVIOUS);
-        if (blockWithUnparsedEdits == null) {
-            // parser was triggered by IMP, but there are no changes that require reparsing.
-            return;
-        }
+        TextBlock blockWithUnparsedEdits = TbVersionUtil.getOtherVersion(document.getRootBlock(), Version.PREVIOUS);
         result = parse(blockWithUnparsedEdits);
         
         // Succeded without an exception. The command will not be rolled back and the
@@ -118,11 +116,9 @@ public class ParseCommand extends RecordingCommand {
             } else {
                 return TbVersionUtil.getOtherVersion(oldBlock, Version.CURRENT);
             }
-        } catch (RuntimeException e) {
-            CtsActivator.logger.logError("Parser failed with internal error.", e);
-            throw e;
         }
     }
+
     
     private void handleParseException(SemanticParserException parserException) {
         for (ParsingError ex : parserException.getIssuesList()) {
