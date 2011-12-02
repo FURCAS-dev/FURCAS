@@ -25,7 +25,9 @@ import org.eclipse.imp.parser.SimpleAnnotationTypeInfo;
 import org.eclipse.imp.services.IAnnotationTypeInfo;
 import org.eclipse.imp.services.ILanguageSyntaxProperties;
 import org.eclipse.jface.text.IRegion;
+import org.eclipse.swt.widgets.Display;
 
+import com.sap.furcas.ide.editor.CtsActivator;
 import com.sap.furcas.ide.editor.commands.ParseCommand;
 import com.sap.furcas.ide.editor.imp.AbstractFurcasEditor.ContentProvider;
 import com.sap.furcas.ide.editor.imp.services.FurcasSourcePositionLocator;
@@ -93,11 +95,17 @@ public abstract class FurcasParseController extends ParseControllerBase {
         
         boolean saveNeeded = ((BasicCommandStack) editingDomain.getCommandStack()).isSaveNeeded();
         ParseCommand command = new ParseCommand(editingDomain, contentProvider.getDocument(), parserFacade, handler, monitor);
-        editingDomain.getCommandStack().execute(command);
+        
+        try {
+            editingDomain.getCommandStack().execute(command);
+        } catch (Exception e) {
+            handleRuntimeException(e);
+        }
         
         if (!saveNeeded && !command.wasEffective()) {
             // the command changed nothing. Reset dirty state.
             ((BasicCommandStack) editingDomain.getCommandStack()).saveIsDone();
+            contentProvider.notifyDirtyPropertyChanged();
         }
         
         if (command.wasEffective() && !monitor.isCanceled()) {
@@ -106,6 +114,16 @@ public abstract class FurcasParseController extends ParseControllerBase {
         }
         
         return getCurrentAst();
+    }
+
+    private void handleRuntimeException(Exception e) {
+        CtsActivator.logger.logError("Parser failed with internal error", e);
+        Display.getDefault().syncExec(new Runnable() {
+            @Override
+            public void run() {
+                contentProvider.getDocument().resetAfterError();
+            };
+        });
     }
 
     @Override

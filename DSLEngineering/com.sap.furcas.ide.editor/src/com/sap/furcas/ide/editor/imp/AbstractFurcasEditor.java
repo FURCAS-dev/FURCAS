@@ -104,6 +104,14 @@ public class AbstractFurcasEditor extends UniversalEditor {
         public CtsDocument getDocument() {
             return getDocumentProvider().getDocument(getEditorInput());
         }
+        public void notifyDirtyPropertyChanged() {
+            Display.getDefault().asyncExec(new Runnable() {
+                @Override
+                public void run() {
+                    firePropertyChange(IEditorPart.PROP_DIRTY);
+                }
+            });
+        }
     }
     
     private final TransactionalEditingDomain editingDomain;

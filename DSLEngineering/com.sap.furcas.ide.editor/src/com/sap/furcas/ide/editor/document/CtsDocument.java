@@ -137,6 +137,14 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
         });
     }
     
+    public void resetAfterError() {
+        synchronized (getLockObject()) {
+            inDocumentRefreshMode = true;
+            set(model.get(0, model.getLength()));
+            bufferedChanges.clear();
+            inDocumentRefreshMode = false;
+        }        
+    }
     
     /**
      * Returns a lock object for synchronization<p>
