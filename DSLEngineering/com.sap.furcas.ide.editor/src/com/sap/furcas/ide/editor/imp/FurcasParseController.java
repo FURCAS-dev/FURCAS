@@ -108,7 +108,7 @@ public abstract class FurcasParseController extends ParseControllerBase {
             contentProvider.notifyDirtyPropertyChanged();
         }
         
-        if (command.wasEffective() && !monitor.isCanceled()) {
+        if (command.wasEffective()) {
             // only use the result if parsing was not aborted (most commonly if the user typed something new)
             setCurrentAst(command.getParsingResult());
         }
