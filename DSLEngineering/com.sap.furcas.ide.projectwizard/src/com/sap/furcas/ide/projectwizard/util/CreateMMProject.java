@@ -82,8 +82,6 @@ public class CreateMMProject {
      * @throws CodeGenerationException
      */
     public static void create(FurcasWizard wiz, IProgressMonitor monitor, ProjectInfo pInfo) throws CodeGenerationException {
-        // Set all the important variables for generating the Project
-        //
         pi = pInfo;
         wizard = wiz;
         progressMonitor = monitor;
@@ -94,9 +92,7 @@ public class CreateMMProject {
         shell = wizard.getShell();
 
         WizardProjectHelper.createPlugInProject(pi, srcFolders, nonSrcFolders, null, progressMonitor, true);
-
         createNewModel();
-
     }
 
     /**
@@ -111,22 +107,11 @@ public class CreateMMProject {
         URI fileURI = getModelURI(pi);
         Resource resource = resourceSet.createResource(fileURI);
 
-        // Add the initial model object to the contents.
-        // And create the first class with the user chosen name.
-        //
-        EObject rootObject = createInitialModel();
-        if (rootObject != null) {
-            if (rootObject instanceof EPackage) {
-                createModel(pi, resource, rootObject);
-            } else {
-                // Should never get here
-                //
-                resource.getContents().add(rootObject);
-            }
-        }
+        EPackage ePackage = createEPackage();
+        
+        addFirstClass(ePackage);
+        resource.getContents().add(ePackage);
 
-        // Save the contents of the resource to the file system.
-        //
         Map<Object, Object> options = new HashMap<Object, Object>();
         options.put(XMLResource.OPTION_ENCODING, "UTF-8");
         try {
@@ -134,22 +119,14 @@ public class CreateMMProject {
         } catch (IOException e) {
             throw new CodeGenerationException("Error while saving resource for the new model", e.getCause());
         }
-        // Create the .genmodel file
-        //
+
         IFile file = createGenmodelFile(pi);
 
         URI newURI = URI.createPlatformResourceURI(file.getProject().getName() + "/" + file.getProjectRelativePath().toString(),
                 true);
-        // Generate the model code. (e.g. the java classes and the plugin.xml)
-        //
-        genModelGen(newURI);
+        generateModelCode(newURI);
     }
 
-    /**
-     * @param pi
-     * @return
-     * @throws CodeGenerationException
-     */
     private static IFile createGenmodelFile(ProjectInfo pi) throws CodeGenerationException {
         IFile file = null;
         IWorkspace workspace = ResourcesPlugin.getWorkspace();
@@ -159,34 +136,12 @@ public class CreateMMProject {
         return file;
     }
 
-    /**
-     * Add the initial model object to the contents. And create the first class with the user chosen name.
-     * 
-     * @param pi
-     * @param resource
-     * @param rootObject
-     * @throws CodeGenerationException
-     */
-    private static void createModel(ProjectInfo pi, Resource resource, EObject rootObject) throws CodeGenerationException {
-        EPackage eP;
-        try {
-            eP = (EPackage) rootObject;
-            eP.setNsPrefix(pi.getLanguageName());
-            eP.setNsURI(pi.getNsURI());
-            EClass eC = ecoreFactory.createEClass();
-            eC.setName(pi.getClassName());
-            eP.getEClassifiers().add(eC);
-            resource.getContents().add(eP);
-        } catch (Exception exception) {
-            throw new CodeGenerationException("Failed to create the new Model!", exception.getCause());
-        }
+    private static void addFirstClass(EPackage ePackage) throws CodeGenerationException {
+            EClass eClass = ecoreFactory.createEClass();
+            eClass.setName(pi.getClassName());
+            ePackage.getEClassifiers().add(eClass);
     }
 
-    /**
-     * @param pi
-     *            The user input
-     * @return The URI of the model file
-     */
     private static URI getModelURI(ProjectInfo pi) {
         String mmprojectpath = pi.getProjectName() + ".metamodel/model/"
                 + CreateProject.capitalizeFirstChar(pi.getLanguageName()) + ".ecore";
@@ -194,21 +149,19 @@ public class CreateMMProject {
         return fileURI;
     }
 
-    /**
-     * Creates the initial model.
-     * 
-     * @return The model as a EObject.
-     * @throws CodeGenerationException
-     */
-    protected static EObject createInitialModel() throws CodeGenerationException {
+    private static EPackage createEPackage() throws CodeGenerationException {
+        EPackage ePackage;
         EClass eClass = (EClass) ecorePackage.getEClassifier("EPackage");
         EObject rootObject = ecoreFactory.create(eClass);
-        if (rootObject instanceof ENamedElement) {
+        if (rootObject instanceof ENamedElement && rootObject instanceof EPackage) {
             ((ENamedElement) rootObject).setName(CreateProject.capitalizeFirstChar(pi.getLanguageName()));
+            ePackage = (EPackage) rootObject;
+            ePackage.setNsPrefix(pi.getLanguageName());
+            ePackage.setNsURI(pi.getNsURI());
         } else {
             throw new CodeGenerationException("Failed to create the new Model!");
         }
-        return rootObject;
+        return ePackage;
     }
 
     /**
@@ -218,7 +171,7 @@ public class CreateMMProject {
      * @param uri
      *            nsURI of the model.
      */
-    protected static void genModelGen(URI uri) {
+    private static void generateModelCode(URI uri) {
         List<URI> uris = new ArrayList<URI>();
         uris.add(uri);
         List<GenModel> gms = GeneratorUIUtil.loadGenModels(progressMonitor, uris, shell);
