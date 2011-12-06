@@ -18,7 +18,6 @@ import com.sap.furcas.runtime.parser.testbase.EMFParsingHelper;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.test.fixture.FeatureFixtureData;
-
 /**
  * A test for the combination of lookupScope and referenceBy property arguments,
  * which can be used to query for elements by an identifier (e.g., find a declaration by its name).

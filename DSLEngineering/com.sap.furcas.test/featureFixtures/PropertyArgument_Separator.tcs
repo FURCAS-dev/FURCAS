@@ -1,0 +1,21 @@
+/**
+ * A simple language feature definition with a simple separator.
+ *
+ */
+syntax SeparatorFeatureTestSyntax { 
+
+  primitiveTemplate identifier for ecore::EString default using NAME
+    : value = "unescapeString(%token%)"
+    ;
+  
+  template UsingSeparator main
+    : "Usages" ":" usages{separator=","}
+    ;
+
+  template PropType 
+    : "prop" name
+    ;
+
+  omitted token COMMENT : endOfLine(start = "//");
+
+}
