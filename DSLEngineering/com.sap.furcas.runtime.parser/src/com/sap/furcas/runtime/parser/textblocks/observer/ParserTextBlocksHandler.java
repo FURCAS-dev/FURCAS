@@ -506,8 +506,9 @@ public class ParserTextBlocksHandler implements IParsingObserver {
      */
     @Override
     public void notifyEnterSeparatorSequence() {
-        // ignore
-
+        //store sequence before separator as it will be restored after separator consumption
+        SequenceElement currentSequenceElement = traverser.getCurrentSequenceElement();
+        traverser.setSequenceElementOfSeparator(currentSequenceElement);
     }
 
     /* (non-Javadoc)
@@ -524,7 +525,9 @@ public class ParserTextBlocksHandler implements IParsingObserver {
      */
     @Override
     public void notifyExitSeparatorSequence() {
-        // ignore
+    	//restore sequence from before separator
+        SequenceElement currentSequenceElement = traverser.getSequenceElementOfSeparator();
+        traverser.setCurrentSequenceElement(currentSequenceElement);
     }
 
     /* (non-Javadoc)

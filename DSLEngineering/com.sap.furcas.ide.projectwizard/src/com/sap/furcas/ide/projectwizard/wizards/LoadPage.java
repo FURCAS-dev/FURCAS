@@ -130,7 +130,6 @@ public class LoadPage extends WizardPage {
         button1.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
-                pi.setFromWorkspace(false);
                 // Call the dialog that shows the registered EPackages
                 // Multiplicity?
                 //
@@ -239,7 +238,6 @@ public class LoadPage extends WizardPage {
                     }
 
                 }
-                pi.setFromWorkspace(true);
                 List<ViewerFilter> filters = new ArrayList<ViewerFilter>();
                 EcoreFilter filter = new EcoreFilter();
                 filters.add(filter);

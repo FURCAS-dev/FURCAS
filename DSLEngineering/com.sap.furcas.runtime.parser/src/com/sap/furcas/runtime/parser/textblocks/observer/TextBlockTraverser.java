@@ -94,7 +94,6 @@ public class TextBlockTraverser {
     }
 
     public void setCurrentSequenceElement(SequenceElement sequenceElement) {
-        // TODO Auto-generated method stub
         stack.peek().setCurrentSequenceElement(sequenceElement);
     }
 
@@ -124,5 +123,28 @@ public class TextBlockTraverser {
     public boolean isOperatorToken() {
         return stack.peek().isOperatorToken();
     }
+
+    /**
+     * Sets the sequence element that was used before a separator sequence. It is stored so
+     * that it can be restored to the current sequence element once the separator sequence
+     * was left.
+     * 
+     * @param currentSequenceElement The sequence element to be saved as the one before the
+     * separator.
+     */
+	public void setSequenceElementOfSeparator(
+			SequenceElement currentSequenceElement) {
+		stack.peek().setSequenceElementOfSeparator(currentSequenceElement);
+	}
+
+	
+    /**
+     * Returns sequence element that was used before a separator sequence. It is stored so
+     * that it can be restored to the current sequence element once the separator sequence
+     * was left.
+     */
+	public SequenceElement getSequenceElementOfSeparator() {
+		 return stack.peek().getSequenceElementOfSeparator();
+	}
 
 }

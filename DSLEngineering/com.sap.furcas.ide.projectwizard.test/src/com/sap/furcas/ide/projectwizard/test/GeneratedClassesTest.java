@@ -240,7 +240,6 @@ public class GeneratedClassesTest {
         pi.setLoadMetamodel(false);
         pi.setClassName("ExampleClass");
         pi.setFileExtension("dsl");
-        pi.setFromWorkspace(true);
         pi.setLanguageName("Mydsl");
         pi.setModelPath("new");
         pi.setNsURI("http://www.example.com/mydsl");

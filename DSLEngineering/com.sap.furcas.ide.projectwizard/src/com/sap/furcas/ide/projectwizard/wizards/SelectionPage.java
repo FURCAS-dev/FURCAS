@@ -134,7 +134,6 @@ public class SelectionPage extends WizardPage {
                 String capLangName = CreateProject.capitalizeFirstChar(pi.getLanguageName());
                 pi.setModelPath("/" + pi.getProjectName() + ".metamodel/model/" + capLangName
                         + ".ecore");
-                pi.setFromWorkspace(true);
             }
 
             public void mouseUp(MouseEvent e) {
@@ -258,7 +257,6 @@ public class SelectionPage extends WizardPage {
             page3.getNextPage().setPageComplete(false);
             return page3;
         } else if (getSel() == 1) {
-            pi.setFromWorkspace(true);
             pi.setLoadMetamodel(false);
             pi.setNsURI(nsURIText.getText());
             pi.setClassName(classNameText.getText());
