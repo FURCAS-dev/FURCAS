@@ -11,8 +11,14 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.codegen.ecore.generator.Generator;
+import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
+import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage;
+import org.eclipse.emf.codegen.ecore.genmodel.generator.GenBaseGeneratorAdapter;
+import org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory;
 import org.eclipse.emf.codegen.ecore.genmodel.presentation.GeneratorUIUtil;
+import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.ENamedElement;
@@ -212,18 +218,18 @@ public class CreateMMProject {
      * @param uri
      *            nsURI of the model.
      */
-    @SuppressWarnings("deprecation")
     protected static void genModelGen(URI uri) {
-        // Method can easily be converted to a method that generates modelcode for several models.
-        //
         List<URI> uris = new ArrayList<URI>();
         uris.add(uri);
         List<GenModel> gms = GeneratorUIUtil.loadGenModels(progressMonitor, uris, shell);
-        if (gms.get(0).canGenerate()) {
-            // The actual process of generating.
-            //
-            gms.get(0).generate(progressMonitor);
-        }
+
+        GeneratorAdapterFactory.Descriptor.Registry.INSTANCE.addDescriptor(GenModelPackage.eNS_URI,
+                GenModelGeneratorAdapterFactory.DESCRIPTOR);
+
+        Generator generator = new Generator();
+        generator.setInput(gms.get(0));
+
+        generator.generate(gms.get(0), GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE, new BasicMonitor.Printing(System.out));
     }
 
 }
