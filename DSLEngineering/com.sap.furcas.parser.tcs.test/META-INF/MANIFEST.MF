@@ -19,3 +19,4 @@ Require-Bundle: org.junit;bundle-version="4.8.1",
  com.sap.furcas.runtime.referenceresolving
 Bundle-ClassPath: generationTemp/,
  .
+Export-Package: com.sap.furcas.parser.tcs.scenario

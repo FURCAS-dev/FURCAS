@@ -29,7 +29,7 @@ public class GeneratedParserTestConfiguration {
     
     protected static final String ANTLR_GRAMMAR_SUFFIX = ".g";
     
-    protected final ResourceSet resourceSet;
+    private final ResourceSet resourceSet;
     protected final Set<URI> referenceScope;
     protected final String languageName;
     protected final File syntaxDefFile;
@@ -57,7 +57,7 @@ public class GeneratedParserTestConfiguration {
         grammarFile = createGrammarFile(languageName);
         resourceSet = loadResourceSet(metamodels);
         referenceScope = ResourceTestHelper.createEcoreReferenceScope();
-        referenceScope.addAll(getResourceSetAsScope(resourceSet));
+        referenceScope.addAll(getResourceSetAsScope(getResourceSet()));
     }
 
     /**
@@ -92,7 +92,7 @@ public class GeneratedParserTestConfiguration {
     }
     
     public GrammarGenerationSourceConfiguration getSourceConfiguration() {
-        return new GrammarGenerationSourceConfiguration(resourceSet, referenceScope);
+        return new GrammarGenerationSourceConfiguration(getResourceSet(), referenceScope);
     }
     
     public String getRelativePathToGeneratedParserClass() {
@@ -130,4 +130,8 @@ public class GeneratedParserTestConfiguration {
     public File getSyntaxDefinitionFile(){
         return syntaxDefFile;
     }
+
+	public ResourceSet getResourceSet() {
+		return resourceSet;
+	}
 }
