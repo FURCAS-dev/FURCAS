@@ -29,7 +29,7 @@ public class ProjectInfo {
      * The nsURI of the metamodel as entered on the {@link SelectionPage} if new Metamodel project creation is chosen.
      */
     private String nsURI = "";
-    
+
     private boolean autoResolve = true;
 
     /**
@@ -49,174 +49,87 @@ public class ProjectInfo {
      */
     private boolean loadMetamodel = false;
 
-    /**
-     * Will be true if loading an existing metamodel from workspace OR if loading the metamodel from a freshly created metamodel
-     * project. Will be false if loading from registered packages.
-     */
-    private boolean fromWorkspace = false;
+    private String mmBundleName;
 
-	private String mmBundleName;
-
-    /**
-     * 
-     * @return The file extension.
-     */
     public String getFileExtension() {
         return fileExtension;
     }
 
-    /**
-     * 
-     * @param fileExtension
-     */
     public void setFileExtension(String fileExtension) {
         this.fileExtension = fileExtension;
     }
 
-    /**
-     * 
-     * @return The language name.
-     */
     public String getLanguageName() {
         return languageName;
     }
 
-    /**
-     * 
-     * @param languageName
-     */
     public void setLanguageName(String languageName) {
         this.languageName = languageName;
     }
 
-    /**
-     * 
-     * @return The namespace URI.
-     */
     public String getNsURI() {
         return nsURI;
     }
 
-    /**
-     * 
-     * @param nsURI
-     */
     public void setNsURI(String nsURI) {
         this.nsURI = nsURI;
     }
-    
-    public boolean isAutoResolve(){
+
+    public boolean isAutoResolve() {
         return autoResolve;
     }
-    
-    public void setAutoResolve(boolean autoResolve){
+
+    public void setAutoResolve(boolean autoResolve) {
         this.autoResolve = autoResolve;
     }
 
-    /**
-     * 
-     * @return The project name.
-     */
     public String getProjectName() {
         return projectName;
     }
 
-    /**
-     * 
-     * @param projectName
-     */
     public void setProjectName(String projectName) {
         this.projectName = projectName;
     }
 
-    /**
-     * 
-     * @return The tcs filename.
-     */
     public String getTCSFileName() {
         String tcsFile = getLanguageName().replaceAll("\\s", "_") + ".tcs";
         return CreateProject.capitalizeFirstChar(tcsFile);
     }
 
-    /**
-     * 
-     * @return The projects basepath.
-     */
     public String getBasePath() {
         return getProjectName().replaceAll("\\.", "/");
     }
 
-    /**
-     * 
-     * @param loadMetamodel
-     */
     public void setLoadMetamodel(boolean loadMetamodel) {
         this.loadMetamodel = loadMetamodel;
     }
 
-    /**
-     * 
-     * @return <code>loadMetamodel</code>
-     */
     public boolean isLoadMetamodel() {
         return loadMetamodel;
     }
 
-    /**
-     * 
-     * @param fromWorkspace
-     */
-    public void setFromWorkspace(boolean fromWorkspace) {
-        this.fromWorkspace = fromWorkspace;
-    }
-
-    /**
-     * 
-     * @return <code>fromWorkspace</code>
-     */
-    public boolean isFromWorkspace() {
-        return fromWorkspace;
-    }
-
-    /**
-     * 
-     * @param className
-     */
     public void setClassName(String className) {
         this.className = className;
     }
 
-    /**
-     * 
-     * @return The class name.
-     */
     public String getClassName() {
         return className;
     }
 
-    /**
-     * 
-     * @param modelPath
-     */
     public void setModelPath(String modelPath) {
         this.modelPath = modelPath;
     }
 
-    /**
-     * 
-     * @return The model path.
-     */
     public String getModelPath() {
         return modelPath;
     }
 
-	public void setMMBundleName(String mmBundleName) {
-		this.mmBundleName = mmBundleName;
-		
-	}
+    public void setMMBundleName(String mmBundleName) {
+        this.mmBundleName = mmBundleName;
 
-	public String getMmBundleName() {
-		return mmBundleName;
-	}
+    }
 
+    public String getMmBundleName() {
+        return mmBundleName;
+    }
 }

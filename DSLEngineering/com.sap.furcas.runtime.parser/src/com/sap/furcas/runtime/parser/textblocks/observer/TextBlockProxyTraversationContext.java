@@ -25,6 +25,13 @@ public class TextBlockProxyTraversationContext {
     private int alternativeNestingLevel;
 
     /**
+     * The sequence element that was used before a separator sequence. It is stored so
+     * that it can be restored to the current sequence element once the separator sequence
+     * was left.
+     */
+	private SequenceElement sequenceElementOfSeparator;
+
+    /**
      * @param contextBlock
      */
     public TextBlockProxyTraversationContext(TextBlockProxy contextBlock) {
@@ -150,5 +157,14 @@ public class TextBlockProxyTraversationContext {
         return operatorToken;
     }
 
+    
+	public void setSequenceElementOfSeparator(
+			SequenceElement currentSequenceElement) {
+		this.sequenceElementOfSeparator = currentSequenceElement;
+	}
+	
+	public SequenceElement getSequenceElementOfSeparator() {
+		return this.sequenceElementOfSeparator;
+	}
 
 }

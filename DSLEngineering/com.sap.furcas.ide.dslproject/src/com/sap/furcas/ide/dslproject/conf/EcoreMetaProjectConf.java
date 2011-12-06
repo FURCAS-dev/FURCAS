@@ -42,7 +42,6 @@ public abstract class EcoreMetaProjectConf implements IProjectMetaRefConf {
     public static EcoreMetaProjectConf getConfigurationFromProject(IProject project) throws CoreException {
         String projectName = ProjectPropertiesStorageHelper.getProperty(project, Constants.REFERRED_PROJECT_NAME_KEY);
         String metamodelURIs = ProjectPropertiesStorageHelper.getProperty(project, "metamodels");
-        String modelPath = ProjectPropertiesStorageHelper.getProperty(project, "modelPath");
         boolean autoResolve = Boolean.parseBoolean(ProjectPropertiesStorageHelper.getProperty(project, "autoResolve"));
 
         if (projectName == null || projectName.trim().equals("")) {
@@ -54,10 +53,8 @@ public abstract class EcoreMetaProjectConf implements IProjectMetaRefConf {
             throw new CoreException(EclipseExceptionHelper.getErrorStatus("Referenced Project " + projectName
                     + " does not exist in Workspace.", Activator.PLUGIN_ID));
         }
-        if (modelPath == null & metamodelURIs != null) {
+        if (metamodelURIs != null) {
             return new RegisteredEcoreMetamodelProjectConf(referencedProject, metamodelURIs, autoResolve);
-        } else if (metamodelURIs == null & modelPath != null) {
-            return new LocalEcoreMetamodelProjectConf(referencedProject, modelPath, autoResolve);
         } else {
             throw new CoreException(
                     EclipseExceptionHelper.getErrorStatus(
