@@ -346,15 +346,13 @@ public class FurcasWizard extends Wizard implements INewWizard {
             // Builds, refreshs, cleans the project to make sure, that all files will be found and generated
             monitor.subTask(Messages.FurcasWizard_15);
             try {
-                project.build(IncrementalProjectBuilder.FULL_BUILD, monitor);
-                IFolder folder = project.getFolder("generated").getFolder("generated"); //$NON-NLS-1$ //$NON-NLS-2$
-                folder.refreshLocal(1, new NullProgressMonitor());
-                project.build(IncrementalProjectBuilder.CLEAN_BUILD, monitor);
                 if (!pi.isLoadMetamodel()) {
                     // rebuild metamodel project so that there are no build problems on furcas project
                     project.getReferencedProjects()[0].build(IncrementalProjectBuilder.FULL_BUILD, monitor);
                 }
                 project.build(IncrementalProjectBuilder.FULL_BUILD, monitor);
+                IFolder folder = project.getFolder("generated").getFolder("generated"); //$NON-NLS-1$ //$NON-NLS-2$
+                folder.refreshLocal(1, new NullProgressMonitor());
 
             } catch (CoreException e) {
                 throw new CodeGenerationException(Messages.FurcasWizard_18, e.getCause());
