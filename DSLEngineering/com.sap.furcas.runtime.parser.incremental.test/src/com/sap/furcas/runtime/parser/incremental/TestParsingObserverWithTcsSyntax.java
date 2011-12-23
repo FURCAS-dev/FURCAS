@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Block;
@@ -274,7 +273,6 @@ public class TestParsingObserverWithTcsSyntax {
      * correctly set to thw new value;
      */
     @Test
-    @Ignore("Failing. Reference not set to new value")
     public void testParseBibTextReplaceReference() throws Exception {
         File[] metamodels = { ScenarioFixtureData.BIBTEXT1_METAMODEL, ScenarioFixtureData.BIBTEXT_METAMODEL };
         ResourceSet metamodelResources = loadResourceSet(metamodels);
