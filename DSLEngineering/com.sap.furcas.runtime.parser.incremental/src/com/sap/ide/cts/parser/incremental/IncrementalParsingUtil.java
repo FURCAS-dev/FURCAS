@@ -270,31 +270,51 @@ public class IncrementalParsingUtil {
 	return null;
     }
 
-	static TextBlock getOriginalVersion(TextBlockProxy newVersion, TextBlock parent) {
-		AbstractToken firstToken = firstToken(newVersion);
-		AbstractToken tok = firstToken;
-		AbstractToken lastToken = lastToken(newVersion);
-		while (tok instanceof OmittedToken && !tok.equals(lastToken)) {
-			tok = TbNavigationUtil.nextToken(tok);
-		}
-		if (tok instanceof OmittedToken) {
-			throw new RuntimeException(
-				"Found textblock with nothing but omitted tokens in it. This should never happen!");
-		}
-		TextBlock candidate = tok.getParent();
-		TextBlock result = candidate;
-		;
-		boolean onOffsetRange = TbUtil.getAbsoluteOffset(TbNavigationUtil
-			.firstToken(candidate)) >= TbUtil.getAbsoluteOffset(firstToken(newVersion));
-		while (candidate != null && onOffsetRange && (parent != null) && !parent.equals(candidate)) {
-			result = candidate;
-			candidate = candidate.getParent();
-			onOffsetRange = TbUtil.getAbsoluteOffset(TbNavigationUtil
-				.firstToken(candidate)) >= TbUtil
-				.getAbsoluteOffset(firstToken(newVersion));
-		}
-		return result;
-	}
+    static TextBlock getOriginalVersion(TextBlockProxy newVersion, TextBlock parent) {
+        AbstractToken firstToken = firstToken(newVersion);
+        AbstractToken tok = firstToken;
+        AbstractToken lastToken = lastToken(newVersion);
+        while (tok instanceof OmittedToken && !tok.equals(lastToken)) {
+            tok = TbNavigationUtil.nextToken(tok);
+        }
+        if (tok instanceof OmittedToken) {
+            throw new RuntimeException("Found textblock with nothing but omitted tokens in it. This should never happen!");
+        }
+        TextBlock candidate = tok.getParent();
+        TextBlock result = candidate;
+
+        firstToken = getFirstTokenInFirstNonEmptyBlock(candidate);
+
+        boolean onOffsetRange = TbUtil.getAbsoluteOffset(firstToken) >= TbUtil.getAbsoluteOffset(firstToken(newVersion));
+        while (candidate != null && onOffsetRange && (parent != null) && !parent.equals(candidate)) {
+            result = candidate;
+            candidate = candidate.getParent();
+
+            firstToken = getFirstTokenInFirstNonEmptyBlock(candidate);
+
+            onOffsetRange = TbUtil.getAbsoluteOffset(firstToken) >= TbUtil.getAbsoluteOffset(firstToken(newVersion));
+        }
+        return result;
+    }
+
+    /**
+     * FIXME: The way this method is called, it may happen that parent blocks have empty
+     * leading sub-blocks. NbNavigationUtil.firstToken cannot deal with this.
+     * We cannot fix firstToken, because it is also used to determine if a block is empty
+     * and shall be deleted.
+     *
+     * Workaround: Use firstTokenWithoutBOS as a workaround. It does not have this problem and will skip
+     * over empty blocks.
+     */
+    protected static AbstractToken getFirstTokenInFirstNonEmptyBlock(TextBlock candidate) {
+        AbstractToken firstToken;
+        if (TbNavigationUtil.isUltraRoot(candidate)) {
+            firstToken = TbNavigationUtil.firstToken(candidate);
+        } else {
+            firstToken = TbNavigationUtil.firstTokenWithoutBOS(candidate);
+        }
+        return firstToken;
+    }
 
 	public static void setNewFeature(SetNewFeatureBean newFeatureBean, IModelInjector injector,
 		boolean assignToPartition) {
