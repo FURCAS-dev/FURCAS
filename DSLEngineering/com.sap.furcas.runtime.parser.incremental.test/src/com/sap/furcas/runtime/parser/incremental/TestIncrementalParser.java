@@ -30,6 +30,7 @@ import com.sap.furcas.runtime.parser.incremental.testbase.GeneratedParserAndFact
 import com.sap.furcas.runtime.parser.incremental.testbase.GeneratedParserAndFactoryTestConfiguration;
 import com.sap.furcas.runtime.parser.incremental.testbase.MockPartitionAssignmentHandler;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
+import com.sap.furcas.runtime.textblocks.TbUtil;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.testutils.EMFTextBlocksModelElementFactory;
@@ -229,7 +230,7 @@ public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
         Collections.reverse(lexedTokens); // replace from right to left so that offset information stays valid
         for (LexedToken token : lexedTokens) {
             assertNotNull("Must have a squence element", token.getSequenceElement());
-            model.replace(token.getOffset(), token.getLength(), " ");
+            model.replace(TbUtil.getAbsoluteOffset(token), token.getLength(), " ");
         }
         textBlock = incrementalParserFacade.parseIncrementally(model.getRoot());
         TbChangeUtil.cleanUp(textBlock);
