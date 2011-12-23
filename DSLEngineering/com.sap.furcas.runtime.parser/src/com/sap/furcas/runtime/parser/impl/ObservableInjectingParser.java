@@ -187,7 +187,7 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser 
      */
     protected final IModelElementProxy createModelElementProxy(List<String> name, boolean context,
             boolean addToContext, String... tags) {
-        IModelElementProxy element = new ModelElementProxy(name, true, input.LT(1));
+        IModelElementProxy element = new ModelElementProxy(name, true, getANTLRToken(input.LT(1)));
         // conditionally adding if addToContext==true
         if (addToContext) {
             addToCurrentContext(element);
