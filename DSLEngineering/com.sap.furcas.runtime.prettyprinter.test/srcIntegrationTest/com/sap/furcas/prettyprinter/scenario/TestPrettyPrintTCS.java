@@ -185,7 +185,7 @@ public class TestPrettyPrintTCS {
                 root, new TCSParserFactory());
         
         // FIXME: Workaround for missing formatting re-use between primitive-typed lists.
-        String reprintedContent = reprinted.getCachedString().replace("createAs = FURCAS:: TCS:: Keyword", "createAs = FURCAS::TCS::Keyword");
+        String reprintedContent = reprinted.getCachedString().replace("createAs =FURCAS::TCS::Keyword", "createAs = FURCAS::TCS::Keyword");
         
         // Unfortunately the TCS Syntax definition is not "determinstic". There are certain things
         // that the pretty printer cannot know solely from the syntax definition. We have to fix those.
