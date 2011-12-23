@@ -17,7 +17,6 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
@@ -50,7 +49,6 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
     
-    @Ignore("TB merge produces invalid textblock")
     @Test
     public void testReparseWithoutModifications() throws Exception {
         model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
@@ -242,7 +240,6 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
     
-    @Ignore("Failing with StringIndexOutofBoundsException")
     @Test
     public void testEnterAndRemoveLexerErrors() throws Exception {
         model.replace(0, 0, "{ def a; use a; { def b; use b; } }");

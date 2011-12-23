@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
@@ -199,7 +198,6 @@ public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
      * by the incremental parser.
      */
     @Test
-    @Ignore("Failing with NullPointerException during TextBlocks merging")
     public void testOmittedTokens() throws Exception {
         TextBlock textBlock = createJohnDoe();
         TbChangeUtil.cleanUp(textBlock);

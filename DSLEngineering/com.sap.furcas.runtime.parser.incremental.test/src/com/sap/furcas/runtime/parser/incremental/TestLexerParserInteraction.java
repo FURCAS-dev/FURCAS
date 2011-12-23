@@ -9,7 +9,6 @@ import org.antlr.runtime.Lexer;
 import org.antlr.runtime.Token;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
@@ -100,7 +99,6 @@ public class TestLexerParserInteraction extends FixtureProvidingTextBlockTest {
     }
 
     @Test
-    @Ignore("Still not working on EMF")
     public void testTokenRelocationWithStub() {
         ResourceSet resourceSet = ResourceTestHelper.createResourceSet();
         Resource transientParsingResource = ResourceTestHelper.createTransientResource(resourceSet);
