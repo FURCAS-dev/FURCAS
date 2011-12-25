@@ -159,7 +159,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
             if (success) {
                 updateLookbacks(root);
             }
-        } catch (Exception ex) {
+        } catch (RuntimeException ex) {
             success = false;
             TextBlock referenceVersion = getOtherVersion(root, Version.REFERENCE);
             TextBlock previousVersion = getOtherVersion(root, Version.PREVIOUS);
@@ -172,7 +172,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
                             + "\n\nCurrent Block:\n"
                             + currentVersion == null ? "<none>" : TbDebugUtil.getTextBlockAsAnnotatedString(currentVersion));       
             Activator.logError(ex);
-            throw new RuntimeException(ex);
+            throw ex;
             
         } finally {
             if (!success) {
