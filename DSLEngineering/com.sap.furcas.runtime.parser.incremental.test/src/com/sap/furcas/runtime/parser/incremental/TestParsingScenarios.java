@@ -50,6 +50,20 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
     }
     
     @Test
+    public void testReparseWithoutModificationsSimple() throws Exception {
+        model.replace(0, 0, "{ { /*inner*/ } }");
+        triggerParser();
+        Object initialRootObject = IncrementalParserFacade.getParsingResult(model.getRoot());
+        
+        // Just set the same text again. Everything is the same, thus re-use can be expected
+        model.replace(0, model.getLength(), "{ { /*inner*/ } }");
+        triggerParser();
+        
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+        assertTrue(initialRootObject == IncrementalParserFacade.getParsingResult(model.getRoot()));
+    }
+    
+    @Test
     public void testReparseWithoutModifications() throws Exception {
         model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
         triggerParser();
