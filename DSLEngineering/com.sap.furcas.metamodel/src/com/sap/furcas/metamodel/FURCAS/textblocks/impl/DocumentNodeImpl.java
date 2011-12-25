@@ -711,8 +711,8 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
         StringBuilder result = new StringBuilder();
         result.append(eClass().getName()).append(", ");
         result.append(getVersion()).append(", ");
-        result.append("o:").append(getOffset()).append(", ");
-        result.append("l:").append(getLength());
+        result.append("o:").append(getOffset()).append(isOffsetRelative() ? "r" : "a");
+        result.append(", ").append("l:").append(getLength());
         return result.toString();
     }
 
