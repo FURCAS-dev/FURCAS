@@ -10,9 +10,15 @@ import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.isFirstInSubTre
 import static com.sap.furcas.runtime.textblocks.TbUtil.getAbsoluteOffset;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import org.eclipse.compare.contentmergeviewer.TokenComparator;
+import org.eclipse.compare.rangedifferencer.RangeDifference;
+import org.eclipse.compare.rangedifferencer.RangeDifferencer;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
@@ -695,10 +701,30 @@ public class TextBlocksModel {
         if (root.getLength() == 0) {
             replaceInEmptyTree(newText, workingCopy);
         } else {
-            replaceInNonEmptyTree(replacedRegionAbsoluteOffset, replacedRegionLength, newText, workingCopy);
+            replaceInNonEmptyTreeUsingSubDiffs(replacedRegionAbsoluteOffset, replacedRegionLength, newText, workingCopy);
         }
         workingCopy.setChildrenChanged(true);
         TbReplacingHelper.updateBlockCachedString(workingCopy, replacedRegionAbsoluteOffset, replacedRegionLength, newText);
+    }
+
+    private void replaceInNonEmptyTreeUsingSubDiffs(final int replacedRegionAbsoluteOffset, final int replacedRegionLength,
+            final String newText, TextBlock workingCopy) {
+        
+        TokenComparator currentContent = new TokenComparator(get(replacedRegionAbsoluteOffset, replacedRegionLength));
+        TokenComparator newContent = new TokenComparator(newText);
+        
+        List<RangeDifference> diffs = Arrays.asList(RangeDifferencer.findDifferences(currentContent, newContent));
+        Collections.reverse(diffs);
+        
+        for (RangeDifference diff : diffs) {
+            int diffStartNew = newContent.getTokenStart(diff.rightStart());
+            int diffEndNew = newContent.getTokenStart(diff.rightStart()+diff.rightLength());
+            int diffStartCurrent = currentContent.getTokenStart(diff.leftStart());
+            int diffEndCurrent = currentContent.getTokenStart(diff.leftStart()+diff.leftLength());
+            
+            replaceInNonEmptyTree(replacedRegionAbsoluteOffset+diffStartCurrent, diffEndCurrent-diffStartCurrent,
+                    newText.substring(diffStartNew, diffEndNew), workingCopy);
+        }
     }
 
     /**

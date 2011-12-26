@@ -616,12 +616,17 @@ public class TestTextBlocksModelWithGaps extends FixtureWithGapsProvidingTextBlo
 
     @Test
     public void testReplaceMiddleLongString() throws Exception {
+        boolean useCache = tbModel.isUsecache();
+        tbModel.setUsecache(true);
+        
 	tbModel.replace(4, 11, "xxxxxyyyyxxxxyyyyxxxxyyyyxxxxyyyyxxxx");
 	assertReplace(4, 11, "xxxxxyyyyxxxxyyyyxxxxyyyyxxxxyyyyxxxx");
 
 	// re-replace original string
 	tbModel.replace(0, tbModel.getLength(), completeFixtureText);
 	assertEquals(completeFixtureText, tbModel.get(0, tbModel.getLength()));
+	
+	tbModel.setUsecache(useCache);
     }
 
     @Test
