@@ -1,6 +1,6 @@
 syntax Bibtext {
 
-	-- simple basic syntax containing articles and authors, used as Hello Word example
+	-- simple basic syntax containing articles and authors used as Hello Word example
 
 	primitiveTemplate identifier for PrimitiveTypes::String default using NAME:
 		value = "unescapeString(%token%)";

@@ -303,7 +303,7 @@ public class TestParsingObserverWithTcsSyntax {
         // replace a reference that referred to the "." token with one that
         // refers to the "{" token
         tbModel = new TextBlocksModel(currentVersionTb);
-        tbModel.replace(tcsContent.indexOf("."), 1, "{");
+        tbModel.replace(tcsContent.indexOf(","), 1, "{");
         TextBlock currentVersionTbNew = incrementalParserFacade.parseIncrementally(currentVersionTb);
         // textBlock shouldn't have changed
         assertEquals(currentVersionTb, currentVersionTb);
@@ -315,7 +315,7 @@ public class TestParsingObserverWithTcsSyntax {
         ClassTemplate article2 = (ClassTemplate) syntaxObject2.getTemplates().get(3);
         assertEquals(article, article2);
         Block b = (Block) article2.getTemplateSequence().getElements().get(2);
-        LiteralRef lit = (LiteralRef) b.getBlockSequence().getElements().get(3);
+        LiteralRef lit = (LiteralRef) b.getBlockSequence().getElements().get(1);
         assertEquals("{", lit.getReferredLiteral().getValue());
     }
 	    
