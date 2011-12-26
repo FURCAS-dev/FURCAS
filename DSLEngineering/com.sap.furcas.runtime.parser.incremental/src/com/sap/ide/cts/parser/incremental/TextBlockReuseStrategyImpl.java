@@ -553,54 +553,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 						// newVersion block should be considered as new
 						return false;
 					}
-					if (!canBeReused) {
-					        if(oldTokens.size() > 0) {
-        						// if only tokens were replaced by new ones that
-        						// have the
-        						// same referenced SequenceElement the TextBlock can
-        						// be reused
-        						boolean sequenceElementsEqual = true;
-        						int i = 0;
-        						for (LexedToken oldToken : oldTokens) {
-        							if (i < newTokens.size()) {
-        								LexedToken newTok = newTokens
-        									.get(i);
-        								if(newTok.isOperator() && oldToken.isOperator()) {
-        								    //both are operators of the same operator template
-        								    //reuse should be no problem here.
-        								    sequenceElementsEqual &= true;
-        								} else {
-        								    sequenceElementsEqual &= newTok
-        									.getSequenceElement() != null
-        									&& newTok
-        										.getSequenceElement()
-        										.equals(
-        											oldToken
-        												.getSequenceElement());
-        								}
-        							} else {
-        								sequenceElementsEqual = false;
-        								break;
-        							}
-        							i++;
-        						}
-        						return sequenceElementsEqual;
-					        } else {
-					            return false;
-					        }
-					} else {
-//					    //no old tokens that have been reused 
-//					    //check if they are reused somewhere else
-//					    boolean hasCurrentVersionToken = false;
-//					    for (AbstractToken lexedToken : oldVersion.getTokens()) {
-//                                                if(lexedToken instanceof LexedToken) {
-//                                                    if(TbUtil.getNewestVersion(lexedToken).getVersion().equals(VersionEnum.CURRENT)) {
-//                                                        hasCurrentVersionToken = true;
-//                                                    }
-//                                                }
-//                                            }
-					    return true;
-					}
+					return canBeReused;
 				}
 			}
 		}// if the templates do not match
