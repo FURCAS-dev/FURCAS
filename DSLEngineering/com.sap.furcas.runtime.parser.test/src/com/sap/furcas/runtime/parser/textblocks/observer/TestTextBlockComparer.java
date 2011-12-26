@@ -17,17 +17,20 @@ import com.sap.furcas.runtime.textblocks.testbase.TextBlockTest;
 
 public class TestTextBlockComparer extends TextBlockTest {
     
+    @SuppressWarnings("unused")
     @Test (expected = IllegalArgumentException.class)
     public void testNewNullTraverser() throws Exception {
         new TextBlockComparer(null, null);
     }
     
+    @SuppressWarnings("unused")
     @Test (expected = IllegalArgumentException.class)
     public void testNewTraverserNullRoot() throws Exception {
         TextBlockFactory factory = getFactory();
         new TextBlockComparer(null, factory);
     }
     
+    @SuppressWarnings("unused")
     @Test (expected = IllegalArgumentException.class)
     public void testNewTraverserNullFact() throws Exception {
        

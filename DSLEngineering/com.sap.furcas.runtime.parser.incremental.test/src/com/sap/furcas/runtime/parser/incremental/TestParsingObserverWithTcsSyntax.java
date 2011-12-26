@@ -35,7 +35,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.parser.tcs.TCSParserFactory;
 import com.sap.furcas.runtime.parser.ParserFactory;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
-import com.sap.furcas.runtime.parser.incremental.testbase.MockPartitionAssignmentHandler;
+import com.sap.furcas.runtime.parser.testbase.MockPartitionAssignmentHandler;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.testutils.EMFTextBlocksModelElementFactory;

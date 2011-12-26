@@ -13,7 +13,7 @@ import org.junit.Test;
 import com.sap.furcas.ide.editor.test.utils.ClassLookupImpl;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.parser.incremental.testbase.GeneratedParserAndFactoryTestConfiguration;
-import com.sap.furcas.runtime.parser.incremental.testbase.MockPartitionAssignmentHandler;
+import com.sap.furcas.runtime.parser.testbase.MockPartitionAssignmentHandler;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
 import com.sap.furcas.test.testutils.ResourceTestHelper;
 import com.sap.ide.cts.parser.incremental.IncrementalParserFacade;

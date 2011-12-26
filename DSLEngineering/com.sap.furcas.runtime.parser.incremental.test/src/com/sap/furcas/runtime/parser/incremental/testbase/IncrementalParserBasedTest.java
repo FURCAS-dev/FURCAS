@@ -28,6 +28,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.parser.incremental.ClassLookupImpl;
 import com.sap.furcas.runtime.parser.testbase.ClassLookup;
+import com.sap.furcas.runtime.parser.testbase.MockPartitionAssignmentHandler;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;

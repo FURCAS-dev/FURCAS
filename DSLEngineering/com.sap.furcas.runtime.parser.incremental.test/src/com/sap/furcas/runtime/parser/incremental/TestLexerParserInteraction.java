@@ -24,7 +24,7 @@ import com.sap.furcas.runtime.parser.ParserFactory;
 import com.sap.furcas.runtime.parser.PartitionAssignmentHandler;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.parser.impl.ParserScope;
-import com.sap.furcas.runtime.parser.incremental.testbase.MockPartitionAssignmentHandler;
+import com.sap.furcas.runtime.parser.testbase.MockPartitionAssignmentHandler;
 import com.sap.furcas.runtime.parser.textblocks.observer.ParserTextBlocksHandler;
 import com.sap.furcas.runtime.parser.textblocks.observer.TextBlockProxy;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
