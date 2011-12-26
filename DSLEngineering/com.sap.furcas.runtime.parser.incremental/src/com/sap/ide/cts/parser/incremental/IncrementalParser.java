@@ -15,6 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.antlr.runtime.Token;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.EList;
@@ -343,25 +344,18 @@ public class IncrementalParser extends IncrementalRecognizer {
         AbstractToken tok = ((ANTLRIncrementalTokenStream) batchParser
                 .getTokenStream()).getLastConsumedToken();
         if (tok == null) {
+            parserTextBlocksHandler.notifyTokenConsume(Token.EOF_TOKEN);
             return true;
         }
         AbstractToken nextTok = TbNavigationUtil.nextToken(tok);
-        List<OmittedToken> omittedTokensBetween = new ArrayList<OmittedToken>();
         while (nextTok instanceof OmittedToken
                 && !(nextTok instanceof Eostoken)) {
-            omittedTokensBetween.add((OmittedToken) nextTok);
             nextTok = TbNavigationUtil.nextToken(nextTok);
         }
         if (nextTok != null) {
             if (nextTok instanceof Eostoken) {
-                //we are at the end of the stream, 
-                //Still we have to ensure that all remaining Omitted Tokens have been consumed as well
-                //thus we consumed everything
-                if(omittedTokensBetween.size() > 0) {
-                    for (OmittedToken omittedToken : omittedTokensBetween) {
-                        parserTextBlocksHandler.getCurrentTbProxy().addSubNode(omittedToken);
-                    }
-                }
+                //we are at the end of the stream,
+                parserTextBlocksHandler.notifyTokenConsume(Token.EOF_TOKEN);
                 return true;
             }
             if (TbVersionUtil.getOtherVersion(tok, Version.REFERENCE) == null) {
