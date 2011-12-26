@@ -714,6 +714,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 							       // of length 26:
 							       // "     012          345   "
 	TextBlocksModel model = new TextBlocksModel(root);
+	model.setUsecache(true); // so that get(.) can work on gaps.
 	model.replace(root, 13, 13, "test");// should replace first textBlock
 	assertEquals(17, getWorkingCopy(root).getLength());
 	assertEquals(3, getWorkingCopy(root).getSubNodes().size()); // BOS, tb1,
@@ -734,6 +735,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 							       // of length 26:
 							       // "  ___012___    ___345___  "
 	TextBlocksModel model = new TextBlocksModel(root);
+        model.setUsecache(true); // so that get(.) can work on gaps.
 	model.replace(root, 9, 8, "test");// should create new token in first
 					  // subBlock
 	assertEquals(22, getWorkingCopy(root).getLength());
@@ -761,6 +763,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 							       // of length 26:
 							       // "  ___012___    ___345___  "
 	TextBlocksModel model = new TextBlocksModel(root);
+        model.setUsecache(true); // so that get(.) can work on gaps.
 	model.replace(root, 6, 14, "test");// should create new token in first
 					   // subBlock
 	assertEquals(16, getWorkingCopy(root).getLength());
@@ -788,6 +791,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 							       // of length 26:
 							       // "  ___012___    ___345___  "
 	TextBlocksModel model = new TextBlocksModel(root);
+        model.setUsecache(true); // so that get(.) can work on gaps.
 	model.replace(root, 8, 10, "test");// should create new token in first
 					   // subBlock
 	assertEquals(20, getWorkingCopy(root).getLength());
@@ -815,6 +819,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 							       // of length 26:
 							       // "  ___012___    ___345___  "
 	TextBlocksModel model = new TextBlocksModel(root);
+        model.setUsecache(true); // so that get(.) can work on gaps.
 	model.replace(root, 0, 26, "test");// should create new token in first
 					   // subBlock
 	assertEquals(4, getWorkingCopy(root).getLength());
@@ -838,6 +843,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 							       // of length 26:
 							       // "  ___012___    ___345___  "
 	TextBlocksModel model = new TextBlocksModel(root);
+        model.setUsecache(true); // so that get(.) can work on gaps.
 	model.replace(root, 0, 26, "");// should create new token in first
 				       // subBlock
 	assertEquals(0, getWorkingCopy(root).getLength());
@@ -853,6 +859,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 							       // of length 26:
 							       // "     012          345   "
 	TextBlocksModel model = new TextBlocksModel(root);
+        model.setUsecache(true); // so that get(.) can work on gaps.
 	model.replace(root, 13, 13, "");// should replace first textBlock
 	assertEquals(13, getWorkingCopy(root).getLength());
 	assertEquals(3, getWorkingCopy(root).getSubNodes().size()); // BOS, tb2,
@@ -1243,6 +1250,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 							       // of length 26:
 							       // "     012          345   "
 	TextBlocksModel model = new TextBlocksModel(root);
+        model.setUsecache(true); // so that get(.) can work on gaps.
 	model.replace(root, 13, 13, "");// should replace first textBlock
 	assertEquals(13, getWorkingCopy(root).getLength());
 	assertEquals(3, getWorkingCopy(root).getSubNodes().size()); // BOS, tb1,
@@ -1264,6 +1272,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 							       // "  ___012___    ___345___  "
 	// expect "  ___012_|_345___  "
 	TextBlocksModel model = new TextBlocksModel(root);
+        model.setUsecache(true); // so that get(.) can work on gaps.
 	model.replace(root, 9, 8, "");// should create new token in first
 				      // subBlock
 	assertEquals(18, getWorkingCopy(root).getLength());
@@ -1292,6 +1301,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 							       // of length 26:
 							       // "  ___012___    ___345___  "
 	TextBlocksModel model = new TextBlocksModel(root);
+        model.setUsecache(true); // so that get(.) can work on gaps.
 	model.replace(root, 6, 14, "");// should create new token in first
 				       // subBlock
 	assertEquals(12, getWorkingCopy(root).getLength());
@@ -1319,6 +1329,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
 							       // of length 26:
 							       // "  ___012___    ___345___  "
 	TextBlocksModel model = new TextBlocksModel(root);
+        model.setUsecache(true); // so that get(.) can work on gaps.
 	model.replace(root, 8, 10, "");// should create new token in first
 				       // subBlock
 	assertEquals(16, getWorkingCopy(root).getLength());
