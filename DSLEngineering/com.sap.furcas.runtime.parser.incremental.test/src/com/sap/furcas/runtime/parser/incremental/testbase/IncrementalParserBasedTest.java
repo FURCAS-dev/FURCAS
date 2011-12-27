@@ -43,6 +43,18 @@ import com.sap.ide.cts.parser.incremental.IncrementalParserFacade;
 
 
 public abstract class IncrementalParserBasedTest extends GeneratedParserAndFactoryBasedTest {
+    
+    public static class ParsingResult {
+        public final EObject oldRoot;
+        public final EObject newRoot;
+        public final TextBlock newResultBlock;
+        
+        public ParsingResult(EObject oldRoot, EObject newRoot, TextBlock newResultBlock) {
+            this.oldRoot = oldRoot;
+            this.newRoot = newRoot;
+            this.newResultBlock = newResultBlock;
+        }
+    }
 
     protected static IncrementalParserFacade incrementalParserFacade;
     
@@ -87,11 +99,9 @@ public abstract class IncrementalParserBasedTest extends GeneratedParserAndFacto
      * Parses with best effort. Use TB Version to descide whether parsing was successful.
      * This method is modeled after the implementation of the editor ParseCommand.
      */
-    protected TextBlock triggerParser() {
+    protected ParsingResult triggerParser() {
+        EObject oldRoot = IncrementalParserFacade.getParsingResult(model.getRoot());
         TextBlock blockWithUnparsedEdits = TbVersionUtil.getOtherVersion(model.getRoot(), Version.PREVIOUS);
-        if (blockWithUnparsedEdits == null) {
-            return model.getRoot();
-        }
         String preParseContent = model.get(0, model.getLength());
         TextBlock resultBlock = null;
         try {
@@ -116,7 +126,9 @@ public abstract class IncrementalParserBasedTest extends GeneratedParserAndFacto
         
         TbValidationUtil.assertTextBlockConsistencyRecursive(resultBlock);
         TbValidationUtil.assertCacheIsUpToDate(resultBlock);
-        return resultBlock;
+        
+        EObject newRoot = IncrementalParserFacade.getParsingResult(resultBlock);
+        return new ParsingResult(oldRoot, newRoot, resultBlock);
     }
     
     /**
