@@ -21,6 +21,7 @@ import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
 
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
+import com.sap.furcas.runtime.parser.IStreamIndexProvider;
 import com.sap.furcas.runtime.parser.ParsingError;
 import com.sap.furcas.runtime.parser.TextLocation;
 
@@ -46,9 +47,9 @@ public class ErrorMessageGenerator {
 	    
 //	    e.printStackTrace();
 	    
-		String msg = null;
-		ANTLR3LocationToken token = null;
-		if (e.token instanceof ANTLR3LocationToken) {
+        String msg = null;
+        ANTLR3LocationToken token = null;
+        if (e.token instanceof ANTLR3LocationToken) {
             token = (ANTLR3LocationToken) e.token;
         }
 		if (e.input instanceof CharStream) { // Lexer Exception
@@ -93,10 +94,10 @@ public class ErrorMessageGenerator {
 				if (mte.expecting == Token.EOF) {
 					tokenName = "EOF";
 				} else {
-				    if (tokenNames != null && tokenNames.length > mte.index) {
-				        tokenName = tokenNames[mte.index];
+				    if (tokenNames != null) {
+				        tokenName = tokenNames[mte.expecting];
 				    } else {
-				        tokenName = "<Bug>";
+ 				        tokenName = "<Bug>";
 				    }
 					
 				}
@@ -144,14 +145,17 @@ public class ErrorMessageGenerator {
 			} else {
 				msg = "Unknown Exception";
 			}
-
 		}
-
 		if (token != null) {
-//		    System.out.println(token);
 		    return new ParsingError(msg, token);
 		} else {
-		    TextLocation location = new TextLocation(e.index, e.index , e.line, e.charPositionInLine, e.line, e.charPositionInLine);
+		    // Happens for lexer errors. Need to reconstruct the absolut index when we are running
+		    // in the incremental lexing mode
+		    int index = e.index;
+		    if (e.input instanceof IStreamIndexProvider) {
+		        index = ((IStreamIndexProvider) e.input).makeIndexAbsolute(index);
+		    }
+		    TextLocation location = new TextLocation(index, index , e.line, e.charPositionInLine, e.line, e.charPositionInLine);
 		    return new ParsingError(msg, location );
 		}
 	}
