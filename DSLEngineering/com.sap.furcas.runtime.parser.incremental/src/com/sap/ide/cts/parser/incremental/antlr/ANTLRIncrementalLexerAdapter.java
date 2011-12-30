@@ -110,22 +110,20 @@ public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements Ch
 	 */
 	@Override
 	public String substring(int start, int stop) {
-		StringBuffer result = new StringBuffer();
+		StringBuilder result = new StringBuilder();
 		AbstractToken tok = getConstructionLoc().getTok();
-//		// make start and end relative to constructionLoc again
-//		start = start - tok.getOffset();
-//		stop = stop - tok.getOffset();
-		int newStart = start;
 		while (!tok.equals(readToken)) {
-			String substring = getSynchronizedValue(tok).substring(newStart,
-				getSynchronizedValue(tok).length());
-			result.append(substring);
-			stop = stop - substring.length() - newStart;
-			start = newStart = 0;
+			String string = getSynchronizedValue(tok);
+			if (start < string.length()) {
+			    result.append(string.substring(start, string.length()));
+			    start = 0;
+			} else {
+			    start = start - string.length();
+			}
+			stop = stop - string.length();
 			tok = TbNavigationUtil.nextToken(tok);
 		}
-		return result.append(getSynchronizedValue(readToken).substring(start, stop + 1))
-				.toString();
+		return result.append(getSynchronizedValue(readToken).substring(start, stop + 1)).toString();
 	}
 
 	@Override
