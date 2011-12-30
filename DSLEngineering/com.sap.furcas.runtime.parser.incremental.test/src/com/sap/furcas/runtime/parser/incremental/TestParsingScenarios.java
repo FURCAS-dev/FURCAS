@@ -168,12 +168,22 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
     }
     
     @Test
+    public void testAddLineComment() throws Exception {
+        model.replace(0, 0, "{ \n def a; use a; \n { def b; use b; }\n { def c; use c; }}");
+        triggerParserAndExpectReuse();
+        
+        model.replace("{ \n def a; use a; \n ".length(), 0, "//"); // before the { opening the first inner block
+        triggerParserAndExpectReuse();
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+    }
+    
+    @Test
     public void testAddLineComments() throws Exception {
         model.replace(0, 0, "{ \n def a; use a; \n { \n def b; use b; \n } \n}");
         triggerParserAndExpectReuse();
         
         model.replace("{ \n def a; use a; \n { \n def b; use b; \n".length(), 0, "//"); // before the } closing the inner block
-        model.replace("{ \n def a; use a; \n { \n".length(), 0, "//"); // before the conent of the inner block
+        model.replace("{ \n def a; use a; \n { \n".length(), 0, "//"); // before the content of the inner block
         model.replace("{ \n def a; use a; \n".length(), 0, "//"); // before the { opening the inner block
         triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
