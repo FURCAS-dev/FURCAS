@@ -17,6 +17,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.IModelInjector;
+import com.sap.furcas.runtime.parser.IStreamIndexProvider;
 import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationTokenImpl;
 import com.sap.furcas.runtime.parser.impl.ModelInjector;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
@@ -46,7 +47,7 @@ import com.sap.ide.cts.parser.incremental.LexerAdapter;
  * @author C5106462
  * 
  */
-public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements CharStream, TokenSource {
+public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements CharStream, TokenSource, IStreamIndexProvider {
 
 	public static final int eosTokenType = -1;
 	public static final int bosTokenType = -2;
@@ -178,6 +179,11 @@ public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements Ch
 	public int index() {
 		return TbUtil.getAbsoluteOffset(readToken) + readOffset
 				- TbUtil.getAbsoluteOffset(getConstructionLoc().getTok());
+	}
+	
+	@Override
+	public int makeIndexAbsolute(int relativeIndex) {
+	    return relativeIndex + TbUtil.getAbsoluteOffset(getConstructionLoc().getTok());
 	}
 
 	@Override
