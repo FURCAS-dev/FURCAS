@@ -3,8 +3,11 @@ package com.sap.furcas.ide.projectwizard.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -64,9 +67,22 @@ public class ProjectWizardTCSTest extends GeneratedParserBasedTest {
         pi.setClassName("ExampleClass");
         String  newContent = scf.createSampleTCS(pi);
         InputStream newStream = new ByteArrayInputStream(newContent.getBytes("UTF-8"));
-        scf.writeToFile(newStream, TCS);
+        writeToFile(newStream, TCS);
         newStream.close();
         return TCS;
     }
 
+    private static void writeToFile(InputStream inputStream, File targetFile) {
+        try {
+            DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(targetFile)));
+            int c;
+            while ((c = inputStream.read()) != -1) {
+                out.writeByte(c);
+            }
+            inputStream.close();
+            out.close();
+        } catch (IOException e) {
+            System.err.println("Error Writing/Reading Streams.");
+        }
+    }
 }
