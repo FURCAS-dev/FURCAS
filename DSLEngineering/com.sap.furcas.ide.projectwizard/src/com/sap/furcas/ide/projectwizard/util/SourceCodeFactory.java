@@ -100,7 +100,7 @@ public class SourceCodeFactory {
             is.close();
             out.close();
         } catch (IOException e) {
-            System.err.println("Error Writing/Reading Streams."); //TODO
+            System.err.println("Error Writing/Reading Streams."); // TODO
         }
     }
 
@@ -119,9 +119,9 @@ public class SourceCodeFactory {
         templateString = readFile("manifest.txt");
         template = new StringTemplate(templateString);
         if (mmBundleName.matches("")) {
-        	template.setAttribute("MMBundle","");	
+            template.setAttribute("MMBundle", "");
         } else {
-        	template.setAttribute("MMBundle", "\n "+mmBundleName+",");
+            template.setAttribute("MMBundle", "\n " + mmBundleName + ",");
         }
         setTemplateAtts(template, pi);
 
@@ -136,23 +136,22 @@ public class SourceCodeFactory {
      * @return The content of the build.properties file.
      * @throws CodeGenerationException
      * 
-     * TODO rename
+     *             TODO rename
      */
     public String createBuildPropCode(ProjectInfo pi) throws CodeGenerationException {
-    	String filename = "buildprop.txt";
+        String filename = "buildprop.txt";
         return createFileContents(pi, filename);
     }
 
-	private String createFileContents(ProjectInfo pi, String filename)
-			throws CodeGenerationException {
-		StringTemplate template = null;
+    private String createFileContents(ProjectInfo pi, String filename) throws CodeGenerationException {
+        StringTemplate template = null;
         String templateString = null;
-		templateString = readFile(filename);
+        templateString = readFile(filename);
         template = new StringTemplate(templateString);
         setTemplateAtts(template, pi);
 
         return template.toString();
-	}
+    }
 
     /**
      * Creates an editor class from the resources/editor.txt file
@@ -176,7 +175,7 @@ public class SourceCodeFactory {
      * @throws CodeGenerationException
      */
     public String createGenmodelCode(ProjectInfo pi) throws CodeGenerationException {
-    	String filename = "genmodel.txt";
+        String filename = "genmodel.txt";
         return createFileContents(pi, filename);
     }
 
@@ -189,10 +188,10 @@ public class SourceCodeFactory {
      * @throws CodeGenerationException
      */
     public String createColorerCode(ProjectInfo pi) throws CodeGenerationException {
-    	String filename = "tokencolorer.txt";
+        String filename = "tokencolorer.txt";
         return createFileContents(pi, filename);
     }
-        
+
     /**
      * Creates a token color mapper class from the resources/parsecontroller.txt file
      * 
@@ -215,7 +214,7 @@ public class SourceCodeFactory {
      * @throws CodeGenerationException
      */
     public String createActivator(ProjectInfo pi) throws CodeGenerationException {
-    	String filename = "activator.txt";
+        String filename = "activator.txt";
         return createFileContents(pi, filename);
     }
 
@@ -228,11 +227,9 @@ public class SourceCodeFactory {
      * @throws CodeGenerationException
      */
     public String createPluginXML(ProjectInfo pi) throws CodeGenerationException {
-    	String filename = "pluginxml.txt";
+        String filename = "pluginxml.txt";
         return createFileContents(pi, filename);
     }
-
-
 
     /**
      * Creates a .tcs file from the resources/tcs.txt file
@@ -243,7 +240,7 @@ public class SourceCodeFactory {
      * @throws CodeGenerationException
      */
     public String createSampleTCS(ProjectInfo pi) throws CodeGenerationException {
-    	String filename = "tcs.txt";
+        String filename = "tcs.txt";
         return createFileContents(pi, filename);
     }
 
@@ -253,10 +250,10 @@ public class SourceCodeFactory {
      * @param pi
      *            User input
      * @return The content of the parserfactory class.
-     * @throws CodeGenerationException 
+     * @throws CodeGenerationException
      */
     public String createParserFactory(ProjectInfo pi) throws CodeGenerationException {
-    	String filename = "parserfactory.txt";
+        String filename = "parserfactory.txt";
         return createFileContents(pi, filename);
     }
 
