@@ -378,20 +378,20 @@ public class WizardProjectHelper {
     /**
      * Assert that c exists. If it doesn't exist. It will be created.
      * 
-     * @param c
+     * @param container
      *            The container whose existence is checked.
      * @throws CodeGenerationException
      */
-    private static void assertExist(IContainer c) throws CodeGenerationException {
-        if (!c.exists()) {
-            if (!c.getParent().exists()) {
-                assertExist(c.getParent());
+    private static void assertExist(IContainer container) throws CodeGenerationException {
+        if (!container.exists()) {
+            if (!container.getParent().exists()) {
+                assertExist(container.getParent());
             }
-            if (c instanceof IFolder) {
+            if (container instanceof IFolder) {
                 try {
-                    ((IFolder) c).create(false, true, new NullProgressMonitor());
+                    ((IFolder) container).create(false, true, new NullProgressMonitor());
                 } catch (CoreException e) {
-                    throw new CodeGenerationException("Failed to create container: " + c.getName(), e.getCause());
+                    throw new CodeGenerationException("Failed to create container: " + container.getName(), e.getCause());
                 }
             }
 
