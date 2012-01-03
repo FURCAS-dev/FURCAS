@@ -21,6 +21,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -107,7 +108,7 @@ public class ModelEditorInputLoader {
         if (resource.getContents().size() == 0) {
             return null;
             
-        } else if (resource.getContents().size() == 1 && classOfRootObject.isAssignableFrom(
+        } else if (resource.getContents().size() == 1 && classOfRootObject != null &&  classOfRootObject.isAssignableFrom(
                 resource.getContents().iterator().next().getClass())) {
             // resource root element is what we are looking for.
             return resource.getContents().iterator().next();
@@ -115,9 +116,14 @@ public class ModelEditorInputLoader {
         } else {
             // open dialog and let the user select the desired element.
             // only show elements which match the main template of the syntax
+            // or show all elements if instance class of main template could not be found
             ArrayList<Class<?>> filterList = new ArrayList<Class<?>>();
-            filterList.add(classOfRootObject);
-            
+            if (classOfRootObject == null) {
+                filterList.add(EcoreFactory.eINSTANCE.createEObject().getClass());  
+            } else {
+                filterList.add(classOfRootObject);   
+            }
+
             SelectEObjectDialog diag = new SelectEObjectDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
                     resource, filterList, adapterFactory);
             diag.open();
@@ -188,6 +194,5 @@ public class ModelEditorInputLoader {
                 + "Found several TextBlocks for " + rootObject + " . Cannot defer which one is the desired one.");
         throw new PartInitException(status);
     }
-
 
 }
