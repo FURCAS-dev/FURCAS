@@ -2,21 +2,15 @@ package com.sap.ide.cts.parser.incremental;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
-import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement;
-import com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
-import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
 import com.sap.furcas.metamodel.FURCAS.TCS.PrimitivePropertyInit;
-import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
@@ -111,66 +105,37 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
                                 batchParser.getInjector());
         }
 
-	@Override
-	public void reEvaluatePropertyInits(TextBlock oldVersion,
-			TextBlockProxy newVersion) {
-		if (oldVersion.getCorrespondingModelElements().size() > 0) {
-			EObject modelElement = oldVersion.getCorrespondingModelElements()
-					.iterator().next();
-			if (newVersion.getCorrespondingModelElementProxies().size() > 0) {
-				ModelElementProxy proxy = (ModelElementProxy) newVersion
-						.getCorrespondingModelElementProxies().iterator().next();
-				// first find out which alternatives have been chosen by
-				// walking through all tokens and getting the alternatives
-				// from the attached sequence elements
-				HashSet<InjectorActionsBlock> actionBlocks = new HashSet<InjectorActionsBlock>();
-				for (Object subNode : newVersion.getSubNodes()) {
-					if (subNode instanceof LexedToken) {
-						LexedToken lexedToken = (LexedToken) subNode;
-						SequenceElement seqEl = lexedToken.getSequenceElement();
-						while (seqEl != null
-								&& !(seqEl.getElementSequence()
-										.eContainer() instanceof ClassTemplate || seqEl
-										.getElementSequence()
-										.eContainer() instanceof FunctionTemplate)) {
-							SequenceElement parentSequenceElement = TcsUtil
-									.getContainerSequenceElement(seqEl);
-							if (parentSequenceElement instanceof Alternative
-									|| parentSequenceElement instanceof ConditionalElement) {
-								actionBlocks.addAll(TcsUtil
-										.getInjectorActions(seqEl
-												.getElementSequence()));
-								seqEl = parentSequenceElement;
-							} else {
-								break;
-							}
-						}
-					}
-				}
-				for (InjectorActionsBlock injectorActionsBlock : actionBlocks) {
-					for (InjectorAction injectorAction : injectorActionsBlock
-							.getInjectorActions()) {
-						if (injectorAction instanceof PrimitivePropertyInit) {
-							PrimitivePropertyInit init = (PrimitivePropertyInit) injectorAction;
+    @Override
+    public void reEvaluatePropertyInits(TextBlock oldVersion, TextBlockProxy newVersion) {
+        if (oldVersion.getCorrespondingModelElements().isEmpty()) {
+            return;
+        }
+        if (newVersion.getCorrespondingModelElementProxies().isEmpty()) {
+            return;
+        }
+        EObject modelElement = oldVersion.getCorrespondingModelElements().iterator().next();
+        ModelElementProxy proxy = (ModelElementProxy) newVersion.getCorrespondingModelElementProxies().iterator().next();
+        Collection<InjectorAction> actions = TcsUtil.getElementsOfType(newVersion.getTemplate(), InjectorAction.class);
 
-							EStructuralFeature feat = init.getPropertyReference()
-									.getStrucfeature();
-							modelElement.eGet(feat);
-							List<Object> value = proxy.getAttributeMap().get(
-								feat);
-							if (value != null && value.size() > 0) {
-								batchParser.getInjector().set(modelElement,
-										feat.getName(), value.iterator().next());
-							} else {
-								batchParser.getInjector().unset(modelElement,
-										feat.getName(), null);
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+        for (InjectorAction injectorAction : actions) {
+            if (!(injectorAction instanceof PrimitivePropertyInit)) {
+                continue;
+            }
+            if (!TcsUtil.wasExecuted((ContextTemplate) newVersion.getTemplate(), newVersion.getAlternativeChoices(),
+                    injectorAction.getInjectorActionsBlock())) {
+                continue;
+            }
+            PrimitivePropertyInit init = (PrimitivePropertyInit) injectorAction;
+
+            EStructuralFeature feat = init.getPropertyReference().getStrucfeature();
+            List<Object> value = proxy.getAttributeMap().get(feat.getName());
+            if (value != null && value.size() > 0) {
+                batchParser.getInjector().set(modelElement, feat.getName(), value.iterator().next());
+            } else {
+                batchParser.getInjector().unset(modelElement, feat.getName(), null);
+            }
+        }
+    }
 	
 	/**
 	 * Only resolve those references that were affected by this parse run. This
