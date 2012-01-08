@@ -798,8 +798,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
                                 && TbVersionUtil.getOtherVersion(tb,
                                         Version.CURRENT) == null) {
                             LexedToken lt = (LexedToken) tb;
-                            if (lt.getReferencedElements().size() > 0
-                                    && lt.getSequenceElement() instanceof Property) {
+                            if (lt.getSequenceElement() instanceof Property) {
                                 referenceHandler.unsetPrimitiveFeature(oldVersion,
                                         lt);
                             }

@@ -103,8 +103,7 @@ public class TestAlternativeParsingScenarios extends IncrementalParserBasedTest 
         model.replace("Library: ".length(), "Foo".length(), "");
         triggerParserAndExpectReuse();
         assertEquals(false, get(getLibrary(), "hasName"));
-        // TODO: Is the following assertion desired? Does it make sense?
-        //assertFalse("Should no longer be considered set", isSet(getLibrary(), "name"));
+        assertFalse("Should no longer be considered set", isSet(getLibrary(), "name"));
         
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
