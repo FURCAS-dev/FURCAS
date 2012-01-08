@@ -1,0 +1,50 @@
+syntax BibtexWithAlternatives {
+ 
+  primitiveTemplate identifier for String default using NAME
+  : value = "%token%"
+  ;
+  
+  primitiveTemplate stringSymbol for String using STRING
+  : value = "unescapeString(%token%)",
+    serializer="\'%value%\'"
+  ; 
+         
+  template BibTextFile main
+  : "Library:" (isDefined(name) ? name {{hasName=true}} : {{hasName=false}})
+  	"Entries:" "{" entries "}"
+  ; 
+  
+  template BibTextEntry abstract;
+  
+  template Article
+  : "@article" "{"      
+  		key ","
+  		"author" "=" "{" author{referenceBy="name", separator="and",
+  			 					lookupScope="OCL:BibText::Author.allInstances()"}
+  			 		 "}"
+  	"}" 
+  ;
+  
+  template Author
+  : name
+  ;
+ 
+  -- place keywords here (optional, seldom used)
+
+  -- place symbols here (optional)
+        symbols {
+                coma            = "," : leftNone, rightSpace;
+                lcurly          = "{" : leftSpace, rightSpace;
+                rcurly          = "}" : leftSpace, rightSpace;
+        }
+
+  -- place operatorLists here (optional)
+
+  -- place tokens here (optional, except for COMMENT)
+
+  omitted token COMMENT : endOfLine(start = "//");
+
+  -- place lexer here (optional)
+
+}
+  
