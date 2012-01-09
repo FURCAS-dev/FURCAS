@@ -10,23 +10,31 @@ syntax BibtexWithAlternatives {
   ; 
          
   template BibTextFile main
-  : "Library:" (isDefined(name) ? name {{hasName=true}} : {{hasName=false}})
-  	"Entries:" "{" entries "}"
+  : "Library:"
+    (isDefined(name) ? name {{hasName=true}} : {{hasName=false}})
+  	(isDefined(entries) ? "Entries:" "{" entries "}")
   ; 
   
   template BibTextEntry abstract;
   
   template Article
-  : "@article" "{"      
+  : [[ "@article" "{"      
   		key ","
   		"author" "=" "{" author{referenceBy="name", separator="and",
   			 					lookupScope="OCL:BibText::Author.allInstances()"}
   			 		 "}"
-  	"}" 
+  	    "}"
+  	 | "article"
+  	]]    
   ;
   
   template Author
-  : name
+  : [[ name 
+     | "alternative" 
+     | [[ "nestedAlternativeA"  | "nestedAlternativeB" ]]
+     | "nested" (isDefined(name) ? "name" name : [[ "keywordA" | "keywordB" ]] )
+     | (isDefined(name) ? "name" name ) "noElse" 
+    ]]
   ;
  
   -- place keywords here (optional, seldom used)
