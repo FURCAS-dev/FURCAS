@@ -115,12 +115,9 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
         }
         EObject modelElement = oldVersion.getCorrespondingModelElements().iterator().next();
         ModelElementProxy proxy = (ModelElementProxy) newVersion.getCorrespondingModelElementProxies().iterator().next();
-        Collection<InjectorAction> actions = TcsUtil.getElementsOfType(newVersion.getTemplate(), InjectorAction.class);
+        Collection<PrimitivePropertyInit> actions = TcsUtil.getElementsOfType(newVersion.getTemplate(), PrimitivePropertyInit.class);
 
         for (InjectorAction injectorAction : actions) {
-            if (!(injectorAction instanceof PrimitivePropertyInit)) {
-                continue;
-            }
             if (!TcsUtil.wasExecuted((ContextTemplate) newVersion.getTemplate(), newVersion.getAlternativeChoices(),
                     injectorAction.getInjectorActionsBlock())) {
                 continue;
