@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?eclipse version="3.2"?>
-<plugin>
-   <extension-point id="Content" name="Content" schema="schema/ContentDefinition.exsd"/>
-   <extension-point id="NatureDefinition" name="NatureDefinition" schema="schema/NatureDefinition.exsd"/>
-</plugin>
