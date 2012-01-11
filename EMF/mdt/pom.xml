@@ -15,7 +15,6 @@
   </parent>
 
   <modules>
-    <module>tests</module>
   </modules>
 
 </project>

@@ -15,10 +15,6 @@
   </parent>
 
   <modules>
-    <module>org.eclipse.ocl.examples.testutils</module>
-    <module>org.eclipse.ocl.examples.impactanalyzer.testmodel.company</module>
-    <module>org.eclipse.ocl.examples.impactanalyzer.testutils</module>
-    <module>org.eclipse.ocl.examples.impactanalyzer.testmodel.ngpm</module>
   </modules>
 
 </project>
