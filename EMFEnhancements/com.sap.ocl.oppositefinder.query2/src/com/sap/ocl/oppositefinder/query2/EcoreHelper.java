@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.query2;
+package com.sap.ocl.oppositefinder.query2;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -34,6 +34,19 @@ import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
 import org.eclipse.emf.query.index.update.IndexUpdater;
 import org.eclipse.emf.query.index.update.ResourceIndexer;
 import org.eclipse.emf.query.index.update.UpdateCommandAdapter;
+import org.eclipse.emf.query2.EmfHelper;
+import org.eclipse.emf.query2.FromEntry;
+import org.eclipse.emf.query2.FromFixedSet;
+import org.eclipse.emf.query2.FromType;
+import org.eclipse.emf.query2.Query;
+import org.eclipse.emf.query2.QueryContext;
+import org.eclipse.emf.query2.QueryProcessor;
+import org.eclipse.emf.query2.QueryProcessorFactory;
+import org.eclipse.emf.query2.ResultSet;
+import org.eclipse.emf.query2.SelectAlias;
+import org.eclipse.emf.query2.SelectEntry;
+import org.eclipse.emf.query2.WhereEntry;
+import org.eclipse.emf.query2.WhereRelationReference;
 
 public class EcoreHelper {
     private static EcoreHelper instance;

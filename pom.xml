@@ -111,13 +111,13 @@
 	<repositories>
 		<repository>
 			<layout>p2</layout>
-			<id>eclipse-helios</id>
-			<url>http://download.eclipse.org/releases/helios/</url>
+			<id>eclipse-indigo</id>
+			<url>http://download.eclipse.org/releases/indigo/</url>
 		</repository>
 		<repository>
 			<layout>p2</layout>
-			<id>eclipse-indigo</id>
-			<url>http://download.eclipse.org/releases/indigo/</url>
+			<id>query2-nightly</id>
+			<url>https://hudson.eclipse.org/hudson/job/tycho-query2-nightly/lastSuccessfulBuild/artifact/targetPlatform/</url>
 		</repository>
 	</repositories>
 
