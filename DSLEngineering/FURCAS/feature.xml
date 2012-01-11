@@ -2,7 +2,7 @@
 <feature
       id="FURCAS"
       label="FURCAS"
-      version="1.0.1.qualifier"
+      version="1.0.2.qualifier"
       provider-name="SAP AG / FZI">
 
    <description url="http://www.example.com/description">
@@ -17,12 +17,8 @@
       [Enter License Description here.]
    </license>
 
-   <url>
-      <update label="FURCAS" url="http://wdfd00224335a.dhcp.wdf.sap.corp/site/"/>
-   </url>
-
    <requires>
-      <import feature="EMFEnhancementsFeature" version="1.0.0.qualifier"/>
+      <import feature="EMFEnhancementsFeature" version="1.0.2.qualifier"/>
    </requires>
 
    <plugin
