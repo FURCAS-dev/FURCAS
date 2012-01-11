@@ -91,7 +91,6 @@
 					<argLine>-Xmx1024m -XX:PermSize=256m -XX:-UseGCOverheadLimit -XX:+UseParallelGC</argLine>
 					<testFailureIgnore>true</testFailureIgnore>
 					<excludes>
-						<exclude>**/NavigationPathCreationTest.java</exclude>
 						<exclude>**/*$*</exclude> <!-- Exclude inner classes -->
 					</excludes>
 				</configuration>
