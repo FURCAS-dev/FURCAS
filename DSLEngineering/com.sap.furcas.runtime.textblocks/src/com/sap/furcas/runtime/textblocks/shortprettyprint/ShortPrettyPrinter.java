@@ -127,10 +127,10 @@ public class ShortPrettyPrinter {
                 // Counting these elements will give us the index of our token.
                 AbstractToken previousToken = TbNavigationUtil.previousToken(token);
                 while (belongsToSameProperty(se, previousToken) || isWhitespace(previousToken) || isSeparator(previousToken, se)) {
-                    previousToken = TbNavigationUtil.previousToken(previousToken);
                     if (belongsToSameProperty(se, previousToken)) {
                         iter.next();
                     }
+                    previousToken = TbNavigationUtil.previousToken(previousToken);
                 }
                 propertyValue = iter.next();
             }
