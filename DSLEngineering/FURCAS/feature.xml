@@ -38,22 +38,22 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+
    <plugin
          id="com.sap.furcas.ide.dslproject"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+
    <plugin
          id="com.sap.furcas.ide.parserfactory"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
-         <plugin
+
+   <plugin
          id="com.sap.furcas.ide.editor"
          download-size="0"
          install-size="0"
@@ -163,4 +163,33 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+
+   <plugin
+         id="com.sap.emf.bundlelistener"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.sap.furcas.metamodel.texteditor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.sap.furcas.runtime.prettyprinter"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.imp.runtime"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>
