@@ -17,6 +17,10 @@
   <modules>
     <module>com.sap.emf.importer.moin.rose</module>
     <module>com.sap.emf.ocl.attributegrammar</module>
+    <module>org.eclipse.ocl.examples.testutils</module>
+    <module>org.eclipse.ocl.examples.impactanalyzer.testmodel.company</module>
+    <module>org.eclipse.ocl.examples.impactanalyzer.testutils</module>
+    <module>org.eclipse.ocl.examples.impactanalyzer.testmodel.ngpm</module>
     <module>org.eclipse.ocl.examples.impactanalyzer.example</module>
     <module>org.eclipse.ocl.examples.impactanalyzer.example.edit</module>
     <module>org.eclipse.ocl.examples.impactanalyzer.example.editor</module>
