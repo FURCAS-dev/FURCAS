@@ -15,9 +15,7 @@
   </parent>
   
   <modules>
-    <module>query2</module>
     <module>mdt</module>
-    <module>emf</module>
   </modules>
 
 </project>
