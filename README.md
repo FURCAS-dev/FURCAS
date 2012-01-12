@@ -51,12 +51,12 @@ You don't have to specify these again.
 Not yet :-)
 
 ## Why not?
-Very high ambitiouns in the light of lacking manpower. If you want to have an impression
+We used to have very high ambitions in the light of lacking manpower. If you want to have an impression
 of our current status, please have a look [here](http://lists.furcas.org/pipermail/furcas-discussion/2011-July/000369.html).
 
 We contributed a scalable event manager and the _OCL implact analysis_ to Eclipse. The impact
 analysis tells you when your OCL expressions should be re-evaluted after model changes.
-You can find both it in the _OCL Examples and Editors_ features, since the Eclipse Indigo release.
+You can find both it in the _OCL Examples and Editors_ features since the Eclipse Indigo release.
 
 
 ## Links
