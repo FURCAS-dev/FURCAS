@@ -9,10 +9,10 @@ FURCAS is based on Eclipse and EMF.
 * You want to build your own domain specific languages and basically get features
   like syntax highlighting, auto completion and simple but safe refactorings for
   free.
-* You do already use EMF models in your application but want to edit your models
+* You do already use EMF models in your application, but want to edit your models
   in a textual rather than a graphical syntax.
 
-## So how does it work?
+## So, how does it work?
 FURCAS uses a template language to create textual representations of classes of a metamodel.
 As this language maps grammar fragments to metamodel classes, it is called _mapping_.
 
@@ -34,21 +34,32 @@ to view and edit it in textual syntax like the following:
 Corresponding templates in FURCAS to render your workflow models in such a syntax might
 look like:
 
-    template Workflow:
-        "workflow" ":" steps{separator=","}
+    template Workflow
+    :  "workflow" ":" steps{separator=","}
     ; 
-    template Step:
-        name ":" description
+    template Step
+    :  name ":" description
     ;
 
-That is it. You can feed this to FURCAS and then start creating new, or modify your existing
-workflow models using this sntax. 
+That is it. You can feed this to FURCAS and then start to create new models, or modify your existing
+ones using this syntax. 
 
 FURCAS automatically looks up types and multiplicities in your metamodel.
 You don't have to specify these again.
 
+## Is it any good?
+Not yet :-)
+
+## Why not?
+Very high ambitiouns in the light of lacking manpower. If you want to have an impression
+of our current status, please have a look [here](http://lists.furcas.org/pipermail/furcas-discussion/2011-July/000369.html).
+
+We contributed a scalable event manager and the _OCL implact analysis_ to Eclipse. The impact
+analysis tells you when your OCL expressions should be re-evaluted after model changes.
+You can find both it in the _OCL Examples and Editors_ features, since the Eclipse Indigo release.
+
 
 ## Links
-* [Homepage & Links to Research Papers)[http://furcas.org/]
-* [Wiki]{http://furcas.org/wiki}
-
+* [Homepage & Links to Research Papers](http://furcas.org/)
+* [Mailinglist](http://www.furcas.org/cgi-bin/mailman/listinfo/furcas-discussion)
+* [Wiki & Language Specification](http://furcas.org/wiki)
