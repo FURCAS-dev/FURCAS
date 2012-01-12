@@ -22,7 +22,7 @@ update either your model or your text, the other one will be updated accordingly
 Lets consider your metamodel has a metaclass named `Workflow`. A `Workflow` consists
 of several ordered steps, each represented by a `Step` class.
 
-You might have a particular workflow model that consists of three steps. Any you may want
+You might have a particular workflow model that consists of three steps. You may want
 to view and edit it in textual syntax like the following:
 
     workflow:
@@ -31,8 +31,7 @@ to view and edit it in textual syntax like the following:
        Step3: Finish
 
 
-Corresponding templates in FURCAS to render your workflow models in such a syntax might
-look like:
+Corresponding templates in FURCAS to achieve this may look like:
 
     template Workflow
     :  "workflow" ":" steps{separator=","}
@@ -51,12 +50,12 @@ You don't have to specify these again.
 Not yet :-)
 
 ## Why not?
-We used to have very high ambitions in the light of lacking manpower. If you want to have an impression
+We used to have very high ambitions and are new suffering from lacking manpower. If you want to have an impression
 of our current status, please have a look [here](http://lists.furcas.org/pipermail/furcas-discussion/2011-July/000369.html).
 
-We contributed a scalable event manager and the _OCL implact analysis_ to Eclipse. The impact
+We contributed a scalable event manager and the OCL implact analysis to Eclipse. The impact
 analysis tells you when your OCL expressions should be re-evaluted after model changes.
-You can find both it in the _OCL Examples and Editors_ features since the Eclipse Indigo release.
+You can find both it in the  [_OCL Examples and Editors_](http://help.eclipse.org/indigo/index.jsp?topic=%2Forg.eclipse.ocl.doc%2Fhelp%2FImpactAnalyzer.html) features since the Eclipse Indigo release.
 
 
 ## Links
