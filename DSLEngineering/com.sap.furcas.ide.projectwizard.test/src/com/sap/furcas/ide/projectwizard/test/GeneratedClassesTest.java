@@ -16,7 +16,6 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 
@@ -35,7 +34,6 @@ import com.sun.tools.javac.Main;
  * @author Axel Uhl (D043530)
  * 
  */
-@Ignore("Failing with compilation issues")
 public class GeneratedClassesTest {
 
     private static final String BIN_DIR_NAME = "bin";
