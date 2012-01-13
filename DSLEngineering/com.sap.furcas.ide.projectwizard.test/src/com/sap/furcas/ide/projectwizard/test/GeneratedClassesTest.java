@@ -35,7 +35,7 @@ import com.sun.tools.javac.Main;
  * @author Axel Uhl (D043530)
  * 
  */
-@Ignore("This test does indirectly depend on the UI. Not yet supported.")
+@Ignore("Failing with compilation issues")
 public class GeneratedClassesTest {
 
     private static final String BIN_DIR_NAME = "bin";
