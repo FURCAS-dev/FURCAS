@@ -22,6 +22,7 @@
 									<argLine>-Xmx1024m -XX:+UseParallelGC -Dtarget.location=${target.location} -Declipse.location=${eclipse.location}</argLine>
 									<useUIHarness>true</useUIHarness>
 									<useUIThread>true</useUIThread>
+									<application>org.eclipse.ui.ide.workbench</application>
                                 </configuration>
                         </plugin>
                 </plugins>
