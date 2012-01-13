@@ -3,16 +3,13 @@ package com.sap.furcas.ide.projectwizard.test;
 import static org.junit.Assert.fail;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.ide.projectwizard.util.CreateProject;
 import com.sap.furcas.ide.projectwizard.util.ProjectInfo;
 import com.sap.furcas.ide.projectwizard.wizards.FurcasWizard;
 
-@Ignore("UI Tests still not supported")
 public class OverallWizardTest {
-
 
     @Test
     public void wizardTest() {
