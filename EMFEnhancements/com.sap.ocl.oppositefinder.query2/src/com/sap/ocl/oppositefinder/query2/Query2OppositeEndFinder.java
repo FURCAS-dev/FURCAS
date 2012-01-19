@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query.index.IndexFactory;
-import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.emf.query2.FromEntry;
 import org.eclipse.emf.query2.FromType;
 import org.eclipse.emf.query2.Query;

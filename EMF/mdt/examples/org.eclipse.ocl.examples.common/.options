@@ -1,4 +1,0 @@
-# Debugging options for the org.eclipse.ocl.examples.common plug-in
-
-# Turn on general EObject adapter notification
-org.eclipse.ocl.examples.common/notification=false

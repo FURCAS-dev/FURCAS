@@ -22,9 +22,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
-import org.eclipse.ocl.examples.impactanalyzer.impl.TracebackStepCounter;
 
-public class AllInstanceCallCountingOppositeEndFinder implements OppositeEndFinder, TracebackStepCounter {
+public class AllInstanceCallCountingOppositeEndFinder implements OppositeEndFinder {
     private int allInstancesCalled = 0;
     private int findOppositeEndsCalled = 0;
     private int getAllOppositeEndsCalled = 0;

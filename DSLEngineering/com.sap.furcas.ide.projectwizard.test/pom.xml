@@ -20,7 +20,16 @@
                                 <artifactId>maven-osgi-test-plugin</artifactId>
                                 <configuration>
 									<argLine>-Xmx1024m -XX:+UseParallelGC -Dtarget.location=${target.location} -Declipse.location=${eclipse.location}</argLine>
-									<!--<useUIHarness>true</useUIHarness>-->
+									<useUIHarness>true</useUIHarness>
+                                    <product>org.eclipse.sdk.ide</product>
+	                                <application>org.eclipse.ui.ide.workbench</application>
+	                                <dependencies>
+	                                                <dependency>
+	                                                        <type>p2-installable-unit</type>
+	                                                        <artifactId>org.eclipse.sdk.ide</artifactId>
+	                                                        <version>0.0.0</version>
+	                                                </dependency>
+	                                </dependencies>
                                 </configuration>
                         </plugin>
                 </plugins>

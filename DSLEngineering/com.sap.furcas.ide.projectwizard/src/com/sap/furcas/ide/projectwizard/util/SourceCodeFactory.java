@@ -1,10 +1,6 @@
 package com.sap.furcas.ide.projectwizard.util;
 
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -83,28 +79,6 @@ public class SourceCodeFactory {
     }
 
     /**
-     * Writes an input stream to a file
-     * 
-     * @param is
-     *            The input stream which is written into the file.
-     * @param file
-     *            The file where the input stream will be written into.
-     */
-    public void writeToFile(InputStream is, File file) {
-        try {
-            DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
-            int c;
-            while ((c = is.read()) != -1) {
-                out.writeByte(c);
-            }
-            is.close();
-            out.close();
-        } catch (IOException e) {
-            System.err.println("Error Writing/Reading Streams."); //TODO
-        }
-    }
-
-    /**
      * Creates a manifest file from the resources/manifest.txt file
      * 
      * @param pi
@@ -119,9 +93,9 @@ public class SourceCodeFactory {
         templateString = readFile("manifest.txt");
         template = new StringTemplate(templateString);
         if (mmBundleName.matches("")) {
-        	template.setAttribute("MMBundle","");	
+            template.setAttribute("MMBundle", "");
         } else {
-        	template.setAttribute("MMBundle", "\n "+mmBundleName+",");
+            template.setAttribute("MMBundle", "\n " + mmBundleName + ",");
         }
         setTemplateAtts(template, pi);
 
@@ -136,23 +110,11 @@ public class SourceCodeFactory {
      * @return The content of the build.properties file.
      * @throws CodeGenerationException
      * 
-     * TODO rename
      */
-    public String createBuildPropCode(ProjectInfo pi) throws CodeGenerationException {
-    	String filename = "buildprop.txt";
+    public String createBuildPropertiesFile(ProjectInfo pi) throws CodeGenerationException {
+        String filename = "buildprop.txt";
         return createFileContents(pi, filename);
     }
-
-	private String createFileContents(ProjectInfo pi, String filename)
-			throws CodeGenerationException {
-		StringTemplate template = null;
-        String templateString = null;
-		templateString = readFile(filename);
-        template = new StringTemplate(templateString);
-        setTemplateAtts(template, pi);
-
-        return template.toString();
-	}
 
     /**
      * Creates an editor class from the resources/editor.txt file
@@ -176,7 +138,7 @@ public class SourceCodeFactory {
      * @throws CodeGenerationException
      */
     public String createGenmodelCode(ProjectInfo pi) throws CodeGenerationException {
-    	String filename = "genmodel.txt";
+        String filename = "genmodel.txt";
         return createFileContents(pi, filename);
     }
 
@@ -189,10 +151,10 @@ public class SourceCodeFactory {
      * @throws CodeGenerationException
      */
     public String createColorerCode(ProjectInfo pi) throws CodeGenerationException {
-    	String filename = "tokencolorer.txt";
+        String filename = "tokencolorer.txt";
         return createFileContents(pi, filename);
     }
-        
+
     /**
      * Creates a token color mapper class from the resources/parsecontroller.txt file
      * 
@@ -215,7 +177,7 @@ public class SourceCodeFactory {
      * @throws CodeGenerationException
      */
     public String createActivator(ProjectInfo pi) throws CodeGenerationException {
-    	String filename = "activator.txt";
+        String filename = "activator.txt";
         return createFileContents(pi, filename);
     }
 
@@ -228,11 +190,9 @@ public class SourceCodeFactory {
      * @throws CodeGenerationException
      */
     public String createPluginXML(ProjectInfo pi) throws CodeGenerationException {
-    	String filename = "pluginxml.txt";
+        String filename = "pluginxml.txt";
         return createFileContents(pi, filename);
     }
-
-
 
     /**
      * Creates a .tcs file from the resources/tcs.txt file
@@ -243,7 +203,7 @@ public class SourceCodeFactory {
      * @throws CodeGenerationException
      */
     public String createSampleTCS(ProjectInfo pi) throws CodeGenerationException {
-    	String filename = "tcs.txt";
+        String filename = "tcs.txt";
         return createFileContents(pi, filename);
     }
 
@@ -253,11 +213,21 @@ public class SourceCodeFactory {
      * @param pi
      *            User input
      * @return The content of the parserfactory class.
-     * @throws CodeGenerationException 
+     * @throws CodeGenerationException
      */
     public String createParserFactory(ProjectInfo pi) throws CodeGenerationException {
-    	String filename = "parserfactory.txt";
+        String filename = "parserfactory.txt";
         return createFileContents(pi, filename);
+    }
+    
+    private String createFileContents(ProjectInfo pi, String filename) throws CodeGenerationException {
+        StringTemplate template = null;
+        String templateString = null;
+        templateString = readFile(filename);
+        template = new StringTemplate(templateString);
+        setTemplateAtts(template, pi);
+
+        return template.toString();
     }
 
     /**
