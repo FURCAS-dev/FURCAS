@@ -1,1 +1,0 @@
-The 'inherited' icons from org.eclipse.ocl.edit should be used.

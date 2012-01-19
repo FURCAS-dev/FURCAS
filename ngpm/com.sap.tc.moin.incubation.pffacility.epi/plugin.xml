@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?eclipse version="3.2"?>
-<plugin>
-   <extension id="PrimaryReplacementFacility" name="PrimaryReplacementFacility" point="com.sap.tc.moin.runtime.MoinFacility">
-   	  <facilityName label="PrimaryReplacementFacility" version="1.0.0"/>
-      <facilityParticipant class="com.sap.tc.moin.facility.primaryreplacement.PrimaryReplacementFacilityFactory"/>
-   </extension>
-</plugin>

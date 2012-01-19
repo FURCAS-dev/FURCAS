@@ -1,6 +1,7 @@
 package com.sap.furcas.runtime.textblocks.shortprettyprint;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -8,9 +9,11 @@ import org.eclipse.emf.ecore.EObject;
 import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
 import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
+import com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
@@ -84,15 +87,7 @@ public class ShortPrettyPrinter {
             return token.getValue();
         }
 
-        Object propertyValue = null;
-        try {
-            propertyValue = investigator.get(contextObject, se.getPropertyReference().getStrucfeature().getName());
-            if (propertyValue instanceof Collection<?> && ((Collection<?>) propertyValue).size() > 0) {
-                propertyValue = ((Collection<?>) propertyValue).iterator().next();
-            }
-        } catch (ModelAdapterException e) {
-            // element does not have such a property
-        }
+        Object propertyValue = getPropertyValue(se, token, contextObject);
 
         String newValue = null;
         try {
@@ -120,6 +115,46 @@ public class ShortPrettyPrinter {
             PrimitiveTemplate template = PropertyArgumentUtil.getAsTemplate(PropertyArgumentUtil.getAsPArg(se));
             return PrettyPrinterUtil.escapeUsingSerializer(newValue, template);
         }
+    }
+
+    private Object getPropertyValue(Property se, LexedToken token, EObject contextObject) {
+        try {
+            Object propertyValue = investigator.get(contextObject, se.getPropertyReference().getStrucfeature().getName());
+            if (propertyValue instanceof Collection<?> && ((Collection<?>) propertyValue).size() > 0) {
+                Iterator<?> iter = ((Collection<?>) propertyValue).iterator();
+                // Need to find out the index of the element represented by the token.
+                // All elements belonging to the same property have the same sequence element.
+                // Counting these elements will give us the index of our token.
+                AbstractToken previousToken = TbNavigationUtil.previousToken(token);
+                while (belongsToSameProperty(se, previousToken) || isWhitespace(previousToken) || isSeparator(previousToken, se)) {
+                    if (belongsToSameProperty(se, previousToken)) {
+                        iter.next();
+                    }
+                    previousToken = TbNavigationUtil.previousToken(previousToken);
+                }
+                propertyValue = iter.next();
+            }
+            return propertyValue;
+        } catch (ModelAdapterException e) {
+            // element does not have such a property
+            return null;
+        }
+    }
+
+    private boolean isSeparator(AbstractToken previousToken, Property se) {
+        SeparatorPArg sepParg = PropertyArgumentUtil.getSeparatorPArg(se);
+        if (sepParg == null) {
+            return false;
+        }
+        return sepParg.getSeparatorSequence().getElements().contains(previousToken.getSequenceElement());  
+    }
+
+    private boolean isWhitespace(AbstractToken previousToken) {
+        return previousToken instanceof OmittedToken;
+    }
+
+    private boolean belongsToSameProperty(Property se, AbstractToken previousToken) {
+        return previousToken != null && previousToken.getSequenceElement() == se;
     }
 
 }

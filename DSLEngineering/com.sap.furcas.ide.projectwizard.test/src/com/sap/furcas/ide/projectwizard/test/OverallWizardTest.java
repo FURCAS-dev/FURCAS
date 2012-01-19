@@ -10,9 +10,8 @@ import com.sap.furcas.ide.projectwizard.util.CreateProject;
 import com.sap.furcas.ide.projectwizard.util.ProjectInfo;
 import com.sap.furcas.ide.projectwizard.wizards.FurcasWizard;
 
-@Ignore("UI Tests still not supported")
+@Ignore
 public class OverallWizardTest {
-
 
     @Test
     public void wizardTest() {

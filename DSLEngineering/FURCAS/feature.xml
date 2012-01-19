@@ -2,7 +2,7 @@
 <feature
       id="FURCAS"
       label="FURCAS"
-      version="1.0.1.qualifier"
+      version="1.0.2.qualifier"
       provider-name="SAP AG / FZI">
 
    <description url="http://www.example.com/description">
@@ -17,12 +17,8 @@
       [Enter License Description here.]
    </license>
 
-   <url>
-      <update label="FURCAS" url="http://wdfd00224335a.dhcp.wdf.sap.corp/site/"/>
-   </url>
-
    <requires>
-      <import feature="EMFEnhancementsFeature" version="1.0.0.qualifier"/>
+      <import feature="EMFEnhancementsFeature" version="1.0.2.qualifier"/>
    </requires>
 
    <plugin
@@ -38,22 +34,22 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+
    <plugin
          id="com.sap.furcas.ide.dslproject"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+
    <plugin
          id="com.sap.furcas.ide.parserfactory"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
-         <plugin
+
+   <plugin
          id="com.sap.furcas.ide.editor"
          download-size="0"
          install-size="0"
@@ -80,12 +76,6 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-
-   <plugin
-         id="com.sap.furcas.modeladaptation.emf"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
 
    <plugin
          id="com.sap.furcas.parser.tcs"
@@ -163,4 +153,39 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+
+   <plugin
+         id="com.sap.emf.bundlelistener"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.sap.furcas.metamodel.texteditor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.sap.furcas.runtime.prettyprinter"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.imp.runtime"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.sap.furcas.modeladaptation.emf"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
 </feature>

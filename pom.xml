@@ -11,7 +11,6 @@
 
 	<modules>
 		<module>DSLEngineering</module>
-		<module>EMF</module>
 		<module>EMFEnhancements</module>
 		<module>ngpm</module>
 	</modules>
@@ -91,7 +90,7 @@
 					<argLine>-Xmx1024m -XX:PermSize=256m -XX:-UseGCOverheadLimit -XX:+UseParallelGC</argLine>
 					<testFailureIgnore>true</testFailureIgnore>
 					<excludes>
-						<exclude>**/NavigationPathCreationTest.java</exclude>
+						<exclude>**/FractionPerformanceTest.java</exclude>
 						<exclude>**/*$*</exclude> <!-- Exclude inner classes -->
 					</excludes>
 				</configuration>
@@ -111,13 +110,13 @@
 	<repositories>
 		<repository>
 			<layout>p2</layout>
-			<id>eclipse-helios</id>
-			<url>http://download.eclipse.org/releases/helios/</url>
+			<id>eclipse-indigo</id>
+			<url>http://download.eclipse.org/releases/indigo/</url>
 		</repository>
 		<repository>
 			<layout>p2</layout>
-			<id>eclipse-indigo</id>
-			<url>http://download.eclipse.org/releases/indigo/</url>
+			<id>query2-nightly</id>
+			<url>http://hudson.eclipse.org/hudson/job/tycho-query2-nightly/lastSuccessfulBuild/artifact/targetPlatform/</url>
 		</repository>
 	</repositories>
 
