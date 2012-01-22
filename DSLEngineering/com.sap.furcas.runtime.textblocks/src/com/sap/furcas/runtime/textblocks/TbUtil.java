@@ -3,12 +3,10 @@ package com.sap.furcas.runtime.textblocks;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -17,6 +15,7 @@ import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
@@ -448,14 +447,7 @@ public class TbUtil {
          */
         public static Collection<TextBlock> findTextBlockOf(TextBlock rootBlock, EObject modelElement, ResourceSet resourceSet) {
             ArrayList<TextBlock> result = new ArrayList<TextBlock>();
-            HashSet<URI> scope = new HashSet<URI>(2);
-            scope.add(modelElement.eResource().getURI());
-            scope.add(rootBlock.eResource().getURI());
-            
-            // FIXME: Disabled. Otherwise a reference resolving tests fails because
-            //        query2 is unable to resolve an existing reference.... Stephan Erb, 17.05.2011 
-            // new Query2OppositeEndFinder(new TextBlocksPartitonQueryContextProvider(resourceSet, scope));
-            OppositeEndFinder endFinder = DefaultOppositeEndFinder.getInstance();
+            OppositeEndFinder endFinder = getOppositeEndFinder();
             
             for (EObject o : endFinder.navigateOppositePropertyWithBackwardScope(
                     TextblocksPackage.eINSTANCE.getTextBlock_CorrespondingModelElements(), modelElement)) {
@@ -465,6 +457,44 @@ public class TbUtil {
                 }
             }
             return result;
+        }
+
+        /**
+         * Find all DocumentNodes representing the given property on the given modelElement
+         */
+        public static Collection<DocumentNode> findTokensFor(EObject modelElement, Property property, Version version) {
+            ArrayList<DocumentNode> result = new ArrayList<DocumentNode>();
+            OppositeEndFinder endFinder = getOppositeEndFinder();
+            
+            for (EObject o : endFinder.navigateOppositePropertyWithBackwardScope(
+                    TextblocksPackage.eINSTANCE.getDocumentNode_SequenceElement(), property)) {
+                
+                DocumentNode node = (DocumentNode) o;
+                if (node.getVersion() == version && correspondsTo(modelElement, node)) {
+                    result.add(node);
+                }
+            }
+            return result;
+        }
+        
+        private static boolean correspondsTo(EObject modelElement, DocumentNode node) {
+            TextBlock tb = (node instanceof TextBlock) ?  (TextBlock) node : node.getParent();
+            if (tb == null) {
+                return false;
+            }
+            return tb.getCorrespondingModelElements().contains(modelElement);
+        }
+        
+        private static OppositeEndFinder getOppositeEndFinder() {
+            // HashSet<URI> scope = new HashSet<URI>(2);
+            // scope.add(modelElement.eResource().getURI());
+            // scope.add(rootBlock.eResource().getURI());
+            
+            // FIXME: Disabled. Otherwise a reference resolving tests fails because
+            //        query2 is unable to resolve an existing reference.... Stephan Erb, 17.05.2011 
+            // new Query2OppositeEndFinder(new TextBlocksPartitonQueryContextProvider(resourceSet, scope));
+            OppositeEndFinder endFinder = DefaultOppositeEndFinder.getInstance();
+            return endFinder;
         }
 
 }
