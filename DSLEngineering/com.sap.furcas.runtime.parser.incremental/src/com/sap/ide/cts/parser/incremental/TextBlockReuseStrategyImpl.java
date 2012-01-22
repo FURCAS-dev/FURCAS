@@ -792,15 +792,20 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
                     }
                     for (AbstractToken tb : reference.getTokens()) {
                         // unset the corresponding value of the token if there is no
-                        // current
-                        // version
-                        if (tb instanceof LexedToken
-                                && TbVersionUtil.getOtherVersion(tb,
-                                        Version.CURRENT) == null) {
+                        // current version
+                        if (tb instanceof LexedToken && TbVersionUtil.getOtherVersion(tb, Version.CURRENT) == null) {
                             LexedToken lt = (LexedToken) tb;
                             if (lt.getSequenceElement() instanceof Property) {
-                                referenceHandler.unsetPrimitiveFeature(oldVersion,
-                                        lt);
+                                Property prop = (Property) lt.getSequenceElement();
+                                boolean unused = true; 
+                                for (EObject modelElement : reference.getCorrespondingModelElements()) {
+                                    if (TbUtil.findTokensFor(modelElement, prop, Version.CURRENT).size() > 0) {
+                                        unused = false;
+                                    }
+                                }
+                                if (unused) {
+                                    referenceHandler.unsetPrimitiveFeature(oldVersion, lt);
+                                }
                             }
                         }
                     }
