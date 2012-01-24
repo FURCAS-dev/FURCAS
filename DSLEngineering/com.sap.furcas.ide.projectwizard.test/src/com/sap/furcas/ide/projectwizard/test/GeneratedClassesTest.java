@@ -13,15 +13,15 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 
 import com.sap.furcas.ide.projectwizard.util.CodeGenerationException;
-import com.sap.furcas.ide.projectwizard.util.CreateProject;
 import com.sap.furcas.ide.projectwizard.util.ProjectInfo;
 import com.sap.furcas.ide.projectwizard.util.SourceCodeFactory;
 import com.sap.furcas.ide.projectwizard.wizards.FurcasWizard;
@@ -56,10 +56,10 @@ public class GeneratedClassesTest {
     public void compileGeneratedClasses() throws IOException, IllegalArgumentException, SecurityException, CodeGenerationException, CoreException {
         ProjectInfo pi = new ProjectInfo();
         configureProjectInfo(pi);
-        CreateProject projectCreator = new CreateProject(pi);
-        IProject project = projectCreator.createProject(new NullProgressMonitor());
         FurcasWizard wizard = new FurcasWizard();
         wizard.structuredProcess(pi, new NullProgressMonitor());
+        IWorkspace workspace = ResourcesPlugin.getWorkspace();
+        IProject project = workspace.getRoot().getProject(pi.getProjectName());
         try {
             compileClasses(project);
         } finally {
