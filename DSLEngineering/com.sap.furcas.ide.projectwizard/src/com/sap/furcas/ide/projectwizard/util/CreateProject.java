@@ -8,6 +8,8 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.wizards.newresource.BasicNewResourceWizard;
 
 /**
  * This class is called by the doFinish() method of the Wizard. It creates the Language Project and the necessary files etc with
@@ -81,9 +83,7 @@ public class CreateProject {
         //
         monitor.setTaskName("Opening file for editing...");
         
-        // FIXME: Disabled because it prevents the this class from being used in headless mode and subsequently
-        //        from working in our hudson infrastructure.
-        //BasicNewResourceWizard.selectAndReveal(grammar, PlatformUI.getWorkbench().getActiveWorkbenchWindow());
+        BasicNewResourceWizard.selectAndReveal(grammar, PlatformUI.getWorkbench().getActiveWorkbenchWindow());
         monitor.worked(1);
         
         return dslProject;
