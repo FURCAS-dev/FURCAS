@@ -348,7 +348,9 @@ public class FurcasWizard extends Wizard implements INewWizard {
             try {
                 if (!pi.isLoadMetamodel()) {
                     // rebuild metamodel project so that there are no build problems on furcas project
-                    project.getReferencedProjects()[0].build(IncrementalProjectBuilder.FULL_BUILD, monitor);
+                    if (project.getReferencedProjects().length == 1) {
+                        project.getReferencedProjects()[0].build(IncrementalProjectBuilder.FULL_BUILD, monitor);
+                    }
                 }
                 project.build(IncrementalProjectBuilder.FULL_BUILD, monitor);
                 IFolder folder = project.getFolder("generated").getFolder("generated"); //$NON-NLS-1$ //$NON-NLS-2$
