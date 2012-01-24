@@ -24,6 +24,7 @@ import com.sap.furcas.ide.projectwizard.util.CodeGenerationException;
 import com.sap.furcas.ide.projectwizard.util.CreateProject;
 import com.sap.furcas.ide.projectwizard.util.ProjectInfo;
 import com.sap.furcas.ide.projectwizard.util.SourceCodeFactory;
+import com.sap.furcas.ide.projectwizard.wizards.FurcasWizard;
 import com.sun.tools.javac.Main;
 
 /**
@@ -35,7 +36,6 @@ import com.sun.tools.javac.Main;
  * @author Axel Uhl (D043530)
  * 
  */
-@Ignore
 public class GeneratedClassesTest {
 
     private static final String BIN_DIR_NAME = "bin";
@@ -56,9 +56,10 @@ public class GeneratedClassesTest {
     public void compileGeneratedClasses() throws IOException, IllegalArgumentException, SecurityException, CodeGenerationException, CoreException {
         ProjectInfo pi = new ProjectInfo();
         configureProjectInfo(pi);
-
         CreateProject projectCreator = new CreateProject(pi);
         IProject project = projectCreator.createProject(new NullProgressMonitor());
+        FurcasWizard wizard = new FurcasWizard();
+        wizard.structuredProcess(pi, new NullProgressMonitor());
         try {
             compileClasses(project);
         } finally {
@@ -241,7 +242,7 @@ public class GeneratedClassesTest {
         pi.setClassName("ExampleClass");
         pi.setFileExtension("dsl");
         pi.setLanguageName("Mydsl");
-        pi.setModelPath("new");
+        pi.setModelPath("/my.dsl.metamodel/model/Mydsl.ecore");
         pi.setNsURI("http://www.example.com/mydsl");
         pi.setProjectName("my.dsl");
         pi.setAutoResolve(false);
