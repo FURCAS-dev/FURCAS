@@ -56,8 +56,13 @@ public class GeneratedClassesTest {
     public void compileGeneratedClasses() throws IOException, IllegalArgumentException, SecurityException, CodeGenerationException, CoreException {
         ProjectInfo pi = new ProjectInfo();
         configureProjectInfo(pi);
+        
         FurcasWizard wizard = new FurcasWizard();
         wizard.structuredProcess(pi, new NullProgressMonitor());
+        if (wizard.isHadError()) {
+            fail("Wizard has ERRORs. See console output for details.");
+        }
+        
         IWorkspace workspace = ResourcesPlugin.getWorkspace();
         IProject project = workspace.getRoot().getProject(pi.getProjectName());
         try {
