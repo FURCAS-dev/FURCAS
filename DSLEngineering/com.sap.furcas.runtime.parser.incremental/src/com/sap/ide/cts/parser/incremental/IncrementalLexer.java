@@ -434,60 +434,36 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 
             AbstractToken oldTokenInCurrentBlock = getOtherVersion(tok, Version.CURRENT);
             int index = currentTextBlock.getSubNodes().indexOf(oldTokenInCurrentBlock);
-            // removeFromBlockConsistent(currentTextBlock,
-            // oldTokenInCurrentBlock);
 
             // fetch newly lexed token
             tok = firstNewToken(tok);
 
-            // System.out.println(tok.getValue());
             while (!canStopLexing()) {
                 addTokenIfNecessaryAndUpdateOffetsAndLengths(tok, currentTextBlock, index++);
-
                 makeOffsetRelativeToBlock(tok, tok.getParent());
 
                 // move to next new token
                 tok = nextNewToken();
-                // boolean
-                // referenceVersionsFromOldTokenInCurrentBlockToPreviousNewToken
-                // = false;
-                if (!oldTokenInCurrentBlock.equals(getOtherVersion(getConstructionLoc().getTok(), Version.CURRENT))) {
-                    // if lexing proceeded to next previous-version token switch
-                    // to this one in current version as well
-                    // and delete all CURRENT tokens that were read over during lexing
-                    Collection<AbstractToken> consumedTokens = removeAllOutdatedTokensFromCurrentVersion(oldTokenInCurrentBlock);
-                    for (Iterator<AbstractToken> it = consumedTokens.iterator(); it.hasNext();) {
-                        oldTokenInCurrentBlock = it.next();
-                        // oldTokenInCurrentBlock = (AbstractToken)
-                        // getOtherVersion(
-                        // constructionLoc.getTok(), Version.CURRENT);
-                        if (EcoreHelper.isAlive(oldTokenInCurrentBlock)
-                                && !oldTokenInCurrentBlock.getParent().equals(currentTextBlock)) {
-                            if (TbNavigationUtil.getSubNodesSize(currentTextBlock) == 0) {
-                                TbChangeUtil.delete(currentTextBlock);
-                            }
-                            currentTextBlock = oldTokenInCurrentBlock.getParent();
-                            changedBlocks.add(currentTextBlock);
-                            index = currentTextBlock.getSubNodes().indexOf(oldTokenInCurrentBlock);
-                        }
+                // if lexing proceeded to next previous-version token switch
+                // to this one in current version as well and delete all CURRENT tokens that were
+                // read over during lexing
+                Collection<AbstractToken> consumedTokens = removeAllOutdatedTokensFromCurrentVersion(oldTokenInCurrentBlock);
+                for (Iterator<AbstractToken> it = consumedTokens.iterator(); it.hasNext();) {
+                    oldTokenInCurrentBlock = it.next();
+                    if (EcoreHelper.isAlive(oldTokenInCurrentBlock)
+                            && !oldTokenInCurrentBlock.getParent().equals(currentTextBlock)) {
+                        currentTextBlock = oldTokenInCurrentBlock.getParent();
+                        changedBlocks.add(currentTextBlock);
+                        index = currentTextBlock.getSubNodes().indexOf(oldTokenInCurrentBlock);
                     }
-                    // removeFromBlockConsistent(currentTextBlock,
-                    // oldTokenInCurrentBlock);
-
-                } else {
-                    // referenceVersionsFromOldTokenInCurrentBlockToPreviousNewToken
-                    // = true;
                 }
-
-                // System.out.println(tok.getValue());
             }
             // make the last token relative as well
             if (!tok.isOffsetRelative()) {
                 makeOffsetRelativeToBlock(tok, currentTextBlock);
             }
             // delete old current version token as it won't be deleted in the
-            // cleanup
-            // due to its "current" version status
+            // cleanup due to its "current" version status
             if (oldTokenInCurrentBlock instanceof Eostoken) {
                 if (!wasReUsed(oldTokenInCurrentBlock)) {
                     TbChangeUtil.delete(oldTokenInCurrentBlock);
@@ -592,11 +568,11 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
         AbstractToken constructionLocToken = getOtherVersion(getConstructionLoc().getTok(), Version.CURRENT);
         ArrayList<AbstractToken> consumedTokens = new ArrayList<AbstractToken>(2);
         AbstractToken currentToken = oldTokenInCurrentBlock;
-        while (currentToken != null && !currentToken.equals(constructionLocToken)) {
+        
+        while (!currentToken.equals(constructionLocToken)) {
             AbstractToken deleteToken = currentToken;
             // need to navigate using previous version because current might
-            // have already been disconnected
-            // from the tree
+            // have already been disconnected from the tree
             currentToken = navigateToNextCURRENTTokenUsingPreviousVersion(currentToken);
 
             // the token may have been re-used but only when the lexer didn't
@@ -605,20 +581,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
             // constructionLocation
             if (!wasReUsed(deleteToken)) {
                 TextBlock deleteTokenParent = deleteToken.getParent();
-                // AbstractToken nextToken =
-                // TbNavigationUtil.nextToken(deleteToken);
-                // while(nextToken != null &&
-                // !nextToken.equals(oldTokenInCurrentBlock)) {
-                // //The new version of the deleteToken was already added to the
-                // block
-                // //has still the offset related to the deleteToken therefore
-                // we need
-                // //to add the offset to the token
-                // //which will be removed again by the call to updateOffsets
-                // nextToken.setOffset(nextToken.getOffset() +
-                // deleteToken.getLength());
-                // nextToken = TbNavigationUtil.nextToken(nextToken);
-                // }
+
                 TbChangeUtil.updateLengthAscending(deleteTokenParent, -deleteToken.getLength());
                 if (TbNavigationUtil.isFirstInSubTree(currentToken)) {
                     currentToken.getParent().setOffset(currentToken.getParent().getOffset() - deleteToken.getLength());
@@ -628,15 +591,15 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
                 }
 
                 TbChangeUtil.delete(deleteToken);
-                if (deleteTokenParent != null && TbNavigationUtil.getSubNodesSize(deleteTokenParent) == 0) {
+                if (TbNavigationUtil.getSubNodesSize(deleteTokenParent) == 0) {
                     changedBlocks.remove(deleteTokenParent);
                     TbChangeUtil.delete(deleteTokenParent);
                 }
-            }
-            if (currentToken != null) {
-                consumedTokens.add(currentToken);
+            } else {
+                consumedTokens.add(deleteToken);
             }
         }
+        consumedTokens.add(currentToken);
         return consumedTokens;
     }
 
