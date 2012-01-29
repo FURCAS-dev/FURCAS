@@ -5,19 +5,20 @@ import java.util.List;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 
 public interface LexerAdapter {
-	
-	List<? extends AbstractToken> moreTokens();
 
-	int getState(AbstractToken tok);
+    List<? extends AbstractToken> moreTokens();
 
-	void setState(int state);
+    int getState(AbstractToken tok);
 
-	/**
-	 * Needed to call back the {@link IncrementalLexer#nextChar()} to retrieve next char of stream.
-	 * @param incrementalLexer
-	 */
-	void setIncrementalLexer(IncrementalLexer incrementalLexer);
+    void setState(int state);
 
-	boolean hasErrors();
+    /**
+     * Needed to call back the {@link IncrementalLexer#nextChar()} to retrieve next char of stream.
+     * 
+     * @param incrementalLexer
+     */
+    void setIncrementalLexer(IncrementalLexer incrementalLexer);
+
+    boolean hasErrors();
 
 }

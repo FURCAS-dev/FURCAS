@@ -19,22 +19,16 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksFactory;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 
-
-
-
-
-
 public abstract class IncrementalRecognizer {
 
-	public static final String EOS = "EOS";
-	public static final String BOS = "BOS";
-	protected Bostoken bosRef;
-	protected Eostoken eosRef;
-	protected TextblocksFactory textblocksFactory = TextblocksFactory.eINSTANCE;
-	
+    public static final String EOS = "EOS";
+    public static final String BOS = "BOS";
+    protected Bostoken bosRef;
+    protected Eostoken eosRef;
+    protected TextblocksFactory textblocksFactory = TextblocksFactory.eINSTANCE;
+
     /**
-     * As the Beginning of Stream (BOS) token is always the first token in the
-     * root textblock this token is used here
+     * As the Beginning of Stream (BOS) token is always the first token in the root textblock this token is used here
      * 
      * @param root
      *            The root textblock of the document to lex
@@ -44,8 +38,7 @@ public abstract class IncrementalRecognizer {
     }
 
     /**
-     * As the End of Stream (EOS) token is always the last token in the root
-     * textblock this token is used here
+     * As the End of Stream (EOS) token is always the last token in the root textblock this token is used here
      * 
      * @param root
      *            The root textblock of the document to lex
@@ -53,82 +46,78 @@ public abstract class IncrementalRecognizer {
     protected void setEOSFromRoot(TextBlock root) {
         eosRef = (Eostoken) root.getSubNodes().get(root.getSubNodes().size() - 1);
     }
-	
-	/**
-	 * Find the next marked token within or after node.
-	 */
-	protected AbstractToken findNextRegion(DocumentNode node) {
-		if (isEOS(node) || (isToken(node) && marked((AbstractToken) node))) {
+
+    /**
+     * Find the next marked token within or after node.
+     */
+    protected AbstractToken findNextRegion(DocumentNode node) {
+        if (isEOS(node) || (isToken(node) && marked((AbstractToken) node))) {
             return (AbstractToken) node;
         }
-		if (node instanceof TextBlock
-				&& hasNestedChanges((TextBlock) node, Version.PREVIOUS)) {
+        if (node instanceof TextBlock && hasNestedChanges((TextBlock) node, Version.PREVIOUS)) {
             return findNextRegion(getSubNodeAt(((TextBlock) node), 0));
         }
-		if (node instanceof TextBlock
-				&& ((TextBlock) node).getParent() == null) {
-			// node is the parent block and there were no changes detected so
-			// return EOS which
-			// is always the last token within the Root Textblock
-			return eosRef;
-		}
+        if (node instanceof TextBlock && ((TextBlock) node).getParent() == null) {
+            // node is the parent block and there were no changes detected so
+            // return EOS which
+            // is always the last token within the Root Textblock
+            return eosRef;
+        }
 
-		return findNextRegion(nextSubtree(node));
-	}
-	
-	protected DocumentNode nextSubtree(DocumentNode node) {
-		TextBlock parent = node.getParent();
-		if (parent == null) {
-			// node is the root node so there is no further subtree
-			return eosRef;
-		}
-		if (isLastInSubTree(node)) {
-			while (parent.getParent() != null && isLastInSubTree(parent)) {
-				// its the last element, so traverse to the next subtree and
-				// find the first leaf there
-				parent = parent.getParent();
-			}
-			DocumentNode child = getNextInSubTree(parent);
-			return child;
-		} else {
-			List<? extends DocumentNode> parentSubNodes = getSubNodes(parent);
-			return parentSubNodes.get(parentSubNodes.indexOf(node) + 1);
-		}
-	}
-	
-	/**
-	 * This method should be overridden if a parser uses another token type for
-	 * eof/oes than -1
-	 * 
-	 * @return the token type representing end of stream
-	 */
-	protected int getEOSTokenType() {
-		return -1;
-	}
+        return findNextRegion(nextSubtree(node));
+    }
 
-	/**
-	 * This method should be overridden if a parser uses another token type for
-	 * bof/bes than -1
-	 * 
-	 * @return the token type representing beginning of stream
-	 */
-	protected int getBOSTokenType() {
-		return -2;
-	}
+    protected DocumentNode nextSubtree(DocumentNode node) {
+        TextBlock parent = node.getParent();
+        if (parent == null) {
+            // node is the root node so there is no further subtree
+            return eosRef;
+        }
+        if (isLastInSubTree(node)) {
+            while (parent.getParent() != null && isLastInSubTree(parent)) {
+                // its the last element, so traverse to the next subtree and
+                // find the first leaf there
+                parent = parent.getParent();
+            }
+            DocumentNode child = getNextInSubTree(parent);
+            return child;
+        } else {
+            List<? extends DocumentNode> parentSubNodes = getSubNodes(parent);
+            return parentSubNodes.get(parentSubNodes.indexOf(node) + 1);
+        }
+    }
 
-	protected static boolean hasNestedChanges(TextBlock node, Version reference) {
-		TextBlock otherVersion = getOtherVersion(node, reference);
-		if(otherVersion == null) {
-			//this means it is a new block which also means that the block is changed
-			return true;
-		} else {
-			return otherVersion.isChildrenChanged();
-		}
-	}
-	
-	protected static boolean wasReLexed(AbstractToken token) {
-		// TODO check if this is correct here
-		return token.isRelexingNeeded();
-	}
-	
+    /**
+     * This method should be overridden if a parser uses another token type for eof/oes than -1
+     * 
+     * @return the token type representing end of stream
+     */
+    protected int getEOSTokenType() {
+        return -1;
+    }
+
+    /**
+     * This method should be overridden if a parser uses another token type for bof/bes than -1
+     * 
+     * @return the token type representing beginning of stream
+     */
+    protected int getBOSTokenType() {
+        return -2;
+    }
+
+    protected static boolean hasNestedChanges(TextBlock node, Version reference) {
+        TextBlock otherVersion = getOtherVersion(node, reference);
+        if (otherVersion == null) {
+            // this means it is a new block which also means that the block is changed
+            return true;
+        } else {
+            return otherVersion.isChildrenChanged();
+        }
+    }
+
+    protected static boolean wasReLexed(AbstractToken token) {
+        // TODO check if this is correct here
+        return token.isRelexingNeeded();
+    }
+
 }

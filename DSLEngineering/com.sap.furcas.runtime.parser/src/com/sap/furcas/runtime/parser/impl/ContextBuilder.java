@@ -6,6 +6,7 @@ public interface ContextBuilder {
 
     /**
      * This can be used to add context elements from outside the parser.
+     * 
      * @param element
      * @param tags
      */

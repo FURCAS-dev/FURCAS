@@ -25,8 +25,6 @@ import com.sap.furcas.runtime.parser.IStreamIndexProvider;
 import com.sap.furcas.runtime.parser.ParsingError;
 import com.sap.furcas.runtime.parser.TextLocation;
 
-
-
 /**
  * Deciphers ANTLR3 error messages and creates an Error class. TODO use
  * externalized Strings an i18n.
@@ -35,188 +33,175 @@ import com.sap.furcas.runtime.parser.TextLocation;
  */
 public class ErrorMessageGenerator {
 
-	/**
-	 * Gets the parsing error.
-	 * 
-	 * @param e the exception
-	 * @param tokenNames the token names
-	 * 
-	 * @return the parsing error
-	 */
-	public static ParsingError getParsingError(RecognitionException e, String[] tokenNames) {
-	    
-//	    e.printStackTrace();
-	    
+    /**
+     * Gets the parsing error.
+     * 
+     * @param e the exception
+     * @param tokenNames the token names
+     * 
+     * @return the parsing error
+     */
+    public static ParsingError getParsingError(RecognitionException e, String[] tokenNames) {
+
+        // e.printStackTrace();
+
         String msg = null;
         ANTLR3LocationToken token = null;
         if (e.token instanceof ANTLR3LocationToken) {
             token = (ANTLR3LocationToken) e.token;
         }
-		if (e.input instanceof CharStream) { // Lexer Exception
-			if (e instanceof MismatchedTokenException) {
-				MismatchedTokenException mte = (MismatchedTokenException) e;
-				msg = "Mismatched character " + getCharErrorDisplay(e.c)
-						+ " expecting " + getCharErrorDisplay(mte.expecting);
-			} else if (e instanceof NoViableAltException) {
-//				NoViableAltException nvae = (NoViableAltException) e;
-				// for development, can add
-				// "decision=<<"+nvae.grammarDecisionDescription+">>"
-				// and "(decision="+nvae.decisionNumber+") and
-				// "state "+nvae.stateNumber
-				msg = "No viable alternative at character "
-						+ getCharErrorDisplay(e.c);
-			} else if (e instanceof EarlyExitException) {
-//				EarlyExitException eee = (EarlyExitException) e;
-				// for development, can add "(decision="+eee.decisionNumber+")"
-				msg = "Required (...)+ loop did not match anything at character "
-						+ getCharErrorDisplay(e.c);
-			} else if (e instanceof MismatchedNotSetException) {
-				MismatchedNotSetException mse = (MismatchedNotSetException) e;
-				msg = "Mismatched character " + getCharErrorDisplay(e.c)
-						+ " expecting set " + mse.expecting;
-			} else if (e instanceof MismatchedSetException) {
-				MismatchedSetException mse = (MismatchedSetException) e;
-				msg = "mismatched character " + getCharErrorDisplay(e.c)
-						+ " expecting set " + mse.expecting;
-			} else if (e instanceof MismatchedRangeException) {
-				MismatchedRangeException mre = (MismatchedRangeException) e;
-				msg = "Mismatched character " + getCharErrorDisplay(e.c)
-						+ " expecting set " + getCharErrorDisplay(mre.a) + ".."
-						+ getCharErrorDisplay(mre.b);
-			} else {
-				msg = "Unknown Exception";
-			}
-			
-		} else { //  Parser Exception
-			if (e instanceof MismatchedTokenException) {
-				MismatchedTokenException mte = (MismatchedTokenException) e;
-				String tokenName = "<unknown>";
-				if (mte.expecting == Token.EOF) {
-					tokenName = "EOF";
-				} else {
-				    if (tokenNames != null) {
-				        tokenName = tokenNames[mte.expecting];
-				    } else {
- 				        tokenName = "<Bug>";
-				    }
-					
-				}
-				msg = "Mismatched input " + getTokenErrorDisplay(e.token)
-						+ " expecting " + tokenName;
-			} else if (e instanceof MismatchedTreeNodeException) {
-				MismatchedTreeNodeException mtne = (MismatchedTreeNodeException) e;
-				String tokenName = "<unknown>";
-				if (mtne.expecting == Token.EOF) {
-					tokenName = "EOF";
-				} else {
-				    if (tokenNames != null) {
-					tokenName = tokenNames[mtne.expecting];
-				    } else {
-					tokenName = "<Bug>";
-				    }
-				}
-				msg = "Mismatched tree node: " + mtne.node + " expecting "
-						+ tokenName;
-			} else if (e instanceof NoViableAltException) {
-//				NoViableAltException nvae = (NoViableAltException) e;
-				// for development, can add
-				// "decision=<<"+nvae.grammarDecisionDescription+">>"
-				// and "(decision="+nvae.decisionNumber+") and
-				// "state "+nvae.stateNumber
-				msg = "No viable alternative at input "
-						+ getTokenErrorDisplay(e.token);
-			} else if (e instanceof EarlyExitException) {
-//				EarlyExitException eee = (EarlyExitException) e;
-				// for development, can add "(decision="+eee.decisionNumber+")"
-				msg = "Required (...)+ loop did not match anything at input "
-						+ getTokenErrorDisplay(e.token);
-			} else if (e instanceof MismatchedSetException) {
-				MismatchedSetException mse = (MismatchedSetException) e;
-				msg = "Mismatched input " + getTokenErrorDisplay(e.token)
-						+ " expecting set " + mse.expecting;
-			} else if (e instanceof MismatchedNotSetException) {
-				MismatchedNotSetException mse = (MismatchedNotSetException) e;
-				msg = "Mismatched input " + getTokenErrorDisplay(e.token)
-						+ " expecting set " + mse.expecting;
-			} else if (e instanceof FailedPredicateException) {
-				FailedPredicateException fpe = (FailedPredicateException) e;
-				msg = "Rule " + fpe.ruleName + " failed predicate: {"
-						+ fpe.predicateText + "}?";
-			} else {
-				msg = "Unknown Exception";
-			}
-		}
-		if (token != null) {
-		    return new ParsingError(msg, token);
-		} else {
-		    // Happens for lexer errors. Need to reconstruct the absolut index when we are running
-		    // in the incremental lexing mode
-		    int index = e.index;
-		    if (e.input instanceof IStreamIndexProvider) {
-		        index = ((IStreamIndexProvider) e.input).makeIndexAbsolute(index);
-		    }
-		    TextLocation location = new TextLocation(index, index , e.line, e.charPositionInLine, e.line, e.charPositionInLine);
-		    return new ParsingError(msg, location );
-		}
-	}
+        if (e.input instanceof CharStream) { // Lexer Exception
+            if (e instanceof MismatchedTokenException) {
+                MismatchedTokenException mte = (MismatchedTokenException) e;
+                msg = "Mismatched character " + getCharErrorDisplay(e.c) + " expecting " + getCharErrorDisplay(mte.expecting);
+            } else if (e instanceof NoViableAltException) {
+                // NoViableAltException nvae = (NoViableAltException) e;
+                // for development, can add
+                // "decision=<<"+nvae.grammarDecisionDescription+">>"
+                // and "(decision="+nvae.decisionNumber+") and
+                // "state "+nvae.stateNumber
+                msg = "No viable alternative at character " + getCharErrorDisplay(e.c);
+            } else if (e instanceof EarlyExitException) {
+                // EarlyExitException eee = (EarlyExitException) e;
+                // for development, can add "(decision="+eee.decisionNumber+")"
+                msg = "Required (...)+ loop did not match anything at character " + getCharErrorDisplay(e.c);
+            } else if (e instanceof MismatchedNotSetException) {
+                MismatchedNotSetException mse = (MismatchedNotSetException) e;
+                msg = "Mismatched character " + getCharErrorDisplay(e.c) + " expecting set " + mse.expecting;
+            } else if (e instanceof MismatchedSetException) {
+                MismatchedSetException mse = (MismatchedSetException) e;
+                msg = "mismatched character " + getCharErrorDisplay(e.c) + " expecting set " + mse.expecting;
+            } else if (e instanceof MismatchedRangeException) {
+                MismatchedRangeException mre = (MismatchedRangeException) e;
+                msg = "Mismatched character " + getCharErrorDisplay(e.c) + " expecting set " + getCharErrorDisplay(mre.a) + ".."
+                        + getCharErrorDisplay(mre.b);
+            } else {
+                msg = "Unknown Exception";
+            }
 
+        } else { // Parser Exception
+            if (e instanceof MismatchedTokenException) {
+                MismatchedTokenException mte = (MismatchedTokenException) e;
+                String tokenName = "<unknown>";
+                if (mte.expecting == Token.EOF) {
+                    tokenName = "EOF";
+                } else {
+                    if (tokenNames != null) {
+                        tokenName = tokenNames[mte.expecting];
+                    } else {
+                        tokenName = "<Bug>";
+                    }
+
+                }
+                msg = "Mismatched input " + getTokenErrorDisplay(e.token) + " expecting " + tokenName;
+            } else if (e instanceof MismatchedTreeNodeException) {
+                MismatchedTreeNodeException mtne = (MismatchedTreeNodeException) e;
+                String tokenName = "<unknown>";
+                if (mtne.expecting == Token.EOF) {
+                    tokenName = "EOF";
+                } else {
+                    if (tokenNames != null) {
+                        tokenName = tokenNames[mtne.expecting];
+                    } else {
+                        tokenName = "<Bug>";
+                    }
+                }
+                msg = "Mismatched tree node: " + mtne.node + " expecting " + tokenName;
+            } else if (e instanceof NoViableAltException) {
+                // NoViableAltException nvae = (NoViableAltException) e;
+                // for development, can add
+                // "decision=<<"+nvae.grammarDecisionDescription+">>"
+                // and "(decision="+nvae.decisionNumber+") and
+                // "state "+nvae.stateNumber
+                msg = "No viable alternative at input " + getTokenErrorDisplay(e.token);
+            } else if (e instanceof EarlyExitException) {
+                // EarlyExitException eee = (EarlyExitException) e;
+                // for development, can add "(decision="+eee.decisionNumber+")"
+                msg = "Required (...)+ loop did not match anything at input " + getTokenErrorDisplay(e.token);
+            } else if (e instanceof MismatchedSetException) {
+                MismatchedSetException mse = (MismatchedSetException) e;
+                msg = "Mismatched input " + getTokenErrorDisplay(e.token) + " expecting set " + mse.expecting;
+            } else if (e instanceof MismatchedNotSetException) {
+                MismatchedNotSetException mse = (MismatchedNotSetException) e;
+                msg = "Mismatched input " + getTokenErrorDisplay(e.token) + " expecting set " + mse.expecting;
+            } else if (e instanceof FailedPredicateException) {
+                FailedPredicateException fpe = (FailedPredicateException) e;
+                msg = "Rule " + fpe.ruleName + " failed predicate: {" + fpe.predicateText + "}?";
+            } else {
+                msg = "Unknown Exception";
+            }
+        }
+        if (token != null) {
+            return new ParsingError(msg, token);
+        } else {
+            // Happens for lexer errors. Need to reconstruct the absolut index
+            // when we are running
+            // in the incremental lexing mode
+            int index = e.index;
+            if (e.input instanceof IStreamIndexProvider) {
+                index = ((IStreamIndexProvider) e.input).makeIndexAbsolute(index);
+            }
+            TextLocation location = new TextLocation(index, index, e.line, e.charPositionInLine, e.line, e.charPositionInLine);
+            return new ParsingError(msg, location);
+        }
+    }
 
     /**
-	 * How should a token be displayed in an error message? The default is to
-	 * display just the text, but during development you might want to have a
-	 * lot of information spit out. Override in that case to use t.toString()
-	 * (which, for CommonToken, dumps everything about the token). This is
-	 * better than forcing you to override a method in your token objects
-	 * because you don't have to go modify your lexer so that it creates a new
-	 * Java type.
-	 * 
-	 * @param t the t
-	 * 
-	 * @return the token error display
-	 */
-	public static String getTokenErrorDisplay(Token t) {
-	    if (t!= null) {
-		String s = t.getText();
-		if (s == null) {
-			if (t.getType() == Token.EOF) {
-				s = "<EOF>";
-			} else {
-				s = "<" + t.getType() + ">";
-			}
-		}
-		s = s.replaceAll("\n", "\\\\n");
-		s = s.replaceAll("\r", "\\\\r");
-		s = s.replaceAll("\t", "\\\\t");
-		return "'" + s + "'";
-	    } else {
-	        return "<Bug2>";
-	    }
-	}
+     * How should a token be displayed in an error message? The default is to
+     * display just the text, but during development you might want to have a
+     * lot of information spit out. Override in that case to use t.toString()
+     * (which, for CommonToken, dumps everything about the token). This is
+     * better than forcing you to override a method in your token objects
+     * because you don't have to go modify your lexer so that it creates a new
+     * Java type.
+     * 
+     * @param t the t
+     * 
+     * @return the token error display
+     */
+    public static String getTokenErrorDisplay(Token t) {
+        if (t != null) {
+            String s = t.getText();
+            if (s == null) {
+                if (t.getType() == Token.EOF) {
+                    s = "<EOF>";
+                } else {
+                    s = "<" + t.getType() + ">";
+                }
+            }
+            s = s.replaceAll("\n", "\\\\n");
+            s = s.replaceAll("\r", "\\\\r");
+            s = s.replaceAll("\t", "\\\\t");
+            return "'" + s + "'";
+        } else {
+            return "<Bug2>";
+        }
+    }
 
-	/**
-	 * Gets the char error display.
-	 * 
-	 * @param c the c
-	 * 
-	 * @return the char error display
-	 */
-	public static String getCharErrorDisplay(int c) {
-		String s = String.valueOf((char) c);
-		switch (c) {
-		case Token.EOF:
-			s = "<EOF>";
-			break;
-		case '\n':
-			s = "\\n";
-			break;
-		case '\t':
-			s = "\\t";
-			break;
-		case '\r':
-			s = "\\r";
-			break;
-		}
-		return "'" + s + "'";
-	}
+    /**
+     * Gets the char error display.
+     * 
+     * @param c the c
+     * 
+     * @return the char error display
+     */
+    public static String getCharErrorDisplay(int c) {
+        String s = String.valueOf((char) c);
+        switch (c) {
+        case Token.EOF:
+            s = "<EOF>";
+            break;
+        case '\n':
+            s = "\\n";
+            break;
+        case '\t':
+            s = "\\t";
+            break;
+        case '\r':
+            s = "\\r";
+            break;
+        }
+        return "'" + s + "'";
+    }
 
 }

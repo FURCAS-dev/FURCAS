@@ -21,36 +21,30 @@ import com.sap.furcas.runtime.parser.InjectionOptionsBean;
 import com.sap.furcas.runtime.parser.ParsingError;
 import com.sap.furcas.runtime.parser.TextLocation;
 
-
 /**
  * provides basic functionality required in any Modelinjector
  */
 public abstract class AbstractModelInjector implements IInjectionHelper {
 
-    
-
     /** The model handler. */
     private IModelAdapter modelAdapter;
-
 
     /** static maintenance of element location mapping. */
     private final Map<Object, TextLocation> locationByElement = new HashMap<Object, TextLocation>();
 
-
     /** also relevant to subclasses */
     protected InjectionOptionsBean options;
-
 
     /** The error list. */
     private final List<ParsingError> errorList = new ArrayList<ParsingError>();
 
-    /*used for better error messages on mismatchedTokenExceptions*/
+    /* used for better error messages on mismatchedTokenExceptions */
     private final String[] parserTokens;
-
 
     /**
      * Instantiates a new tCS injector.
-     * @param parserTokens 
+     * 
+     * @param parserTokens
      * @param newTokenFactory must not be null
      * 
      * @param modelHandler the model handler
@@ -59,13 +53,17 @@ public abstract class AbstractModelInjector implements IInjectionHelper {
         this.parserTokens = parserTokens;
     }
 
-
-    /* (non-Javadoc)
-     * @see com.sap.mi.textual.grammar.impl.IModelInjector#reportError(java.lang.Exception)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * com.sap.mi.textual.grammar.impl.IModelInjector#reportError(java.lang.
+     * Exception)
      */
     @Override
     public void reportError(RecognitionException e) {
-        // TCS Handling of problem involves adding a Problem element to some separate "Problems" model
+        // TCS Handling of problem involves adding a Problem element to some
+        // separate "Problems" model
         // relying on ANTLR3 API for getting Exception messages
         RecognitionException re = e;
         ParsingError newError = ErrorMessageGenerator.getParsingError(re, parserTokens);
@@ -81,32 +79,32 @@ public abstract class AbstractModelInjector implements IInjectionHelper {
         errorList.add(newError);
     }
 
-
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see com.sap.mi.textual.grammar.impl.IModelInjector#getErrorList()
      */
     @Override
     public List<ParsingError> getErrorList() {
         return errorList;
     }
-    
+
     public Map<Object, TextLocation> getLocationsMap() {
         return locationByElement;
     }
-    
+
     /*
      * (non-Javadoc)
      * 
-     * @see com.sap.mi.textual.grammar.impl.IModelInjector#setLocation(java.lang.Object,
-     *      java.lang.String)
+     * @see
+     * com.sap.mi.textual.grammar.impl.IModelInjector#setLocation(java.lang.
+     * Object, java.lang.String)
      */
     @Override
     public void setLocation(Object modelElement, TextLocation location) {
-      
-            locationByElement.put(modelElement, location);
-        }
 
-
+        locationByElement.put(modelElement, location);
+    }
 
     /**
      * @param bean
@@ -114,7 +112,7 @@ public abstract class AbstractModelInjector implements IInjectionHelper {
     public void setOptions(InjectionOptionsBean optionsBean) {
         this.options = optionsBean;
     }
-    
+
     /**
      * 
      * @return
@@ -126,7 +124,5 @@ public abstract class AbstractModelInjector implements IInjectionHelper {
     public void setModelAdapter(IModelAdapter modelAdapter) {
         this.modelAdapter = modelAdapter;
     }
-    
 
- 
 }
