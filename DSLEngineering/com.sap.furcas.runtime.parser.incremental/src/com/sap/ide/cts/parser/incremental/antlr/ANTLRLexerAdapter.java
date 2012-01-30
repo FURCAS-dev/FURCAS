@@ -38,12 +38,6 @@ public class ANTLRLexerAdapter implements LexerAdapter {
         this.antlrLexer = antlrLexer;
     }
 
-    @Override
-    public int getState(AbstractToken tok) {
-        // State was already set in the moreTokens phase.
-        return tok.getState();
-    }
-
     /**
      * IMPORTANT: The returned token's offset is relative to the last construction location!!!
      */
@@ -177,12 +171,6 @@ public class ANTLRLexerAdapter implements LexerAdapter {
     public void setIncrementalLexer(IncrementalLexer incrementalLexer) {
         antlrLexer.setCharStream((ANTLRIncrementalLexerAdapter) incrementalLexer);
         this.incrementalLexer = incrementalLexer;
-    }
-
-    @Override
-    public void setState(int state) {
-        // TODO Auto-generated method stub
-
     }
 
     public Set<AbstractToken> getReusedTokens() {

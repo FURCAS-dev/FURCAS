@@ -43,9 +43,6 @@ import com.sap.ide.cts.parser.incremental.LexerAdapter;
  */
 public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements CharStream, TokenSource, IStreamIndexProvider {
 
-    public static final int eosTokenType = -1;
-    public static final int bosTokenType = -2;
-
     private boolean isLookingForward = false;
 
     private final LinkedHashMap<Token, AbstractToken> tokenToModelElement = new LinkedHashMap<Token, AbstractToken>();
@@ -62,7 +59,7 @@ public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements Ch
     }
 
     public ANTLRIncrementalLexerAdapter(LexerAdapter lexerAdapter, IModelElementInvestigator mi) {
-        super(lexerAdapter, mi, bosTokenType, eosTokenType);
+        super(lexerAdapter, mi);
     }
 
     @Override
@@ -134,7 +131,7 @@ public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements Ch
             localReadOffset -= oldLength;
         }
         if (isEOS(localReadToken)) {
-            return eosTokenType;
+            return getEOSTokenType();
         }
         return getSynchronizedValue(localReadToken).charAt(localReadOffset);
     }
@@ -296,16 +293,6 @@ public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements Ch
             return "BOS";
         }
         return getSynchronizedValue(token);
-    }
-
-    @Override
-    protected int getEOSTokenType() {
-        return eosTokenType;
-    }
-
-    @Override
-    protected int getBOSTokenType() {
-        return bosTokenType;
     }
 
     @Override

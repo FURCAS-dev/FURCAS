@@ -80,13 +80,11 @@ public class TextBlocksFactory {
     }
     
     public Bostoken createBOSToken() {
-        return ANTLRIncrementalLexerAdapter.createBOSToken(factory, version,
-                ANTLRIncrementalLexerAdapter.bosTokenType);
+        return ANTLRIncrementalLexerAdapter.createBOSToken(factory, version);
     }
 
     public Eostoken createEOSToken(int offset) {
-        Eostoken token = ANTLRIncrementalLexerAdapter.createEOSToken(factory, version,
-                ANTLRIncrementalLexerAdapter.eosTokenType);
+        Eostoken token = ANTLRIncrementalLexerAdapter.createEOSToken(factory, version);
         token.setOffset(offset);
         return token;
     }
