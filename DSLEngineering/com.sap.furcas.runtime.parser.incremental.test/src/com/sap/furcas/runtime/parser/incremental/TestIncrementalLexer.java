@@ -268,8 +268,7 @@ public class TestIncrementalLexer extends TextBlockTest {
 
         // add EOS
         Eostoken eos = IncrementalLexer.createEOSToken(
-                TextblocksFactory.eINSTANCE, Version.CURRENT,
-                ANTLRIncrementalLexerAdapter.eosTokenType);
+                TextblocksFactory.eINSTANCE, Version.CURRENT);
         eos.setOffset(5);
         nextTokens.add(eos);
 
@@ -378,8 +377,7 @@ public class TestIncrementalLexer extends TextBlockTest {
 
         // add EOS
         Eostoken eos = IncrementalLexer.createEOSToken(
-                TextblocksFactory.eINSTANCE, Version.CURRENT,
-                ANTLRIncrementalLexerAdapter.eosTokenType);
+                TextblocksFactory.eINSTANCE, Version.CURRENT);
         eos.setOffsetRelative(true);
         // lexer uses offset relative to last constructionlocation
         // so this has to be simulated here as well which is tok3
@@ -524,8 +522,7 @@ public class TestIncrementalLexer extends TextBlockTest {
 
         // add EOS
         Eostoken eos = IncrementalLexer.createEOSToken(
-                TextblocksFactory.eINSTANCE, Version.CURRENT,
-                ANTLRIncrementalLexerAdapter.eosTokenType);
+                TextblocksFactory.eINSTANCE, Version.CURRENT);
         eos.setOffsetRelative(true);
         // lexer uses offset relative to last constructionlocation
         // so this has to be simulated here as well which is tok3

@@ -92,7 +92,7 @@ public abstract class IncrementalRecognizer {
      * 
      * @return the token type representing end of stream
      */
-    protected int getEOSTokenType() {
+    protected static int getEOSTokenType() {
         return -1;
     }
 
@@ -101,7 +101,7 @@ public abstract class IncrementalRecognizer {
      * 
      * @return the token type representing beginning of stream
      */
-    protected int getBOSTokenType() {
+    protected static int getBOSTokenType() {
         return -2;
     }
 

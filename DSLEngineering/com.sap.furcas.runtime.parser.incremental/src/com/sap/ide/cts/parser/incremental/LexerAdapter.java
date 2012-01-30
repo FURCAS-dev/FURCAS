@@ -8,10 +8,6 @@ public interface LexerAdapter {
 
     List<? extends AbstractToken> moreTokens();
 
-    int getState(AbstractToken tok);
-
-    void setState(int state);
-
     /**
      * Needed to call back the {@link IncrementalLexer#nextChar()} to retrieve next char of stream.
      * 
