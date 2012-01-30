@@ -60,7 +60,6 @@ public class ANTLRIncrementalTokenStream extends CommonTokenStream implements IT
                 // set index to EOF
                 lastConsumed = Token.EOF_TOKEN;
                 lastConsumedModelElementToken = getCtsLexer().getTokenToModelElement().get(lastConsumed);
-                ;
             }
         }
     }

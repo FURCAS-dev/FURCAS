@@ -307,9 +307,11 @@ public class IncrementalParsingUtil {
             if (previous != null) {
                 Collection<EObject> affectedModelElements = new ArrayList<EObject>();
                 Collection<TextBlock> deleteTB = new ArrayList<TextBlock>();
-                for (TextBlock subBlock : previous.getSubBlocks()) {
-                    affectedModelElements.addAll(deletePreviousEmptyBlocks(subBlock));
-                    deleteTB.add(subBlock);
+                for (DocumentNode node : new ArrayList<DocumentNode>(original.getSubNodes())) {
+                    if (node instanceof TextBlock) {
+                        affectedModelElements.addAll(deletePreviousEmptyBlocks((TextBlock) node));
+                        deleteTB.add((TextBlock) node);
+                    }
                 }
                 for (TextBlock textBlock : deleteTB) {
                     affectedModelElements.addAll(deleteEmptyBlocks(textBlock));
@@ -326,9 +328,11 @@ public class IncrementalParsingUtil {
             if (next != null) {
                 Collection<EObject> affectedModelElements = new ArrayList<EObject>();
                 Collection<TextBlock> deleteTB = new ArrayList<TextBlock>();
-                for (TextBlock subBlock : new ArrayList<TextBlock>(next.getSubBlocks())) {
-                    affectedModelElements.addAll(deleteNextEmptyBlocks(subBlock));
-                    deleteTB.add(subBlock);
+                for (DocumentNode node : new ArrayList<DocumentNode>(original.getSubNodes())) {
+                    if (node instanceof TextBlock) {
+                        affectedModelElements.addAll(deleteNextEmptyBlocks((TextBlock) node));
+                        deleteTB.add((TextBlock) node);
+                    }
                 }
                 for (TextBlock textBlock : deleteTB) {
                     affectedModelElements.addAll(deleteEmptyBlocks(textBlock));
@@ -343,8 +347,10 @@ public class IncrementalParsingUtil {
         TextBlock tbDeletionCandidate = original;
         Collection<EObject> affectedModelElements = new ArrayList<EObject>();
         if (EcoreHelper.isAlive(original)) {
-            for (TextBlock subBlock : new ArrayList<TextBlock>(original.getSubBlocks())) {
-                affectedModelElements.addAll(deleteEmptyBlocks(subBlock));
+            for (DocumentNode node : new ArrayList<DocumentNode>(original.getSubNodes())) {
+                if (node instanceof TextBlock) {
+                    affectedModelElements.addAll(deleteEmptyBlocks((TextBlock) node));
+                }
             }
         }
         if (EcoreHelper.isAlive(original) && TbNavigationUtil.firstToken(tbDeletionCandidate) == null
