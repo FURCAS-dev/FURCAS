@@ -425,9 +425,9 @@ public class ParserTextBlocksHandler implements IParsingObserver {
         if (referenceLocation != null) {
             int absoluteLocation = ((ANTLR3LocationToken) referenceLocation).getStartIndex();
             int relativeLocation = absoluteLocation - TbUtil.getAbsoluteOffset(contextBlock);
-            for (AbstractToken tok : contextBlock.getTokens()) {
-                if (tok.getOffset() == relativeLocation) {
-                    return tok;
+            for (DocumentNode node : contextBlock.getSubNodes()) {
+                if (node.getOffset() == relativeLocation && node instanceof AbstractToken) {
+                    return (AbstractToken) node;
                 }
             }
         }

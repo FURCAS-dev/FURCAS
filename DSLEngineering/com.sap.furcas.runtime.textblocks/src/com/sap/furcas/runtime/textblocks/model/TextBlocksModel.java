@@ -658,17 +658,18 @@ public class TextBlocksModel {
     private void replaceInEmptyTree(String newText, TextBlock workingCopy) {
 	workingCopy.setLength(newText.length());
 
-	if (workingCopy.getTokens().size() == 2) {
+	if (workingCopy.getSubNodes().size() == 2) {
 	    TbReplacingHelper.createInitialToken(workingCopy, newText);
 	} else { // subnodes size != 2
-	    if (workingCopy.getTokens().size() != 3) {
+	    if (workingCopy.getSubNodes().size() != 3) {
 		throw new IllegalArgumentException(
 			"Method only works for textBlocks of length 0 if only BOS and EOS, or BOS, an empty token, and EOS are present.");
 	    }
 	}
 	// change the middle token between BOS and EOS
-	workingCopy.getTokens().get(1).setLength(newText.length());
-	workingCopy.getTokens().get(1).setValue(newText);
+	AbstractToken tok = (AbstractToken) workingCopy.getSubNodes().get(1);
+	tok.setLength(newText.length());
+	tok.setValue(newText);
 	workingCopy.setLength(newText.length());
 	// set BOS offset
 	workingCopy.getTokens().get(workingCopy.getTokens().size() - 1).setOffset(newText.length());
@@ -927,9 +928,6 @@ public class TextBlocksModel {
 	 * 
 	 */
     private Bostoken getStartToken() {
-	if (rootBlock.getTokens().size() <= 0) {
-	    throw new IllegalStateException("TextBlocksModel is in illegal state, root block contains no tokens!");
-	}
 	if (!(rootBlock.getSubNodes().get(0) instanceof Bostoken)) {
 	    throw new IllegalStateException("TextBlocksModel is in illegal state, first token not BOS!");
 	}

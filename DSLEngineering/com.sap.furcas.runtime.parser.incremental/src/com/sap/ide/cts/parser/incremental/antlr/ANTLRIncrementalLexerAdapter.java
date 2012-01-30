@@ -3,6 +3,7 @@ package com.sap.ide.cts.parser.incremental.antlr;
 import static com.sap.furcas.runtime.textblocks.modifcation.TbMarkingUtil.isBOS;
 import static com.sap.furcas.runtime.textblocks.modifcation.TbMarkingUtil.isEOS;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 import org.antlr.runtime.CharStream;
@@ -45,7 +46,7 @@ public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements Ch
 
     private boolean isLookingForward = false;
 
-    private final LinkedHashMap<Token, AbstractToken> tokenToModelElement = new LinkedHashMap<Token, AbstractToken>();
+    private final HashMap<Token, AbstractToken> tokenToModelElement = new LinkedHashMap<Token, AbstractToken>();
 
     /**
      * This map is used as for lookups on which model element was created for which token because the standard token
@@ -54,7 +55,7 @@ public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements Ch
      * 
      * @return
      */
-    public LinkedHashMap<Token, AbstractToken> getTokenToModelElement() {
+    public HashMap<Token, AbstractToken> getTokenToModelElement() {
         return tokenToModelElement;
     }
 

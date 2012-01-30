@@ -671,60 +671,36 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
      * @param oldVersion
      */
     private void deleteElementsForRemovedSubBlocks(TextBlock oldVersion) {
-        if (EcoreHelper.isAlive(oldVersion)) {
-            TextBlock reference = TbVersionUtil.getOtherVersion(oldVersion, Version.REFERENCE);
-            if (reference != null) {
-                for (TextBlock tb : reference.getSubBlocks()) {
-                    // delete if there is no current version and the template
-                    // was
-                    // not reference only
-                    if (TbVersionUtil.getOtherVersion(tb, Version.CURRENT) == null) {
-                        deleteElementsForRemovedSubBlocks(tb);
-                        if (tb.getType() != null && tb.getType() != null) {
-                            if (!TcsUtil.isReferenceOnly(tb.getType())) {
-                                // FIXME: Delete only the first element as
-                                // this is
-                                // the one the tb is responsible for
-                                // However, this should be separated by
-                                // having a
-                                // separate assoc for
-                                // responsible elements and such elements
-                                // that were
-                                // resolved from somewhere else,
-                                // such as property inits
-                                for (EObject ro : new ArrayList<EObject>(tb.getCorrespondingModelElements())) {
-                                    if (EcoreHelper.isAlive((ro))) {
-                                        EcoreUtil.delete(ro, true);
-                                    }
-                                }
-                            } else {
-                                // Only unset features that are at the
-                                // boundary to referenceOnly elements
-                                if (!TcsUtil.isReferenceOnly(reference.getType())) {
+        TextBlock reference = TbVersionUtil.getOtherVersion(oldVersion, Version.REFERENCE);
+        if (!EcoreHelper.isAlive(oldVersion) || reference == null) {
+            return;
+        }
+        for (DocumentNode node : reference.getSubNodes()) {
+            if (TbVersionUtil.getOtherVersion(node, Version.CURRENT) != null) {
+                continue; // only delete if there is no current version
+            }
+            if (node instanceof TextBlock) {
+                TextBlock tb = (TextBlock) node;
 
-                                }
-                            }
+                deleteElementsForRemovedSubBlocks(tb);
+                if (tb.getType() != null && tb.getType() != null && !TcsUtil.isReferenceOnly(tb.getType())) {
+                    for (EObject ro : new ArrayList<EObject>(tb.getCorrespondingModelElements())) {
+                        if (EcoreHelper.isAlive((ro))) {
+                            EcoreUtil.delete(ro, true);
                         }
+                    }
+
+                }
+            } else if (node instanceof LexedToken && node.getSequenceElement() instanceof Property ) {
+                Property prop = (Property) node.getSequenceElement();
+                boolean unused = true;
+                for (EObject modelElement : reference.getCorrespondingModelElements()) {
+                    if (TbUtil.findTokensFor(modelElement, prop, Version.CURRENT).size() > 0) {
+                        unused = false;
                     }
                 }
-                for (AbstractToken tb : reference.getTokens()) {
-                    // unset the corresponding value of the token if there is no
-                    // current version
-                    if (tb instanceof LexedToken && TbVersionUtil.getOtherVersion(tb, Version.CURRENT) == null) {
-                        LexedToken lt = (LexedToken) tb;
-                        if (lt.getSequenceElement() instanceof Property) {
-                            Property prop = (Property) lt.getSequenceElement();
-                            boolean unused = true;
-                            for (EObject modelElement : reference.getCorrespondingModelElements()) {
-                                if (TbUtil.findTokensFor(modelElement, prop, Version.CURRENT).size() > 0) {
-                                    unused = false;
-                                }
-                            }
-                            if (unused) {
-                                referenceHandler.unsetPrimitiveFeature(oldVersion, lt);
-                            }
-                        }
-                    }
+                if (unused) {
+                    referenceHandler.unsetPrimitiveFeature(oldVersion, (LexedToken) node);
                 }
             }
         }
