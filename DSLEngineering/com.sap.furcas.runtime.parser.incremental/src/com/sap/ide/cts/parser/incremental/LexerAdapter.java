@@ -10,8 +10,6 @@ public interface LexerAdapter {
 
     /**
      * Needed to call back the {@link IncrementalLexer#nextChar()} to retrieve next char of stream.
-     * 
-     * @param incrementalLexer
      */
     void setIncrementalLexer(IncrementalLexer incrementalLexer);
 

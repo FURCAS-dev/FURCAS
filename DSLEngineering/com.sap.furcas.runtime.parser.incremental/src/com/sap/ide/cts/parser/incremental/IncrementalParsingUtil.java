@@ -1,7 +1,5 @@
 package com.sap.ide.cts.parser.incremental;
 
-import static com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil.getOtherVersion;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -30,7 +28,6 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
-import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.parser.IModelInjector;
@@ -41,8 +38,6 @@ import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
-import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
-import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategy.ReuseType;
 
 public class IncrementalParsingUtil {
 
@@ -55,83 +50,6 @@ public class IncrementalParsingUtil {
 
         public EReference compositeFeatureAssoc;
         public boolean isParentFirstEnd;
-    }
-
-    /**
-     * Computes the re-use type relationship between the given {@link TextBlock oldVersion} and {@link TextBlockProxy newVersion}
-     * which may either be INSERT, MERGE, COMPLETE or DELETE.
-     * 
-     * @param oldVersion
-     * @param newVersion
-     * @return
-     */
-    static ReuseType getReuseType(TextBlock oldVersion, TextBlockProxy newVersion) {
-        ReuseType type = ReuseType.INSERT;
-        boolean oldInbetween = false;
-        for (Object subNode : newVersion.getSubNodes()) {
-            if (subNode instanceof LexedToken) {
-                if (TbVersionUtil.getOtherVersion((AbstractToken) subNode, Version.REFERENCE) != null) {
-                    oldInbetween = true;
-                }
-            } else if (subNode instanceof TextBlockProxy) {
-                ReuseType subType = getReuseType(oldVersion, (TextBlockProxy) subNode);
-                if (subType.equals(ReuseType.MERGE) || subType.equals(ReuseType.COMPLETE)) {
-                    oldInbetween = true;
-                }
-            }
-        }
-        if (oldInbetween) {
-            type = ReuseType.MERGE;
-        }
-        return type;
-    }
-
-    /**
-     * TODO this is only an initial version and needs to be improved currently a tb is considered to be re-used if all tokens were
-     * in the same tb before
-     */
-    static boolean isTBEqual(TextBlock oldVersion, TextBlockProxy newVersion) {
-        if (oldVersion != null && oldVersion.getType() != null && oldVersion.getType() != null) {
-            if (newVersion.getTemplate() != null) {
-                // ensure templates were the same
-                if (newVersion.getTemplate().equals(oldVersion.getType())) {
-                    // // if there is a difference in token size the tb has
-                    // // changed!
-                    // if (TbNavigationUtil.getSubNodesSize(oldVersion) !=
-                    // newVersion
-                    // .getSubNodes().size()) {
-                    // // TODO check only non omitted token here!
-                    // return false;
-                    // }
-                    for (Object subNode : newVersion.getSubNodes()) {
-                        if (subNode instanceof LexedToken) {
-                            // IF there is a token that was not there
-                            // before
-                            // the tb changed!
-                            if (TbVersionUtil.getOtherVersion((AbstractToken) subNode, Version.REFERENCE) == null) {
-                                return false;
-                            }
-                        }
-                    }
-                    if (getOtherVersion(oldVersion, Version.REFERENCE) != null) {
-                        for (Object subNode : getOtherVersion(oldVersion, Version.REFERENCE).getSubNodes()) {
-                            if (subNode instanceof LexedToken) {
-                                // IF there is a token that was
-                                // there before and
-                                // was deleted
-                                // the tb changed!
-                                if (TbVersionUtil.getOtherVersion((AbstractToken) subNode, Version.CURRENT) == null) {
-                                    return false;
-                                }
-                            }
-                        }
-                    }
-                    return true;
-                }
-            }
-        }// if the templates do not match
-         // the tb changed!
-        return false;
     }
 
     static AbstractToken firstToken(Object node) {
