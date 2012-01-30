@@ -645,7 +645,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
         boolean startable = isStartable(lastToken);
         // eos has no special state so it is always considered the same state as the previous token
         boolean sameState = lastToken instanceof Eostoken
-                || lastToken.getType() == previousToken(getConstructionLoc().getTok(), Version.PREVIOUS).getType();
+                || lastToken.getState() == previousToken(getConstructionLoc().getTok(), Version.PREVIOUS).getState();
         // System.out.println( ""+ isEmpty +','+constructionLoc.getOffset()
         // +','+notMarked +','+startable +','+ sameState);
         boolean canStop = isEmpty && atEndOfConstruction && notMarked && startable && sameState;
