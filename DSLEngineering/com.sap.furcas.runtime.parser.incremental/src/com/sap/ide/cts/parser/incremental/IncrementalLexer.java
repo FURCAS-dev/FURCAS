@@ -336,7 +336,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
         readToken = constructionToken = tok;
         constructionOffset = readOffset = 0;
         readLoc = new TokenLocation(readToken, readOffset);
-        setConstructionLoc(new TokenLocation(constructionToken, constructionOffset));
+        this.constructionLoc = new TokenLocation(constructionToken, constructionOffset);
         tokenList = new ArrayList<AbstractToken>();
     }
 
@@ -741,65 +741,12 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
     }
 
     /**
-     * Incremental run-time service provides this to batch lexer to read from lexemes in the previous version of the tokenstream.
-     */
-    protected int nextChar() {
-        while (readOffset == (asString(readToken)).length() && !isEOS(readToken)) {
-            readToken = nextToken(readToken, Version.PREVIOUS);
-            readOffset = 0;
-            readLoc.setTok(readToken);
-            readLoc.setOffset(readOffset);
-        }
-        if (isEOS(readToken)) {
-            return -1;
-        }
-        return readToken.getValue().charAt(readOffset++);
-    }
-
-    /**
-     * The last textblock handled by {@link #nextNewlyLexedToken(AbstractToken)}
-     */
-    private TextBlock currentChangedTextBlock;
-
-    /**
-     * Returns the next token behind the given <code>token</code>.
-     * 
-     * @param token
-     * @return
-     */
-    protected AbstractToken nextNewlyLexedToken(AbstractToken token) {
-        if (changedBlocks.size() == 0) {
-            return eosRef;
-        }
-        if (token == null) {
-            currentChangedTextBlock = changedBlocks.get(0);
-            return currentChangedTextBlock.getTokens().get(0);
-        }
-        int currentTokenIndex = currentChangedTextBlock.getTokens().indexOf(token);
-        if (currentTokenIndex < currentChangedTextBlock.getTokens().size() - 1) {
-            return currentChangedTextBlock.getTokens().get(currentTokenIndex + 1);
-        } else {
-            int indexTb = 0;
-            if ((indexTb = changedBlocks.indexOf(currentChangedTextBlock)) < changedBlocks.size() - 1) {
-                currentChangedTextBlock = changedBlocks.get(indexTb + 1);
-                return currentChangedTextBlock.getTokens().get(0);
-            } else {
-                return eosRef;
-            }
-        }
-    }
-
-    /**
      * Needs to be overwritten by parser specific subclass to be able to extract lexeme from parser specific token represntations.
      * 
      * @param token
      * @return
      */
     protected abstract String asString(AbstractToken token);
-
-    public void setConstructionLoc(TokenLocation constructionLoc) {
-        this.constructionLoc = constructionLoc;
-    }
 
     public TokenLocation getConstructionLoc() {
         return constructionLoc;
