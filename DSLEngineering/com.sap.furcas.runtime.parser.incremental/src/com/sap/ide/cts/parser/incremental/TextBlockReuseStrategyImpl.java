@@ -47,7 +47,6 @@ import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
 import com.sap.furcas.runtime.textblocks.shortprettyprint.ShortPrettyPrinter;
-import com.sap.ide.cts.parser.Activator;
 
 /**
  * @see TextBlockReuseStrategy
@@ -397,97 +396,74 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
      * in the same tb before
      */
     private boolean isTBEqual(TextBlock oldVersion, TextBlockProxy newVersion) {
-        if (oldVersion != null && oldVersion.getType() != null && oldVersion.getType() != null) {
-            if (newVersion.getTemplate() != null) {
-                // ensure templates were the same
-                if (newVersion.getTemplate().equals(oldVersion.getType())) {
-                    // if (newVersion.getTemplate().getMetaReference() instanceof StructureType) {
-                    // // a structure type has no identity so we have to
-                    // // re-create it every time
-                    // return false;
-                    // }
-                    // if(TcsUtil.isReferenceOnly(newVersion.getTemplate())) {
-                    // //a reference only textblock does not need to be retained
-                    // return false;
-                    // }
-                    // // if there is a difference in token size the tb has
-                    // // changed!
-                    // if (TbNavigationUtil.getSubNodesSize(oldVersion) !=
-                    // newVersion
-                    // .getSubNodes().size()) {
-                    // // TODO check only non omitted token here!
-                    // return false;
-                    // }
-                    boolean canBeReused = true;
-                    ArrayList<LexedToken> newTokens = new ArrayList<LexedToken>();
-                    boolean containsTokens = false;
-                    for (Object subNode : newVersion.getSubNodes()) {
-                        if (subNode instanceof LexedToken) {
-                            containsTokens = true;
-                            LexedToken lexedToken = (LexedToken) subNode;
-                            // IF there is a token that was not there
-                            // before
-                            if (TbVersionUtil.getOtherVersion(lexedToken, Version.REFERENCE) == null) {
-                                // if the token is not an optional
-                                // token
-                                // the textblock changed
-                                newTokens.add(lexedToken);
-                                if (lexedToken.getSequenceElement() != null) {
-                                    canBeReused &= checkIsDefinedOptional(lexedToken) || checkIsInCollectionFeature(lexedToken)
-                                            || isSeparator(lexedToken) || checkIsInAlternative(lexedToken);
-                                } else {
-                                    Activator.logWarning("Token " + lexedToken + " has no referrenced"
-                                            + " SequenceElement set. Incremental parsing might not work correctly!"
-                                            + "Check for inconsistent parser & mapping model for language:"
-                                            + newVersion.getTemplate().getConcreteSyntax().getName());
-                                }
-                            }
-                        }
-                    }
-                    ArrayList<LexedToken> oldTokens = new ArrayList<LexedToken>();
-                    if (getOtherVersion(oldVersion, Version.REFERENCE) != null) {
-                        for (Object subNode : getOtherVersion(oldVersion, Version.REFERENCE).getSubNodes()) {
-                            if (subNode instanceof LexedToken) {
-                                // IF there is a token that was
-                                // there before
-                                if (TbVersionUtil.getOtherVersion((AbstractToken) subNode, Version.CURRENT) == null) {
-                                    // if the token is not an
-                                    // optional token
-                                    // the textblock changed
-                                    oldTokens.add((LexedToken) subNode);
-                                    canBeReused &= checkIsDefinedOptional((AbstractToken) subNode)
-                                            || checkIsInCollectionFeature((AbstractToken) subNode)
-                                            || isSeparator((AbstractToken) subNode)
-                                            || checkIsInAlternative((AbstractToken) subNode);
-                                }
-                            }
-                        }
-                    }
-                    if (!containsTokens) {
-                        // The TB does not have any tokens itself, so make
-                        // its reuse dependent on its inner TBs.
-                        canBeReused = false;
-                        for (Object subNode : newVersion.getSubNodes()) {
-                            if (subNode instanceof TextBlockProxy) {
-                                TextBlock original = getOriginalVersion((TextBlockProxy) subNode, oldVersion);
-                                canBeReused |= isTBEqual(original, (TextBlockProxy) subNode);
-                            }
+        if (oldVersion == null || !newVersion.getTemplate().equals(oldVersion.getType())) {
+            return false; // templates have to be the same same
+        }    
 
-                        }
+        boolean canBeReused = true;
+        boolean containsTokens = false;
+        
+        ArrayList<String> newTokens = new ArrayList<String>();
+        for (Object subNode : newVersion.getSubNodes()) {
+            if (subNode instanceof LexedToken) {
+                containsTokens = true;
+                // IF there is a token that was not there before
+                if (TbVersionUtil.getOtherVersion((LexedToken) subNode, Version.REFERENCE) == null) {
+                    // if the token is not an optional token the textblock changed
+                    newTokens.add(((LexedToken) subNode).getValue());
+                    canBeReused &= checkIsDefinedOptional((LexedToken) subNode)
+                            || checkIsInCollectionFeature((LexedToken) subNode)
+                            || isSeparator((LexedToken) subNode)
+                            || checkIsInAlternative((LexedToken) subNode);
 
-                    }
-                    if (newTokens.size() == getTokenSize(newVersion) && getTokenSize(oldVersion) > oldTokens.size()) {
-                        // there are ONLY new tokens in the new block AND
-                        // there are still tokens in the oldVersion block
-                        // so oldVersion block will be reused later and a
-                        // newVersion block should be considered as new
-                        return false;
-                    }
-                    return canBeReused;
                 }
             }
-        }// if the templates do not match
-         // the tb changed!
+        }
+        ArrayList<String> oldTokens = new ArrayList<String>();
+        if (getOtherVersion(oldVersion, Version.REFERENCE) != null) {
+            for (Object subNode : getOtherVersion(oldVersion, Version.REFERENCE).getSubNodes()) {
+                if (subNode instanceof LexedToken) {
+                    // IF there is a token that was there before
+                    if (TbVersionUtil.getOtherVersion((AbstractToken) subNode, Version.CURRENT) == null) {
+                        // if the token is not an optional token the textblock changed
+                        oldTokens.add(((LexedToken) subNode).getValue());
+                        canBeReused &= checkIsDefinedOptional((AbstractToken) subNode)
+                                || checkIsInCollectionFeature((AbstractToken) subNode)
+                                || isSeparator((AbstractToken) subNode)
+                                || checkIsInAlternative((AbstractToken) subNode);
+                    }
+                }
+            }
+        }
+        if (!containsTokens) {
+            // The TB does not have any tokens itself, so make
+            // its reuse dependent on its inner TBs.
+            canBeReused = false;
+            for (Object subNode : newVersion.getSubNodes()) {
+                if (subNode instanceof TextBlockProxy) {
+                    TextBlock original = getOriginalVersion((TextBlockProxy) subNode, oldVersion);
+                    canBeReused |= isTBEqual(original, (TextBlockProxy) subNode);
+                }
+            }
+        }
+        if (newTokens.size() == getTokenSize(newVersion) && getTokenSize(oldVersion) > oldTokens.size()) {
+            // there are ONLY new tokens in the new block AND
+            // there are still tokens in the oldVersion block
+            // so oldVersion block will be reused later and a
+            // newVersion block should be considered as new
+            return false;
+        }
+        if (canBeReused) {
+            return true;
+        } else if (newTokens.size() == oldTokens.size()) {
+            // check if the overlapping tokens correspond to each other.
+            for (int i=0; i<newTokens.size(); i++) {
+                if (!newTokens.get(i).equals(oldTokens.get(i))) {
+                    return false;
+                }
+            }
+            return true;
+        }
         return false;
     }
 
