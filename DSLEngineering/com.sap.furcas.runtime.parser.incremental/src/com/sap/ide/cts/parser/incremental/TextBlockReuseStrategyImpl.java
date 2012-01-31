@@ -403,14 +403,14 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
         boolean canBeReused = true;
         boolean containsTokens = false;
         
-        ArrayList<String> newTokens = new ArrayList<String>();
+        ArrayList<AbstractToken> newTokens = new ArrayList<AbstractToken>();
         for (Object subNode : newVersion.getSubNodes()) {
             if (subNode instanceof LexedToken) {
                 containsTokens = true;
                 // IF there is a token that was not there before
                 if (TbVersionUtil.getOtherVersion((LexedToken) subNode, Version.REFERENCE) == null) {
                     // if the token is not an optional token the textblock changed
-                    newTokens.add(((LexedToken) subNode).getValue());
+                    newTokens.add(((LexedToken) subNode));
                     canBeReused = canBeReused &&
                              ( checkIsDefinedOptional((LexedToken) subNode)
                             || checkIsInCollectionFeature((LexedToken) subNode)
@@ -420,14 +420,14 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
                 }
             }
         }
-        ArrayList<String> oldTokens = new ArrayList<String>();
+        ArrayList<AbstractToken> oldTokens = new ArrayList<AbstractToken>();
         if (getOtherVersion(oldVersion, Version.REFERENCE) != null) {
             for (Object subNode : getOtherVersion(oldVersion, Version.REFERENCE).getSubNodes()) {
                 if (subNode instanceof LexedToken) {
                     // IF there is a token that was there before
                     if (TbVersionUtil.getOtherVersion((AbstractToken) subNode, Version.CURRENT) == null) {
                         // if the token is not an optional token the textblock changed
-                        oldTokens.add(((LexedToken) subNode).getValue());
+                        oldTokens.add(((LexedToken) subNode));
                         canBeReused = canBeReused &&
                                  ( checkIsDefinedOptional((AbstractToken) subNode)
                                 || checkIsInCollectionFeature((AbstractToken) subNode)
@@ -460,7 +460,10 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
         } else if (newTokens.size() == oldTokens.size()) {
             // check if the overlapping tokens correspond to each other.
             for (int i=0; i<newTokens.size(); i++) {
-                if (!newTokens.get(i).equals(oldTokens.get(i))) {
+                AbstractToken oTok = oldTokens.get(i);
+                AbstractToken nTok = newTokens.get(i);
+                if (!oTok.getSequenceElement().equals(nTok.getSequenceElement()) &&
+                        !oTok.getValue().equals(nTok.getValue())) {
                     return false;
                 }
             }
