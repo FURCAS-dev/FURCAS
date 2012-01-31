@@ -411,10 +411,11 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
                 if (TbVersionUtil.getOtherVersion((LexedToken) subNode, Version.REFERENCE) == null) {
                     // if the token is not an optional token the textblock changed
                     newTokens.add(((LexedToken) subNode).getValue());
-                    canBeReused &= checkIsDefinedOptional((LexedToken) subNode)
+                    canBeReused = canBeReused &&
+                             ( checkIsDefinedOptional((LexedToken) subNode)
                             || checkIsInCollectionFeature((LexedToken) subNode)
                             || isSeparator((LexedToken) subNode)
-                            || checkIsInAlternative((LexedToken) subNode);
+                            || checkIsInAlternative((LexedToken) subNode));
 
                 }
             }
@@ -427,10 +428,11 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
                     if (TbVersionUtil.getOtherVersion((AbstractToken) subNode, Version.CURRENT) == null) {
                         // if the token is not an optional token the textblock changed
                         oldTokens.add(((LexedToken) subNode).getValue());
-                        canBeReused &= checkIsDefinedOptional((AbstractToken) subNode)
+                        canBeReused = canBeReused &&
+                                 ( checkIsDefinedOptional((AbstractToken) subNode)
                                 || checkIsInCollectionFeature((AbstractToken) subNode)
                                 || isSeparator((AbstractToken) subNode)
-                                || checkIsInAlternative((AbstractToken) subNode);
+                                || checkIsInAlternative((AbstractToken) subNode));
                     }
                 }
             }
@@ -442,7 +444,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
             for (Object subNode : newVersion.getSubNodes()) {
                 if (subNode instanceof TextBlockProxy) {
                     TextBlock original = getOriginalVersion((TextBlockProxy) subNode, oldVersion);
-                    canBeReused |= isTBEqual(original, (TextBlockProxy) subNode);
+                    canBeReused = canBeReused || isTBEqual(original, (TextBlockProxy) subNode);
                 }
             }
         }
