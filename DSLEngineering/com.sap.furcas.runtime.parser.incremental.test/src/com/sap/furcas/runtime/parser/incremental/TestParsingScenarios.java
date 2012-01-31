@@ -455,7 +455,7 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
 
         // close the sub-block with a }. This will fix the parsing error and lead
         // to the instantiation of a sub-block
-        model.replace(model.getLength()-1, 0, "}");
+        model.replace(model.getLength()-1, 0, " }"); //FIXME: Fails when we simply replace with "}"
         triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
