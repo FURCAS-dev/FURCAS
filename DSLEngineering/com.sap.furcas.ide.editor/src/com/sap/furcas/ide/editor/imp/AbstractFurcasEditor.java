@@ -49,8 +49,8 @@ import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.runtime.common.exceptions.ParserInstantiationException;
 import com.sap.furcas.runtime.parser.PartitionAssignmentHandler;
+import com.sap.furcas.runtime.parser.impl.DefaultPartitionAssignmentHandlerImpl;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
-import com.sap.ide.cts.parser.incremental.DefaultPartitionAssignmentHandlerImpl;
 import com.sap.ide.cts.parser.incremental.IncrementalParserFacade;
 
 /**

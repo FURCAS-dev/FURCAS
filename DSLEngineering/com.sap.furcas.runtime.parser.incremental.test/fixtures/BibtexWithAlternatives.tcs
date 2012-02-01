@@ -1,0 +1,58 @@
+syntax BibtexWithAlternatives {
+ 
+  primitiveTemplate identifier for String default using NAME
+  : value = "%token%"
+  ;
+  
+  primitiveTemplate stringSymbol for String using STRING
+  : value = "unescapeString(%token%)",
+    serializer="\'%value%\'"
+  ; 
+         
+  template BibTextFile main
+  : "Library:"
+    (isDefined(name) ? name {{hasName=true}} : {{hasName=false}})
+  	(isDefined(entries) ? "Entries:" "{" entries "}")
+  ; 
+  
+  template BibTextEntry abstract;
+  
+  template Article
+  : [[ "@article" "{"      
+  		key ","
+  		"author" "=" "{" author{referenceBy="name", separator="and",
+  			 					lookupScope="OCL:BibText::Author.allInstances()"}
+  			 		 "}"
+  	    "}"
+  	 | "article"
+  	]]    
+  ;
+  
+  template Author
+  : [[ name 
+     | "alternative" 
+     | [[ "nestedAlternativeA"  | "nestedAlternativeB" ]]
+     | "nested" (isDefined(name) ? "name" name : [[ "keywordA" | "keywordB" ]] )
+     | (isDefined(name) ? "name" name ) "noElse" 
+    ]]
+  ;
+ 
+  -- place keywords here (optional, seldom used)
+
+  -- place symbols here (optional)
+        symbols {
+                coma            = "," : leftNone, rightSpace;
+                lcurly          = "{" : leftSpace, rightSpace;
+                rcurly          = "}" : leftSpace, rightSpace;
+        }
+
+  -- place operatorLists here (optional)
+
+  -- place tokens here (optional, except for COMMENT)
+
+  omitted token COMMENT : endOfLine(start = "//");
+
+  -- place lexer here (optional)
+
+}
+  

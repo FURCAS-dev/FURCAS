@@ -22,12 +22,6 @@ public class MockLexerAdapter extends ANTLRLexerAdapter {
     private int nextTokenIndex = 0;
 
     @Override
-    public int getState(AbstractToken tok) {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
     public List<AbstractToken> moreTokens() {
         // simulate token consumption on callbacked lexer
         callbackLexer.consume();
@@ -37,12 +31,6 @@ public class MockLexerAdapter extends ANTLRLexerAdapter {
     @Override
     public void setIncrementalLexer(IncrementalLexer incrementalLexer) {
         this.callbackLexer = (ANTLRIncrementalLexerAdapter) incrementalLexer;
-    }
-
-    @Override
-    public void setState(int state) {
-        // TODO Auto-generated method stub
-
     }
 
     public void setNextTokens(List<AbstractToken> nextTokens) {

@@ -14,7 +14,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -918,7 +917,7 @@ public class TcsUtil {
      *             in case <code>alternativeChoices</code> doesn't contain enough elements for the choices to be made
      *             during the descent
      */
-    public static boolean wasExecuted(ContextTemplate base, EList<Integer> alternativeChoices, SequenceElement searchFor) {
+    public static boolean wasExecuted(ContextTemplate base, List<Integer> alternativeChoices, SequenceElement searchFor) {
         Sequence sequence = base.getTemplateSequence();
         return sequence != null && wasExecuted(sequence, new LinkedList<Integer>(alternativeChoices), searchFor);
     }
@@ -1025,6 +1024,19 @@ public class TcsUtil {
             return ft.getFunctionSequence();
         }
         return null;
+    }
+    
+    public static <T extends EObject> Collection<T> getElementsOfType(EObject syntaxOrTemplate, Class<T> typeToFilterFor) {
+        Collection<T> result = new LinkedList<T>();
+        for (Iterator<EObject> i=syntaxOrTemplate.eAllContents(); i.hasNext(); ) {
+            EObject o = i.next();
+            if (typeToFilterFor.isInstance(o)) {
+                @SuppressWarnings("unchecked")
+                T t = (T) o;
+                result.add(t);
+            }
+        }
+        return result;
     }
 
 }

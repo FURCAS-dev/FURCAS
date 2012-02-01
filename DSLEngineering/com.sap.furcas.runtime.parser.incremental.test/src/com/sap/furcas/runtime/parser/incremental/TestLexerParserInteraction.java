@@ -9,7 +9,7 @@ import org.antlr.runtime.Lexer;
 import org.antlr.runtime.Token;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.junit.Ignore;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
@@ -25,9 +25,10 @@ import com.sap.furcas.runtime.parser.ParserFactory;
 import com.sap.furcas.runtime.parser.PartitionAssignmentHandler;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.parser.impl.ParserScope;
-import com.sap.furcas.runtime.parser.incremental.testbase.MockPartitionAssignmentHandler;
+import com.sap.furcas.runtime.parser.testbase.MockPartitionAssignmentHandler;
 import com.sap.furcas.runtime.parser.textblocks.observer.ParserTextBlocksHandler;
 import com.sap.furcas.runtime.parser.textblocks.observer.TextBlockProxy;
+import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
@@ -100,7 +101,6 @@ public class TestLexerParserInteraction extends FixtureProvidingTextBlockTest {
     }
 
     @Test
-    @Ignore("Still not working on EMF")
     public void testTokenRelocationWithStub() {
         ResourceSet resourceSet = ResourceTestHelper.createResourceSet();
         Resource transientParsingResource = ResourceTestHelper.createTransientResource(resourceSet);
@@ -147,9 +147,11 @@ public class TestLexerParserInteraction extends FixtureProvidingTextBlockTest {
         // make sur the fillBuffer() method is caled before modeifications are
         // made to the textblock model
         input.getTokens();
+        
+        String templateURI = EcoreUtil.getURI(TcsUtil.getMainClassTemplate(parserScope.getSyntax())).toString();
 
         // simulate main parse rule
-        tbh.notifyEnterRule(null);
+        tbh.notifyEnterRule(templateURI);
         // simulate consumption of "syntax" token
         AbstractToken nextToken = TbNavigationUtil.nextToken(bostoken);
         tbh.notifyTokenConsume(getInverseToken(input, nextToken));
@@ -163,7 +165,7 @@ public class TestLexerParserInteraction extends FixtureProvidingTextBlockTest {
         nextToken = TbNavigationUtil.nextToken(nextToken);
         tbh.notifyTokenConsume(getInverseToken(input, nextToken));
         // descend into sub parse rule for template
-        tbh.notifyEnterRule(null);
+        tbh.notifyEnterRule(templateURI);
         // simulate consumption of "template" token
         nextToken = TbNavigationUtil.nextToken(nextToken);
         tbh.notifyTokenConsume(getInverseToken(input, nextToken));

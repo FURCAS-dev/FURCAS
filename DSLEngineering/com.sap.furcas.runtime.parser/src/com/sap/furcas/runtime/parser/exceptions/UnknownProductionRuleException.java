@@ -9,7 +9,8 @@
 package com.sap.furcas.runtime.parser.exceptions;
 
 /**
- * to be thrown when parser is called passing a production rule that does not exist in the Parser.
+ * to be thrown when parser is called passing a production rule that does not
+ * exist in the Parser.
  */
 public class UnknownProductionRuleException extends Exception {
 
@@ -18,9 +19,9 @@ public class UnknownProductionRuleException extends Exception {
     public UnknownProductionRuleException(String message) {
         super(message);
     }
-    
+
     public UnknownProductionRuleException(String message, Throwable cause) {
         super(message, cause);
     }
-    
+
 }

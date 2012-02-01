@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -45,6 +44,7 @@ import com.sap.furcas.runtime.parser.impl.ModelUpdaterRegistry;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.syntaxprovider.SyntaxProvider;
 import com.sap.furcas.runtime.tcs.PropertyArgumentUtil;
+import com.sap.furcas.runtime.tcs.TcsUtil;
 
 /**
  * Manages the relationship between {@link ConcreteSyntax FURCAS syntaxes} with their OCL-based
@@ -245,12 +245,13 @@ public class SyntaxRegistry implements BundleActivator, EcorePackageLoadListener
         }
     }
     
+    @Override
     public AbstractFurcasOCLBasedModelUpdater getModelUpdater(URI propertyOrInjectorActionURI) {
         return updatersForPropertiesAndInjectorActions.get(propertyOrInjectorActionURI);
     }
 
     private Collection<Property> getPropertiesWithQuery(ConcreteSyntax syntax) {
-        Collection<Property> result = getElementsOfType(syntax, Property.class);
+        Collection<Property> result = TcsUtil.getElementsOfType(syntax, Property.class);
         for (Iterator<Property> i = result.iterator(); i.hasNext(); ) {
             Property p = i.next();
             if (PropertyArgumentUtil.getLookupScopePArg(p) == null) {
@@ -261,20 +262,7 @@ public class SyntaxRegistry implements BundleActivator, EcorePackageLoadListener
     }
 
     private Collection<InjectorAction> getInjectorActions(ConcreteSyntax syntax) {
-        return getElementsOfType(syntax, InjectorAction.class);
-    }
-    
-    private <T extends EObject> Collection<T> getElementsOfType(ConcreteSyntax syntax, Class<T> typeToFilterFor) {
-        Collection<T> result = new LinkedList<T>();
-        for (Iterator<EObject> i=syntax.eAllContents(); i.hasNext(); ) {
-            EObject o = i.next();
-            if (typeToFilterFor.isInstance(o)) {
-                @SuppressWarnings("unchecked")
-                T t = (T) o;
-                result.add(t);
-            }
-        }
-        return result;
+        return TcsUtil.getElementsOfType(syntax, InjectorAction.class);
     }
 
     /**

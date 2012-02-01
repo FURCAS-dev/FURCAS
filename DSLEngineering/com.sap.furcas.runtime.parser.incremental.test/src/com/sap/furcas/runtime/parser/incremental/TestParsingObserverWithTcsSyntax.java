@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Block;
@@ -36,7 +35,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.parser.tcs.TCSParserFactory;
 import com.sap.furcas.runtime.parser.ParserFactory;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
-import com.sap.furcas.runtime.parser.incremental.testbase.MockPartitionAssignmentHandler;
+import com.sap.furcas.runtime.parser.testbase.MockPartitionAssignmentHandler;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.testutils.EMFTextBlocksModelElementFactory;
@@ -274,7 +273,6 @@ public class TestParsingObserverWithTcsSyntax {
      * correctly set to thw new value;
      */
     @Test
-    @Ignore("Failing. Reference not set to new value")
     public void testParseBibTextReplaceReference() throws Exception {
         File[] metamodels = { ScenarioFixtureData.BIBTEXT1_METAMODEL, ScenarioFixtureData.BIBTEXT_METAMODEL };
         ResourceSet metamodelResources = loadResourceSet(metamodels);
@@ -305,7 +303,7 @@ public class TestParsingObserverWithTcsSyntax {
         // replace a reference that referred to the "." token with one that
         // refers to the "{" token
         tbModel = new TextBlocksModel(currentVersionTb);
-        tbModel.replace(tcsContent.indexOf("."), 1, "{");
+        tbModel.replace(tcsContent.indexOf(","), 1, "{");
         TextBlock currentVersionTbNew = incrementalParserFacade.parseIncrementally(currentVersionTb);
         // textBlock shouldn't have changed
         assertEquals(currentVersionTb, currentVersionTb);
@@ -317,7 +315,7 @@ public class TestParsingObserverWithTcsSyntax {
         ClassTemplate article2 = (ClassTemplate) syntaxObject2.getTemplates().get(3);
         assertEquals(article, article2);
         Block b = (Block) article2.getTemplateSequence().getElements().get(2);
-        LiteralRef lit = (LiteralRef) b.getBlockSequence().getElements().get(3);
+        LiteralRef lit = (LiteralRef) b.getBlockSequence().getElements().get(1);
         assertEquals("{", lit.getReferredLiteral().getValue());
     }
 	    

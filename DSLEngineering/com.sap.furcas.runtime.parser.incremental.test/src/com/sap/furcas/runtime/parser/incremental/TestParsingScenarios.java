@@ -17,7 +17,6 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
@@ -43,23 +42,45 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
         setupParser(LANGUAGE, TCS, METAMODELS);
     }
     
+    protected ParsingResult triggerParserAndExpectReuse() {
+        ParsingResult result = super.triggerParser();
+        // Within this testclass we expect full re-use of all root elements 
+        if (result.oldRoot != null) {
+            assertEquals(result.oldRoot, result.newRoot);
+        }
+        return result;
+    }
+    
     @Test
     public void testInitialParse() throws Exception {
         model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
     
-    @Ignore("TB merge produces invalid textblock")
+    @Test
+    public void testReparseWithoutModificationsSimple() throws Exception {
+        model.replace(0, 0, "{ { /*inner*/ } }");
+        triggerParserAndExpectReuse();
+        Object initialRootObject = IncrementalParserFacade.getParsingResult(model.getRoot());
+        
+        // Just set the same text again. Everything is the same, thus re-use can be expected
+        model.replace(0, model.getLength(), "{ { /*inner*/ } }");
+        triggerParserAndExpectReuse();
+        
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+        assertTrue(initialRootObject == IncrementalParserFacade.getParsingResult(model.getRoot()));
+    }
+    
     @Test
     public void testReparseWithoutModifications() throws Exception {
         model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
-        triggerParser();
+        triggerParserAndExpectReuse();
         Object initialRootObject = IncrementalParserFacade.getParsingResult(model.getRoot());
         
         // Just set the same text again. Everything is the same, thus re-use can be expected
         model.replace(0, model.getLength(), "{ def a; use a; { def b; use b; } }");
-        triggerParser();
+        triggerParserAndExpectReuse();
         
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
         assertTrue(initialRootObject == IncrementalParserFacade.getParsingResult(model.getRoot()));
@@ -68,52 +89,52 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
     @Test
     public void testAddWhiteSpaces() throws Exception {
         model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
-        triggerParser();
+        triggerParserAndExpectReuse();
         model.replace(0, 0, " \n  "); // add whitespace at the beginning
         model.replace(model.getLength(), 0, "  \n "); // add whitespace at the end
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
     
     @Test
     public void testAddWhiteSpacesWithoutIntermediateParse() throws Exception {
         model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
-        triggerParser();
+        triggerParserAndExpectReuse();
         model.replace(0, 0, "  \n "); // add whitespace at the beginning
         model.replace(model.getLength(), 0, " \n  "); // add whitespace at the end
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
     
     @Test
     public void testAddNewBlockBefore() throws Exception {
         model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
-        triggerParser();
+        triggerParserAndExpectReuse();
         // add new block before the existing sub-block
         model.replace("{ def a; use a; ".length(), 0, "{ use a; }");
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
     
     @Test
     public void testAddNewBlockAfter() throws Exception {
         model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
-        triggerParser();
+        triggerParserAndExpectReuse();
         // add new block after the existing sub-block
         model.replace("{ def a; use a; { def b; use b; }".length(), 0, "{ use a; }");
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
     
     @Test
     public void testAddNewBlockBeforeAndAfter() throws Exception {
         model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
-        triggerParser();
+        triggerParserAndExpectReuse();
         // add new block after the existing sub-block
         model.replace("{ def a; use a; { def b; use b; }".length(), 0, "{ use a; }");
         // add new block before the existing sub-block
         model.replace("{ def a; use a; ".length(), 0, "{ use a; }");
-        triggerParser();
+        triggerParserAndExpectReuse();
 
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
@@ -121,11 +142,11 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
     @Test
     public void testAddBlockCommentsAroundBlock() throws Exception {
         model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
-        triggerParser();
+        triggerParserAndExpectReuse();
         // quote an existing block
         model.replace("{ def a; use a; ".length(), 0, "/*");
         model.replace(model.getLength()-2, 0, "*/"); // -2 to insert just after the } closing the inner block
-        triggerParser();
+        triggerParserAndExpectReuse();
         
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
@@ -133,127 +154,241 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
     @Test
     public void testAddBlockCommentsAroundBlockWithIntermediateErrors() throws Exception {
         model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
-        triggerParser();
+        triggerParserAndExpectReuse();
         
         // quote an existing block in a partial fashion. Will lead to parsing errors
         model.replace("{ def a; use a; ".length(), 0, "/*");
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() != Version.REFERENCE);
         
         // now fix the error
         model.replace(model.getLength()-1, 0, "*/");
-        triggerParser();
+        triggerParserAndExpectReuse();
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+    }
+    
+    @Test
+    public void testAddLineComment() throws Exception {
+        model.replace(0, 0, "{ \n def a; use a; \n { def b; use b; }\n { def c; use c; }}");
+        triggerParserAndExpectReuse();
+        
+        model.replace("{ \n def a; use a; \n ".length(), 0, "//"); // before the { opening the first inner block
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
     
     @Test
     public void testAddLineComments() throws Exception {
         model.replace(0, 0, "{ \n def a; use a; \n { \n def b; use b; \n } \n}");
-        triggerParser();
+        triggerParserAndExpectReuse();
         
         model.replace("{ \n def a; use a; \n { \n def b; use b; \n".length(), 0, "//"); // before the } closing the inner block
-        model.replace("{ \n def a; use a; \n { \n".length(), 0, "//"); // before the conent of the inner block
+        model.replace("{ \n def a; use a; \n { \n".length(), 0, "//"); // before the content of the inner block
         model.replace("{ \n def a; use a; \n".length(), 0, "//"); // before the { opening the inner block
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
     
     @Test
     public void testAddLineCommentsWithIntermediateErrors() throws Exception {
         model.replace(0, 0, "{ \n def a; use a; \n { \n def b; use b; \n } \n}");
-        triggerParser();
+        triggerParserAndExpectReuse();
         
         // same as testcase above, but parser tirggered in-between 
         
         model.replace("{ \n def a; use a; \n { \n def b; use b; \n".length(), 0, "//"); // before the } closing the inner block
-        triggerParser();
+        triggerParserAndExpectReuse();
         model.replace("{ \n def a; use a; \n { \n".length(), 0, "//"); // before the conent of the inner block
-        triggerParser();
+        triggerParserAndExpectReuse();
         model.replace("{ \n def a; use a; \n".length(), 0, "//"); // before the { opening the inner block
-        triggerParser();
+        triggerParserAndExpectReuse();
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+    }
+    
+    @Test
+    public void testInsertInBlock() throws Exception{
+        model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
+        triggerParserAndExpectReuse();
+
+        // Insert a new definition in the root block
+        model.replace("{ def a; ".length(), 0, "def new;");
+        triggerParserAndExpectReuse();
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+        
+        // Insert a new usage in the sub block
+        model.replace("{ def a; use a; { def b; ".length(), 0, "use new;");
+        triggerParserAndExpectReuse();
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+    }
+    
+    @Test
+    public void testInsertAtBlockBoundary() throws Exception{
+        model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
+        triggerParserAndExpectReuse();
+
+        // Insert a new definition at the end of the root block
+        model.replace("{ def a; use a; { def b; use b; } ".length(), 0, "def last; ");
+        triggerParserAndExpectReuse();
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+        
+        // Insert a new definition at the end of the sub block
+        model.replace("{ def a; use a; { def b; use b; ".length(), 0, "def last; ");
+        triggerParserAndExpectReuse();
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+        
+        // Insert a new definition at the beginning of the sub block
+        model.replace("{ def a; use a; {".length(), 0, "def first;");
+        triggerParserAndExpectReuse();
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+        
+        // Insert a new definition at the beginning of the root block
+        model.replace("{".length(), 0, "def first;");
+        triggerParserAndExpectReuse();
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+    }
+    
+    @Test
+    public void testInsertCharactersInBlock() throws Exception{
+        model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
+        triggerParserAndExpectReuse();
+
+        // We want to insert a new definition (def new;) but will add it via  
+        // many little steps, similar to a potential editor session
+        model.replace("{ def a".length(), 0, " ");
+        triggerParserAndExpectReuse();
+        model.replace("{ def a".length(), 0, " ");
+        triggerParserAndExpectReuse();
+        model.replace("{ def a ".length(), 0, "de");
+        triggerParserAndExpectReuse();
+        model.replace("{ def a de".length(), 0, "f");
+        triggerParserAndExpectReuse();
+        model.replace("{ def a".length(), 0, ";");
+        triggerParserAndExpectReuse();
+        model.replace("{ def a; def ".length(), 0, "n");
+        triggerParserAndExpectReuse();
+        model.replace("{ def a; def n".length(), 0, "ew");
+        triggerParserAndExpectReuse();
+        
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
     
     @Test
     public void testDeleteBlock() throws Exception {
         model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
-        triggerParser();
+        triggerParserAndExpectReuse();
 
         // Replace block contents with comment
         model.replace("{ def a; use a; {".length(), " def b; use b;".length(), " /* now empty */");
-        triggerParser();
+        triggerParserAndExpectReuse();
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+        
+        // Remove everything from empty up to the end (but not including the } belonging to the outer block}
+        model.replace("{ def a; use a;".length(), model.getLength() - "{ def a; use a;".length() -1, "");
+        triggerParserAndExpectReuse();
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+    }
+    
+    @Test
+    public void testDeleteBlockWithIntermediateErrors() throws Exception {
+        model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
+        triggerParserAndExpectReuse();
+
+        // Replace block contents with comment
+        model.replace("{ def a; use a; {".length(), " def b; use b;".length(), " /* now empty */");
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
         
         // Remove everything from empty up to the end (including the } belonging to the outer block}
         // Will lead to parsing errors because outer block is not closed
         model.replace("{ def a; use a;".length(), model.getLength() - "{ def a; use a;".length() , "");
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() != Version.REFERENCE);
         
         // add missing quote. Parsing errors should go away
         model.replace(model.getLength(), 0, "}"); 
-        triggerParser();
+        triggerParserAndExpectReuse();
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+    }
+    
+    @Test
+    public void testDeleteInBlock() throws Exception {
+        model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
+        triggerParserAndExpectReuse();
+        
+        model.replace("{ def a; use a; { def b; ".length(), "use b;".length(), "");
+        triggerParserAndExpectReuse();
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+        
+        model.replace("{ def a; use a; { ".length(), "def b;".length(), "");
+        triggerParserAndExpectReuse();
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+        
+        model.replace("{ def a; ".length(), "use a;".length(), "");
+        triggerParserAndExpectReuse();
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+        
+        model.replace("{ ".length(), "def a;".length(), "");
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
     
     @Test
     public void testEnterAndRemoveParsingErrors() throws Exception {
         model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
-        triggerParser();
+        triggerParserAndExpectReuse();
 
         model.replace(0, "{ def a; ".length(), " BUG  ");
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() != Version.REFERENCE);
         
         // re-add the required starting {
         model.replace(0, " BUG".length(), " { ");
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
     
     @Test
     public void testEnterAndRemoveParsingErrorsViaComment() throws Exception {
         model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
-        triggerParser();
+        triggerParserAndExpectReuse();
 
         model.replace(0, "{ def a; ".length(), " BUG  ");
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() != Version.REFERENCE);
 
         // Add newline after BUG
         model.replace(" BUG".length(), 0, "\n");
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() != Version.REFERENCE);
 
         // Fix the bug by adding a comment before the problematic region
         model.replace(0, 0, "//");
         model.replace("// BUG ".length(), 0, "{"); // re add after commented line
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
         
         // Remove the comment again. Parsing problem should be back
         model.replace(0, "// ".length(), "");
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() != Version.REFERENCE);
         
         // Re-add the comment. Everything should be fine again.
         model.replace(0, 0, "//");
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
     
-    @Ignore("Failing with StringIndexOutofBoundsException")
     @Test
     public void testEnterAndRemoveLexerErrors() throws Exception {
         model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
-        triggerParser();
+        triggerParserAndExpectReuse();
 
         model.replace("{ def a; use".length(), 0, "&%$ Unlexable");
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() != Version.REFERENCE);
         
         model.replace("{ def a; use".length(), "&%$ Unlexable".length(), " /* Removed unlexable cruft */ ");
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
     
@@ -261,24 +396,24 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
     @Test
     public void testMergeTwoBlocks() throws Exception {
         model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
-        triggerParser();
+        triggerParserAndExpectReuse();
 
         // remove the { which starts the second block
         model.replace("{ def a; use a; ".length(), "{".length(), " ");
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() != Version.REFERENCE);
 
         // remove the last }. This will fix the parsing error and the two
         // blocks are finnally merged.
         model.replace(model.getLength()-1, "}".length(), " ");
-        triggerParser();
+        triggerParser(); // can't expect reuse. Don't know which block will survive
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
     
     @Test
     public void testMergeTwoBlocksInstant() throws Exception {
         model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
-        triggerParser();
+        triggerParserAndExpectReuse();
 
         // this is the same as #testMergeTwoBlocks() but without intermediate errors
 
@@ -286,7 +421,7 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
         // which originally belonged to the outer block
         model.replace("{ def a; use a; ".length(), "{".length(), " ");
         model.replace(model.getLength()-1, "}".length(), " ");
-        triggerParser();
+        triggerParser(); // can't expect reuse. Don't know which block will survive
         
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
@@ -294,7 +429,7 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
     @Test
     public void testMergeTwoBlocksInstant2() throws Exception {
         model.replace(0, 0, "{ def a; use a; { def b; use b; } }");
-        triggerParser();
+        triggerParserAndExpectReuse();
 
         // this is the same as #testMergeTwoBlocksInstant() but
         // now the inner bracket is removed.
@@ -303,7 +438,7 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
         // which originally belonged to the inner block
         model.replace("{ def a; use a; ".length(), "{".length(), " ");
         model.replace(model.getLength()-"} }".length(), "}".length(), " ");
-        triggerParser();
+        triggerParserAndExpectReuse();
         
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
@@ -311,38 +446,56 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
     @Test
     public void testSplitTwoBlocks() throws Exception {
         model.replace(0, 0, "{ def a; use a; def b; use b; }");
-        triggerParser();
+        triggerParserAndExpectReuse();
 
         // enter { after use a; to open a sub block
         model.replace("{ def a; use a; ".length(), 0, "{");
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() != Version.REFERENCE);
 
         // close the sub-block with a }. This will fix the parsing error and lead
         // to the instantiation of a sub-block
-        model.replace(model.getLength()-1, 0, "}");
-        triggerParser();
+        model.replace(model.getLength()-1, 0, " }"); //FIXME: Fails when we simply replace with "}"
+        triggerParserAndExpectReuse();
+        assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
+    }
+    
+    @Test
+    public void testSplitTwoBlocksInner() throws Exception {
+        model.replace(0, 0, "{ def a; use a; def b; use b; }");
+        triggerParserAndExpectReuse();
+
+        // enter { after def a; to open a sub block
+        model.replace("{ def a; ".length(), 0, "{");
+        triggerParserAndExpectReuse();
+        assertTrue(model.getRoot().getVersion() != Version.REFERENCE);
+
+        // close the sub-block with a }. This is similar to the testcase above,
+        // but we make sure the created subblock lies within the 
+        // root block and not at its boundary
+        model.replace("{ def a; { use a;".length(), 0, "}");
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
     
     @Test
     public void testMergeTwoTokens() throws Exception {
         model.replace(0, 0, "{ def Double; }");
-        triggerParser();
+        triggerParserAndExpectReuse();
 
         // add space
         model.replace("{ def Double".length(), 0, " ");
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
         
         // add new identifier after the space
         model.replace("{ def Double ".length(), 0, "Name");
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() != Version.REFERENCE);
         
         // merge the two tokens into one by removing the space
         model.replace("{ def Double".length(), 1, "");
-        triggerParser();
+        triggerParserAndExpectReuse();
         
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
@@ -350,16 +503,16 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
     @Test
     public void testSplitToken() throws Exception {
         model.replace(0, 0, "{ def DoubleName; }");
-        triggerParser();
+        triggerParserAndExpectReuse();
 
         // split token via space
         model.replace("{ def Double".length(), 0, " ");
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() != Version.REFERENCE);
         
         // fix error by morphing the token fragment into a valid definition
         model.replace("{ def Double".length(), 0, "; def");
-        triggerParser();
+        triggerParserAndExpectReuse();
         
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
@@ -367,16 +520,16 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
     @Test
     public void testSplitToken2() throws Exception {
         model.replace(0, 0, "{ def DoubleName; }");
-        triggerParser();
+        triggerParserAndExpectReuse();
 
         // split token via space
         model.replace("{ def Double".length(), 0, " ");
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() != Version.REFERENCE);
         
         // fix error by removing one of the two token fragments
         model.replace("{ def ".length(), "Double".length(), "");
-        triggerParser();
+        triggerParserAndExpectReuse();
         
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
@@ -384,11 +537,11 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
     @Test
     public void testDeeplyNestedBlocks() throws Exception {
         model.replace(0, 0, "{ }");
-        triggerParser();
+        triggerParserAndExpectReuse();
 
         // add several new blocks.
         model.replace("{".length(), 0, "{{ def a; { {use a;} {use a;} }}}");
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
         
         // morph outmost block into an inner block
@@ -405,14 +558,14 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
         
         // remove all blocks at once.
         model.replace(0, model.getLength(), "{}");
-        triggerParser();
+        triggerParser(); // Cannot expect reuse. We don't know which of the block shall be retained.
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
     
     @Test
     public void testResetCharactsIndividually() throws Exception {
         model.replace(0, 0, "{ def a; use a; { { def b; use b; } } {} {}  }");
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
         
         String initialContent = model.get(0, model.getLength());
@@ -420,7 +573,7 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
         // So basically do a no-op
         for (int i = 0; i < model.getLength(); i++) {
             model.replace(i, 1, model.get(i, 1));
-            triggerParser();
+            triggerParserAndExpectReuse();
             assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
         }
         assertEquals(initialContent, model.get(0, model.getLength()));
@@ -430,14 +583,14 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
     @Test
     public void testReplaceCharactersWithWhiteSpace() throws Exception {
         model.replace(0, 0, "{ def a; use a; { { def b; use b; } } {} {}  }");
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
         
         // Loop over the whole model. Replace each char with itself,
         // except the first and last bracket. Keep the { } to still have a valid model
         for (int i = 1; i < model.getLength()-1; i++) {
             model.replace(i, 1, " ");
-            triggerParser();
+            triggerParserAndExpectReuse();
             // can have intermediate errors here
         }
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
@@ -446,27 +599,27 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
     @Test
     public void testReplaceTokenWithItself() throws Exception {
         model.replace(0, 0, "{ { def a; } }");
-        triggerParser();
+        triggerParserAndExpectReuse();
         
         // rename a to a
         model.replace("{ { def ".length(), "a".length(), "a");
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
         
         // rename ; to ;
         model.replace("{ { def a".length(), ";".length(), ";");
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
     
     @Test
     public void testReplaceSubBlockWithItself() throws Exception {
         model.replace(0, 0, "{ { def a; } { def b; } { def c; } }");
-        triggerParser();
+        triggerParserAndExpectReuse();
         
         //  replace the inner block with itself
         model.replace("{ { def a; } ".length(), "{ def b; }".length(), "{ def b; }");
-        triggerParser();
+        triggerParserAndExpectReuse();
         
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
@@ -474,13 +627,13 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
     @Test
     public void testSwapStatementsViaRename() throws Exception {
         model.replace(0, 0, "{ def a; def b; }");
-        triggerParser();
+        triggerParserAndExpectReuse();
         
         // rename "a" to "b" and "b" to "a".
         model.replace("{ def a; def ".length(), "b".length(), "a");
-        triggerParser();
+        triggerParserAndExpectReuse();
         model.replace("{ def ".length(), "a".length(), "b");
-        triggerParser();
+        triggerParserAndExpectReuse();
         
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
@@ -488,12 +641,12 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
     @Test
     public void testSwapStatementsViaRenameInstant() throws Exception {
         model.replace(0, 0, "{ def a; def b; }");
-        triggerParser();
+        triggerParserAndExpectReuse();
         
         // rename "a" to "b" and "b" to "a" without intermediate parsing.
         model.replace("{ def a; def ".length(), "b".length(), "a");
         model.replace("{ def ".length(), "a".length(), "b");
-        triggerParser();
+        triggerParserAndExpectReuse();
         
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
@@ -501,13 +654,13 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
     @Test
     public void testSwapStatements() throws Exception {
         model.replace(0, 0, "{ def a; def b; }");
-        triggerParser();
+        triggerParserAndExpectReuse();
         
         // replace "def a" with "def b" and "def b" with "def a"
         model.replace("{ def a; ".length(), "def b;".length(), "def a;");
-        triggerParser();
+        triggerParserAndExpectReuse();
         model.replace("{ ".length(), "def a;".length(), "def b;");
-        triggerParser();
+        triggerParserAndExpectReuse();
         
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
@@ -515,13 +668,13 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
     @Test
     public void testSwapStatementsInstant() throws Exception {
         model.replace(0, 0, "{ def a; def b; }");
-        triggerParser();
+        triggerParserAndExpectReuse();
         
         // replace "def a" with "def b" and "def b" with "def a".
         // Without intermediate parsing.
         model.replace("{ def a; ".length(), "def b;".length(), "def a;");
         model.replace("{ ".length(), "def a;".length(), "def b;");
-        triggerParser();
+        triggerParserAndExpectReuse();
         
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
@@ -529,13 +682,13 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
     @Test
     public void testSwapStatementsComplex() throws Exception {
         model.replace(0, 0, "{{ def a; { { {use a; {def c;} } } {use a; def d;} }}}");
-        triggerParser();
+        triggerParserAndExpectReuse();
         
         // swap the right most "def d" with "use a; {def c;}" 
         model.replace("{{ def a; { { {".length(), "use a; {def c;}".length(), "def d;");
-        triggerParser();
+        triggerParserAndExpectReuse();
         model.replace("{{ def a; { { {def d; } } {use a; ".length(), "def d;".length(), "use a; {def c;}");
-        triggerParser();
+        triggerParserAndExpectReuse();
         
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
@@ -543,12 +696,12 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
     @Test
     public void testSwapStatementsComplexInstant() throws Exception {
         model.replace(0, 0, "{{ def a; { { {use a; {def c;} } } {use a; def d;} }}}");
-        triggerParser();
+        triggerParserAndExpectReuse();
         
         // swap the right most "def d" with "use a; {def c;}" without intermediate parsing.
         model.replace("{{ def a; { { {".length(), "use a; {def c;}" .length(), "def d;");
         model.replace("{{ def a; { { {def d; } } {use a; ".length(), "def d;".length(), "use a; {def c;}");
-        triggerParser();
+        triggerParserAndExpectReuse();
         
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
@@ -556,40 +709,40 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
     @Test
     public void testMoveStatement() throws Exception {
         model.replace(0, 0, "{{ def a; { {use a; {def c;} } {use a;} }}}");
-        triggerParser();
+        triggerParserAndExpectReuse();
         
         // Move def c; to different places.
         
         // move before use a;
         model.replace("{{ def a; { {use a; {".length(), "def c;".length(), ""); // delete
         model.replace("{{ def a; { {".length(), 0, "def c;"); // insert
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
         
         // move before def a;
         model.replace("{{ def a; { {".length(), "def c;".length(), ""); // delete
         model.replace("{{".length(), 0, "def c;"); // insert 
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
         
         // move to the end before the last }
         model.replace("{{".length(), "def c;".length(), ""); // delete
         model.replace("{{ def a; { {use a; {} } {use a;} }".length(), 0, "def c;"); // insert
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
     
     @Test
     public void testMoveStatementWithErrors() throws Exception {
         model.replace(0, 0, "{{ def a; { {use a; {def c;} } {use a;} }}}");
-        triggerParser();
+        triggerParserAndExpectReuse();
         
         // Move def c; out of scope. Then back again.
         
         // move behind the last closing }
         model.replace("{{ def a; { {use a; {".length(), "def c;".length(), ""); // delete
         model.replace("{{ def a; { {use a; {} } {use a;} }}}".length(), 0, "def c;"); // insert
-        triggerParser();
+        triggerParserAndExpectReuse();
         
         // has to yield errors. Statement may not be placed there
         assertTrue(model.getRoot().getVersion() != Version.REFERENCE);
@@ -598,7 +751,7 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
         model.replace("{{ def a; { {use a; {} } {use a;} }}}".length(), "def c;".length(), ""); // delete
         model.replace("{{ def a; { {use a; {} } {use a;} }}".length(), 0, "def c;"); // insert
 
-        triggerParser();
+        triggerParserAndExpectReuse();
         assertTrue(model.getRoot().getVersion() == Version.REFERENCE);
     }
     
