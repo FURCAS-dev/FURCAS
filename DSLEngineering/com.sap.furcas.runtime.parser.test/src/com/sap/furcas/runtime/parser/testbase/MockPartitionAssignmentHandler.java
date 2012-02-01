@@ -1,11 +1,11 @@
-package com.sap.furcas.runtime.parser.incremental.testbase;
+package com.sap.furcas.runtime.parser.testbase;
 
 import java.io.IOException;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.resource.Resource;
 
-import com.sap.ide.cts.parser.incremental.DefaultPartitionAssignmentHandlerImpl;
+import com.sap.furcas.runtime.parser.impl.DefaultPartitionAssignmentHandlerImpl;
 
 public class MockPartitionAssignmentHandler extends DefaultPartitionAssignmentHandlerImpl {
     

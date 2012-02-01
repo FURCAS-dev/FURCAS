@@ -58,7 +58,6 @@ public class MappingRecoveringTextBlocksValidator {
         CharStream originalStream = antlrLexer.getCharStream();
         try {
             while (!TbMarkingUtil.isEOS(tok = TbNavigationUtil.nextToken(tok)) && tok != null && tok.getType() != 0) {
-                parserFacade.getLexer().setState(tok.getState());
                 String value = shortPrettyPrinter.resynchronizeToEditableState(tok);
                 if (!TbMarkingUtil.isEOS(tok)) {
                     AbstractToken nextToken = TbNavigationUtil.nextToken(tok);

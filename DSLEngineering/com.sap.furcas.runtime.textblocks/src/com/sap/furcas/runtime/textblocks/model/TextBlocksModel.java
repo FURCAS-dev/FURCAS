@@ -10,9 +10,15 @@ import static com.sap.furcas.runtime.textblocks.TbNavigationUtil.isFirstInSubTre
 import static com.sap.furcas.runtime.textblocks.TbUtil.getAbsoluteOffset;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import org.eclipse.compare.contentmergeviewer.TokenComparator;
+import org.eclipse.compare.rangedifferencer.RangeDifference;
+import org.eclipse.compare.rangedifferencer.RangeDifferencer;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
@@ -652,17 +658,18 @@ public class TextBlocksModel {
     private void replaceInEmptyTree(String newText, TextBlock workingCopy) {
 	workingCopy.setLength(newText.length());
 
-	if (workingCopy.getTokens().size() == 2) {
+	if (workingCopy.getSubNodes().size() == 2) {
 	    TbReplacingHelper.createInitialToken(workingCopy, newText);
 	} else { // subnodes size != 2
-	    if (workingCopy.getTokens().size() != 3) {
+	    if (workingCopy.getSubNodes().size() != 3) {
 		throw new IllegalArgumentException(
 			"Method only works for textBlocks of length 0 if only BOS and EOS, or BOS, an empty token, and EOS are present.");
 	    }
 	}
 	// change the middle token between BOS and EOS
-	workingCopy.getTokens().get(1).setLength(newText.length());
-	workingCopy.getTokens().get(1).setValue(newText);
+	AbstractToken tok = (AbstractToken) workingCopy.getSubNodes().get(1);
+	tok.setLength(newText.length());
+	tok.setValue(newText);
 	workingCopy.setLength(newText.length());
 	// set BOS offset
 	workingCopy.getTokens().get(workingCopy.getTokens().size() - 1).setOffset(newText.length());
@@ -695,10 +702,30 @@ public class TextBlocksModel {
         if (root.getLength() == 0) {
             replaceInEmptyTree(newText, workingCopy);
         } else {
-            replaceInNonEmptyTree(replacedRegionAbsoluteOffset, replacedRegionLength, newText, workingCopy);
+            replaceInNonEmptyTreeUsingSubDiffs(replacedRegionAbsoluteOffset, replacedRegionLength, newText, workingCopy);
         }
         workingCopy.setChildrenChanged(true);
         TbReplacingHelper.updateBlockCachedString(workingCopy, replacedRegionAbsoluteOffset, replacedRegionLength, newText);
+    }
+
+    private void replaceInNonEmptyTreeUsingSubDiffs(final int replacedRegionAbsoluteOffset, final int replacedRegionLength,
+            final String newText, TextBlock workingCopy) {
+        
+        TokenComparator currentContent = new TokenComparator(get(replacedRegionAbsoluteOffset, replacedRegionLength));
+        TokenComparator newContent = new TokenComparator(newText);
+        
+        List<RangeDifference> diffs = Arrays.asList(RangeDifferencer.findDifferences(currentContent, newContent));
+        Collections.reverse(diffs);
+        
+        for (RangeDifference diff : diffs) {
+            int diffStartNew = newContent.getTokenStart(diff.rightStart());
+            int diffEndNew = newContent.getTokenStart(diff.rightStart()+diff.rightLength());
+            int diffStartCurrent = currentContent.getTokenStart(diff.leftStart());
+            int diffEndCurrent = currentContent.getTokenStart(diff.leftStart()+diff.leftLength());
+            
+            replaceInNonEmptyTree(replacedRegionAbsoluteOffset+diffStartCurrent, diffEndCurrent-diffStartCurrent,
+                    newText.substring(diffStartNew, diffEndNew), workingCopy);
+        }
     }
 
     /**
@@ -901,9 +928,6 @@ public class TextBlocksModel {
 	 * 
 	 */
     private Bostoken getStartToken() {
-	if (rootBlock.getTokens().size() <= 0) {
-	    throw new IllegalStateException("TextBlocksModel is in illegal state, root block contains no tokens!");
-	}
 	if (!(rootBlock.getSubNodes().get(0) instanceof Bostoken)) {
 	    throw new IllegalStateException("TextBlocksModel is in illegal state, first token not BOS!");
 	}

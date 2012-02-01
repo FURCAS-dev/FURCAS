@@ -15,6 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.antlr.runtime.Token;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.EList;
@@ -78,31 +79,30 @@ public class IncrementalParser extends IncrementalRecognizer {
 
     protected final PartitionAssignmentHandler partitionHandler;
 
-
-    public IncrementalParser(ObservableInjectingParser batchParser, ParserScope parserScope, TextBlockReuseStrategy reuseStrategy,
-            PartitionAssignmentHandler partitionAssignmentHandler) {
+    public IncrementalParser(ObservableInjectingParser batchParser, ParserScope parserScope,
+            TextBlockReuseStrategy reuseStrategy, PartitionAssignmentHandler partitionAssignmentHandler) {
         if (!(batchParser.getTokenStream() instanceof ITextBlocksTokenStream)) {
-            throw new IllegalArgumentException("token stream of parser needs to be ITextBlocksTokenStream" +
-            		" in order to be used with incremental parser");
+            throw new IllegalArgumentException("token stream of parser needs to be ITextBlocksTokenStream"
+                    + " in order to be used with incremental parser");
         }
         this.parserScope = parserScope;
         this.batchParser = batchParser;
         this.tbtokenStream = (ITextBlocksTokenStream) batchParser.getTokenStream();
         this.partitionHandler = partitionAssignmentHandler;
         this.referenceHandler = new ReferenceHandlerImpl(batchParser, tbtokenStream);
-        
+
         ModelElementFromTextBlocksFactory modelElementFactory = new ModelElementFromTextBlocksFactoryImpl(batchParser,
                 referenceHandler, partitionHandler);
         TextBlockFactory tbFactory = new ReuseAwareTextBlockFactoryImpl(textblocksFactory, reuseStrategy, modelElementFactory);
-        
+
         this.reuseStrategy = reuseStrategy;
         this.reuseStrategy.setReferenceHandler(referenceHandler);
         this.reuseStrategy.setTextBlockFactory(tbFactory);
-        
+
         MetaModelElementResolutionHelper<EObject> resolutionHelper = new MetaModelElementResolutionHelper<EObject>(
                 parserScope.getMetamodelLookup());
         this.namingHelper = new TemplateNamingHelper<EObject>(resolutionHelper);
-        
+
     }
 
     public TextBlock incrementalParse(TextBlock root) throws SemanticParserException {
@@ -110,24 +110,19 @@ public class IncrementalParser extends IncrementalRecognizer {
     }
 
     /**
-     * Incrementally parses the given root block. The algorithm assumes that all
-     * changed blocks and tokens are correctly marked (using
-     * {@link DocumentNode#isChildrenChanged()} and
-     * {@link DocumentNode#isRelexingNeeded()} (TODO this needs to be changed if
-     * there is something like "wasRelexed".). Based on this all regions that
-     * became invalid due to lexical changes are re-parsed and the incrementally
-     * merged with the existing text block tree and model.
+     * Incrementally parses the given root block. The algorithm assumes that all changed blocks and tokens are correctly marked
+     * (using {@link DocumentNode#isChildrenChanged()} and {@link DocumentNode#isRelexingNeeded()} (TODO this needs to be changed
+     * if there is something like "wasRelexed".). Based on this all regions that became invalid due to lexical changes are
+     * re-parsed and the incrementally merged with the existing text block tree and model.
      * 
      * @param root
      * @param errorMode
-     *            If <code>true</code> ignores syntactical errors and
-     *            instantiates elements as far as possible.
-     * @return returns the (possibly newly created) root block as a result of
-     *         the parsing.
-     * @throws IncrementalParsingException 
+     *            If <code>true</code> ignores syntactical errors and instantiates elements as far as possible.
+     * @return returns the (possibly newly created) root block as a result of the parsing.
+     * @throws IncrementalParsingException
      */
     public TextBlock incrementalParse(TextBlock root, boolean errorMode, IProgressMonitor monitor) throws SemanticParserException {
-        monitor.beginTask("Incremental Parsing" , IProgressMonitor.UNKNOWN);
+        monitor.beginTask("Incremental Parsing", IProgressMonitor.UNKNOWN);
         reset();
         // get EOS and BOS from root block
         setEOSFromRoot(root);
@@ -142,15 +137,14 @@ public class IncrementalParser extends IncrementalRecognizer {
             batchParser.setObserver(parserTextBlocksHandler);
             // Ensure no model elements get created
             // only proxies should be created
-            boolean originalResolveProxiesValue = batchParser
-                    .isResolveProxies();
+            boolean originalResolveProxiesValue = batchParser.isResolveProxies();
             batchParser.setResolveProxies(false);
 
             // find the next changed region
             for (AbstractToken tok = findNextRegion(root); !isEOS(tok); tok = findNextRegion(tok)) {
                 if (monitor.isCanceled()) {
                     // it is safe to skip entire regions if the user has canceld the parser.
-                    return root; 
+                    return root;
                 }
                 AbstractToken leftBoundary = tok;
                 // left boundary has to be the element that is reachable by the
@@ -161,7 +155,7 @@ public class IncrementalParser extends IncrementalRecognizer {
                 }
                 AbstractToken rightBoundary = tok;
                 tok = nextToken(tok);
-                while ((wasReLexed(tok) || tok instanceof OmittedToken )) {
+                while ((wasReLexed(tok) || tok instanceof OmittedToken)) {
                     rightBoundary = tok;
                     // TODO would it be possible to track the common ancestor
                     // directly in this
@@ -169,14 +163,13 @@ public class IncrementalParser extends IncrementalRecognizer {
                     // should be, so no further algorithm would be needed!
                     tok = nextToken(tok);
                 }
-                if(isEOS(tok)) {
-                    //We are at the end of the stream. Tokens were touched until here
-                    //to make sure the whole stream is valid we need to call the 
-                    //batch parser from the root block
+                if (isEOS(tok)) {
+                    // We are at the end of the stream. Tokens were touched until here
+                    // to make sure the whole stream is valid we need to call the
+                    // batch parser from the root block
                     rightBoundary = tok;
                 }
-                DocumentNode commonAncestorNode = getCommonAncestor(root,
-                        leftBoundary, rightBoundary);
+                DocumentNode commonAncestorNode = getCommonAncestor(root, leftBoundary, rightBoundary);
 
                 TextBlock commonAncestor = null;
                 if (commonAncestorNode instanceof AbstractToken) {
@@ -185,8 +178,7 @@ public class IncrementalParser extends IncrementalRecognizer {
                     // this value. As we do not have the knowledge on how to do
                     // this right now
                     // just re-parse the parent element.
-                    commonAncestor = ((AbstractToken) commonAncestorNode)
-                            .getParent();
+                    commonAncestor = ((AbstractToken) commonAncestorNode).getParent();
                 } else {
                     commonAncestor = (TextBlock) commonAncestorNode;
                 }
@@ -194,31 +186,30 @@ public class IncrementalParser extends IncrementalRecognizer {
                 // DocumentNode startNode = getStartNode(leftBoundary);
 
                 // parse the given part of the texblocktree
-                commonAncestor = prepareForParsing(commonAncestor,
-                        parserTextBlocksHandler);
+                commonAncestor = prepareForParsing(commonAncestor, parserTextBlocksHandler);
                 boolean errornous = false;
                 try {
                     callBatchParser(commonAncestor);
                     while (!errorMode
-                            && (getErrorList().size() > 0 || !comsumedAllTokens(commonAncestor,
-                                    parserTextBlocksHandler))) {
+                            && (getErrorList().size() > 0 || !comsumedAllTokens(commonAncestor, parserTextBlocksHandler))) {
                         // parsing failed, so try to parse with the parent block
                         // and see if it works
                         if (commonAncestor.getParent() != null) {
-                            //There is a parent than can be parsed
+                            // There is a parent than can be parsed
                             commonAncestor = commonAncestor.getParent();
-                            commonAncestor = prepareForParsing(commonAncestor,
-                                    parserTextBlocksHandler);
+                            commonAncestor = prepareForParsing(commonAncestor, parserTextBlocksHandler);
                             callBatchParser(commonAncestor);
                         } else {
-                            if(getErrorList().size() == 0) {
-                                //There is no parent block but and we could parse the block correctly
-                                //however, there are still unconsumed tokens 
-                                //so we have an error in the input
-                                 ANTLRIncrementalTokenStream tokenStream = (ANTLRIncrementalTokenStream) batchParser
+                            if (getErrorList().size() == 0) {
+                                // There is no parent block but and we could parse the block correctly
+                                // however, there are still unconsumed tokens
+                                // so we have an error in the input
+                                ANTLRIncrementalTokenStream tokenStream = (ANTLRIncrementalTokenStream) batchParser
                                         .getTokenStream();
                                 AbstractToken unconsumedToken = TbNavigationUtil.nextToken(tokenStream.getLastConsumedToken());
-                                getErrorList().add(new ParsingError("There were uconsumed tokens: " + unconsumedToken.getValue(), unconsumedToken));
+                                getErrorList().add(
+                                        new ParsingError("There were uconsumed tokens: " + unconsumedToken.getValue(),
+                                                unconsumedToken));
                                 errornous = true;
                                 break;
                             } else {
@@ -228,32 +219,28 @@ public class IncrementalParser extends IncrementalRecognizer {
                         }
                     }
 
-                    
                     if (batchParser.getInjector().getErrorList().size() > 0 || errornous == true) {
                         if (!errorMode) {
                             throw new SemanticParserException(getErrorList(), Component.SYNTACTIC_ANALYSIS);
                         } else {
-                            //ensure errornous is set
+                            // ensure errornous is set
                             errornous = true;
                         }
                     }
                     if (monitor.isCanceled()) {
-                        // we still haven't changed/created a model element for this region. 
+                        // we still haven't changed/created a model element for this region.
                         // It is safe to abort here if the user has canceled the parser.
                         return root;
                     }
 
-                    TextBlockProxy tbProxy = parserTextBlocksHandler
-                            .getCurrentTbProxy();
+                    TextBlockProxy tbProxy = parserTextBlocksHandler.getCurrentTbProxy();
 
                     // the sequence element context should be still the same, so
                     // copy it
-                    tbProxy.setSequenceElement(commonAncestor
-                            .getSequenceElement());
+                    tbProxy.setSequenceElement(commonAncestor.getSequenceElement());
 
                     if (!errornous) {
-                        TextBlock newModel = mergeTbModelFromProxies(
-                                commonAncestor, tbProxy);
+                        TextBlock newModel = mergeTbModelFromProxies(commonAncestor, tbProxy);
                         if (TbNavigationUtil.isUltraRoot(newModel)) {
                             newRoot = newModel;
                         }
@@ -268,10 +255,8 @@ public class IncrementalParser extends IncrementalRecognizer {
                         // they will
                         // all be handled by reparsing this ancestor block.
                         if (!isEOS(tok)) {
-                            AbstractToken tokOfNewModel = TbNavigationUtil
-                                    .lastToken(newModel);
-                            if (TbUtil.getAbsoluteOffset(tokOfNewModel) > TbUtil
-                                    .getAbsoluteOffset(rightBoundary)) {
+                            AbstractToken tokOfNewModel = TbNavigationUtil.lastToken(newModel);
+                            if (TbUtil.getAbsoluteOffset(tokOfNewModel) > TbUtil.getAbsoluteOffset(rightBoundary)) {
                                 tok = tokOfNewModel;
                             }
                             if (!isEOS(tok)) {
@@ -285,7 +270,7 @@ public class IncrementalParser extends IncrementalRecognizer {
                 }
 
             }
-            
+
             if (getErrorList().size() > 0) {
                 // This is bad. Something went wrong while merging proxies / modifying the domain model
                 throw new IncrementalParsingException("Failed to perform model modifications", getErrorList());
@@ -294,14 +279,14 @@ public class IncrementalParser extends IncrementalRecognizer {
                 // It is safe to abort here if the user has canceld the parser.
                 return root;
             }
-            
+
             // provide context for reference resolving.
             parserTextBlocksHandler.setRootBlock(newRoot);
-            
+
             // batchParser.setObserver(originalObserver);
             batchParser.setResolveProxies(originalResolveProxiesValue);
             referenceHandler.resolveRemainingReferences();
-            
+
             if (getErrorList().size() > 0) {
                 throw new SemanticParserException(getErrorList(), Component.SEMANTIC_ANALYSIS);
             }
@@ -311,57 +296,47 @@ public class IncrementalParser extends IncrementalRecognizer {
     }
 
     /**
-     * Searches for the least common ancestor of the given left and right
-     * boundary nodes.
+     * Searches for the least common ancestor of the given left and right boundary nodes.
      * 
      * @param rootNode
      * @param leftBoundary
      * @param rightBoundary
      * @return
      */
-    private DocumentNode getCommonAncestor(TextBlock rootNode,
-            AbstractToken leftBoundary, AbstractToken rightBoundary) {
-        TarjansLCA<DocumentNode> lca = new TarjansLCA<DocumentNode>(
-                new IncrementalParser.TextBlocksTarjanTreeContentProvider());
+    private DocumentNode getCommonAncestor(TextBlock rootNode, AbstractToken leftBoundary, AbstractToken rightBoundary) {
+        TarjansLCA<DocumentNode> lca = new TarjansLCA<DocumentNode>(new IncrementalParser.TextBlocksTarjanTreeContentProvider());
         return lca.lcaSearch(rootNode, leftBoundary, rightBoundary);
 
     }
 
     /**
-     * Checks if there are unconsumed tokens in the given <tt>commonAncestor</tt> block. If that is the case
-     * the method will return <tt>false</tt>. Otherwise possibly remaining {@link OmittedToken}s will be added to 
-     * the root block of the {@link ParserTextBlocksHandler} and <tt>true</tt> will be returned.
+     * Checks if there are unconsumed tokens in the given <tt>commonAncestor</tt> block. If that is the case the method will
+     * return <tt>false</tt>. Otherwise possibly remaining {@link OmittedToken}s will be added to the root block of the
+     * {@link ParserTextBlocksHandler} and <tt>true</tt> will be returned.
      * 
-     * @param commonAncestor The {@link TextBlock} from which the consumption of its tokens should be checked.
-     * @param parserTextBlocksHandler The {@link ParserTextBlocksHandler} which consumed the last tokens.
-     * @return <tt>true</tt> if all tokens in the given <tt>commonAncestor</tt> have been consumed, <tt>flase</tt> else. 
+     * @param commonAncestor
+     *            The {@link TextBlock} from which the consumption of its tokens should be checked.
+     * @param parserTextBlocksHandler
+     *            The {@link ParserTextBlocksHandler} which consumed the last tokens.
+     * @return <tt>true</tt> if all tokens in the given <tt>commonAncestor</tt> have been consumed, <tt>flase</tt> else.
      */
     private boolean comsumedAllTokens(TextBlock commonAncestor, ParserTextBlocksHandler parserTextBlocksHandler) {
         // TODO if last new token was last consumed and the parent rule does
         // match the parent block
         // we should return true
-        AbstractToken tok = ((ANTLRIncrementalTokenStream) batchParser
-                .getTokenStream()).getLastConsumedToken();
+        AbstractToken tok = ((ANTLRIncrementalTokenStream) batchParser.getTokenStream()).getLastConsumedToken();
         if (tok == null) {
+            parserTextBlocksHandler.notifyTokenConsume(Token.EOF_TOKEN);
             return true;
         }
         AbstractToken nextTok = TbNavigationUtil.nextToken(tok);
-        List<OmittedToken> omittedTokensBetween = new ArrayList<OmittedToken>();
-        while (nextTok instanceof OmittedToken
-                && !(nextTok instanceof Eostoken)) {
-            omittedTokensBetween.add((OmittedToken) nextTok);
+        while (nextTok instanceof OmittedToken && !(nextTok instanceof Eostoken)) {
             nextTok = TbNavigationUtil.nextToken(nextTok);
         }
         if (nextTok != null) {
             if (nextTok instanceof Eostoken) {
-                //we are at the end of the stream, 
-                //Still we have to ensure that all remaining Omitted Tokens have been consumed as well
-                //thus we consumed everything
-                if(omittedTokensBetween.size() > 0) {
-                    for (OmittedToken omittedToken : omittedTokensBetween) {
-                        parserTextBlocksHandler.getCurrentTbProxy().addSubNode(omittedToken);
-                    }
-                }
+                // we are at the end of the stream,
+                parserTextBlocksHandler.notifyTokenConsume(Token.EOF_TOKEN);
                 return true;
             }
             if (TbVersionUtil.getOtherVersion(tok, Version.REFERENCE) == null) {
@@ -375,9 +350,8 @@ public class IncrementalParser extends IncrementalRecognizer {
 
             }
         }
-        boolean lastTokenOfBlockConsumed = ((ANTLRIncrementalTokenStream) batchParser
-                .getTokenStream()).getLastConsumedToken().equals(
-                TbNavigationUtil.lastToken(commonAncestor));
+        boolean lastTokenOfBlockConsumed = ((ANTLRIncrementalTokenStream) batchParser.getTokenStream()).getLastConsumedToken()
+                .equals(TbNavigationUtil.lastToken(commonAncestor));
         return lastTokenOfBlockConsumed;
     }
 
@@ -390,7 +364,7 @@ public class IncrementalParser extends IncrementalRecognizer {
         reuseStrategy.clearChangedBlocksList();
     }
 
-    /*package*/ TextBlock prepareForParsing(TextBlock commonAncestor, ParserTextBlocksHandler parserTextBlocksHandler) {
+    /* package */TextBlock prepareForParsing(TextBlock commonAncestor, ParserTextBlocksHandler parserTextBlocksHandler) {
         parserTextBlocksHandler.setRootBlock(commonAncestor);
         batchParser.reset();
         commonAncestor = findStartableBlock(commonAncestor);
@@ -400,24 +374,20 @@ public class IncrementalParser extends IncrementalRecognizer {
     }
 
     /**
-     * Finds a suitable starting point which means that the block needs to have
-     * a {@link TextBlockDefinition type} as well as an associated template. The
-     * root block is returned if nothing below is found as it should always be
-     * startable.
+     * Finds a suitable starting point which means that the block needs to have a {@link TextBlockDefinition type} as well as an
+     * associated template. The root block is returned if nothing below is found as it should always be startable.
      * 
      * @param commonAncestor
-     * @return The first block in an ascending search that fulfills the above
-     *         criteria.
+     * @return The first block in an ascending search that fulfills the above criteria.
      */
     private TextBlock findStartableBlock(TextBlock commonAncestor) {
         if (commonAncestor.getParent() == null) {
             // root block should be always startable
             return commonAncestor;
         } else {
-            if (commonAncestor.getType() != null
-                    && commonAncestor.getType() != null &&
-                    // TODO check how a call to an operator template rule may be
-                    // done!
+            if (commonAncestor.getType() != null && commonAncestor.getType() != null &&
+            // TODO check how a call to an operator template rule may be
+            // done!
                     !(commonAncestor.getType() instanceof OperatorTemplate)) {
                 if (commonAncestor.getParent().getTokens().size() == 0) {
                     // parent has no own tokens so we need to start at this one
@@ -431,8 +401,7 @@ public class IncrementalParser extends IncrementalRecognizer {
     }
 
     /**
-     * The root block needs some special treatment if new element is created for
-     * it. This is done here.
+     * The root block needs some special treatment if new element is created for it. This is done here.
      * 
      * @param newRoot
      * @param oldRoot
@@ -440,8 +409,7 @@ public class IncrementalParser extends IncrementalRecognizer {
     private static void handleUltraRoot(TextBlock newRoot, TextBlock oldRoot) {
         // add BOS and EOS token as this is never copied by the algorithm
         AbstractToken bos = (AbstractToken) getSubNodeAt(oldRoot, 0);
-        AbstractToken eos = (AbstractToken) getSubNodeAt(oldRoot,
-                getSubNodesSize(oldRoot) - 1);
+        AbstractToken eos = (AbstractToken) getSubNodeAt(oldRoot, getSubNodesSize(oldRoot) - 1);
         bos.setParent(null);
         eos.setParent(null);
         eos.setOffset(newRoot.getLength());
@@ -452,8 +420,7 @@ public class IncrementalParser extends IncrementalRecognizer {
     }
 
     /**
-     * Merges the existing tree of the old version text block with the newly
-     * created parts from the given proxy.
+     * Merges the existing tree of the old version text block with the newly created parts from the given proxy.
      * 
      * @param oldVersion
      * @param newVersion
@@ -464,27 +431,24 @@ public class IncrementalParser extends IncrementalRecognizer {
 
         TbBean resultBean;
         try {
-            resultBean = reuseStrategy
-                    .reuseTextBlock(oldVersion, newVersion);
+            resultBean = reuseStrategy.reuseTextBlock(oldVersion, newVersion);
         } catch (DeferredModelElementCreationException e) {
             throw new IncrementalParsingException(e.getMessage(), getErrorList());
         }
 
         TokenRelocationUtil.makeRelativeOffsetRecursively(resultBean.textBlock);
         TbValidationUtil.assertTextBlockConsistencyRecursive(resultBean.textBlock);
-        
+
         result = resultBean.textBlock;
         if (result.eResource() == null) {
             partitionHandler.assignToDefaultTextBlocksPartition(result);
         }
-        if (resultBean.reuseType
-                .equals(TextBlockReuseStrategy.ReuseType.DELETE)) {
+        if (resultBean.reuseType.equals(TextBlockReuseStrategy.ReuseType.DELETE)) {
             // the element that was created for the new textblock has to be
             // added to the composite of the old one
             // i.e., the old element has to be deleted as it is obsolete now.
             if (/*
-                 * TcsUtil.isStructureTypeTemplate(result.getType().getParseRule(
-                 * )) ||
+                 * TcsUtil.isStructureTypeTemplate(result.getType().getParseRule( )) ||
                  */TcsUtil.isReferenceOnly(newVersion.getTemplate())) {
                 // TODO maybe also do this for non compositely referenced
                 // elements??
@@ -495,14 +459,11 @@ public class IncrementalParser extends IncrementalRecognizer {
                 // .iterator().next();
                 // } else
                 if (TcsUtil.isReferenceOnly(newVersion.getTemplate())) {
-                    value = newVersion.getReferencedElementProxies().iterator()
-                            .next();
+                    value = newVersion.getReferencedElementProxies().iterator().next();
                 }
 
-                SetNewFeatureBean bean = new SetNewFeatureBean(oldVersion
-                        .getParent().getCorrespondingModelElements().iterator()
-                        .next(), ((Property) oldVersion.getSequenceElement())
-                        .getPropertyReference().getStrucfeature().getName(),
+                SetNewFeatureBean bean = new SetNewFeatureBean(oldVersion.getParent().getCorrespondingModelElements().iterator()
+                        .next(), ((Property) oldVersion.getSequenceElement()).getPropertyReference().getStrucfeature().getName(),
                         value.getRealObject(), 0);
                 referenceHandler.setNewFeature(bean, false);
             } else {
@@ -512,36 +473,30 @@ public class IncrementalParser extends IncrementalRecognizer {
                 // a new tb was instantiated for the root node
                 IncrementalParsingUtil.copyAttributes(oldVersion, result);
             }
-        } else if (resultBean.reuseType
-                .equals(TextBlockReuseStrategy.ReuseType.INSERT)) {
+        } else if (resultBean.reuseType.equals(TextBlockReuseStrategy.ReuseType.INSERT)) {
             TokenRelocationUtil.makeRelativeOffsetRecursively(oldVersion);
-            boolean insertBefore = oldVersion.getOffset() >= resultBean.textBlock
-                    .getOffset();
-            SetNewFeatureBean newFeatureBean = IncrementalParsingUtil
-                    .insertFeatureValue(resultBean.textBlock, oldVersion,
-                            insertBefore);
+            boolean insertBefore = oldVersion.getOffset() >= resultBean.textBlock.getOffset();
+            SetNewFeatureBean newFeatureBean = IncrementalParsingUtil.insertFeatureValue(resultBean.textBlock, oldVersion,
+                    insertBefore);
             referenceHandler.setNewFeature(newFeatureBean, true);
-        } else if (resultBean.reuseType
-                .equals(TextBlockReuseStrategy.ReuseType.COMPLETE)) {
+        } else if (resultBean.reuseType.equals(TextBlockReuseStrategy.ReuseType.COMPLETE)) {
             // no further actions have to be done, the tb was completely re-used
             // (might not apply to its subblocks,
             // however, all those changes will have been considered already
         }
         if (oldVersion.getParent() != null && oldVersion != result) {
             TextBlock parentBlock = oldVersion.getParent();
-            int index = TbNavigationUtil.getSubNodes(parentBlock).indexOf(
-                    oldVersion);
+            int index = TbNavigationUtil.getSubNodes(parentBlock).indexOf(oldVersion);
             if (oldVersion.getOffset() < resultBean.textBlock.getOffset()) {
                 index++;
             }
-            // add new tb at position of old one 
+            // add new tb at position of old one
             TbChangeUtil.addToBlockAt(parentBlock, index, result);
             // if the result text block was not the root block
             // update its position within its parent as well
             TokenRelocationUtil.makeSubNodesRelative(parentBlock);
         }
-        if (resultBean.reuseType.equals(ReuseType.DELETE)
-                && !result.equals(oldVersion)) {
+        if (resultBean.reuseType.equals(ReuseType.DELETE) && !result.equals(oldVersion)) {
             if (TbNavigationUtil.isUltraRoot(oldVersion)) {
                 handleUltraRoot(result, oldVersion);
             }
@@ -552,18 +507,15 @@ public class IncrementalParser extends IncrementalRecognizer {
     }
 
     /**
-     * Replaces the the elements referenced as corresponding model elements by
-     * the oldVersion {@link TextBlock} with the elements referenced by the
-     * newVersion {@link TextBlock} within the oldVersions parent.
+     * Replaces the the elements referenced as corresponding model elements by the oldVersion {@link TextBlock} with the elements
+     * referenced by the newVersion {@link TextBlock} within the oldVersions parent.
      * 
      * @param oldVersion
      * @param newVersion
      */
     @SuppressWarnings("unchecked")
-    private void replaceCorrespondingModelElements(TextBlock oldVersion,
-            TextBlock newVersion) {
-        Collection<EObject> correspondingModelElements = oldVersion
-                .getCorrespondingModelElements();
+    private void replaceCorrespondingModelElements(TextBlock oldVersion, TextBlock newVersion) {
+        Collection<EObject> correspondingModelElements = oldVersion.getCorrespondingModelElements();
         if (!correspondingModelElements.isEmpty()) {
             // TODO if there is more than one element this seems to be
             // difficult, which composite is used then?
@@ -578,8 +530,7 @@ public class IncrementalParser extends IncrementalRecognizer {
                     IncrementalParsingUtil.CompositeRefAssociationBean compositeFeatureAssocBean = IncrementalParsingUtil
                             .findComposingFeature(parent, correspondingModelElement, parserScope.getResourceSet());
 
-                    if (compositeFeatureAssocBean != null
-                            && compositeFeatureAssocBean.compositeFeatureAssoc != null) {
+                    if (compositeFeatureAssocBean != null && compositeFeatureAssocBean.compositeFeatureAssoc != null) {
                         // TODO currently only a heuristic using the index
                         // within the corresponding
                         // model elements
@@ -588,18 +539,14 @@ public class IncrementalParser extends IncrementalRecognizer {
                         // between the old
                         // and the new model element. this has to be improved to
                         // ensure correctness!
-                        Collection<EObject> correspondingNew = new ArrayList<EObject>(
-                                1);
-                        for (EObject correspondingNewCandidate : newVersion
-                                .getCorrespondingModelElements()) {
+                        Collection<EObject> correspondingNew = new ArrayList<EObject>(1);
+                        for (EObject correspondingNewCandidate : newVersion.getCorrespondingModelElements()) {
                             // TODO Change orderdness of correspondingmodel
                             // elements to true
                             // if(newVersion.getCorrespondingModelElements().indexOf(correspondingNewCandidate)
                             // ==
                             // oldVersion.getCorrespondingModelElements().indexOf(correspondingModelElement)){
-                            if (compositeFeatureAssocBean.compositeFeatureAssoc
-                                    .getEType().isInstance(
-                                            correspondingNewCandidate)) {
+                            if (compositeFeatureAssocBean.compositeFeatureAssoc.getEType().isInstance(correspondingNewCandidate)) {
                                 correspondingNew.add(correspondingNewCandidate);
                             }
                             // }
@@ -613,17 +560,14 @@ public class IncrementalParser extends IncrementalRecognizer {
                         // corresponding model
                         // elements are also deleted
                         // only delete if it is not re-used
-                        if (!newVersion.getCorrespondingModelElements()
-                                .contains(correspondingModelElement)) {
+                        if (!newVersion.getCorrespondingModelElements().contains(correspondingModelElement)) {
                             elementsToDelete.add(correspondingModelElement);
                             // Remove from feature
                             // if (compositeFeatureAssocBean.isParentFirstEnd) {
-                            if (compositeFeatureAssocBean.compositeFeatureAssoc
-                                    .getUpperBound() == 1) {
+                            if (compositeFeatureAssocBean.compositeFeatureAssoc.getUpperBound() == 1) {
                                 parent.eUnset(compositeFeatureAssocBean.compositeFeatureAssoc);
                             } else {
-                                ((Collection<?>) parent
-                                        .eGet(compositeFeatureAssocBean.compositeFeatureAssoc))
+                                ((Collection<?>) parent.eGet(compositeFeatureAssocBean.compositeFeatureAssoc))
                                         .remove(correspondingModelElement);
                             }
                             // } else {
@@ -649,14 +593,10 @@ public class IncrementalParser extends IncrementalRecognizer {
                                 // if
                                 // (compositeFeatureAssocBean.isParentFirstEnd)
                                 // {
-                                if (compositeFeatureAssocBean.compositeFeatureAssoc
-                                        .getUpperBound() == 1) {
-                                    parent.eSet(
-                                            compositeFeatureAssocBean.compositeFeatureAssoc,
-                                            correspondingNewElement);
+                                if (compositeFeatureAssocBean.compositeFeatureAssoc.getUpperBound() == 1) {
+                                    parent.eSet(compositeFeatureAssocBean.compositeFeatureAssoc, correspondingNewElement);
                                 } else {
-                                    ((EList<EObject>) parent
-                                            .eGet(compositeFeatureAssocBean.compositeFeatureAssoc))
+                                    ((EList<EObject>) parent.eGet(compositeFeatureAssocBean.compositeFeatureAssoc))
                                             .add(correspondingNewElement);
                                 }
                                 // } else {
@@ -668,8 +608,7 @@ public class IncrementalParser extends IncrementalRecognizer {
                                 boolean isInTransientPartition = IncrementalParsingUtil
                                         .isInTransientPartition(correspondingNewElement);
                                 if (isInTransientPartition) {
-                                    partitionHandler.assignToPartition(
-                                            correspondingNewElement, parent);
+                                    partitionHandler.assignToPartition(correspondingNewElement, parent);
                                 }
                             }
                         }
@@ -680,8 +619,7 @@ public class IncrementalParser extends IncrementalRecognizer {
                     } else {
                         // may be a root element that is composed nowhere
                         // so just delete old corresponding elements
-                        List<EObject> oldElements = new ArrayList<EObject>(
-                                oldVersion.getCorrespondingModelElements());
+                        List<EObject> oldElements = new ArrayList<EObject>(oldVersion.getCorrespondingModelElements());
                         for (EObject refObject : oldElements) {
                             elementsToDelete.add(refObject);
                         }
@@ -689,18 +627,14 @@ public class IncrementalParser extends IncrementalRecognizer {
                 } else {
                     // may be a root element that is composed nowhere
                     // so just delete old corresponding elements
-                    List<EObject> oldElements = new ArrayList<EObject>(
-                            oldVersion.getCorrespondingModelElements());
+                    List<EObject> oldElements = new ArrayList<EObject>(oldVersion.getCorrespondingModelElements());
                     for (EObject refObject : oldElements) {
                         elementsToDelete.add(refObject);
                     }
                     // parent is null so assign new element to partition of old
                     // one
-                    for (EObject correspondingNewCandidate : newVersion
-                            .getCorrespondingModelElements()) {
-                        partitionHandler.assignToPartition(
-                                correspondingNewCandidate,
-                                correspondingModelElement);
+                    for (EObject correspondingNewCandidate : newVersion.getCorrespondingModelElements()) {
+                        partitionHandler.assignToPartition(correspondingNewCandidate, correspondingModelElement);
                     }
                 }
             }
@@ -716,7 +650,7 @@ public class IncrementalParser extends IncrementalRecognizer {
      * Calls the batch parser with to re-parse from the given root block.
      * 
      */
-    /*package*/ void callBatchParser(TextBlock root) throws UnknownProductionRuleException {
+    /* package */void callBatchParser(TextBlock root) throws UnknownProductionRuleException {
 
         // reconstruct the context
         // TODO is it correct to use the parent block to start looking for contexts or should the search start at root?
@@ -728,8 +662,7 @@ public class IncrementalParser extends IncrementalRecognizer {
                 // ensure that the given block was the root block, otherwise
                 // parsing won't work
                 if (root.getParent() != null) {
-                    throw new IncrementalParsingException("Could not find a proper starting point for parsing.",
-                            getErrorList());
+                    throw new IncrementalParsingException("Could not find a proper starting point for parsing.", getErrorList());
                 }
                 ruleName = MAIN_PARSE_RULE_NAME;
             } else {
@@ -758,17 +691,14 @@ public class IncrementalParser extends IncrementalRecognizer {
         ClassTemplate template = (ClassTemplate) root.getType();
         return namingHelper.getConcreteRuleNameForTemplate(template, parserScope.getSyntaxLookup());
     }
-    
-    public static class TextBlocksTarjanTreeContentProvider implements
-            ITarjanTreeContentProvider<DocumentNode> {
+
+    public static class TextBlocksTarjanTreeContentProvider implements ITarjanTreeContentProvider<DocumentNode> {
 
         @Override
         public List<Node<DocumentNode>> getChildren(Node<DocumentNode> node) {
             if (node.getArgumet() instanceof TextBlock) {
-                List<? extends DocumentNode> documetNodes = TbNavigationUtil
-                        .getSubNodes((TextBlock) node.getArgumet());
-                List<Node<DocumentNode>> subNodes = new ArrayList<Node<DocumentNode>>(
-                        documetNodes.size());
+                List<? extends DocumentNode> documetNodes = TbNavigationUtil.getSubNodes((TextBlock) node.getArgumet());
+                List<Node<DocumentNode>> subNodes = new ArrayList<Node<DocumentNode>>(documetNodes.size());
                 for (DocumentNode subNode : documetNodes) {
                     subNodes.add(new Node<DocumentNode>(subNode));
                 }

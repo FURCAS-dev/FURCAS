@@ -11,26 +11,26 @@ import com.sap.furcas.runtime.parser.antlr3.ITokenFactory;
 /**
  *
  */
-public class WrappingTokenFactory implements ITokenFactory<LexedTokenWrapper>{
+public class WrappingTokenFactory implements ITokenFactory<LexedTokenWrapper> {
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see com.sap.mi.textual.grammar.antlr3.ITokenFactory#createToken(org.antlr.runtime.CharStream, int, int, int, int)
      */
     @Override
-    public LexedTokenWrapper createToken(CharStream input, int type,
-            int channel, int start, int stop) {
+    public LexedTokenWrapper createToken(CharStream input, int type, int channel, int start, int stop) {
         if (input instanceof ANTLRIncrementalTokenStream) {
             // ANTLRIncrementalTokenStream stream = (ANTLRIncrementalTokenStream) input;
-            // TODO get Lexed Token from input stream            
+            // TODO get Lexed Token from input stream
             LexedToken token = null;
-            
+
             LexedTokenWrapper tokenWrapper = new LexedTokenWrapper(token);
             return tokenWrapper;
         } else {
             throw new IllegalArgumentException("Unexpected Token Stream class " + input.getClass());
         }
- 
-        
+
     }
 
 }

@@ -8,8 +8,6 @@ import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
-import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
@@ -64,9 +62,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
     private int ruleDepth = -1;
     private static final int EOF = -1;
 
-    private final OppositeEndFinder textBlocksOnlyOppositeEndFinder;
     private final ParserScope parserScope;
-    private final PartitionAssignmentHandler partitionAssignmentHandler;
     private TextBlock existingRoot;
 
     /**
@@ -80,13 +76,8 @@ public class ParserTextBlocksHandler implements IParsingObserver {
             PartitionAssignmentHandler partitionAssignmentHandler) {
         this.parserScope = parserScope;
         this.input = input;
-        this.partitionAssignmentHandler = partitionAssignmentHandler;
 
         this.traverser = new TextBlockTraverser();
-        //      TODO: Disabled until the PartitonAssignmentHandler does no longer assign TextBlocks to
-        //      domain model resources.  Stephan Erb, 17.05.2011     
-        //      this.textBlocksOnlyOppositeEndFinder = new Query2OppositeEndFinder(new TextBlocksPartitonQueryContextProvider());
-        this.textBlocksOnlyOppositeEndFinder = DefaultOppositeEndFinder.getInstance();
     }
 
     /**
@@ -281,8 +272,6 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 
     @Override
     public void notifyExitInjectorAction() {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
@@ -425,29 +414,14 @@ public class ParserTextBlocksHandler implements IParsingObserver {
         if (referenceLocation != null) {
             int absoluteLocation = ((ANTLR3LocationToken) referenceLocation).getStartIndex();
             int relativeLocation = absoluteLocation - TbUtil.getAbsoluteOffset(contextBlock);
-            for (AbstractToken tok : contextBlock.getTokens()) {
-                if (tok.getOffset() == relativeLocation) {
-                    return tok;
+            for (DocumentNode node : contextBlock.getSubNodes()) {
+                if (node.getOffset() == relativeLocation && node instanceof AbstractToken) {
+                    return (AbstractToken) node;
                 }
             }
         }
         return null;
     }
-
-    // /**
-    // * Adds the given <code>subBlock</code> to the <code>parentBlock</code>
-    // * including the re-computation of its offset.
-    // *
-    // * @param parentBlock
-    // * @param subBlock
-    // *
-    // */
-    // private void connectSubBlock(TextBlock parentBlock, TextBlock subBlock) {
-    // parentBlock.getSubBlocks().add(subBlock);
-    // // make offset relative to root
-    // subBlock.setOffset(subBlock.getOffset() - parentBlock.getOffset());
-    // subBlock.setOffsetRelative(true);
-    // }
 
     /**
      * Uses {@link DocumentNodeReferencesCorrespondingModelElement} to find a corresponding {@link TextBlock} for the
@@ -482,28 +456,16 @@ public class ParserTextBlocksHandler implements IParsingObserver {
         this.traverser = new TextBlockTraverser();
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyModelElementResolutionFailed()
-     */
     @Override
     public void notifyCommitModelElementFailed() {
 
     }
 
-    /* (non-Javadoc)
-     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyEnterOperatoredBrackettedSequence()
-     */
     @Override
     public void notifyEnterOperatoredBrackettedSequence() {
-        // ignore
 
     }
 
-    /* (non-Javadoc)
-     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyEnterSeparatorSequence()
-     */
     @Override
     public void notifyEnterSeparatorSequence() {
         //store sequence before separator as it will be restored after separator consumption
@@ -511,18 +473,11 @@ public class ParserTextBlocksHandler implements IParsingObserver {
         traverser.setSequenceElementOfSeparator(currentSequenceElement);
     }
 
-    /* (non-Javadoc)
-     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyExitOperatoredBrackettedSequence()
-     */
     @Override
     public void notifyExitOperatoredBrackettedSequence() {
-        //ignore
 
     }
 
-    /* (non-Javadoc)
-     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyExitSeparatorSequence()
-     */
     @Override
     public void notifyExitSeparatorSequence() {
     	//restore sequence from before separator
@@ -530,17 +485,11 @@ public class ParserTextBlocksHandler implements IParsingObserver {
         traverser.setCurrentSequenceElement(currentSequenceElement);
     }
 
-    /* (non-Javadoc)
-     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyEnterOperatorSequence(java.lang.String, int, boolean)
-     */
     @Override
     public void notifyEnterOperatorSequence(String operator, int arity, boolean isUnaryPostfix) {
         traverser.setOperatorToken(true);
     }
 
-    /* (non-Javadoc)
-     * @see com.sap.mi.textual.grammar.impl.IParsingObserver#notifyExitOperatorSequence()
-     */
     @Override
     public void notifyExitOperatorSequence() {
         //if there was a right hand side assign the textblock created for it to the textblock responsible for

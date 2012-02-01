@@ -34,6 +34,7 @@ import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.parser.ModelParsingResult;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.ParserFactory;
+import com.sap.furcas.runtime.parser.impl.DefaultPartitionAssignmentHandlerImpl;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.parser.incremental.testbase.GeneratedParserAndFactoryBasedTest;
 import com.sap.furcas.runtime.parser.incremental.testbase.GeneratedParserAndFactoryTestConfiguration;
@@ -49,7 +50,6 @@ import com.sap.furcas.runtime.textblocks.testutils.TestSourceTextBlockCreator;
 import com.sap.furcas.test.fixture.FeatureFixtureData;
 import com.sap.furcas.test.testutils.ResourceTestHelper;
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
-import com.sap.ide.cts.parser.incremental.DefaultPartitionAssignmentHandlerImpl;
 import com.sap.ide.cts.parser.incremental.IncrementalParserFacade;
 
 /**

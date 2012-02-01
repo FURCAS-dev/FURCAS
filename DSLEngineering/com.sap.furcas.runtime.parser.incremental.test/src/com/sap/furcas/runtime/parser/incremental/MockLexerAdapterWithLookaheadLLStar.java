@@ -21,11 +21,6 @@ public class MockLexerAdapterWithLookaheadLLStar extends ANTLRLexerAdapter {
     protected int nextTokenIndex = 0;
 
     @Override
-    public int getState(AbstractToken tok) {
-        return 0;
-    }
-
-    @Override
     public List<AbstractToken> moreTokens() {
         // simulate a lookahead of 1 within a LL(*) parser
         int mark = callbackLexer.mark();
@@ -40,10 +35,6 @@ public class MockLexerAdapterWithLookaheadLLStar extends ANTLRLexerAdapter {
     @Override
     public void setIncrementalLexer(IncrementalLexer incrementalLexer) {
         this.callbackLexer = (ANTLRIncrementalLexerAdapter) incrementalLexer;
-    }
-
-    @Override
-    public void setState(int state) {
     }
 
     public void setNextTokens(List<AbstractToken> nextTokens) {

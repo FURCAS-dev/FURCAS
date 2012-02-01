@@ -187,7 +187,7 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser 
      */
     protected final IModelElementProxy createModelElementProxy(List<String> name, boolean context,
             boolean addToContext, String... tags) {
-        IModelElementProxy element = new ModelElementProxy(name, true, input.LT(1));
+        IModelElementProxy element = new ModelElementProxy(name, true, getANTLRToken(input.LT(1)));
         // conditionally adding if addToContext==true
         if (addToContext) {
             addToCurrentContext(element);
@@ -679,11 +679,11 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser 
                 // so that they can be tried to resolve again if necessary.
                 resolvedReferences.add(reference);
                 
+                onRuleElementResolvedOutOfContext(reference.getRealValue(), getModelElement(reference),
+                        reference.getToken(), reference);
+                        
                 Object valueAfter = getReferenceValue(reference);
                 if (valueHasChanged(valueBefore, valueAfter)) {
-                    Object me = (reference.getModelElement() instanceof IModelElementProxy) ? ((IModelElementProxy) reference
-                            .getModelElement()).getRealObject() : reference.getModelElement();
-                    onRuleElementResolvedOutOfContext(reference.getRealValue(), me, reference.getToken(), reference);
                     return true;
                 }
             } else if (reference.isOptional()) {
@@ -695,6 +695,11 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser 
             getInjector().addError(new ParsingError(e.getMessage(), reference.getToken()));
         }
         return false;
+    }
+
+    private Object getModelElement(DelayedReference reference) {
+        return (reference.getModelElement() instanceof IModelElementProxy) ? ((IModelElementProxy) reference
+                .getModelElement()).getRealObject() : reference.getModelElement();
     }
 
     private Object getReferenceValue(DelayedReference reference) throws ModelAdapterException {

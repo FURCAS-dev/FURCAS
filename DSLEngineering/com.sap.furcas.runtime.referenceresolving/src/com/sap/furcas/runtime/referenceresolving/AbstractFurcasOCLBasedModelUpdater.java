@@ -322,8 +322,10 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
             return Collections.singleton(textBlock);
         } else {
             Set<TextBlock> result = new HashSet<TextBlock>();
-            for (TextBlock subBlock : textBlock.getSubBlocks()) {
-                result.addAll(getSubordinateTextBlocksLeadingTo(subBlock, templateHoldingSequenceElement));
+            for (DocumentNode subBlock : textBlock.getSubNodes()) {
+                if (subBlock instanceof TextBlock) {
+                    result.addAll(getSubordinateTextBlocksLeadingTo((TextBlock) subBlock, templateHoldingSequenceElement));
+                }
             }
             return result;
         }

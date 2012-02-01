@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
@@ -29,8 +28,9 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.parser.incremental.testbase.GeneratedParserAndFactoryBasedTest;
 import com.sap.furcas.runtime.parser.incremental.testbase.GeneratedParserAndFactoryTestConfiguration;
-import com.sap.furcas.runtime.parser.incremental.testbase.MockPartitionAssignmentHandler;
+import com.sap.furcas.runtime.parser.testbase.MockPartitionAssignmentHandler;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
+import com.sap.furcas.runtime.textblocks.TbUtil;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.testutils.EMFTextBlocksModelElementFactory;
@@ -199,7 +199,6 @@ public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
      * by the incremental parser.
      */
     @Test
-    @Ignore("Failing with NullPointerException during TextBlocks merging")
     public void testOmittedTokens() throws Exception {
         TextBlock textBlock = createJohnDoe();
         TbChangeUtil.cleanUp(textBlock);
@@ -231,7 +230,7 @@ public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
         Collections.reverse(lexedTokens); // replace from right to left so that offset information stays valid
         for (LexedToken token : lexedTokens) {
             assertNotNull("Must have a squence element", token.getSequenceElement());
-            model.replace(token.getOffset(), token.getLength(), " ");
+            model.replace(TbUtil.getAbsoluteOffset(token), token.getLength(), " ");
         }
         textBlock = incrementalParserFacade.parseIncrementally(model.getRoot());
         TbChangeUtil.cleanUp(textBlock);
