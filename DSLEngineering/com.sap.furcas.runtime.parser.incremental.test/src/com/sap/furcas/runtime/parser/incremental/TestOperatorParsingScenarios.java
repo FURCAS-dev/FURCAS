@@ -17,6 +17,7 @@ import java.io.File;
 import org.eclipse.emf.ecore.EObject;
 import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
@@ -240,6 +241,7 @@ public class TestOperatorParsingScenarios extends IncrementalParserBasedTest {
     /**
      * from -1 to 5-1
      */
+    @Ignore("See issue https://github.com/FURCAS-dev/FURCAS/issues/120")
     @Test
     public void testFromUnaryToBinary() throws Exception {
         model.replace(0, model.getLength(), "-1");
@@ -254,6 +256,7 @@ public class TestOperatorParsingScenarios extends IncrementalParserBasedTest {
     /** 
      * from 5-1 to -1
      */
+    @Ignore("See issue https://github.com/FURCAS-dev/FURCAS/issues/120")
     @Test
     public void testFromBinaryToUnary() throws Exception {
         model.replace(0, model.getLength(), "5-1");
