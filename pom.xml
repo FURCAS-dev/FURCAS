@@ -38,11 +38,11 @@
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>2.6</version>
 				</plugin>
-				<plugin>
+				<!--<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>findbugs-maven-plugin</artifactId>
 					<version>2.4.0</version>
-				</plugin> 
+				</plugin> -->
 			</plugins>
 		</pluginManagement>
 
@@ -109,11 +109,11 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
-			<plugin>
+			<!-- <plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>findbugs-maven-plugin</artifactId>
 				<version>2.4.0</version>
-			</plugin>
+			</plugin>-->
 		</plugins>
 	</build>
 
