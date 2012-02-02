@@ -25,6 +25,7 @@
 		<outputDirectory>bin</outputDirectory>
 		<testOutputDirectory>bin</testOutputDirectory>
 
+
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -111,7 +112,11 @@
 				<configuration>
 					<xmlOutput>true</xmlOutput>
 					<onlyAnalyze>com.sap.,de.hpi.</onlyAnalyze>
+					<failOnError>false</failOnError>
 				</configuration>
+			  	<executions>
+					<execution><goals><goal>check</goal></goals></execution>
+				</executions>  
 			</plugin>
 		</plugins>
 	</build>
