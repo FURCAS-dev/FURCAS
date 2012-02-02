@@ -111,9 +111,7 @@
 				<version>2.3.3</version>
 				<configuration>
 					<xmlOutput>true</xmlOutput>
-					<onlyAnalyze>com.sap.*,de.hpi.*</onlyAnalyze>
-					<fork>false</fork>
-					<!--<failOnError>false</failOnError>-->
+					<onlyAnalyze>com.sap.-,de.hpi.-</onlyAnalyze>
 				</configuration>
 			  	<executions>
 					<execution><goals><goal>findbugs</goal></goals></execution>
