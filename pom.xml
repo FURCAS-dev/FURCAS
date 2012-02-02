@@ -38,11 +38,6 @@
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>2.6</version>
 				</plugin>
-				<!--<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>findbugs-maven-plugin</artifactId>
-					<version>2.4.0</version>
-				</plugin> -->
 			</plugins>
 		</pluginManagement>
 
@@ -109,28 +104,18 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
-			<!-- <plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>findbugs-maven-plugin</artifactId>
-				<version>2.4.0</version>
-			</plugin>-->
-		</plugins>
-	</build>
-
-	<reporting>
-		<plugins>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>findbugs-maven-plugin</artifactId>
 				<version>2.4.0</version>
 				<configuration>
 					<xmlOutput>true</xmlOutput>
-					<onlyAnalyze>com.sap.furcas.</onlyAnalyze>
+					<onlyAnalyze>com.sap.,de.hpi.</onlyAnalyze>
 				</configuration>
 			</plugin>
 		</plugins>
-	</reporting>
-	
+	</build>
+
 	<repositories>
 		<repository>
 			<layout>p2</layout>
