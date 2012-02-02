@@ -125,7 +125,7 @@
 				<version>2.4.0</version>
 				<configuration>
 					<xmlOutput>true</xmlOutput>
-					<onlyAnalyze>com.sap.furcas.*</onlyAnalyze>
+					<onlyAnalyze>com.sap.furcas.</onlyAnalyze>
 				</configuration>
 			</plugin>
 		</plugins>
