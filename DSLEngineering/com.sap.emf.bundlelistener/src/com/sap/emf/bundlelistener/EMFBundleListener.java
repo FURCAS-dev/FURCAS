@@ -14,6 +14,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.URI;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleEvent;
@@ -74,7 +75,7 @@ public class EMFBundleListener extends Plugin implements BundleListener {
             }
             for (String nsURI : contributedPackageURIs) {
                 for (EcorePackageLoadListener listener : listeners) {
-                    listener.packageLoaded(nsURI);
+                    listener.packageLoaded(URI.createURI(nsURI));
                 }
             }
         }
