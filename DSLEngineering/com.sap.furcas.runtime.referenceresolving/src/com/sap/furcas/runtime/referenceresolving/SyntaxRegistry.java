@@ -274,7 +274,7 @@ public class SyntaxRegistry implements BundleActivator, EcorePackageLoadListener
      * By means of synchronization, concurrently registering all already loaded packages won't run out of synch.
      */
     @Override
-    public synchronized void packageLoaded(String nsURI) {
+    public synchronized void packageLoaded(URI nsURI) {
         Set<IConfigurationElement> syntaxProviderConfigs = metamodelNsURIToSyntaxProviders.get(nsURI);
         if (syntaxProviderConfigs != null) {
             for (IConfigurationElement syntaxProviderConfig : syntaxProviderConfigs) {
