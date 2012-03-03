@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 
 import org.antlr.runtime.Lexer;
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
@@ -120,9 +119,10 @@ public class SyntaxRegistry implements BundleActivator, EcorePackageLoadListener
     @Override
     public void start(BundleContext context) throws Exception {
         instance = this;
-        IExtensionRegistry registry = Platform.getExtensionRegistry();
-        for (IConfigurationElement listenerConfig : registry.getConfigurationElementsFor(
-                context.getBundle().getSymbolicName()+"."+EXTENSION_POINT_ID)) {
+        IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(
+                context.getBundle().getSymbolicName()+"."+EXTENSION_POINT_ID);
+        
+        for (IConfigurationElement listenerConfig : configElements) {
             for (IConfigurationElement metamodelElement : listenerConfig.getChildren(METAMODEL_PROPERTY_NAME)) {
                 URI metamodelURI = URI.createURI(metamodelElement.getAttribute("nsURI"));
                 Set<IConfigurationElement> syntaxProviders = metamodelNsURIToSyntaxProviders.get(metamodelURI);
@@ -139,7 +139,7 @@ public class SyntaxRegistry implements BundleActivator, EcorePackageLoadListener
     public void stop(BundleContext context) throws Exception {
     }
 
-    public static SyntaxRegistry getInstance() {
+    public static synchronized SyntaxRegistry getInstance() {
         if (instance == null) {
             // Probably not running in an OSGi environment...
             instance = new SyntaxRegistry();
