@@ -5,7 +5,6 @@ package com.sap.furcas.runtime.textblocks.modification;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
@@ -239,8 +238,6 @@ public class TestTbChangeUtil extends FixtureProvidingTextBlockTest {
 	assertEquals(0, eos.getLength());
     }
 
-    @Ignore
-    // code that throws this exception is currently commented out
     @Test(expected = IllegalArgumentException.class)
     public void updateLenghtAscendingInvalid() {
 	assertEquals(1, subToken.getLength());
