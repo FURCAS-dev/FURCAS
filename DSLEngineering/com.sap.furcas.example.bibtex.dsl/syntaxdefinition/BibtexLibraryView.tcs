@@ -20,7 +20,7 @@ syntax BibtexLibraryView {
   template LiteratureDb main
   : "Library:" name <newline>
   	"Entries:" "{" [entries] "}" <newline>
-  	"Authors:"	"{" author "}" <newline>
+  	"Authors:"	"{" author{separator=","} "}" <newline>
   ; 
   
   template Entry
