@@ -10,13 +10,9 @@
  ******************************************************************************/
 package com.sap.furcas.ide.dslproject.conf;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
@@ -78,25 +74,16 @@ public abstract class EcoreMetaProjectConf implements IProjectMetaRefConf {
     }
 
     protected void addAllCrossReferences(ResourceSet resourceSet) {
-        Set<Resource> externalResources = new HashSet<Resource>();
-        Set<Resource> newResources = new HashSet<Resource>();
-        Set<Resource> resourcesToCheckForCrossReferences = new HashSet<Resource>();
-
-        resourcesToCheckForCrossReferences.addAll(resourceSet.getResources());
+        boolean foundNew;
         do {
-            for (EObject obj : EcoreUtil.ExternalCrossReferencer.find(resourcesToCheckForCrossReferences).keySet()) {
-                Resource externalResource = obj.eResource();
-                if (externalResource != null) {
-                    externalResources.add(externalResource);
-                    newResources.add(externalResource);
+            foundNew = false;
+            for (EObject obj : EcoreUtil.ExternalCrossReferencer.find(resourceSet).keySet()) {
+                if (obj.eResource() != null) {
+                    resourceSet.getResources().add(obj.eResource());
+                    foundNew = true;
                 }
             }
-            resourcesToCheckForCrossReferences.clear();
-            resourcesToCheckForCrossReferences.addAll(newResources);
-            newResources.clear();
-        } while (resourcesToCheckForCrossReferences.size() != 0);
-
-        resourceSet.getResources().addAll(externalResources);
+        } while (foundNew);
     }
 
     public String getRefProjectName() {

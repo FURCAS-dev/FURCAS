@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.6"?>
-
-<target name="FURCAS" sequenceNumber="8">
+<?pde version="3.6"?><target name="FURCAS" sequenceNumber="8">
 <locations>
 <location path="${eclipse_home}" type="Profile"/>
 <location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.emf.ecoretools.sdk.feature.group" version="1.0.0.v20110608-1633"/>
-<unit id="org.eclipse.emf.sdk.feature.group" version="2.7.1.v20110913-1526"/>
+<unit id="org.eclipse.emf.sdk.feature.group" version="2.7.2.v20120130-0943"/>
 <unit id="org.eclipse.emf.transaction.sdk.feature.group" version="1.5.1.v20110823-1800-777T19A_WsXmjNatPxcrPm1rOKlH"/>
-<unit id="org.eclipse.ocl.all.sdk.feature.group" version="3.1.1.v20110913-1213"/>
-<unit id="org.eclipse.ocl.examples.feature.group" version="3.1.1.v20110913-1213"/>
+<unit id="org.eclipse.ocl.all.sdk.feature.group" version="3.1.2.v20120206-0606"/>
+<unit id="org.eclipse.ocl.examples.feature.group" version="3.1.2.v20120206-0606"/>
 <repository location="http://download.eclipse.org/releases/indigo"/>
 </location>
 <location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.emf.query2.core.feature.feature.group" version="1.0.0.201201110003"/>
+<unit id="org.eclipse.emf.query2.core.feature.feature.group" version="1.0.0.201204290004"/>
 <repository location="https://hudson.eclipse.org/hudson/job/tycho-query2-nightly/lastSuccessfulBuild/artifact/targetPlatform/"/>
 </location>
 </locations>

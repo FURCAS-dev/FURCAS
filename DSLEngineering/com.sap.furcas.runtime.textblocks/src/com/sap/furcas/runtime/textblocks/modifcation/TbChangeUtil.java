@@ -203,11 +203,10 @@ public class TbChangeUtil {
      */
     public static void updateLengthAscending(DocumentNode node, int lengthToAdd) throws IllegalArgumentException {
         int newLength = node.getLength() + lengthToAdd;
-        //              if (newLength < 0) {
-        //                      throw new IllegalArgumentException(
-        //                                      "cannot substract more than the current length "
-        //                                                      + node.getLength() + "<" + (-lengthToAdd));
-        //              }
+        if (newLength < 0) {
+            throw new IllegalArgumentException("cannot substract more than the current length " + node.getLength() + "<"
+                    + (-lengthToAdd));
+        }
         node.setLength(newLength);
         TextBlock parent = node.getParent();
         if (parent != null) {

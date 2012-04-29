@@ -32,7 +32,7 @@
 					<inherited>true</inherited>
 					<groupId>org.sonatype.tycho</groupId>
 					<artifactId>maven-osgi-test-plugin</artifactId>
-					<version>0.10.0</version>
+					<version>0.11.0</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -46,13 +46,13 @@
 			<plugin>
 				<groupId>org.sonatype.tycho</groupId>
 				<artifactId>tycho-maven-plugin</artifactId>
-				<version>0.10.0</version>
+				<version>0.11.0</version>
 				<extensions>true</extensions>
 			</plugin>
 			<plugin>
 				<groupId>org.sonatype.tycho</groupId>
 				<artifactId>target-platform-configuration</artifactId>
-				<version>0.10.0</version>
+				<version>0.11.0</version>
 				<configuration>
 					<resolver>p2</resolver>
 					<environments>
@@ -99,7 +99,7 @@
 			<plugin>
 				<groupId>org.sonatype.tycho</groupId>
 				<artifactId>maven-osgi-compiler-plugin</artifactId>
-				<version>0.10.0</version>
+				<version>0.11.0</version>
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>
