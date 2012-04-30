@@ -229,18 +229,13 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
      * an empty collection is returned.
      */
     private Set<EObject> getElementsToUpdateFromSelf(EObject element) {
-        Set<EObject> corresponding = new HashSet<EObject>();
         Set<TextBlock> textBlocks = getTextBlocksInWhichSequenceElementWasExecuted(element, /* #context */ false);
         for (TextBlock tb : textBlocks) {
-            corresponding.add(tb.getCorrespondingModelElements().get(0));
+            if (element.equals(tb.getCorrespondingModelElements().get(0))) {
+                return Collections.singleton(element);
+            }
         }
-        Set<EObject> result;
-        if (corresponding.contains(element)) {
-            result = Collections.singleton(element);
-        } else {
-            result = Collections.emptySet();
-        }
-        return result;
+        return Collections.emptySet();
     }
 
 

@@ -331,6 +331,7 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
      */
     private String getNewTokenValue(OCL ocl, EObject element) {
         String newToken = (String) ocl.evaluate(element, referenceByExp);
+        
         if (prefix != null) {
             if (!newToken.startsWith(prefix)) {
                 throw new RuntimeException("New identifier \""+
