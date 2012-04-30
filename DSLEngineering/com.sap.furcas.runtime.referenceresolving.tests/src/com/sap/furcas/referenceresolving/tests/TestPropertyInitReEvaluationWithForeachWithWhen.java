@@ -13,7 +13,6 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -33,7 +32,7 @@ import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
  * @author Axel Uhl (D043530)
  * 
  */
-public class TestPropertyInitReEvaluationWithForeachWithWhen extends AbstractReferenceResolvingTestWithTextBlocks {
+public class TestPropertyInitReEvaluationWithForeachWithWhen extends AbstractReferenceResolvingTest {
     
     private static final String LANGUAGE = "BibtexWithForeachWithWhen";
     private static final File TCS = new File("fixtures/BibtexWithForeachWithWhen.tcs");
@@ -89,22 +88,13 @@ public class TestPropertyInitReEvaluationWithForeachWithWhen extends AbstractRef
         }
     }
 
-    @After
-    public void removeModelFromResourceSet() {
-        rootElement.eResource().getContents().remove(rootElement);
-        resourceSet.getResources().remove(transientParsingResource);
-        // make sure the next parser run isn't obstructed by an already subscribed trigger manager:
-        triggerManager.removeFromObservedResourceSets(resourceSet);
-    }
-    
     @Test
     public void testInitialModel() {
         assertNotNull(rootElement);
         EList<?> entries = (EList<?>) (rootElement).eGet((rootElement).eClass().getEStructuralFeature("entries"));
         assertEquals(5, entries.size());
         assertEquals(3, articles.size());
-        assertNotNull(syntax);
-        assertEquals("BibtexWithForeachWithWhen", syntax.getName());
+
         assertNotNull(johnDoe);
         assertFalse(((Collection<?>) johnDoe.eGet(authorClass.getEStructuralFeature("revenues"))).isEmpty());
         assertEquals(((Collection<?>) johnDoe.eGet(authorClass.getEStructuralFeature("articles"))).size(),

@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -36,7 +35,7 @@ import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
  * @author Axel Uhl (D043530)
  * 
  */
-public class TestPropertyInitReEvaluationWithComplexForeach extends AbstractReferenceResolvingTestWithTextBlocks {
+public class TestPropertyInitReEvaluationWithComplexForeach extends AbstractReferenceResolvingTest {
     
     private static final String LANGUAGE = "BibtexWithComplexForeachPropertyInits";
     private static final File TCS = new File("fixtures/BibtexWithComplexForeachPropertyInits.tcs");
@@ -74,15 +73,12 @@ public class TestPropertyInitReEvaluationWithComplexForeach extends AbstractRefe
         assertNotNull(rootElement);
         EClass bibTexFileClass = rootElement.eClass();
         assertEquals("BibTextFile", bibTexFileClass.getName());
-        @SuppressWarnings("unchecked")
-        Collection<EObject> entries = (Collection<EObject>) rootElement.eGet(bibTexFileClass
-                .getEStructuralFeature("entries"));
-        for (EObject entry : entries) {
+        for (EObject entry : getECollection(rootElement, "entries")) {
             if (entry.eClass().getName().equals("Author")) {
                 authorClass = entry.eClass();
-                if (entry.eGet(authorClass.getEStructuralFeature("name")).equals("John Doe")) {
+                if (getFeature(entry, "name").equals("John Doe")) {
                     johnDoe = entry;
-                } else if (entry.eGet(authorClass.getEStructuralFeature("name")).equals("Jane Doll")) {
+                } else if (getFeature(entry, "name").equals("Jane Doll")) {
                     janeDoll = entry;
                 }
             } else if (entry.eClass().getName().equals("Article")) {
@@ -92,12 +88,17 @@ public class TestPropertyInitReEvaluationWithComplexForeach extends AbstractRefe
         }
     }
 
-    @After
-    public void removeModelFromResourceSet() {
-        rootElement.eResource().getContents().remove(rootElement);
-        resourceSet.getResources().remove(transientParsingResource);
-        // make sure the next parser run isn't obstructed by an already subscribed trigger manager:
-        triggerManager.removeFromObservedResourceSets(resourceSet);
+    @SuppressWarnings("unchecked")
+    private List<EObject> getECollection(EObject obj, String feature) {
+        return (List<EObject>) getFeature(obj, feature);
+    }
+    
+    private EObject getEFeature(EObject obj, String feature) {
+        return (EObject) getFeature(obj, feature);
+    }
+    
+    private Object getFeature(EObject obj, String feature) {
+        return obj.eGet(obj.eClass().getEStructuralFeature(feature));
     }
     
     @Test
@@ -106,28 +107,25 @@ public class TestPropertyInitReEvaluationWithComplexForeach extends AbstractRefe
         EList<?> entries = (EList<?>) (rootElement).eGet((rootElement).eClass().getEStructuralFeature("entries"));
         assertEquals(5, entries.size());
         assertEquals(3, articles.size());
-        assertNotNull(syntax);
-        assertEquals("BibtexWithComplexForeachPropertyInits", syntax.getName());
+        
         assertNotNull(johnDoe);
-        assertFalse(((Collection<?>) johnDoe.eGet(authorClass.getEStructuralFeature("revenues"))).isEmpty());
-        assertEquals(((Collection<?>) johnDoe.eGet(authorClass.getEStructuralFeature("articles"))).size(),
-                ((Collection<?>) johnDoe.eGet(authorClass.getEStructuralFeature("revenues"))).size());
+        assertFalse(getECollection(johnDoe, "revenues").isEmpty());
+        assertEquals(getECollection(johnDoe, "articles").size(), getECollection(johnDoe, "revenues").size());
+        
         assertNotNull(janeDoll);
-        assertFalse(((Collection<?>) janeDoll.eGet(authorClass.getEStructuralFeature("revenues"))).isEmpty());
-        assertEquals(((Collection<?>) janeDoll.eGet(authorClass.getEStructuralFeature("articles"))).size(),
-                ((Collection<?>) janeDoll.eGet(authorClass.getEStructuralFeature("revenues"))).size());
+        assertFalse(getECollection(janeDoll, "revenues").isEmpty());
+        assertEquals(getECollection(janeDoll, "articles").size(), getECollection(janeDoll, "revenues").size());
+        
         // now check the reference was set using the right property name
         for (EObject article : articles) {
-            assertNotNull(article.eGet(articleClass.getEStructuralFeature("author")));
+            assertNotNull(getEFeature(article, "author"));
         }
         for (EObject author : new EObject[] { johnDoe, janeDoll }) {
-            @SuppressWarnings("unchecked")
-            Collection<EObject> revenues = (Collection<EObject>) author.eGet(authorClass.getEStructuralFeature("revenues"));
-            for (EObject revenue : revenues) {
-                EObject articleOfRevenue = (EObject) revenue.eGet(revenue.eClass().getEStructuralFeature("article"));
-                String articleName = (String) articleOfRevenue.eGet(articleClass.getEStructuralFeature("key"));
+            for (EObject revenue : getECollection(author, "revenues")) {
+                EObject articleOfRevenue = getEFeature(revenue, "article");
+                String articleName = (String) getFeature(articleOfRevenue, "key");
                 assertEquals((articleName.length()<5 ? 1 : articleName.length()<10?2:3)*articleName.length(),
-                        revenue.eGet(revenue.eClass().getEStructuralFeature("revenueInEUR")));
+                        getFeature(revenue, "revenueInEUR"));
             }
         }
      }

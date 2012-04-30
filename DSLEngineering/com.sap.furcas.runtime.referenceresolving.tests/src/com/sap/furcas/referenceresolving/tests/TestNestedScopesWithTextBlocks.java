@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
-import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -49,7 +48,7 @@ import com.sap.ide.cts.parser.errorhandling.SemanticParserException.Component;
  * 
  */
 
-public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTestWithTextBlocks {
+public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTest {
 
     private static final String LANGUAGE = "NestedScopesTestSyntax";
     private static final File TCS = ScenarioFixtureData.NESTED_SCOPE_TCS;
@@ -58,14 +57,6 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
     @BeforeClass
     public static void setupParser() throws Exception {
         setupParser(TCS, LANGUAGE, METAMODEL);
-    }
-
-    @After
-    public void removeModelFromResourceSet() {
-        rootElement.eResource().getContents().remove(rootElement);
-        resourceSet.getResources().remove(transientParsingResource);
-        // make sure the next parser run isn't obstructed by an already subscribed trigger manager:
-        triggerManager.removeFromObservedResourceSets(resourceSet);
     }
 
     /**
