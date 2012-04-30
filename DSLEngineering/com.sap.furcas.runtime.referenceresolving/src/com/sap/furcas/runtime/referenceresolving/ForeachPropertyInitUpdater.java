@@ -188,13 +188,9 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
             Object newValue = ocl.evaluate(affectedContextObject, baseForeachExpression);
             if (oldValue != newValue && (oldValue == null || !oldValue.equals(newValue))) {
                 // something changed
-                try {
-                    // the getElementsToUpdate(affectedContextObject) is necessary because the foreach
-                    // base expression may itself use #context or #foreach
-                    updateFeature(getElementsToUpdate(affectedContextObject), newValue);
-                } catch (ParserException e) {
-                    throw new RuntimeException(e);
-                }
+                // the getElementsToUpdate(affectedContextObject) is necessary because the foreach
+                // base expression may itself use #context or #foreach
+                updateFeature(getElementsToUpdate(affectedContextObject), newValue);
             }
         }
     }

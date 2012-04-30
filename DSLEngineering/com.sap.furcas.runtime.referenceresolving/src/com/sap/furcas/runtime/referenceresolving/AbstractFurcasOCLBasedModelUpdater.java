@@ -83,12 +83,8 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
                     newValue = ((Collection<?>) newValue).isEmpty() ? null : ((Collection<?>) newValue).iterator()
                             .next();
                 }
-                try {
-                    for (EObject elementToUpdate : getElementsToUpdate(eo)) {
-                        elementToUpdate.eSet(getPropertyToUpdate(), newValue);
-                    }
-                } catch (ParserException e) {
-                    throw new RuntimeException(e);
+                for (EObject elementToUpdate : getElementsToUpdate(eo)) {
+                    elementToUpdate.eSet(getPropertyToUpdate(), newValue);
                 }
             }
         }
@@ -145,14 +141,18 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
      *            case where {@link #selfKind} is {@link SelfKind#SELF}, this is at the same time the result of this
      *            method; otherwise, the <code>inTextBlock</code> argument is used to compute the result
      */
-    protected Set<EObject> getElementsToUpdate(EObject self) throws ParserException {
+    protected Set<EObject> getElementsToUpdate(EObject self) {
         switch (selfKind) {
         case SELF:
             return getElementsToUpdateFromSelf(self);
         case CONTEXT:
             return getElementsToUpdateFromContextElement(self);
         case FOREACH:
-            return getElementToUpdateFromForeachElement(self);
+            try {
+                return getElementToUpdateFromForeachElement(self);
+            } catch (ParserException e) {
+                throw new RuntimeException(e);
+            }
         default:
             throw new RuntimeException("Unknown self kind: "+selfKind);
         }

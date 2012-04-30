@@ -252,49 +252,44 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
     public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects,
             OppositeEndFinder oppositeEndFinder, Notification change) {
         for (EObject eo : affectedContextObjects) {
-            try {
-                for (EObject elementToUpdate : getElementsToUpdate(eo)) {
-                    for (LexedToken token : getTokens(elementToUpdate)) {
-                        if (!isResolved(elementToUpdate)) {
-                            syntaxRegistryToNotifyAboutTokenChanges.requestClearReferencedElements(token);
-                            resolve(elementToUpdate, token);
-                        } else {
-                            if (expression == lookupScopeExp) {
-                                OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL
-                                        .newInstance(oppositeEndFinder);
-                                Object newValue = ocl.evaluate(eo, lookupScopeExp);
-                                // only assign if result was not "invalid"
-                                if (ocl.getEnvironment().getOCLStandardLibrary().getInvalid() != newValue) {
-                                    Collection<?> newValueAsCol = (Collection<?>) newValue;
-                                    Object oldValue = elementToUpdate.eGet(getPropertyToUpdate());
-                                    if (oldValue instanceof Collection<?>) {
-                                        // figure out the position based on where the property occurs in the
-                                        // mapping's sequence
-                                        oldValue = ((List<?>) oldValue).get(getPosition());
-                                    }
-                                    if (newValueAsCol.contains(oldValue)) {
-                                        // resolved element still in scope; update token if desired
-                                        String newTokenValue = getNewTokenValue(ocl, (EObject) oldValue);
-                                        if (token != null) {
-                                            String oldTokenValue = token.getValue();
-                                            syntaxRegistryToNotifyAboutTokenChanges.requestTokenValueChange(token,
-                                                    oldTokenValue, newTokenValue);
-                                        }
-                                    } else {
-                                        // element to which identifier resolved so far is no longer in scope;
-                                        // resolve again, now based on modified scope
-                                        resolve(elementToUpdate, token);
+            for (EObject elementToUpdate : getElementsToUpdate(eo)) {
+                for (LexedToken token : getTokens(elementToUpdate)) {
+                    if (!isResolved(elementToUpdate)) {
+                        syntaxRegistryToNotifyAboutTokenChanges.requestClearReferencedElements(token);
+                        resolve(elementToUpdate, token);
+                    } else {
+                        if (expression == lookupScopeExp) {
+                            OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL
+                                    .newInstance(oppositeEndFinder);
+                            Object newValue = ocl.evaluate(eo, lookupScopeExp);
+                            // only assign if result was not "invalid"
+                            if (ocl.getEnvironment().getOCLStandardLibrary().getInvalid() != newValue) {
+                                Collection<?> newValueAsCol = (Collection<?>) newValue;
+                                Object oldValue = elementToUpdate.eGet(getPropertyToUpdate());
+                                if (oldValue instanceof Collection<?>) {
+                                    // figure out the position based on where the property occurs in the
+                                    // mapping's sequence
+                                    oldValue = ((List<?>) oldValue).get(getPosition());
+                                }
+                                if (newValueAsCol.contains(oldValue)) {
+                                    // resolved element still in scope; update token if desired
+                                    String newTokenValue = getNewTokenValue(ocl, (EObject) oldValue);
+                                    if (token != null) {
+                                        String oldTokenValue = token.getValue();
+                                        syntaxRegistryToNotifyAboutTokenChanges.requestTokenValueChange(token,
+                                                oldTokenValue, newTokenValue);
                                     }
                                 } else {
-                                    // TODO decide what to do: lookupScopeExp evaluates to invalid; break resolved ref?
+                                    // element to which identifier resolved so far is no longer in scope;
+                                    // resolve again, now based on modified scope
+                                    resolve(elementToUpdate, token);
                                 }
+                            } else {
+                                // TODO decide what to do: lookupScopeExp evaluates to invalid; break resolved ref?
                             }
                         }
                     }
                 }
-            } catch (ParserException e) {
-                // TODO Auto-generated catch block
-                throw new RuntimeException(e);
             }
         }
     }
