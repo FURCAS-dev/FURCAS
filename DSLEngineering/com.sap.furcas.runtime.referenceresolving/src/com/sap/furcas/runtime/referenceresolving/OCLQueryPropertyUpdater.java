@@ -24,7 +24,6 @@ import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.ecore.utilities.AbstractVisitor;
-import org.eclipse.ocl.ecore.utilities.VisitorExtension;
 import org.eclipse.ocl.types.OrderedSetType;
 import org.eclipse.ocl.types.SequenceType;
 import org.eclipse.ocl.util.CollectionUtil;
@@ -109,7 +108,7 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
      * @author Axel Uhl (D043530)
      *
      */
-    private class SelfRenamingVisitor extends AbstractVisitor<Variable> implements VisitorExtension<Variable> {
+    private class SelfRenamingVisitor extends AbstractVisitor<Variable> {
         private final String newNameForSelf;
 
         public SelfRenamingVisitor(String newNameForSelf) {
@@ -189,7 +188,7 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
         this.syntaxRegistryToNotifyAboutTokenChanges = syntaxRegistryToNotifyAboutTokenChanges;
     }
     
-    private EClassifier getCollectType(IteratorExp collectExp, EcoreEnvironment env) {
+    private static EClassifier getCollectType(IteratorExp collectExp, EcoreEnvironment env) {
         EClassifier elementType = collectExp.getBody().getType();
         if (elementType instanceof CollectionType) {
                 CollectionType ct = (CollectionType) elementType;

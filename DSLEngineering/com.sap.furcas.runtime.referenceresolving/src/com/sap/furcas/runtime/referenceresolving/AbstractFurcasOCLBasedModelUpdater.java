@@ -49,7 +49,7 @@ import com.sap.furcas.runtime.tcs.TcsUtil;
  */
 public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBasedModelUpdater implements ModelUpdater {
     
-    public enum SelfKind { SELF, CONTEXT, FOREACH };
+    public enum SelfKind { SELF, CONTEXT, FOREACH }
     
     private final SelfKind selfKind;
     private final String contextTag;
