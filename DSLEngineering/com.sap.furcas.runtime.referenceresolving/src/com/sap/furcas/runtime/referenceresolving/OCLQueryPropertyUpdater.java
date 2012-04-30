@@ -397,7 +397,7 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
     private boolean isResolved(EObject element) {
         return getPropertyToUpdate().isMany() && element.eGet(getPropertyToUpdate()) != null
                 && ((List<?>) element.eGet(getPropertyToUpdate())).get(getPosition()) != null
-                || element.eGet(getPropertyToUpdate()) != null;
+                || element.eIsSet(getPropertyToUpdate());
     }
 
     private Variable renameAllSelf(OCLExpression collectBody, String newNameForSelf) {
