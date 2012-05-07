@@ -43,7 +43,7 @@ public class TestOperatorParsingScenarios extends IncrementalParserBasedTest {
     
     @BeforeClass
     public static void setupParser() throws Exception {
-        setupParser(LANGUAGE, TCS, METAMODELS);
+        setupParser(LANGUAGE, TCS, /*useModelUpdaters*/ true, METAMODELS);
     }
     
     /**
@@ -91,10 +91,7 @@ public class TestOperatorParsingScenarios extends IncrementalParserBasedTest {
         model.replace(0, model.getLength(), "3+2+1*2*3+4+5");
         triggerParser();
         
-        // FIXME The actual result is 20, however it is absolutely
-        // valid for the parser to return 15 here, as the test
-        // is run without any reference re-resolving mechanism
-        assertLatestResultEquals(15);
+        assertLatestResultEquals(20);
     }
     
     
@@ -111,10 +108,7 @@ public class TestOperatorParsingScenarios extends IncrementalParserBasedTest {
         model.replace(0, "2".length(), "3");
         triggerParser();
         
-        // FIXME The actual result is 9, however it is absolutely
-        // valid for the parser to return 4 here, as the test
-        // is run without any reference re-resolving mechanism
-        assertLatestResultEquals(4);
+        assertLatestResultEquals(9);
     }
     
     /**
@@ -130,10 +124,7 @@ public class TestOperatorParsingScenarios extends IncrementalParserBasedTest {
         model.replace(0, "2".length(), "3");
         triggerParser();
         
-        // FIXME The actual result is 9, however it is absolutely
-        // valid for the parser to return 4 here, as the test
-        // is run without any reference re-resolving mechanism
-        assertLatestResultEquals(4);
+        assertLatestResultEquals(9);
     }
     
     /**
@@ -149,10 +140,7 @@ public class TestOperatorParsingScenarios extends IncrementalParserBasedTest {
         model.replace(0, "1".length(), "10");
         triggerParser();
         
-        // FIXME The actual result is 24, however it is absolutely
-        // valid for the parser to return 15 here, as the test
-        // is run without any reference re-resolving mechanism
-        assertLatestResultEquals(15);
+        assertLatestResultEquals(24);
     }
     
     /**
@@ -168,10 +156,7 @@ public class TestOperatorParsingScenarios extends IncrementalParserBasedTest {
         model.replace("1+2+3+4+".length(), "5".length(), "10");
         triggerParser();
         
-        // FIXME The actual result is 20, however it is absolutely
-        // valid for the parser to return 15 here, as the test
-        // is run without any reference re-resolving mechanism
-        assertLatestResultEquals(15);
+        assertLatestResultEquals(20);
     }
     
     /**

@@ -235,7 +235,7 @@ public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
         textBlock = incrementalParserFacade.parseIncrementally(model.getRoot());
         TbChangeUtil.cleanUp(textBlock);
         
-        lexedTokens = extractTokens(textBlock, LexedToken.class);;
+        lexedTokens = extractTokens(textBlock, LexedToken.class);
         assertEquals("All lexed tokens should be gone", 0, lexedTokens.size());
         
         omittedTokens = extractTokens(textBlock, OmittedToken.class);

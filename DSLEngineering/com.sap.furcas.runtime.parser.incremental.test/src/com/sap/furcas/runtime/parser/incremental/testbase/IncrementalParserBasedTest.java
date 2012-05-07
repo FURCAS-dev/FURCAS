@@ -20,8 +20,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.junit.Before;
 
+import com.sap.emf.ocl.trigger.TriggerManager;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
@@ -29,6 +31,7 @@ import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.parser.incremental.ClassLookupImpl;
 import com.sap.furcas.runtime.parser.testbase.ClassLookup;
 import com.sap.furcas.runtime.parser.testbase.MockPartitionAssignmentHandler;
+import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
@@ -57,18 +60,28 @@ public abstract class IncrementalParserBasedTest extends GeneratedParserAndFacto
     }
 
     protected static IncrementalParserFacade incrementalParserFacade;
-    
     protected static Resource transientParsingResource;
     protected static ResourceSet resourceSet;
     
     protected TextBlocksModel model;
     
+    private static SyntaxRegistry syntaxRegistry;
+    protected static TriggerManager triggerManager;
+    
     protected static void setupParser(String languageName, File syntaxDefFile, File... metamodels) throws Exception {
-        setupParser(languageName, syntaxDefFile, new ClassLookupImpl(), metamodels);
+        setupParser(languageName, syntaxDefFile, new ClassLookupImpl(),  /*useModelAdapters*/ false, metamodels);
+    }
+    
+    protected static void setupParser(String languageName, File syntaxDefFile, boolean useModelUpdaters, File... metamodels) throws Exception {
+        setupParser(languageName, syntaxDefFile, new ClassLookupImpl(), useModelUpdaters, metamodels);
+    }
+
+    protected static void setupParser(String languageName, File syntaxDefFile, ClassLookup classLookup, File... metamodels) throws Exception {
+        setupParser(languageName, syntaxDefFile, classLookup, /*useModelAdapters*/ false, metamodels);
     }
 
     
-    protected static void setupParser(String languageName, File syntaxDefFile, ClassLookup classLookup, File... metamodels) throws Exception {
+    protected static void setupParser(String languageName, File syntaxDefFile, ClassLookup classLookup, boolean useModelUpdaters, File... metamodels) throws Exception {
         GeneratedParserAndFactoryTestConfiguration testConfig = new GeneratedParserAndFactoryTestConfiguration(languageName, syntaxDefFile, metamodels);
 
         resourceSet = testConfig.getSourceConfiguration().getResourceSet();
@@ -82,6 +95,13 @@ public abstract class IncrementalParserBasedTest extends GeneratedParserAndFacto
         ECrossReferenceAdapter crossRefAdapter = new ECrossReferenceAdapter();
         resourceSet.eAdapters().add(crossRefAdapter);
         crossRefAdapter.setTarget(resourceSet);
+        
+        if (useModelUpdaters) {
+            syntaxRegistry = SyntaxRegistry.getInstance();
+            triggerManager = syntaxRegistry.getTriggerManagerForSyntax(incrementalParserFacade.getParserScope().getSyntax(),
+                    DefaultOppositeEndFinder.getInstance(), /* progress monitor */null, incrementalParserFacade.getParserFactory());
+            triggerManager.addToObservedResourceSets(resourceSet);
+        }
     }
     
     @Before

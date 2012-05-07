@@ -38,7 +38,7 @@ public class TestSimplePropertyInitReEvaluationWithContext extends AbstractRefer
 
     @BeforeClass
     public static void setupParser() throws Exception {
-        setupParser(TCS, LANGUAGE, METAMODELS);
+        setupParser(LANGUAGE, TCS, METAMODELS);
     }
     
     /**

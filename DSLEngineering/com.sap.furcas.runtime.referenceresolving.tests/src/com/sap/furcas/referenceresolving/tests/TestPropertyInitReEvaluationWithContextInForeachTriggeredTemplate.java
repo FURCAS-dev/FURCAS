@@ -44,7 +44,7 @@ public class TestPropertyInitReEvaluationWithContextInForeachTriggeredTemplate e
 
     @BeforeClass
     public static void setupParser() throws Exception {
-        setupParser(TCS, LANGUAGE, METAMODELS);
+        setupParser(LANGUAGE, TCS, METAMODELS);
     }
     
     /**

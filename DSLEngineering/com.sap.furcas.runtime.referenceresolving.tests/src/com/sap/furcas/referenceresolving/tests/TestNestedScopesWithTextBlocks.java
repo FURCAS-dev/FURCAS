@@ -56,7 +56,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
 
     @BeforeClass
     public static void setupParser() throws Exception {
-        setupParser(TCS, LANGUAGE, METAMODEL);
+        setupParser(LANGUAGE, TCS, METAMODEL);
     }
 
     /**

@@ -39,7 +39,7 @@ public class TestParsingScenarios extends IncrementalParserBasedTest {
 
     @BeforeClass
     public static void setupParser() throws Exception {
-        setupParser(LANGUAGE, TCS, METAMODELS);
+        setupParser(LANGUAGE, TCS, /*useModelUpdaters*/ true, METAMODELS);
     }
     
     protected ParsingResult triggerParserAndExpectReuse() {

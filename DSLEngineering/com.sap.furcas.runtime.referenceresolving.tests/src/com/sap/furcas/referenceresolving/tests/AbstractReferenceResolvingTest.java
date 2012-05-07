@@ -4,14 +4,11 @@ import java.io.File;
 import java.util.Collections;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 
-import com.sap.emf.ocl.trigger.TriggerManager;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.parser.ParsingError;
 import com.sap.furcas.runtime.parser.incremental.testbase.IncrementalParserBasedTest;
-import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
 
 /**
@@ -26,26 +23,19 @@ public abstract class AbstractReferenceResolvingTest extends IncrementalParserBa
     protected EObject rootElement;
     protected TextBlock rootTextBlock;
     
-    private static SyntaxRegistry syntaxRegistry;
-    protected static TriggerManager triggerManager;
+
 
     
     /**
      * Call from a @BeforeClass operation in your subclass
-     * 
-     * @param TCS
-     *            the .tcs file containing the mapping definition
      * @param LANGUAGE
      *            name of the language; should conform to the name of the language as specified in the mapping
      *            definition file
+     * @param TCS
+     *            the .tcs file containing the mapping definition
      */
-    public static void setupParser(File TCS, String LANGUAGE, File... METAMODELS) throws Exception {
-        setupParser(LANGUAGE, TCS, new ClassLookupImpl(), METAMODELS);
-
-        syntaxRegistry = SyntaxRegistry.getInstance();
-        triggerManager = syntaxRegistry.getTriggerManagerForSyntax(incrementalParserFacade.getParserScope().getSyntax(), DefaultOppositeEndFinder.getInstance(),
-                /* progress monitor */ null, incrementalParserFacade.getParserFactory());
-        triggerManager.addToObservedResourceSets(resourceSet);
+    public static void setupParser(String LANGUAGE, File TCS, File... METAMODELS) throws Exception {
+        setupParser(LANGUAGE, TCS, new ClassLookupImpl(), /*useModelUpdaters*/ true, METAMODELS);
     }
 
     /**
@@ -68,9 +58,7 @@ public abstract class AbstractReferenceResolvingTest extends IncrementalParserBa
     private ParsingResult parseFile(String textToParse) {
         model.replace(0, model.getLength(), textToParse);
         
-        triggerManager.removeFromObservedResourceSets(resourceSet);
         ParsingResult result = triggerParser();
-        triggerManager.addToObservedResourceSets(resourceSet);
         
         return result;
     }

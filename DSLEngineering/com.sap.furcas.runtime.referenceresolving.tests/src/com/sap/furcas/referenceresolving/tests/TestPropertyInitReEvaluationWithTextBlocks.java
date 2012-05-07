@@ -46,7 +46,7 @@ public class TestPropertyInitReEvaluationWithTextBlocks extends AbstractReferenc
 
     @BeforeClass
     public static void setupParser() throws Exception {
-        setupParser(TCS, LANGUAGE, METAMODELS);
+        setupParser(LANGUAGE, TCS, METAMODELS);
     }
     
     /**

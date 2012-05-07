@@ -46,7 +46,7 @@ public class TestPropertyInitReEvaluationWithForeachWithWhen extends AbstractRef
 
     @BeforeClass
     public static void setupParser() throws Exception {
-        setupParser(TCS, LANGUAGE, METAMODELS);
+        setupParser(LANGUAGE, TCS, METAMODELS);
     }
     
     /**
