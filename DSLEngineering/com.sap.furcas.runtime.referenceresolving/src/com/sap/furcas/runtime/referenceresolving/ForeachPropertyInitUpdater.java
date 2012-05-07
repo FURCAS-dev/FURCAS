@@ -56,6 +56,7 @@ import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.common.util.FileResourceHelper;
+import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.IParsingObserver;
 import com.sap.furcas.runtime.parser.ModelElementCreationException;
@@ -548,8 +549,9 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
             IMetaModelLookup<EObject> metamodelLookup = new QueryBasedEcoreMetaModelLookUp(resourceSet,
                     parserFactory.getMetamodelURIs());
             IModelAdapter modelAdapter = new DefaultTextAwareModelAdapter(new EMFModelAdapter(resourceSet,
-                    new PartitionAssignmentHandlerBaseImpl(transientResource), metamodelLookup, scope));
-            
+                    new PartitionAssignmentHandlerBaseImpl(transientResource), metamodelLookup, scope,
+                    new TCSSpecificOCLEvaluator(oppositeEndFinder), oppositeEndFinder));
+
             ObservableInjectingParser parser = parserFactory.createParser(new CommonTokenStream(lexer), modelAdapter);
             DelegationParsingObserver delegator = new DelegationParsingObserver();
             IParsingObserver originalObserver = parser.getObserver();

@@ -17,11 +17,13 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
 import com.sap.furcas.modeladaptation.emf.lookup.QueryBasedEcoreMetaModelLookUp;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
+import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ModelParsingResult;
 import com.sap.furcas.runtime.parser.ParserFacade;
@@ -48,8 +50,9 @@ public class EMFParsingHelper extends AbstractParsingHelper<ModelParsingResult> 
     protected IModelAdapter createModelAdapter() {
         IMetaModelLookup<EObject> metamodelLookup = new QueryBasedEcoreMetaModelLookUp(resourceSet, referenceScope);
         Resource transientResource = EcoreHelper.createTransientParsingResource(resourceSet, packageURI);
-        return new DefaultTextAwareModelAdapter(new EMFModelAdapter(resourceSet,
-                new PartitionAssignmentHandlerBaseImpl(transientResource), metamodelLookup, new HashSet<URI>()));
+        return new DefaultTextAwareModelAdapter(new EMFModelAdapter(resourceSet, new PartitionAssignmentHandlerBaseImpl(
+                transientResource), metamodelLookup, new HashSet<URI>(), new TCSSpecificOCLEvaluator(),
+                DefaultOppositeEndFinder.getInstance()));
     }
 
     @Override

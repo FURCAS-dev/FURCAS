@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.furcas.runtime.common.exceptions.DeferredActionResolvingException;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
@@ -28,6 +29,7 @@ import com.sap.furcas.runtime.common.interfaces.IBareModelAdapter;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.common.util.MessageUtil;
+import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 import com.sap.furcas.runtime.parser.PartitionAssignmentHandlerBase;
 
 /**
@@ -64,8 +66,8 @@ public class EMFModelAdapter implements IBareModelAdapter {
      *          and the visible URIs of the give resource set. In most cases the scope can therefore remain
      *          empty.
      */
-    public EMFModelAdapter(ResourceSet resourceSet, PartitionAssignmentHandlerBase partitioningHandler, IMetaModelLookup<EObject> metamodelLookup, Set<URI> additionalQueryScope) {
-        delegate = new EMFModelAdapterDelegate(resourceSet, partitioningHandler, metamodelLookup, additionalQueryScope);
+    public EMFModelAdapter(ResourceSet resourceSet, PartitionAssignmentHandlerBase partitioningHandler, IMetaModelLookup<EObject> metamodelLookup, Set<URI> additionalQueryScope, TCSSpecificOCLEvaluator oclEvaluator, OppositeEndFinder oppositeEndFinder) {
+        delegate = new EMFModelAdapterDelegate(resourceSet, partitioningHandler, metamodelLookup, additionalQueryScope, oclEvaluator, oppositeEndFinder);
     }
 
     @Override

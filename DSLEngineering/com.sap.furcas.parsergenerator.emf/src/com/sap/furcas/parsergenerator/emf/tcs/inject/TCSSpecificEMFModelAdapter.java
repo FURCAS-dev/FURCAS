@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -26,7 +27,11 @@ import com.sap.furcas.runtime.common.exceptions.ReferenceSettingException;
 import com.sap.furcas.runtime.common.interfaces.IBareModelAdapter;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
+import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 import com.sap.furcas.runtime.parser.PartitionAssignmentHandlerBaseImpl;
+import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
+
+import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider;
 
 /**
  * Specialized EMF Adapter for TCS Syntaxes
@@ -51,9 +56,14 @@ public class TCSSpecificEMFModelAdapter implements IBareModelAdapter {
         metamodelURIs.add(URI.createURI(FURCASPackage.eINSTANCE.getNsURI()));
         metamodelURIs.add(URI.createURI(EcorePackage.eINSTANCE.getNsURI()));
         
+        QueryContextProvider queryContext = EcoreHelper.createProjectDependencyQueryContextProvider(
+                resourceSet, referenceScope);
+        OppositeEndFinder oppositeEndFinder = new Query2OppositeEndFinder(queryContext);
+        TCSSpecificOCLEvaluator oclEvaluator = new TCSSpecificOCLEvaluator(oppositeEndFinder);
+        
         IMetaModelLookup<EObject> metamodelLookup = new QueryBasedEcoreMetaModelLookUp(resourceSet, metamodelURIs);
         adapter = new EMFModelAdapter(resourceSet, new PartitionAssignmentHandlerBaseImpl(transientResource),
-                metamodelLookup, referenceScope);
+                metamodelLookup, referenceScope, oclEvaluator, oppositeEndFinder);
     }
 
     /*

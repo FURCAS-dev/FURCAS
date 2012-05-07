@@ -29,13 +29,13 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.furcas.ide.editor.contentassist.modeladapter.StubModelAdapter;
 import com.sap.furcas.ide.editor.document.CtsDocument;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
-import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ParserFacade;
@@ -46,9 +46,6 @@ import com.sap.furcas.runtime.parser.impl.DelegationParsingObserver;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.ide.cts.parser.incremental.IncrementalParserFacade;
-import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
-
-import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider;
 
 
 /**
@@ -80,7 +77,7 @@ public class CtsContentAssistProcessor {
     
     private final ConcreteSyntax syntax;
     private final ResourceSet resourceSet;
-    private final Query2OppositeEndFinder oppositeEndFinder;
+    private final OppositeEndFinder oppositeEndFinder;
     private final TCSSpecificOCLEvaluator oclEvaluator;
     
     private final ParserFacade facade;
@@ -92,10 +89,8 @@ public class CtsContentAssistProcessor {
         this.resourceSet = parserFacade.getParserScope().getResourceSet();
         Assert.isNotNull(resourceSet, "moin connection is null");
 
-        QueryContextProvider queryContext = EcoreHelper.createProjectDependencyQueryContextProvider(resourceSet,
-                parserFacade.getParserFactory().getAdditionalQueryScope());
-        this.oppositeEndFinder = new Query2OppositeEndFinder(queryContext);
-        this.oclEvaluator = new TCSSpecificOCLEvaluator(oppositeEndFinder);
+        this.oppositeEndFinder = parserFacade.getOppositeEndFinder();
+        this.oclEvaluator = parserFacade.getOclEvaluator();
 
         classTemplateMap = TcsUtil.createClassTemplateMap(syntax);
         operatorTemplateMap = TcsUtil.createOperatorTemplateMap(syntax);

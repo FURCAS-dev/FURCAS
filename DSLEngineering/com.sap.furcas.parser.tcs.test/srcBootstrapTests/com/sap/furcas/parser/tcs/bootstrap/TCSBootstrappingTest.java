@@ -8,6 +8,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -19,6 +20,7 @@ import com.sap.furcas.parser.tcs.scenario.ClassLookupImpl;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
+import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.PartitionAssignmentHandlerBaseImpl;
@@ -67,7 +69,8 @@ public class TCSBootstrappingTest extends GeneratedParserBasedTest {
         Resource transientResource = EcoreHelper.createTransientParsingResource(resourceSet, FURCASPackage.eINSTANCE.getNsURI());        
         parsingHelper = new StubParsingHelper(facade);
         modelAdapter = new DefaultTextAwareModelAdapter(new EMFModelAdapter(testConfig.getSourceConfiguration().getResourceSet(), 
-                new PartitionAssignmentHandlerBaseImpl(transientResource), metamodelLookup, metamodels));
+                new PartitionAssignmentHandlerBaseImpl(transientResource), metamodelLookup, metamodels, new TCSSpecificOCLEvaluator(),
+                DefaultOppositeEndFinder.getInstance()));
     }
 
     @Test

@@ -16,13 +16,17 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
 import com.sap.furcas.runtime.common.exceptions.ParserInstantiationException;
+import com.sap.furcas.runtime.common.interfaces.IBareModelAdapter;
 import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
+import com.sap.furcas.runtime.common.util.EcoreHelper;
+import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ParserFactory;
 import com.sap.furcas.runtime.parser.ParsingError;
@@ -41,6 +45,9 @@ import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException.Component;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRLexerAdapter;
+import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
+
+import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider;
 
 /**
  * Facade for handling incremental parser and lexer construction as well as
@@ -61,6 +68,9 @@ public class IncrementalParserFacade {
     private final ParserTextBlocksHandler observer;
     private final ParserScope parserScope;
     private final PartitionAssignmentHandler partitionAssignmentHandler;
+    private final OppositeEndFinder oppositeEndFinder;
+    private final TCSSpecificOCLEvaluator oclEvaluator;
+    private final IBareModelAdapter bareModelAdapter;
 
     public IncrementalParserFacade(ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory,
             ResourceSet resourceSet, PartitionAssignmentHandler partitionAssignmentHandler) throws ParserInstantiationException {
@@ -69,8 +79,20 @@ public class IncrementalParserFacade {
         this.partitionAssignmentHandler = partitionAssignmentHandler;
         
         this.parserScope = new ParserScope(resourceSet, parserFactory);
-        IModelAdapter modelAdapter = createModelAdapter();
-
+        
+        // Build a scope encompassing all resources in the resource set,
+        // the additional queryScope, and all other resources visible via 
+        // Eclipse bundle dependencies.
+        QueryContextProvider queryContext = EcoreHelper.createProjectDependencyQueryContextProvider(
+                resourceSet, parserScope.getExplicitQueryScope());
+        
+        this.oppositeEndFinder = new Query2OppositeEndFinder(queryContext);
+        this.oclEvaluator = new TCSSpecificOCLEvaluator(oppositeEndFinder);
+        
+        this.bareModelAdapter = new EMFModelAdapter(resourceSet, partitionAssignmentHandler,
+                parserScope.getMetamodelLookup(), parserScope.getExplicitQueryScope(), oclEvaluator, oppositeEndFinder);
+        IModelAdapter modelAdapter = new TextBlocksAwareModelAdapter(bareModelAdapter);
+        
         // TODO use token wrapper factory here
         TextBlockReuseStrategyImpl reuseStrategy = new TextBlockReuseStrategyImpl(parserFactory.createLexer(null), modelAdapter);
 
@@ -172,8 +194,7 @@ public class IncrementalParserFacade {
         TokenSource lexer = parserFactory.createLexer(inputStream);
         TokenStream tokenStream = new CommonTokenStream(lexer);
                 
-        IModelAdapter modelAdapter = new DefaultTextAwareModelAdapter(new EMFModelAdapter(parserScope.getResourceSet(),
-                partitionAssignmentHandler, parserScope.getMetamodelLookup(), parserScope.getExplicitQueryScope()));
+        IModelAdapter modelAdapter = new DefaultTextAwareModelAdapter(bareModelAdapter);
         
         ObservableInjectingParser p = parserFactory.createParser(tokenStream, modelAdapter);
         return p.checkSyntaxWithoutInjecting();
@@ -237,6 +258,14 @@ public class IncrementalParserFacade {
     public ParserScope getParserScope() {
         return parserScope;
     }
+    
+    public OppositeEndFinder getOppositeEndFinder() {
+        return oppositeEndFinder;
+    }
+    
+    public TCSSpecificOCLEvaluator getOclEvaluator() {
+        return oclEvaluator;
+    }
 
     public IModelElementInvestigator getModelElementInvestigator() {
         return injector.getModelAdapter();
@@ -249,11 +278,6 @@ public class IncrementalParserFacade {
     
     /*package*/ ParserTextBlocksHandler createParserTextBlocksHandler() {
         return new ParserTextBlocksHandler(tbTokenStream, parserScope, partitionAssignmentHandler);
-    }
-    
-    /*package*/ IModelAdapter createModelAdapter() {
-        return new TextBlocksAwareModelAdapter(new EMFModelAdapter(parserScope.getResourceSet(),
-                partitionAssignmentHandler, parserScope.getMetamodelLookup(), parserScope.getExplicitQueryScope()));
     }
     
     /*package*/ IModelAdapter getModelAdapter() {

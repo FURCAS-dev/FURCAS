@@ -20,7 +20,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.prettyprinter.PrettyPrinter;
-import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 import com.sap.furcas.runtime.parser.PartitionAssignmentHandler;
 import com.sap.furcas.runtime.tcs.MessageHelper;
 import com.sap.furcas.runtime.tcs.TcsUtil;
@@ -116,7 +115,7 @@ public class SetupTextBlocksModelCommand extends RecordingCommand {
 
     protected PrettyPrinter createPrettyPrinter() {
         return new PrettyPrinter(syntax, parserFacade.getParserScope().getMetamodelLookup(), 
-                new TCSSpecificOCLEvaluator(), parserFacade.getParserFactory());
+                parserFacade.getOclEvaluator(), parserFacade.getParserFactory());
     }
 
     private static void assertCorrectTextBlockType(TextBlock rootBlock, ClassTemplate rootTemplate) {
