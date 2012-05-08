@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -84,20 +85,20 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
      * is compared to the result of the {@link #referenceByExp} evaluated on the elements returned by
      * the {@link #lookupScopeExp}.
      */
-    private final String prefix;
+    private final PrefixPArg prefix;
 
     /**
      * the postfix to be appended to the identifier provided by a token before the concatenated string
      * is compared to the result of the {@link #referenceByExp} evaluated on the elements returned by
      * the {@link #lookupScopeExp}.
      */
-    private final String postfix;
+    private final PostfixPArg postfix;
     
     /**
      * The {@link SyntaxRegistry} to notify when a token is changed. The syntax registry will, in turn,
      * notify the {@link TokenChanger}s registered with it.
      */
-    private final SyntaxRegistry syntaxRegistryToNotifyAboutTokenChanges;
+    private final SyntaxRegistry syntaxRegistry;
     
     /**
      * The visitor returns the first "self" variable found referenced by the expression. If no such variable
@@ -149,28 +150,19 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
                 determineSelfKind(getExpressionString(property)), ContextAndForeachHelper
                         .getContextTag(getExpressionString(property)));
         this.property = property;
-        PrefixPArg prefixPArg = PropertyArgumentUtil.getPrefixPArg(property);
-        if (prefixPArg != null) {
-            prefix = prefixPArg.getPrefix();
-        } else {
-            prefix = null;
-        }
-        PostfixPArg postfixPArg = PropertyArgumentUtil.getPostfixPArg(property);
-        if (postfixPArg != null) {
-            postfix = postfixPArg.getPostfix();
-        } else {
-            postfix = null;
-        }
+        this.prefix = PropertyArgumentUtil.getPrefixPArg(property);
+        this.postfix = PropertyArgumentUtil.getPostfixPArg(property);
+        
         String unpreparedLookupScopeQuery = getExpressionString(property);
         String lookupScopeAsString = ContextAndForeachHelper.prepareOclQuery(unpreparedLookupScopeQuery);
         Helper oclHelper = createOCLHelper(unpreparedLookupScopeQuery, property.getParentTemplate(), getOppositeEndFinder());
         lookupScopeExp = oclHelper.createQuery(lookupScopeAsString);
         OCLExpression collectSource = oclHelper.createQuery(lookupScopeAsString);
-        String referenceByAsString = PropertyArgumentUtil.getReferenceByAsOCL(PropertyArgumentUtil
-                .getReferenceByPArg(property));
+        
         // The following is an OCL expression where "self" refers to an element produced by
         // the lookupScope expression. Therefore, its type is goverend by the lookupScope expression's
         // result type.
+        String referenceByAsString = PropertyArgumentUtil.getReferenceByAsOCL(PropertyArgumentUtil.getReferenceByPArg(property));
         oclHelper.setContext(((CollectionType) lookupScopeExp.getType()).getElementType());
         referenceByExp = oclHelper.createQuery(referenceByAsString);
         // Now modify a copy of referenceByExp such that all "self" expressions have their variable
@@ -185,7 +177,7 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
         collectExp.setBody(collectBody);
         collectExp.getIterator().add(firstSelf);
         collectExp.setType(getCollectType(collectExp, (EcoreEnvironment) oclHelper.getEnvironment()));
-        this.syntaxRegistryToNotifyAboutTokenChanges = syntaxRegistryToNotifyAboutTokenChanges;
+        this.syntaxRegistry = syntaxRegistryToNotifyAboutTokenChanges;
     }
     
     private static EClassifier getCollectType(IteratorExp collectExp, EcoreEnvironment env) {
@@ -249,44 +241,30 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
      * successful, the property is bound to the new lookup result.
      */
     @Override
-    public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects,
-            OppositeEndFinder oppositeEndFinder, Notification change) {
+    public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects, OppositeEndFinder oppositeEndFinder, Notification change) {
         for (EObject eo : affectedContextObjects) {
             for (EObject elementToUpdate : getElementsToUpdate(eo)) {
                 for (LexedToken token : getTokens(elementToUpdate)) {
-                    if (!isResolved(elementToUpdate)) {
-                        syntaxRegistryToNotifyAboutTokenChanges.requestClearReferencedElements(token);
+                    
+                    if (!isResolved(elementToUpdate, token)) {
                         resolve(elementToUpdate, token);
-                    } else {
-                        if (expression == lookupScopeExp) {
-                            OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL
-                                    .newInstance(oppositeEndFinder);
-                            Object newValue = ocl.evaluate(eo, lookupScopeExp);
-                            // only assign if result was not "invalid"
-                            if (ocl.getEnvironment().getOCLStandardLibrary().getInvalid() != newValue) {
-                                Collection<?> newValueAsCol = (Collection<?>) newValue;
-                                Object oldValue = elementToUpdate.eGet(getPropertyToUpdate());
-                                if (oldValue instanceof Collection<?>) {
-                                    // figure out the position based on where the property occurs in the
-                                    // mapping's sequence
-                                    oldValue = ((List<?>) oldValue).get(getPosition());
-                                }
-                                if (newValueAsCol.contains(oldValue)) {
-                                    // resolved element still in scope; update token if desired
-                                    String newTokenValue = getNewTokenValue(ocl, (EObject) oldValue);
-                                    if (token != null) {
-                                        String oldTokenValue = token.getValue();
-                                        syntaxRegistryToNotifyAboutTokenChanges.requestTokenValueChange(token,
-                                                oldTokenValue, newTokenValue);
-                                    }
-                                } else {
-                                    // element to which identifier resolved so far is no longer in scope;
-                                    // resolve again, now based on modified scope
-                                    resolve(elementToUpdate, token);
-                                }
-                            } else {
-                                // TODO decide what to do: lookupScopeExp evaluates to invalid; break resolved ref?
-                            }
+                        
+                    } else if (expression == lookupScopeExp) {
+                        OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(oppositeEndFinder);
+                        Object elementsInScope = ocl.evaluate(eo, lookupScopeExp);
+
+                        if (ocl.getEnvironment().getOCLStandardLibrary().getInvalid() == elementsInScope) {
+                            continue; // only assign if result was not "invalid"
+                        }
+                        Object oldValue = getResolvedElement(token);
+                        if (((Collection<?>) elementsInScope).contains(oldValue)) {
+                            // resolved element still in scope; update token to reflect name change
+                            syntaxRegistry.requestTokenValueChange(token, token.getValue(),
+                                    getNewTokenValue(ocl, oldValue));
+                        } else {
+                            // element to which identifier resolved so far is no
+                            // longer in scope; resolve again, now based on modified scope
+                            resolve(elementToUpdate, token);
                         }
                     }
                 }
@@ -323,44 +301,15 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
 
     /**
      * Computes the identifier by which the element needs to be referenced by the {@link #property}.
-     * This identifier is computed by removing the prefix and postfix from the result of evaluating
-     * the {@link #referenceByExp} expression on <code>element</code>.
      * 
      * @param element expected to conform to the element type of the {@link #lookupScopeExp} expression's
      * result type which is assumed to be a collection type
      */
-    private String getNewTokenValue(OCL ocl, EObject element) {
+    private String getNewTokenValue(OCL ocl, Object element) {
         String newToken = (String) ocl.evaluate(element, referenceByExp);
-        
-        if (prefix != null) {
-            if (!newToken.startsWith(prefix)) {
-                throw new RuntimeException("New identifier \""+
-                        newToken+"\" to be used for referencing doesn't start with prefix \""+prefix+"\"");
-            }
-            newToken = newToken.substring(0, prefix.length());
-        }
-        if (postfix != null) {
-            if (!newToken.endsWith(postfix)) {
-                throw new RuntimeException("New identifier \""+
-                        newToken+"\" to be used for referencing doesn't end with prefix \""+postfix+"\"");
-            }
-            newToken = newToken.substring(0, newToken.length()-postfix.length());
-        }
-        return newToken;
+        return PropertyArgumentUtil.stripPrefixPostfix(newToken, prefix, postfix);
     }
     
-    /**
-     * If the {@link #property} refers to a multi-valued property, it has to be an ordered
-     * property. The position at which {@link #property} will set an element in the property
-     * collection is determined by this method. Usually, this will be 0. However, if the
-     * same multi-valued property is referred to by several property inits or property
-     * declarations, the position depends on these elements' ordering in the mapping.
-     */
-    private int getPosition() {
-        // TODO implement OCLQueryPropertyUpdater.getPosition
-        return 0;
-    }
-
     /**
      * Based on the <code>token</code> from which the identifier is obtained, prefixed with {@link #prefix} and
      * postfixed with {@link #postfix}, a lookup is performed by computing {@link #lookupScopeExp} for <code>eo</code>,
@@ -373,20 +322,33 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
      */
     private void resolve(EObject elementToUpdate, LexedToken token) {
         OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(getOppositeEndFinder());
-        Object newValue = ocl.evaluate(elementToUpdate, lookupScopeExp);
-        if (ocl.getEnvironment().getOCLStandardLibrary().getInvalid() != newValue) {
-            String tokenValue = token.getValue();
-            String prefixed = prefix == null ? tokenValue : prefix + tokenValue;
-            String prepostfixed = postfix == null ? prefixed : prefixed + postfix;
-            for (Object o : (Collection<?>) newValue) {
-                String referenceBy = (String) ocl.evaluate(o, referenceByExp);
-                if (prepostfixed.equals(referenceBy)) {
-                    elementToUpdate.eSet(getPropertyToUpdate(), o);
-                    if (o instanceof EObject) {
-                        syntaxRegistryToNotifyAboutTokenChanges.requestAddToReferencedElements(token, (EObject) o);
+        Object elementsInScope = ocl.evaluate(elementToUpdate, lookupScopeExp);
+
+        if (ocl.getEnvironment().getOCLStandardLibrary().getInvalid() == elementsInScope) {
+            return;
+        }
+        EObject currentlyResolved = getResolvedElement(token);
+        token.getReferencedElements().clear(); // Break the reference
+        
+        for (Object o : (Collection<?>) elementsInScope) {
+            EObject candidate = (EObject) o;
+            
+            if (token.getValue().equals(getNewTokenValue(ocl, candidate))) {
+                if (getPropertyToUpdate().isMany()) {
+                    @SuppressWarnings("unchecked")
+                    EList<EObject> list = (EList<EObject>) elementToUpdate.eGet(getPropertyToUpdate());
+                    int i = list.indexOf(currentlyResolved);
+                    if (i < 0) {
+                        list.add(candidate);
+                    } else {
+                        list.remove(i);
+                        list.add(i, candidate);
                     }
-                    break;
+                } else {
+                    elementToUpdate.eSet(getPropertyToUpdate(), candidate);
                 }
+                token.getReferencedElements().add(candidate);
+                break;
             }
         }
     }
@@ -394,11 +356,25 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
     /**
      * Tells if the property to be updated by this updater is currently resolved.
      */
-    private boolean isResolved(EObject element) {
-        return getPropertyToUpdate().isMany() && element.eGet(getPropertyToUpdate()) != null
-                && ((List<?>) element.eGet(getPropertyToUpdate())).get(getPosition()) != null
-                || element.eIsSet(getPropertyToUpdate());
+    private boolean isResolved(EObject element, LexedToken token) {
+        EObject resolved = getResolvedElement(token);
+        if (resolved == null) {
+            return false;
+        } else if (getPropertyToUpdate().isMany()) {
+            List<?> list = (List<?>) element.eGet(getPropertyToUpdate());
+            return list.contains(resolved);
+        }
+        return true;
+        
     }
+
+    private EObject getResolvedElement(LexedToken token) {
+        if (token.getReferencedElements().isEmpty()) {
+            return null;
+        }
+        return token.getReferencedElements().get(0);
+    }
+
 
     private Variable renameAllSelf(OCLExpression collectBody, String newNameForSelf) {
         return new SelfRenamingVisitor(newNameForSelf).visit(collectBody);

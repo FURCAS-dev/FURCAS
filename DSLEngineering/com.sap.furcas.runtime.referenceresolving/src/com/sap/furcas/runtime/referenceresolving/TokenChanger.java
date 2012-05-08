@@ -1,7 +1,5 @@
 package com.sap.furcas.runtime.referenceresolving;
 
-import org.eclipse.emf.ecore.EObject;
-
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 
 /**
@@ -14,6 +12,4 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
  */
 public interface TokenChanger {
     void requestTokenValueChange(LexedToken token, String oldTokenValue, String newTokenValue);
-    void requestClearReferencedElements(LexedToken token);
-    void requestAddToReferencedElements(LexedToken token, EObject referencedElement);
 }

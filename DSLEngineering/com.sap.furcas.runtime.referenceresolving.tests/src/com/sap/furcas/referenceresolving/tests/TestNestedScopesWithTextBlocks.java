@@ -222,10 +222,6 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
             public void requestTokenValueChange(LexedToken token, String oldTokenValue, String newTokenValue) {
                 receivedRequestToUpdateTokenValue[0] = oldTokenValue.equals("b") && newTokenValue.equals("a");
             }
-            @Override
-            public void requestClearReferencedElements(LexedToken token) {}
-            @Override
-            public void requestAddToReferencedElements(LexedToken token, EObject referencedElement) {}
         };
         SyntaxRegistry.getInstance().addTokenChanger(tokenChanger);
         setupModelFromTextToParse(sample);
