@@ -37,6 +37,7 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 
+import com.sap.emf.ocl.trigger.TriggerManager;
 import com.sap.furcas.ide.editor.commands.SetupTextBlocksModelCommand;
 import com.sap.furcas.ide.editor.document.CtsDocument;
 import com.sap.furcas.ide.editor.document.CtsDocumentProvider;
@@ -51,6 +52,7 @@ import com.sap.furcas.runtime.common.exceptions.ParserInstantiationException;
 import com.sap.furcas.runtime.parser.PartitionAssignmentHandler;
 import com.sap.furcas.runtime.parser.impl.DefaultPartitionAssignmentHandlerImpl;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
 import com.sap.ide.cts.parser.incremental.IncrementalParserFacade;
 
 /**
@@ -122,6 +124,7 @@ public class AbstractFurcasEditor extends UniversalEditor {
 
     private final AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory;
     private IncrementalParserFacade parserFacade;
+    private TriggerManager triggerManager;
 
     
     public AbstractFurcasEditor(AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>  parserFactory) {
@@ -156,6 +159,10 @@ public class AbstractFurcasEditor extends UniversalEditor {
         
         documentProvoider = new CtsDocumentProvider(modelEditorInput, editingDomain, partitionHandler);
         super.init(site, modelEditorInput.asLightWeightEditorInput());
+        
+        triggerManager = SyntaxRegistry.getInstance().getTriggerManagerForSyntax(syntax, parserFacade.getOppositeEndFinder(),
+                getProgressMonitor(), parserFacade.getParserFactory());
+        triggerManager.addToObservedResourceSets(editingDomain.getResourceSet());
         
         // Reset dirty state. It was changed by the initializing commands.
         ((BasicCommandStack) editingDomain.getCommandStack()).saveIsDone();        
@@ -247,6 +254,12 @@ public class AbstractFurcasEditor extends UniversalEditor {
     @Override
     public void dispose() {
         super.dispose();
+        if (triggerManager != null) {
+            if (editingDomain != null) {
+                triggerManager.removeFromObservedResourceSets(editingDomain.getResourceSet());
+            }
+            triggerManager = null; // collect weakly referenced model updaters.
+        }
         disposeEditingDomain();
     }
     
