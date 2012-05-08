@@ -5,8 +5,9 @@ Bundle-SymbolicName: com.sap.furcas.runtime.textblocks
 Bundle-Version: 1.0.0
 Bundle-Vendor: SAP
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: com.sap.furcas.metamodel,
- org.eclipse.emf.edit;bundle-version="2.6.0",
+Require-Bundle: org.eclipse.jface.text,
+ org.eclipse.emf.edit,
+ com.sap.furcas.metamodel,
  com.sap.furcas.runtime.tcs,
  com.sap.furcas.runtime.common,
  org.eclipse.ocl.examples.impactanalyzer.util,
