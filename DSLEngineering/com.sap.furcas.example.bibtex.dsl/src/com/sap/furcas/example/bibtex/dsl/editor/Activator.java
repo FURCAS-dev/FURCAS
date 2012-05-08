@@ -1,15 +1,9 @@
 package com.sap.furcas.example.bibtex.dsl.editor;
 
-import java.io.IOException;
-
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
-
-import com.sap.emf.ocl.trigger.TriggerManager;
+import com.sap.furcas.example.bibtex.dsl.parser.BibtexAuthorViewParserFactory;
 import com.sap.furcas.example.bibtex.dsl.parser.BibtexLibraryViewParserFactory;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;

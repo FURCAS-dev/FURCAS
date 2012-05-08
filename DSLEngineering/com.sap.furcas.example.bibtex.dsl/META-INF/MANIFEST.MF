@@ -16,22 +16,20 @@ Require-Bundle: org.antlr,
  org.eclipse.emf.edit,
  com.sap.ocl.oppositefinder.query2,
  com.sap.emf.ocl.trigger,
+ com.sap.furcas.example.bibtex.metamodel,
+ com.sap.furcas.example.bibtex.metamodel.edit,
+ com.sap.furcas.example.bibtex.metamodel.editor,
  com.sap.furcas.runtime.common,
  com.sap.furcas.runtime.tcs,
  com.sap.furcas.runtime.textblocks,
  com.sap.furcas.runtime.parser,
  com.sap.furcas.runtime.parser.incremental,
- com.sap.furcas.metamodel.edit,
- com.sap.furcas.metamodel.editor,
+ com.sap.furcas.runtime.referenceresolving,
  com.sap.furcas.modeladaptation.emf,
  com.sap.furcas.ide.parserfactory,
- org.eclipse.imp.runtime;bundle-version="0.1.108",
+ org.eclipse.imp.runtime,
  com.sap.furcas.ide.editor,
- com.sap.furcas.runtime.prettyprinter,
- com.sap.furcas.runtime.referenceresolving,
- com.sap.furcas.example.bibtex.metamodel,
- com.sap.furcas.example.bibtex.metamodel.edit,
- com.sap.furcas.example.bibtex.metamodel.editor
+ com.sap.furcas.runtime.prettyprinter
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.furcas.example.bibtex.dsl.editor
 Bundle-Activator: com.sap.furcas.example.bibtex.dsl.editor.Activator

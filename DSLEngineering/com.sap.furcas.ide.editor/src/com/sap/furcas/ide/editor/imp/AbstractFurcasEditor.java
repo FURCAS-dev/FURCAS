@@ -19,6 +19,9 @@ import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
@@ -37,7 +40,6 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 
-import com.sap.emf.ocl.trigger.TriggerManager;
 import com.sap.furcas.ide.editor.commands.SetupTextBlocksModelCommand;
 import com.sap.furcas.ide.editor.document.CtsDocument;
 import com.sap.furcas.ide.editor.document.CtsDocumentProvider;
@@ -52,7 +54,7 @@ import com.sap.furcas.runtime.common.exceptions.ParserInstantiationException;
 import com.sap.furcas.runtime.parser.PartitionAssignmentHandler;
 import com.sap.furcas.runtime.parser.impl.DefaultPartitionAssignmentHandlerImpl;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
-import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
+import com.sap.furcas.runtime.referenceresolving.Activator;
 import com.sap.ide.cts.parser.incremental.IncrementalParserFacade;
 
 /**
@@ -159,11 +161,7 @@ public class AbstractFurcasEditor extends UniversalEditor {
         
         documentProvoider = new CtsDocumentProvider(modelEditorInput, editingDomain, partitionHandler);
         super.init(site, modelEditorInput.asLightWeightEditorInput());
-        
-        triggerManager = SyntaxRegistry.getInstance().getTriggerManagerForSyntax(syntax, parserFacade.getOppositeEndFinder(),
-                getProgressMonitor(), parserFacade.getParserFactory());
-        triggerManager.addToObservedResourceSets(editingDomain.getResourceSet());
-        
+                
         // Reset dirty state. It was changed by the initializing commands.
         ((BasicCommandStack) editingDomain.getCommandStack()).saveIsDone();        
     }
@@ -242,11 +240,24 @@ public class AbstractFurcasEditor extends UniversalEditor {
      * 
      */
     protected TransactionalEditingDomain createEditingDomain() {
-        return  WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain();
+        ResourceSet resourceSet = new ResourceSetImpl() {
+            @Override
+            protected Resource delegatedGetResource(URI uri, boolean loadOnDemand) {
+                if (uri.equals(parserFactory.getSyntaxResourceURI())) {
+                    // Make sure we don't re-load the syntax within our current resourceSet.
+                    // Keeping only once syntax ensures that the SyntaxRegistry can do its job!
+                    return syntax.eResource();
+                }
+                return super.delegatedGetResource(uri, loadOnDemand);
+            }
+        };
+        Activator.getDefault().getSyntaxRegistry().registerAllLoadedSyntaxesTriggerManagers(resourceSet);
+        return  WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain(resourceSet);
     }
     
     protected void disposeEditingDomain() {
         if (editingDomain != null) {
+            Activator.getDefault().getSyntaxRegistry().unregisterAllLoadedSyntaxesTriggerManagers(editingDomain.getResourceSet());
             editingDomain.dispose();
         }
     } 
@@ -254,12 +265,6 @@ public class AbstractFurcasEditor extends UniversalEditor {
     @Override
     public void dispose() {
         super.dispose();
-        if (triggerManager != null) {
-            if (editingDomain != null) {
-                triggerManager.removeFromObservedResourceSets(editingDomain.getResourceSet());
-            }
-            triggerManager = null; // collect weakly referenced model updaters.
-        }
         disposeEditingDomain();
     }
     
