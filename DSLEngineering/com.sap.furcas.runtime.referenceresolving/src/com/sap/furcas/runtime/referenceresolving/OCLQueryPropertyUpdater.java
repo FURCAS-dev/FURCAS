@@ -95,10 +95,10 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
     private final PostfixPArg postfix;
     
     /**
-     * The {@link SyntaxRegistry} to notify when a token is changed. The syntax registry will, in turn,
+     * The {@link Activator} to notify when a token is changed. The syntax registry will, in turn,
      * notify the {@link TokenChanger}s registered with it.
      */
-    private final SyntaxRegistry syntaxRegistry;
+    private final TokenChanger tokenChanger;
     
     /**
      * The visitor returns the first "self" variable found referenced by the expression. If no such variable
@@ -143,7 +143,7 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
     }
 
     protected OCLQueryPropertyUpdater(Property property, EPackage.Registry metamodelPackageRegistry,
-            OppositeEndFinder oppositeEndFinder, SyntaxRegistry syntaxRegistryToNotifyAboutTokenChanges) throws ParserException {
+            OppositeEndFinder oppositeEndFinder, TokenChanger tokenChanger) throws ParserException {
         super(property.getPropertyReference().getStrucfeature(), metamodelPackageRegistry, oppositeEndFinder,
                 null, // triggerExpressionsWithContext are computed in getTriggerExpressionsWithContext
                 /* notifyNewContextElements */true,
@@ -177,7 +177,7 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
         collectExp.setBody(collectBody);
         collectExp.getIterator().add(firstSelf);
         collectExp.setType(getCollectType(collectExp, (EcoreEnvironment) oclHelper.getEnvironment()));
-        this.syntaxRegistry = syntaxRegistryToNotifyAboutTokenChanges;
+        this.tokenChanger = tokenChanger;
     }
     
     private static EClassifier getCollectType(IteratorExp collectExp, EcoreEnvironment env) {
@@ -259,7 +259,7 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
                         Object oldValue = getResolvedElement(token);
                         if (((Collection<?>) elementsInScope).contains(oldValue)) {
                             // resolved element still in scope; update token to reflect name change
-                            syntaxRegistry.requestTokenValueChange(token, token.getValue(),
+                            tokenChanger.requestTokenValueChange(token, token.getValue(),
                                     getNewTokenValue(ocl, oldValue));
                         } else {
                             // element to which identifier resolved so far is no
