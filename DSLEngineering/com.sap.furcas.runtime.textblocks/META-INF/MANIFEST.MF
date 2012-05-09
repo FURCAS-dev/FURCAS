@@ -20,3 +20,4 @@ Export-Package: com.sap.furcas.runtime.textblocks,
  com.sap.furcas.runtime.textblocks.modifcation,
  com.sap.furcas.runtime.textblocks.shortprettyprint,
  com.sap.furcas.runtime.textblocks.validation
+Bundle-ActivationPolicy: lazy

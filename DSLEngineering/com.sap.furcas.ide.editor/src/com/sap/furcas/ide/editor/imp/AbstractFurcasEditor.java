@@ -54,7 +54,7 @@ import com.sap.furcas.runtime.common.exceptions.ParserInstantiationException;
 import com.sap.furcas.runtime.parser.PartitionAssignmentHandler;
 import com.sap.furcas.runtime.parser.impl.DefaultPartitionAssignmentHandlerImpl;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
-import com.sap.furcas.runtime.referenceresolving.Activator;
+import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
 import com.sap.ide.cts.parser.incremental.IncrementalParserFacade;
 
 /**
@@ -126,18 +126,17 @@ public class AbstractFurcasEditor extends UniversalEditor {
 
     private final AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory;
     private IncrementalParserFacade parserFacade;
-    private TriggerManager triggerManager;
 
     
-    public AbstractFurcasEditor(AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>  parserFactory) {
+    public AbstractFurcasEditor(AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>  parserFactory, ConcreteSyntax syntax) {
         this.parserFactory = parserFactory;
+        this.syntax = syntax;
+        validateEditorState(syntax, parserFactory);
+        
         this.editingDomain = createEditingDomain();
         configureEditingDomain(editingDomain);
         
         this.adapterFactory = createAdapterFactory();
-        
-        this.syntax = (ConcreteSyntax) editingDomain.getResourceSet().getEObject(URI.createURI(parserFactory.getSyntaxUUID()), true);
-        validateEditorState(syntax, parserFactory);
     }
     
     /**
@@ -251,13 +250,13 @@ public class AbstractFurcasEditor extends UniversalEditor {
                 return super.delegatedGetResource(uri, loadOnDemand);
             }
         };
-        Activator.getDefault().getSyntaxRegistry().registerAllLoadedSyntaxesTriggerManagers(resourceSet);
+        SyntaxRegistry.getInstance().registerAllLoadedSyntaxesTriggerManagers(resourceSet);
         return  WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain(resourceSet);
     }
     
     protected void disposeEditingDomain() {
         if (editingDomain != null) {
-            Activator.getDefault().getSyntaxRegistry().unregisterAllLoadedSyntaxesTriggerManagers(editingDomain.getResourceSet());
+            SyntaxRegistry.getInstance().unregisterAllLoadedSyntaxesTriggerManagers(editingDomain.getResourceSet());
             editingDomain.dispose();
         }
     } 

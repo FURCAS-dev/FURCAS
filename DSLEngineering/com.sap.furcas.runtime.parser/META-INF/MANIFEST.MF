@@ -23,4 +23,5 @@ Export-Package: com.sap.furcas.runtime.parser,
  com.sap.furcas.runtime.parser.textblocks,
  com.sap.furcas.runtime.parser.textblocks.observer,
  com.sap.furcas.runtime.parser.wrapper
+Bundle-ActivationPolicy: lazy
 

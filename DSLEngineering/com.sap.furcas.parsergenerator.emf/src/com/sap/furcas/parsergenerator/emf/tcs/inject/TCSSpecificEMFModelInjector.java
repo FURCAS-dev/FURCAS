@@ -50,7 +50,7 @@ public class TCSSpecificEMFModelInjector {
 	    IParsingObserver observer, ParserFacade tcsParserFacade) throws IOException, UnknownProductionRuleException {
         
 	// use a model Handler that is implemented in EMF and only handles TCS models
-	TCSSpecificEMFModelAdapter handler = new TCSSpecificEMFModelAdapter(resourceSet, referenceScope);;
+	TCSSpecificEMFModelAdapter handler = new TCSSpecificEMFModelAdapter(resourceSet, referenceScope);
 
         DefaultTextAwareModelAdapter handlerWrapper = new DefaultTextAwareModelAdapter(handler);
         return tcsParserFacade.parseProductionRule(in, handlerWrapper, null, null, observer);

@@ -16,3 +16,4 @@ Export-Package: com.sap.furcas.utils,
  com.sap.furcas.utils.exceptions,
  com.sap.furcas.utils.projects
 Bundle-Activator: com.sap.furcas.utils.Activator
+Bundle-ActivationPolicy: lazy

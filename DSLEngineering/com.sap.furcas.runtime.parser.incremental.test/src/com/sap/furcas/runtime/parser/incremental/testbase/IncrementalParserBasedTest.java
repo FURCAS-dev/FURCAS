@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.junit.Before;
 
-import com.sap.emf.ocl.trigger.TriggerManager;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
@@ -65,8 +64,6 @@ public abstract class IncrementalParserBasedTest extends GeneratedParserAndFacto
     
     protected TextBlocksModel model;
     
-    private static SyntaxRegistry syntaxRegistry;
-    protected static TriggerManager triggerManager;
     
     protected static void setupParser(String languageName, File syntaxDefFile, File... metamodels) throws Exception {
         setupParser(languageName, syntaxDefFile, new ClassLookupImpl(),  /*useModelAdapters*/ false, metamodels);
@@ -97,10 +94,9 @@ public abstract class IncrementalParserBasedTest extends GeneratedParserAndFacto
         crossRefAdapter.setTarget(resourceSet);
         
         if (useModelUpdaters) {
-            syntaxRegistry = SyntaxRegistry.getInstance();
-            triggerManager = syntaxRegistry.getTriggerManagerForSyntax(incrementalParserFacade.getParserScope().getSyntax(),
+            SyntaxRegistry.getInstance().registerSyntaxForIncrementalEvaluation(incrementalParserFacade.getParserScope().getSyntax(),
                     DefaultOppositeEndFinder.getInstance(), /* progress monitor */null, incrementalParserFacade.getParserFactory());
-            triggerManager.addToObservedResourceSets(resourceSet);
+            SyntaxRegistry.getInstance().registerAllLoadedSyntaxesTriggerManagers(resourceSet);
         }
     }
     

@@ -14,3 +14,4 @@ Require-Bundle: com.sap.furcas.runtime.common,
  com.sap.furcas.modeladaptation.emf
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: com.sap.furcas.ide.parserfactory
+Bundle-ActivationPolicy: lazy

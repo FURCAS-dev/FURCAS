@@ -11,12 +11,13 @@
 package com.sap.furcas.metamodel.texteditor.editor; 
 
 import com.sap.furcas.ide.editor.imp.AbstractFurcasEditor;
+import com.sap.furcas.parser.tcs.Activator;
 import com.sap.furcas.parser.tcs.TCSParserFactory;
 
 public class TCSEditor extends AbstractFurcasEditor { 
 
     public TCSEditor() {
-        super(new TCSParserFactory());
+        super(new TCSParserFactory(), Activator.getDefault().getSyntax());
     }
 
 }

@@ -5,8 +5,10 @@ Bundle-SymbolicName: com.sap.furcas.parsergenerator.emf
 Bundle-Version: 1.0.0.qualifier
 Require-Bundle: 
  com.sap.furcas.runtime.common,
+ com.sap.ocl.oppositefinder.query2,
  com.sap.furcas.modeladaptation.emf,
  com.sap.furcas.runtime.parser,
  com.sap.furcas.parser.tcs
 Export-Package: com.sap.furcas.parsergenerator.emf.tcs.inject;x-friends:="com.sap.furcas.parsergenerator"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy

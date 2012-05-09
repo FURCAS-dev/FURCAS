@@ -10,3 +10,4 @@ Export-Package: Bibtex,
 Require-Bundle: org.eclipse.emf;bundle-version="2.6.0";visibility:=reexport,
  org.eclipse.emf.common;bundle-version="2.6.0";visibility:=reexport,
  org.eclipse.emf.ecore;bundle-version="2.6.1";visibility:=reexport
+Bundle-ActivationPolicy: lazy

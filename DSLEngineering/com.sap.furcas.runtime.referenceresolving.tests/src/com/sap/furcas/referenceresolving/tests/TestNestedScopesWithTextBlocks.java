@@ -32,6 +32,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
+import com.sap.furcas.runtime.referenceresolving.Activator;
 import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
 import com.sap.furcas.runtime.referenceresolving.TokenChanger;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
@@ -211,7 +212,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
      * definition).
      * 
      * This test case also asserts that a {@link TokenChanger} registered with the
-     * {@link SyntaxRegistry} will be requested to update the token value.
+     * {@link Activator} will be requested to update the token value.
      */
     @Test
     public void testCorrectBindingIfBoundElementIsStillInLookupScopeAfterRename() throws SemanticParserException {

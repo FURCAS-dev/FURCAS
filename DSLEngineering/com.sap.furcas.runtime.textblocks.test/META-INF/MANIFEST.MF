@@ -12,3 +12,4 @@ Require-Bundle: org.junit;bundle-version="4.8.1",
  com.sap.furcas.runtime.textblocks
 Export-Package: com.sap.furcas.runtime.textblocks.testbase,
  com.sap.furcas.runtime.textblocks.testutils
+Bundle-ActivationPolicy: lazy

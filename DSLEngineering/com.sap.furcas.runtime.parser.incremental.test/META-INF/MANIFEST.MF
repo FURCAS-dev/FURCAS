@@ -24,7 +24,9 @@ Require-Bundle: org.junit;bundle-version="4.8.1",
  com.sap.furcas.runtime.referenceresolving,
  com.sap.furcas.ide.parserfactory;visibility:=reexport,
  com.sap.furcas.parser.tcs,
- com.sap.furcas.parser.tcs.test
+ com.sap.furcas.parser.tcs.test,
+ com.sap.emf.bundlelistener
 Bundle-ClassPath: generationTemp/,
  .
 Export-Package: com.sap.furcas.runtime.parser.incremental.testbase
+Bundle-ActivationPolicy: lazy

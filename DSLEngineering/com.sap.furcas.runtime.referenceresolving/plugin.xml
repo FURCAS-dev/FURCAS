@@ -3,6 +3,6 @@
 <plugin>
    <extension-point id="furcas_syntax" name="FURCAS Syntax with Model Updater Contributions" schema="schema/furcas_syntax.exsd"/>
    <extension point="com.sap.emf.bundlelistener.emf_bundle_listener">
-         <listener classname="com.sap.furcas.runtime.referenceresolving.SyntaxRegistry" />
+         <listener classname="com.sap.furcas.runtime.referenceresolving.PackageLoadListener" />
    </extension>
 </plugin>

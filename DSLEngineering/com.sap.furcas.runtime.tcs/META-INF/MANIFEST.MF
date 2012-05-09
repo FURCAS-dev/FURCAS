@@ -12,3 +12,4 @@ Require-Bundle: com.sap.furcas.runtime.common,
  com.sap.furcas.modeladaptation.emf,
  org.eclipse.emf.query2.index
 Export-Package: com.sap.furcas.runtime.tcs
+Bundle-ActivationPolicy: lazy

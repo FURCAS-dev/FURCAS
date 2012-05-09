@@ -21,3 +21,4 @@ Export-Package: com.sap.furcas.parsergenerator,
  com.sap.furcas.runtime.common.interfaces,
  com.sap.furcas.runtime.common.util,
  com.sap.furcas.runtime.parser
+Bundle-ActivationPolicy: lazy

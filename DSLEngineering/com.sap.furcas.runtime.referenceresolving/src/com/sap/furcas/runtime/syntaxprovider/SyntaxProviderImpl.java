@@ -23,7 +23,7 @@ public class SyntaxProviderImpl implements SyntaxProvider {
     }
 
     @Override
-    public synchronized ConcreteSyntax getSyntax() {
+    public ConcreteSyntax getSyntax() {
         if (syntax == null) {
             ResourceSet resourceSet = new ResourceSetImpl();
             syntax = (ConcreteSyntax) resourceSet.getEObject(URI.createURI(parserFactory.getSyntaxUUID()), true);
@@ -32,7 +32,7 @@ public class SyntaxProviderImpl implements SyntaxProvider {
     }
 
     @Override
-    public synchronized void registerForIncrementalEvaluation(SyntaxRegistry registry) {
+    public void registerForIncrementalEvaluation(SyntaxRegistry registry) {
         registry.registerSyntaxForIncrementalEvaluation(getSyntax(), oppositeEndFinder, /*progressmonitor*/null, parserFactory);
     }
 

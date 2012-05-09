@@ -13,43 +13,47 @@ import com.sap.furcas.runtime.syntaxprovider.SyntaxProviderImpl;
 /**
  * The activator class controls the plug-in life cycle
  */
-public class Activator extends AbstractUIPlugin implements SyntaxProvider {
-    private final SyntaxProvider delegate;
+public class Activator implements BundleActivator, SyntaxProvider {
+    
+    private static SyntaxProvider libraryViewSyntaxProvider;
+    private static SyntaxProvider authorViewSyntaxProvider;
 
     public static final String PLUGIN_ID = "Bibtex.dsl"; //NON-NLS-1
     private static Activator plugin;
 
-    public Activator() {
-    	// FIXME SyntaxProviderImpl does not support more than one syntax
-    	// per project?
-        delegate = new SyntaxProviderImpl(new BibtexLibraryViewParserFactory(),
-                DefaultOppositeEndFinder.getInstance());
-    }
-
     @Override
     public void start(BundleContext context) throws Exception {
-        super.start(context);
         plugin = this;
+        libraryViewSyntaxProvider = new SyntaxProviderImpl(new BibtexLibraryViewParserFactory());
+        authorViewSyntaxProvider = new SyntaxProviderImpl(new BibtexAuthorViewParserFactory());
     }
 
     @Override
     public void stop(BundleContext context) throws Exception {
         plugin = null;
-        super.stop(context);
     }
 
     public static Activator getDefault() {
         return plugin;
     }
-
+    
     @Override
-    public TriggerManager getTriggerManager(SyntaxRegistry syntaxRegistry) throws ParserException, IOException {
-        return delegate.getTriggerManager(syntaxRegistry);
+    public ConcreteSyntax getSyntax() {
+        throw new RuntimeException("Call delegates directly!");
     }
 
     @Override
-    public ConcreteSyntax getSyntax(ResourceSet loadSyntaxIn) throws IOException, ParserException {
-        return delegate.getSyntax(loadSyntaxIn);
+    public void registerForIncrementalEvaluation(SyntaxRegistry registry) {
+        getLibraryViewSyntaxProvider().registerForIncrementalEvaluation(registry);
+        getAuthorViewSyntaxProvider().registerForIncrementalEvaluation(registry);
+    }
+
+    public SyntaxProvider getAuthorViewSyntaxProvider() {
+        return authorViewSyntaxProvider;
+    }
+
+    public SyntaxProvider getLibraryViewSyntaxProvider() {
+        return libraryViewSyntaxProvider;
     }
 
 }

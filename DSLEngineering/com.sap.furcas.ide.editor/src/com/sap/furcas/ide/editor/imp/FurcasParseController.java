@@ -122,7 +122,7 @@ public abstract class FurcasParseController extends ParseControllerBase {
             @Override
             public void run() {
                 contentProvider.getDocument().resetAfterError();
-            };
+            }
         });
     }
 
@@ -162,7 +162,7 @@ public abstract class FurcasParseController extends ParseControllerBase {
             public void remove() {
                 throw new UnsupportedOperationException();
 
-            };
+            }
         };
     }
     

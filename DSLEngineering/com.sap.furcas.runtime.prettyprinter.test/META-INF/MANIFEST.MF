@@ -30,4 +30,5 @@ Require-Bundle: org.antlr,
  com.sap.furcas.runtime.referenceresolving
 Bundle-ClassPath: generationTemp/,
  .
+Bundle-ActivationPolicy: lazy
 
