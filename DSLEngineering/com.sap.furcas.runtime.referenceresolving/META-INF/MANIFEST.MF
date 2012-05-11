@@ -7,25 +7,22 @@ Bundle-Vendor: SAP
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.antlr;bundle-version="3.1.1",
  org.eclipse.core.runtime,
- com.sap.emf.ocl.trigger;visibility:=reexport,
+ com.sap.emf.ocl.trigger,
  org.eclipse.equinox.registry,
  org.eclipse.equinox.common;visibility:=reexport,
  org.eclipse.ocl.ecore,
  com.sap.furcas.runtime.textblocks,
  com.sap.furcas.runtime.tcs,
  com.sap.furcas.metamodel,
- org.eclipse.emf.query2.core,
- org.eclipse.emf.query2.index,
- org.eclipse.emf.query2.index.ui,
  com.sap.furcas.runtime.common,
  org.eclipse.osgi,
  org.eclipse.ocl.examples.impactanalyzer,
  com.sap.furcas.modeladaptation.emf,
  com.sap.furcas.runtime.parser,
  org.eclipse.ocl.examples.impactanalyzer.util,
- com.sap.emf.bundlelistener;visibility:=reexport,
- org.eclipse.ocl.examples.eventmanager
-Bundle-Activator: com.sap.furcas.runtime.referenceresolving.SyntaxRegistry
+ org.eclipse.ocl.examples.eventmanager,
+ com.sap.emf.bundlelistener
+Bundle-Activator: com.sap.furcas.runtime.referenceresolving.Activator
 Export-Package: com.sap.furcas.runtime.referenceresolving,
  com.sap.furcas.runtime.syntaxprovider
 Bundle-ActivationPolicy: lazy

@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -43,13 +44,9 @@ import com.sap.furcas.runtime.common.exceptions.ReferenceSettingException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
-import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.common.util.MessageUtil;
 import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 import com.sap.furcas.runtime.parser.PartitionAssignmentHandlerBase;
-import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
-
-import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider;
 
 
 /**
@@ -69,14 +66,16 @@ public class EMFModelAdapterDelegate {
     private final IMetaModelLookup<EObject> metamodelLookup;
 
     private final TCSSpecificOCLEvaluator oclEvaluator;
-    private final Query2OppositeEndFinder oppositeEndFinder;
+    private final OppositeEndFinder oppositeEndFinder;
 
     /**
      * @see EMFModelAdapter for any API documentation.
      */
-    public EMFModelAdapterDelegate(ResourceSet resourceSet, PartitionAssignmentHandlerBase partitioningHandler, IMetaModelLookup<EObject> metamodelLookup, Set<URI> additionalQueryScope) {
+    public EMFModelAdapterDelegate(ResourceSet resourceSet, PartitionAssignmentHandlerBase partitioningHandler, IMetaModelLookup<EObject> metamodelLookup, Set<URI> additionalQueryScope, TCSSpecificOCLEvaluator oclEvaluator, OppositeEndFinder oppositeEndFinder) {
         this.metamodelLookup = metamodelLookup;
         this.partitioningHandler = partitioningHandler;
+        this.oclEvaluator = oclEvaluator;
+        this.oppositeEndFinder = oppositeEndFinder;
         
         // The model lookup needs to know about the element created by this delegate
         // This is only a partial scope as it does neither include or resources in the resourceSet,
@@ -84,13 +83,6 @@ public class EMFModelAdapterDelegate {
         explicitQueryScope = new HashSet<URI>();
         explicitQueryScope.addAll(additionalQueryScope);
         modelLookup = new EcoreModelElementFinder(resourceSet, explicitQueryScope, metamodelLookup);
-        
-        // Build a scope encompassing all resources in the resource set,
-        // the additional queryScope, and all other resources visible via 
-        // Eclipse bundle dependencies. This scope is used for OCL queries.
-        QueryContextProvider queryContext = EcoreHelper.createProjectDependencyQueryContextProvider(resourceSet, additionalQueryScope);
-        this.oppositeEndFinder = new Query2OppositeEndFinder(queryContext);
-        this.oclEvaluator = new TCSSpecificOCLEvaluator(oppositeEndFinder);
     }
         
     public Object createElement(List<String> qualifiedTypeName) throws ModelAdapterException {
@@ -125,7 +117,7 @@ public class EMFModelAdapterDelegate {
     public EEnumLiteral createEnumLiteral(List<String> qualifiedEnumTypeName, String enumLiteralName) throws ModelAdapterException {
         EModelElement modelElement = findClassifierByName(qualifiedEnumTypeName);
         if (modelElement instanceof EEnum) {
-            EEnumLiteral enumLiteral = ((EEnum) modelElement).getEEnumLiteral(enumLiteralName);;
+            EEnumLiteral enumLiteral = ((EEnum) modelElement).getEEnumLiteral(enumLiteralName);
             if (enumLiteral == null) {
                 throw new ModelAdapterException(MessageUtil.asModelName(qualifiedEnumTypeName) + " does not have a liter named " + enumLiteralName);
             }

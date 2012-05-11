@@ -5,44 +5,29 @@ import static org.junit.Assert.assertTrue;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.Collection;
-import java.util.Set;
 
-import org.antlr.runtime.Lexer;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
-import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
-import com.sap.furcas.parser.tcs.scenario.ClassLookupImpl;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
-import com.sap.furcas.runtime.parser.ModelParsingResult;
-import com.sap.furcas.runtime.parser.ParserFacade;
-import com.sap.furcas.runtime.parser.ParserFactory;
 import com.sap.furcas.runtime.parser.impl.DefaultPartitionAssignmentHandlerImpl;
-import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.parser.incremental.testbase.GeneratedParserAndFactoryBasedTest;
 import com.sap.furcas.runtime.parser.incremental.testbase.GeneratedParserAndFactoryTestConfiguration;
-import com.sap.furcas.runtime.parser.incremental.testbase.ParserAndFactoryGenerator;
 import com.sap.furcas.runtime.parser.testbase.ClassLookup;
-import com.sap.furcas.runtime.parser.testbase.EMFParsingHelper;
-import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
-import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.testutils.EMFTextBlocksModelElementFactory;
@@ -62,11 +47,8 @@ public class TestSeparatorPArg extends GeneratedParserAndFactoryBasedTest {
     private static final String LANGUAGE = "SeparatorFeatureTestSyntax";
     private static final File TCS = FeatureFixtureData.PARG_SEPARATOR_TCS;
     private static final File METAMODEL = FeatureFixtureData.PARG_SEPARATOR_METAMODEL;
-    private static final String PACKAGE_URI = FeatureFixtureData.PARG_SEPARATOR_PACKAGE_URI;
 
-    private static EMFParsingHelper parsingHelper;
 	private static ResourceSet resourceSet;
-	private static ConcreteSyntax syntax;
 	private static IncrementalParserFacade incrementalParserFacade;
     
 
@@ -75,10 +57,8 @@ public class TestSeparatorPArg extends GeneratedParserAndFactoryBasedTest {
     	GeneratedParserAndFactoryTestConfiguration testConfig = 
     		new GeneratedParserAndFactoryTestConfiguration(LANGUAGE, TCS, METAMODEL);
         resourceSet = testConfig.getSourceConfiguration().getResourceSet();
-        Set<URI> referenceScope = testConfig.getSourceConfiguration().getReferenceScope();
         
         TCSSyntaxContainerBean syntaxBean = parseSyntax(testConfig);
-        syntax = syntaxBean.getSyntax();
         incrementalParserFacade = generateParserAndParserFactoryForLanguage(syntaxBean, testConfig,
                 resourceSet, new DefaultPartitionAssignmentHandlerImpl(), new ClassLookup() {
 

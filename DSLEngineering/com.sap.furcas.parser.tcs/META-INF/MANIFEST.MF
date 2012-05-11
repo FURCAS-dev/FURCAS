@@ -17,3 +17,4 @@ Bundle-Vendor: SAP
 Export-Package: com.sap.furcas.parser.tcs,
  com.sap.furcas.parser.tcs.stable;x-friends:="com.sap.furcas.runtime.parser.incremental.test,com.sap.furcas.metamodel.texteditor"
 Bundle-ActivationPolicy: lazy
+Bundle-Activator: com.sap.furcas.parser.tcs.Activator

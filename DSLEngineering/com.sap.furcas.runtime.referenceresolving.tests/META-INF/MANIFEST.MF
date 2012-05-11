@@ -30,3 +30,5 @@ Require-Bundle: org.junit;bundle-version="4.8.1",
  com.sap.furcas.parser.tcs
 Bundle-ClassPath: generationTemp/,
  .
+Export-Package: com.sap.furcas.referenceresolving.tests
+Bundle-ActivationPolicy: lazy

@@ -1,32 +1,26 @@
 package com.sap.furcas.parser.tcs;
 
-import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
+import com.sap.furcas.runtime.syntaxprovider.SyntaxProvider;
 import com.sap.furcas.runtime.syntaxprovider.SyntaxProviderImpl;
 
-public class Activator extends SyntaxProviderImpl implements BundleActivator {
-    private static Activator instance;
-    private String bundleName;
+public class Activator implements BundleActivator, SyntaxProvider {
     
-    public Activator() {
-        super(new TCSParserFactory(), DefaultOppositeEndFinder.getInstance());
-    }
-
+    private static Activator instance;
+    private static SyntaxProvider delegate;
+    
     /**
      * When a FURCAS language bundle is started, it registers itself with the
-     * reference resolving {@link SyntaxRegistry}.
+     * reference resolving {@link Activator}.
      */
     @Override
     public void start(BundleContext context) throws Exception {
         instance = this;
-        bundleName = context.getBundle().getSymbolicName();
-    }
-
-    public String getBundleName() {
-        return bundleName;
+        delegate = new SyntaxProviderImpl(new TCSParserFactory());
     }
 
     @Override
@@ -34,10 +28,16 @@ public class Activator extends SyntaxProviderImpl implements BundleActivator {
     }
     
     public static Activator getDefault() {
-        if (instance == null) {
-            // non-OSGi mode?
-            instance = new Activator();
-        }
         return instance;
+    }
+
+    @Override
+    public ConcreteSyntax getSyntax() {
+        return delegate.getSyntax();
+    }
+
+    @Override
+    public void registerForIncrementalEvaluation(SyntaxRegistry registry) {
+        delegate.registerForIncrementalEvaluation(registry);
     }
 }

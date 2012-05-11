@@ -49,7 +49,7 @@ import com.sap.furcas.runtime.tcs.TcsUtil;
  */
 public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBasedModelUpdater implements ModelUpdater {
     
-    public enum SelfKind { SELF, CONTEXT, FOREACH };
+    public enum SelfKind { SELF, CONTEXT, FOREACH }
     
     private final SelfKind selfKind;
     private final String contextTag;
@@ -83,12 +83,8 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
                     newValue = ((Collection<?>) newValue).isEmpty() ? null : ((Collection<?>) newValue).iterator()
                             .next();
                 }
-                try {
-                    for (EObject elementToUpdate : getElementsToUpdate(eo)) {
-                        elementToUpdate.eSet(getPropertyToUpdate(), newValue);
-                    }
-                } catch (ParserException e) {
-                    throw new RuntimeException(e);
+                for (EObject elementToUpdate : getElementsToUpdate(eo)) {
+                    elementToUpdate.eSet(getPropertyToUpdate(), newValue);
                 }
             }
         }
@@ -145,14 +141,18 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
      *            case where {@link #selfKind} is {@link SelfKind#SELF}, this is at the same time the result of this
      *            method; otherwise, the <code>inTextBlock</code> argument is used to compute the result
      */
-    protected Set<EObject> getElementsToUpdate(EObject self) throws ParserException {
+    protected Set<EObject> getElementsToUpdate(EObject self) {
         switch (selfKind) {
         case SELF:
             return getElementsToUpdateFromSelf(self);
         case CONTEXT:
             return getElementsToUpdateFromContextElement(self);
         case FOREACH:
-            return getElementToUpdateFromForeachElement(self);
+            try {
+                return getElementToUpdateFromForeachElement(self);
+            } catch (ParserException e) {
+                throw new RuntimeException(e);
+            }
         default:
             throw new RuntimeException("Unknown self kind: "+selfKind);
         }
@@ -229,18 +229,13 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
      * an empty collection is returned.
      */
     private Set<EObject> getElementsToUpdateFromSelf(EObject element) {
-        Set<EObject> corresponding = new HashSet<EObject>();
         Set<TextBlock> textBlocks = getTextBlocksInWhichSequenceElementWasExecuted(element, /* #context */ false);
         for (TextBlock tb : textBlocks) {
-            corresponding.add(tb.getCorrespondingModelElements().get(0));
+            if (element.equals(tb.getCorrespondingModelElements().get(0))) {
+                return Collections.singleton(element);
+            }
         }
-        Set<EObject> result;
-        if (corresponding.contains(element)) {
-            result = Collections.singleton(element);
-        } else {
-            result = Collections.emptySet();
-        }
-        return result;
+        return Collections.emptySet();
     }
 
 

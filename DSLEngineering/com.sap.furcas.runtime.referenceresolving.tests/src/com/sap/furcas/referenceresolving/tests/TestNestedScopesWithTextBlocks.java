@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
-import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -33,6 +32,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
+import com.sap.furcas.runtime.referenceresolving.Activator;
 import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
 import com.sap.furcas.runtime.referenceresolving.TokenChanger;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
@@ -49,7 +49,7 @@ import com.sap.ide.cts.parser.errorhandling.SemanticParserException.Component;
  * 
  */
 
-public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTestWithTextBlocks {
+public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTest {
 
     private static final String LANGUAGE = "NestedScopesTestSyntax";
     private static final File TCS = ScenarioFixtureData.NESTED_SCOPE_TCS;
@@ -57,15 +57,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
 
     @BeforeClass
     public static void setupParser() throws Exception {
-        setupParser(TCS, LANGUAGE, METAMODEL);
-    }
-
-    @After
-    public void removeModelFromResourceSet() {
-        rootElement.eResource().getContents().remove(rootElement);
-        resourceSet.getResources().remove(transientParsingResource);
-        // make sure the next parser run isn't obstructed by an already subscribed trigger manager:
-        triggerManager.removeFromObservedResourceSets(resourceSet);
+        setupParser(LANGUAGE, TCS, METAMODEL);
     }
 
     /**
@@ -220,7 +212,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
      * definition).
      * 
      * This test case also asserts that a {@link TokenChanger} registered with the
-     * {@link SyntaxRegistry} will be requested to update the token value.
+     * {@link Activator} will be requested to update the token value.
      */
     @Test
     public void testCorrectBindingIfBoundElementIsStillInLookupScopeAfterRename() throws SemanticParserException {
@@ -231,10 +223,6 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
             public void requestTokenValueChange(LexedToken token, String oldTokenValue, String newTokenValue) {
                 receivedRequestToUpdateTokenValue[0] = oldTokenValue.equals("b") && newTokenValue.equals("a");
             }
-            @Override
-            public void requestClearReferencedElements(LexedToken token) {}
-            @Override
-            public void requestAddToReferencedElements(LexedToken token, EObject referencedElement) {}
         };
         SyntaxRegistry.getInstance().addTokenChanger(tokenChanger);
         setupModelFromTextToParse(sample);

@@ -20,3 +20,4 @@ Export-Package:
  com.sap.furcas.modeladaptation.emf.adaptation,
  com.sap.furcas.modeladaptation.emf.lookup
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy

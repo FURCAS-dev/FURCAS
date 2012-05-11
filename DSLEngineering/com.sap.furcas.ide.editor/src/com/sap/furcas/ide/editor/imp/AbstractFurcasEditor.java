@@ -19,6 +19,9 @@ import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
@@ -51,6 +54,7 @@ import com.sap.furcas.runtime.common.exceptions.ParserInstantiationException;
 import com.sap.furcas.runtime.parser.PartitionAssignmentHandler;
 import com.sap.furcas.runtime.parser.impl.DefaultPartitionAssignmentHandlerImpl;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
 import com.sap.ide.cts.parser.incremental.IncrementalParserFacade;
 
 /**
@@ -124,15 +128,15 @@ public class AbstractFurcasEditor extends UniversalEditor {
     private IncrementalParserFacade parserFacade;
 
     
-    public AbstractFurcasEditor(AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>  parserFactory) {
+    public AbstractFurcasEditor(AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>  parserFactory, ConcreteSyntax syntax) {
         this.parserFactory = parserFactory;
+        this.syntax = syntax;
+        validateEditorState(syntax, parserFactory);
+        
         this.editingDomain = createEditingDomain();
         configureEditingDomain(editingDomain);
         
         this.adapterFactory = createAdapterFactory();
-        
-        this.syntax = (ConcreteSyntax) editingDomain.getResourceSet().getEObject(URI.createURI(parserFactory.getSyntaxUUID()), true);
-        validateEditorState(syntax, parserFactory);
     }
     
     /**
@@ -156,7 +160,7 @@ public class AbstractFurcasEditor extends UniversalEditor {
         
         documentProvoider = new CtsDocumentProvider(modelEditorInput, editingDomain, partitionHandler);
         super.init(site, modelEditorInput.asLightWeightEditorInput());
-        
+                
         // Reset dirty state. It was changed by the initializing commands.
         ((BasicCommandStack) editingDomain.getCommandStack()).saveIsDone();        
     }
@@ -235,11 +239,24 @@ public class AbstractFurcasEditor extends UniversalEditor {
      * 
      */
     protected TransactionalEditingDomain createEditingDomain() {
-        return  WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain();
+        ResourceSet resourceSet = new ResourceSetImpl() {
+            @Override
+            protected Resource delegatedGetResource(URI uri, boolean loadOnDemand) {
+                if (uri.equals(parserFactory.getSyntaxResourceURI())) {
+                    // Make sure we don't re-load the syntax within our current resourceSet.
+                    // Keeping only once syntax ensures that the SyntaxRegistry can do its job!
+                    return syntax.eResource();
+                }
+                return super.delegatedGetResource(uri, loadOnDemand);
+            }
+        };
+        SyntaxRegistry.getInstance().registerAllLoadedSyntaxesTriggerManagers(resourceSet);
+        return  WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain(resourceSet);
     }
     
     protected void disposeEditingDomain() {
         if (editingDomain != null) {
+            SyntaxRegistry.getInstance().unregisterAllLoadedSyntaxesTriggerManagers(editingDomain.getResourceSet());
             editingDomain.dispose();
         }
     } 

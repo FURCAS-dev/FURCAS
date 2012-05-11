@@ -19,6 +19,7 @@ import com.sap.furcas.runtime.parser.impl.ModelUpdaterRegistry;
 public class SyntaxRegistryFacade  {
 
     public static ModelUpdaterRegistry getModelUpdaterRegistry() {
-        return SyntaxRegistry.getInstance();
+        return null;
+//        return SyntaxRegistry.getInstance();
     }
 }

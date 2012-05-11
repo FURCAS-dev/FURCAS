@@ -11,3 +11,4 @@ Require-Bundle: org.junit4;bundle-version="4.8.1",
  com.sap.furcas.metamodel.tests,
  com.sap.furcas.runtime.tcs
 Export-Package: com.sap.furcas.runtime.tcs.testbase
+Bundle-ActivationPolicy: lazy

@@ -246,7 +246,7 @@ public class TestParsingObserverWithTcsSyntax {
     public void testParseATL() throws Exception {
         File[] metamodels = { ScenarioFixtureData.ATL_METAMODEL };
         ResourceSet metamodelResources = loadResourceSet(metamodels);
-        setupParserFor(getResourceSetAsScope(metamodelResources));;
+        setupParserFor(getResourceSetAsScope(metamodelResources));
 
         File syntaxDefFile = ScenarioFixtureData.ATL_TCS;
 
