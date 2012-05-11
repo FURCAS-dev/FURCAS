@@ -1,6 +1,5 @@
 package com.sap.emf.bundlelistener;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.osgi.framework.Bundle;
 
@@ -16,5 +15,5 @@ public interface EcorePackageLoadListener {
      * When called, the bundle hosting the generated Ecore package with the URI <code>nsURI</code>
      * has been started.
      */
-    void packageLoaded(URI uri);
+    void packageLoaded(String uri);
 }
