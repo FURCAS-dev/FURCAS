@@ -270,15 +270,12 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
     }
 
     private IProject getProjectForResource(Resource res, URIConverter converter) throws IllegalArgumentException {
-        final String platformResourceURIPrefix = URI.createPlatformResourceURI("/", /*encode*/ true).toString();
         URI uri = converter.normalize(res.getURI());
         IProject project = null;
         
         if (Platform.isRunning()) {
-            if (uri.isPlatformResource()) {
-                String uriAsString = uri.toString();
-                String projectName = uriAsString.substring(
-                        platformResourceURIPrefix.length(), uriAsString.indexOf('/', platformResourceURIPrefix.length()+1));
+            if (uri.isPlatform()) {
+                String projectName = uri.segment(1);
                 project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
             }
             if (project == null && uri.isFile()) {
