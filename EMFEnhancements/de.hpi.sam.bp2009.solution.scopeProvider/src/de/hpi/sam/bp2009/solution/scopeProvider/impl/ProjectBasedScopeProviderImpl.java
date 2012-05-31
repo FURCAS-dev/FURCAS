@@ -16,7 +16,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 import java.util.WeakHashMap;
 
@@ -71,35 +70,26 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
     protected ProjectBasedScopeProviderImpl() {
         super();
     }
-
-    public ProjectBasedScopeProviderImpl(EObject... eObjects) {
-        super();
-        setupForEObjects(Arrays.asList(eObjects));
-    }
-
-    public ProjectBasedScopeProviderImpl(Resource... resources) {
-        super();
-        setupForResources(Arrays.asList(resources));
-    }
-
-    public ProjectBasedScopeProviderImpl(ResourceSet... resourceSets) {
-        super();
-        setupForResourceSets(Arrays.asList(resourceSets));
-    }
     
     public ProjectBasedScopeProviderImpl(Notifier... notifiers) {
+        Collection<Resource> resources = new HashSet<Resource>();
+        
         for (Notifier notifier : notifiers) {
             if (notifier instanceof EObject) {
-                setupForEObjects(Arrays.asList((EObject) notifier));
+                EObject eo = (EObject) notifier;
+                if (eo.eResource() != null) {
+                    resources.add(eo.eResource());
+                }
             } else if (notifier instanceof Resource) {
-                setupForResources(Arrays.asList((Resource) notifier));
+                resources.add((Resource) notifier);
             } else if (notifier instanceof ResourceSet) {
-                setupForResourceSets(Arrays.asList((ResourceSet) notifier));
+                resources.addAll(((ResourceSet) notifier).getResources());
             } else {
                 throw new RuntimeException("Expected Resource, ResourceSet or EObject but got "
                         + notifier.getClass().getName());
             }
         }
+        setupForResources(resources);
     }
     
     @Override
@@ -161,17 +151,6 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         return scopeAsEObjects(getBackwardScopeAsResources());
     }
 
-    private void setupForEObjects(List<EObject> list) {
-        Set<Resource> initialResources = new HashSet<Resource>();
-        for (EObject eObject : list) {
-            Resource r = eObject.eResource();
-            if (r != null) {
-                initialResources.add(r);
-            }
-        }
-        setupForResources(initialResources);
-    }
-
     private void setupForResources(Collection<Resource> list) {
         for (Resource res : list) {
             ResourceSet set = res.getResourceSet();
@@ -192,19 +171,6 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
                 initialProjects.add(project);
             }
         }
-    }
-
-    private void setupForResourceSets(List<ResourceSet> list) {
-        Set<Resource> initialResources = new HashSet<Resource>();
-        for (ResourceSet set : list) {
-            if (rs == null) {
-                rs = set;
-            }
-            for (Resource r : set.getResources()) {
-                initialResources.add(r);
-            }
-        }
-        setupForResources(initialResources);
     }
 
     private IFolder getModelDirectoryFromProject(IProject project) throws IllegalArgumentException {
