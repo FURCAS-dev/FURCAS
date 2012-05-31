@@ -43,7 +43,7 @@ public class TestEMFModelAdapter {
     @Before
     public void setup() {
         ResourceSet resourceSet = ResourceTestHelper.createResourceSet();
-        Resource transientResource = EcoreHelper.createTransientParsingResource(resourceSet, FURCASPackage.eNS_URI);
+        Resource transientResource = EcoreHelper.createTransientParsingResource(resourceSet, FURCASPackage.eINSTANCE.getNsURI());
         adapter = new TestableEMFModelAdapter(resourceSet, transientResource, FURCASPackage.eINSTANCE);
     }
         

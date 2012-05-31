@@ -16,7 +16,6 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
@@ -26,6 +25,7 @@ import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
 import com.sap.furcas.runtime.common.exceptions.ParserInstantiationException;
 import com.sap.furcas.runtime.common.interfaces.IBareModelAdapter;
 import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
+import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ParserFactory;
@@ -45,6 +45,9 @@ import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException.Component;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRLexerAdapter;
+import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
+
+import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider;
 
 /**
  * Facade for handling incremental parser and lexer construction as well as
@@ -80,11 +83,11 @@ public class IncrementalParserFacade {
         // Build a scope encompassing all resources in the resource set,
         // the additional queryScope, and all other resources visible via 
         // Eclipse bundle dependencies.
-        //QueryContextProvider queryContext = EcoreHelper.createProjectDependencyQueryContextProvider(
-        //        resourceSet, parserScope.getExplicitQueryScope());
-        
+        QueryContextProvider queryContext = EcoreHelper.createProjectDependencyQueryContextProvider(
+                resourceSet, parserScope.getExplicitQueryScope());
+                
         // Has to be consistent to the definition in the SyntaxProviderImpl
-        this.oppositeEndFinder = DefaultOppositeEndFinder.getInstance(); //new Query2OppositeEndFinder(queryContext);
+        this.oppositeEndFinder = new Query2OppositeEndFinder(queryContext);
         this.oclEvaluator = new TCSSpecificOCLEvaluator(oppositeEndFinder);
         
         this.bareModelAdapter = new EMFModelAdapter(resourceSet, partitionAssignmentHandler,

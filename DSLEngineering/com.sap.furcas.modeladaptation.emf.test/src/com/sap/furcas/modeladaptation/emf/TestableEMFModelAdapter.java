@@ -12,13 +12,15 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
 import com.sap.furcas.modeladaptation.emf.lookup.QueryBasedEcoreMetaModelLookUp;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 import com.sap.furcas.runtime.parser.PartitionAssignmentHandlerBaseImpl;
+import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
+
+import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectDependencyQueryContextProvider;
 
 /**
  * Helper class. Makes it easier to call several model adapter methods.
@@ -28,7 +30,7 @@ public class TestableEMFModelAdapter extends EMFModelAdapter {
     public TestableEMFModelAdapter(ResourceSet resourceSet, Resource transientResource, EPackage metamodelPackage) {
         super(resourceSet, new PartitionAssignmentHandlerBaseImpl(transientResource),
                 new QueryBasedEcoreMetaModelLookUp(resourceSet, Collections.singleton(URI.createURI(metamodelPackage.getNsURI()))),
-                new HashSet<URI>(), new TCSSpecificOCLEvaluator(), DefaultOppositeEndFinder.getInstance());
+                new HashSet<URI>(), new TCSSpecificOCLEvaluator(), new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider(resourceSet)));
     }
 
     public Object createElement(String string) throws ModelAdapterException {
