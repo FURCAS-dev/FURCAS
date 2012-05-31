@@ -11,7 +11,6 @@
 package de.hpi.sam.bp2009.solution.scopeProvider.impl;
 
 import java.io.IOException;
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -19,6 +18,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.WeakHashMap;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -63,8 +63,9 @@ import de.hpi.sam.bp2009.solution.scopeProvider.ProjectBasedScopeProvider;
 public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider {
 
     private static final String WARNING_WORKSPACE_IS_CLOSED = "Attention: Workspace is closed. Only objects in the same resourceSet as the initial object(s) are returned as scope.";
+    
     protected Collection<IProject> initialProjects = new HashSet<IProject>();
-    protected List<WeakReference<Resource>> inMemoryResourceList;
+    protected WeakHashMap<Resource, Object> inMemoryResources = new WeakHashMap<Resource, Object>();
     protected ResourceSet rs;
 
     protected ProjectBasedScopeProviderImpl() {
@@ -106,44 +107,17 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         return initialProjects;
     }
 
-    /**
-     * Returns a cloned list of the in-memory resources seen by this scope provider. Being a clone,
-     * it is possible though pointless to modify the collection returned.
-     */
     @Override
     public Collection<Resource> getInMemoryResources() {
-        Collection<Resource> result = new BasicEList<Resource>();
-        if (inMemoryResourceList == null) {
-            return result;
-        }
-        for (WeakReference<Resource> ref : inMemoryResourceList) {
-            Resource r = ref.get();
-            if (r != null) {
-                result.add(r);
-            }
-        }
-        return result;
+        return inMemoryResources.keySet();
     }
 
-    public Collection<URI> getInMemoryResourceURIs() {
-        Collection<URI> result = new BasicEList<URI>();
-        if (inMemoryResourceList == null) {
-            return result;
-        }
-        for (WeakReference<Resource> ref : inMemoryResourceList) {
-            Resource r = ref.get();
-            if (r != null) {
-                result.add(r.getURI());
-            }
+    private Collection<URI> getInMemoryResourceURIs() {
+        Collection<URI> result = new ArrayList<URI>(inMemoryResources.size());
+        for (Resource r : inMemoryResources.keySet()) {
+            result.add(r.getURI());
         }
         return result;
-    }
-
-    public void setInMemoryResources(Collection<Resource> resources) {
-        inMemoryResourceList = new ArrayList<WeakReference<Resource>>();
-        for (Resource r : resources) {
-            inMemoryResourceList.add(new WeakReference<Resource>(r));
-        }
     }
 
     @Override
@@ -211,10 +185,7 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
             if (converter == null) {
                 converter = URIConverter.INSTANCE;
             }
-            // update inMemory Resources
-            Collection<Resource> inmem = getInMemoryResources();
-            inmem.add(res);
-            setInMemoryResources(inmem);
+            inMemoryResources.put(res, null);
 
             IProject project = getProjectForResource(res, converter);
             if (project != null) {
@@ -234,7 +205,6 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
             }
         }
         setupForResources(initialResources);
-
     }
 
     private IFolder getModelDirectoryFromProject(IProject project) throws IllegalArgumentException {
