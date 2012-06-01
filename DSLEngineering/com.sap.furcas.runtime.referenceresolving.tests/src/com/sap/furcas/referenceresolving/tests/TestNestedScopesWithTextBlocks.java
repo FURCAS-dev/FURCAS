@@ -33,7 +33,6 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.referenceresolving.Activator;
-import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
 import com.sap.furcas.runtime.referenceresolving.TokenChanger;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
@@ -224,7 +223,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
                 receivedRequestToUpdateTokenValue[0] = oldTokenValue.equals("b") && newTokenValue.equals("a");
             }
         };
-        SyntaxRegistry.getInstance().addTokenChanger(tokenChanger);
+        syntaxRegistry.addTokenChanger(tokenChanger);
         setupModelFromTextToParse(sample);
         assertNotNull(rootElement);
 
@@ -241,7 +240,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
         assertSame(bUsage.eGet(bUsage.eClass().getEStructuralFeature("boundDefinition")), bDefinition);
         assertTrue("Expected to receive request to update token value for a token with value \"b\" to \"a\" but didn't",
                 receivedRequestToUpdateTokenValue[0]);
-        SyntaxRegistry.getInstance().removeTokenValueChanger(tokenChanger);
+        syntaxRegistry.removeTokenValueChanger(tokenChanger);
     }
 
     /**

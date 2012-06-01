@@ -23,7 +23,7 @@ import com.sap.furcas.ide.editor.imp.AbstractFurcasEditor;
 public class BibtexAuthorViewEditor extends AbstractFurcasEditor { 
 
     public BibtexAuthorViewEditor() {
-        super(new BibtexAuthorViewParserFactory(), Activator.getDefault().getAuthorViewSyntaxProvider().getSyntax());
+        super(new BibtexAuthorViewParserFactory());
     }
     
     @Override

@@ -61,6 +61,7 @@ public abstract class IncrementalParserBasedTest extends GeneratedParserAndFacto
     protected static IncrementalParserFacade incrementalParserFacade;
     protected static Resource transientParsingResource;
     protected static ResourceSet resourceSet;
+    protected static SyntaxRegistry syntaxRegistry;
     
     protected TextBlocksModel model;
     
@@ -94,9 +95,10 @@ public abstract class IncrementalParserBasedTest extends GeneratedParserAndFacto
         crossRefAdapter.setTarget(resourceSet);
         
         if (useModelUpdaters) {
-            SyntaxRegistry.getInstance().registerSyntaxForIncrementalEvaluation(incrementalParserFacade.getParserScope().getSyntax(),
+            syntaxRegistry = new SyntaxRegistry();
+            syntaxRegistry.registerSyntaxForIncrementalEvaluation(incrementalParserFacade.getParserScope().getSyntax(),
                     DefaultOppositeEndFinder.getInstance(), /* progress monitor */null, incrementalParserFacade.getParserFactory());
-            SyntaxRegistry.getInstance().registerAllLoadedSyntaxesTriggerManagers(resourceSet);
+            syntaxRegistry.registerAllLoadedSyntaxesTriggerManagers(resourceSet);
         }
     }
     

@@ -12,13 +12,12 @@ import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
 
 public class SyntaxProviderImpl implements SyntaxProvider {
     private ConcreteSyntax syntax;
-    private final ParserFactory<?, ?> parserFactory;
     private final OppositeEndFinder oppositeEndFinder;
+    private final ParserFactory<?, ?> parserFactory;
     
     public SyntaxProviderImpl(ParserFactory<?, ?> parserFactory) {
         super();
         this.parserFactory = parserFactory;
-        // Has to be consistent to the definition in the IncrementalParserFacade
         this.oppositeEndFinder = DefaultOppositeEndFinder.getInstance();
     }
 

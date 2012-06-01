@@ -14,12 +14,12 @@ import java.util.EventObject;
 
 import org.antlr.runtime.Lexer;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
@@ -125,18 +125,21 @@ public class AbstractFurcasEditor extends UniversalEditor {
     private CtsDocumentProvider documentProvoider;
 
     private final AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory;
+    private final SyntaxRegistry syntaxRegistry;
     private IncrementalParserFacade parserFacade;
 
     
-    public AbstractFurcasEditor(AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>  parserFactory, ConcreteSyntax syntax) {
+    public AbstractFurcasEditor(AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>  parserFactory) {
         this.parserFactory = parserFactory;
-        this.syntax = syntax;
-        validateEditorState(syntax, parserFactory);
         
         this.editingDomain = createEditingDomain();
         configureEditingDomain(editingDomain);
         
+        this.syntax = (ConcreteSyntax) editingDomain.getResourceSet().getEObject(URI.createURI(parserFactory.getSyntaxUUID()), true);
+        validateEditorState(syntax, parserFactory);
+        
         this.adapterFactory = createAdapterFactory();
+        this.syntaxRegistry = new SyntaxRegistry();
     }
     
     /**
@@ -160,6 +163,10 @@ public class AbstractFurcasEditor extends UniversalEditor {
         
         documentProvoider = new CtsDocumentProvider(modelEditorInput, editingDomain, partitionHandler);
         super.init(site, modelEditorInput.asLightWeightEditorInput());
+        
+        syntaxRegistry.registerSyntaxForIncrementalEvaluation(syntax, parserFacade.getOppositeEndFinder(), new NullProgressMonitor(), parserFactory);
+        syntaxRegistry.registerAllLoadedSyntaxesTriggerManagers(editingDomain.getResourceSet());
+        
                 
         // Reset dirty state. It was changed by the initializing commands.
         ((BasicCommandStack) editingDomain.getCommandStack()).saveIsDone();        
@@ -239,32 +246,22 @@ public class AbstractFurcasEditor extends UniversalEditor {
      * 
      */
     protected TransactionalEditingDomain createEditingDomain() {
-        ResourceSet resourceSet = new ResourceSetImpl() {
-            @Override
-            protected Resource delegatedGetResource(URI uri, boolean loadOnDemand) {
-                if (uri.equals(parserFactory.getSyntaxResourceURI())) {
-                    // Make sure we don't re-load the syntax within our current resourceSet.
-                    // Keeping only once syntax ensures that the SyntaxRegistry can do its job!
-                    return syntax.eResource();
-                }
-                return super.delegatedGetResource(uri, loadOnDemand);
-            }
-        };
-        SyntaxRegistry.getInstance().registerAllLoadedSyntaxesTriggerManagers(resourceSet);
+        ResourceSet resourceSet = new ResourceSetImpl();
         return  WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain(resourceSet);
     }
     
     protected void disposeEditingDomain() {
-        if (editingDomain != null) {
-            SyntaxRegistry.getInstance().unregisterAllLoadedSyntaxesTriggerManagers(editingDomain.getResourceSet());
-            editingDomain.dispose();
-        }
+        editingDomain.dispose();
     } 
     
     @Override
     public void dispose() {
         super.dispose();
-        disposeEditingDomain();
+        if (editingDomain != null) {
+            syntaxRegistry.unregisterAllLoadedSyntaxesTriggerManagers(editingDomain.getResourceSet());
+            syntaxRegistry.unregisterSyntax(syntax);
+            disposeEditingDomain();
+        }
     }
     
     private void configureEditingDomain(TransactionalEditingDomain domain) {

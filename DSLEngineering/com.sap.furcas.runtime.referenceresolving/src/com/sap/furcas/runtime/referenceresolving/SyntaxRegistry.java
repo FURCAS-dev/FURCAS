@@ -79,7 +79,7 @@ public class SyntaxRegistry implements TokenChanger, ModelUpdaterRegistry {
      */
     private final Set<TokenChanger> tokenChangers;
     
-    SyntaxRegistry() {
+    public SyntaxRegistry() {
         triggerManagersForSyntax = new HashMap<URI, TriggerManager>();
         parserFactoriesForSyntax = new HashMap<URI, ParserFactory<? extends ObservableInjectingParser, ? extends Lexer>>();
         eventManager = EventManagerFactory.eINSTANCE.createEventManager();
@@ -87,11 +87,7 @@ public class SyntaxRegistry implements TokenChanger, ModelUpdaterRegistry {
         tokenChangers = new HashSet<TokenChanger>();
         updatersForPropertiesAndInjectorActions = new HashMap<URI, AbstractFurcasOCLBasedModelUpdater>();
     }
-    
-    public static SyntaxRegistry getInstance() {
-        return Activator.getDefault().getSyntaxRegistry();
-    }
-    
+        
     /**
      * After calling this method, all change {@link Notification notifications} coming from the
      * <code>registerWith</code> resource set and all its contained elements are analyzed. If they

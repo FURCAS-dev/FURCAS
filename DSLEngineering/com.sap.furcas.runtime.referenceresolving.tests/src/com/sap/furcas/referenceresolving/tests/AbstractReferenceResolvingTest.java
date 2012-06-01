@@ -22,10 +22,7 @@ public abstract class AbstractReferenceResolvingTest extends IncrementalParserBa
 
     protected EObject rootElement;
     protected TextBlock rootTextBlock;
-    
-
-
-    
+        
     /**
      * Call from a @BeforeClass operation in your subclass
      * @param LANGUAGE
