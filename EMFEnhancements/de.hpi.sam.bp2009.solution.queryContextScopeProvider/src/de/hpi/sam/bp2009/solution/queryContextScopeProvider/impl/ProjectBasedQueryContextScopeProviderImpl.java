@@ -14,8 +14,6 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.query2.QueryContext;
 
@@ -42,23 +40,12 @@ implements ProjectBasedQueryContextScopeProvider {
     protected ProjectBasedQueryContextScopeProviderImpl() {
         super();
     }
-
-    public ProjectBasedQueryContextScopeProviderImpl(EObject... eObjects) {
-        super(eObjects);
-    }
-
-    public ProjectBasedQueryContextScopeProviderImpl(Resource... resources) {
-        super(resources);      
-    }
-
-    public ProjectBasedQueryContextScopeProviderImpl(ResourceSet... resourceSets) {
-        super(resourceSets);
-    }
     
     public ProjectBasedQueryContextScopeProviderImpl(Notifier... notifier) {
         super(notifier);
     }
     
+    @Override
     public QueryContext getForwardScopeAsQueryContext() {
         if (rs == null) {
             throw new IllegalStateException("No ResourceSet defined!");
@@ -73,12 +60,13 @@ implements ProjectBasedQueryContextScopeProvider {
             @Override
             public URI[] getResourceScope() {
                 Collection<URI> list = getForwardScopeAsURIs();
-                return (URI[]) list.toArray(new URI[list.size()]);
+                return list.toArray(new URI[list.size()]);
 
             }
         };
     }
 
+    @Override
     public QueryContext getBackwardScopeAsQueryContext() {
         return new QueryContext() {
 
@@ -90,7 +78,7 @@ implements ProjectBasedQueryContextScopeProvider {
             @Override
             public URI[] getResourceScope() {
                 Collection<URI> list = getBackwardScopeAsURIs();
-                return (URI[]) list.toArray(new URI[list.size()]);
+                return list.toArray(new URI[list.size()]);
             }
         };
     }
