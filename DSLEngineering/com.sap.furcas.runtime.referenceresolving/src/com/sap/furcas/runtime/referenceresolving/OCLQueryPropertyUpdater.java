@@ -2,7 +2,7 @@ package com.sap.furcas.runtime.referenceresolving;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -40,8 +40,10 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 import com.sap.furcas.runtime.tcs.PropertyArgumentUtil;
+import com.sap.furcas.runtime.textblocks.TbUtil;
 
 /**
  * Represents an OCL "query" used to find an existing element in the model to assign to a property. The query is based on a
@@ -242,9 +244,11 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
      */
     @Override
     public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects, OppositeEndFinder oppositeEndFinder, Notification change) {
+        Collection<EObject> tokens = findTokensDocumentQueryExecution();
+
         for (EObject eo : affectedContextObjects) {
             for (EObject elementToUpdate : getElementsToUpdate(eo)) {
-                for (LexedToken token : getTokens(elementToUpdate)) {
+                for (LexedToken token : filterTokens(elementToUpdate, tokens)) {
                     
                     if (!isResolved(elementToUpdate, token)) {
                         resolve(elementToUpdate, token);
@@ -275,26 +279,35 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
     /**
      * From the <code>elementToUpdate</code> and the {@link #property} find out the tokens that were parsed by the
      * {@link #property} rule and that were produced within the execution of the template that led to
-     * <code>element</code>'s creation. If no such token is found, e.g., because the {@link #property} rule didn't fire
-     * for <code>element</code>, <code>null</code> is returned.
+     * <code>element</code>'s creation. 
      */
-    private Collection<LexedToken> getTokens(EObject elementToUpdate) {
-        // TODO there may be multiple versions of such tokens; decide which version to return
-        Collection<EObject> documentNodeDocumentingExecutionOfQuery = getOppositeEndFinder()
-        .navigateOppositePropertyWithBackwardScope(
-                TextblocksPackage.eINSTANCE.getDocumentNode_SequenceElement(), property);
-        Collection<LexedToken> result = new HashSet<LexedToken>();
-        if (documentNodeDocumentingExecutionOfQuery != null) {
-            for (EObject eo : documentNodeDocumentingExecutionOfQuery) {
-                if (eo instanceof LexedToken && eo.eResource() != null) {
-                    LexedToken lt = (LexedToken) eo;
-                    for (EObject correspondingModelElement : lt.getParent().getCorrespondingModelElements()) {
-                        if (correspondingModelElement == elementToUpdate) {
-                            result.add(lt);
-                        }
-                    }
+    private Collection<LexedToken> filterTokens(EObject elementToUpdate, Collection<EObject> tokens) {
+        Collection<LexedToken> result = new ArrayList<LexedToken>();
+        
+        for (EObject eo : tokens) {
+            if (eo instanceof LexedToken && eo.eResource() != null) {
+                LexedToken lt = (LexedToken) eo;
+
+                if (lt.getVersion() == Version.PREVIOUS) {
+                    continue;
+                }
+                if (lt.getVersion() == Version.REFERENCE && TbUtil.getNewestVersion(lt) != lt) {
+                    continue;
+                }
+                if (lt.getParent().getCorrespondingModelElements().contains(elementToUpdate)) {
+                    result.add(lt);
                 }
             }
+        }
+        return result;
+    }
+    
+    private Collection<EObject> findTokensDocumentQueryExecution() {
+        Collection<EObject> result = getOppositeEndFinder().navigateOppositePropertyWithBackwardScope(
+                TextblocksPackage.eINSTANCE.getDocumentNode_SequenceElement(), property);
+        
+        if (result == null) {
+            return Collections.emptyList();
         }
         return result;
     }
@@ -350,6 +363,10 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
                 token.getReferencedElements().add(candidate);
                 break;
             }
+        }
+        if (token.getReferencedElements().isEmpty()) {
+            // Reference could not be resolved. Completely break it in the model
+            elementToUpdate.eUnset(getPropertyToUpdate());
         }
     }
 
