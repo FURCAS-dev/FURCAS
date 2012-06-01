@@ -190,12 +190,13 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
     }
 
     private Set<Resource> getAllResourcesFromDirectory(IFolder modelDirectory) throws CoreException {
+        final Set<String> extensions = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().keySet();
         final Set<Resource> resources = new HashSet<Resource>();
+        
         for (IResource f : modelDirectory.members()) {
             if(!(f instanceof IFile)) {
                 continue;
             }
-            final Set<String> extensions = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().keySet();
             String fileExtension = f.getFileExtension();
             //only files with extension 'xmi', 'xml' or one of the registered ones include a resource
             if ("xmi".equals(fileExtension) || "xml".equals(fileExtension) || extensions.contains(fileExtension)) {
@@ -206,36 +207,36 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         return resources;
     }
 
+    /** 
+     * Project can be null if the scope provider could not resolve project for resource, because resource not in the workspace.
+     * This commonly happens for metamodels and resources which are in-memory only.
+     */
     private IProject getProjectForResource(Resource res, URIConverter converter) throws IllegalArgumentException {
-        URI uri = converter.normalize(res.getURI());
-        IProject project = null;
-        
-        if (Platform.isRunning()) {
-            if (uri.isPlatformResource()) {
-                String projectName = uri.segment(1);
-                project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
-            }
-            if (project == null && uri.isFile()) {
-                java.net.URI netUri = java.net.URI.create(uri.toString());
-                IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-                IContainer[] result = root.findContainersForLocationURI(netUri);
-                for (IFile file : root.findFilesForLocationURI(netUri)) {
-                    project = file.getProject();
-                }
-                for (IContainer c : result) {
-                    if (c instanceof IProject) {
-                        project = (IProject) c;
-                    }
-                }
-                if (project==null) {
-                    // Scope Provider could not resolve project for resource, because resource not in the workspace.
-                    // This commonly happens for metamodels and resources which are in-memory only.
-                }
-            }
-        }else {
+        if (!Platform.isRunning()) {
             workSpaceClosedWarning();
+            return null;
         }
-        return project;
+        URI uri = converter.normalize(res.getURI());
+        
+        if (uri.isPlatformResource()) {
+            String projectName = uri.segment(1);
+            return ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
+
+        } else if (uri.isFile()) {
+            java.net.URI netUri = java.net.URI.create(uri.toString());
+            IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+            for (IFile file : root.findFilesForLocationURI(netUri)) {
+                if (file.getProject() != null) {
+                    return file.getProject();
+                }
+            }
+            for (IContainer c : root.findContainersForLocationURI(netUri)) {
+                if (c instanceof IProject) {
+                    return (IProject) c;
+                }
+            }
+        }
+        return null;
     }
 
     /**
