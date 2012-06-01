@@ -10,7 +10,6 @@
  ******************************************************************************/
 package de.hpi.sam.bp2009.solution.scopeProvider.impl;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -27,16 +26,13 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import de.hpi.sam.bp2009.solution.scopeProvider.ProjectBasedScopeProvider;
 
@@ -64,7 +60,7 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
     private static final String WARNING_WORKSPACE_IS_CLOSED = "Attention: Workspace is closed. Only objects in the same resourceSet as the initial object(s) are returned as scope.";
     
     protected Collection<IProject> initialProjects = new HashSet<IProject>();
-    protected WeakHashMap<Resource, Object> inMemoryResources = new WeakHashMap<Resource, Object>();
+    protected WeakHashMap<URI, Object> inMemoryResources = new WeakHashMap<URI, Object>();
     protected ResourceSet rs;
 
     protected ProjectBasedScopeProviderImpl() {
@@ -100,15 +96,7 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
 
     @Override
     public Collection<Resource> getInMemoryResources() {
-        return inMemoryResources.keySet();
-    }
-
-    private Collection<URI> getInMemoryResourceURIs() {
-        Collection<URI> result = new ArrayList<URI>(inMemoryResources.size());
-        for (Resource r : inMemoryResources.keySet()) {
-            result.add(r.getURI());
-        }
-        return result;
+        return urisAsResources(inMemoryResources.keySet());
     }
 
     @Override
@@ -118,7 +106,7 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
 
     @Override
     public Collection<Resource> getForwardScopeAsResources() {
-        Collection<Resource> result = scopeAsResources(getForwardScopeAsProjects());
+        Collection<Resource> result = urisAsResources(scopeAsUris(getForwardScopeAsProjects()));
         return result;
     }
 
@@ -134,12 +122,11 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
     @Override
     public Collection<IProject> getBackwardScopeAsProjects() {
         return scopeAsProjects(/*forward*/ false);
-
     }
 
     @Override
     public Collection<Resource> getBackwardScopeAsResources() {
-        Collection<Resource> result = scopeAsResources(getBackwardScopeAsProjects());
+        Collection<Resource> result = urisAsResources(scopeAsUris(getBackwardScopeAsProjects()));
         return result;
     }
 
@@ -165,7 +152,7 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
             if (converter == null) {
                 converter = URIConverter.INSTANCE;
             }
-            inMemoryResources.put(res, null);
+            inMemoryResources.put(res.getURI(), null);
 
             IProject project = getProjectForResource(res, converter);
             if (project != null) {
@@ -174,34 +161,37 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         }
     }
 
-    private IFolder getModelDirectoryFromProject(IProject project) throws IllegalArgumentException {
-        // refresh: if project is not totally loaded some resources should appear hear
+    private Collection<IFolder> getModelDirectoriesFromProject(IProject project) throws IllegalArgumentException {
+        Collection<IFolder> folders = new ArrayList<IFolder>();
         try {
+            // refresh: if project is not totally loaded some resources should appear hear
             project.refreshLocal(IResource.DEPTH_INFINITE, null);
+            
+            for (IResource member : project.members(false)) {
+                if (member instanceof IFolder) {
+                    folders.add((IFolder) member);
+                }
+            }
         } catch (CoreException e) {
             e.printStackTrace();
         }
-        IResource member = project.findMember("model", true);
-        if (member == null || !(member instanceof IFolder)){
-            System.err.println("WARNING!!"+ project.getName() + " does not contain a model folder. It is invalid.");
-            return null;
-        }
-        return (IFolder) member;
+        return folders;
     }
 
-    private Set<Resource> getAllResourcesFromDirectory(IFolder modelDirectory) throws CoreException {
+    private Collection<URI> getAllResourcesFromDirectory(IFolder modelDirectory) throws CoreException {
         final Set<String> extensions = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().keySet();
-        final Set<Resource> resources = new HashSet<Resource>();
-        
+        final Collection<URI> resources = new ArrayList<URI>();
+
         for (IResource f : modelDirectory.members()) {
-            if(!(f instanceof IFile)) {
+            if (f instanceof IContainer) {
                 continue;
             }
-            String fileExtension = f.getFileExtension();
-            //only files with extension 'xmi', 'xml' or one of the registered ones include a resource
-            if ("xmi".equals(fileExtension) || "xml".equals(fileExtension) || extensions.contains(fileExtension)) {
-                URI uri = URI.createURI(f.getLocationURI().toString());
-                addNewOrInMemoryResource(resources, uri, fileExtension);
+            // only files with extension 'xmi', 'xml' or one of the registered ones include a resource
+            if ("xmi".equals(f.getFileExtension()) || "xml".equals(f.getFileExtension())
+                    || extensions.contains(f.getFileExtension())) {
+                
+                URI uri = URI.createPlatformResourceURI(f.getProject().getName()+"/"+f.getProjectRelativePath().toString(), /*encoded*/ true);
+                resources.add(uri);
             }
         }
         return resources;
@@ -238,67 +228,34 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         }
         return null;
     }
-
-    /**
-     * Add a resource with the given URI to the given Set of resources if an resource with the same uri is in the inMemory List,
-     * this resource will be added
-     * 
-     * @param resources
-     *            Set to add in resource
-     * @param uri
-     *            uri of the resource to add
-     * @param extension
-     *            resource file extension to infer the appropriate ResourceImpl
-     */
-    private void addNewOrInMemoryResource(final Set<Resource> resources, URI uri, String extension) {
-        Resource inMemory = null;
-        for (Resource r : getInMemoryResources()){
-            URI resUri = r.getURI();
-            if(uri.isFile() && resUri.isPlatformResource()){
-            	if (uri.toString().endsWith(resUri.toPlatformString(true))){
-            		inMemory = r;
-            	}
-            }
-            else if(uri.isPlatformResource() && resUri.isFile()){
-            	if (resUri.toString().endsWith(uri.toPlatformString(true))){
-            		inMemory = r;
-            	}
-            }
-            else if (uri.equals(resUri))
-              {
-                  inMemory = r;
-              }
+    
+    private Collection<Resource> urisAsResources(Collection<URI> uris) {
+        if (rs == null) {
+            throw new RuntimeException("ScopeProvider not given a ResourceSet. Cannot load resources.");
         }
-        if(inMemory == null){
-                if(rs==null){            
-                    System.err.println("Attention!! New ResourceSet created for \""+uri+"\". This is usually unexpected!");
-                    resources.add(new ResourceSetImpl().getResource(uri, /* loadOnDemand */ true));
-                }else{
-                    resources.add(rs.getResource(uri, /* loadOnDemand */ true));
-                }
-        }else{
-            resources.add(inMemory);
+        Collection<Resource> result = new ArrayList<Resource>();
+        for (URI uri : uris) {
+            result.add(rs.getResource(uri, /*loadOnDemand*/ true));
         }
+        return result;
     }
 
     private Collection<IProject> scopeAsProjects(boolean forward) {
-		Collection<IProject> result = new HashSet<IProject>();
-		Collection<IProject> pool = new ArrayList<IProject>();
+        Collection<IProject> result = new HashSet<IProject>();
+        Collection<IProject> pool = new ArrayList<IProject>();
 
-		if (Platform.isRunning()) {
-			pool = Arrays.asList(ResourcesPlugin.getWorkspace().getRoot().getProjects());
-		} else {
-			workSpaceClosedWarning();
-		}
-
-		for (IProject project : getInitialProjects()) {
-			try {
-				result.addAll(recursiveGetReferenceProjectsForProjects(project,
-						result, pool, forward));
-			} catch (CoreException e) {
-				e.printStackTrace();
-			}
-		}
+        if (Platform.isRunning()) {
+            pool = Arrays.asList(ResourcesPlugin.getWorkspace().getRoot().getProjects());
+        } else {
+            workSpaceClosedWarning();
+        }
+        for (IProject project : getInitialProjects()) {
+            try {
+                result.addAll(recursiveGetReferenceProjectsForProjects(project, result, pool, forward));
+            } catch (CoreException e) {
+                e.printStackTrace();
+            }
+        }
         return result;
     }
 
@@ -308,65 +265,28 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
     	System.err.println(WARNING_WORKSPACE_IS_CLOSED);
     }
 
-    private Collection<Resource> scopeAsResources(Collection<IProject> projects) throws IllegalArgumentException {
-        Collection<Resource> result = new HashSet<Resource>();
-        for (IProject project : projects) {
-            IFolder modelDir = getModelDirectoryFromProject(project);
-            if(modelDir==null){
-                continue;
-            }
-            try {
-                result.addAll(getAllResourcesFromDirectory(modelDir));
-            } catch (CoreException e) {
-                e.printStackTrace();
-            }
-        }
-        result.addAll(getInMemoryResources());
-
-        return result;
-    }
-
     private Collection<URI> scopeAsUris(Collection<IProject> projects) throws IllegalArgumentException {
         Collection<URI> result = new HashSet<URI>();
         for (IProject project : projects) {
-            IFolder modelDir = getModelDirectoryFromProject(project);
-            if(modelDir==null){
-                continue;
-            }
-            try {
-                result.addAll(getAllResourceURIsFromDirectory(modelDir));
-            } catch (CoreException e) {
-                e.printStackTrace();
+            for (IFolder modelDir : getModelDirectoriesFromProject(project)) {
+                try {
+                    result.addAll(getAllResourcesFromDirectory(modelDir));
+                } catch (CoreException e) {
+                    e.printStackTrace();
+                }
             }
         }
-        result.addAll(getInMemoryResourceURIs());
-
+        result.addAll(inMemoryResources.keySet());
         return result;
-    }
-
-    private Collection<URI> getAllResourceURIsFromDirectory(IFolder modelDir) throws CoreException {
-        final Set<URI> uris = new HashSet<URI>();
-        for (IResource f : modelDir.members()) {
-            IProject project = f.getProject();
-            IPath projectRelativePath = f.getProjectRelativePath();
-            //TODO correct?
-            URI uri = URI.createPlatformResourceURI(project.getName()+"/"+projectRelativePath.toString(), /*encoded*/ true);
-            uris.add(uri);
-        }
-        return uris;
     }
 
     private Collection<EObject> scopeAsEObjects(Collection<Resource> resources) {
         Collection<EObject> result = new HashSet<EObject>();
         for (Resource resource : resources) {
-            if (!resource.isLoaded()) {
-                try {
-                    resource.load(null);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            Iterator<EObject> iter = resource.getAllContents();
+            while (iter.hasNext()) {
+                result.add(iter.next());
             }
-            result.addAll(iteratorToCollection(resource.getAllContents()));
         }
         return result;
     }
@@ -412,17 +332,6 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
             recursiveGetReferenceProjectsForProjects(referenced, referencedProjects, pool, forward);
         }
         return referencedProjects;
-    }
-
-    private Collection<EObject> iteratorToCollection(Iterator<?> treeIterator) {
-        Collection<EObject> treeAsList = new BasicEList<EObject>();
-        while (treeIterator.hasNext()) {
-            Object next = treeIterator.next();
-            if (next instanceof EObject) {
-                treeAsList.add((EObject) next);
-            }
-        }
-        return treeAsList;
     }
 
 } // ProjectBasedScopeProviderImpl
