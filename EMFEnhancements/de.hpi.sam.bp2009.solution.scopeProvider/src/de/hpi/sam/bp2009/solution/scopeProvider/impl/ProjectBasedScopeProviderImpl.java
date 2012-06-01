@@ -84,6 +84,7 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
                 resources.add((Resource) notifier);
             } else if (notifier instanceof ResourceSet) {
                 resources.addAll(((ResourceSet) notifier).getResources());
+                rs = (ResourceSet) notifier;
             } else {
                 throw new RuntimeException("Expected Resource, ResourceSet or EObject but got "
                         + notifier.getClass().getName());
@@ -210,7 +211,7 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         IProject project = null;
         
         if (Platform.isRunning()) {
-            if (uri.isPlatform()) {
+            if (uri.isPlatformResource()) {
                 String projectName = uri.segment(1);
                 project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
             }
@@ -280,7 +281,7 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
     }
 
     private Collection<IProject> scopeAsProjects(boolean forward) {
-		Collection<IProject> result = new BasicEList<IProject>();
+		Collection<IProject> result = new HashSet<IProject>();
 		Collection<IProject> pool = new ArrayList<IProject>();
 
 		if (Platform.isRunning()) {
