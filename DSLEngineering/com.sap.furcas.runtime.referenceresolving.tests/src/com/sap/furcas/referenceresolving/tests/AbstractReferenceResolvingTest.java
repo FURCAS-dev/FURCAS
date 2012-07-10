@@ -56,6 +56,12 @@ public abstract class AbstractReferenceResolvingTest extends IncrementalParserBa
         model.replace(0, model.getLength(), textToParse);
         
         ParsingResult result = triggerParser();
+        // FIXME The following statements are required due to a bug in
+        // the event managers EventAdapter (overriding addAdapter() breaks its protocol).
+        // Re-Registering ensures that each model element has correctly set an adapter
+        // to be notified.
+        syntaxRegistry.unregisterAllLoadedSyntaxesTriggerManagers(resourceSet);
+        syntaxRegistry.registerAllLoadedSyntaxesTriggerManagers(resourceSet);
         
         return result;
     }
