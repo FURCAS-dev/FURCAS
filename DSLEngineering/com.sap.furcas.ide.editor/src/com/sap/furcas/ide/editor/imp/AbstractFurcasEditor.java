@@ -124,7 +124,7 @@ public class AbstractFurcasEditor extends UniversalEditor {
     
     private CtsDocumentProvider documentProvoider;
 
-    private final AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory;
+    protected final AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory;
     private final SyntaxRegistry syntaxRegistry;
     private IncrementalParserFacade parserFacade;
 
@@ -154,7 +154,7 @@ public class AbstractFurcasEditor extends UniversalEditor {
         ModelEditorInput modelEditorInput = loader.loadEditorInput(input);
         
         PartitionAssignmentHandler partitionHandler = createPartititionAssignmentHandler(modelEditorInput);
-        parserFacade = createParserFacade(partitionHandler);
+        parserFacade = createParserFacade(modelEditorInput, partitionHandler);
         
         SetupTextBlocksModelCommand command = new SetupTextBlocksModelCommand(editingDomain, modelEditorInput.getRootObject(),
                 modelEditorInput.getRootBlock(), parserFacade, partitionHandler);
@@ -166,13 +166,12 @@ public class AbstractFurcasEditor extends UniversalEditor {
         
         syntaxRegistry.registerSyntaxForIncrementalEvaluation(syntax, parserFacade.getOppositeEndFinder(), new NullProgressMonitor(), parserFactory);
         syntaxRegistry.registerAllLoadedSyntaxesTriggerManagers(editingDomain.getResourceSet());
-        
-                
+               
         // Reset dirty state. It was changed by the initializing commands.
         ((BasicCommandStack) editingDomain.getCommandStack()).saveIsDone();        
     }
 
-    private IncrementalParserFacade createParserFacade(PartitionAssignmentHandler partitionHandler) {
+    protected IncrementalParserFacade createParserFacade(ModelEditorInput modelEditorInput, PartitionAssignmentHandler partitionHandler) {
         try {
             return new IncrementalParserFacade(parserFactory, editingDomain.getResourceSet(), partitionHandler);
         } catch (ParserInstantiationException e) {
@@ -199,6 +198,7 @@ public class AbstractFurcasEditor extends UniversalEditor {
         
         // re-run IMP setup procedure with our fully configured services
         fParserScheduler.cancel();
+        fParserScheduler.setSystem(false);
         fParserScheduler.schedule();
         
         getDocumentProvider().consumeModelEditorInput();

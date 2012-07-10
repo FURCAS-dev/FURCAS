@@ -9,6 +9,7 @@ Require-Bundle: org.antlr;bundle-version="3.1.1",
  org.eclipse.ui.editors,
  org.eclipse.ui.workbench.texteditor,
  org.eclipse.jface.text,
+ com.sap.furcas.utils,
  com.sap.furcas.metamodel,
  com.sap.furcas.metamodel.edit,
  com.sap.furcas.metamodel.editor,
@@ -20,7 +21,8 @@ Require-Bundle: org.antlr;bundle-version="3.1.1",
  com.sap.furcas.parser.tcs,
  org.eclipse.imp.runtime;bundle-version="0.1.108",
  com.sap.furcas.ide.editor,
- com.sap.furcas.ide.parserfactory;bundle-version="1.0.0"
+ com.sap.furcas.ide.parserfactory;bundle-version="1.0.0",
+ com.sap.furcas.ide.dslproject
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: com.sap.furcas.metamodel.texteditor.Activator
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
