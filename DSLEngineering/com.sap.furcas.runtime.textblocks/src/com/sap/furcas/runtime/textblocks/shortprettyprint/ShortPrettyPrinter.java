@@ -95,7 +95,7 @@ public class ShortPrettyPrinter {
                 newValue = PrettyPrinterUtil.invertReferenceByQuery((EObject) propertyValue, se, oclEvaluator);
             } else {
                 if (PropertyArgumentUtil.containsRefersToArg(se) && propertyValue instanceof EObject) {
-                    propertyValue = investigator.get(contextObject, PropertyArgumentUtil.getRefersToPArg(se).getPropertyName());
+                    propertyValue = investigator.get(propertyValue, PropertyArgumentUtil.getRefersToPArg(se).getPropertyName());
                     
                     if (propertyValue instanceof Collection<?> && ((Collection<?>) propertyValue).size() > 0) {
                         propertyValue = ((Collection<?>) propertyValue).iterator().next();
