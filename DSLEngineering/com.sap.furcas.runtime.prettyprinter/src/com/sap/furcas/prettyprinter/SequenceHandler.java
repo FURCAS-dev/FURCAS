@@ -226,7 +226,7 @@ public class SequenceHandler {
                         TcsUtil.getMode(seqElem), context, policy);
             } else {
                 Activator.logger.logError("Unable to serialize property value of unknown type "
-                        + value.getClass().getName() + ". Skipping.");
+                        + (value == null ? "null" : value.getClass().getName()) + ". Skipping.");
                 return new NullResult();
             }
         } catch (SyntaxMismatchException e) {
