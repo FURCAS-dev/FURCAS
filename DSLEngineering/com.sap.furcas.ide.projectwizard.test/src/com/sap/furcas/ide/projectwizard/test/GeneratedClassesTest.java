@@ -15,7 +15,6 @@ import java.util.Map;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.junit.Test;
@@ -53,7 +52,7 @@ public class GeneratedClassesTest {
      * This test method calls the other methods in this class to generate, compile and clean the java classes.
      */
     @Test
-    public void compileGeneratedClasses() throws IOException, IllegalArgumentException, SecurityException, CodeGenerationException, CoreException {
+    public void compileGeneratedClasses() throws Exception {
         ProjectInfo pi = new ProjectInfo();
         configureProjectInfo(pi);
         
