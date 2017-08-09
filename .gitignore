@@ -6,3 +6,4 @@ bin/
 *.db
 *.class
 .metadata
+y.jar

@@ -1,28 +1,25 @@
  README - Graph Visualization Debug Tool
 =======================================
-The graph visualization tool provides the functionality to generate a graph for visualizing the NavigationStep hierarchy of the instance scope analysis within the OCL impact analysis. Therefore the tool generates a GraphML file, which can be opened by several graph tools (e.g. yED).
+The graph visualization tool provides the functionality to generate a graph for visualizing the
+NavigationStep hierarchy of the instance scope analysis within the OCL impact analysis.
+Therefore the tool generates a GraphML file, which can be opened by several graph tools (e.g. yED).
 
 Follow the following steps to generate a GraphML file:
-1. Make sure that you have checked out the project 
-   org.eclipse.ocl.examples.impactanalyzer.debug
+1. Make sure that you have checked out the project org.eclipse.ocl.examples.impactanalyzer.debug
 2. In order to generate a graph you may debug into the InstanceScopeAnalysis.self()
-   method or a similar method, in which you have access to an NavigationStep object. 
+   method or a similar method, in which you have access to an NavigationStep object.
    It's recommended to start the visualization tool after the navigate method of the
    NavigationStep was called.
 3. Open the display view (Window > Show View > Display)
 4. Execute the following line to generate a GraphML file where step is the name of the
    NavigationStep variable:
-   
+
    de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.debug.NavigationStepDebugHelper.printGraphFile(step, "C:\\tmp\\graph.graphml");
 
-   Internally, the debug visualization tool uses the third party library yFiles to 
-   generate a GraphMl file. Unfortunately, this library is only offered under commercial
-   license. At the moment, only the evaluation copy of this library is used to generate a graph.
-   If the graph file was not written to the specified path and the message
-   "The evaluation time of yFiles for Java has expired" is returned, the 
-   /org.eclipse.ocl.examples.impactanalyzer.debug/lib/y.jar must be replaced by a new
-   evaluation copy in order to be able to generate a graph file.
-   A new evaluation copy can be requested at http://www.yworks.com/en/products_yfiles_eval.php
+   Internally, the debug visualization tool uses the third party library yFiles to generate a
+   GraphMl file. Due to incompatibe licenses this lib cannot be shipped as part of this
+   repository and needs to be added manually as `org.eclipse.ocl.examples.impactanalyzer.debug/lib/y.jar`.
+   An evaluation copy can be requested at http://www.yworks.com/en/products_yfiles_eval.php.
 
 View and post-process the graph visualization:
 1. Download and install the yED graph tool (http://www.yworks.com/en/products_yed_about.html)
@@ -60,6 +57,6 @@ View and post-process the graph visualization:
     - Grouping
         - Layering Strategy: Ignore Groups
         - Horizontal Group Compaction: Strong
-    - Swimlanes 
+    - Swimlanes
         - Treat group as swimlanes: [ ]
 4. Rearrange nodes if needed
